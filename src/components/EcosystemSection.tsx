@@ -51,12 +51,13 @@ export const EcosystemSection = () => {
           </div>
           
           {/* Steps Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step, index) => (
               <div key={index} className="relative">
                 <Card className="border-2 hover:shadow-lg transition-all h-full">
-                  <CardContent className="p-8 space-y-4">
-                    <div className={`${step.color} w-14 h-14 rounded-2xl flex items-center justify-center text-white text-2xl font-bold`}>
+                  <CardContent className="p-6 md:p-8 space-y-3 md:space-y-4">
+                    <div className={`${step.color} w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center text-white text-xl md:text-2xl font-bold`}>
+
                       {step.number}
                     </div>
                     <h4 className="text-xl font-bold text-lioner-blue">

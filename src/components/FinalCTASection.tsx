@@ -12,12 +12,13 @@ export const FinalCTASection = () => {
   return (
     <section className="relative py-20 lg:py-32 bg-gradient-to-br from-lioner-blue via-secondary-blue to-lioner-blue overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-10">
-          <h2 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
+        <div className="max-w-4xl mx-auto text-center space-y-8 md:space-y-10">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
             Your Leadership Excellence Journey{" "}
             <span className="text-lioner-gold">Starts Now</span>
           </h2>
-          <p className="text-xl lg:text-2xl text-neutral-gray leading-relaxed">
+          <p className="text-lg md:text-xl lg:text-2xl text-neutral-gray leading-relaxed">
+
             Don't let another quarter pass without unlocking your true leadership potential. 
             Join elite executives who've already discovered their High Performance profile.
           </p>

@@ -25,10 +25,11 @@ export const AuthoritySection = () => {
             </h2>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-10 lg:gap-16 items-center">
             {/* Image */}
-            <div className="relative order-2 lg:order-1">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative order-2 md:order-1">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl max-w-md mx-auto md:max-w-none">
+
                 <img 
                   src={portraitImage} 
                   alt="Lionel Eersteling" 
@@ -39,8 +40,9 @@ export const AuthoritySection = () => {
             </div>
 
             {/* Content */}
-            <div className="space-y-8 order-1 lg:order-2">
-              <p className="text-xl lg:text-2xl text-foreground leading-relaxed">
+            <div className="space-y-6 md:space-y-8 order-1 md:order-2">
+              <p className="text-lg md:text-xl lg:text-2xl text-foreground leading-relaxed">
+
                 Elite entrepreneur, High Performance Coach, and Leadership Expert since 2005. 
                 Lionel empowers leaders by integrating <strong className="text-lioner-blue">physical vitality, 
                 mental clarity, and strategic leadership</strong> for sustainable success.

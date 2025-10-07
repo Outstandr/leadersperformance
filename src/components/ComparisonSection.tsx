@@ -40,11 +40,12 @@ export const ComparisonSection = () => {
           </div>
 
           {/* Comparison Grid */}
-          <div className="grid lg:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {/* Other Programs */}
             <Card className="border-2">
-              <CardContent className="p-8 space-y-6">
-                <h3 className="text-2xl font-bold text-muted-foreground mb-8">
+              <CardContent className="p-6 md:p-8 space-y-6">
+                <h3 className="text-xl md:text-2xl font-bold text-muted-foreground mb-6 md:mb-8">
+
                   Other Programs
                 </h3>
                 {comparisons.map((item, index) => (
@@ -65,8 +66,9 @@ export const ComparisonSection = () => {
 
             {/* With Leaders Performance */}
             <Card className="border-2 border-lioner-gold bg-lioner-gold/5">
-              <CardContent className="p-8 space-y-6">
-                <h3 className="text-2xl font-bold text-lioner-blue mb-8">
+              <CardContent className="p-6 md:p-8 space-y-6">
+                <h3 className="text-xl md:text-2xl font-bold text-lioner-blue mb-6 md:mb-8">
+
                   With Leaders Performance
                 </h3>
                 {comparisons.map((item, index) => (

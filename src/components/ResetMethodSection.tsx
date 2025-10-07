@@ -52,14 +52,15 @@ export const ResetMethodSection = () => {
           </div>
 
           {/* RESET Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {resetComponents.map((component, index) => (
               <Card key={index} className="border-2 hover:shadow-lg transition-shadow">
-                <CardContent className="p-6 space-y-4">
-                  <div className={`${component.color} w-16 h-16 rounded-2xl flex items-center justify-center`}>
-                    <span className="text-white text-3xl font-bold">{component.letter}</span>
+                <CardContent className="p-5 md:p-6 space-y-3 md:space-y-4">
+                  <div className={`${component.color} w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center`}>
+                    <span className="text-white text-2xl md:text-3xl font-bold">{component.letter}</span>
                   </div>
-                  <h4 className="text-xl font-bold text-lioner-blue">{component.title}</h4>
+                  <h4 className="text-lg md:text-xl font-bold text-lioner-blue">{component.title}</h4>
+
                   <p className="text-muted-foreground leading-relaxed">
                     {component.description}
                   </p>

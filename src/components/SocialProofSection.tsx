@@ -38,10 +38,11 @@ export const SocialProofSection = () => {
           </div>
 
           {/* Testimonials Grid */}
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {testimonials.map((testimonial, index) => (
               <Card key={index} className={`border-l-4 ${testimonial.color} hover:shadow-lg transition-shadow`}>
-                <CardContent className="p-8 space-y-6">
+                <CardContent className="p-6 md:p-8 space-y-5 md:space-y-6">
+
                   <Quote className="w-10 h-10 text-lioner-gold/20" />
                   <p className="text-muted-foreground leading-relaxed text-lg">
                     {testimonial.content}

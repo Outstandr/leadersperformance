@@ -69,14 +69,15 @@ export const ThreePillarsSection = () => {
           </div>
           
           {/* Pillars Grid */}
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {pillars.map((pillar, index) => (
-              <Card key={index} className={`border-2 ${pillar.color} hover:shadow-lg transition-shadow`}>
-                <CardContent className="p-8 space-y-6">
-                  <div className={`${pillar.iconBg} w-16 h-16 rounded-2xl flex items-center justify-center`}>
-                    <Icon name={pillar.icon} className={`w-8 h-8 ${pillar.iconColor}`} />
+              <Card key={index} className="border-2 ${pillar.color} hover:shadow-lg transition-shadow">
+                <CardContent className="p-6 md:p-8 space-y-5 md:space-y-6">
+                  <div className={`${pillar.iconBg} w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center`}>
+                    <Icon name={pillar.icon} className={`w-7 h-7 md:w-8 md:h-8 ${pillar.iconColor}`} />
                   </div>
-                  <h3 className="text-2xl font-bold text-lioner-blue">{pillar.title}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-lioner-blue">{pillar.title}</h3>
+
                   <ul className="space-y-3">
                     {pillar.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-3">
