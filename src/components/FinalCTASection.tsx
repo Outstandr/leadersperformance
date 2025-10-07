@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight } from "lucide-react";
+import portraitImage from "@/assets/lionel-portrait.jpg";
 
 export const FinalCTASection = () => {
   const benefits = [
@@ -46,8 +47,12 @@ export const FinalCTASection = () => {
             </div>
 
             <div className="md:col-span-1 flex justify-center">
-              <div className="aspect-square w-full max-w-xs bg-muted rounded-3xl overflow-hidden">
-                {/* Placeholder for image */}
+              <div className="aspect-square w-full max-w-xs rounded-3xl overflow-hidden">
+                <img 
+                  src={portraitImage} 
+                  alt="Professional portrait" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
 
