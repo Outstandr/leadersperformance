@@ -24,56 +24,48 @@ export const FinalCTASection = () => {
           </div>
 
           {/* Stats Grid */}
-          <div className="grid md:grid-cols-5 gap-8 mt-16 items-center">
-            <div className="md:col-span-2 space-y-8">
+          <div className="grid md:grid-cols-2 gap-x-32 gap-y-8 mt-16 max-w-4xl mx-auto">
+            {/* Left Column */}
+            <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="px-4 py-2 bg-primary rounded-full">
-                  <span className="text-white font-medium">$7M+</span>
+                <div className="px-6 py-3 bg-primary rounded-full">
+                  <span className="text-white font-semibold">$7M+</span>
                 </div>
-                <span className="text-muted-foreground">Revenue</span>
+                <span className="text-muted-foreground text-lg">Revenue</span>
               </div>
               <div className="flex items-center gap-4">
-                <div className="px-4 py-2 bg-primary rounded-full">
-                  <span className="text-white font-medium">72%</span>
+                <div className="px-6 py-3 bg-primary rounded-full">
+                  <span className="text-white font-semibold">72%</span>
                 </div>
-                <span className="text-muted-foreground">Growth</span>
+                <span className="text-muted-foreground text-lg">Growth</span>
               </div>
               <div className="flex items-center gap-4">
-                <div className="px-4 py-2 bg-primary rounded-full">
-                  <span className="text-white font-medium">65%</span>
+                <div className="px-6 py-3 bg-primary rounded-full">
+                  <span className="text-white font-semibold">65%</span>
                 </div>
-                <span className="text-muted-foreground">Skills</span>
-              </div>
-            </div>
-
-            <div className="md:col-span-1 flex justify-center">
-              <div className="aspect-square w-full max-w-xs rounded-3xl overflow-hidden">
-                <img 
-                  src={portraitImage} 
-                  alt="Professional portrait" 
-                  className="w-full h-full object-cover"
-                />
+                <span className="text-muted-foreground text-lg">Skills</span>
               </div>
             </div>
 
-            <div className="md:col-span-2 space-y-8">
+            {/* Right Column */}
+            <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="px-4 py-2 bg-primary rounded-full">
-                  <span className="text-white font-medium">78%</span>
+                <div className="px-6 py-3 bg-primary rounded-full">
+                  <span className="text-white font-semibold">78%</span>
                 </div>
-                <span className="text-muted-foreground">Impact</span>
+                <span className="text-muted-foreground text-lg">Impact</span>
               </div>
               <div className="flex items-center gap-4">
-                <div className="px-4 py-2 bg-primary rounded-full">
-                  <span className="text-white font-medium">1%</span>
+                <div className="px-6 py-3 bg-primary rounded-full">
+                  <span className="text-white font-semibold">1%</span>
                 </div>
-                <span className="text-muted-foreground">Designers</span>
+                <span className="text-muted-foreground text-lg">Designers</span>
               </div>
               <div className="flex items-center gap-4">
-                <div className="px-4 py-2 bg-primary rounded-full">
-                  <span className="text-white font-medium">10+</span>
+                <div className="px-6 py-3 bg-primary rounded-full">
+                  <span className="text-white font-semibold">10+</span>
                 </div>
-                <span className="text-muted-foreground">Consultants</span>
+                <span className="text-muted-foreground text-lg">Consultants</span>
               </div>
             </div>
           </div>
