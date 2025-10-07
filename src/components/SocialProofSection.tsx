@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Quote } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 export const SocialProofSection = () => {
   const testimonials = [{
     content: "Lionel's RESET Blueprint transformed not just my performance, but my entire approach to leadership. The integration of mind, body, and strategic thinking is revolutionary.",
@@ -17,38 +17,47 @@ export const SocialProofSection = () => {
     role: "Global Management Consultant",
     color: "border-secondary-purple"
   }];
-  return <section id="testimonials" className="py-16 lg:py-24 bg-zinc-200">
+  return <section id="testimonials" className="py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1.5 text-sm bg-lioner-gold/10 text-lioner-gold font-semibold rounded-full mb-3">
-              Success Stories
-            </span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-lioner-blue">
-              Elite Leaders Choose Excellence
+        <div className="max-w-5xl mx-auto">
+          {/* Rating and Testimonial */}
+          <div className="text-center space-y-8">
+            <div className="flex justify-center items-center gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star key={star} className="w-5 h-5 fill-foreground text-foreground" />
+              ))}
+              <span className="ml-3 text-sm text-foreground">Rated 4.9/5</span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight max-w-4xl mx-auto">
+              {testimonials[0].content}
             </h2>
+
+            <div className="flex flex-col items-center gap-3 pt-8">
+              <div className="w-16 h-16 rounded-full bg-muted"></div>
+              <div>
+                <p className="font-medium text-foreground">{testimonials[0].author}</p>
+                <div className="flex gap-2 mt-2">
+                  <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                    High conversion
+                  </span>
+                  <span className="px-3 py-1 bg-muted text-foreground rounded-full text-xs font-medium">
+                    2x sales
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Testimonials Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-            {testimonials.map((testimonial, index) => <Card key={index} className={`border-l-4 ${testimonial.color} hover:shadow-lg transition-shadow`}>
-                <CardContent className="p-5 md:p-6 space-y-4">
-
-                  <Quote className="w-8 h-8 text-lioner-gold/20" />
-                  <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
-                    {testimonial.content}
-                  </p>
-                  <div className="pt-3 border-t">
-                    <h4 className="text-lioner-blue font-bold text-base">
-                      {testimonial.author}
-                    </h4>
-                    <span className="text-xs text-muted-foreground font-medium">
-                      {testimonial.role}
-                    </span>
-                  </div>
-                </CardContent>
-              </Card>)}
+          {/* Section Label */}
+          <div className="text-center mt-24 mb-16">
+            <div className="inline-flex items-center gap-2 mb-6">
+              <div className="w-2 h-2 rounded-full bg-primary"></div>
+              <span className="text-sm text-primary font-medium">Features</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
+              Key benefits that set us apart from other ferms
+            </h2>
           </div>
         </div>
       </div>

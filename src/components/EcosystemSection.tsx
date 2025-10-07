@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 export const EcosystemSection = () => {
   const steps = [{
@@ -26,48 +27,61 @@ export const EcosystemSection = () => {
     action: "Exclusive access • Limited availability",
     color: "bg-lioner-gold"
   }];
-  return <section id="programs" className="py-16 lg:py-24 bg-zinc-200">
+  return <section id="programs" className="py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-12 space-y-3">
-            <span className="inline-block px-3 py-1.5 text-sm bg-lioner-gold/10 text-lioner-gold font-semibold rounded-full mb-2">
-              Your Journey
-            </span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-lioner-blue">
-              Your Path to Elite Leadership
+          <div className="text-center mb-16 space-y-6">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <div className="w-2 h-2 rounded-full bg-primary"></div>
+              <span className="text-sm text-primary font-medium">How it works</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
+              A proven process to achieve your biggest goals
             </h2>
-            <p className="text-base text-muted-foreground max-w-3xl mx-auto">
-              Choose your entry point into the Leaders Performance ecosystem
-            </p>
+            <Button 
+              size="lg" 
+              className="bg-primary hover:bg-primary/90 text-white font-medium rounded-full px-6 py-3 h-auto mt-6 group"
+            >
+              Get in touch
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </div>
           
-          {/* Steps Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {steps.map((step, index) => <div key={index} className="relative">
-                <Card className="border-2 hover:shadow-lg transition-all h-full">
-                  <CardContent className="p-5 md:p-6 space-y-3">
-                    <div className={`${step.color} w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center text-white text-lg md:text-xl font-bold`}>
-
-                      {step.number}
+          {/* Steps - Alternating Layout */}
+          <div className="space-y-24 mt-20">
+            {steps.map((step, index) => (
+              <div key={index} className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+                {/* Image Side */}
+                <div className={`${index % 2 === 1 ? 'md:order-2' : ''}`}>
+                  <div className="relative">
+                    <div className="aspect-[4/3] bg-muted rounded-3xl overflow-hidden">
+                      {/* Placeholder for image */}
                     </div>
-                    <h4 className="text-base md:text-lg font-bold text-lioner-blue">
-                      {step.title}
-                    </h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {step.description}
-                    </p>
-                    <p className="text-xs font-semibold text-lioner-gold pt-1">
-                      {step.action}
-                    </p>
-                  </CardContent>
-                </Card>
-                
-                {/* Arrow between cards on desktop */}
-                {index < steps.length - 1 && <div className="hidden lg:block absolute top-1/2 -right-2.5 transform -translate-y-1/2 z-10">
-                    <ArrowRight className="w-5 h-5 text-lioner-gold" />
-                  </div>}
-              </div>)}
+                  </div>
+                </div>
+
+                {/* Content Side */}
+                <div className={`space-y-6 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
+                  <div className="flex items-center gap-4">
+                    <div className="w-1 h-32 bg-border"></div>
+                    <div>
+                      <div className={`${step.color} text-white w-12 h-12 rounded-full flex items-center justify-center text-sm font-medium mb-4`}>
+                        {step.number.padStart(2, '0')}
+                      </div>
+                      <h3 className="text-3xl font-normal text-foreground mb-4">{step.title}</h3>
+                      <p className="text-base text-muted-foreground leading-relaxed mb-4">
+                        {step.description}
+                      </p>
+                      <a href="#" className="inline-flex items-center text-sm text-foreground hover:text-primary transition-colors">
+                        Discover More
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

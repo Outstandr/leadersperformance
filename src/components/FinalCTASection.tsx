@@ -10,45 +10,70 @@ export const FinalCTASection = () => {
   ];
 
   return (
-    <section className="relative py-16 lg:py-24 bg-gradient-to-br from-lioner-blue via-secondary-blue to-lioner-blue overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            Your Leadership Excellence Journey{" "}
-            <span className="text-lioner-gold">Starts Now</span>
-          </h2>
-          <p className="text-base md:text-lg text-neutral-gray leading-relaxed">
-
-            Don't let another quarter pass without unlocking your true leadership potential. 
-            Join elite executives who've already discovered their High Performance profile.
-          </p>
-          
-          <div>
-            <Button 
-              size="lg" 
-              className="bg-lioner-gold hover:bg-lioner-gold/90 text-white font-bold text-base px-6 py-3.5 h-auto rounded-full shadow-2xl group"
-            >
-              Get Your Free Leadership Assessment
-              <ArrowRight className="ml-1.5 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
+    <section className="py-20 lg:py-32 bg-muted/30">
+      <div className="container mx-auto px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center space-y-8">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
+              Real results that drive lasting impact for everyone
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              We deliver tailored strategies, innovative solutions, and dedicated support to drive lasting growth
+            </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4 lg:gap-6 pt-4">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="flex items-center gap-2">
-                <div className="rounded-full bg-lioner-gold/20 p-0.5">
-                  <Check className="w-3.5 h-3.5 text-lioner-gold" />
+          {/* Stats Grid */}
+          <div className="grid md:grid-cols-5 gap-8 mt-16 items-center">
+            <div className="md:col-span-2 space-y-8">
+              <div className="flex items-center gap-4">
+                <div className="px-4 py-2 bg-primary rounded-full">
+                  <span className="text-white font-medium">$7M+</span>
                 </div>
-                <span className="text-sm text-neutral-gray font-medium">{benefit}</span>
+                <span className="text-muted-foreground">Revenue</span>
               </div>
-            ))}
+              <div className="flex items-center gap-4">
+                <div className="px-4 py-2 bg-primary rounded-full">
+                  <span className="text-white font-medium">72%</span>
+                </div>
+                <span className="text-muted-foreground">Growth</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="px-4 py-2 bg-primary rounded-full">
+                  <span className="text-white font-medium">65%</span>
+                </div>
+                <span className="text-muted-foreground">Skills</span>
+              </div>
+            </div>
+
+            <div className="md:col-span-1 flex justify-center">
+              <div className="aspect-square w-full max-w-xs bg-muted rounded-3xl overflow-hidden">
+                {/* Placeholder for image */}
+              </div>
+            </div>
+
+            <div className="md:col-span-2 space-y-8">
+              <div className="flex items-center gap-4">
+                <div className="px-4 py-2 bg-primary rounded-full">
+                  <span className="text-white font-medium">78%</span>
+                </div>
+                <span className="text-muted-foreground">Impact</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="px-4 py-2 bg-primary rounded-full">
+                  <span className="text-white font-medium">1%</span>
+                </div>
+                <span className="text-muted-foreground">Designers</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="px-4 py-2 bg-primary rounded-full">
+                  <span className="text-white font-medium">10+</span>
+                </div>
+                <span className="text-muted-foreground">Consultants</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-lioner-gold/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary-purple/10 rounded-full blur-3xl" />
     </section>
   );
 };

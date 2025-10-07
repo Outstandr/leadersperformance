@@ -24,39 +24,22 @@ export const ThreePillarsSection = () => {
     iconColor: "text-secondary-purple",
     features: ["Purpose-Driven Leadership", "Values-Based Decision Making", "Legacy & Impact Planning", "Wealth & Success Integration", "Sustainable Performance", "Leadership by Design"]
   }];
-  return <section id="pillars" className="py-16 lg:py-24 bg-zinc-100">
+  return <section id="pillars" className="py-20 pb-32 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-12 space-y-3">
-            <span className="inline-block px-3 py-1.5 text-sm bg-lioner-gold/10 text-lioner-gold font-semibold rounded-full mb-2">
-              Our Approach
-            </span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-lioner-blue">
-              Master the Three Pillars
-            </h2>
-            <p className="text-base text-muted-foreground max-w-3xl mx-auto">
-              True leadership excellence requires the integration of mind, body, and strategic alignment
-            </p>
-          </div>
-          
           {/* Pillars Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 bg-zinc-100">
-            {pillars.map((pillar, index) => <Card key={index} className="border-2 ${pillar.color} hover:shadow-lg transition-shadow">
-                <CardContent className="p-5 md:p-6 space-y-4">
-                  <div className={`${pillar.iconBg} w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center`}>
-                    <Icon name={pillar.icon} className={`w-6 h-6 md:w-7 md:h-7 ${pillar.iconColor}`} />
-                  </div>
-                  <h3 className="text-lg md:text-xl font-bold text-lioner-blue">{pillar.title}</h3>
-
-                  <ul className="space-y-2">
-                    {pillar.features.map((feature, idx) => <li key={idx} className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-muted-foreground shrink-0 mt-0.5" />
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </li>)}
-                  </ul>
-                </CardContent>
-              </Card>)}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+            {pillars.map((pillar, index) => (
+              <div key={index} className="text-center space-y-6">
+                <div className={`${pillar.iconBg} w-16 h-16 mx-auto rounded-2xl flex items-center justify-center`}>
+                  <Icon name={pillar.icon} className={`w-8 h-8 ${pillar.iconColor}`} />
+                </div>
+                <h3 className="text-2xl font-normal text-foreground">{pillar.title}</h3>
+                <p className="text-base text-muted-foreground leading-relaxed max-w-xs mx-auto">
+                  {pillar.features[0]}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

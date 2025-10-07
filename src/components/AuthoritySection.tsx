@@ -2,52 +2,37 @@ import portraitImage from "@/assets/lionel-portrait.jpg";
 import { Check } from "lucide-react";
 export const AuthoritySection = () => {
   const achievements = ["20+ years elite leadership expertise", "Founder of BodyMentors Institute", "Global High-Performance Strategist", "Trusted by Fortune 500 executives", "Pioneer in mind-body-wealth integration", "Author of RESET Blueprint® methodology"];
-  return <section id="about" className="py-16 lg:py-24 bg-zinc-100">
+  return <section id="about" className="py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Section Label */}
-          <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1.5 text-sm bg-lioner-gold/10 text-lioner-gold font-semibold rounded-full mb-3">
-              Your Expert Guide
-            </span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-lioner-blue">
-              Meet Lionel Eersteling
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 mb-6">
+              <div className="w-2 h-2 rounded-full bg-primary"></div>
+              <span className="text-sm text-primary font-medium">Our team</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
+              Meet the experts behind your business success
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 md:gap-8 lg:gap-12 items-center">
-            {/* Image */}
-            <div className="relative order-2 md:order-1">
-              <div className="relative rounded-2xl overflow-hidden shadow-xl max-w-md mx-auto md:max-w-none">
-                <img src={portraitImage} alt="Lionel Eersteling" className="w-full h-auto object-cover" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {achievements.slice(0, 4).map((achievement, index) => (
+              <div key={index} className="group">
+                <div className="relative aspect-[3/4] bg-muted rounded-3xl overflow-hidden mb-4">
+                  {index === 0 && (
+                    <img src={portraitImage} alt="Lionel Eersteling" className="w-full h-full object-cover" />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-6 left-6 text-white">
+                    <h3 className="text-xl font-normal mb-1">
+                      {index === 0 ? "Lionel Eersteling" : `Team Member ${index + 1}`}
+                    </h3>
+                    <p className="text-sm text-white/80">{achievement}</p>
+                  </div>
+                </div>
               </div>
-              <div className="absolute -bottom-4 -right-4 w-40 h-40 bg-lioner-gold/20 rounded-full blur-3xl -z-10" />
-            </div>
-
-            {/* Content */}
-            <div className="space-y-5 md:space-y-6 order-1 md:order-2">
-              <p className="text-base md:text-lg text-foreground leading-relaxed">
-
-                Elite entrepreneur, High Performance Coach, and Leadership Expert since 2005. 
-                Lionel empowers leaders by integrating <strong className="text-lioner-blue">physical vitality, 
-                mental clarity, and strategic leadership</strong> for sustainable success.
-              </p>
-              
-              <div className="space-y-3">
-                {achievements.map((achievement, index) => <div key={index} className="flex items-start gap-2.5">
-                    <div className="mt-0.5 rounded-full bg-lioner-gold/10 p-1">
-                      <Check className="w-3.5 h-3.5 text-lioner-gold" />
-                    </div>
-                    <span className="text-sm text-muted-foreground">{achievement}</span>
-                  </div>)}
-              </div>
-
-              <p className="text-sm text-muted-foreground pt-3 border-t">
-                "Peak performance is achieved through the alignment of mind, body, and wealth. 
-                We set a new standard for leadership where excellence, alignment, and resilience 
-                are the defining characteristics."
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </div>

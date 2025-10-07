@@ -8,47 +8,43 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Lionel Eersteling Brand Colors */
-    --lioner-blue: 229 44% 17%;        /* #191c40 */
-    --lioner-gold: 42 37% 52%;         /* #b29758 */
-    --secondary-blue: 235 28% 35%;     /* #404472 */
-    --secondary-purple: 234 15% 42%;   /* #5c5f7c */
-    --neutral-gray: 0 3% 76%;          /* #c3c0c0 */
-    
-    /* Background gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(229 44% 17%) 0%, hsl(235 28% 35%) 100%);
-    --gradient-premium: linear-gradient(135deg, hsl(235 28% 35%) 0%, hsl(234 15% 42%) 100%);
+    /* Brand Colors - Clean Teal Theme */
+    --lioner-blue: 174 28% 27%;        /* #346968 - Primary teal */
+    --lioner-gold: 174 28% 50%;        /* Accent color */
+    --secondary-blue: 174 28% 35%;     
+    --secondary-purple: 174 20% 42%;   
+    --neutral-gray: 0 0% 60%;          
     
     /* Standard mappings */
     --background: 0 0% 100%;
-    --foreground: 229 44% 17%;
+    --foreground: 0 0% 9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 229 44% 17%;
+    --card-foreground: 0 0% 9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 229 44% 17%;
+    --popover-foreground: 0 0% 9%;
 
-    --primary: 229 44% 17%;
+    --primary: 174 28% 27%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 235 28% 35%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
 
-    --muted: 0 3% 96%;
-    --muted-foreground: 234 15% 42%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 42 37% 52%;
+    --accent: 174 28% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 3% 91%;
-    --input: 0 3% 91%;
-    --ring: 42 37% 52%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 174 28% 27%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
   }
 }
 
@@ -59,5 +55,10 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, "Times New Roman", serif;
   }
 }
