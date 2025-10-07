@@ -1,18 +1,8 @@
 import portraitImage from "@/assets/lionel-portrait.jpg";
 import { Check } from "lucide-react";
-
 export const AuthoritySection = () => {
-  const achievements = [
-    "20+ years elite leadership expertise",
-    "Founder of BodyMentors Institute",
-    "Global High-Performance Strategist",
-    "Trusted by Fortune 500 executives",
-    "Pioneer in mind-body-wealth integration",
-    "Author of RESET Blueprint® methodology"
-  ];
-
-  return (
-    <section id="about" className="py-20 lg:py-32 bg-muted/30">
+  const achievements = ["20+ years elite leadership expertise", "Founder of BodyMentors Institute", "Global High-Performance Strategist", "Trusted by Fortune 500 executives", "Pioneer in mind-body-wealth integration", "Author of RESET Blueprint® methodology"];
+  return <section id="about" className="py-20 lg:py-32 bg-zinc-100">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Label */}
@@ -30,11 +20,7 @@ export const AuthoritySection = () => {
             <div className="relative order-2 md:order-1">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl max-w-md mx-auto md:max-w-none">
 
-                <img 
-                  src={portraitImage} 
-                  alt="Lionel Eersteling" 
-                  className="w-full h-auto object-cover" 
-                />
+                <img src={portraitImage} alt="Lionel Eersteling" className="w-full h-auto object-cover" />
               </div>
               <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-lioner-gold/20 rounded-full blur-3xl -z-10" />
             </div>
@@ -49,14 +35,12 @@ export const AuthoritySection = () => {
               </p>
               
               <div className="space-y-4">
-                {achievements.map((achievement, index) => (
-                  <div key={index} className="flex items-start gap-3">
+                {achievements.map((achievement, index) => <div key={index} className="flex items-start gap-3">
                     <div className="mt-1 rounded-full bg-lioner-gold/10 p-1">
                       <Check className="w-4 h-4 text-lioner-gold" />
                     </div>
                     <span className="text-lg text-muted-foreground">{achievement}</span>
-                  </div>
-                ))}
+                  </div>)}
               </div>
 
               <p className="text-lg text-muted-foreground pt-4 border-t">
@@ -68,6 +52,5 @@ export const AuthoritySection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };

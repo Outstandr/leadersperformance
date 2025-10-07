@@ -1,40 +1,32 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
-
 export const EcosystemSection = () => {
-  const steps = [
-    {
-      number: "1",
-      title: "RESET Book Series",
-      description: "Foundation knowledge for High Performance leadership mastery",
-      action: 'Start with "Reset by Discipline"',
-      color: "bg-lioner-gold"
-    },
-    {
-      number: "2",
-      title: "Elite Masterclass Series",
-      description: "Deep-dive training for each pillar with practical implementation",
-      action: "25-30 minute intensive sessions",
-      color: "bg-secondary-blue"
-    },
-    {
-      number: "3",
-      title: "Leaders Performance Academy",
-      description: "Complete system with community and ongoing support",
-      action: "Full transformation program",
-      color: "bg-secondary-purple"
-    },
-    {
-      number: "4",
-      title: "Leaders Performance Elite",
-      description: "Private mentorship with Lionel for executive excellence",
-      action: "Exclusive access • Limited availability",
-      color: "bg-lioner-gold"
-    }
-  ];
-
-  return (
-    <section id="programs" className="py-20 lg:py-32 bg-background">
+  const steps = [{
+    number: "1",
+    title: "RESET Book Series",
+    description: "Foundation knowledge for High Performance leadership mastery",
+    action: 'Start with "Reset by Discipline"',
+    color: "bg-lioner-gold"
+  }, {
+    number: "2",
+    title: "Elite Masterclass Series",
+    description: "Deep-dive training for each pillar with practical implementation",
+    action: "25-30 minute intensive sessions",
+    color: "bg-secondary-blue"
+  }, {
+    number: "3",
+    title: "Leaders Performance Academy",
+    description: "Complete system with community and ongoing support",
+    action: "Full transformation program",
+    color: "bg-secondary-purple"
+  }, {
+    number: "4",
+    title: "Leaders Performance Elite",
+    description: "Private mentorship with Lionel for executive excellence",
+    action: "Exclusive access • Limited availability",
+    color: "bg-lioner-gold"
+  }];
+  return <section id="programs" className="py-20 lg:py-32 bg-zinc-200">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
@@ -52,8 +44,7 @@ export const EcosystemSection = () => {
           
           {/* Steps Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {steps.map((step, index) => (
-              <div key={index} className="relative">
+            {steps.map((step, index) => <div key={index} className="relative">
                 <Card className="border-2 hover:shadow-lg transition-all h-full">
                   <CardContent className="p-6 md:p-8 space-y-3 md:space-y-4">
                     <div className={`${step.color} w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center text-white text-xl md:text-2xl font-bold`}>
@@ -73,16 +64,12 @@ export const EcosystemSection = () => {
                 </Card>
                 
                 {/* Arrow between cards on desktop */}
-                {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                {index < steps.length - 1 && <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
                     <ArrowRight className="w-6 h-6 text-lioner-gold" />
-                  </div>
-                )}
-              </div>
-            ))}
+                  </div>}
+              </div>)}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
