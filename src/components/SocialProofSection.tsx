@@ -56,7 +56,7 @@ export const SocialProofSection = () => {
               <span className="text-sm text-primary font-medium">Features</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
-              Key benefits that set us apart from other ferms
+              Elite Leaders Choose Excellence
             </h2>
           </div>
         </div>

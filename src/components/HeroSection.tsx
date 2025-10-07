@@ -20,32 +20,27 @@ export const HeroSection = () => {
 
               {/* Headline */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal leading-tight">
-                Leadership excellence that drives real results
+                Redefine Your Leadership Potential Through High Performance Mastery
               </h1>
 
               {/* Description */}
               <p className="text-lg text-white/80 leading-relaxed">
-                Transform your leadership through the RESET Blueprint®—expert insights, 
-                tailored strategies, and unwavering support designed for peak performance.
+                Discover your unique Discipline Type and unlock the RESET Blueprint® that aligns mind, body, and wealth for sustainable leadership excellence
               </p>
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button 
                   size="lg" 
-                  className="bg-white text-primary hover:bg-white/90 font-medium rounded-full px-6 py-3 h-auto group"
+                  className="bg-white text-primary hover:bg-white/90 font-medium rounded-full px-8 py-4 h-auto group text-base"
                 >
-                  Get in touch
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="border-2 border-white/30 bg-transparent text-white hover:bg-white hover:text-primary font-medium rounded-full px-6 py-3 h-auto"
-                >
-                  What we do
+                  Take Your Free Leadership Assessment
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
+              <p className="text-sm text-white/60 pt-2">
+                2 minutes • Instant results • Personalized roadmap
+              </p>
             </div>
 
             {/* Image */}
@@ -61,15 +56,11 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        {/* Partners/Trust Section */}
+        {/* Social Proof */}
         <div className="text-center mt-16">
-          <p className="text-sm text-muted-foreground mb-8">We've partnered with:</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-40">
-            <div className="text-base font-semibold text-foreground">Fortune 500</div>
-            <div className="text-base font-semibold text-foreground">Private Equity</div>
-            <div className="text-base font-semibold text-foreground">Global Firms</div>
-            <div className="text-base font-semibold text-foreground">Elite Executives</div>
-          </div>
+          <p className="text-sm text-muted-foreground mb-4">
+            Join elite executives who've transformed their leadership through High Performance
+          </p>
         </div>
       </div>
     </section>

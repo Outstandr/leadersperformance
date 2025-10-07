@@ -34,11 +34,14 @@ export const EcosystemSection = () => {
           <div className="text-center mb-16 space-y-6">
             <div className="inline-flex items-center gap-2 mb-4">
               <div className="w-2 h-2 rounded-full bg-primary"></div>
-              <span className="text-sm text-primary font-medium">How it works</span>
+              <span className="text-sm text-primary font-medium">Programs</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
-              A proven process to achieve your biggest goals
+              Your Path to Elite Leadership
             </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Choose your entry point into the Leaders Performance ecosystem
+            </p>
             <Button 
               size="lg" 
               className="bg-primary hover:bg-primary/90 text-white font-medium rounded-full px-6 py-3 h-auto mt-6 group"

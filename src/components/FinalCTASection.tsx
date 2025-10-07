@@ -26,10 +26,10 @@ export const FinalCTASection = () => {
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight max-w-4xl mx-auto">
-              Results That Speak for Themselves
+              Your Leadership Excellence Journey Starts Now
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Join high-performing leaders who have transformed their leadership and scaled their impact
+              Don't let another quarter pass without unlocking your true leadership potential
             </p>
           </div>
 
@@ -68,16 +68,22 @@ export const FinalCTASection = () => {
           {/* CTA */}
           <div className="text-center bg-gradient-to-r from-primary via-primary to-accent/80 rounded-3xl p-12 shadow-2xl">
             <h3 className="text-3xl md:text-4xl font-semibold text-primary-foreground mb-4">
-              Ready to Transform Your Leadership?
+              Get Your Free Leadership Assessment
             </h3>
-            <p className="text-primary-foreground/90 text-lg mb-8 max-w-2xl mx-auto">
-              Take the first step toward becoming the leader you're meant to be
+            <p className="text-primary-foreground/90 text-lg mb-2 max-w-2xl mx-auto">
+              Join elite executives who've already discovered their High Performance profile
             </p>
+            <div className="flex flex-wrap justify-center gap-4 text-primary-foreground/80 text-sm mb-8">
+              <span>✓ Instant results</span>
+              <span>✓ Personalized roadmap</span>
+              <span>✓ Elite strategies</span>
+              <span>✓ 100% complimentary</span>
+            </div>
             <Button 
               size="lg"
               className="bg-background text-primary hover:bg-background/90 text-lg px-8 py-6 h-auto group"
             >
-              Get Started Today
+              Start Your Assessment Now
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>

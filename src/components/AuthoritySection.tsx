@@ -1,7 +1,8 @@
 import portraitImage from "@/assets/lionel-portrait.jpg";
 import { Check } from "lucide-react";
 export const AuthoritySection = () => {
-  const achievements = ["20+ years elite leadership expertise", "Founder of BodyMentors Institute", "Global High-Performance Strategist", "Trusted by Fortune 500 executives", "Pioneer in mind-body-wealth integration", "Author of RESET Blueprint® methodology"];
+  const bio = "Elite entrepreneur, High Performance Coach, and Leadership Expert since 2005. Founder of BodyMentors, the Netherlands' first High-Performance & Health Institute. Lionel empowers leaders by integrating physical vitality, mental clarity, and strategic leadership for sustainable success.";
+  const achievements = ["Global High-Performance Strategist", "20+ Years Elite Leadership", "BodyMentors Institute Founder", "Trusted by Fortune 500 executives"];
   return <section id="about" className="py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
@@ -12,12 +13,15 @@ export const AuthoritySection = () => {
               <span className="text-sm text-primary font-medium">Our team</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
-              Meet the experts behind your business success
+              Meet Lionel Eersteling
             </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mt-6">
+              {bio}
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {achievements.slice(0, 4).map((achievement, index) => (
+            {achievements.map((achievement, index) => (
               <div key={index} className="group">
                 <div className="relative aspect-[3/4] bg-muted rounded-3xl overflow-hidden mb-4">
                   {index === 0 && (
