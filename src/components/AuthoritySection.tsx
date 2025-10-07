@@ -1,20 +1,14 @@
 import portraitImage from "@/assets/lionel-portrait.jpg";
 import { Badge } from "@/components/ui/badge";
-
 export const AuthoritySection = () => {
-  return (
-    <section className="py-20 lg:py-32 bg-white">
+  return <section className="py-20 lg:py-32 bg-gray-200">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           {/* Portrait */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-xl w-full max-w-md">
-                <img 
-                  src={portraitImage} 
-                  alt="Lionel Eersteling" 
-                  className="w-full h-auto object-cover"
-                />
+                <img src={portraitImage} alt="Lionel Eersteling" className="w-full h-auto object-cover" />
               </div>
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-lioner-gold/20 rounded-full blur-2xl" />
             </div>
@@ -48,6 +42,5 @@ export const AuthoritySection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
