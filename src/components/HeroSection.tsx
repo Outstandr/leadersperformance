@@ -40,8 +40,7 @@ export const HeroSection = () => {
                 </Button>
                 <Button 
                   size="lg" 
-                  variant="outline"
-                  className="border-2 border-white/30 text-white hover:bg-white/10 font-semibold text-base md:text-lg px-6 md:px-8 py-5 md:py-6 h-auto rounded-full backdrop-blur-sm"
+                  className="border-2 border-white/40 bg-transparent text-white hover:bg-white hover:text-lioner-blue font-semibold text-base md:text-lg px-6 md:px-8 py-5 md:py-6 h-auto rounded-full backdrop-blur-sm transition-all"
                 >
                   Learn More
                 </Button>
