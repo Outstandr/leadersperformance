@@ -56,29 +56,29 @@ export const ResetMethodSection = () => {
           </div>
 
           {/* Carousel */}
-          <div className="relative">
+          <div className="relative px-8 md:px-16">
             <Carousel
               opts={{
-                align: "start",
+                align: "center",
                 loop: true,
               }}
               className="w-full"
             >
-              <CarouselContent>
+              <CarouselContent className="-ml-4">
                 {resetComponents.map((component, index) => (
-                  <CarouselItem key={index}>
-                    <div className="relative aspect-[16/9] rounded-3xl overflow-hidden group">
+                  <CarouselItem key={index} className="pl-4 md:basis-3/4 lg:basis-2/3">
+                    <div className="relative aspect-[4/3] rounded-3xl overflow-hidden group shadow-2xl">
                       <img 
                         src={component.image} 
                         alt={component.title}
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                      <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
-                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
+                      <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
+                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-3">
                           {component.title}
                         </h3>
-                        <p className="text-lg md:text-xl text-white/90 max-w-2xl">
+                        <p className="text-base md:text-lg text-white/90 max-w-xl">
                           {component.description}
                         </p>
                       </div>
@@ -86,8 +86,8 @@ export const ResetMethodSection = () => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-4 md:left-8 bg-primary hover:bg-primary/90 text-primary-foreground border-0" />
-              <CarouselNext className="right-4 md:right-8 bg-primary hover:bg-primary/90 text-primary-foreground border-0" />
+              <CarouselPrevious className="-left-4 md:-left-6 bg-primary hover:bg-primary/90 text-primary-foreground border-0 h-12 w-12" />
+              <CarouselNext className="-right-4 md:-right-6 bg-primary hover:bg-primary/90 text-primary-foreground border-0 h-12 w-12" />
             </Carousel>
           </div>
         </div>
