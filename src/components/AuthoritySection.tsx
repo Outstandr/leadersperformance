@@ -16,7 +16,14 @@ export const AuthoritySection = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 md:gap-8 lg:gap-12 items-center">
-...
+            {/* Image */}
+            <div className="relative order-2 md:order-1">
+              <div className="relative rounded-2xl overflow-hidden shadow-xl max-w-md mx-auto md:max-w-none">
+                <img src={portraitImage} alt="Lionel Eersteling" className="w-full h-auto object-cover" />
+              </div>
+              <div className="absolute -bottom-4 -right-4 w-40 h-40 bg-lioner-gold/20 rounded-full blur-3xl -z-10" />
+            </div>
+
             {/* Content */}
             <div className="space-y-5 md:space-y-6 order-1 md:order-2">
               <p className="text-base md:text-lg text-foreground leading-relaxed">
