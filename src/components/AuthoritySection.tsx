@@ -1,46 +1,71 @@
 import portraitImage from "@/assets/lionel-portrait.jpg";
-import { Badge } from "@/components/ui/badge";
+import { Check } from "lucide-react";
+
 export const AuthoritySection = () => {
-  return <section className="py-20 lg:py-32 bg-gray-200">
+  const achievements = [
+    "20+ years elite leadership expertise",
+    "Founder of BodyMentors Institute",
+    "Global High-Performance Strategist",
+    "Trusted by Fortune 500 executives",
+    "Pioneer in mind-body-wealth integration",
+    "Author of RESET Blueprint® methodology"
+  ];
+
+  return (
+    <section className="py-20 lg:py-32 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          {/* Portrait */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-xl w-full max-w-md">
-                <img src={portraitImage} alt="Lionel Eersteling" className="w-full h-auto object-cover" />
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-lioner-gold/20 rounded-full blur-2xl" />
-            </div>
+        <div className="max-w-7xl mx-auto">
+          {/* Section Label */}
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-2 bg-lioner-gold/10 text-lioner-gold font-semibold rounded-full mb-4">
+              Your Expert Guide
+            </span>
+            <h2 className="text-4xl lg:text-6xl font-bold text-lioner-blue">
+              Meet Lionel Eersteling
+            </h2>
           </div>
 
-          {/* Credentials */}
-          <div className="space-y-6">
-            <h3 className="text-4xl lg:text-5xl font-bold text-lioner-blue">
-              Meet Lionel Eersteling
-            </h3>
-            <p className="text-lg text-secondary-purple leading-relaxed">
-              Elite entrepreneur, High Performance Coach, and Leadership Expert since 2005. 
-              Founder of BodyMentors, the Netherlands' first High-Performance & Health Institute. 
-              <strong className="text-lioner-blue block mt-4">
-                Lionel empowers leaders by integrating physical vitality, 
-                mental clarity, and strategic leadership for sustainable success.
-              </strong>
-            </p>
-            
-            <div className="flex flex-wrap gap-3 pt-4">
-              <Badge className="bg-lioner-gold text-white px-4 py-2 text-sm font-medium hover:bg-lioner-gold/90">
-                Global High-Performance Strategist
-              </Badge>
-              <Badge className="bg-secondary-blue text-white px-4 py-2 text-sm font-medium hover:bg-secondary-blue/90">
-                20+ Years Elite Leadership
-              </Badge>
-              <Badge className="bg-secondary-purple text-white px-4 py-2 text-sm font-medium hover:bg-secondary-purple/90">
-                BodyMentors Institute Founder
-              </Badge>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Image */}
+            <div className="relative order-2 lg:order-1">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <img 
+                  src={portraitImage} 
+                  alt="Lionel Eersteling" 
+                  className="w-full h-auto object-cover" 
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-lioner-gold/20 rounded-full blur-3xl -z-10" />
+            </div>
+
+            {/* Content */}
+            <div className="space-y-8 order-1 lg:order-2">
+              <p className="text-xl lg:text-2xl text-foreground leading-relaxed">
+                Elite entrepreneur, High Performance Coach, and Leadership Expert since 2005. 
+                Lionel empowers leaders by integrating <strong className="text-lioner-blue">physical vitality, 
+                mental clarity, and strategic leadership</strong> for sustainable success.
+              </p>
+              
+              <div className="space-y-4">
+                {achievements.map((achievement, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="mt-1 rounded-full bg-lioner-gold/10 p-1">
+                      <Check className="w-4 h-4 text-lioner-gold" />
+                    </div>
+                    <span className="text-lg text-muted-foreground">{achievement}</span>
+                  </div>
+                ))}
+              </div>
+
+              <p className="text-lg text-muted-foreground pt-4 border-t">
+                "Peak performance is achieved through the alignment of mind, body, and wealth. 
+                We set a new standard for leadership where excellence, alignment, and resilience 
+                are the defining characteristics."
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };

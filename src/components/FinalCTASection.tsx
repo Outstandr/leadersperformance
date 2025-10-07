@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Icon } from "@/components/ui/icon";
+import { Check, ArrowRight } from "lucide-react";
 
 export const FinalCTASection = () => {
   const benefits = [
@@ -10,29 +10,35 @@ export const FinalCTASection = () => {
   ];
 
   return (
-    <section className="relative py-20 lg:py-32 bg-gradient-to-br from-lioner-blue to-secondary-blue overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
-          <h2 className="text-4xl lg:text-5xl font-bold text-lioner-gold">
-            Your Leadership Excellence Journey Starts Now
+    <section className="relative py-20 lg:py-32 bg-gradient-to-br from-lioner-blue via-secondary-blue to-lioner-blue overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-4xl mx-auto text-center space-y-10">
+          <h2 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
+            Your Leadership Excellence Journey{" "}
+            <span className="text-lioner-gold">Starts Now</span>
           </h2>
           <p className="text-xl lg:text-2xl text-neutral-gray leading-relaxed">
             Don't let another quarter pass without unlocking your true leadership potential. 
             Join elite executives who've already discovered their High Performance profile.
           </p>
           
-          <Button 
-            size="lg" 
-            className="bg-lioner-gold hover:bg-lioner-gold/90 text-white font-bold text-2xl px-16 py-10 h-auto"
-          >
-            Get Your Free Leadership Assessment
-          </Button>
+          <div>
+            <Button 
+              size="lg" 
+              className="bg-lioner-gold hover:bg-lioner-gold/90 text-white font-bold text-xl px-14 py-8 h-auto rounded-full shadow-2xl group"
+            >
+              Get Your Free Leadership Assessment
+              <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </div>
           
-          <div className="flex flex-wrap justify-center gap-8 pt-6">
+          <div className="flex flex-wrap justify-center gap-6 lg:gap-8 pt-6">
             {benefits.map((benefit, index) => (
-              <div key={index} className="flex items-center space-x-2">
-                <Icon name="checkCircle" className="text-lioner-gold" />
-                <span className="text-neutral-gray">{benefit}</span>
+              <div key={index} className="flex items-center gap-2">
+                <div className="rounded-full bg-lioner-gold/20 p-1">
+                  <Check className="w-4 h-4 text-lioner-gold" />
+                </div>
+                <span className="text-neutral-gray font-medium">{benefit}</span>
               </div>
             ))}
           </div>
@@ -40,15 +46,8 @@ export const FinalCTASection = () => {
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-lioner-gold/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-secondary-blue/10 rounded-full blur-3xl" />
-      
-      {/* Logo Placeholder - Bottom Right */}
-      <div className="absolute bottom-8 right-8 z-20">
-        <div className="w-20 h-20 bg-lioner-gold/20 rounded-lg flex items-center justify-center">
-          <span className="text-white text-2xl font-bold">LE</span>
-        </div>
-      </div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-lioner-gold/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary-purple/10 rounded-full blur-3xl" />
     </section>
   );
 };

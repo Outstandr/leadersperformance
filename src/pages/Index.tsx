@@ -1,6 +1,6 @@
 import { HeroSection } from "@/components/HeroSection";
+import { ComparisonSection } from "@/components/ComparisonSection";
 import { AuthoritySection } from "@/components/AuthoritySection";
-import { PhilosophySection } from "@/components/PhilosophySection";
 import { ResetMethodSection } from "@/components/ResetMethodSection";
 import { ThreePillarsSection } from "@/components/ThreePillarsSection";
 import { SocialProofSection } from "@/components/SocialProofSection";
@@ -12,9 +12,9 @@ const Index = () => {
   return (
     <main className="min-h-screen">
       <HeroSection />
-      <AuthoritySection />
-      <PhilosophySection />
+      <ComparisonSection />
       <ResetMethodSection />
+      <AuthoritySection />
       <ThreePillarsSection />
       <SocialProofSection />
       <AssessmentCTASection />
