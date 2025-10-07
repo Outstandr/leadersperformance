@@ -9,7 +9,7 @@ export const AssessmentCTASection = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-lioner-blue">
+    <section id="assessment" className="py-20 lg:py-32 bg-lioner-blue">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 lg:p-16 border border-white/10">

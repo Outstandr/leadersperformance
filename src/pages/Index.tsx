@@ -1,3 +1,4 @@
+import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/HeroSection";
 import { ComparisonSection } from "@/components/ComparisonSection";
 import { AuthoritySection } from "@/components/AuthoritySection";
@@ -10,7 +11,9 @@ import { FinalCTASection } from "@/components/FinalCTASection";
 
 const Index = () => {
   return (
-    <main className="min-h-screen">
+    <>
+      <Navigation />
+      <main className="min-h-screen">
       <HeroSection />
       <ComparisonSection />
       <ResetMethodSection />
@@ -21,6 +24,7 @@ const Index = () => {
       <EcosystemSection />
       <FinalCTASection />
     </main>
+    </>
   );
 };
 

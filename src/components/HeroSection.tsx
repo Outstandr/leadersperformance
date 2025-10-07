@@ -4,7 +4,7 @@ import heroImage from "@/assets/lionel-hero.jpg";
 
 export const HeroSection = () => {
   return (
-    <section className="py-12 lg:py-20 bg-background">
+    <section id="hero" className="pt-32 pb-12 lg:pt-40 lg:pb-20 bg-background">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="bg-lioner-blue rounded-[2.5rem] overflow-hidden p-8 lg:p-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
