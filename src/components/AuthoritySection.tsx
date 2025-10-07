@@ -10,7 +10,7 @@ export const AuthoritySection = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-6">
               <div className="w-2 h-2 rounded-full bg-primary"></div>
-              <span className="text-sm text-primary font-medium">Our team</span>
+              <span className="text-sm text-primary font-medium">About</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
               Meet Lionel Eersteling
@@ -20,23 +20,24 @@ export const AuthoritySection = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {achievements.map((achievement, index) => (
-              <div key={index} className="group">
-                <div className="relative aspect-[3/4] bg-muted rounded-3xl overflow-hidden mb-4">
-                  {index === 0 && (
-                    <img src={portraitImage} alt="Lionel Eersteling" className="w-full h-full object-cover" />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6 text-white">
-                    <h3 className="text-xl font-normal mb-1">
-                      {index === 0 ? "Lionel Eersteling" : `Team Member ${index + 1}`}
-                    </h3>
-                    <p className="text-sm text-white/80">{achievement}</p>
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+            {/* Image */}
+            <div className="relative aspect-[3/4] bg-muted rounded-3xl overflow-hidden shadow-2xl">
+              <img src={portraitImage} alt="Lionel Eersteling" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div>
+
+            {/* Achievement Badges */}
+            <div className="space-y-6">
+              {achievements.map((achievement, index) => (
+                <div key={index} className="flex items-start gap-4">
+                  <div className="mt-1 rounded-full bg-primary p-2 shrink-0">
+                    <Check className="w-5 h-5 text-primary-foreground" />
                   </div>
+                  <p className="text-lg text-foreground font-medium">{achievement}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
