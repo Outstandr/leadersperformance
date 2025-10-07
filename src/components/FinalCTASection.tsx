@@ -26,13 +26,13 @@ export const FinalCTASection = () => {
           <div>
             <Button 
               size="lg" 
-              className="bg-lioner-gold hover:bg-lioner-gold/90 text-white font-bold text-xl px-14 py-8 h-auto rounded-full shadow-2xl group"
+              className="bg-lioner-gold hover:bg-lioner-gold/90 text-white font-bold text-lg px-10 py-6 h-auto rounded-full shadow-2xl group"
             >
               Get Your Free Leadership Assessment
-              <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
-          
+
           <div className="flex flex-wrap justify-center gap-6 lg:gap-8 pt-6">
             {benefits.map((benefit, index) => (
               <div key={index} className="flex items-center gap-2">

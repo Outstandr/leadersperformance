@@ -33,14 +33,14 @@ export const HeroSection = () => {
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 pt-4">
                 <Button 
                   size="lg" 
-                  className="bg-white text-lioner-blue hover:bg-white/90 font-semibold text-base md:text-lg px-6 md:px-8 py-5 md:py-6 h-auto rounded-full group"
+                  className="bg-white text-lioner-blue hover:bg-white/90 font-semibold text-base md:text-lg px-5 md:px-6 py-4 md:py-5 h-auto rounded-full group"
                 >
                   Take Free Assessment
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button 
                   size="lg" 
-                  className="border-2 border-white/40 bg-transparent text-white hover:bg-white hover:text-lioner-blue font-semibold text-base md:text-lg px-6 md:px-8 py-5 md:py-6 h-auto rounded-full backdrop-blur-sm transition-all"
+                  className="border-2 border-white/40 bg-transparent text-white hover:bg-white hover:text-lioner-blue font-semibold text-base md:text-lg px-5 md:px-6 py-4 md:py-5 h-auto rounded-full backdrop-blur-sm transition-all"
                 >
                   Learn More
                 </Button>

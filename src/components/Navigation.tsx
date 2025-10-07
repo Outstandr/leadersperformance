@@ -72,7 +72,7 @@ export const Navigation = () => {
             ))}
             <Button
               onClick={() => scrollToSection("#assessment")}
-              className="ml-4 bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-full px-6"
+              className="ml-4 bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-full px-5 py-2 text-sm"
             >
               Free Assessment
             </Button>
@@ -110,7 +110,7 @@ export const Navigation = () => {
               ))}
               <Button
                 onClick={() => scrollToSection("#assessment")}
-                className="mx-4 bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-full"
+                className="mx-4 bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-full py-2.5"
               >
                 Free Assessment
               </Button>

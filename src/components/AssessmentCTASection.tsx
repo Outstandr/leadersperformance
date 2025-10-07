@@ -39,12 +39,12 @@ export const AssessmentCTASection = () => {
               
               <Button 
                 size="lg" 
-                className="bg-lioner-gold hover:bg-lioner-gold/90 text-white font-bold text-xl px-12 py-8 h-auto rounded-full group"
+                className="bg-lioner-gold hover:bg-lioner-gold/90 text-white font-bold text-lg px-10 py-6 h-auto rounded-full group"
               >
                 Start Your Free Assessment
-                <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              
+
               <p className="text-sm text-neutral-gray/70">
                 Takes 2 minutes • Instant results • 100% secure and confidential
               </p>
