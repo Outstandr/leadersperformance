@@ -1,4 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import rhythmImage from "@/assets/rhythm-card.jpg";
+import energyImage from "@/assets/energy-card.jpg";
+import systemsImage from "@/assets/systems-card.jpg";
+import executionImage from "@/assets/execution-card.jpg";
+import trackingImage from "@/assets/tracking-card.jpg";
 
 export const ResetMethodSection = () => {
   const resetComponents = [
@@ -6,31 +12,31 @@ export const ResetMethodSection = () => {
       letter: "R",
       title: "Rhythm",
       description: "Daily structure & discipline that creates unstoppable momentum",
-      color: "bg-lioner-gold"
+      image: rhythmImage
     },
     {
       letter: "E",
       title: "Energy",
       description: "Vitality optimization through strategic health and performance protocols",
-      color: "bg-secondary-blue"
+      image: energyImage
     },
     {
       letter: "S",
       title: "Systems",
       description: "Environment design, belief restructuring, and strategic relationship mastery",
-      color: "bg-secondary-purple"
+      image: systemsImage
     },
     {
       letter: "E",
       title: "Execution",
       description: "Turning strategy into measurable results through leadership in practice",
-      color: "bg-lioner-gold"
+      image: executionImage
     },
     {
       letter: "T",
       title: "Tracking",
       description: "Measuring progress and maintaining accountability for sustainable excellence",
-      color: "bg-secondary-blue"
+      image: trackingImage
     }
   ];
 
@@ -42,18 +48,47 @@ export const ResetMethodSection = () => {
           <div className="text-center mb-16 space-y-6">
             <div className="inline-flex items-center gap-2 mb-4">
               <div className="w-2 h-2 rounded-full bg-primary"></div>
-              <span className="text-sm text-primary font-medium">Services</span>
+              <span className="text-sm text-primary font-medium">Educational Tools</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
               Reliable expertise to drive your greatest success
             </h2>
           </div>
 
-          {/* Carousel placeholder */}
+          {/* Carousel */}
           <div className="relative">
-            <div className="aspect-[16/9] bg-muted rounded-3xl overflow-hidden">
-              {/* Placeholder for carousel */}
-            </div>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                {resetComponents.map((component, index) => (
+                  <CarouselItem key={index}>
+                    <div className="relative aspect-[16/9] rounded-3xl overflow-hidden group">
+                      <img 
+                        src={component.image} 
+                        alt={component.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                      <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-4">
+                          {component.title}
+                        </h3>
+                        <p className="text-lg md:text-xl text-white/90 max-w-2xl">
+                          {component.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-4 md:left-8 bg-primary hover:bg-primary/90 text-primary-foreground border-0" />
+              <CarouselNext className="right-4 md:right-8 bg-primary hover:bg-primary/90 text-primary-foreground border-0" />
+            </Carousel>
           </div>
         </div>
       </div>
