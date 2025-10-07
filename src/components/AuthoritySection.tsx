@@ -2,7 +2,7 @@ import portraitImage from "@/assets/lionel-portrait.jpg";
 import { Check } from "lucide-react";
 export const AuthoritySection = () => {
   const bio = "Elite entrepreneur, High Performance Coach, and Leadership Expert since 2005. Founder of BodyMentors, the Netherlands' first High-Performance & Health Institute. Lionel empowers leaders by integrating physical vitality, mental clarity, and strategic leadership for sustainable success.";
-  const achievements = ["Global High-Performance Strategist", "20+ Years Elite Leadership", "BodyMentors Institute Founder", "Trusted by Fortune 500 executives"];
+  const achievements = ["Global High-Performance Strategist", "20+ Years Elite Leadership", "6 Figure Entrepreneur", "Trusted by executives worldwide"];
   return <section id="about" className="py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
