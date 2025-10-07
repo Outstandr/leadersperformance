@@ -24,7 +24,7 @@ export const ThreePillarsSection = () => {
     iconColor: "text-secondary-purple",
     features: ["Purpose-Driven Leadership", "Values-Based Decision Making", "Legacy & Impact Planning", "Wealth & Success Integration", "Sustainable Performance", "Leadership by Design"]
   }];
-  return <section id="pillars" className="py-20 lg:py-32 bg-background">
+  return <section id="pillars" className="py-20 lg:py-32 bg-zinc-100">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
