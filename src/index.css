@@ -8,11 +8,11 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Brand Colors - Clean Teal Theme */
-    --lioner-blue: 174 28% 27%;        /* #346968 - Primary teal */
-    --lioner-gold: 174 28% 50%;        /* Accent color */
-    --secondary-blue: 174 28% 35%;     
-    --secondary-purple: 174 20% 42%;   
+    /* Brand Colors - Blue and Gold Theme */
+    --lioner-blue: 220 70% 45%;        /* Rich Navy Blue */
+    --lioner-gold: 45 100% 50%;        /* Vibrant Gold */
+    --secondary-blue: 220 60% 55%;     
+    --secondary-purple: 250 50% 60%;   
     --neutral-gray: 0 0% 60%;          
     
     /* Standard mappings */
@@ -25,7 +25,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 9%;
 
-    --primary: 174 28% 27%;
+    --primary: 220 70% 45%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 96%;
@@ -34,15 +34,15 @@ All colors MUST be HSL.
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 40%;
 
-    --accent: 174 28% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 45 100% 50%;
+    --accent-foreground: 0 0% 9%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 174 28% 27%;
+    --ring: 220 70% 45%;
 
     --radius: 1rem;
   }
