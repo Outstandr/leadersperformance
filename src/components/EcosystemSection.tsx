@@ -26,46 +26,46 @@ export const EcosystemSection = () => {
     action: "Exclusive access • Limited availability",
     color: "bg-lioner-gold"
   }];
-  return <section id="programs" className="py-20 lg:py-32 bg-zinc-200">
+  return <section id="programs" className="py-16 lg:py-24 bg-zinc-200">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16 space-y-4">
-            <span className="inline-block px-4 py-2 bg-lioner-gold/10 text-lioner-gold font-semibold rounded-full mb-4">
+          <div className="text-center mb-12 space-y-3">
+            <span className="inline-block px-3 py-1.5 text-sm bg-lioner-gold/10 text-lioner-gold font-semibold rounded-full mb-2">
               Your Journey
             </span>
-            <h2 className="text-4xl lg:text-6xl font-bold text-lioner-blue">
+            <h2 className="text-3xl lg:text-5xl font-bold text-lioner-blue">
               Your Path to Elite Leadership
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base text-muted-foreground max-w-3xl mx-auto">
               Choose your entry point into the Leaders Performance ecosystem
             </p>
           </div>
           
           {/* Steps Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {steps.map((step, index) => <div key={index} className="relative">
                 <Card className="border-2 hover:shadow-lg transition-all h-full">
-                  <CardContent className="p-6 md:p-8 space-y-3 md:space-y-4">
-                    <div className={`${step.color} w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center text-white text-xl md:text-2xl font-bold`}>
+                  <CardContent className="p-5 md:p-6 space-y-3">
+                    <div className={`${step.color} w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center text-white text-lg md:text-xl font-bold`}>
 
                       {step.number}
                     </div>
-                    <h4 className="text-xl font-bold text-lioner-blue">
+                    <h4 className="text-base md:text-lg font-bold text-lioner-blue">
                       {step.title}
                     </h4>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {step.description}
                     </p>
-                    <p className="text-sm font-semibold text-lioner-gold pt-2">
+                    <p className="text-xs font-semibold text-lioner-gold pt-1">
                       {step.action}
                     </p>
                   </CardContent>
                 </Card>
                 
                 {/* Arrow between cards on desktop */}
-                {index < steps.length - 1 && <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
-                    <ArrowRight className="w-6 h-6 text-lioner-gold" />
+                {index < steps.length - 1 && <div className="hidden lg:block absolute top-1/2 -right-2.5 transform -translate-y-1/2 z-10">
+                    <ArrowRight className="w-5 h-5 text-lioner-gold" />
                   </div>}
               </div>)}
           </div>

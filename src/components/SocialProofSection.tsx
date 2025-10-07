@@ -17,33 +17,33 @@ export const SocialProofSection = () => {
     role: "Global Management Consultant",
     color: "border-secondary-purple"
   }];
-  return <section id="testimonials" className="py-20 lg:py-32 bg-zinc-200">
+  return <section id="testimonials" className="py-16 lg:py-24 bg-zinc-200">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-2 bg-lioner-gold/10 text-lioner-gold font-semibold rounded-full mb-4">
+          <div className="text-center mb-12">
+            <span className="inline-block px-3 py-1.5 text-sm bg-lioner-gold/10 text-lioner-gold font-semibold rounded-full mb-3">
               Success Stories
             </span>
-            <h2 className="text-4xl lg:text-6xl font-bold text-lioner-blue">
+            <h2 className="text-3xl lg:text-5xl font-bold text-lioner-blue">
               Elite Leaders Choose Excellence
             </h2>
           </div>
 
           {/* Testimonials Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {testimonials.map((testimonial, index) => <Card key={index} className={`border-l-4 ${testimonial.color} hover:shadow-lg transition-shadow`}>
-                <CardContent className="p-6 md:p-8 space-y-5 md:space-y-6">
+                <CardContent className="p-5 md:p-6 space-y-4">
 
-                  <Quote className="w-10 h-10 text-lioner-gold/20" />
-                  <p className="text-muted-foreground leading-relaxed text-lg">
+                  <Quote className="w-8 h-8 text-lioner-gold/20" />
+                  <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
                     {testimonial.content}
                   </p>
-                  <div className="pt-4 border-t">
-                    <h4 className="text-lioner-blue font-bold text-lg">
+                  <div className="pt-3 border-t">
+                    <h4 className="text-lioner-blue font-bold text-base">
                       {testimonial.author}
                     </h4>
-                    <span className="text-sm text-muted-foreground font-medium">
+                    <span className="text-xs text-muted-foreground font-medium">
                       {testimonial.role}
                     </span>
                   </div>

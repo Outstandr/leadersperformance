@@ -4,43 +4,43 @@ import heroImage from "@/assets/lionel-hero.jpg";
 
 export const HeroSection = () => {
   return (
-    <section id="hero" className="pt-32 pb-12 lg:pt-40 lg:pb-20 bg-background">
+    <section id="hero" className="pt-24 pb-10 lg:pt-32 lg:pb-16 bg-background">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="bg-lioner-blue rounded-[2.5rem] overflow-hidden p-6 md:p-12 lg:p-16">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
+        <div className="bg-lioner-blue rounded-[2rem] overflow-hidden p-5 md:p-8 lg:p-12">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
             {/* Content */}
-            <div className="space-y-6 md:space-y-7 lg:space-y-8 text-white">
+            <div className="space-y-4 md:space-y-5 lg:space-y-6 text-white">
               {/* Rating */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <Star key={star} className="w-4 h-4 md:w-5 md:h-5 fill-lioner-gold text-lioner-gold" />
+                  <Star key={star} className="w-3.5 h-3.5 md:w-4 md:h-4 fill-lioner-gold text-lioner-gold" />
                 ))}
-                <span className="ml-2 text-xs md:text-sm font-medium">Trusted by Elite Leaders</span>
+                <span className="ml-1.5 text-xs font-medium">Trusted by Elite Leaders</span>
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.1]">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1]">
                 Leadership excellence that drives real results
               </h1>
 
               {/* Description */}
-              <p className="text-lg md:text-xl lg:text-xl text-neutral-gray leading-relaxed">
+              <p className="text-base md:text-lg text-neutral-gray leading-relaxed">
                 Transform your leadership through the RESET Blueprint®—expert insights, 
                 tailored strategies, and unwavering support designed for peak performance.
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row flex-wrap gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-2">
                 <Button 
                   size="lg" 
-                  className="bg-white text-lioner-blue hover:bg-white/90 font-semibold text-base md:text-lg px-5 md:px-6 py-4 md:py-5 h-auto rounded-full group"
+                  className="bg-white text-lioner-blue hover:bg-white/90 font-semibold text-sm md:text-base px-4 md:px-5 py-3 md:py-3.5 h-auto rounded-full group"
                 >
                   Take Free Assessment
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button 
                   size="lg" 
-                  className="border-2 border-white/40 bg-transparent text-white hover:bg-white hover:text-lioner-blue font-semibold text-base md:text-lg px-5 md:px-6 py-4 md:py-5 h-auto rounded-full backdrop-blur-sm transition-all"
+                  className="border-2 border-white/40 bg-transparent text-white hover:bg-white hover:text-lioner-blue font-semibold text-sm md:text-base px-4 md:px-5 py-3 md:py-3.5 h-auto rounded-full backdrop-blur-sm transition-all"
                 >
                   Learn More
                 </Button>
@@ -49,7 +49,7 @@ export const HeroSection = () => {
 
             {/* Image */}
             <div className="relative md:order-2">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5] max-w-sm md:max-w-md lg:max-w-sm mx-auto">
+              <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/5] max-w-xs md:max-w-sm lg:max-w-xs mx-auto">
 
                 <img 
                   src={heroImage} 
@@ -62,13 +62,13 @@ export const HeroSection = () => {
         </div>
 
         {/* Partners/Trust Section */}
-        <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-8">Trusted by leaders at:</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-50">
-            <div className="text-2xl font-bold text-muted-foreground">Fortune 500</div>
-            <div className="text-2xl font-bold text-muted-foreground">Private Equity</div>
-            <div className="text-2xl font-bold text-muted-foreground">Global Firms</div>
-            <div className="text-2xl font-bold text-muted-foreground">Elite Executives</div>
+        <div className="text-center mt-12">
+          <p className="text-sm text-muted-foreground mb-6">Trusted by leaders at:</p>
+          <div className="flex flex-wrap justify-center items-center gap-6 lg:gap-12 opacity-50">
+            <div className="text-lg font-bold text-muted-foreground">Fortune 500</div>
+            <div className="text-lg font-bold text-muted-foreground">Private Equity</div>
+            <div className="text-lg font-bold text-muted-foreground">Global Firms</div>
+            <div className="text-lg font-bold text-muted-foreground">Elite Executives</div>
           </div>
         </div>
       </div>

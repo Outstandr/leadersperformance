@@ -10,14 +10,14 @@ export const FinalCTASection = () => {
   ];
 
   return (
-    <section className="relative py-20 lg:py-32 bg-gradient-to-br from-lioner-blue via-secondary-blue to-lioner-blue overflow-hidden">
+    <section className="relative py-16 lg:py-24 bg-gradient-to-br from-lioner-blue via-secondary-blue to-lioner-blue overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-8 md:space-y-10">
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+        <div className="max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
             Your Leadership Excellence Journey{" "}
             <span className="text-lioner-gold">Starts Now</span>
           </h2>
-          <p className="text-lg md:text-xl lg:text-2xl text-neutral-gray leading-relaxed">
+          <p className="text-base md:text-lg text-neutral-gray leading-relaxed">
 
             Don't let another quarter pass without unlocking your true leadership potential. 
             Join elite executives who've already discovered their High Performance profile.
@@ -26,20 +26,20 @@ export const FinalCTASection = () => {
           <div>
             <Button 
               size="lg" 
-              className="bg-lioner-gold hover:bg-lioner-gold/90 text-white font-bold text-lg px-10 py-6 h-auto rounded-full shadow-2xl group"
+              className="bg-lioner-gold hover:bg-lioner-gold/90 text-white font-bold text-base px-6 py-3.5 h-auto rounded-full shadow-2xl group"
             >
               Get Your Free Leadership Assessment
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-1.5 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 lg:gap-8 pt-6">
+          <div className="flex flex-wrap justify-center gap-4 lg:gap-6 pt-4">
             {benefits.map((benefit, index) => (
               <div key={index} className="flex items-center gap-2">
-                <div className="rounded-full bg-lioner-gold/20 p-1">
-                  <Check className="w-4 h-4 text-lioner-gold" />
+                <div className="rounded-full bg-lioner-gold/20 p-0.5">
+                  <Check className="w-3.5 h-3.5 text-lioner-gold" />
                 </div>
-                <span className="text-neutral-gray font-medium">{benefit}</span>
+                <span className="text-sm text-neutral-gray font-medium">{benefit}</span>
               </div>
             ))}
           </div>
