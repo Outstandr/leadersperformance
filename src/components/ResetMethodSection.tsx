@@ -34,7 +34,7 @@ export const ResetMethodSection = () => {
   }];
   return <section id="reset" className="py-10 lg:py-16 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-2">
