@@ -15,7 +15,7 @@ export const HeroSection = () => {
               </div>
 
               {/* Headline */}
-              <h1 className="text-2xl md:text-3xl lg:text-3xl font-semibold font-sans leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans leading-tight">
                 Redefine Your Leadership Potential Through High Performance Mastery
               </h1>
 
