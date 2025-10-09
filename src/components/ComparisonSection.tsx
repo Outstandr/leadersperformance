@@ -29,7 +29,7 @@ export const ComparisonSection = () => {
               
               <span className="text-sm text-primary font-medium">Why choose us</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground max-w-4xl mx-auto leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               Leadership by Design
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mt-6">
