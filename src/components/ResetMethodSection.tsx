@@ -5,49 +5,40 @@ import energyImage from "@/assets/energy-card.jpg";
 import systemsImage from "@/assets/systems-card.jpg";
 import executionImage from "@/assets/execution-card.jpg";
 import trackingImage from "@/assets/tracking-card.jpg";
-
 export const ResetMethodSection = () => {
-  const resetComponents = [
-    {
-      letter: "R",
-      title: "Rhythm",
-      description: "Daily structure & discipline that creates unstoppable momentum",
-      image: rhythmImage
-    },
-    {
-      letter: "E",
-      title: "Energy",
-      description: "Vitality optimization through strategic health and performance protocols",
-      image: energyImage
-    },
-    {
-      letter: "S",
-      title: "Systems",
-      description: "Environment design, belief restructuring, and strategic relationship mastery",
-      image: systemsImage
-    },
-    {
-      letter: "E",
-      title: "Execution",
-      description: "Turning strategy into measurable results through leadership in practice",
-      image: executionImage
-    },
-    {
-      letter: "T",
-      title: "Tracking",
-      description: "Measuring progress and maintaining accountability for sustainable excellence",
-      image: trackingImage
-    }
-  ];
-
-  return (
-    <section id="reset" className="py-10 lg:py-16 bg-background">
+  const resetComponents = [{
+    letter: "R",
+    title: "Rhythm",
+    description: "Daily structure & discipline that creates unstoppable momentum",
+    image: rhythmImage
+  }, {
+    letter: "E",
+    title: "Energy",
+    description: "Vitality optimization through strategic health and performance protocols",
+    image: energyImage
+  }, {
+    letter: "S",
+    title: "Systems",
+    description: "Environment design, belief restructuring, and strategic relationship mastery",
+    image: systemsImage
+  }, {
+    letter: "E",
+    title: "Execution",
+    description: "Turning strategy into measurable results through leadership in practice",
+    image: executionImage
+  }, {
+    letter: "T",
+    title: "Tracking",
+    description: "Measuring progress and maintaining accountability for sustainable excellence",
+    image: trackingImage
+  }];
+  return <section id="reset" className="py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16 space-y-6">
             <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-2 h-2 rounded-full bg-primary"></div>
+              
               <span className="text-sm text-primary font-medium">Educational Tools</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
@@ -57,22 +48,14 @@ export const ResetMethodSection = () => {
 
           {/* Carousel */}
           <div className="relative px-8 md:px-16">
-            <Carousel
-              opts={{
-                align: "center",
-                loop: true,
-              }}
-              className="w-full"
-            >
+            <Carousel opts={{
+            align: "center",
+            loop: true
+          }} className="w-full">
               <CarouselContent className="-ml-4">
-                {resetComponents.map((component, index) => (
-                  <CarouselItem key={index} className="pl-4 md:basis-3/4 lg:basis-2/3">
+                {resetComponents.map((component, index) => <CarouselItem key={index} className="pl-4 md:basis-3/4 lg:basis-2/3">
                     <div className="relative aspect-[4/3] rounded-3xl overflow-hidden group shadow-2xl">
-                      <img 
-                        src={component.image} 
-                        alt={component.title}
-                        className="w-full h-full object-cover"
-                      />
+                      <img src={component.image} alt={component.title} className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                       <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
                         <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-3">
@@ -83,8 +66,7 @@ export const ResetMethodSection = () => {
                         </p>
                       </div>
                     </div>
-                  </CarouselItem>
-                ))}
+                  </CarouselItem>)}
               </CarouselContent>
               <CarouselPrevious className="-left-4 md:-left-6 bg-primary hover:bg-primary/90 text-primary-foreground border-0 h-12 w-12" />
               <CarouselNext className="-right-4 md:-right-6 bg-primary hover:bg-primary/90 text-primary-foreground border-0 h-12 w-12" />
@@ -92,6 +74,5 @@ export const ResetMethodSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
