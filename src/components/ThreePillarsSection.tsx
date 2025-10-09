@@ -63,10 +63,16 @@ export const ThreePillarsSection = () => {
             {pillars.map((pillar, index) => (
               <div 
                 key={index} 
-                className={`group relative bg-gradient-to-br ${pillar.gradient} border-2 ${pillar.borderColor} p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-opacity-60`}
+                className={`group relative border-2 p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
+                  isDark 
+                    ? 'bg-black border-lioner-gold' 
+                    : `bg-gradient-to-br ${pillar.gradient} ${pillar.borderColor}`
+                }`}
               >
                 {/* Title */}
-                <h3 className="text-2xl font-semibold text-foreground mb-6 font-sans">
+                <h3 className={`text-2xl font-semibold mb-6 font-sans transition-colors duration-500 ${
+                  isDark ? 'text-white' : 'text-foreground'
+                }`}>
                   {pillar.title}
                 </h3>
 
@@ -74,10 +80,16 @@ export const ThreePillarsSection = () => {
                 <div className="space-y-3">
                   {pillar.features.map((feature, idx) => (
                     <div key={idx} className="flex items-start gap-3">
-                      <div className={`${pillar.iconBg} rounded-full p-1 shrink-0 mt-0.5`}>
-                        <Check className="w-3 h-3 text-white" />
+                      <div className={`rounded-full p-1 shrink-0 mt-0.5 transition-colors duration-500 ${
+                        isDark ? 'bg-lioner-gold' : pillar.iconBg
+                      }`}>
+                        <Check className={`w-3 h-3 transition-colors duration-500 ${
+                          isDark ? 'text-black' : 'text-white'
+                        }`} />
                       </div>
-                      <p className="text-sm text-foreground/80 leading-relaxed">
+                      <p className={`text-sm leading-relaxed transition-colors duration-500 ${
+                        isDark ? 'text-white' : 'text-foreground/80'
+                      }`}>
                         {feature}
                       </p>
                     </div>
