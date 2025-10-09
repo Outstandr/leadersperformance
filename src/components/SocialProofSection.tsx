@@ -42,13 +42,15 @@ export const SocialProofSection = () => {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-2 h-2 rounded-full bg-primary"></div>
-              <span className="text-sm text-primary font-medium">Testimonials</span>
+            <div className="inline-flex items-center gap-2 mb-2">
+              <span className="text-lg text-[#404473] font-medium uppercase">Testimonials</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal text-foreground leading-tight mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               Elite Leaders Choose Excellence
             </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mt-6">
+              Trusted by executives and leaders worldwide
+            </p>
             <div className="flex justify-center items-center gap-1 mt-4">
               {[1, 2, 3, 4, 5].map((star) => (
                 <Star key={star} className="w-4 h-4 fill-foreground text-foreground" />
