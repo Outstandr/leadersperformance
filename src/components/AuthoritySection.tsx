@@ -3,10 +3,10 @@ import { Check } from "lucide-react";
 export const AuthoritySection = () => {
   const bio = "Elite entrepreneur, High Performance Coach, and Leadership Expert since 2005. Founder of BodyMentors, the Netherlands' first High-Performance & Health Institute. Lionel empowers leaders by integrating physical vitality, mental clarity, and strategic leadership for sustainable success.";
   const achievements = ["Global High-Performance Strategist", "20+ Years Elite Leadership", "6 Figure Entrepreneur", "Trusted by executives worldwide"];
-  return <section id="about" className="py-20 lg:py-32 bg-lioner-blue">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
+  return <section id="about" className="py-20 lg:py-32 bg-background">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="bg-[#404473] overflow-hidden p-8 md:p-12 lg:p-16">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
             {/* Left Column: Header + Achievements */}
             <div className="space-y-8">
               {/* Section Header */}
@@ -34,7 +34,7 @@ export const AuthoritySection = () => {
             </div>
 
             {/* Right Column: Image */}
-            <div className="relative aspect-[3/4] bg-muted overflow-hidden shadow-2xl">
+            <div className="relative aspect-[3/4] overflow-hidden shadow-2xl">
               <img src={portraitImage} alt="Lionel Eersteling" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             </div>
