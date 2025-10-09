@@ -31,7 +31,7 @@ export const HeroSection = () => {
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
-              <p className="text-sm text-white/60 pt-2">
+              <p className="text-sm text-white pt-2">
                 2 minutes • Instant results • Personalized roadmap
               </p>
             </div>
