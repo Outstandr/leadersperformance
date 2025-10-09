@@ -63,7 +63,7 @@ export const ComparisonSection = () => {
           </div>
 
           {/* Comparison Card */}
-          <div className="bg-[#404473] border border-border p-8 md:p-12 shadow-sm -mt-8">
+          <div className="bg-lioner-gold border border-border p-8 md:p-12 shadow-sm -mt-8">
             <div className="grid md:grid-cols-2 gap-12">
               {/* Core Values */}
               <div className="space-y-6">
