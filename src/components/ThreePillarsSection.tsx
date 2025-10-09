@@ -5,23 +5,23 @@ export const ThreePillarsSection = () => {
   const pillars = [{
     icon: "brain",
     title: "Mental Mastery",
-    gradient: "from-lioner-gold/20 to-lioner-gold/5",
+    gradient: "from-lioner-blue/20 to-lioner-blue/5",
     iconBg: "bg-lioner-gold",
-    borderColor: "border-lioner-gold/30",
+    borderColor: "border-lioner-gold/50",
     features: ["Cognitive Sovereignty", "Strategic Decision Making", "Mental Toughness Protocols", "Focus & Attention Mastery", "Outcome Independence", "Leadership Mindset Design"]
   }, {
     icon: "muscle",
     title: "Physical Excellence",
-    gradient: "from-secondary-blue/20 to-secondary-blue/5",
-    iconBg: "bg-secondary-blue",
-    borderColor: "border-secondary-blue/30",
+    gradient: "from-lioner-blue/20 to-lioner-blue/5",
+    iconBg: "bg-lioner-gold",
+    borderColor: "border-lioner-gold/50",
     features: ["Executive Vitality Protocols", "Strategic Energy Management", "Performance Nutrition Systems", "Recovery & Optimization", "Stress Resilience Building", "Peak Physical Conditioning"]
   }, {
     icon: "star",
     title: "Strategic Alignment",
-    gradient: "from-secondary-purple/20 to-secondary-purple/5",
-    iconBg: "bg-secondary-purple",
-    borderColor: "border-secondary-purple/30",
+    gradient: "from-lioner-blue/20 to-lioner-blue/5",
+    iconBg: "bg-lioner-gold",
+    borderColor: "border-lioner-gold/50",
     features: ["Purpose-Driven Leadership", "Values-Based Decision Making", "Legacy & Impact Planning", "Wealth & Success Integration", "Sustainable Performance", "Leadership by Design"]
   }];
 
