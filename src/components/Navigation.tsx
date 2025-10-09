@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
 import logo from "@/assets/logo.png";
+import logoWhite from "@/assets/logo-white.png";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,11 +41,9 @@ export const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection("#hero"); }} className="flex items-center">
             <img 
-              src={logo} 
+              src={isScrolled ? logoWhite : logo} 
               alt="Leaders Performance" 
-              className={`h-12 w-auto transition-all duration-300 ${
-                isScrolled ? 'brightness-0 invert' : ''
-              }`}
+              className="h-12 w-auto transition-all duration-300"
             />
           </a>
 
