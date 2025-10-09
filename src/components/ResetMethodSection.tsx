@@ -68,8 +68,8 @@ export const ResetMethodSection = () => {
                     </div>
                   </CarouselItem>)}
               </CarouselContent>
-              <CarouselPrevious className="-left-4 md:-left-6 bg-primary hover:bg-primary/90 text-primary-foreground border-0 h-12 w-12" />
-              <CarouselNext className="-right-4 md:-right-6 bg-primary hover:bg-primary/90 text-primary-foreground border-0 h-12 w-12" />
+              <CarouselPrevious className="-left-4 md:-left-6 bg-[#404473] hover:bg-[#b39758] text-white border-0 h-12 w-12" />
+              <CarouselNext className="-right-4 md:-right-6 bg-[#404473] hover:bg-[#b39758] text-white border-0 h-12 w-12" />
             </Carousel>
           </div>
         </div>
