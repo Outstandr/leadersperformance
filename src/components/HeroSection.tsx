@@ -7,7 +7,7 @@ export const HeroSection = () => {
     <section id="hero" className="pt-32 pb-20 bg-background">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="bg-primary overflow-hidden p-8 md:p-12 lg:p-16">
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid md:grid-cols-[1fr_40%] gap-8 lg:gap-12 items-stretch">
             {/* Content */}
             <div className="space-y-6 text-white">
               {/* Rating */}
@@ -44,8 +44,8 @@ export const HeroSection = () => {
             </div>
 
             {/* Image */}
-            <div className="relative md:order-2">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] max-w-sm mx-auto">
+            <div className="relative md:order-2 h-full min-h-[500px] md:min-h-full">
+              <div className="relative overflow-hidden shadow-2xl h-full">
                 <img 
                   src={heroImage} 
                   alt="Lionel Eersteling - High Performance Leadership Coach" 
