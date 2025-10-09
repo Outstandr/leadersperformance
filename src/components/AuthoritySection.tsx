@@ -24,11 +24,11 @@ export const AuthoritySection = () => {
 
               {/* Achievement Badges */}
               <div className="space-y-6">
-              {achievements.map((achievement, index) => <div key={index} className="flex items-start gap-4">
-                  <div className="mt-1 rounded-full bg-white p-2 shrink-0">
-                    <Check className="w-5 h-5 text-lioner-blue" />
+              {achievements.map((achievement, index) => <div key={index} className="flex items-center gap-4">
+                  <div className="rounded-full bg-lioner-gold p-2 shrink-0">
+                    <Check className="w-5 h-5 text-white" />
                   </div>
-                  <p className="text-lg text-white font-medium">{achievement}</p>
+                  <p className="text-lg text-white">{achievement}</p>
                  </div>)}
               </div>
             </div>
