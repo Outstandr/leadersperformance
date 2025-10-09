@@ -25,7 +25,7 @@ export const ComparisonSection = () => {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 mb-4">
+            <div className="inline-flex items-center gap-2 mb-2">
               
               <span className="text-lg text-[#404473] font-medium uppercase">Why choose us</span>
             </div>
