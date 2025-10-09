@@ -6,7 +6,7 @@ export const HeroSection = () => {
   return (
     <section id="hero" className="pt-32 pb-20 bg-background">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="bg-primary rounded-3xl overflow-hidden p-8 md:p-12 lg:p-16">
+        <div className="bg-primary overflow-hidden p-8 md:p-12 lg:p-16">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Content */}
             <div className="space-y-6 text-white">
