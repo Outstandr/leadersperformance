@@ -42,7 +42,9 @@ export const HeroSection = () => {
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight">
+              <h1 className={`text-4xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight transition-all duration-500 ${
+                isScrolled ? 'text-black border-2 border-[hsl(var(--lioner-gold))] p-4' : 'text-white'
+              }`}>
                 Redefine Your Leadership Potential Through High Performance Mastery
               </h1>
 
