@@ -10,7 +10,7 @@ All colors MUST be HSL.
   :root {
     /* Brand Colors - Blue and Gold Theme */
     --lioner-blue: 220 70% 45%;        /* Rich Navy Blue */
-    --lioner-gold: 45 100% 50%;        /* Vibrant Gold */
+    --lioner-gold: 42 35% 53%;        /* Custom Gold #b39758 */
     --secondary-blue: 220 60% 55%;     
     --secondary-purple: 250 50% 60%;   
     --neutral-gray: 0 0% 60%;          
