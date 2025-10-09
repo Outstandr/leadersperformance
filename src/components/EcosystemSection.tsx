@@ -34,7 +34,7 @@ export const EcosystemSection = () => {
           <div className="text-center mb-16 space-y-6">
             <div className="inline-flex items-center gap-2 mb-4">
               
-              <span className="text-sm text-primary font-medium">Programs</span>
+              <span className="text-sm text-muted-foreground font-medium">Programs</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
               Your Path to Elite Leadership
