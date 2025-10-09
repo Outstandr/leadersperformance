@@ -1,7 +1,23 @@
+import { useState, useEffect, useRef } from "react";
 import { Icon } from "@/components/ui/icon";
 import { Check } from "lucide-react";
 
 export const ThreePillarsSection = () => {
+  const [isDark, setIsDark] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        setIsDark(rect.top <= 100);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  
   const pillars = [{
     icon: "brain",
     title: "Mental Mastery",
@@ -26,7 +42,7 @@ export const ThreePillarsSection = () => {
   }];
 
   return (
-    <section id="pillars" className="py-10 lg:py-16 bg-gradient-to-b from-muted/40 to-muted/60">
+    <section ref={sectionRef} id="pillars" className={`py-10 lg:py-16 transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
