@@ -26,12 +26,9 @@ export const AssessmentCTASection = () => {
 
   return (
     <section ref={sectionRef} id="assessment" className={`py-10 lg:py-16 transition-colors duration-500 ${isDark ? 'bg-lioner-gold' : 'bg-gradient-to-b from-muted/60 to-muted/80'}`}>
-      <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto">
-          {/* Main content card */}
-          <div className="p-8 lg:p-12">
-            {/* Header */}
-            <div className="text-center mb-8">
+      <div className="container mx-auto px-4 max-w-7xl">
+          {/* Header */}
+          <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 mb-4">
                 <span className={`text-lg font-medium uppercase transition-colors duration-500 ${isDark ? 'text-white' : 'text-[#404473]'}`}>Take The First Step</span>
               </div>
@@ -72,9 +69,7 @@ export const AssessmentCTASection = () => {
               <p className={`text-sm mt-4 transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>
                 Complete in 10 minutes • Free personalized report
               </p>
-            </div>
           </div>
-        </div>
       </div>
     </section>
   );
