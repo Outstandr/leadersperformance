@@ -9,27 +9,27 @@ export const ResetMethodSection = () => {
   const resetComponents = [{
     letter: "R",
     title: "Rhythm",
-    description: "Daily structure & discipline that creates unstoppable momentum",
+    description: "Build daily structure and discipline that creates unstoppable momentum",
     image: rhythmImage
   }, {
     letter: "E",
     title: "Energy",
-    description: "Vitality optimization through strategic health and performance protocols",
+    description: "Optimize your vitality through strategic health and performance protocols",
     image: energyImage
   }, {
     letter: "S",
     title: "Systems",
-    description: "Environment design, belief restructuring, and strategic relationship mastery",
+    description: "Master your environment, beliefs, and relationships strategically",
     image: systemsImage
   }, {
     letter: "E",
     title: "Execution",
-    description: "Turning strategy into measurable results through leadership in practice",
+    description: "Turn strategy into measurable results through consistent action",
     image: executionImage
   }, {
     letter: "T",
     title: "Tracking",
-    description: "Measuring progress and maintaining accountability for sustainable excellence",
+    description: "Measure progress and maintain accountability for sustainable excellence",
     image: trackingImage
   }];
   return <section id="reset" className="py-10 lg:py-16 bg-background">
