@@ -6,7 +6,7 @@ export const AuthoritySection = () => {
   return <section id="about" className="py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="bg-[#404473] overflow-hidden p-8 md:p-12 lg:p-16">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left Column: Header + Achievements */}
             <div className="space-y-8 flex flex-col justify-center">
               {/* Section Header */}
