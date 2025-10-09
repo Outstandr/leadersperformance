@@ -27,7 +27,7 @@ export const EcosystemSection = () => {
     action: "Exclusive access • Limited availability",
     color: "bg-lioner-gold"
   }];
-  return <section id="programs" className="py-20 lg:py-32 bg-gradient-to-b from-muted/80 to-foreground/5">
+  return <section id="programs" className="py-10 lg:py-16 bg-gradient-to-b from-muted/80 to-foreground/5">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
