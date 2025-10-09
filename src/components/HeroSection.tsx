@@ -25,7 +25,7 @@ export const HeroSection = () => {
 
               {/* Description */}
               <p className="text-lg text-white/80 leading-relaxed">
-                Discover your unique Discipline Type and unlock the RESET Blueprint® that aligns mind, body, and wealth for sustainable leadership excellence
+                Join elite executives who've transformed their leadership through High Performance. Discover your unique Discipline Type and unlock the RESET Blueprint® that aligns mind, body, and wealth for sustainable leadership excellence.
               </p>
 
               {/* CTAs */}
@@ -56,12 +56,6 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        {/* Social Proof */}
-        <div className="text-center mt-16">
-          <p className="text-sm text-muted-foreground mb-4">
-            Join elite executives who've transformed their leadership through High Performance
-          </p>
-        </div>
       </div>
     </section>
   );
