@@ -26,8 +26,19 @@ export const HeroSection = () => {
             <div className="space-y-6 text-white flex flex-col justify-center">
               {/* Rating */}
               <div className="flex items-center gap-1">
-                {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4 fill-lioner-gold text-lioner-gold" />)}
+                {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4" style={{ fill: 'url(#goldGradient)', filter: 'drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4))' }} />)}
                 <span className="ml-2 text-sm">Rated 4.9/5</span>
+                <svg width="0" height="0" className="absolute">
+                  <defs>
+                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style={{ stopColor: '#f4e5b8', stopOpacity: 1 }} />
+                      <stop offset="25%" style={{ stopColor: '#d4af37', stopOpacity: 1 }} />
+                      <stop offset="50%" style={{ stopColor: '#b8860b', stopOpacity: 1 }} />
+                      <stop offset="75%" style={{ stopColor: '#d4af37', stopOpacity: 1 }} />
+                      <stop offset="100%" style={{ stopColor: '#f4e5b8', stopOpacity: 1 }} />
+                    </linearGradient>
+                  </defs>
+                </svg>
               </div>
 
               {/* Headline */}

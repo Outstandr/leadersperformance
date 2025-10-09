@@ -15,6 +15,9 @@ All colors MUST be HSL.
     --secondary-purple: 250 50% 60%;   
     --neutral-gray: 0 0% 60%;          
     
+    /* Gold Gradient for metallic texture */
+    --gradient-gold: linear-gradient(135deg, #f4e5b8 0%, #d4af37 25%, #b8860b 50%, #d4af37 75%, #f4e5b8 100%);
+    
     /* Standard mappings */
     --background: 0 0% 100%;
     --foreground: 0 0% 9%;
