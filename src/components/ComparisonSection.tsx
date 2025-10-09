@@ -20,7 +20,7 @@ export const ComparisonSection = () => {
     title: "Continuous Evolution",
     description: "Never-ending growth and adaptation"
   }];
-  return <section id="comparison" className="py-14 lg:py-24 bg-background">
+  return <section id="comparison" className="py-10 lg:py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
