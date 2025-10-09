@@ -52,7 +52,7 @@ export const ResetMethodSection = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-2">
               
-              <span className={`text-lg font-medium uppercase transition-colors duration-500 ${isDark ? 'text-white/70' : 'text-muted-foreground'}`}>Educational Tools</span>
+              <span className={`text-lg font-medium uppercase transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>Educational Tools</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               Reliable expertise to drive your greatest success
