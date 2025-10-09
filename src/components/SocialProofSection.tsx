@@ -69,7 +69,7 @@ export const SocialProofSection = () => {
             </p>
             <div className="flex justify-center items-center gap-1 mt-4">
               {[1, 2, 3, 4, 5].map((star) => (
-                <Star key={star} className="w-4 h-4" style={{ fill: 'url(#goldGradient)', filter: 'drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4))' }} />
+                <Star key={star} className={`w-4 h-4 ${isDark ? 'text-white' : 'text-white'}`} style={{ fill: 'url(#goldGradient)', filter: 'drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4))' }} />
               ))}
               <span className={`ml-2 text-sm transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>4.9/5 from leaders worldwide</span>
               <svg width="0" height="0" className="absolute">
