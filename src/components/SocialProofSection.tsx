@@ -100,7 +100,7 @@ export const SocialProofSection = () => {
                   <div className="p-1">
                     <Card className={`border-2 transition-all duration-500 ${
                       isDark 
-                        ? 'bg-black border-lioner-gold hover:bg-lioner-gold hover:border-white' 
+                        ? 'bg-black border-lioner-gold hover:bg-lioner-gold' 
                         : 'bg-white border-border hover:border-lioner-gold'
                     }`}>
                       <CardContent className="p-6 flex flex-col h-full min-h-[280px] group">
@@ -108,7 +108,7 @@ export const SocialProofSection = () => {
                           isDark ? 'text-lioner-gold group-hover:text-white' : 'text-lioner-gold'
                         }`} />
                         <p className={`text-base leading-relaxed flex-grow mb-4 transition-colors duration-500 ${
-                          isDark ? 'text-white group-hover:text-black' : 'text-foreground'
+                          isDark ? 'text-white' : 'text-foreground'
                         }`}>
                           "{testimonial.content}"
                         </p>
@@ -116,10 +116,10 @@ export const SocialProofSection = () => {
                           isDark ? 'border-lioner-gold group-hover:border-white' : 'border-lioner-gold'
                         }`}>
                           <p className={`font-semibold transition-colors duration-500 ${
-                            isDark ? 'text-white group-hover:text-black' : 'text-foreground'
+                            isDark ? 'text-white' : 'text-foreground'
                           }`}>{testimonial.author}</p>
                           <p className={`text-sm transition-colors duration-500 ${
-                            isDark ? 'text-white/70 group-hover:text-black/70' : 'text-muted-foreground'
+                            isDark ? 'text-white/70' : 'text-muted-foreground'
                           }`}>{testimonial.role}</p>
                         </div>
                       </CardContent>
