@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import rhythmImage from "@/assets/rhythm-card.jpg";
@@ -6,6 +7,20 @@ import systemsImage from "@/assets/systems-card.jpg";
 import executionImage from "@/assets/execution-card.jpg";
 import trackingImage from "@/assets/tracking-card.jpg";
 export const ResetMethodSection = () => {
+  const [isDark, setIsDark] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        setIsDark(rect.top <= 100);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const resetComponents = [{
     letter: "R",
     title: "Rhythm",
@@ -32,13 +47,21 @@ export const ResetMethodSection = () => {
     description: "Progress measurement for sustainable excellence",
     image: trackingImage
   }];
-  return <section id="reset" className="py-10 lg:py-16 bg-gradient-to-b from-white to-muted/20">
+  return <section 
+    ref={sectionRef}
+    id="reset" 
+    className={`py-10 lg:py-16 transition-colors duration-500 ${
+      isDark ? 'bg-black' : 'bg-white'
+    }`}
+  >
       <div className="container mx-auto px-4 max-w-7xl">
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-2">
               
-              <span className="text-lg text-muted-foreground font-medium uppercase">Educational Tools</span>
+              <span className={`text-lg font-medium uppercase transition-colors duration-500 ${
+                isDark ? 'text-white/70' : 'text-muted-foreground'
+              }`}>Educational Tools</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               Reliable expertise to drive your greatest success
