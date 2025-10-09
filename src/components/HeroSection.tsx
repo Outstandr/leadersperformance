@@ -10,7 +10,7 @@ export const HeroSection = () => {
             <div className="space-y-6 text-white flex flex-col justify-center">
               {/* Rating */}
               <div className="flex items-center gap-1">
-                {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4 fill-white text-white" />)}
+                {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4 fill-lioner-gold text-lioner-gold" />)}
                 <span className="ml-2 text-sm">Rated 4.9/5</span>
               </div>
 
