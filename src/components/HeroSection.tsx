@@ -1,8 +1,24 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import heroImage from "@/assets/lionel-hero-reset.jpg";
 export const HeroSection = () => {
-  return <section id="hero" className="pt-32 pb-20 bg-white">
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return <section 
+    id="hero" 
+    className={`pt-32 pb-20 transition-colors duration-500 ${
+      isScrolled ? 'bg-foreground' : 'bg-white'
+    }`}
+  >
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="bg-[#404473] overflow-hidden p-8 md:p-12 lg:p-16">
           <div className="grid md:grid-cols-[1fr_40%] gap-8 lg:gap-12 items-stretch">
