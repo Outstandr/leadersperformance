@@ -11,7 +11,7 @@ import { FinalCTASection } from "@/components/FinalCTASection";
 
 const Index = () => {
   return (
-    <>
+    <div className="bg-white">
       <Navigation />
       <main className="min-h-screen">
       <HeroSection />
@@ -24,7 +24,7 @@ const Index = () => {
       <EcosystemSection />
       <FinalCTASection />
     </main>
-    </>
+    </div>
   );
 };
 
