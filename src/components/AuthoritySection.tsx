@@ -1,4 +1,4 @@
-import portraitImage from "@/assets/lionel-portrait.jpg";
+import portraitImage from "@/assets/lionel-portrait-new.jpg";
 import { Check } from "lucide-react";
 export const AuthoritySection = () => {
   const bio = "Elite entrepreneur, High Performance Coach, and Leadership Expert since 2005. Founder of BodyMentors, the Netherlands' first High-Performance & Health Institute. Lionel empowers leaders by integrating physical vitality, mental clarity, and strategic leadership for sustainable success.";
