@@ -8,7 +8,7 @@ export const AuthoritySection = () => {
         <div className="bg-[#404473] overflow-hidden p-8 md:p-12 lg:p-16">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             {/* Left Column: Header + Achievements */}
-            <div className="space-y-8">
+            <div className="space-y-8 flex flex-col justify-center">
               {/* Section Header */}
               <div>
                 <div className="inline-flex items-center gap-2 mb-2">
