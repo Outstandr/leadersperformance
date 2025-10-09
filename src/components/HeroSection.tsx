@@ -25,9 +25,7 @@ export const HeroSection = () => {
         }`}>
           <div className="grid md:grid-cols-[1fr_40%] gap-8 lg:gap-12 items-stretch">
             {/* Content */}
-            <div className={`space-y-6 flex flex-col justify-center transition-colors duration-500 ${
-              isScrolled ? 'text-black' : 'text-white'
-            }`}>
+            <div className="space-y-6 text-white flex flex-col justify-center">
               {/* Rating */}
               <div className="flex items-center gap-1">
                 {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4" style={{ fill: 'url(#goldGradient)', filter: 'drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4))' }} />)}
@@ -51,9 +49,7 @@ export const HeroSection = () => {
               </h1>
 
               {/* Description */}
-              <p className={`text-lg leading-relaxed transition-colors duration-500 ${
-                isScrolled ? 'text-black/70' : 'text-white/80'
-              }`}>
+              <p className="text-lg text-white/80 leading-relaxed">
                 Join elite executives who've transformed their leadership through High Performance. Discover your unique Discipline Type and unlock the RESET Blueprint® that aligns mind, body, and wealth for sustainable leadership excellence.
               </p>
 
@@ -64,9 +60,7 @@ export const HeroSection = () => {
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
-              <p className={`text-sm pt-2 transition-colors duration-500 ${
-                isScrolled ? 'text-black' : 'text-white'
-              }`}>2 minutes • Instant Results • Personalized Roadmap</p>
+              <p className="text-sm text-white pt-2">2 minutes • Instant Results • Personalized Roadmap</p>
             </div>
 
             {/* Image */}
