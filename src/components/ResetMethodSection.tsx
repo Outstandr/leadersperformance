@@ -33,8 +33,7 @@ export const ResetMethodSection = () => {
     image: trackingImage
   }];
   return <section id="reset" className="py-10 lg:py-16 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto px-4 max-w-7xl">
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-2">
@@ -73,6 +72,5 @@ export const ResetMethodSection = () => {
             </Carousel>
           </div>
         </div>
-      </div>
     </section>;
 };
