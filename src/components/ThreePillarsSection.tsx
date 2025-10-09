@@ -49,13 +49,6 @@ export const ThreePillarsSection = () => {
                 key={index} 
                 className={`group relative bg-gradient-to-br ${pillar.gradient} border-2 ${pillar.borderColor} p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-opacity-60`}
               >
-                {/* Icon */}
-                <div className="mb-6">
-                  <div className={`${pillar.iconBg} w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}>
-                    <Icon name={pillar.icon} className="w-8 h-8 text-white" />
-                  </div>
-                </div>
-
                 {/* Title */}
                 <h3 className="text-2xl font-semibold text-foreground mb-6 font-sans">
                   {pillar.title}
