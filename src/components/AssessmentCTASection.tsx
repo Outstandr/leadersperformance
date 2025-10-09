@@ -30,7 +30,7 @@ export const AssessmentCTASection = () => {
           {/* Header */}
           <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 mb-4">
-                <span className={`text-lg font-medium uppercase transition-colors duration-500 ${isDark ? 'text-white' : 'text-[#404473]'}`}>Take The First Step</span>
+                <span className={`text-lg font-medium uppercase transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>Take The First Step</span>
               </div>
               <h2 className={`text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mb-4 transition-colors duration-500 ${isDark ? 'text-white' : 'text-lioner-gold'}`}>
                 Discover Your Leadership Blueprint
