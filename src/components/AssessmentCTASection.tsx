@@ -9,7 +9,7 @@ export const AssessmentCTASection = () => {
   ];
 
   return (
-    <section id="assessment" className="py-10 lg:py-16 bg-gradient-to-b from-muted/30 to-background">
+    <section id="assessment" className="py-10 lg:py-16 bg-gradient-to-b from-muted/60 to-muted/80">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           {/* Main content card */}

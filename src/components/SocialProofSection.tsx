@@ -17,7 +17,7 @@ export const SocialProofSection = () => {
     role: "Global Management Consultant",
     color: "border-secondary-purple"
   }];
-  return <section id="testimonials" className="py-20 lg:py-32 bg-background">
+  return <section id="testimonials" className="py-20 lg:py-32 bg-gradient-to-b from-muted/40 to-muted/60">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           {/* Rating and Testimonial */}

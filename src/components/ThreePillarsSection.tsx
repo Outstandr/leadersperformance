@@ -26,7 +26,7 @@ export const ThreePillarsSection = () => {
   }];
 
   return (
-    <section id="pillars" className="py-10 lg:py-16 bg-gradient-to-b from-background to-muted/30">
+    <section id="pillars" className="py-10 lg:py-16 bg-gradient-to-b from-muted/40 to-muted/60">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}

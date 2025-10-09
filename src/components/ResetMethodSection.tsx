@@ -32,7 +32,7 @@ export const ResetMethodSection = () => {
     description: "Progress measurement for sustainable excellence",
     image: trackingImage
   }];
-  return <section id="reset" className="py-10 lg:py-16 bg-background">
+  return <section id="reset" className="py-10 lg:py-16 bg-gradient-to-b from-white to-muted/20">
       <div className="container mx-auto px-4 max-w-7xl">
           {/* Section Header */}
           <div className="text-center mb-16">
