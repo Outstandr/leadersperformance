@@ -38,36 +38,36 @@ export const ComparisonSection = () => {
           </div>
 
           {/* Comparison Card */}
-          <div className="bg-white border border-border rounded-3xl p-8 md:p-12 shadow-sm">
+          <div className="bg-[#404473] border border-border p-8 md:p-12 shadow-sm">
             <div className="grid md:grid-cols-2 gap-12">
               {/* Core Values */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-normal text-foreground">
+                <h3 className="text-2xl font-normal text-white">
                   Core Values
                 </h3>
                 {values.slice(0, 3).map((item, index) => <div key={index} className="flex items-start gap-3">
-                    <div className="mt-1 rounded-full bg-primary p-1 shrink-0">
-                      <Check className="w-4 h-4 text-white" />
+                    <div className="mt-1 rounded-full bg-white p-1 shrink-0">
+                      <Check className="w-4 h-4 text-[#404473]" />
                     </div>
                     <div>
-                      <p className="font-medium text-foreground mb-1">{item.title}</p>
-                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                      <p className="font-medium text-white mb-1">{item.title}</p>
+                      <p className="text-sm text-white/80">{item.description}</p>
                     </div>
                   </div>)}
               </div>
 
               {/* Second Column */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-normal text-foreground opacity-0">
+                <h3 className="text-2xl font-normal text-white opacity-0">
                   Core Values
                 </h3>
                 {values.slice(3).map((item, index) => <div key={index} className="flex items-start gap-3">
-                    <div className="mt-1 rounded-full bg-primary p-1 shrink-0">
-                      <Check className="w-4 h-4 text-white" />
+                    <div className="mt-1 rounded-full bg-white p-1 shrink-0">
+                      <Check className="w-4 h-4 text-[#404473]" />
                     </div>
                     <div>
-                      <p className="font-medium text-foreground mb-1">{item.title}</p>
-                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                      <p className="font-medium text-white mb-1">{item.title}</p>
+                      <p className="text-sm text-white/80">{item.description}</p>
                     </div>
                   </div>)}
               </div>
