@@ -26,7 +26,7 @@ export const HeroSection = () => {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-medium rounded-none px-7 py-3.5 h-auto group text-sm">
+                <Button size="lg" className="bg-white text-[#404473] hover:bg-[#404473] hover:text-white font-medium rounded-none px-7 py-3.5 h-auto group text-sm transition-colors">
                   Take Your Free Leadership Assessment
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
