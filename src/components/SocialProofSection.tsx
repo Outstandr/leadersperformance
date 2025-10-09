@@ -98,15 +98,29 @@ export const SocialProofSection = () => {
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                   <div className="p-1">
-                    <Card className="border-2 hover:border-lioner-gold transition-colors duration-300">
+                    <Card className={`border-2 transition-all duration-500 ${
+                      isDark 
+                        ? 'bg-black border-lioner-gold hover:border-lioner-gold' 
+                        : 'bg-white border-border hover:border-lioner-gold'
+                    }`}>
                       <CardContent className="p-6 flex flex-col h-full min-h-[280px]">
-                        <Quote className="w-8 h-8 text-lioner-gold mb-4" />
-                        <p className="text-foreground text-base leading-relaxed flex-grow mb-4">
+                        <Quote className={`w-8 h-8 mb-4 transition-colors duration-500 ${
+                          isDark ? 'text-lioner-gold' : 'text-lioner-gold'
+                        }`} />
+                        <p className={`text-base leading-relaxed flex-grow mb-4 transition-colors duration-500 ${
+                          isDark ? 'text-white' : 'text-foreground'
+                        }`}>
                           "{testimonial.content}"
                         </p>
-                        <div className="mt-auto pt-4 border-t border-lioner-gold">
-                          <p className="font-semibold text-foreground">{testimonial.author}</p>
-                          <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                        <div className={`mt-auto pt-4 border-t transition-colors duration-500 ${
+                          isDark ? 'border-lioner-gold' : 'border-lioner-gold'
+                        }`}>
+                          <p className={`font-semibold transition-colors duration-500 ${
+                            isDark ? 'text-white' : 'text-foreground'
+                          }`}>{testimonial.author}</p>
+                          <p className={`text-sm transition-colors duration-500 ${
+                            isDark ? 'text-white/70' : 'text-muted-foreground'
+                          }`}>{testimonial.role}</p>
                         </div>
                       </CardContent>
                     </Card>
