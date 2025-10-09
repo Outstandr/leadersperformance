@@ -73,8 +73,12 @@ export const ComparisonSection = () => {
                   Core Values
                 </h3>
                 {values.slice(0, 3).map((item, index) => <div key={index} className="flex items-start gap-3">
-                    <div className="mt-1 rounded-full bg-white p-1 shrink-0">
-                      <Check className="w-4 h-4 text-lioner-gold" />
+                    <div className={`mt-1 rounded-full p-1 shrink-0 transition-colors duration-500 ${
+                      isDark ? 'bg-lioner-gold' : 'bg-white'
+                    }`}>
+                      <Check className={`w-4 h-4 transition-colors duration-500 ${
+                        isDark ? 'text-black' : 'text-lioner-gold'
+                      }`} />
                     </div>
                     <div>
                       <p className="font-medium text-white mb-1">{item.title}</p>
@@ -89,8 +93,12 @@ export const ComparisonSection = () => {
                   Core Values
                 </h3>
                 {values.slice(3).map((item, index) => <div key={index} className="flex items-start gap-3">
-                    <div className="mt-1 rounded-full bg-white p-1 shrink-0">
-                      <Check className="w-4 h-4 text-lioner-gold" />
+                    <div className={`mt-1 rounded-full p-1 shrink-0 transition-colors duration-500 ${
+                      isDark ? 'bg-lioner-gold' : 'bg-white'
+                    }`}>
+                      <Check className={`w-4 h-4 transition-colors duration-500 ${
+                        isDark ? 'text-black' : 'text-lioner-gold'
+                      }`} />
                     </div>
                     <div>
                       <p className="font-medium text-white mb-1">{item.title}</p>
