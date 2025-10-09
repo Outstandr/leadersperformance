@@ -32,7 +32,7 @@ export const ComparisonSection = () => {
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               Leadership by Design
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mt-6">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mt-6">
               Peak performance is achieved through the alignment of mind, body, and wealth. We set a new standard for leadership where excellence, alignment, and resilience are the defining characteristics.
             </p>
           </div>
