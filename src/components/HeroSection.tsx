@@ -49,7 +49,7 @@ export const HeroSection = () => {
               </h1>
 
               {/* Description */}
-              <p className="text-lg text-white/80 leading-relaxed">
+              <p className="text-lg text-white leading-relaxed">
                 Join elite executives who've transformed their leadership through High Performance. Discover your unique Discipline Type and unlock the RESET Blueprint® that aligns mind, body, and wealth for sustainable leadership excellence.
               </p>
 
