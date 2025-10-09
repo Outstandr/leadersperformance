@@ -1,47 +1,87 @@
 import { Icon } from "@/components/ui/icon";
-import { Card, CardContent } from "@/components/ui/card";
 import { Check } from "lucide-react";
+
 export const ThreePillarsSection = () => {
   const pillars = [{
     icon: "brain",
     title: "Mental Mastery",
-    color: "border-lioner-gold",
-    iconBg: "bg-lioner-gold/10",
-    iconColor: "text-lioner-gold",
+    gradient: "from-lioner-gold/20 to-lioner-gold/5",
+    iconBg: "bg-lioner-gold",
+    borderColor: "border-lioner-gold/30",
     features: ["Cognitive Sovereignty", "Strategic Decision Making", "Mental Toughness Protocols", "Focus & Attention Mastery", "Outcome Independence", "Leadership Mindset Design"]
   }, {
     icon: "muscle",
     title: "Physical Excellence",
-    color: "border-secondary-blue",
-    iconBg: "bg-secondary-blue/10",
-    iconColor: "text-secondary-blue",
+    gradient: "from-secondary-blue/20 to-secondary-blue/5",
+    iconBg: "bg-secondary-blue",
+    borderColor: "border-secondary-blue/30",
     features: ["Executive Vitality Protocols", "Strategic Energy Management", "Performance Nutrition Systems", "Recovery & Optimization", "Stress Resilience Building", "Peak Physical Conditioning"]
   }, {
     icon: "star",
     title: "Strategic Alignment",
-    color: "border-secondary-purple",
-    iconBg: "bg-secondary-purple/10",
-    iconColor: "text-secondary-purple",
+    gradient: "from-secondary-purple/20 to-secondary-purple/5",
+    iconBg: "bg-secondary-purple",
+    borderColor: "border-secondary-purple/30",
     features: ["Purpose-Driven Leadership", "Values-Based Decision Making", "Legacy & Impact Planning", "Wealth & Success Integration", "Sustainable Performance", "Leadership by Design"]
   }];
-  return <section id="pillars" className="py-20 pb-32 bg-background">
+
+  return (
+    <section id="pillars" className="py-10 lg:py-16 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 mb-2">
+              <span className="text-lg text-[#404473] font-medium uppercase">The Framework</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
+              The Three Pillars of Elite Leadership
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mt-6">
+              A holistic system designed to elevate every dimension of your leadership and life
+            </p>
+          </div>
+
           {/* Pillars Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {pillars.map((pillar, index) => (
-              <div key={index} className="text-center space-y-6">
-                <div className={`${pillar.iconBg} w-16 h-16 mx-auto rounded-2xl flex items-center justify-center`}>
-                  <Icon name={pillar.icon} className={`w-8 h-8 ${pillar.iconColor}`} />
+              <div 
+                key={index} 
+                className={`group relative bg-gradient-to-br ${pillar.gradient} border-2 ${pillar.borderColor} p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-opacity-60`}
+              >
+                {/* Icon */}
+                <div className="mb-6">
+                  <div className={`${pillar.iconBg} w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}>
+                    <Icon name={pillar.icon} className="w-8 h-8 text-white" />
+                  </div>
                 </div>
-                <h3 className="text-2xl font-normal text-foreground">{pillar.title}</h3>
-                <p className="text-base text-muted-foreground leading-relaxed max-w-xs mx-auto">
-                  {pillar.features[0]}
-                </p>
+
+                {/* Title */}
+                <h3 className="text-2xl font-semibold text-foreground mb-6 font-sans">
+                  {pillar.title}
+                </h3>
+
+                {/* Features List */}
+                <div className="space-y-3">
+                  {pillar.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <div className={`${pillar.iconBg} rounded-full p-1 shrink-0 mt-0.5`}>
+                        <Check className="w-3 h-3 text-white" />
+                      </div>
+                      <p className="text-sm text-foreground/80 leading-relaxed">
+                        {feature}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Decorative corner accent */}
+                <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${pillar.gradient} opacity-50 blur-2xl -z-10 transition-opacity duration-300 group-hover:opacity-100`} />
               </div>
             ))}
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
