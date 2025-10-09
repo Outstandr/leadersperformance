@@ -55,7 +55,7 @@ export const ResetMethodSection = () => {
               <span className={`text-lg font-medium uppercase transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>Educational Tools</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
-              Reliable expertise to drive your greatest success
+              Reliable Expertise to Drive Your Greatest Success
             </h2>
           </div>
 
