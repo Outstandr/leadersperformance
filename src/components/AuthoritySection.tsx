@@ -6,35 +6,37 @@ export const AuthoritySection = () => {
   return <section id="about" className="py-20 lg:py-32 bg-lioner-blue">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Section Label */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 mb-2">
-              
-              <span className="text-lg text-white/80 font-medium uppercase">About</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-white max-w-4xl mx-auto leading-tight">
-              Meet Lionel Eersteling
-            </h2>
-            <p className="text-lg text-white/90 max-w-3xl mx-auto mt-6">
-              {bio}
-            </p>
-          </div>
+          <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
+            {/* Left Column: Header + Achievements */}
+            <div className="space-y-8">
+              {/* Section Header */}
+              <div>
+                <div className="inline-flex items-center gap-2 mb-2">
+                  <span className="text-lg text-white/80 font-medium uppercase">About</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-white leading-tight mb-6">
+                  Meet Lionel Eersteling
+                </h2>
+                <p className="text-lg text-white/90">
+                  {bio}
+                </p>
+              </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-            {/* Image */}
-            <div className="relative aspect-[3/4] bg-muted overflow-hidden shadow-2xl">
-              <img src={portraitImage} alt="Lionel Eersteling" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            </div>
-
-            {/* Achievement Badges */}
-            <div className="space-y-6">
+              {/* Achievement Badges */}
+              <div className="space-y-6">
               {achievements.map((achievement, index) => <div key={index} className="flex items-start gap-4">
                   <div className="mt-1 rounded-full bg-white p-2 shrink-0">
                     <Check className="w-5 h-5 text-lioner-blue" />
                   </div>
                   <p className="text-lg text-white font-medium">{achievement}</p>
-                </div>)}
+                 </div>)}
+              </div>
+            </div>
+
+            {/* Right Column: Image */}
+            <div className="relative aspect-[3/4] bg-muted overflow-hidden shadow-2xl">
+              <img src={portraitImage} alt="Lionel Eersteling" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             </div>
           </div>
         </div>
