@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,13 +38,14 @@ export const Navigation = () => {
     }`}>
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
-          <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection("#hero"); }} className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-sm">S</span>
-            </div>
-            <span className={`text-xl font-normal transition-colors duration-300 ${
-              isScrolled ? 'text-white' : 'text-foreground'
-            }`}>Stratex</span>
+          <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection("#hero"); }} className="flex items-center">
+            <img 
+              src={logo} 
+              alt="Leaders Performance" 
+              className={`h-12 w-auto transition-all duration-300 ${
+                isScrolled ? 'brightness-0 invert' : ''
+              }`}
+            />
           </a>
 
           <div className="hidden lg:flex items-center space-x-8">
