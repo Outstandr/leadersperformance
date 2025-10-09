@@ -33,7 +33,7 @@ export const EcosystemSection = () => {
           {/* Section Header */}
           <div className="text-center mb-16 space-y-6">
             <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-2 h-2 rounded-full bg-primary"></div>
+              
               <span className="text-sm text-primary font-medium">Programs</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
@@ -42,10 +42,7 @@ export const EcosystemSection = () => {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Choose your entry point into the Leaders Performance ecosystem
             </p>
-            <Button 
-              size="lg" 
-              className="bg-primary hover:bg-primary/90 text-white font-medium rounded-full px-6 py-3 h-auto mt-6 group"
-            >
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-medium rounded-full px-6 py-3 h-auto mt-6 group">
               Get in touch
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -53,8 +50,7 @@ export const EcosystemSection = () => {
           
           {/* Steps - Alternating Layout */}
           <div className="space-y-24 mt-20">
-            {steps.map((step, index) => (
-              <div key={index} className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+            {steps.map((step, index) => <div key={index} className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
                 {/* Image Side */}
                 <div className={`${index % 2 === 1 ? 'md:order-2' : ''}`}>
                   <div className="relative">
@@ -83,8 +79,7 @@ export const EcosystemSection = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </div>
