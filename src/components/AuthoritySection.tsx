@@ -9,7 +9,7 @@ export const AuthoritySection = () => {
           {/* Section Label */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-6">
-              <div className="w-2 h-2 rounded-full bg-primary"></div>
+              
               <span className="text-sm text-primary font-medium">About</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
@@ -29,14 +29,12 @@ export const AuthoritySection = () => {
 
             {/* Achievement Badges */}
             <div className="space-y-6">
-              {achievements.map((achievement, index) => (
-                <div key={index} className="flex items-start gap-4">
+              {achievements.map((achievement, index) => <div key={index} className="flex items-start gap-4">
                   <div className="mt-1 rounded-full bg-primary p-2 shrink-0">
                     <Check className="w-5 h-5 text-primary-foreground" />
                   </div>
                   <p className="text-lg text-foreground font-medium">{achievement}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
