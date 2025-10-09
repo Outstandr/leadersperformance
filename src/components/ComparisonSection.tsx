@@ -42,7 +42,7 @@ export const ComparisonSection = () => {
             <div className="grid md:grid-cols-2 gap-12">
               {/* Core Values */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-normal text-white">
+                <h3 className="text-2xl font-normal text-white font-sans">
                   Core Values
                 </h3>
                 {values.slice(0, 3).map((item, index) => <div key={index} className="flex items-start gap-3">
@@ -58,7 +58,7 @@ export const ComparisonSection = () => {
 
               {/* Second Column */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-normal text-white opacity-0">
+                <h3 className="text-2xl font-normal text-white opacity-0 font-sans">
                   Core Values
                 </h3>
                 {values.slice(3).map((item, index) => <div key={index} className="flex items-start gap-3">
