@@ -104,7 +104,7 @@ export const SocialProofSection = () => {
                         <p className="text-foreground text-base leading-relaxed flex-grow mb-4">
                           "{testimonial.content}"
                         </p>
-                        <div className="mt-auto pt-4 border-t border-border">
+                        <div className="mt-auto pt-4 border-t border-lioner-gold">
                           <p className="font-semibold text-foreground">{testimonial.author}</p>
                           <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                         </div>
