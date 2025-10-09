@@ -1,65 +1,95 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Quote, Star } from "lucide-react";
+
 export const SocialProofSection = () => {
-  const testimonials = [{
-    content: "Lionel's RESET Blueprint transformed not just my performance, but my entire approach to leadership. The integration of mind, body, and strategic thinking is revolutionary.",
-    author: "Sarah Chen",
-    role: "Fortune 500 CEO",
-    color: "border-lioner-gold"
-  }, {
-    content: "Finally, a system that addresses the whole leader. My productivity increased 300% while maintaining perfect work-life integration.",
-    author: "Marcus Rodriguez",
-    role: "Private Equity Partner",
-    color: "border-secondary-blue"
-  }, {
-    content: "The leadership assessment alone was worth millions in clarity. It showed me exactly where I was limiting my potential and how to break through.",
-    author: "Emma Thompson",
-    role: "Global Management Consultant",
-    color: "border-secondary-purple"
-  }];
-  return <section id="testimonials" className="py-20 lg:py-32 bg-gradient-to-b from-muted/40 to-muted/60">
+  const testimonials = [
+    {
+      content: "Lionel's RESET Blueprint transformed not just my performance, but my entire approach to leadership.",
+      author: "Sarah Chen",
+      role: "Fortune 500 CEO"
+    },
+    {
+      content: "Finally, a system that addresses the whole leader. My productivity increased 300% while maintaining perfect work-life integration.",
+      author: "Marcus Rodriguez",
+      role: "Private Equity Partner"
+    },
+    {
+      content: "The leadership assessment alone was worth millions in clarity. It showed me exactly where I was limiting my potential.",
+      author: "Emma Thompson",
+      role: "Global Management Consultant"
+    },
+    {
+      content: "This methodology gave me back 15 hours per week while doubling my team's output. It's not just effective, it's transformative.",
+      author: "David Park",
+      role: "Tech Startup Founder"
+    },
+    {
+      content: "I've tried every productivity system out there. This is the only one that actually worked for sustainable high performance.",
+      author: "Rachel Martinez",
+      role: "Investment Banker"
+    },
+    {
+      content: "The integration of mental clarity, physical energy, and strategic execution is unlike anything I've experienced.",
+      author: "James Wilson",
+      role: "Board Director"
+    }
+  ];
+
+  return (
+    <section id="testimonials" className="py-16 lg:py-24 bg-gradient-to-b from-muted/40 to-muted/60">
       <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto">
-          {/* Rating and Testimonial */}
-          <div className="text-center space-y-8">
-            <div className="flex justify-center items-center gap-1">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <Star key={star} className="w-5 h-5 fill-foreground text-foreground" />
-              ))}
-              <span className="ml-3 text-sm text-foreground">Rated 4.9/5</span>
-            </div>
-
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight max-w-4xl mx-auto">
-              {testimonials[0].content}
-            </h2>
-
-            <div className="flex flex-col items-center gap-3 pt-8">
-              <div className="w-16 h-16 rounded-full bg-muted"></div>
-              <div>
-                <p className="font-medium text-foreground">{testimonials[0].author}</p>
-                <div className="flex gap-2 mt-2">
-                  <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
-                    High conversion
-                  </span>
-                  <span className="px-3 py-1 bg-muted text-foreground rounded-full text-xs font-medium">
-                    2x sales
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Section Label */}
-          <div className="text-center mt-24 mb-16">
-            <div className="inline-flex items-center gap-2 mb-6">
+        <div className="max-w-6xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 mb-4">
               <div className="w-2 h-2 rounded-full bg-primary"></div>
-              <span className="text-sm text-primary font-medium">Features</span>
+              <span className="text-sm text-primary font-medium">Testimonials</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal text-foreground leading-tight mb-4">
               Elite Leaders Choose Excellence
             </h2>
+            <div className="flex justify-center items-center gap-1 mt-4">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star key={star} className="w-4 h-4 fill-foreground text-foreground" />
+              ))}
+              <span className="ml-2 text-sm text-muted-foreground">4.9/5 from leaders worldwide</span>
+            </div>
           </div>
+
+          {/* Carousel */}
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div className="p-1">
+                    <Card className="border-2 hover:border-primary transition-colors duration-300">
+                      <CardContent className="p-6 flex flex-col h-full min-h-[280px]">
+                        <Quote className="w-8 h-8 text-primary mb-4" />
+                        <p className="text-foreground text-base leading-relaxed flex-grow mb-4">
+                          "{testimonial.content}"
+                        </p>
+                        <div className="mt-auto pt-4 border-t border-border">
+                          <p className="font-semibold text-foreground">{testimonial.author}</p>
+                          <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
