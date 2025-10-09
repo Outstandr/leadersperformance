@@ -53,7 +53,7 @@ export const ThreePillarsSection = () => {
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               The Three Pillars of Elite Leadership
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mt-6">
+            <p className={`text-lg max-w-3xl mx-auto mt-6 transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>
               A holistic system designed to elevate every dimension of your leadership and life
             </p>
           </div>
