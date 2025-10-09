@@ -56,7 +56,7 @@ export const ComparisonSection = () => {
               Leadership by Design
             </h2>
             <p className={`text-lg max-w-3xl mx-auto mt-6 transition-colors duration-500 ${
-              isDark ? 'text-white/70' : 'text-muted-foreground'
+              isDark ? 'text-white' : 'text-muted-foreground'
             }`}>
               Peak performance is achieved through the alignment of mind, body, and wealth. We set a new standard for leadership where excellence, alignment, and resilience are the defining characteristics.
             </p>
