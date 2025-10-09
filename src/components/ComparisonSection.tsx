@@ -27,7 +27,7 @@ export const ComparisonSection = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-6">
               
-              <span className="text-sm text-primary font-medium">Why choose us</span>
+              <span className="text-lg text-[#404473] font-medium uppercase">Why choose us</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               Leadership by Design
