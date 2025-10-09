@@ -36,12 +36,12 @@ export const ResetMethodSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16 space-y-6">
-            <div className="inline-flex items-center gap-2 mb-4">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 mb-2">
               
-              <span className="text-sm text-primary font-medium">Educational Tools</span>
+              <span className="text-lg text-[#404473] font-medium uppercase">Educational Tools</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               Reliable expertise to drive your greatest success
             </h2>
           </div>
