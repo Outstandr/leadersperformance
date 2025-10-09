@@ -1,8 +1,24 @@
+import { useState, useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Quote, Star } from "lucide-react";
 
 export const SocialProofSection = () => {
+  const [isDark, setIsDark] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        setIsDark(rect.top <= 100);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const testimonials = [
     {
       content: "Lionel's RESET Blueprint transformed not just my performance, but my entire approach to leadership.",
@@ -37,25 +53,25 @@ export const SocialProofSection = () => {
   ];
 
   return (
-    <section id="testimonials" className="py-10 lg:py-16 bg-gradient-to-b from-muted/40 to-muted/60">
+    <section ref={sectionRef} id="testimonials" className={`py-10 lg:py-16 transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 mb-2">
-              <span className="text-lg text-[#404473] font-medium uppercase">Testimonials</span>
+              <span className={`text-lg font-medium uppercase transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>Testimonials</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               Elite Leaders Choose Excellence
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mt-6">
+            <p className={`text-lg max-w-3xl mx-auto mt-6 transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>
               Trusted by executives and leaders worldwide
             </p>
             <div className="flex justify-center items-center gap-1 mt-4">
               {[1, 2, 3, 4, 5].map((star) => (
                 <Star key={star} className="w-4 h-4" style={{ fill: 'url(#goldGradient)', filter: 'drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4))' }} />
               ))}
-              <span className="ml-2 text-sm text-muted-foreground">4.9/5 from leaders worldwide</span>
+              <span className={`ml-2 text-sm transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>4.9/5 from leaders worldwide</span>
               <svg width="0" height="0" className="absolute">
                 <defs>
                   <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
