@@ -31,12 +31,12 @@ export const EcosystemSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16 space-y-6">
+          <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-4">
               
-              <span className="text-sm text-muted-foreground font-medium">Programs</span>
+              <span className="text-lg font-medium uppercase text-muted-foreground">Programs</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mb-4 text-lioner-gold">
               Your Path to Elite Leadership
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
