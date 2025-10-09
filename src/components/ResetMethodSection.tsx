@@ -71,7 +71,7 @@ export const ResetMethodSection = () => {
                       <img src={component.image} alt={component.title} className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                       <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
-                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold font-sans text-white mb-6 mt-12 my-[2px]">
+                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold font-sans text-white mb-6 mt-12 my-[4px]">
                           {component.title}
                         </h3>
                         <p className="text-base md:text-lg text-white/90 max-w-xl">
