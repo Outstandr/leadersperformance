@@ -1,6 +1,22 @@
+import { useState, useEffect, useRef } from "react";
 import { X, Check } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 export const ComparisonSection = () => {
+  const [isDark, setIsDark] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        // Change to dark when section is about 100px from top (near navigation)
+        setIsDark(rect.top <= 100);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check on mount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const values = [{
     title: "Relentless Discipline",
     description: "The foundation of all achievement"
@@ -20,18 +36,28 @@ export const ComparisonSection = () => {
     title: "Continuous Evolution",
     description: "Never-ending growth and adaptation"
   }];
-  return <section id="comparison" className="py-10 lg:py-16 bg-white">
+  return <section 
+    ref={sectionRef}
+    id="comparison" 
+    className={`py-10 lg:py-16 transition-colors duration-500 ${
+      isDark ? 'bg-black' : 'bg-white'
+    }`}
+  >
       <div className="container mx-auto px-4 max-w-7xl">
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-2">
               
-              <span className="text-lg text-[#404473] font-medium uppercase">Why choose us</span>
+              <span className={`text-lg font-medium uppercase transition-colors duration-500 ${
+                isDark ? 'text-white' : 'text-[#404473]'
+              }`}>Why choose us</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               Leadership by Design
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mt-6">
+            <p className={`text-lg max-w-3xl mx-auto mt-6 transition-colors duration-500 ${
+              isDark ? 'text-white/70' : 'text-muted-foreground'
+            }`}>
               Peak performance is achieved through the alignment of mind, body, and wealth. We set a new standard for leadership where excellence, alignment, and resilience are the defining characteristics.
             </p>
           </div>
