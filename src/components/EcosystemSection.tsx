@@ -64,7 +64,7 @@ export const EcosystemSection = () => {
             <p className={`text-lg max-w-2xl mx-auto transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>
               Choose your entry point into the Leaders Performance ecosystem
             </p>
-            <Button size="lg" className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 border-transparent">
+            <Button size="lg" className={`bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 border-transparent ${!isDark ? 'shadow-lg shadow-black/10' : ''}`}>
               Get in touch
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
