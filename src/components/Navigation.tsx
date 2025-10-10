@@ -38,7 +38,7 @@ export const Navigation = () => {
         ? 'bg-foreground/95 shadow-lg' 
         : 'bg-white/95 shadow-sm'
     }`}>
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex items-center justify-between h-20">
           <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection("#hero"); }} className="flex items-center">
             <img 
