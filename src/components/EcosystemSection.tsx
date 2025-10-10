@@ -78,7 +78,7 @@ export const EcosystemSection = () => {
             }} className="w-full">
               <CarouselContent className="-ml-4">
                 {steps.map((step, index) => (
-                  <CarouselItem key={index} className="pl-4 md:basis-3/4 lg:basis-1/2">
+                  <CarouselItem key={index} className="pl-4 md:basis-2/3 lg:basis-5/12">
                     <div className="flex flex-col h-full shadow-2xl">
                       {/* Image Placeholder */}
                       <div className="aspect-[4/3] bg-muted overflow-hidden">
