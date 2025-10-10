@@ -91,7 +91,7 @@ export const EcosystemSection = () => {
                           <div className="rounded-full w-10 h-10 flex items-center justify-center text-sm font-bold bg-white/20 text-white shrink-0">
                             {step.number.padStart(2, '0')}
                           </div>
-                          <h3 className="text-xl font-sans font-medium text-white">
+                          <h3 className="text-xl font-semibold text-white">
                             {step.title}
                           </h3>
                         </div>
