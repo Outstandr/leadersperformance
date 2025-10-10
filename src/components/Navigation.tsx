@@ -9,10 +9,10 @@ export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "Services", href: "#reset" },
-    { label: "Features", href: "#pillars" },
-    { label: "Pricing", href: "#programs" },
-    { label: "How it works", href: "#about" }
+    { label: "RESET Method", href: "#reset" },
+    { label: "The Framework", href: "#pillars" },
+    { label: "Programs", href: "#programs" },
+    { label: "About", href: "#about" }
   ];
 
   useEffect(() => {
@@ -60,8 +60,8 @@ export const Navigation = () => {
                 {item.label}
               </a>
             ))}
-            <Button onClick={() => scrollToSection("#assessment")} className="bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-full px-6 py-2 text-sm font-medium">
-              Get in touch
+            <Button onClick={() => scrollToSection("#assessment")} className="bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none px-6 py-2 text-sm font-medium">
+              Take Free Assessment
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
@@ -93,8 +93,8 @@ export const Navigation = () => {
                   {item.label}
                 </a>
               ))}
-              <Button onClick={() => scrollToSection("#assessment")} className="mx-4 bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-full py-3">
-                Get in touch
+              <Button onClick={() => scrollToSection("#assessment")} className="mx-4 bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none py-3">
+                Take Free Assessment
               </Button>
             </div>
           </div>
