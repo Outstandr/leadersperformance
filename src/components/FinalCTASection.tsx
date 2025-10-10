@@ -1,6 +1,22 @@
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp, Users, Award, Target, Briefcase, BarChart } from "lucide-react";
 export const FinalCTASection = () => {
+  const [isDark, setIsDark] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        setIsDark(rect.top <= 100);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const stats = [{
     icon: TrendingUp,
     value: "$7M+",
@@ -32,7 +48,12 @@ export const FinalCTASection = () => {
     label: "Expert Consultants",
     description: "On your team"
   }];
-  return <section className="py-10 lg:py-16 bg-gradient-to-br from-foreground/5 via-foreground/10 to-foreground/5 relative overflow-hidden">
+  return <section 
+      ref={sectionRef}
+      className={`py-10 lg:py-16 transition-colors duration-500 relative overflow-hidden ${
+        isDark ? 'bg-black' : 'bg-white'
+      }`}
+    >
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5" />
       
@@ -41,12 +62,12 @@ export const FinalCTASection = () => {
           {/* Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-2">
-              <span className="text-lg font-medium uppercase text-muted-foreground">Proven Track Record</span>
+              <span className={`text-lg font-medium uppercase transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>Proven Track Record</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold mb-4">
               Your Leadership Excellence<br />Journey Starts Now
             </h2>
-            <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
+            <p className={`text-lg max-w-2xl mx-auto transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>
               Don't let another quarter pass without unlocking your true leadership potential
             </p>
           </div>
@@ -55,19 +76,34 @@ export const FinalCTASection = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {stats.map((stat, index) => {
             const Icon = stat.icon;
-            return <div key={index} className="group relative bg-gradient-to-br from-lioner-blue/20 to-lioner-blue/5 border-2 border-lioner-gold/50 p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+            return <div 
+                key={index} 
+                className={`group relative border-2 p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
+                  isDark 
+                    ? 'bg-black border-lioner-gold' 
+                    : 'bg-gradient-to-br from-lioner-blue/20 to-lioner-blue/5 border-lioner-gold/50'
+                }`}
+              >
                   <div className="flex items-start gap-4">
-                    <div className="p-2.5 bg-lioner-gold transition-all duration-300">
+                    <div className={`p-2.5 transition-all duration-500 ${
+                      isDark ? 'bg-lioner-gold' : 'bg-lioner-gold'
+                    }`}>
                       <Icon className="w-5 h-5 text-white" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-3xl font-bold text-foreground mb-1">
+                      <div className={`text-3xl font-bold mb-1 transition-colors duration-500 ${
+                        isDark ? 'text-white' : 'text-foreground'
+                      }`}>
                         {stat.value}
                       </div>
-                      <div className="text-base font-semibold text-foreground mb-1">
+                      <div className={`text-base font-semibold mb-1 transition-colors duration-500 ${
+                        isDark ? 'text-white' : 'text-foreground'
+                      }`}>
                         {stat.label}
                       </div>
-                      <div className="text-sm text-foreground/80">
+                      <div className={`text-sm transition-colors duration-500 ${
+                        isDark ? 'text-white/80' : 'text-foreground/80'
+                      }`}>
                         {stat.description}
                       </div>
                     </div>
