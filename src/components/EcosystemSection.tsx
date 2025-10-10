@@ -87,16 +87,13 @@ export const EcosystemSection = () => {
                       
                       {/* Gold Header Section with Number and Title */}
                       <div className="bg-[hsl(var(--lioner-gold))] p-6">
-                        <div className="flex items-center gap-3">
-                          <div className="rounded-full w-10 h-10 flex items-center justify-center text-sm font-bold bg-black text-white shrink-0">
-                            {step.number.padStart(2, '0')}
-                          </div>
-                          <h3 className="text-xl font-sans font-medium text-white">
-                            {step.title.split(/( Elite| Series)/).map((part, i) => 
-                              part === ' Elite' || part === ' Series' ? <><br />{part.trim()}</> : part
-                            )}
-                          </h3>
-                        </div>
+                        <h3 className="text-xl font-sans font-medium text-white">
+                          <span className="font-normal">{step.number.padStart(2, '0')}</span>
+                          <span className="mx-2">•</span>
+                          {step.title.split(/( Elite| Series)/).map((part, i) => 
+                            part === ' Elite' || part === ' Series' ? <><br />{part.trim()}</> : part
+                          )}
+                        </h3>
                       </div>
                       
                       {/* Content */}
