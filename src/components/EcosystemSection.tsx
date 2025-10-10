@@ -4,21 +4,19 @@ import { ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 export const EcosystemSection = () => {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect();
-        const isInView = rect.top < 100 && rect.bottom > 100;
-        setIsDark(!isInView);
+        setIsDark(rect.top <= 100);
       }
     };
-
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   const steps = [{
     number: "1",
@@ -48,27 +46,26 @@ export const EcosystemSection = () => {
   return <section 
       ref={sectionRef}
       id="programs" 
-      className={`py-10 lg:py-16 transition-colors duration-700 ${
-        isDark ? 'bg-background text-foreground' : 'bg-foreground/95 text-background'
+      className={`py-10 lg:py-16 transition-colors duration-500 ${
+        isDark ? 'bg-black' : 'bg-white'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 mb-4">
-              
-              <span className={`text-lg font-medium uppercase ${isDark ? 'text-foreground' : 'text-background'}`}>Programs</span>
+            <div className="inline-flex items-center gap-2 mb-2">
+              <span className={`text-lg font-medium uppercase transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>Programs</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mb-4 text-lioner-gold">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold mb-4">
               Your Path to Elite Leadership
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className={`text-lg max-w-2xl mx-auto transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>
               Choose your entry point into the Leaders Performance ecosystem
             </p>
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-medium rounded-full px-6 py-3 h-auto mt-6 group">
+            <Button size="lg" className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 border-transparent">
               Get in touch
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
           
@@ -92,11 +89,11 @@ export const EcosystemSection = () => {
                       <div className={`${step.color} text-white w-12 h-12 rounded-full flex items-center justify-center text-sm font-medium mb-4`}>
                         {step.number.padStart(2, '0')}
                       </div>
-                      <h3 className="text-3xl font-normal text-foreground mb-4">{step.title}</h3>
-                      <p className="text-base text-muted-foreground leading-relaxed mb-4">
+                      <h3 className={`text-3xl font-normal mb-4 transition-colors duration-500 ${isDark ? 'text-white' : 'text-foreground'}`}>{step.title}</h3>
+                      <p className={`text-base leading-relaxed mb-4 transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>
                         {step.description}
                       </p>
-                      <a href="#" className="inline-flex items-center text-sm text-foreground hover:text-primary transition-colors">
+                      <a href="#" className={`inline-flex items-center text-sm hover:text-primary transition-colors ${isDark ? 'text-white' : 'text-foreground'}`}>
                         Discover More
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </a>
