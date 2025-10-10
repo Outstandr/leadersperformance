@@ -69,40 +69,31 @@ export const EcosystemSection = () => {
             </Button>
           </div>
           
-          {/* Steps - Alternating Layout */}
-          <div className="space-y-24 mt-20">
-            {steps.map((step, index) => <div key={index} className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
-                {/* Image Side */}
-                <div className={`${index % 2 === 1 ? 'md:order-2' : ''}`}>
-                  <div className="relative overflow-hidden">
-                    <div className="aspect-[4/3] bg-muted overflow-hidden animate-slide-in-right">
-                      {/* Placeholder for image */}
-                    </div>
-                  </div>
+          {/* Steps - Four Columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+            {steps.map((step, index) => (
+              <div key={index} className="space-y-4">
+                {/* Number Badge */}
+                <div className={`rounded-full w-12 h-12 flex items-center justify-center text-sm font-medium transition-colors duration-500 ${
+                  isDark ? 'bg-lioner-gold text-black' : 'bg-white text-lioner-gold border-2 border-lioner-gold'
+                }`}>
+                  {step.number.padStart(2, '0')}
                 </div>
-
-                {/* Content Side */}
-                <div className={`space-y-6 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
-                  <div className="flex items-center gap-4">
-                    <div className="w-1 h-32 bg-border"></div>
-                    <div>
-                      <div className={`rounded-full w-12 h-12 flex items-center justify-center text-sm font-medium mb-4 transition-colors duration-500 ${
-                        isDark ? 'bg-lioner-gold text-black' : 'bg-white text-lioner-gold'
-                      }`}>
-                        {step.number.padStart(2, '0')}
-                      </div>
-                      <h3 className={`text-3xl font-normal mb-4 transition-colors duration-500 ${isDark ? 'text-white' : 'text-foreground'}`}>{step.title}</h3>
-                      <p className={`text-base leading-relaxed mb-4 transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>
-                        {step.description}
-                      </p>
-                      <a href="#" className={`inline-flex items-center text-sm hover:text-primary transition-colors ${isDark ? 'text-white' : 'text-foreground'}`}>
-                        Discover More
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </a>
-                    </div>
-                  </div>
+                
+                {/* Content */}
+                <div className="space-y-3">
+                  <h3 className={`text-xl font-semibold transition-colors duration-500 ${isDark ? 'text-white' : 'text-foreground'}`}>
+                    {step.title}
+                  </h3>
+                  <p className={`text-sm leading-relaxed transition-colors duration-500 ${isDark ? 'text-white/80' : 'text-muted-foreground'}`}>
+                    {step.description}
+                  </p>
+                  <p className={`text-xs font-medium transition-colors duration-500 ${isDark ? 'text-lioner-gold' : 'text-lioner-gold'}`}>
+                    {step.action}
+                  </p>
                 </div>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </div>
