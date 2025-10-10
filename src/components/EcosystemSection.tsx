@@ -58,7 +58,7 @@ export const EcosystemSection = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-4">
               
-              <span className="text-lg font-medium uppercase text-white">Programs</span>
+              <span className={`text-lg font-medium uppercase ${isDark ? 'text-foreground' : 'text-background'}`}>Programs</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mb-4 text-lioner-gold">
               Your Path to Elite Leadership
