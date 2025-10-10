@@ -1,34 +1,54 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp, Users, Award, Target, Briefcase, BarChart } from "lucide-react";
-
 export const FinalCTASection = () => {
-  const stats = [
-    { icon: TrendingUp, value: "$7M+", label: "Revenue Generated", description: "For our clients" },
-    { icon: BarChart, value: "72%", label: "Average Growth", description: "Year over year" },
-    { icon: Award, value: "65%", label: "Skill Improvement", description: "In 90 days" },
-    { icon: Target, value: "78%", label: "Market Impact", description: "Measured results" },
-    { icon: Users, value: "1%", label: "Elite Network", description: "Top performers" },
-    { icon: Briefcase, value: "10+", label: "Expert Consultants", description: "On your team" }
-  ];
-
-  return (
-    <section className="py-10 lg:py-16 bg-gradient-to-br from-foreground/5 via-foreground/10 to-foreground/5 relative overflow-hidden">
+  const stats = [{
+    icon: TrendingUp,
+    value: "$7M+",
+    label: "Revenue Generated",
+    description: "For our clients"
+  }, {
+    icon: BarChart,
+    value: "72%",
+    label: "Average Growth",
+    description: "Year over year"
+  }, {
+    icon: Award,
+    value: "65%",
+    label: "Skill Improvement",
+    description: "In 90 days"
+  }, {
+    icon: Target,
+    value: "78%",
+    label: "Market Impact",
+    description: "Measured results"
+  }, {
+    icon: Users,
+    value: "1%",
+    label: "Elite Network",
+    description: "Top performers"
+  }, {
+    icon: Briefcase,
+    value: "10+",
+    label: "Expert Consultants",
+    description: "On your team"
+  }];
+  return <section className="py-20 lg:py-32 bg-gradient-to-br from-foreground/5 via-foreground/10 to-foreground/5 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5" />
       
       <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 mb-2">
-              <span className="text-lg font-medium uppercase text-muted-foreground">
+          <div className="text-center space-y-6 mb-20">
+            <div className="inline-block px-6 py-2 bg-primary/10 rounded-full mb-4">
+              <span className="text-primary font-semibold text-sm uppercase tracking-wider">
                 Proven Track Record
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold mb-4">
-              Your Leadership Excellence Journey Starts Now
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight max-w-4xl mx-auto">Your Leadership Excellence 
+Journey Starts Now
+          </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Don't let another quarter pass without unlocking your true leadership potential
             </p>
           </div>
@@ -36,12 +56,8 @@ export const FinalCTASection = () => {
           {/* Stats Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {stats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <div 
-                  key={index}
-                  className="group relative bg-card border border-border rounded-2xl p-8 hover:shadow-xl hover:border-primary/50 transition-all duration-300"
-                >
+            const Icon = stat.icon;
+            return <div key={index} className="group relative bg-card border border-border rounded-2xl p-8 hover:shadow-xl hover:border-primary/50 transition-all duration-300">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10 group-hover:bg-primary/10 transition-colors" />
                   
                   <div className="flex items-start gap-4">
@@ -60,9 +76,8 @@ export const FinalCTASection = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                </div>;
+          })}
           </div>
 
           {/* CTA */}
@@ -79,16 +94,12 @@ export const FinalCTASection = () => {
               <span>✓ Elite strategies</span>
               <span>✓ 100% complimentary</span>
             </div>
-            <Button 
-              size="lg"
-              className="bg-background text-primary hover:bg-background/90 text-lg px-8 py-6 h-auto group"
-            >
+            <Button size="lg" className="bg-background text-primary hover:bg-background/90 text-lg px-8 py-6 h-auto group">
               Start Your Assessment Now
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
