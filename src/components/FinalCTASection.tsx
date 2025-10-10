@@ -52,21 +52,19 @@ export const FinalCTASection = () => {
           </div>
 
           {/* Stats Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {stats.map((stat, index) => {
             const Icon = stat.icon;
-            return <div key={index} className="group relative bg-card border border-border rounded-2xl p-8 hover:shadow-xl hover:border-primary/50 transition-all duration-300">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10 group-hover:bg-primary/10 transition-colors" />
-                  
+            return <div key={index} className="group relative bg-white border-2 border-border p-6 hover:border-lioner-gold transition-all duration-300">
                   <div className="flex items-start gap-4">
-                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                      <Icon className="w-6 h-6 text-primary group-hover:text-primary-foreground" />
+                    <div className="p-2.5 bg-lioner-gold/10 group-hover:bg-lioner-gold transition-all duration-300">
+                      <Icon className="w-5 h-5 text-lioner-gold group-hover:text-white" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-4xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      <div className="text-3xl font-bold text-foreground mb-1 group-hover:text-lioner-gold transition-colors">
                         {stat.value}
                       </div>
-                      <div className="text-lg font-semibold text-foreground mb-1">
+                      <div className="text-base font-semibold text-foreground mb-1">
                         {stat.label}
                       </div>
                       <div className="text-sm text-muted-foreground">
