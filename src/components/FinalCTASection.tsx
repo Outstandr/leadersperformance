@@ -52,26 +52,28 @@ export const FinalCTASection = () => {
           </div>
 
           {/* Stats Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {stats.map((stat, index) => {
             const Icon = stat.icon;
-            return <div key={index} className="group relative bg-white border-2 border-border p-6 hover:border-lioner-gold transition-all duration-300">
+            return <div key={index} className="group relative bg-gradient-to-br from-lioner-blue/20 to-lioner-blue/5 border-2 border-lioner-gold/50 p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
                   <div className="flex items-start gap-4">
-                    <div className="p-2.5 bg-lioner-gold/10 group-hover:bg-lioner-gold transition-all duration-300">
-                      <Icon className="w-5 h-5 text-lioner-gold group-hover:text-white" />
+                    <div className="p-2.5 bg-lioner-gold transition-all duration-300">
+                      <Icon className="w-5 h-5 text-white" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-3xl font-bold text-foreground mb-1 group-hover:text-lioner-gold transition-colors">
+                      <div className="text-3xl font-bold text-foreground mb-1">
                         {stat.value}
                       </div>
                       <div className="text-base font-semibold text-foreground mb-1">
                         {stat.label}
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-sm text-foreground/80">
                         {stat.description}
                       </div>
                     </div>
                   </div>
+                  {/* Decorative corner accent */}
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-lioner-blue/20 to-lioner-blue/5 opacity-50 blur-2xl -z-10 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>;
           })}
           </div>
