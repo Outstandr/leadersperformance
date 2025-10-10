@@ -115,20 +115,24 @@ export const FinalCTASection = () => {
           </div>
 
           {/* CTA */}
-          <div className="text-center bg-gradient-to-r from-primary via-primary to-accent/80 rounded-3xl p-12 shadow-2xl">
-            <h3 className="text-3xl md:text-4xl font-semibold text-primary-foreground mb-4">
+          <div className={`text-center p-12 transition-all duration-500 ${
+            isDark 
+              ? 'bg-black border-4 border-[hsl(var(--lioner-gold))]' 
+              : 'bg-[hsl(var(--lioner-gold))]'
+          }`}>
+            <h3 className="text-3xl md:text-4xl font-semibold text-white mb-4">
               Get Your Free Leadership Assessment
             </h3>
-            <p className="text-primary-foreground/90 text-lg mb-2 max-w-2xl mx-auto">
+            <p className="text-white text-lg mb-2 max-w-2xl mx-auto">
               Join elite executives who've already discovered their High Performance profile
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-primary-foreground/80 text-sm mb-8">
+            <div className="flex flex-wrap justify-center gap-4 text-white text-sm mb-8">
               <span>✓ Instant results</span>
               <span>✓ Personalized roadmap</span>
               <span>✓ Elite strategies</span>
               <span>✓ 100% complimentary</span>
             </div>
-            <Button size="lg" className="bg-background text-primary hover:bg-background/90 text-lg px-8 py-6 h-auto group">
+            <Button size="lg" className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-8 py-6 h-auto group transition-all border-2 border-transparent">
               Start Your Assessment Now
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
