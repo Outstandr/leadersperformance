@@ -22,25 +22,25 @@ export const EcosystemSection = () => {
   const steps = [{
     number: "1",
     title: "RESET Book Series",
-    description: "Begin your transformation with the foundational knowledge that has helped thousands of leaders achieve breakthrough results. The RESET methodology provides a comprehensive framework for understanding High Performance leadership, combining proven principles with practical strategies you can implement immediately.",
+    description: "Begin your transformation with the foundational knowledge that has helped thousands of leaders achieve breakthrough results. The RESET methodology provides a comprehensive framework for understanding High Performance leadership, combining proven principles with practical strategies you can implement immediately. Start your journey with clarity and purpose.",
     action: 'Start with "Reset by Discipline"',
     color: "bg-lioner-gold"
   }, {
     number: "2",
     title: "Elite Masterclass Series",
-    description: "Take your leadership to the next level with intensive, focused training sessions. Each 25-30 minute masterclass delivers deep-dive insights into specific pillars of High Performance, complete with actionable frameworks, real-world case studies, and step-by-step implementation guides designed for busy executives.",
+    description: "Take your leadership to the next level with intensive, focused training sessions. Each 25-30 minute masterclass delivers deep-dive insights into specific pillars of High Performance, complete with actionable frameworks, real-world case studies, and step-by-step implementation guides designed for busy executives. Perfect for leaders who want focused expertise.",
     action: "25-30 minute intensive sessions",
     color: "bg-secondary-blue"
   }, {
     number: "3",
     title: "Leaders Performance Academy",
-    description: "Experience the complete transformation system with comprehensive training modules, ongoing coaching support, and access to an exclusive community of high-achieving leaders. The Academy provides structured pathways, accountability systems, and continuous learning resources to ensure lasting change and measurable results.",
+    description: "Experience the complete transformation system with comprehensive training modules, ongoing coaching support, and access to an exclusive community of high-achieving leaders. The Academy provides structured pathways, accountability systems, and continuous learning resources to ensure lasting change and measurable results. Join a community of excellence.",
     action: "Full transformation program",
     color: "bg-secondary-purple"
   }, {
     number: "4",
     title: "Leaders Performance Elite",
-    description: "Gain direct access to Lionel's private mentorship program designed exclusively for C-suite executives and business owners ready for extraordinary results. This premium offering includes one-on-one strategic sessions, personalized performance protocols, and priority support for leaders committed to achieving elite status.",
+    description: "Gain direct access to Lionel's private mentorship program designed exclusively for C-suite executives and business owners ready for extraordinary results. This premium offering includes one-on-one strategic sessions, personalized performance protocols, and priority support for leaders committed to achieving elite status. Reserved for those who demand the best.",
     action: "Exclusive access • Limited availability",
     color: "bg-lioner-gold"
   }];
