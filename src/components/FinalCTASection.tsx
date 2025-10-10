@@ -39,16 +39,14 @@ export const FinalCTASection = () => {
       <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center space-y-6 mb-20">
-            <div className="inline-block px-6 py-2 bg-primary/10 rounded-full mb-4">
-              <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-                Proven Track Record
-              </span>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 mb-2">
+              <span className="text-lg font-medium uppercase text-muted-foreground">Proven Track Record</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal text-foreground leading-tight max-w-4xl mx-auto">Your Leadership Excellence 
-Journey Starts Now
-          </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold mb-4">
+              Your Leadership Excellence Journey Starts Now
+            </h2>
+            <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
               Don't let another quarter pass without unlocking your true leadership potential
             </p>
           </div>
