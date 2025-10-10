@@ -74,8 +74,8 @@ export const EcosystemSection = () => {
             {steps.map((step, index) => <div key={index} className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
                 {/* Image Side */}
                 <div className={`${index % 2 === 1 ? 'md:order-2' : ''}`}>
-                  <div className="relative">
-                    <div className="aspect-[4/3] bg-muted rounded-3xl overflow-hidden">
+                  <div className="relative overflow-hidden">
+                    <div className="aspect-[4/3] bg-muted overflow-hidden animate-slide-in-right">
                       {/* Placeholder for image */}
                     </div>
                   </div>
@@ -86,7 +86,9 @@ export const EcosystemSection = () => {
                   <div className="flex items-center gap-4">
                     <div className="w-1 h-32 bg-border"></div>
                     <div>
-                      <div className={`${step.color} text-white w-12 h-12 rounded-full flex items-center justify-center text-sm font-medium mb-4`}>
+                      <div className={`rounded-full w-12 h-12 flex items-center justify-center text-sm font-medium mb-4 transition-colors duration-500 ${
+                        isDark ? 'bg-lioner-gold text-black' : 'bg-white text-lioner-gold'
+                      }`}>
                         {step.number.padStart(2, '0')}
                       </div>
                       <h3 className={`text-3xl font-normal mb-4 transition-colors duration-500 ${isDark ? 'text-white' : 'text-foreground'}`}>{step.title}</h3>
