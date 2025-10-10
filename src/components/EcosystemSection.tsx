@@ -11,7 +11,7 @@ export const EcosystemSection = () => {
     const handleScroll = () => {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect();
-        const isInView = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
+        const isInView = rect.top < 100 && rect.bottom > 100;
         setIsDark(!isInView);
       }
     };
