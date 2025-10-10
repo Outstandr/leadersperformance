@@ -63,7 +63,7 @@ export const EcosystemSection = () => {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mb-4 text-lioner-gold">
               Your Path to Elite Leadership
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-white max-w-2xl mx-auto">
               Choose your entry point into the Leaders Performance ecosystem
             </p>
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-medium rounded-full px-6 py-3 h-auto mt-6 group">
