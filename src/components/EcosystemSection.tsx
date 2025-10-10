@@ -90,8 +90,14 @@ export const EcosystemSection = () => {
                         <h3 className="text-xl font-sans font-medium text-white">
                           <span className="font-normal">{step.number.padStart(2, '0')}</span>
                           <span className="mx-2">•</span>
-                          {step.title.split(/( Elite| Series)/).map((part, i) => 
-                            part === ' Elite' || part === ' Series' ? <><br />{part.trim()}</> : part
+                          {step.title === "Elite Masterclass Series" ? (
+                            <>Elite<br />Masterclass<br />Series</>
+                          ) : step.title === "RESET Book Series" ? (
+                            <>RESET Book<br />Series</>
+                          ) : step.title === "Leaders Performance Elite" ? (
+                            <>Leaders Performance<br />Elite</>
+                          ) : (
+                            step.title
                           )}
                         </h3>
                       </div>
