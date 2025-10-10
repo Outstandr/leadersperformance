@@ -92,7 +92,9 @@ export const EcosystemSection = () => {
                             {step.number.padStart(2, '0')}
                           </div>
                           <h3 className="text-xl font-sans font-medium text-white">
-                            {step.title}
+                            {step.title.split(' Elite').map((part, i) => (
+                              i === 0 ? part : <><br />Elite</>
+                            ))}
                           </h3>
                         </div>
                       </div>
