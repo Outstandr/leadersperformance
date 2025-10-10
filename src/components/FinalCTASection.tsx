@@ -44,7 +44,7 @@ export const FinalCTASection = () => {
               <span className="text-lg font-medium uppercase text-muted-foreground">Proven Track Record</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold mb-4">
-              Your Leadership Excellence Journey Starts Now
+              Your Leadership Excellence<br />Journey Starts Now
             </h2>
             <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
               Don't let another quarter pass without unlocking your true leadership potential
