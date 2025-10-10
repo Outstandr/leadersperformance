@@ -12,7 +12,7 @@ export const FinalCTASection = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-br from-foreground/5 via-foreground/10 to-foreground/5 relative overflow-hidden">
+    <section className="py-10 lg:py-16 bg-gradient-to-br from-foreground/5 via-foreground/10 to-foreground/5 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5" />
       
