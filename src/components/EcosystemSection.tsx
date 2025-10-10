@@ -113,7 +113,7 @@ export const EcosystemSection = () => {
                         {/* CTA Button */}
                         <Button 
                           variant="outline" 
-                          className={`w-full mt-auto transition-all duration-300 ${
+                          className={`rounded-none mt-auto transition-all duration-300 px-6 py-2 text-sm ${
                             isDark 
                               ? 'border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-black' 
                               : 'border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white'
