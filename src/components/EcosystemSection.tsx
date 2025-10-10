@@ -72,19 +72,28 @@ export const EcosystemSection = () => {
           {/* Steps - Four Columns */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
             {steps.map((step, index) => (
-              <div key={index} className="space-y-6 flex flex-col">
-                {/* Number Badge */}
-                <div className={`rounded-full w-12 h-12 flex items-center justify-center text-sm font-medium transition-colors duration-500 ${
-                  isDark ? 'bg-lioner-gold text-black' : 'bg-white text-lioner-gold border-2 border-lioner-gold'
-                }`}>
-                  {step.number.padStart(2, '0')}
+              <div key={index} className="space-y-0 flex flex-col">
+                {/* Image Placeholder */}
+                <div className="aspect-[4/3] bg-muted overflow-hidden mb-6">
+                  {/* Placeholder for image */}
+                </div>
+                
+                {/* Gold Header Section with Number and Title */}
+                <div className="bg-[hsl(var(--lioner-gold))] p-6 space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="rounded-full w-10 h-10 flex items-center justify-center text-sm font-bold bg-white/20 text-white">
+                      {step.number.padStart(2, '0')}
+                    </div>
+                    <h3 className="text-xl font-semibold text-white flex-1">
+                      {step.title}
+                    </h3>
+                  </div>
                 </div>
                 
                 {/* Content */}
-                <div className="space-y-4 flex-grow flex flex-col">
-                  <h3 className={`text-xl font-semibold transition-colors duration-500 ${isDark ? 'text-white' : 'text-foreground'}`}>
-                    {step.title}
-                  </h3>
+                <div className={`space-y-4 flex-grow flex flex-col p-6 transition-colors duration-500 ${
+                  isDark ? 'bg-black/50' : 'bg-white/50'
+                }`}>
                   <p className={`text-sm leading-relaxed flex-grow transition-colors duration-500 ${isDark ? 'text-white/80' : 'text-muted-foreground'}`}>
                     {step.description}
                   </p>
