@@ -1,7 +1,25 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+
 export const EcosystemSection = () => {
+  const [isDark, setIsDark] = useState(true);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
+        setIsDark(!isInView);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const steps = [{
     number: "1",
     title: "RESET Book Series",
@@ -27,7 +45,13 @@ export const EcosystemSection = () => {
     action: "Exclusive access • Limited availability",
     color: "bg-lioner-gold"
   }];
-  return <section id="programs" className="py-10 lg:py-16 bg-gradient-to-b from-muted/80 to-foreground/5">
+  return <section 
+      ref={sectionRef}
+      id="programs" 
+      className={`py-10 lg:py-16 transition-colors duration-700 ${
+        isDark ? 'bg-background text-foreground' : 'bg-foreground/95 text-background'
+      }`}
+    >
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
