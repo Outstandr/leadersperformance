@@ -9,10 +9,11 @@ export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "RESET Method", href: "#reset" },
+    { label: "Home", href: "#hero" },
+    { label: "About", href: "#about" },
+    { label: "The RESET Method", href: "#reset" },
     { label: "The Framework", href: "#pillars" },
-    { label: "Programs", href: "#programs" },
-    { label: "About", href: "#about" }
+    { label: "Programs", href: "#programs" }
   ];
 
   useEffect(() => {
