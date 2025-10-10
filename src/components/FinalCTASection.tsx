@@ -120,7 +120,7 @@ export const FinalCTASection = () => {
               ? 'bg-black border-4 border-[hsl(var(--lioner-gold))]' 
               : 'bg-[hsl(var(--lioner-gold))]'
           }`}>
-            <h3 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+            <h3 className="text-3xl md:text-4xl font-semibold font-sans text-white mb-4">
               Get Your Free Leadership Assessment
             </h3>
             <p className="text-white text-lg mb-2 max-w-2xl mx-auto">
