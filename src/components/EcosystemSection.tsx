@@ -87,7 +87,7 @@ export const EcosystemSection = () => {
                       
                       {/* Gold Header Section with Number and Title */}
                       <div className="bg-[hsl(var(--lioner-gold))] p-6">
-                        <h3 className="text-xl font-sans font-medium text-white">
+                        <h3 className="text-xl font-sans font-medium text-white text-left">
                           <span className="font-normal">{step.number.padStart(2, '0')}</span>
                           <span className="mx-2">•</span>
                           {step.title === "Elite Masterclass Series" ? (
