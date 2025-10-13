@@ -16,7 +16,7 @@ export const HeroSection = () => {
         <div className={`overflow-hidden p-8 md:p-12 lg:p-16 transition-all duration-500 ${isScrolled ? 'bg-black border-4 border-[hsl(var(--lioner-gold))]' : 'bg-[hsl(var(--lioner-gold))]'}`}>
           <div className="grid md:grid-cols-[1fr_40%] gap-8 lg:gap-12 items-stretch">
             {/* Content */}
-            <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center items-center md:items-start px-4 md:px-0 mx-0 text-center md:text-left min-h-[400px] md:min-h-0">
+            <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center items-center md:items-start px-4 md:px-0 mx-0 text-center md:text-left min-h-[400px] md:min-h-0 ml-[30%] md:ml-0">
               {/* Rating */}
               <div className="flex items-center gap-1 justify-center md:justify-start">
                 {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4" style={{
