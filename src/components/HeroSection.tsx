@@ -15,17 +15,17 @@ export const HeroSection = () => {
 
   return <section 
     id="hero" 
-    className={`pt-32 pb-20 transition-colors duration-500 ${
+    className={`pt-20 md:pt-32 pb-12 md:pb-20 transition-colors duration-500 ${
       isScrolled ? 'bg-foreground' : 'bg-white'
     }`}
   >
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className={`overflow-hidden p-8 md:p-12 lg:p-16 transition-all duration-500 ${
+        <div className={`overflow-hidden p-4 md:p-12 lg:p-16 transition-all duration-500 ${
           isScrolled ? 'bg-black border-4 border-[hsl(var(--lioner-gold))]' : 'bg-[hsl(var(--lioner-gold))]'
         }`}>
-          <div className="grid md:grid-cols-[1fr_40%] gap-8 lg:gap-12 items-stretch">
+          <div className="grid md:grid-cols-[1fr_40%] gap-6 lg:gap-12 items-stretch">
             {/* Content */}
-            <div className="space-y-6 text-white flex flex-col justify-center">
+            <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center">
               {/* Rating */}
               <div className="flex items-center gap-1">
                 {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4" style={{ fill: 'url(#goldGradient)', filter: 'drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4))' }} />)}
@@ -44,12 +44,12 @@ export const HeroSection = () => {
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight">
+              <h1 className="text-3xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight">
                 Redefine Your Leadership Potential Through High Performance Mastery
               </h1>
 
               {/* Description */}
-              <p className="text-lg text-white leading-relaxed">
+              <p className="text-base md:text-lg text-white leading-relaxed">
                 Join elite executives who've transformed their leadership through High Performance. Discover your unique Discipline Type and unlock the RESET Blueprint® that aligns mind, body, and wealth for sustainable leadership excellence.
               </p>
 
@@ -64,7 +64,7 @@ export const HeroSection = () => {
             </div>
 
             {/* Image */}
-            <div className="relative md:order-2 h-full min-h-[500px] md:min-h-full">
+            <div className="relative md:order-2 h-full min-h-[300px] md:min-h-[500px]">
               <div className="relative overflow-hidden shadow-2xl h-full">
                 <img src={heroImage} alt="Lionel Eersteling - High Performance Leadership Coach" className="w-full h-full object-cover" />
               </div>
