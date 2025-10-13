@@ -91,7 +91,7 @@ export const EcosystemSection = () => {
                           <span className="font-normal">{step.number.padStart(2, '0')}</span>
                           <span className="mx-2">•</span>
                           {step.title === "Elite Masterclass Series" ? (
-                            <>Elite<br />Masterclass<br />Series</>
+                            <>Elite Masterclass<br />Series</>
                           ) : step.title === "RESET Book Series" ? (
                             <>RESET Book<br />Series</>
                           ) : step.title === "Leaders Performance Elite" ? (
