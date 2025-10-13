@@ -128,8 +128,8 @@ export const SocialProofSection = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className={`hidden md:flex -left-4 md:-left-6 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
-            <CarouselNext className={`hidden md:flex -right-4 md:-right-6 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
+            <CarouselPrevious className={`hidden md:flex left-2 lg:-left-6 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
+            <CarouselNext className={`hidden md:flex right-2 lg:-right-6 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
           </Carousel>
         </div>
       </div>
