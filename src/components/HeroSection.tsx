@@ -53,12 +53,12 @@ export const HeroSection = () => {
               </div>
 
               {/* Headline */}
-              <h1 className="text-2xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight">
+              <h1 className="text-3xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight">
                 Redefine Your Leadership Potential Through High Performance Mastery
               </h1>
 
               {/* Description */}
-              <p className="text-sm md:text-lg text-white leading-relaxed">
+              <p className="text-base md:text-lg text-white leading-relaxed">
                 Join elite executives who've transformed their leadership through High Performance. Discover your unique Discipline Type and unlock the RESET Blueprint® that aligns mind, body, and wealth for sustainable leadership excellence.
               </p>
 
