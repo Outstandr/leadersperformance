@@ -20,12 +20,12 @@ export const HeroSection = () => {
     }`}
   >
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className={`overflow-hidden p-4 md:p-12 lg:p-16 transition-all duration-500 ${
+        <div className={`overflow-hidden p-6 md:p-12 lg:p-16 transition-all duration-500 ${
           isScrolled ? 'bg-black border-4 border-[hsl(var(--lioner-gold))]' : 'bg-[hsl(var(--lioner-gold))]'
         }`}>
           <div className="grid md:grid-cols-[1fr_40%] gap-6 lg:gap-12 items-stretch">
             {/* Content */}
-            <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center">
+            <div className="space-y-5 md:space-y-6 text-white flex flex-col justify-center">
               {/* Rating */}
               <div className="flex items-center gap-1">
                 {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4" style={{ fill: 'url(#goldGradient)', filter: 'drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4))' }} />)}
