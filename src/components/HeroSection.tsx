@@ -14,9 +14,9 @@ export const HeroSection = () => {
   return <section id="hero" className={`pt-32 pb-20 transition-colors duration-500 ${isScrolled ? 'bg-foreground' : 'bg-white'}`}>
       <div className="container mx-auto px-4 max-w-7xl">
         <div className={`overflow-hidden p-8 md:p-12 lg:p-16 transition-all duration-500 ${isScrolled ? 'bg-black border-4 border-[hsl(var(--lioner-gold))]' : 'bg-[hsl(var(--lioner-gold))]'}`}>
-          <div className="grid md:grid-cols-[1.2fr_0.8fr] lg:grid-cols-[1fr_40%] gap-8 md:gap-6 lg:gap-12 items-stretch items-center justify-items-center md:justify-items-start -ml-[2%] md:ml-0">
+          <div className="grid md:grid-cols-[1fr_40%] gap-8 lg:gap-12 items-stretch items-center justify-items-center md:justify-items-start -ml-[2%] md:ml-0">
             {/* Content */}
-            <div className="space-y-4 md:space-y-4 lg:space-y-6 text-white flex flex-col justify-center items-center md:items-start px-4 md:px-0 mx-0 text-center md:text-left min-h-[400px] md:min-h-0 max-w-[90%] md:max-w-none">
+            <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center items-center md:items-start px-4 md:px-0 mx-0 text-center md:text-left min-h-[400px] md:min-h-0 max-w-[90%] md:max-w-none">
               {/* Rating */}
               <div className="flex items-center gap-1 justify-center md:justify-start">
                 {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4" style={{
@@ -53,7 +53,7 @@ export const HeroSection = () => {
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl md:text-4xl lg:text-5xl font-semibold font-sans leading-tight mx-0 px-0 tracking-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight mx-0 px-0 tracking-tight">
                 Redefine Your Leadership Potential Through High Performance Mastery
               </h1>
 
