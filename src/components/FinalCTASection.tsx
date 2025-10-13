@@ -106,9 +106,12 @@ export const FinalCTASection = () => {
               <span>✓ Elite strategies</span>
               <span>✓ 100% complimentary</span>
             </div>
-            <Button size="lg" className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group transition-all border-2 border-transparent">
-              Start Your Assessment Now
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <Button size="lg" className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group transition-all border-2 border-transparent flex-col">
+              <span>Start Your Assessment</span>
+              <span className="flex items-center gap-2">
+                Now
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
             </Button>
             <div className="mt-4">
               
