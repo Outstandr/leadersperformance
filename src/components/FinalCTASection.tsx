@@ -137,9 +137,9 @@ export const FinalCTASection = () => {
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <div className="mt-4">
-              <Button variant="outline" className={`rounded-none transition-all duration-300 px-6 py-2 text-sm ${isDark ? 'border-white text-white hover:bg-white hover:text-black' : 'border-white text-white hover:bg-white hover:text-lioner-gold'}`}>
-                Discover More
-                <ArrowRight className="ml-2 h-4 w-4" />
+              <Button size="lg" className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group transition-all border-2 border-transparent">
+                Start Your Assessment Now
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
           </div>
