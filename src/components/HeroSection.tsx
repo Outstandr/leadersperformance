@@ -73,9 +73,9 @@ export const HeroSection = () => {
             </div>
 
             {/* Image */}
-            <div className="relative md:order-2 h-full min-h-[500px] md:min-h-full">
-              <div className="relative overflow-hidden shadow-2xl h-full">
-                <img src={heroImage} alt="Lionel Eersteling - High Performance Leadership Coach" className="w-full h-full object-cover object-[30%_center] md:object-center" />
+            <div className="relative md:order-2 h-full min-h-[500px] md:min-h-full px-8 md:px-0">
+              <div className="relative overflow-hidden shadow-2xl h-full mx-auto max-w-full">
+                <img src={heroImage} alt="Lionel Eersteling - High Performance Leadership Coach" className="w-full h-full object-cover object-center" />
               </div>
             </div>
           </div>
