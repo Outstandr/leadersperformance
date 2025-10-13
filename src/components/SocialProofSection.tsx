@@ -87,50 +87,56 @@ export const SocialProofSection = () => {
           </div>
 
           {/* Carousel */}
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent>
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <Card className={`border-2 transition-all duration-500 ${
-                      isDark 
-                        ? 'bg-black border-lioner-gold hover:bg-lioner-gold' 
-                        : 'bg-white border-border hover:border-lioner-gold'
-                    }`}>
-                      <CardContent className="p-6 flex flex-col h-full min-h-[280px] group">
-                        <Quote className={`w-8 h-8 mb-4 transition-colors duration-500 ${
-                          isDark ? 'text-lioner-gold group-hover:text-white' : 'text-lioner-gold'
-                        }`} />
-                        <p className={`text-base leading-relaxed flex-grow mb-4 transition-colors duration-500 ${
-                          isDark ? 'text-white' : 'text-foreground'
-                        }`}>
-                          "{testimonial.content}"
-                        </p>
-                        <div className={`mt-auto pt-4 border-t transition-colors duration-500 ${
-                          isDark ? 'border-lioner-gold group-hover:border-white' : 'border-lioner-gold'
-                        }`}>
-                          <p className={`font-semibold transition-colors duration-500 ${
+          <div className="relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                {testimonials.map((testimonial, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1">
+                      <Card className={`border-2 transition-all duration-500 ${
+                        isDark 
+                          ? 'bg-black border-lioner-gold hover:bg-lioner-gold' 
+                          : 'bg-white border-border hover:border-lioner-gold'
+                      }`}>
+                        <CardContent className="p-6 flex flex-col h-full min-h-[280px] group">
+                          <Quote className={`w-8 h-8 mb-4 transition-colors duration-500 ${
+                            isDark ? 'text-lioner-gold group-hover:text-white' : 'text-lioner-gold'
+                          }`} />
+                          <p className={`text-base leading-relaxed flex-grow mb-4 transition-colors duration-500 ${
                             isDark ? 'text-white' : 'text-foreground'
-                          }`}>{testimonial.author}</p>
-                          <p className={`text-sm transition-colors duration-500 ${
-                            isDark ? 'text-white/70' : 'text-muted-foreground'
-                          }`}>{testimonial.role}</p>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className={`left-2 lg:-left-6 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
-            <CarouselNext className={`right-2 lg:-right-6 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
-          </Carousel>
+                          }`}>
+                            "{testimonial.content}"
+                          </p>
+                          <div className={`mt-auto pt-4 border-t transition-colors duration-500 ${
+                            isDark ? 'border-lioner-gold group-hover:border-white' : 'border-lioner-gold'
+                          }`}>
+                            <p className={`font-semibold transition-colors duration-500 ${
+                              isDark ? 'text-white' : 'text-foreground'
+                            }`}>{testimonial.author}</p>
+                            <p className={`text-sm transition-colors duration-500 ${
+                              isDark ? 'text-white/70' : 'text-muted-foreground'
+                            }`}>{testimonial.role}</p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+            
+            {/* Carousel Navigation Below */}
+            <div className="flex justify-center items-center gap-4 mt-8">
+              <CarouselPrevious className={`relative left-0 top-0 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
+              <CarouselNext className={`relative right-0 top-0 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
+            </div>
+          </div>
         </div>
       </div>
     </section>
