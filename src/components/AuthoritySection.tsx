@@ -22,10 +22,10 @@ export const AuthoritySection = () => {
         <div className={`overflow-hidden p-8 md:p-12 lg:p-16 transition-all duration-500 ${isDark ? 'bg-black border-2 border-lioner-gold' : 'bg-lioner-gold'}`}>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left Column: Header + Achievements */}
-            <div className="space-y-8 flex flex-col justify-center">
+            <div className="space-y-8 flex flex-col justify-center text-center md:text-left">
               {/* Section Header */}
               <div>
-                <div className="inline-flex items-center gap-2 mb-2">
+                <div className="inline-flex items-center gap-2 mb-2 justify-center md:justify-start">
                   <span className="text-lg text-white/80 font-medium uppercase">About</span>
                 </div>
                 <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-white leading-tight mb-6">
@@ -38,7 +38,7 @@ export const AuthoritySection = () => {
 
               {/* Achievement Badges */}
               <div className="space-y-6">
-              {achievements.map((achievement, index) => <div key={index} className="flex items-center gap-4">
+              {achievements.map((achievement, index) => <div key={index} className="flex items-center gap-4 justify-center md:justify-start">
                   <div className={`rounded-full p-2 shrink-0 transition-colors duration-500 ${isDark ? 'bg-lioner-gold' : 'bg-white'}`}>
                     <Check className={`w-5 h-5 transition-colors duration-500 ${isDark ? 'text-black' : 'text-lioner-gold'}`} />
                   </div>
