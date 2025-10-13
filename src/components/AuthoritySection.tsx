@@ -42,7 +42,7 @@ export const AuthoritySection = () => {
                   <div className={`rounded-full p-2 shrink-0 transition-colors duration-500 ${isDark ? 'bg-lioner-gold' : 'bg-white'}`}>
                     <Check className={`w-5 h-5 transition-colors duration-500 ${isDark ? 'text-black' : 'text-lioner-gold'}`} />
                   </div>
-                  <p className="text-lg text-white">{achievement}</p>
+                  <p className="text-lg text-white text-right">{achievement}</p>
                  </div>)}
               </div>
             </div>
