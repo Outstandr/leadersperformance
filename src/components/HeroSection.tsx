@@ -16,7 +16,7 @@ export const HeroSection = () => {
         <div className={`overflow-hidden p-8 md:p-12 lg:p-16 transition-all duration-500 ${isScrolled ? 'bg-black border-4 border-[hsl(var(--lioner-gold))]' : 'bg-[hsl(var(--lioner-gold))]'}`}>
           <div className="grid md:grid-cols-[1fr_40%] gap-8 lg:gap-12 items-stretch">
             {/* Content */}
-            <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center items-center md:items-start px-4 md:px-0 mx-0 text-center md:text-left min-h-[400px] md:min-h-0 mr-[30%] md:mr-0">
+            <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center items-center md:items-start px-4 md:px-0 mx-0 text-center md:text-left min-h-[400px] md:min-h-0">
               {/* Rating */}
               <div className="flex items-center gap-1 justify-center md:justify-start">
                 {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4" style={{
@@ -73,8 +73,8 @@ export const HeroSection = () => {
             </div>
 
             {/* Image */}
-            <div className="relative md:order-2 h-full min-h-[500px] md:min-h-full px-8 md:px-0 mx-0 my-0 py-0">
-              <div className="relative overflow-hidden shadow-2xl h-full mx-auto max-w-full">
+            <div className="relative md:order-2 h-full min-h-[500px] md:min-h-full flex items-center justify-center">
+              <div className="relative overflow-hidden shadow-2xl h-full w-full max-w-[280px] md:max-w-full mx-auto">
                 <img src={heroImage} alt="Lionel Eersteling - High Performance Leadership Coach" className="w-full h-full object-cover object-center" />
               </div>
             </div>
