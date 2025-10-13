@@ -67,7 +67,7 @@ export const ComparisonSection = () => {
             isDark ? 'bg-black border-2 border-lioner-gold' : 'bg-lioner-gold border border-border'
           }`}>
             <div className="space-y-6">
-              <h3 className="text-2xl font-normal text-white font-sans text-center lg:text-left">
+              <h3 className="text-2xl font-normal text-white font-sans text-center">
                 Core Values
               </h3>
               <div className="grid md:grid-cols-2 gap-x-12 gap-y-6">
