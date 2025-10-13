@@ -38,7 +38,7 @@ export const AuthoritySection = () => {
 
               {/* Achievement Badges */}
               <div className="space-y-6">
-              {achievements.map((achievement, index) => <div key={index} className="flex items-center gap-4 justify-center md:justify-start">
+              {achievements.map((achievement, index) => <div key={index} className="flex items-center gap-4">
                   <div className={`rounded-full p-2 shrink-0 transition-colors duration-500 ${isDark ? 'bg-lioner-gold' : 'bg-white'}`}>
                     <Check className={`w-5 h-5 transition-colors duration-500 ${isDark ? 'text-black' : 'text-lioner-gold'}`} />
                   </div>
