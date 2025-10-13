@@ -71,7 +71,7 @@ export const HeroSection = () => {
             </div>
 
             {/* Image */}
-            <div className="relative md:order-2 aspect-[3/4] overflow-hidden shadow-2xl md:left-0 left-[10%]">
+            <div className="relative md:order-2 aspect-[3/4] overflow-hidden shadow-2xl md:left-0 left-[-10%]">
               <img src={heroImage} alt="Lionel Eersteling - High Performance Leadership Coach" className="w-full h-full object-cover" />
             </div>
           </div>
