@@ -66,33 +66,12 @@ export const ComparisonSection = () => {
           <div className={`p-8 md:p-12 shadow-sm -mt-8 transition-colors duration-500 ${
             isDark ? 'bg-black border-2 border-lioner-gold' : 'bg-lioner-gold border border-border'
           }`}>
-            <div className="grid md:grid-cols-2 gap-12">
-              {/* Core Values */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-normal text-white font-sans">
-                  Core Values
-                </h3>
-                {values.slice(0, 3).map((item, index) => <div key={index} className="flex items-start gap-3">
-                    <div className={`mt-1 rounded-full p-1 shrink-0 transition-colors duration-500 ${
-                      isDark ? 'bg-lioner-gold' : 'bg-white'
-                    }`}>
-                      <Check className={`w-4 h-4 transition-colors duration-500 ${
-                        isDark ? 'text-black' : 'text-lioner-gold'
-                      }`} />
-                    </div>
-                    <div>
-                      <p className="font-medium text-white mb-1">{item.title}</p>
-                      <p className="text-sm text-white/80">{item.description}</p>
-                    </div>
-                  </div>)}
-              </div>
-
-              {/* Second Column */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-normal text-white opacity-0 font-sans">
-                  Core Values
-                </h3>
-                {values.slice(3).map((item, index) => <div key={index} className="flex items-start gap-3">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-normal text-white font-sans text-center">
+                Core Values
+              </h3>
+              <div className="grid md:grid-cols-2 gap-x-12 gap-y-6">
+                {values.map((item, index) => <div key={index} className="flex items-start gap-3">
                     <div className={`mt-1 rounded-full p-1 shrink-0 transition-colors duration-500 ${
                       isDark ? 'bg-lioner-gold' : 'bg-white'
                     }`}>
