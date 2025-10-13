@@ -81,8 +81,10 @@ export const ResetMethodSection = () => {
                     </div>
                   </CarouselItem>)}
               </CarouselContent>
-              <CarouselPrevious className={`-left-4 md:-left-6 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
-              <CarouselNext className={`-right-4 md:-right-6 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
+              <div className="flex justify-center gap-4 mt-8">
+                <CarouselPrevious className={`static translate-y-0 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
+                <CarouselNext className={`static translate-y-0 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
+              </div>
             </Carousel>
           </div>
         </div>
