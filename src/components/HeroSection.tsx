@@ -16,7 +16,7 @@ export const HeroSection = () => {
         <div className={`overflow-hidden p-8 md:p-12 lg:p-16 transition-all duration-500 ${isScrolled ? 'bg-black border-4 border-[hsl(var(--lioner-gold))]' : 'bg-[hsl(var(--lioner-gold))]'}`}>
           <div className="grid md:grid-cols-[1fr_40%] gap-8 lg:gap-12 items-stretch">
             {/* Content */}
-            <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center items-center md:items-start px-4 md:px-0 mx-0 text-center md:text-left min-h-[400px] md:min-h-0 mr-[30%] md:mr-0">
+            <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center items-center md:items-start px-4 md:px-0 mx-0 text-center md:text-left min-h-[400px] md:min-h-0">
               {/* Rating */}
               <div className="flex items-center gap-1 justify-center md:justify-start">
                 {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4" style={{
@@ -53,18 +53,18 @@ export const HeroSection = () => {
               </div>
 
               {/* Headline */}
-              <h1 className="text-3xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight">
                 Redefine Your Leadership Potential Through High Performance Mastery
               </h1>
 
               {/* Description */}
-              <p className="text-base md:text-lg text-white leading-relaxed">
+              <p className="text-base sm:text-lg md:text-lg text-white leading-relaxed">
                 Join elite executives who've transformed their leadership through High Performance. Discover your unique Discipline Type and unlock the RESET Blueprint® that aligns mind, body, and wealth for sustainable leadership excellence.
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4 items-center md:items-start">
-                <Button size="lg" className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group text-sm transition-all border-2 border-transparent w-auto">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4 items-center md:items-start w-full">
+                <Button size="lg" className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group text-sm transition-all border-2 border-transparent w-[70%] sm:w-auto mx-auto sm:mx-0">
                   Take Your Free Leadership Assessment
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
