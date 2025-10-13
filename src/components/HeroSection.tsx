@@ -25,9 +25,9 @@ export const HeroSection = () => {
         }`}>
           <div className="grid md:grid-cols-[1fr_40%] gap-6 lg:gap-12 items-stretch">
             {/* Content */}
-            <div className="space-y-5 md:space-y-6 text-white flex flex-col justify-center">
+            <div className="space-y-5 md:space-y-6 text-white flex flex-col justify-center text-center md:text-left">
               {/* Rating */}
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 justify-center md:justify-start">
                 {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4" style={{ fill: 'url(#goldGradient)', filter: 'drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4))' }} />)}
                 <span className="ml-2 text-sm">Rated 4.9/5</span>
                 <svg width="0" height="0" className="absolute">
@@ -54,7 +54,7 @@ export const HeroSection = () => {
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
                 <Button size="lg" className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group text-sm transition-all border-2 border-transparent">
                   Take Your Free Leadership Assessment
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -64,8 +64,8 @@ export const HeroSection = () => {
             </div>
 
             {/* Image */}
-            <div className="relative md:order-2 h-full min-h-[300px] md:min-h-[500px]">
-              <div className="relative overflow-hidden shadow-2xl h-full">
+            <div className="relative md:order-2 h-full min-h-[300px] md:min-h-[500px] flex items-center justify-center">
+              <div className="relative overflow-hidden shadow-2xl h-full w-full max-w-md md:max-w-none mx-auto">
                 <img src={heroImage} alt="Lionel Eersteling - High Performance Leadership Coach" className="w-full h-full object-cover" />
               </div>
             </div>
