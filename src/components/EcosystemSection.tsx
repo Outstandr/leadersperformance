@@ -3,11 +3,9 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-
 export const EcosystemSection = () => {
   const [isDark, setIsDark] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-
   useEffect(() => {
     const handleScroll = () => {
       if (sectionRef.current) {
@@ -44,13 +42,7 @@ export const EcosystemSection = () => {
     action: "Exclusive access • Limited availability",
     color: "bg-lioner-gold"
   }];
-  return <section 
-      ref={sectionRef}
-      id="programs" 
-      className={`py-10 lg:py-16 transition-colors duration-500 ${
-        isDark ? 'bg-black' : 'bg-white'
-      }`}
-    >
+  return <section ref={sectionRef} id="programs" className={`py-10 lg:py-16 transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -73,12 +65,11 @@ export const EcosystemSection = () => {
           {/* Carousel */}
           <div className="relative px-8 md:px-16">
             <Carousel opts={{
-              align: "center",
-              loop: true
-            }} className="w-full">
+            align: "center",
+            loop: true
+          }} className="w-full">
               <CarouselContent className="-ml-4">
-                {steps.map((step, index) => (
-                  <CarouselItem key={index} className="pl-4 md:basis-2/3 lg:basis-5/12">
+                {steps.map((step, index) => <CarouselItem key={index} className="pl-4 md:basis-2/3 lg:basis-5/12">
                     <div className="flex flex-col h-full shadow-2xl">
                       {/* Image Placeholder */}
                       <div className="aspect-[4/3] bg-muted overflow-hidden">
@@ -87,25 +78,15 @@ export const EcosystemSection = () => {
                       
                       {/* Gold Header Section with Number and Title */}
                       <div className="bg-[hsl(var(--lioner-gold))] p-6">
-                        <h3 className="text-xl font-sans font-medium text-white text-left">
+                        <h3 className="text-xl font-sans font-medium text-white text-left px-[5px]">
                           <span className="font-normal">{step.number.padStart(2, '0')}</span>
                           <span className="mx-2">•</span>
-                          {step.title === "Elite Masterclass Series" ? (
-                            <>Elite Masterclass<br />Series</>
-                          ) : step.title === "RESET Book Series" ? (
-                            <>RESET Book<br />Series</>
-                          ) : step.title === "Leaders Performance Elite" ? (
-                            <>Leaders Performance<br />Elite</>
-                          ) : (
-                            step.title
-                          )}
+                          {step.title === "Elite Masterclass Series" ? <>Elite<br />Masterclass<br />Series</> : step.title === "RESET Book Series" ? <>RESET Book<br />Series</> : step.title === "Leaders Performance Elite" ? <>Leaders Performance<br />Elite</> : step.title}
                         </h3>
                       </div>
                       
                       {/* Content */}
-                      <div className={`p-6 flex-grow flex flex-col transition-colors duration-500 ${
-                        isDark ? 'bg-black border-2 border-lioner-gold border-t-0' : 'bg-white border border-border border-t-0'
-                      }`}>
+                      <div className={`p-6 flex-grow flex flex-col transition-colors duration-500 ${isDark ? 'bg-black border-2 border-lioner-gold border-t-0' : 'bg-white border border-border border-t-0'}`}>
                         <p className={`text-sm leading-relaxed mb-4 transition-colors duration-500 ${isDark ? 'text-white/80' : 'text-muted-foreground'}`}>
                           {step.description}
                         </p>
@@ -114,21 +95,13 @@ export const EcosystemSection = () => {
                         </p>
                         
                         {/* CTA Button */}
-                        <Button 
-                          variant="outline" 
-                          className={`rounded-none mt-auto transition-all duration-300 px-6 py-2 text-sm ${
-                            isDark 
-                              ? 'border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-black' 
-                              : 'border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white'
-                          }`}
-                        >
+                        <Button variant="outline" className={`rounded-none mt-auto transition-all duration-300 px-6 py-2 text-sm ${isDark ? 'border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-black' : 'border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white'}`}>
                           Discover More
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                       </div>
                     </div>
-                  </CarouselItem>
-                ))}
+                  </CarouselItem>)}
               </CarouselContent>
               <CarouselPrevious className={`-left-4 md:-left-6 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
               <CarouselNext className={`-right-4 md:-right-6 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
