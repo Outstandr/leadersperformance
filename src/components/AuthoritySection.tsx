@@ -20,7 +20,7 @@ export const AuthoritySection = () => {
   return <section ref={sectionRef} id="about" className={`py-10 lg:py-16 transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
       <div className="container mx-auto px-4 max-w-7xl">
         <div className={`overflow-hidden p-8 md:p-12 lg:p-16 transition-all duration-500 ${isDark ? 'bg-black border-2 border-lioner-gold' : 'bg-lioner-gold'}`}>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Column: Header + Achievements */}
             <div className="space-y-8 flex flex-col justify-center text-center md:text-left">
               {/* Section Header */}
@@ -48,7 +48,7 @@ export const AuthoritySection = () => {
             </div>
 
             {/* Right Column: Image */}
-            <div className="relative aspect-[3/4] overflow-hidden shadow-2xl">
+            <div className="relative aspect-[3/4] overflow-hidden shadow-2xl mx-auto md:mx-auto md:w-full md:max-w-full lg:mx-0">
               <img src={portraitImage} alt="Lionel Eersteling" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             </div>
