@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import resetSeriesImage from "@/assets/reset-series.jpg";
+import eliteMasterclassImage from "@/assets/elite-masterclass.jpg";
 export const EcosystemSection = () => {
   const [isDark, setIsDark] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -78,6 +79,13 @@ export const EcosystemSection = () => {
                           <img 
                             src={resetSeriesImage} 
                             alt="RESET Book Series - Reset by Discipline and Reset Your Addiction" 
+                            className="w-full h-full object-cover object-center"
+                          />
+                        )}
+                        {step.number === "2" && (
+                          <img 
+                            src={eliteMasterclassImage} 
+                            alt="Elite Masterclass Series - High Performance Leadership Training" 
                             className="w-full h-full object-cover object-center"
                           />
                         )}
