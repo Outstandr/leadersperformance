@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
-import heroImage from "@/assets/lionel-hero-new-reset.jpg";
+import heroImage from "@/assets/lionel-hero-hd.jpg";
 export const HeroSection = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
