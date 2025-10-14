@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import resetSeriesImage from "@/assets/reset-series.jpg";
 import eliteMasterclassImage from "@/assets/elite-masterclass.jpg";
+import eliteAcademyImage from "@/assets/elite-academy.jpg";
 export const EcosystemSection = () => {
   const [isDark, setIsDark] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -86,6 +87,13 @@ export const EcosystemSection = () => {
                           <img 
                             src={eliteMasterclassImage} 
                             alt="Elite Masterclass Series - High Performance Leadership Training" 
+                            className="w-full h-full object-cover object-center"
+                          />
+                        )}
+                        {step.number === "4" && (
+                          <img 
+                            src={eliteAcademyImage} 
+                            alt="Leaders Performance Elite - Exclusive Executive Mentorship" 
                             className="w-full h-full object-cover object-center"
                           />
                         )}
