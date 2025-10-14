@@ -46,21 +46,21 @@ export const EcosystemSection = () => {
     action: "Exclusive access • Limited availability",
     color: "bg-lioner-gold"
   }];
-  return <section ref={sectionRef} id="programs" className={`py-10 lg:py-16 transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
+  return <section ref={sectionRef} id="programs" className="py-10 lg:py-16 bg-black">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-2">
-              <span className={`text-lg font-medium uppercase transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>Programs</span>
+              <span className="text-lg font-medium uppercase text-white/70">Programs</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold mb-4">
               Your Path to Elite Leadership
             </h2>
-            <p className={`text-lg max-w-2xl mx-auto transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>
+            <p className="text-lg max-w-2xl mx-auto text-white/80">
               Choose your entry point into the Leaders Performance ecosystem
             </p>
-            <Button size="lg" className={`bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 border-transparent ${!isDark ? 'shadow-lg shadow-black/10' : ''}`}>
+            <Button size="lg" className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 border-transparent">
               Take Free Assessment
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -117,8 +117,8 @@ export const EcosystemSection = () => {
                       </div>
                       
                       {/* Content */}
-                      <div className={`p-6 flex-grow flex flex-col transition-colors duration-500 ${isDark ? 'bg-black border-2 border-lioner-gold border-t-0' : 'bg-white border border-border border-t-0'}`}>
-                        <p className={`text-sm leading-relaxed mb-4 transition-colors duration-500 ${isDark ? 'text-white/80' : 'text-muted-foreground'}`}>
+                      <div className="p-6 flex-grow flex flex-col bg-black">
+                        <p className="text-sm leading-relaxed mb-4 text-white/80">
                           {step.description}
                         </p>
                         <p className="text-xs font-medium text-lioner-gold mb-4">
@@ -126,7 +126,7 @@ export const EcosystemSection = () => {
                         </p>
                         
                         {/* CTA Button */}
-                        <Button variant="outline" className={`rounded-none mt-auto transition-all duration-300 px-6 py-2 text-sm ${isDark ? 'border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-black' : 'border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white'}`}>
+                        <Button variant="outline" className="rounded-none mt-auto transition-all duration-300 px-6 py-2 text-sm border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-black">
                           Discover More
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
@@ -136,8 +136,8 @@ export const EcosystemSection = () => {
               </CarouselContent>
               {/* All viewports: centered at bottom */}
               <div className="flex justify-center gap-4 mt-8">
-                <CarouselPrevious className={`static translate-y-0 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
-                <CarouselNext className={`static translate-y-0 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold transition-colors duration-300 ${isDark ? 'hover:bg-black' : 'hover:bg-white'}`} />
+                <CarouselPrevious className="static translate-y-0 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold hover:bg-black transition-colors duration-300" />
+                <CarouselNext className="static translate-y-0 bg-lioner-gold border-0 h-12 w-12 text-white hover:text-lioner-gold hover:border-2 hover:border-lioner-gold hover:bg-black transition-colors duration-300" />
               </div>
             </Carousel>
           </div>
