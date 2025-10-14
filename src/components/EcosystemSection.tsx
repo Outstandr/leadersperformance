@@ -76,7 +76,7 @@ export const EcosystemSection = () => {
                 {steps.map((step, index) => <CarouselItem key={index} className="pl-4 md:basis-2/3 lg:basis-5/12">
                     <div className="flex flex-col h-full shadow-2xl">
                       {/* Image */}
-                      <div className="aspect-[4/3] bg-muted overflow-hidden relative">
+                      <div className="aspect-[4/3] bg-muted overflow-hidden">
                         {step.number === "1" && (
                           <img 
                             src={resetSeriesImage} 
@@ -85,20 +85,11 @@ export const EcosystemSection = () => {
                           />
                         )}
                         {step.number === "2" && (
-                          <>
-                            <img 
-                              src={eliteMasterclassImage} 
-                              alt="Elite Masterclass Series - High Performance Leadership Training" 
-                              className="w-full h-full object-cover object-center brightness-125"
-                            />
-                            <div className="absolute bottom-0 left-0 right-0 bg-[#a89968] px-6 py-6">
-                              <h3 className="text-xl font-sans font-medium text-white">
-                                <span className="font-normal">02</span>
-                                <span className="mx-2">•</span>
-                                Elite Masterclass Series
-                              </h3>
-                            </div>
-                          </>
+                          <img 
+                            src={eliteMasterclassImage} 
+                            alt="Elite Masterclass Series - High Performance Leadership Training" 
+                            className="w-full h-full object-cover object-center brightness-125"
+                          />
                         )}
                         {step.number === "3" && (
                           <img 
