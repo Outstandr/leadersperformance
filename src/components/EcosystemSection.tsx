@@ -81,28 +81,28 @@ export const EcosystemSection = () => {
                           <img 
                             src={resetSeriesImage} 
                             alt="RESET Book Series - Reset by Discipline and Reset Your Addiction" 
-                            className="w-full h-full object-cover object-center"
+                            className="w-full h-full object-cover object-center brightness-125"
                           />
                         )}
                         {step.number === "2" && (
                           <img 
                             src={eliteMasterclassImage} 
                             alt="Elite Masterclass Series - High Performance Leadership Training" 
-                            className="w-full h-full object-cover object-center"
+                            className="w-full h-full object-cover object-center brightness-125"
                           />
                         )}
                         {step.number === "3" && (
                           <img 
                             src={academyImage} 
                             alt="Leaders Performance Academy - Complete Transformation System" 
-                            className="w-full h-full object-cover object-center"
+                            className="w-full h-full object-cover object-center brightness-125"
                           />
                         )}
                         {step.number === "4" && (
                           <img 
                             src={eliteAcademyImage} 
                             alt="Leaders Performance Elite - Exclusive Executive Mentorship" 
-                            className="w-full h-full object-cover object-center"
+                            className="w-full h-full object-cover object-center brightness-125"
                           />
                         )}
                       </div>
