@@ -6,6 +6,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import resetSeriesImage from "@/assets/reset-series.jpg";
 import eliteMasterclassImage from "@/assets/elite-masterclass.jpg";
 import eliteAcademyImage from "@/assets/elite-academy.jpg";
+import academyImage from "@/assets/academy.jpg";
 export const EcosystemSection = () => {
   const [isDark, setIsDark] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -87,6 +88,13 @@ export const EcosystemSection = () => {
                           <img 
                             src={eliteMasterclassImage} 
                             alt="Elite Masterclass Series - High Performance Leadership Training" 
+                            className="w-full h-full object-cover object-center"
+                          />
+                        )}
+                        {step.number === "3" && (
+                          <img 
+                            src={academyImage} 
+                            alt="Leaders Performance Academy - Complete Transformation System" 
                             className="w-full h-full object-cover object-center"
                           />
                         )}
