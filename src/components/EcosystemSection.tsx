@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import resetSeriesImage from "@/assets/reset-series.jpg";
 import eliteMasterclassImage from "@/assets/elite-masterclass.jpg";
-import eliteAcademyImage from "@/assets/elite-academy.jpg";
+import eliteAcademyImage from "@/assets/lionel-elite.jpg";
 import academyImage from "@/assets/academy.jpg";
 export const EcosystemSection = () => {
   const [isDark, setIsDark] = useState(false);
