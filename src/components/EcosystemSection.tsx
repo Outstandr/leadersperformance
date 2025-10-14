@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import resetSeriesImage from "@/assets/reset-series.jpg";
 export const EcosystemSection = () => {
   const [isDark, setIsDark] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -71,9 +72,15 @@ export const EcosystemSection = () => {
               <CarouselContent className="-ml-4">
                 {steps.map((step, index) => <CarouselItem key={index} className="pl-4 md:basis-2/3 lg:basis-5/12">
                     <div className="flex flex-col h-full shadow-2xl">
-                      {/* Image Placeholder */}
+                      {/* Image */}
                       <div className="aspect-[4/3] bg-muted overflow-hidden">
-                        {/* Placeholder for image */}
+                        {step.number === "1" && (
+                          <img 
+                            src={resetSeriesImage} 
+                            alt="RESET Book Series - Reset by Discipline and Reset Your Addiction" 
+                            className="w-full h-full object-cover object-center"
+                          />
+                        )}
                       </div>
                       
                       {/* Gold Header Section with Number and Title */}
