@@ -44,7 +44,7 @@ export const Navigation = () => {
             <img 
               src={isScrolled ? logoWhite : logo} 
               alt="Leaders Performance" 
-              className="h-12 w-auto transition-all duration-300"
+              className="h-14 md:h-16 lg:h-20 w-auto transition-all duration-300"
             />
           </a>
 
