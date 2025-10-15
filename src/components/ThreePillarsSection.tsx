@@ -1,22 +1,7 @@
-import { useState, useEffect, useRef } from "react";
 import { Icon } from "@/components/ui/icon";
 import { Check } from "lucide-react";
 
 export const ThreePillarsSection = () => {
-  const [isDark, setIsDark] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        setIsDark(rect.top <= 100);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
   
   const pillars = [{
     icon: "brain",
@@ -42,18 +27,18 @@ export const ThreePillarsSection = () => {
   }];
 
   return (
-    <section ref={sectionRef} id="pillars" className={`py-8 lg:py-12 transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
+    <section id="pillars" className="py-8 lg:py-12 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-2">
-              <span className={`text-lg font-medium uppercase transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>The Framework</span>
+              <span className="text-lg font-medium uppercase text-muted-foreground">The Framework</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               The Three Pillars of Elite Leadership
             </h2>
-            <p className={`text-lg max-w-3xl mx-auto mt-6 transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>
+            <p className="text-lg max-w-3xl mx-auto mt-6 text-muted-foreground">
               A holistic system designed to elevate every dimension of your leadership and life
             </p>
           </div>
@@ -63,16 +48,10 @@ export const ThreePillarsSection = () => {
             {pillars.map((pillar, index) => (
               <div 
                 key={index} 
-                className={`group relative border-2 p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
-                  isDark 
-                    ? 'bg-black border-lioner-gold' 
-                    : `bg-gradient-to-br ${pillar.gradient} ${pillar.borderColor}`
-                }`}
+                className={`group relative border-2 p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 bg-gradient-to-br ${pillar.gradient} ${pillar.borderColor}`}
               >
                 {/* Title */}
-                <h3 className={`text-2xl font-semibold mb-6 font-sans transition-colors duration-500 ${
-                  isDark ? 'text-white' : 'text-foreground'
-                }`}>
+                <h3 className="text-2xl font-semibold mb-6 font-sans text-foreground">
                   {pillar.title}
                 </h3>
 
@@ -80,16 +59,10 @@ export const ThreePillarsSection = () => {
                 <div className="space-y-3">
                   {pillar.features.map((feature, idx) => (
                     <div key={idx} className="flex items-start gap-3">
-                      <div className={`rounded-full p-1 shrink-0 mt-0.5 transition-colors duration-500 ${
-                        isDark ? 'bg-lioner-gold' : pillar.iconBg
-                      }`}>
-                        <Check className={`w-3 h-3 transition-colors duration-500 ${
-                          isDark ? 'text-black' : 'text-white'
-                        }`} />
+                      <div className={`rounded-full p-1 shrink-0 mt-0.5 ${pillar.iconBg}`}>
+                        <Check className="w-3 h-3 text-white" />
                       </div>
-                      <p className={`text-sm leading-relaxed transition-colors duration-500 ${
-                        isDark ? 'text-white' : 'text-foreground/80'
-                      }`}>
+                      <p className="text-sm leading-relaxed text-foreground/80">
                         {feature}
                       </p>
                     </div>
