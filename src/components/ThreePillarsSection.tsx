@@ -39,7 +39,7 @@ export const ThreePillarsSection = () => {
               The Three Pillars of Elite Leadership
             </h2>
             <p className="text-lg max-w-3xl mx-auto mt-6 text-muted-foreground">
-              A holistic system designed to elevate every dimension of your leadership and life
+              A holistic system designed to elevate every dimension of your leadership and life.
             </p>
           </div>
 
