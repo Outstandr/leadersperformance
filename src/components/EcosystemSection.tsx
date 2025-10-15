@@ -103,7 +103,7 @@ export const EcosystemSection = () => {
                       </div>
                       
                       {/* Content */}
-                      <div className="p-6 flex-grow flex flex-col bg-black">
+                      <div className="p-6 flex-grow flex flex-col bg-white">
                         <p className="text-sm leading-relaxed mb-4 text-muted-foreground">
                           {step.description}
                         </p>
@@ -112,7 +112,7 @@ export const EcosystemSection = () => {
                         </p>
                         
                         {/* CTA Button */}
-                        <Button variant="outline" className="rounded-none mt-auto transition-all duration-300 px-6 py-2 text-sm border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-black">
+                        <Button className="rounded-none mt-auto transition-all duration-300 px-6 py-2 text-sm border-2 bg-[hsl(var(--lioner-gold))] text-white hover:bg-white hover:text-[hsl(var(--lioner-gold))] border-[hsl(var(--lioner-gold))]">
                           Discover More
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
