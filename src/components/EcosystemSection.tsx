@@ -104,7 +104,7 @@ export const EcosystemSection = () => {
                       
                       {/* Content */}
                       <div className="p-6 flex-grow flex flex-col bg-black">
-                        <p className="text-sm leading-relaxed mb-4 text-white/80">
+                        <p className="text-sm leading-relaxed mb-4 text-muted-foreground">
                           {step.description}
                         </p>
                         <p className="text-xs font-medium text-lioner-gold mb-4">
