@@ -1,19 +1,10 @@
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import heroImage from "@/assets/lionel-hero-hd.jpg";
 export const HeroSection = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-  return <section id="hero" className={`pt-32 pb-20 transition-colors duration-500 ${isScrolled ? 'bg-foreground' : 'bg-white'}`}>
+  return <section id="hero" className="pt-32 pb-20 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className={`overflow-hidden p-8 md:p-12 lg:p-16 transition-all duration-500 ${isScrolled ? 'bg-black border-4 border-[hsl(var(--lioner-gold))]' : 'bg-[hsl(var(--lioner-gold))]'}`}>
+        <div className="overflow-hidden p-8 md:p-12 lg:p-16 bg-[hsl(var(--lioner-gold))]">
           <div className="grid md:grid-cols-1 lg:grid-cols-[1fr_40%] gap-8 lg:gap-12 items-stretch items-center justify-items-center md:justify-items-start lg:justify-items-start -ml-[2%] md:ml-0">
             {/* Content */}
             <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center items-center md:items-start px-4 md:px-0 mx-0 text-center md:text-left min-h-[400px] md:min-h-0 max-w-[90%] md:max-w-none">
@@ -63,7 +54,7 @@ export const HeroSection = () => {
               </p>
 
               {/* CTAs */}
-              <Button size="lg" className={`bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 border-transparent ${!isScrolled ? 'shadow-lg shadow-black/10' : ''}`}>
+              <Button size="lg" className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 border-transparent shadow-lg shadow-black/10">
                 Take Free Assessment
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>

@@ -1,22 +1,7 @@
-import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Target, BarChart3, Rocket, ArrowRight } from "lucide-react";
 
 export const AssessmentCTASection = () => {
-  const [isDark, setIsDark] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        setIsDark(rect.top <= 100);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const benefits = [
     { icon: Target, text: "Identify your leadership strengths & growth areas" },
@@ -25,17 +10,17 @@ export const AssessmentCTASection = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="assessment" className={`py-10 lg:py-16 transition-colors duration-500 ${isDark ? 'bg-lioner-gold' : 'bg-gradient-to-b from-muted/60 to-muted/80'}`}>
+    <section id="assessment" className="py-10 lg:py-16 bg-gradient-to-b from-muted/60 to-muted/80">
       <div className="container mx-auto px-4 max-w-7xl">
           {/* Header */}
           <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 mb-4">
-                <span className={`text-lg font-medium uppercase transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>Take The First Step</span>
+                <span className="text-lg font-medium uppercase text-muted-foreground">Take The First Step</span>
               </div>
-              <h2 className={`text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mb-4 transition-colors duration-500 ${isDark ? 'text-white' : 'text-lioner-gold'}`}>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mb-4 text-lioner-gold">
                 Discover Your Leadership Blueprint
               </h2>
-              <p className={`text-lg max-w-2xl mx-auto transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>
+              <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
                 Take our comprehensive RESET assessment and receive a personalized roadmap to elite performance
               </p>
             </div>
@@ -66,7 +51,7 @@ export const AssessmentCTASection = () => {
                 Take The Assessment
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <p className={`text-sm mt-4 transition-colors duration-500 ${isDark ? 'text-white' : 'text-muted-foreground'}`}>
+              <p className="text-sm mt-4 text-muted-foreground">
                 Complete in 10 minutes • Free personalized report
               </p>
           </div>

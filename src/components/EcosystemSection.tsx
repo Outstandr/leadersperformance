@@ -1,26 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import resetSeriesImage from "@/assets/reset-series.jpg";
 import eliteMasterclassImage from "@/assets/lionel-masterclass.jpg";
 import eliteAcademyImage from "@/assets/elite-academy.jpg";
 import academyImage from "@/assets/academy.jpg";
 export const EcosystemSection = () => {
-  const [isDark, setIsDark] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        setIsDark(rect.top <= 100);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
   const steps = [{
     number: "1",
     title: "RESET Book Series",
@@ -46,21 +32,21 @@ export const EcosystemSection = () => {
     action: "Exclusive access • Limited availability",
     color: "bg-lioner-gold"
   }];
-  return <section ref={sectionRef} id="programs" className={`py-10 lg:py-16 transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
+  return <section id="programs" className="py-10 lg:py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-2">
-              <span className={`text-lg font-medium uppercase transition-colors duration-500 ${isDark ? 'text-white/70' : 'text-muted-foreground'}`}>Programs</span>
+              <span className="text-lg font-medium uppercase text-muted-foreground">Programs</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold mb-4">
               Your Path to Elite Leadership
             </h2>
-            <p className={`text-lg max-w-2xl mx-auto transition-colors duration-500 ${isDark ? 'text-white/80' : 'text-muted-foreground'}`}>
+            <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
               Choose your entry point into the Leaders Performance ecosystem
             </p>
-            <Button size="lg" className={`font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 ${isDark ? 'bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white border-transparent' : 'bg-[hsl(var(--lioner-gold))] text-white hover:bg-white hover:text-[hsl(var(--lioner-gold))] border-[hsl(var(--lioner-gold))]'}`}>
+            <Button size="lg" className="font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 bg-[hsl(var(--lioner-gold))] text-white hover:bg-white hover:text-[hsl(var(--lioner-gold))] border-[hsl(var(--lioner-gold))]">
               Take Free Assessment
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
