@@ -22,7 +22,7 @@ export const ComparisonSection = () => {
   }];
   return <section 
     id="comparison" 
-    className="py-10 lg:py-16 bg-white"
+    className="py-8 lg:py-12 bg-white"
   >
       <div className="container mx-auto px-4 max-w-7xl">
           {/* Section Header */}

@@ -32,7 +32,7 @@ export const EcosystemSection = () => {
     action: "Exclusive access • Limited availability",
     color: "bg-lioner-gold"
   }];
-  return <section id="programs" className="py-10 lg:py-16 bg-white">
+  return <section id="programs" className="py-8 lg:py-12 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}

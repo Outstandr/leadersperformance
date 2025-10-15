@@ -10,7 +10,7 @@ export const AssessmentCTASection = () => {
   ];
 
   return (
-    <section id="assessment" className="py-10 lg:py-16 bg-gradient-to-b from-muted/60 to-muted/80">
+    <section id="assessment" className="py-8 lg:py-12 bg-gradient-to-b from-muted/60 to-muted/80">
       <div className="container mx-auto px-4 max-w-7xl">
           {/* Header */}
           <div className="text-center mb-16">

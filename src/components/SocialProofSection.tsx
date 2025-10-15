@@ -53,7 +53,7 @@ export const SocialProofSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="testimonials" className={`py-10 lg:py-16 transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
+    <section ref={sectionRef} id="testimonials" className={`py-8 lg:py-12 transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}

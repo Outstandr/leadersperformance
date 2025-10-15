@@ -46,7 +46,7 @@ export const FinalCTASection = () => {
     label: "Expert Consultants",
     description: "On your team"
   }];
-  return <section ref={sectionRef} className={`py-10 lg:py-16 transition-colors duration-500 relative overflow-hidden ${isDark ? 'bg-black' : 'bg-white'}`}>
+  return <section ref={sectionRef} className={`py-8 lg:py-12 transition-colors duration-500 relative overflow-hidden ${isDark ? 'bg-black' : 'bg-white'}`}>
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5" />
       
