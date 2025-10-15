@@ -43,9 +43,7 @@ export const EcosystemSection = () => {
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold mb-4">
               Your Path to Elite Leadership
             </h2>
-            <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
-              Choose your entry point into the Leaders Performance ecosystem
-            </p>
+            <p className="text-lg max-w-2xl mx-auto text-muted-foreground">Choose your entry point into the Leaders Performance ecosystem.</p>
             <Button size="lg" className="font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 bg-[hsl(var(--lioner-gold))] text-white hover:bg-white hover:text-[hsl(var(--lioner-gold))] border-[hsl(var(--lioner-gold))]">
               Take Free Assessment
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -63,34 +61,10 @@ export const EcosystemSection = () => {
                     <div className="flex flex-col h-full shadow-2xl">
                       {/* Image */}
                       <div className="aspect-[4/3] bg-muted overflow-hidden">
-                        {step.number === "1" && (
-                          <img 
-                            src={resetSeriesImage} 
-                            alt="RESET Book Series - Reset by Discipline and Reset Your Addiction" 
-                            className="w-full h-full object-cover object-center brightness-125"
-                          />
-                        )}
-                        {step.number === "2" && (
-                          <img 
-                            src={eliteMasterclassImage} 
-                            alt="Elite Masterclass Series - High Performance Leadership Training" 
-                            className="w-full h-full object-cover object-center brightness-125"
-                          />
-                        )}
-                        {step.number === "3" && (
-                          <img 
-                            src={academyImage} 
-                            alt="Leaders Performance Academy - Complete Transformation System" 
-                            className="w-full h-full object-cover object-center brightness-125"
-                          />
-                        )}
-                        {step.number === "4" && (
-                          <img 
-                            src={eliteAcademyImage} 
-                            alt="Leaders Performance Elite - Exclusive Executive Mentorship" 
-                            className="w-full h-full object-cover object-center brightness-125"
-                          />
-                        )}
+                        {step.number === "1" && <img src={resetSeriesImage} alt="RESET Book Series - Reset by Discipline and Reset Your Addiction" className="w-full h-full object-cover object-center brightness-125" />}
+                        {step.number === "2" && <img src={eliteMasterclassImage} alt="Elite Masterclass Series - High Performance Leadership Training" className="w-full h-full object-cover object-center brightness-125" />}
+                        {step.number === "3" && <img src={academyImage} alt="Leaders Performance Academy - Complete Transformation System" className="w-full h-full object-cover object-center brightness-125" />}
+                        {step.number === "4" && <img src={eliteAcademyImage} alt="Leaders Performance Elite - Exclusive Executive Mentorship" className="w-full h-full object-cover object-center brightness-125" />}
                       </div>
                       
                       {/* Gold Header Section with Number and Title */}

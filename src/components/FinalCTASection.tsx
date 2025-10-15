@@ -46,9 +46,7 @@ export const FinalCTASection = () => {
             <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold mb-4">
               Your Leadership Excellence<br />Journey Starts Now
             </h2>
-            <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
-              Don't let another quarter pass without unlocking your true leadership potential
-            </p>
+            <p className="text-lg max-w-2xl mx-auto text-muted-foreground">Don't let another quarter pass without unlocking your true leadership potential.</p>
           </div>
 
           {/* Stats Grid */}
@@ -83,9 +81,7 @@ export const FinalCTASection = () => {
             <h3 className="text-3xl md:text-4xl font-semibold font-sans text-white mb-4">
               Get Your Free Leadership Assessment
             </h3>
-            <p className="text-white text-lg mb-2 max-w-2xl mx-auto">
-              Join elite executives who've already discovered their High Performance profile
-            </p>
+            <p className="text-white text-lg mb-2 max-w-2xl mx-auto">Join elite executives who've already discovered their High Performance profile.</p>
             <div className="flex flex-wrap justify-center gap-4 text-white text-sm mb-8">
               <span>✓ Instant results</span>
               <span>✓ Personalized roadmap</span>
