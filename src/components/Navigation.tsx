@@ -33,16 +33,12 @@ export const Navigation = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-foreground/95 shadow-lg' 
-        : 'bg-white/95 shadow-sm'
-    }`}>
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 bg-white/95 shadow-sm">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex items-center justify-between h-20">
           <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection("#hero"); }} className="flex items-center">
             <img 
-              src={isScrolled ? logoWhite : logo} 
+              src={logo} 
               alt="Leaders Performance" 
               className="h-14 md:h-16 lg:h-20 w-auto transition-all duration-300"
             />
@@ -54,9 +50,7 @@ export const Navigation = () => {
                 key={item.href} 
                 href={item.href} 
                 onClick={(e) => { e.preventDefault(); scrollToSection(item.href); }} 
-                className={`text-sm font-normal hover:text-primary transition-colors duration-300 ${
-                  isScrolled ? 'text-white/90' : 'text-foreground'
-                }`}
+                className="text-sm font-normal text-foreground hover:text-primary transition-colors duration-300"
               >
                 {item.label}
               </a>
@@ -69,27 +63,21 @@ export const Navigation = () => {
 
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
-            className={`lg:hidden p-2 rounded-lg transition-colors duration-300 ${
-              isScrolled ? 'text-white hover:bg-white/10' : 'text-foreground hover:bg-muted'
-            }`}
+            className="lg:hidden p-2 rounded-lg transition-colors duration-300 text-foreground hover:bg-muted"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
         {isMobileMenuOpen && (
-          <div className={`lg:hidden py-4 border-t transition-colors duration-300 ${
-            isScrolled ? 'border-white/10' : 'border-border/10'
-          }`}>
+          <div className="lg:hidden py-4 border-t transition-colors duration-300 border-border/10">
             <div className="flex flex-col space-y-2">
               {navItems.map((item) => (
                 <a 
                   key={item.href} 
                   href={item.href} 
                   onClick={(e) => { e.preventDefault(); scrollToSection(item.href); }} 
-                  className={`px-4 py-3 rounded-lg font-medium transition-colors duration-300 ${
-                    isScrolled ? 'text-white hover:bg-white/10' : 'text-foreground hover:bg-muted'
-                  }`}
+                  className="px-4 py-3 rounded-lg font-medium transition-colors duration-300 text-foreground hover:bg-muted"
                 >
                   {item.label}
                 </a>
