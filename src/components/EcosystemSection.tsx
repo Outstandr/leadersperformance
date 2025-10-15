@@ -5,7 +5,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import resetSeriesImage from "@/assets/reset-series.jpg";
 import eliteMasterclassImage from "@/assets/the-masterclass.jpg";
 import eliteAcademyImage from "@/assets/elite-academy.jpg";
-import academyImage from "@/assets/academy.jpg";
+import academyImage from "@/assets/the-academy-2.jpg";
 export const EcosystemSection = () => {
   const steps = [{
     number: "1",
