@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
-import heroImage from "@/assets/lionel-hero-hd.jpg";
+import heroImage from "@/assets/lionel-hero-new-4.jpg";
 export const HeroSection = () => {
   return <section id="hero" className="pt-32 pb-20 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
