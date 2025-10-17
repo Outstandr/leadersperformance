@@ -1,0 +1,31 @@
+# llms.txt – LeadersPerformance.ae
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: AnthropicAI
+Allow: /
+
+# Domain Identity
+Name: Leaders Performance
+Description: One-page site offering a leadership assessment and the RESET Blueprint® book to high performance leaders.
+
+# Key Sections (for priority indexing)
+- /#home
+- /#about
+- /#The RESET Methode
+- /#The Framework
+- /#programs
+- /#Take Free Assessment
+
+Dataset: https://leadersperformance.ae/  # entire page acts as dataset
+Purpose: Leadership assessment, high-performance transformation materials, RESET Blueprint book.
+
+Contact: info@leadersperformance.ae
+Last-Updated: 2025-10-17
