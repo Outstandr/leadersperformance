@@ -17,10 +17,10 @@ export const Footer = () => {
               Terms of Service
             </Link>
             <Link 
-              to="/terms-and-conditions" 
+              to="/privacy-policy" 
               className="text-sm hover:underline transition-all"
             >
-              Terms & Conditions
+              Privacy Policy
             </Link>
           </div>
         </div>
