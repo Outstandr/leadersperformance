@@ -8,6 +8,7 @@ import { SocialProofSection } from "@/components/SocialProofSection";
 import { AssessmentCTASection } from "@/components/AssessmentCTASection";
 import { EcosystemSection } from "@/components/EcosystemSection";
 import { FinalCTASection } from "@/components/FinalCTASection";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
       <EcosystemSection />
       <FinalCTASection />
     </main>
+    <Footer />
     </div>
   );
 };
