@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import resetSeriesImage from "@/assets/reset-series.jpg";
+import resetSeriesImage from "@/assets/reset-series-new.jpg";
 import eliteMasterclassImage from "@/assets/elite-masterclass-new.png";
 import eliteAcademyImage from "@/assets/the-elite-academy-2.jpg";
 import academyImage from "@/assets/the-academy-2.jpg";
