@@ -17,7 +17,7 @@ const Business = () => {
         <BusinessWhyUsSection />
         <BusinessResultsSection />
         <BusinessProcessSection />
-        <BusinessBookingSection calendlyUrl="https://calendly.com" />
+        <BusinessBookingSection calendlyUrl="https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY" />
       </main>
       <BusinessFooter />
     </div>
