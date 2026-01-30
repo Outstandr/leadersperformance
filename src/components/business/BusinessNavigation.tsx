@@ -1,0 +1,99 @@
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Menu, X, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import logo from "@/assets/logo.png";
+
+export const BusinessNavigation = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { label: "Services", href: "#services" },
+    { label: "Why Us", href: "#why-us" },
+    { label: "Results", href: "#results" },
+    { label: "Process", href: "#process" }
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 bg-white/95 shadow-sm">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="flex items-center justify-between h-20">
+          <Link to="/" className="flex items-center">
+            <img 
+              src={logo} 
+              alt="Leaders Performance" 
+              className="h-14 md:h-16 lg:h-20 w-auto transition-all duration-300"
+            />
+          </Link>
+
+          <div className="hidden lg:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <a 
+                key={item.href} 
+                href={item.href} 
+                onClick={(e) => { e.preventDefault(); scrollToSection(item.href); }} 
+                className="text-sm font-normal text-foreground hover:text-primary transition-colors duration-300"
+              >
+                {item.label}
+              </a>
+            ))}
+            <Button 
+              onClick={() => scrollToSection("#book-call")} 
+              className="bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none px-6 py-2 text-sm font-medium"
+            >
+              Book A Consultation
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+            className="lg:hidden p-2 rounded-lg transition-colors duration-300 text-foreground hover:bg-muted"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {isMobileMenuOpen && (
+          <div className="lg:hidden py-4 border-t transition-colors duration-300 border-border/10">
+            <div className="flex flex-col space-y-2">
+              {navItems.map((item) => (
+                <a 
+                  key={item.href} 
+                  href={item.href} 
+                  onClick={(e) => { e.preventDefault(); scrollToSection(item.href); }} 
+                  className="px-4 py-3 rounded-lg font-medium transition-colors duration-300 text-foreground hover:bg-muted"
+                >
+                  {item.label}
+                </a>
+              ))}
+              <Button 
+                onClick={() => scrollToSection("#book-call")} 
+                className="mx-4 bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none py-3"
+              >
+                Book A Consultation
+              </Button>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
