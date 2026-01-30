@@ -4,15 +4,15 @@ import { Menu, X, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
-export const BusinessNavigation = () => {
+const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
+
+export const EliteNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
-
   const navItems = [
-    { label: "Services", href: "#services" },
-    { label: "Why Us", href: "#why-us" },
+    { label: "Program", href: "#program" },
+    { label: "Transformation", href: "#transformation" },
     { label: "Results", href: "#results" },
     { label: "Process", href: "#process" }
   ];
@@ -61,7 +61,7 @@ export const BusinessNavigation = () => {
               className="bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none px-6 py-2 text-sm font-medium"
             >
               <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                Book A Consultation
+                Apply Now
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
@@ -93,7 +93,7 @@ export const BusinessNavigation = () => {
                 className="mx-4 bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none py-3"
               >
                 <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                  Book A Consultation
+                  Apply Now
                 </a>
               </Button>
             </div>
