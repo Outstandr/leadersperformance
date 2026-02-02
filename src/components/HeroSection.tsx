@@ -1,73 +1,74 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import heroImage from "@/assets/lionel-hero-new-5.jpg";
+import { AssessmentDialog } from "./assessment/AssessmentDialog";
+
 export const HeroSection = () => {
-  return <section id="hero" className="pt-32 pb-20 bg-white">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="overflow-hidden p-8 md:p-12 lg:p-16 bg-[hsl(var(--lioner-gold))]">
-          <div className="grid md:grid-cols-1 lg:grid-cols-[1fr_40%] gap-8 lg:gap-12 items-stretch items-center justify-items-center md:justify-items-start lg:justify-items-start -ml-[2%] md:ml-0">
-            {/* Content */}
-            <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center items-center md:items-start px-4 md:px-0 mx-0 text-center md:text-left min-h-[400px] md:min-h-0 max-w-[90%] md:max-w-none">
-              {/* Rating */}
-              <div className="flex items-center gap-1 justify-center md:justify-start">
-                {[1, 2, 3, 4, 5].map(star => <Star key={star} className="w-4 h-4" style={{
-                fill: 'url(#goldGradient)',
-                filter: 'drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4))'
-              }} />)}
-                <span className="ml-2 text-sm">Rated 4.9/5</span>
-                <svg width="0" height="0" className="absolute">
-                  <defs>
-                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" style={{
-                      stopColor: '#f4e5b8',
-                      stopOpacity: 1
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
+
+  return (
+    <>
+      <section id="hero" className="pt-32 pb-20 bg-white">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="overflow-hidden p-8 md:p-12 lg:p-16 bg-[hsl(var(--lioner-gold))]">
+            <div className="grid md:grid-cols-1 lg:grid-cols-[1fr_40%] gap-8 lg:gap-12 items-stretch items-center justify-items-center md:justify-items-start lg:justify-items-start -ml-[2%] md:ml-0">
+              {/* Content */}
+              <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center items-center md:items-start px-4 md:px-0 mx-0 text-center md:text-left min-h-[400px] md:min-h-0 max-w-[90%] md:max-w-none">
+                {/* Rating */}
+                <div className="flex items-center gap-1 justify-center md:justify-start">
+                  {[1, 2, 3, 4, 5].map(star => (
+                    <Star key={star} className="w-4 h-4" style={{
+                      fill: 'url(#goldGradient)',
+                      filter: 'drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4))'
                     }} />
-                      <stop offset="25%" style={{
-                      stopColor: '#d4af37',
-                      stopOpacity: 1
-                    }} />
-                      <stop offset="50%" style={{
-                      stopColor: '#b8860b',
-                      stopOpacity: 1
-                    }} />
-                      <stop offset="75%" style={{
-                      stopColor: '#d4af37',
-                      stopOpacity: 1
-                    }} />
-                      <stop offset="100%" style={{
-                      stopColor: '#f4e5b8',
-                      stopOpacity: 1
-                    }} />
-                    </linearGradient>
-                  </defs>
-                </svg>
+                  ))}
+                  <span className="ml-2 text-sm">Rated 4.9/5</span>
+                  <svg width="0" height="0" className="absolute">
+                    <defs>
+                      <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style={{ stopColor: '#f4e5b8', stopOpacity: 1 }} />
+                        <stop offset="25%" style={{ stopColor: '#d4af37', stopOpacity: 1 }} />
+                        <stop offset="50%" style={{ stopColor: '#b8860b', stopOpacity: 1 }} />
+                        <stop offset="75%" style={{ stopColor: '#d4af37', stopOpacity: 1 }} />
+                        <stop offset="100%" style={{ stopColor: '#f4e5b8', stopOpacity: 1 }} />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+
+                {/* Headline */}
+                <h1 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight mx-0 px-0 tracking-tight">
+                  Redefine Your Leadership Potential Through High Performance Mastery
+                </h1>
+
+                {/* Description */}
+                <p className="text-lg text-white leading-relaxed mx-0 my-[14px] py-0 px-0 tracking-normal">
+                  Join elite executives who've transformed their leadership through High Performance. Discover your unique Discipline Type and unlock the RESET Blueprint® that aligns mind, body, and wealth for sustainable leadership excellence.
+                </p>
+
+                {/* CTAs */}
+                <Button 
+                  size="lg" 
+                  onClick={() => setIsAssessmentOpen(true)}
+                  className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 border-transparent shadow-lg shadow-black/10"
+                >
+                  Take Free Assessment
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <p className="text-sm text-white pt-2">2 minutes • Instant Results • Personalized Roadmap</p>
               </div>
 
-              {/* Headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight mx-0 px-0 tracking-tight">
-                Redefine Your Leadership Potential Through High Performance Mastery
-              </h1>
-
-              {/* Description */}
-              <p className="text-lg text-white leading-relaxed mx-0 my-[14px] py-0 px-0 tracking-normal">
-                Join elite executives who've transformed their leadership through High Performance. Discover your unique Discipline Type and unlock the RESET Blueprint® that aligns mind, body, and wealth for sustainable leadership excellence.
-              </p>
-
-              {/* CTAs */}
-              <Button size="lg" className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 border-transparent shadow-lg shadow-black/10">
-                Take Free Assessment
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <p className="text-sm text-white pt-2">2 minutes • Instant Results • Personalized Roadmap</p>
-            </div>
-
-            {/* Image */}
-            <div className="relative aspect-[3/4] overflow-hidden shadow-2xl mx-auto md:mx-auto md:w-full md:max-w-full lg:max-w-none lg:mx-0">
-              <img src={heroImage} alt="Lionel Eersteling - High Performance Leadership Coach" className="w-full h-full object-cover object-center" />
+              {/* Image */}
+              <div className="relative aspect-[3/4] overflow-hidden shadow-2xl mx-auto md:mx-auto md:w-full md:max-w-full lg:max-w-none lg:mx-0">
+                <img src={heroImage} alt="Lionel Eersteling - High Performance Leadership Coach" className="w-full h-full object-cover object-center" />
+              </div>
             </div>
           </div>
         </div>
+      </section>
 
-      </div>
-    </section>;
+      <AssessmentDialog open={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+    </>
+  );
 };
