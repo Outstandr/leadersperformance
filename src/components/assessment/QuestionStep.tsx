@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 import { Question, ratingLabels } from "@/lib/assessmentQuestions";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 
@@ -36,6 +35,10 @@ export function QuestionStep({
     onAnswer(question.id, parseInt(value));
   };
 
+  const handlePick = (value: number) => {
+    onAnswer(question.id, value);
+  };
+
   return (
     <div className="p-6 md:p-8">
       {/* Progress Header */}
@@ -65,24 +68,26 @@ export function QuestionStep({
         className="space-y-3 mb-8"
       >
         {[1, 2, 3, 4, 5].map((value) => (
-          <div key={value} className="flex items-center">
+          <button
+            key={value}
+            type="button"
+            onClick={() => handlePick(value)}
+            className={
+              "w-full flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all text-left " +
+              "border-muted hover:border-lioner-gold/50 " +
+              (selectedValue === value ? "border-lioner-gold bg-lioner-gold/5" : "")
+            }
+          >
             <RadioGroupItem
               value={value.toString()}
-              id={`rating-${value}`}
-              className="peer sr-only"
+              className="mr-4 shrink-0"
+              aria-label={`Rating ${value}`}
             />
-            <Label
-              htmlFor={`rating-${value}`}
-              className="flex items-center w-full p-4 rounded-lg border-2 cursor-pointer transition-all
-                border-muted hover:border-lioner-gold/50
-                peer-data-[state=checked]:border-lioner-gold peer-data-[state=checked]:bg-lioner-gold/5"
-            >
-              <span className="flex items-center justify-center w-8 h-8 rounded-full bg-muted text-sm font-medium mr-4">
-                {value}
-              </span>
-              <span className="text-foreground">{labels[value - 1]}</span>
-            </Label>
-          </div>
+            <span className="flex items-center justify-center w-8 h-8 rounded-full bg-muted text-sm font-medium mr-4">
+              {value}
+            </span>
+            <span className="text-foreground">{labels[value - 1]}</span>
+          </button>
         ))}
       </RadioGroup>
 
