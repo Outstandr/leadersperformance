@@ -25,6 +25,16 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
   const [formData, setFormData] = useState<UserInfo>(userInfo);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const clearError = (field: string) => {
+    setErrors((prev) => {
+      if (!prev[field]) return prev;
+      // remove the key entirely so we don't render empty messages
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -85,7 +95,10 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
             <Input
               id="firstName"
               value={formData.firstName}
-              onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
+              onChange={(e) => {
+                setFormData((prev) => ({ ...prev, firstName: e.target.value }));
+                clearError("firstName");
+              }}
               placeholder="Enter your first name"
               className={errors.firstName ? "border-destructive" : ""}
             />
@@ -96,7 +109,10 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
             <Input
               id="lastName"
               value={formData.lastName}
-              onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
+              onChange={(e) => {
+                setFormData((prev) => ({ ...prev, lastName: e.target.value }));
+                clearError("lastName");
+              }}
               placeholder="Enter your last name"
               className={errors.lastName ? "border-destructive" : ""}
             />
@@ -110,7 +126,10 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
             id="email"
             type="email"
             value={formData.email}
-            onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+            onChange={(e) => {
+              setFormData((prev) => ({ ...prev, email: e.target.value }));
+              clearError("email");
+            }}
             placeholder="Enter your email address"
             className={errors.email ? "border-destructive" : ""}
           />
@@ -121,7 +140,10 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
           <Label htmlFor="country">Country</Label>
           <Select
             value={formData.country}
-            onValueChange={(value) => setFormData(prev => ({ ...prev, country: value }))}
+            onValueChange={(value) => {
+              setFormData((prev) => ({ ...prev, country: value }));
+              clearError("country");
+            }}
           >
             <SelectTrigger className={errors.country ? "border-destructive" : ""}>
               <SelectValue placeholder="Select your country" />
