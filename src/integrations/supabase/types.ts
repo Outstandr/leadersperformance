@@ -14,7 +14,84 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      discipline_assessments: {
+        Row: {
+          ai_insights: Json | null
+          consistency_score: number | null
+          country: string
+          created_at: string
+          discipline_type: string | null
+          email: string
+          first_name: string
+          id: string
+          impulse_control_score: number | null
+          language: string
+          last_name: string
+          overall_score: number | null
+          q1_follow_through: number
+          q10_regret_purchases: number
+          q15_daily_routines: number
+          q16_productivity_varies: number
+          q17_bounce_back: number
+          q2_maintain_focus: number
+          q3_give_up: number
+          q4_resist_pleasure: number
+          q8_act_impulse: number
+          q9_control_stress: number
+          self_discipline_score: number | null
+        }
+        Insert: {
+          ai_insights?: Json | null
+          consistency_score?: number | null
+          country: string
+          created_at?: string
+          discipline_type?: string | null
+          email: string
+          first_name: string
+          id?: string
+          impulse_control_score?: number | null
+          language?: string
+          last_name: string
+          overall_score?: number | null
+          q1_follow_through: number
+          q10_regret_purchases: number
+          q15_daily_routines: number
+          q16_productivity_varies: number
+          q17_bounce_back: number
+          q2_maintain_focus: number
+          q3_give_up: number
+          q4_resist_pleasure: number
+          q8_act_impulse: number
+          q9_control_stress: number
+          self_discipline_score?: number | null
+        }
+        Update: {
+          ai_insights?: Json | null
+          consistency_score?: number | null
+          country?: string
+          created_at?: string
+          discipline_type?: string | null
+          email?: string
+          first_name?: string
+          id?: string
+          impulse_control_score?: number | null
+          language?: string
+          last_name?: string
+          overall_score?: number | null
+          q1_follow_through?: number
+          q10_regret_purchases?: number
+          q15_daily_routines?: number
+          q16_productivity_varies?: number
+          q17_bounce_back?: number
+          q2_maintain_focus?: number
+          q3_give_up?: number
+          q4_resist_pleasure?: number
+          q8_act_impulse?: number
+          q9_control_stress?: number
+          self_discipline_score?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
