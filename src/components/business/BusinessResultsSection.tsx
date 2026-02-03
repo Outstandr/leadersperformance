@@ -1,7 +1,6 @@
 import { TrendingUp, Users, Award, Target } from "lucide-react";
-import willemImage from "@/assets/testimonial-willem.png";
+import hansImage from "@/assets/testimonial-hans.png";
 import reneImage from "@/assets/testimonial-rene.png";
-
 export const BusinessResultsSection = () => {
   const results = [
     {
@@ -32,10 +31,10 @@ export const BusinessResultsSection = () => {
 
   const testimonials = [
     {
-      quote: "Lionel excels in delivering no-nonsense guidance and is a committed advocate for your personal advancement. A dynamic business motivator and a unifier of teams, he's always on the lookout for your business's next big stride. I warmly recommend him, but you've got to be all in.",
-      author: "Willem Ledeboer",
-      role: "Partner at Amrop Executive Search and Leadership Service",
-      image: willemImage
+      quote: "Lionel is intense, direct, and confrontational. He naturally pushes you to expand your limits, draw out your best and open up. This journey has significantly increased my self-awareness and confidence in my abilities. I highly recommend Lionel for anyone looking to become stronger and more mindful in all aspects of life.",
+      author: "Hans van Berghem",
+      role: "Manager Underwriting & Broking, Post & Co",
+      image: hansImage
     },
     {
       quote: "Working with Lionel was a game-changer for our growing company. His fresh perspective helped me reevaluate old habits and sparked significant personal and leadership growth. Lionel's passionate approach stands out, offering clear insights and motivating dedication. I highly recommend him for anyone looking to make real changes.",
