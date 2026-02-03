@@ -11,9 +11,10 @@ All colors MUST be HSL.
     /* Brand Colors - Blue and Gold Theme */
     --lioner-blue: 220 70% 45%;        /* Rich Navy Blue */
     --lioner-gold: 42 35% 53%;        /* Custom Gold #b39758 */
+    --lioner-charcoal: 0 0% 15%;       /* Dark Charcoal */
     --secondary-blue: 220 60% 55%;     
     --secondary-purple: 250 50% 60%;   
-    --neutral-gray: 0 0% 60%;          
+    --neutral-gray: 0 0% 60%;
     
     /* Gold Gradient for metallic texture */
     --gradient-gold: linear-gradient(135deg, #f4e5b8 0%, #d4af37 25%, #b8860b 50%, #d4af37 75%, #f4e5b8 100%);
