@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Users, TrendingUp } from "lucide-react";
-import heroImage from "@/assets/lionel-portrait-new-5.jpg";
+import heroImage from "@/assets/lionel-business-hero.jpg";
 
 const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
 
