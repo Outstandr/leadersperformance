@@ -1,4 +1,6 @@
 import { TrendingUp, Users, Award, Target } from "lucide-react";
+import willemImage from "@/assets/testimonial-willem.png";
+import reneImage from "@/assets/testimonial-rene.png";
 
 export const BusinessResultsSection = () => {
   const results = [
@@ -30,14 +32,16 @@ export const BusinessResultsSection = () => {
 
   const testimonials = [
     {
-      quote: "The transformation in our leadership team has been remarkable. We've seen measurable improvements in engagement and productivity across all departments.",
-      author: "Sarah Chen",
-      role: "CEO, TechVentures Inc."
+      quote: "Lionel excels in delivering no-nonsense guidance and is a committed advocate for your personal advancement. A dynamic business motivator and a unifier of teams, he's always on the lookout for your business's next big stride. I warmly recommend him, but you've got to be all in.",
+      author: "Willem Ledeboer",
+      role: "Partner at Amrop Executive Search and Leadership Service",
+      image: willemImage
     },
     {
-      quote: "Lionel's approach goes beyond typical leadership training. The RESET methodology helped us build a performance culture that scales.",
-      author: "Michael Roberts",
-      role: "CHRO, Global Manufacturing Co."
+      quote: "Working with Lionel was a game-changer for our growing company. His fresh perspective helped me reevaluate old habits and sparked significant personal and leadership growth. Lionel's passionate approach stands out, offering clear insights and motivating dedication. I highly recommend him for anyone looking to make real changes.",
+      author: "Rene Hogerheide",
+      role: "DGA, H2i isolatie bv",
+      image: reneImage
     }
   ];
 
@@ -81,9 +85,16 @@ export const BusinessResultsSection = () => {
               <p className="text-lg text-foreground mb-6 leading-relaxed italic">
                 {testimonial.quote}
               </p>
-              <div>
-                <div className="font-semibold text-foreground">{testimonial.author}</div>
-                <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+              <div className="flex items-center gap-4">
+                <img 
+                  src={testimonial.image} 
+                  alt={testimonial.author}
+                  className="w-16 h-16 rounded-full object-cover object-center"
+                />
+                <div>
+                  <div className="font-semibold text-foreground">{testimonial.author}</div>
+                  <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                </div>
               </div>
             </div>
           ))}
