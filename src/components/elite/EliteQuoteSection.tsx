@@ -8,7 +8,7 @@ export const EliteQuoteSection = () => {
         <blockquote className="text-xl md:text-2xl lg:text-3xl font-light text-white leading-relaxed italic">
           "You're not stuck. You're just not being challenged where it matters."
         </blockquote>
-        <p className="mt-4 text-[hsl(var(--lioner-gold))] font-medium">— Lionel</p>
+        <p className="mt-6 text-lg text-[hsl(var(--lioner-gold))] font-medium">- Lionel -</p>
       </div>
     </section>
   );
