@@ -1,36 +1,26 @@
-import { Brain, Heart, Flame, Target, Clock, Compass } from "lucide-react";
+import { Heart, Sparkles, Crown, Briefcase } from "lucide-react";
 
 export const EliteProgramSection = () => {
   const pillars = [
     {
-      icon: Brain,
-      title: "Mindset Mastery",
-      description: "Reprogram limiting beliefs and develop an unshakeable mindset that drives success in every area of your life."
-    },
-    {
       icon: Heart,
-      title: "Emotional Intelligence",
-      description: "Master your emotions, build resilience, and develop the self-awareness needed for peak performance."
+      title: "Vitality",
+      description: "Optimize your health, energy, and physical well-being to perform at your peak every day."
     },
     {
-      icon: Flame,
-      title: "Energy Optimization",
-      description: "Unlock sustainable high energy through proven strategies for physical, mental, and spiritual vitality."
+      icon: Sparkles,
+      title: "Personal Development",
+      description: "Unlock your potential through continuous growth, self-awareness, and mindset mastery."
     },
     {
-      icon: Target,
-      title: "Goal Achievement",
-      description: "Create crystal-clear vision and implement systematic action plans that turn ambitious goals into reality."
+      icon: Crown,
+      title: "Personal Leadership",
+      description: "Lead yourself with discipline, clarity, and purpose before leading others."
     },
     {
-      icon: Clock,
-      title: "Time & Priority Mastery",
-      description: "Eliminate overwhelm and create a life of focus, productivity, and meaningful accomplishment."
-    },
-    {
-      icon: Compass,
-      title: "Life Design",
-      description: "Craft a compelling life vision that aligns your career, relationships, health, and purpose."
+      icon: Briefcase,
+      title: "Business",
+      description: "Build and scale your business with strategic thinking, execution, and sustainable success."
     }
   ];
 
@@ -40,14 +30,14 @@ export const EliteProgramSection = () => {
         <div className="text-center mb-12">
           <span className="text-sm font-medium uppercase tracking-wider text-lioner-gold">The Program</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mt-4 mb-6">
-            Six Pillars of Personal Transformation
+            Four Pillars of Personal Transformation
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Our elite coaching program addresses every dimension of your life, creating lasting change through a proven, holistic approach.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {pillars.map((pillar, index) => (
             <div 
               key={index} 
