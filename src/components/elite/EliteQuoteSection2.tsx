@@ -8,7 +8,7 @@ export const EliteQuoteSection2 = () => {
         <blockquote className="text-xl md:text-2xl lg:text-3xl font-light text-white leading-relaxed italic">
           "If you keep starting over, you don't need a new plan — you need a stronger frame."
         </blockquote>
-        <p className="mt-6 text-lg text-[hsl(var(--lioner-gold))] font-medium">- Lionel -</p>
+        <p className="mt-6 text-2xl md:text-3xl text-[hsl(var(--lioner-gold))] font-semibold">- Lionel -</p>
       </div>
     </section>
   );
