@@ -5,6 +5,7 @@ import { EliteVideoSection } from "@/components/elite/EliteVideoSection";
 import { EliteProgramSection } from "@/components/elite/EliteProgramSection";
 import { EliteTransformationSection } from "@/components/elite/EliteTransformationSection";
 import { EliteResultsSection } from "@/components/elite/EliteResultsSection";
+import { EliteQuoteSection2 } from "@/components/elite/EliteQuoteSection2";
 import { EliteProcessSection } from "@/components/elite/EliteProcessSection";
 import { EliteBookingSection } from "@/components/elite/EliteBookingSection";
 import { EliteFooter } from "@/components/elite/EliteFooter";
@@ -20,6 +21,7 @@ const Elite = () => {
         <EliteProgramSection />
         <EliteTransformationSection />
         <EliteResultsSection />
+        <EliteQuoteSection2 />
         <EliteProcessSection />
         <EliteBookingSection />
       </main>
