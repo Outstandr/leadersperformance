@@ -9,6 +9,7 @@ import { EliteQuoteSection2 } from "@/components/elite/EliteQuoteSection2";
 import { EliteProcessSection } from "@/components/elite/EliteProcessSection";
 import { EliteBookingSection } from "@/components/elite/EliteBookingSection";
 import { EliteFooter } from "@/components/elite/EliteFooter";
+import { AssessmentCTASection } from "@/components/AssessmentCTASection";
 
 const Elite = () => {
   return (
@@ -21,6 +22,7 @@ const Elite = () => {
         <EliteProgramSection />
         <EliteTransformationSection />
         <EliteResultsSection />
+        <AssessmentCTASection />
         <EliteQuoteSection2 />
         <EliteProcessSection />
         <EliteBookingSection />
