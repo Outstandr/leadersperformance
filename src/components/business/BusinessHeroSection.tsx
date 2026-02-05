@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2, Users, TrendingUp } from "lucide-react";
 import heroImage from "@/assets/lionel-business-hero.jpg";
+import { AssessmentDialog } from "@/components/assessment/AssessmentDialog";
 
 const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
 
 export const BusinessHeroSection = () => {
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
   return (
     <section id="hero" className="pt-32 pb-20 bg-white">
@@ -46,16 +49,25 @@ export const BusinessHeroSection = () => {
               </div>
 
               {/* CTA */}
-              <Button 
-                size="lg" 
-                asChild
-                className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto mt-4 group transition-all border-2 border-transparent shadow-lg shadow-black/10"
-              >
-                <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                  Book Your Consultation Call
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-3 mt-4">
+                <Button 
+                  size="lg" 
+                  asChild
+                  className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group transition-all border-2 border-transparent shadow-lg shadow-black/10"
+                >
+                  <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
+                    Book Your Consultation Call
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </Button>
+                <Button 
+                  size="lg" 
+                  onClick={() => setIsAssessmentOpen(true)}
+                  className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-[hsl(var(--lioner-gold))] font-medium rounded-none px-7 py-3.5 h-auto group transition-all"
+                >
+                  Take Leader Assessment
+                </Button>
+              </div>
               <p className="text-sm text-white/90 pt-2">Free 30-minute strategy session • No obligation</p>
             </div>
 
@@ -70,6 +82,8 @@ export const BusinessHeroSection = () => {
           </div>
         </div>
       </div>
+
+      <AssessmentDialog open={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
     </section>
   );
 };
