@@ -2,21 +2,23 @@ import { Check, X } from "lucide-react";
 
 export const EliteTransformationSection = () => {
   const beforeItems = [
-    "Feeling stuck and unfulfilled",
-    "Lacking clarity on your purpose",
-    "Overwhelmed by daily demands",
-    "Inconsistent energy and motivation",
-    "Self-doubt holding you back",
-    "Disconnected from your potential"
+    "Poor sleep, low recovery",
+    "Weight goes up and down",
+    "Inconsistent results",
+    "Lack of discipline",
+    "Self-doubt",
+    "No structure or overview",
+    "Not living at your full potential"
   ];
 
   const afterItems = [
-    "Crystal-clear vision and direction",
-    "Unshakeable confidence and self-belief",
-    "Peak energy and sustainable motivation",
-    "Aligned life with purpose and meaning",
-    "Elite performance habits",
-    "Living as your highest self"
+    "Better sleep and recovery",
+    "Leaner, fitter body",
+    "Stable, lasting results",
+    "Strong discipline",
+    "Self-confidence",
+    "Clear structure and focus",
+    "Living as your best self"
   ];
 
   return (
