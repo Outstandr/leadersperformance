@@ -1,24 +1,20 @@
-import { Star, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
+import willemImage from "@/assets/testimonial-willem-elite.png";
+import jittekeImage from "@/assets/testimonial-jitteke.png";
 
 export const EliteResultsSection = () => {
   const testimonials = [
     {
-      name: "Michael R.",
-      role: "Entrepreneur",
-      quote: "This program changed everything. I went from burnout and confusion to clarity, energy, and purpose. My business grew 3x, but more importantly, I found myself again.",
-      result: "3x Business Growth"
+      name: "Willem Ledeboer",
+      role: "Partner at Amrop Executive Search and Leadership Service",
+      quote: "Lionel excels in delivering no-nonsense guidance and is a committed advocate for your personal advancement. A dynamic business motivator and a unifier of teams, he's always on the lookout for your business's next big stride. I warmly recommend him, but you've got to be all in.",
+      image: willemImage
     },
     {
-      name: "Sarah K.",
-      role: "Executive",
-      quote: "I was skeptical about coaching, but this was different. The depth of transformation I experienced in 12 weeks surpassed years of self-help books and seminars.",
-      result: "Promoted to VP"
-    },
-    {
-      name: "David L.",
-      role: "Professional",
-      quote: "The personalized approach made all the difference. Every session was tailored to exactly what I needed. I'm now performing at a level I never thought possible.",
-      result: "Complete Life Redesign"
+      name: "Jitteke Blussé",
+      role: "Advocaat, Caland Advocaten",
+      quote: "Working with Lionel was transformative. Facing crucial changes, his no-nonsense approach gave me the clarity and drive to start my own office. Lionel's coaching is direct and efficient, making you move beyond your limitations. I highly recommend his program, impactful results.",
+      image: jittekeImage
     }
   ];
 
@@ -35,29 +31,27 @@ export const EliteResultsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => (
             <div 
               key={index} 
-              className="bg-muted/30 p-8 border border-border relative"
+              className="p-8 bg-muted/50 border border-lioner-gold/20"
             >
-              <Quote className="w-10 h-10 text-lioner-gold/20 absolute top-6 right-6" />
+              <Quote className="w-10 h-10 text-lioner-gold/40 mb-4" />
               
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-lioner-gold text-lioner-gold" />
-                ))}
-              </div>
-              
-              <p className="text-foreground/80 leading-relaxed mb-6 relative z-10">
+              <p className="text-lg text-foreground leading-relaxed mb-6 italic">
                 "{testimonial.quote}"
               </p>
               
-              <div className="border-t border-border pt-4">
-                <div className="font-semibold">{testimonial.name}</div>
-                <div className="text-sm text-muted-foreground">{testimonial.role}</div>
-                <div className="mt-2 inline-block bg-lioner-gold/10 text-lioner-gold text-sm font-medium px-3 py-1">
-                  {testimonial.result}
+              <div className="flex items-center gap-4 pt-4 border-t border-border">
+                <img 
+                  src={testimonial.image} 
+                  alt={testimonial.name}
+                  className="w-16 h-16 rounded-full object-cover object-center"
+                />
+                <div>
+                  <div className="font-semibold text-foreground">{testimonial.name}</div>
+                  <div className="text-sm text-muted-foreground">{testimonial.role}</div>
                 </div>
               </div>
             </div>
