@@ -1,5 +1,6 @@
 import { EliteNavigation } from "@/components/elite/EliteNavigation";
 import { EliteHeroSection } from "@/components/elite/EliteHeroSection";
+import { EliteQuoteSection } from "@/components/elite/EliteQuoteSection";
 import { EliteProgramSection } from "@/components/elite/EliteProgramSection";
 import { EliteTransformationSection } from "@/components/elite/EliteTransformationSection";
 import { EliteResultsSection } from "@/components/elite/EliteResultsSection";
@@ -13,6 +14,7 @@ const Elite = () => {
       <EliteNavigation />
       <main className="min-h-screen">
         <EliteHeroSection />
+        <EliteQuoteSection />
         <EliteProgramSection />
         <EliteTransformationSection />
         <EliteResultsSection />
