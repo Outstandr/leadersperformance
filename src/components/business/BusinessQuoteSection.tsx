@@ -8,7 +8,7 @@ export const BusinessQuoteSection = () => {
         <blockquote className="text-xl md:text-2xl lg:text-3xl font-light text-white leading-relaxed italic">
           "Entrepreneurship is living a few years of your life like most people won't, so you can spend the rest of your life like most people can't."
         </blockquote>
-        <p className="mt-6 text-lg text-[hsl(var(--lioner-gold))] font-medium">- Lionel -</p>
+        <p className="mt-6 text-2xl md:text-3xl text-[hsl(var(--lioner-gold))] font-semibold">- Lionel -</p>
       </div>
     </section>
   );
