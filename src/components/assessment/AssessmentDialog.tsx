@@ -109,6 +109,35 @@ export function AssessmentDialog({ open, onOpenChange }: AssessmentDialogProps) 
         console.error('Database error:', dbError);
       }
 
+      // Send to GHL webhook (fire-and-forget)
+      supabase.functions.invoke('send-to-ghl', {
+        body: {
+          first_name: userInfo.firstName,
+          last_name: userInfo.lastName,
+          email: userInfo.email,
+          country: userInfo.country,
+          language,
+          self_discipline_score: fullResults.scores.selfDiscipline,
+          impulse_control_score: fullResults.scores.impulseControl,
+          consistency_score: fullResults.scores.consistency,
+          overall_score: fullResults.scores.overall,
+          discipline_type: fullResults.disciplineType,
+          q1_follow_through: responses.q1,
+          q2_maintain_focus: responses.q2,
+          q3_give_up: responses.q3,
+          q4_resist_pleasure: responses.q4,
+          q8_act_impulse: responses.q8,
+          q9_control_stress: responses.q9,
+          q10_regret_purchases: responses.q10,
+          q15_daily_routines: responses.q15,
+          q16_productivity_varies: responses.q16,
+          q17_bounce_back: responses.q17,
+        }
+      }).then(({ error }) => {
+        if (error) console.error('GHL webhook error:', error);
+        else console.log('GHL webhook sent successfully');
+      });
+
       // Get AI insights
       const { data: aiData, error: aiError } = await supabase.functions.invoke('generate-assessment-insights', {
         body: {
