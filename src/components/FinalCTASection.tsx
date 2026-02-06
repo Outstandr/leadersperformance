@@ -49,9 +49,9 @@ export const FinalCTASection = () => {
             {/* Header */}
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 mb-2">
-                <span className="text-lg font-medium uppercase text-muted-foreground">Proven Track Record</span>
+                <span className="text-lg font-normal uppercase text-muted-foreground">Proven Track Record</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold mb-4">
+              <h2 className="text-4xl md:text-5xl lg:text-5xl font-normal font-sans text-lioner-gold mb-4">
                 Your Leadership Excellence<br />Journey Starts Now
               </h2>
               <p className="text-lg max-w-2xl mx-auto text-muted-foreground">Don't let another quarter pass without unlocking your true leadership potential.</p>
@@ -68,10 +68,10 @@ export const FinalCTASection = () => {
                         <Icon className="w-5 h-5 text-white" />
                       </div>
                       <div className="flex-1">
-                        <div className="text-3xl font-bold mb-1 text-foreground">
+                        <div className="text-3xl font-normal mb-1 text-foreground">
                           {stat.value}
                         </div>
-                        <div className="text-base font-semibold mb-1 text-foreground">
+                        <div className="text-base font-normal mb-1 text-foreground">
                           {stat.label}
                         </div>
                         <div className="text-sm text-foreground/80">
@@ -88,7 +88,7 @@ export const FinalCTASection = () => {
 
             {/* CTA */}
             <div className="text-center p-12 bg-[hsl(var(--lioner-gold))]">
-              <h3 className="text-3xl md:text-4xl font-semibold font-sans text-white mb-4">
+              <h3 className="text-3xl md:text-4xl font-normal font-sans text-white mb-4">
                 Get Your Free Leadership Assessment
               </h3>
               <p className="text-white text-lg mb-2 max-w-2xl mx-auto">Join elite executives who've already discovered their High Performance profile.</p>
@@ -102,7 +102,7 @@ export const FinalCTASection = () => {
                 <Button 
                   size="lg" 
                   onClick={() => setIsAssessmentOpen(true)}
-                  className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-10 py-3.5 h-auto group transition-all border-2 border-transparent"
+                  className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-normal rounded-none px-10 py-3.5 h-auto group transition-all border-2 border-transparent"
                 >
                   <span className="flex items-center gap-2">
                     Take Assessment Now

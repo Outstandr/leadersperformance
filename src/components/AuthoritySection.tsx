@@ -12,9 +12,9 @@ export const AuthoritySection = () => {
               {/* Section Header */}
               <div>
                 <div className="inline-flex items-center gap-2 mb-2 justify-center md:justify-start">
-                  <span className="text-lg text-white/80 font-medium uppercase">About</span>
+                  <span className="text-lg text-white/80 font-normal uppercase">About</span>
                 </div>
-                <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-white leading-tight mb-6">
+                <h2 className="text-4xl md:text-5xl lg:text-5xl font-normal font-sans text-white leading-tight mb-6">
                   Meet Lionel Eersteling
                 </h2>
                 <p className="text-lg text-white/90">

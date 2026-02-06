@@ -29,9 +29,9 @@ export const ComparisonSection = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-2">
               
-              <span className="text-lg font-medium uppercase text-muted-foreground">Why choose us</span>
+              <span className="text-lg font-normal uppercase text-muted-foreground">Why choose us</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-normal font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               Leadership by Design
             </h2>
             <p className="text-lg max-w-3xl mx-auto mt-6 text-muted-foreground">
@@ -51,7 +51,7 @@ export const ComparisonSection = () => {
                       <Check className="w-4 h-4 text-lioner-gold" />
                     </div>
                     <div>
-                      <p className="font-medium text-white mb-1">{item.title}</p>
+                      <p className="font-normal text-white mb-1">{item.title}</p>
                       <p className="text-sm text-white/80">{item.description}</p>
                     </div>
                   </div>)}

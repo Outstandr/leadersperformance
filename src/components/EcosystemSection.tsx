@@ -38,13 +38,13 @@ export const EcosystemSection = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-2">
-              <span className="text-lg font-medium uppercase text-muted-foreground">Programs</span>
+              <span className="text-lg font-normal uppercase text-muted-foreground">Programs</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-normal font-sans text-lioner-gold mb-4">
               Your Path to Elite Leadership
             </h2>
             <p className="text-lg max-w-2xl mx-auto text-muted-foreground">Choose your entry point into the Leaders Performance ecosystem.</p>
-            <Button size="lg" className="font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 bg-[hsl(var(--lioner-gold))] text-white hover:bg-white hover:text-[hsl(var(--lioner-gold))] border-[hsl(var(--lioner-gold))]">
+            <Button size="lg" className="font-normal rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 bg-[hsl(var(--lioner-gold))] text-white hover:bg-white hover:text-[hsl(var(--lioner-gold))] border-[hsl(var(--lioner-gold))]">
               Take Free Assessment
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -69,7 +69,7 @@ export const EcosystemSection = () => {
                       
                       {/* Gold Header Section with Number and Title */}
                       <div className="bg-[hsl(var(--lioner-gold))] p-6">
-                        <h3 className="text-xl font-sans font-medium text-white text-left px-[5px]">
+                        <h3 className="text-xl font-sans font-normal text-white text-left px-[5px]">
                           <span className="font-normal">{step.number.padStart(2, '0')}</span>
                           <span className="mx-2">•</span>
                           {step.title === "Elite Masterclass Series" ? <>Elite Masterclass<br />Series</> : step.title === "RESET Book Series" ? <>RESET Book<br />Series</> : step.title === "Leaders Performance Elite" ? <>Leaders Performance<br />Elite</> : step.title}
@@ -81,7 +81,7 @@ export const EcosystemSection = () => {
                         <p className="text-sm leading-relaxed mb-4 text-muted-foreground">
                           {step.description}
                         </p>
-                        <p className="text-xs font-medium text-lioner-gold mb-4">
+                        <p className="text-xs font-normal text-lioner-gold mb-4">
                           {step.action}
                         </p>
                         

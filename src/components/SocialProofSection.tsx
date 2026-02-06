@@ -33,9 +33,9 @@ export const SocialProofSection = () => {
           {/* Section Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 mb-2">
-              <span className="text-lg font-medium uppercase text-muted-foreground">Testimonials</span>
+              <span className="text-lg font-normal uppercase text-muted-foreground">Testimonials</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-normal font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               Elite Leaders Choose Excellence
             </h2>
             <p className="text-lg max-w-3xl mx-auto mt-6 text-muted-foreground">Trusted by executives and leaders worldwide.</p>
@@ -89,7 +89,7 @@ export const SocialProofSection = () => {
                           "{testimonial.content}"
                         </p>
                         <div className="mt-auto pt-4 border-t border-lioner-gold">
-                          <p className="font-semibold text-foreground">{testimonial.author}</p>
+                          <p className="font-normal text-foreground">{testimonial.author}</p>
                           <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                         </div>
                       </CardContent>
