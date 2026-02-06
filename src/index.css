@@ -58,10 +58,10 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-cinzel;
+    @apply bg-background text-foreground font-cinzel font-normal;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-cinzel;
+    @apply font-cinzel font-normal;
   }
 }
