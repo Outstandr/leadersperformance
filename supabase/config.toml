@@ -2,3 +2,6 @@ project_id = "sfzdecpsvgcqmlwkjibd"
 
 [functions.generate-assessment-insights]
 verify_jwt = false
+
+[functions.send-to-ghl]
+verify_jwt = false
