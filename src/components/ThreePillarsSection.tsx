@@ -33,9 +33,9 @@ export const ThreePillarsSection = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-2">
-              <span className="text-lg font-normal uppercase text-muted-foreground">The Framework</span>
+              <span className="text-lg font-medium uppercase text-muted-foreground">The Framework</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-5xl font-normal font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               The Three Pillars of Elite Leadership
             </h2>
             <p className="text-lg max-w-3xl mx-auto mt-6 text-muted-foreground">
@@ -51,7 +51,7 @@ export const ThreePillarsSection = () => {
                 className={`group relative border-2 p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 bg-gradient-to-br ${pillar.gradient} ${pillar.borderColor}`}
               >
                 {/* Title */}
-                <h3 className="text-2xl font-normal mb-6 font-sans text-foreground">
+                <h3 className="text-2xl font-semibold mb-6 font-sans text-foreground">
                   {pillar.title}
                 </h3>
 

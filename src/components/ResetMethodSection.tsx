@@ -38,9 +38,9 @@ export const ResetMethodSection = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-2">
               
-              <span className="text-lg font-normal uppercase text-muted-foreground">Educational Tools</span>
+              <span className="text-lg font-medium uppercase text-muted-foreground">Educational Tools</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-5xl font-normal font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans text-lioner-gold max-w-4xl mx-auto leading-tight">
               Reliable Expertise to Drive Your Greatest Success
             </h2>
           </div>
@@ -56,7 +56,7 @@ export const ResetMethodSection = () => {
                     <div className="relative aspect-[4/3] rounded-3xl overflow-hidden group shadow-2xl">
                       <img src={component.image} alt={component.title} className="w-full h-full object-cover object-center brightness-125" />
                       <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10">
-                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-normal font-sans text-white mb-6 mt-12 my-[4px]">
+                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold font-sans text-white mb-6 mt-12 my-[4px]">
                           {component.title}
                         </h3>
                         <p className="text-base md:text-lg text-white/90 max-w-xl">

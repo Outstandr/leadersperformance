@@ -38,7 +38,7 @@ export const HeroSection = () => {
                 </div>
 
                 {/* Headline */}
-                <h1 className="text-4xl md:text-5xl lg:text-5xl font-normal font-sans leading-tight mx-0 px-0 tracking-tight">
+                <h1 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight mx-0 px-0 tracking-tight">
                   Redefine Your Leadership Potential Through High Performance Mastery
                 </h1>
 
@@ -51,7 +51,7 @@ export const HeroSection = () => {
                 <Button 
                   size="lg" 
                   onClick={() => setIsAssessmentOpen(true)}
-                  className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-normal rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 border-transparent shadow-lg shadow-black/10"
+                  className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto mt-6 group transition-all border-2 border-transparent shadow-lg shadow-black/10"
                 >
                   Take Free Assessment
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

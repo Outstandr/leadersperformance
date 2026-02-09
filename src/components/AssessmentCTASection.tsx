@@ -24,9 +24,9 @@ export const AssessmentCTASection = () => {
           {/* Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-4">
-              <span className="text-lg font-normal uppercase text-muted-foreground">Take The First Step</span>
+              <span className="text-lg font-medium uppercase text-muted-foreground">Take The First Step</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal font-sans mb-4 text-lioner-gold">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mb-4 text-lioner-gold">
               Discover Your Leadership Blueprint
             </h2>
             <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
@@ -53,7 +53,7 @@ export const AssessmentCTASection = () => {
             <Button 
               size="lg" 
               onClick={() => setIsDialogOpen(true)}
-              className="bg-white text-lioner-gold hover:bg-lioner-gold hover:text-white hover:border-white font-normal rounded-none px-7 py-3.5 h-auto group text-sm transition-all border-2 border-transparent"
+              className="bg-white text-lioner-gold hover:bg-lioner-gold hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group text-sm transition-all border-2 border-transparent"
             >
               Take The Assessment
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

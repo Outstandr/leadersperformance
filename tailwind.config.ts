@@ -14,9 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        cinzel: ['Cinzel', 'serif'],
-        signature: ['Great Vibes', 'cursive'],
-        sans: ['Cinzel', 'serif'],
+        sans: ['Poppins', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
