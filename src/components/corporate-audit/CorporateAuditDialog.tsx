@@ -153,7 +153,7 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white border-lioner-gold/20">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-lioner-navy border-lioner-gold/20">
         {step === "questions" && (
           <AuditQuestionStep
             question={auditQuestions[currentQuestionIndex]}

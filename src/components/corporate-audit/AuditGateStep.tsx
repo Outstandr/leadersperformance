@@ -60,10 +60,10 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
         <div className="inline-flex items-center justify-center w-14 h-14 rounded-none border-2 border-lioner-gold/50 mb-4">
           <Lock className="w-7 h-7 text-lioner-gold" />
         </div>
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2 font-sans">
+        <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 font-sans">
           Your Audit Is Complete.
         </h2>
-        <p className="text-foreground/60">
+        <p className="text-white/60">
           Enter your details to see the verdict.
         </p>
       </div>
@@ -72,7 +72,7 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="audit-firstName" className="text-foreground/70 text-xs uppercase tracking-wider">
+            <Label htmlFor="audit-firstName" className="text-white/70 text-xs uppercase tracking-wider">
               First Name
             </Label>
             <Input
@@ -83,12 +83,12 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
                 clearError("firstName");
               }}
               placeholder="First name"
-              className={`bg-foreground/5 border-foreground/10 text-foreground placeholder:text-foreground/30 rounded-none ${errors.firstName ? "border-red-500" : ""}`}
+              className={`bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-none ${errors.firstName ? "border-red-500" : ""}`}
             />
-            {errors.firstName && <p className="text-xs text-red-500">{errors.firstName}</p>}
+            {errors.firstName && <p className="text-xs text-red-400">{errors.firstName}</p>}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="audit-lastName" className="text-foreground/70 text-xs uppercase tracking-wider">
+            <Label htmlFor="audit-lastName" className="text-white/70 text-xs uppercase tracking-wider">
               Last Name
             </Label>
             <Input
@@ -99,14 +99,14 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
                 clearError("lastName");
               }}
               placeholder="Last name"
-              className={`bg-foreground/5 border-foreground/10 text-foreground placeholder:text-foreground/30 rounded-none ${errors.lastName ? "border-red-500" : ""}`}
+              className={`bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-none ${errors.lastName ? "border-red-500" : ""}`}
             />
-            {errors.lastName && <p className="text-xs text-red-500">{errors.lastName}</p>}
+            {errors.lastName && <p className="text-xs text-red-400">{errors.lastName}</p>}
           </div>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="audit-email" className="text-foreground/70 text-xs uppercase tracking-wider">
+          <Label htmlFor="audit-email" className="text-white/70 text-xs uppercase tracking-wider">
             Email
           </Label>
           <Input
@@ -118,13 +118,13 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
               clearError("email");
             }}
             placeholder="your@email.com"
-            className={`bg-foreground/5 border-foreground/10 text-foreground placeholder:text-foreground/30 rounded-none ${errors.email ? "border-red-500" : ""}`}
+            className={`bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-none ${errors.email ? "border-red-500" : ""}`}
           />
-          {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
+          {errors.email && <p className="text-xs text-red-400">{errors.email}</p>}
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="audit-phone" className="text-foreground/70 text-xs uppercase tracking-wider">
+          <Label htmlFor="audit-phone" className="text-white/70 text-xs uppercase tracking-wider">
             Phone
           </Label>
           <Input
@@ -136,9 +136,9 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
               clearError("phone");
             }}
             placeholder="+31 6 1234 5678"
-            className={`bg-foreground/5 border-foreground/10 text-foreground placeholder:text-foreground/30 rounded-none ${errors.phone ? "border-red-500" : ""}`}
+            className={`bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-none ${errors.phone ? "border-red-500" : ""}`}
           />
-          {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
+          {errors.phone && <p className="text-xs text-red-400">{errors.phone}</p>}
         </div>
 
         <Button
@@ -156,7 +156,7 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
           )}
         </Button>
 
-        <p className="text-xs text-center text-foreground/30">
+        <p className="text-xs text-center text-white/30">
           Your data is processed securely. We don't share your information.
         </p>
       </form>

@@ -23,7 +23,7 @@ function ScoreGauge({ score, tier }: { score: number; tier: string }) {
     <div className="flex flex-col items-center">
       <div className="relative w-40 h-40">
         <svg className="w-full h-full transform -rotate-90" viewBox="0 0 96 96">
-          <circle cx="48" cy="48" r="40" stroke="hsl(var(--foreground) / 0.1)" strokeWidth="8" fill="none" />
+          <circle cx="48" cy="48" r="40" stroke="rgba(255,255,255,0.1)" strokeWidth="8" fill="none" />
           <circle
             cx="48"
             cy="48"
@@ -39,7 +39,7 @@ function ScoreGauge({ score, tier }: { score: number; tier: string }) {
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className={`text-4xl font-black ${color.text}`}>{score}</span>
-          <span className="text-xs text-foreground/40 uppercase">/ 100</span>
+          <span className="text-xs text-white/40 uppercase">/ 100</span>
         </div>
       </div>
       <div className={`mt-4 px-4 py-2 ${color.bg}/20 border border-current ${color.text} text-sm font-bold uppercase tracking-widest`}>
@@ -56,10 +56,10 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
     <div className="p-6 md:p-10 space-y-8">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-2xl md:text-3xl font-black text-foreground mb-1 font-sans uppercase tracking-wide">
+        <h2 className="text-2xl md:text-3xl font-black text-white mb-1 font-sans uppercase tracking-wide">
           The Verdict
         </h2>
-        <p className="text-foreground/50 text-sm">{userInfo.firstName}, here's your Discipline Score.</p>
+        <p className="text-white/50 text-sm">{userInfo.firstName}, here's your Discipline Score.</p>
       </div>
 
       {/* Score Gauge */}
@@ -68,27 +68,28 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
       </div>
 
       {/* Tier Description */}
-      <p className="text-center text-foreground/60 text-lg italic">
+      <p className="text-center text-white/60 text-lg italic">
         "{scores.tierDescription}"
       </p>
 
-      {/* AI Insights */}
+      {/* AI Insights - Immediate Truth */}
       {insights && (
         <div className="space-y-6">
+          {/* Headline */}
           <h3 className="text-xl font-bold text-lioner-gold text-center uppercase">
             {insights.headline}
           </h3>
 
           {/* Reality Check */}
-          <div className="p-5 border border-foreground/10 bg-foreground/[0.03]">
-            <h4 className="text-xs uppercase tracking-widest text-red-500 font-bold mb-3">
+          <div className="p-5 border border-white/10 bg-white/5">
+            <h4 className="text-xs uppercase tracking-widest text-red-400 font-bold mb-3">
               The Reality Check
             </h4>
-            <p className="text-foreground/70 leading-relaxed">{insights.realityCheck}</p>
+            <p className="text-white/80 leading-relaxed">{insights.realityCheck}</p>
           </div>
 
           {/* Action Plan */}
-          <div className="p-5 border border-lioner-gold/20 bg-lioner-gold/[0.03]">
+          <div className="p-5 border border-white/10 bg-white/5">
             <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold mb-3">
               The Action Plan
             </h4>
@@ -98,14 +99,14 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
                   <span className="flex items-center justify-center w-6 h-6 bg-lioner-gold text-white text-xs font-bold shrink-0">
                     {i + 1}
                   </span>
-                  <span className="text-foreground/70">{action}</span>
+                  <span className="text-white/80">{action}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Closing */}
-          <p className="text-center text-foreground font-bold text-lg">
+          <p className="text-center text-white font-bold text-lg">
             "{insights.closing}"
           </p>
         </div>
@@ -122,14 +123,14 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
             <ArrowRight className="w-5 h-5 ml-3" />
           </a>
         </Button>
-        <p className="text-xs text-foreground/40 italic">
+        <p className="text-xs text-white/40 italic">
           Warning: Do not book unless you are ready to change the score.
         </p>
       </div>
 
       {/* Close */}
       <div className="text-center">
-        <Button variant="ghost" onClick={onClose} className="text-foreground/40 hover:text-foreground/60">
+        <Button variant="ghost" onClick={onClose} className="text-white/40 hover:text-white/60">
           Close
         </Button>
       </div>
