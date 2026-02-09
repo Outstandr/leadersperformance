@@ -2,13 +2,13 @@ import { BusinessNavigation } from "@/components/business/BusinessNavigation";
 import { BusinessHeroSection } from "@/components/business/BusinessHeroSection";
 import { BusinessQuoteSection } from "@/components/business/BusinessQuoteSection";
 import { BusinessVideoSection } from "@/components/business/BusinessVideoSection";
-import { BusinessServicesSection } from "@/components/business/BusinessServicesSection";
 import { BusinessWhyUsSection } from "@/components/business/BusinessWhyUsSection";
-import { BusinessResultsSection } from "@/components/business/BusinessResultsSection";
+import { BusinessServicesSection } from "@/components/business/BusinessServicesSection";
 import { BusinessProcessSection } from "@/components/business/BusinessProcessSection";
+import { BusinessResultsSection } from "@/components/business/BusinessResultsSection";
+import { CorporateAuditCTASection } from "@/components/corporate-audit/CorporateAuditCTASection";
 import { BusinessBookingSection } from "@/components/business/BusinessBookingSection";
 import { BusinessFooter } from "@/components/business/BusinessFooter";
-import { CorporateAuditCTASection } from "@/components/corporate-audit/CorporateAuditCTASection";
 
 const Business = () => {
   return (
@@ -18,12 +18,12 @@ const Business = () => {
         <BusinessHeroSection />
         <BusinessQuoteSection />
         <BusinessVideoSection />
-        <BusinessServicesSection />
         <BusinessWhyUsSection />
+        <BusinessServicesSection />
+        <BusinessProcessSection />
         <BusinessResultsSection />
         <CorporateAuditCTASection />
-        <BusinessProcessSection />
-        <BusinessBookingSection calendlyUrl="https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY" />
+        <BusinessBookingSection />
       </main>
       <BusinessFooter />
     </div>

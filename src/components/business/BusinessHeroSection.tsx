@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, Users, TrendingUp } from "lucide-react";
+import { ArrowRight, Building2 } from "lucide-react";
 import heroImage from "@/assets/lionel-business-hero.jpg";
-import { AssessmentDialog } from "@/components/assessment/AssessmentDialog";
+import { CorporateAuditDialog } from "@/components/corporate-audit/CorporateAuditDialog";
 
 const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
 
 export const BusinessHeroSection = () => {
-  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
+  const [isAuditOpen, setIsAuditOpen] = useState(false);
 
   return (
     <section id="hero" className="pt-32 pb-20 bg-white">
@@ -19,34 +19,18 @@ export const BusinessHeroSection = () => {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
                 <Building2 className="w-4 h-4" />
-                <span className="text-sm font-medium">For Organizations & Teams</span>
+                <span className="text-sm font-medium">For Teams of 5 – 50</span>
               </div>
 
               {/* Headline */}
               <h1 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight tracking-tight">
-                Unlock Elite Performance Across Your Entire Organization
+                Stop Managing People. Start Leading Performers.
               </h1>
 
               {/* Description */}
               <p className="text-lg text-white leading-relaxed tracking-normal max-w-xl">
-                Transform your leadership team and drive sustainable growth with proven high-performance strategies that align people, systems, and results.
+                Your business is not scaling because you are tolerating mediocrity. The Business Reset Blueprint is the operational system to eliminate "Passenger Culture" and install military-grade discipline in 30 days.
               </p>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 py-4 w-full max-w-md">
-                <div className="text-center">
-                  <div className="text-3xl font-bold">500+</div>
-                  <div className="text-sm text-white/80">Leaders Trained</div>
-                </div>
-                <div className="text-center border-x border-white/20">
-                  <div className="text-3xl font-bold">85%</div>
-                  <div className="text-sm text-white/80">Performance Boost</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold">50+</div>
-                  <div className="text-sm text-white/80">Organizations</div>
-                </div>
-              </div>
 
               {/* CTA */}
               <div className="flex flex-col sm:flex-row gap-3 mt-4">
@@ -56,19 +40,19 @@ export const BusinessHeroSection = () => {
                   className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group transition-all border-2 border-transparent shadow-lg shadow-black/10"
                 >
                   <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                    Book Your Consultation Call
+                    Deploy The System
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </a>
                 </Button>
                 <Button 
                   size="lg" 
-                  onClick={() => setIsAssessmentOpen(true)}
+                  onClick={() => setIsAuditOpen(true)}
                   className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-[hsl(var(--lioner-gold))] font-medium rounded-none px-7 py-3.5 h-auto group transition-all"
                 >
-                  Take Leader Assessment
+                  Audit My Team First
                 </Button>
               </div>
-              <p className="text-sm text-white/90 pt-2">Free 30-minute strategy session • No obligation</p>
+              <p className="text-sm text-white/90 pt-2">For teams of 5 – 50</p>
             </div>
 
             {/* Image */}
@@ -83,7 +67,7 @@ export const BusinessHeroSection = () => {
         </div>
       </div>
 
-      <AssessmentDialog open={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+      <CorporateAuditDialog open={isAuditOpen} onOpenChange={setIsAuditOpen} />
     </section>
   );
 };
