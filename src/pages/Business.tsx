@@ -8,7 +8,7 @@ import { BusinessResultsSection } from "@/components/business/BusinessResultsSec
 import { BusinessProcessSection } from "@/components/business/BusinessProcessSection";
 import { BusinessBookingSection } from "@/components/business/BusinessBookingSection";
 import { BusinessFooter } from "@/components/business/BusinessFooter";
-import { AssessmentCTASection } from "@/components/AssessmentCTASection";
+import { CorporateAuditCTASection } from "@/components/corporate-audit/CorporateAuditCTASection";
 
 const Business = () => {
   return (
@@ -21,7 +21,7 @@ const Business = () => {
         <BusinessServicesSection />
         <BusinessWhyUsSection />
         <BusinessResultsSection />
-        <AssessmentCTASection />
+        <CorporateAuditCTASection />
         <BusinessProcessSection />
         <BusinessBookingSection calendlyUrl="https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY" />
       </main>

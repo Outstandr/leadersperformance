@@ -14,6 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
+      corporate_discipline_audits: {
+        Row: {
+          ai_insights: Json | null
+          created_at: string
+          discipline_score: number
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          phone: string
+          q1_morning_standard: number
+          q2_silence_test: number
+          q3_deadline_protocol: number
+          q4_confrontation: number
+          q5_meeting_tax: number
+          q6_problem_solver: number
+          q7_mirror: number
+          raw_score: number
+          tier: string
+        }
+        Insert: {
+          ai_insights?: Json | null
+          created_at?: string
+          discipline_score: number
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          phone: string
+          q1_morning_standard: number
+          q2_silence_test: number
+          q3_deadline_protocol: number
+          q4_confrontation: number
+          q5_meeting_tax: number
+          q6_problem_solver: number
+          q7_mirror: number
+          raw_score: number
+          tier: string
+        }
+        Update: {
+          ai_insights?: Json | null
+          created_at?: string
+          discipline_score?: number
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          phone?: string
+          q1_morning_standard?: number
+          q2_silence_test?: number
+          q3_deadline_protocol?: number
+          q4_confrontation?: number
+          q5_meeting_tax?: number
+          q6_problem_solver?: number
+          q7_mirror?: number
+          raw_score?: number
+          tier?: string
+        }
+        Relationships: []
+      }
       discipline_assessments: {
         Row: {
           ai_insights: Json | null
