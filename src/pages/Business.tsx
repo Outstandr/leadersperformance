@@ -2,13 +2,12 @@ import { BusinessNavigation } from "@/components/business/BusinessNavigation";
 import { BusinessHeroSection } from "@/components/business/BusinessHeroSection";
 import { BusinessQuoteSection } from "@/components/business/BusinessQuoteSection";
 import { BusinessVideoSection } from "@/components/business/BusinessVideoSection";
-import { BusinessServicesSection } from "@/components/business/BusinessServicesSection";
-import { BusinessWhyUsSection } from "@/components/business/BusinessWhyUsSection";
-import { BusinessResultsSection } from "@/components/business/BusinessResultsSection";
-import { BusinessProcessSection } from "@/components/business/BusinessProcessSection";
-import { BusinessBookingSection } from "@/components/business/BusinessBookingSection";
+import { BusinessProblemSection } from "@/components/business/BusinessProblemSection";
+import { BusinessSolutionSection } from "@/components/business/BusinessSolutionSection";
+import { BusinessToolkitSection } from "@/components/business/BusinessToolkitSection";
+import { BusinessEvidenceSection } from "@/components/business/BusinessEvidenceSection";
+import { BusinessDecisionSection } from "@/components/business/BusinessDecisionSection";
 import { BusinessFooter } from "@/components/business/BusinessFooter";
-import { CorporateAuditCTASection } from "@/components/corporate-audit/CorporateAuditCTASection";
 
 const Business = () => {
   return (
@@ -16,14 +15,13 @@ const Business = () => {
       <BusinessNavigation />
       <main className="min-h-screen">
         <BusinessHeroSection />
+        <BusinessProblemSection />
         <BusinessQuoteSection />
         <BusinessVideoSection />
-        <BusinessServicesSection />
-        <BusinessWhyUsSection />
-        <BusinessResultsSection />
-        <CorporateAuditCTASection />
-        <BusinessProcessSection />
-        <BusinessBookingSection calendlyUrl="https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY" />
+        <BusinessSolutionSection />
+        <BusinessToolkitSection />
+        <BusinessEvidenceSection />
+        <BusinessDecisionSection />
       </main>
       <BusinessFooter />
     </div>
