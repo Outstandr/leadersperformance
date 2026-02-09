@@ -26,7 +26,7 @@ export const BusinessProblemSection = () => {
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-[hsl(var(--lioner-charcoal))] overflow-hidden">
+    <section className="py-16 lg:py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 border border-lioner-gold/30 bg-lioner-gold/5 hover:bg-lioner-gold/10 transition-colors duration-300 cursor-default">
@@ -36,23 +36,23 @@ export const BusinessProblemSection = () => {
             </span>
           </div>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 font-sans leading-tight uppercase">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-8 font-sans leading-tight uppercase">
             The Cost of <span className="text-lioner-gold">Silence.</span>
           </h2>
 
-          <div className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mx-auto space-y-6 text-left md:text-center">
+          <div className="text-lg md:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto space-y-6 text-left md:text-center">
             <p>
               You hire adults, but you manage children. Every time you repeat an instruction,{" "}
               <span className="text-lioner-gold font-semibold">you lose money</span>. Every time you accept a missed deadline with an excuse, you lower the standard.
             </p>
             <p>
               Your team is not "confused." They are{" "}
-              <span className="text-white font-semibold relative inline-block">
+              <span className="text-foreground font-semibold relative inline-block">
                 comfortable
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-lioner-gold/60" />
               </span>
               . They know you will fix their mistakes. They know you will stay late to finish their work.{" "}
-              <span className="text-white font-bold">You have built a nursery, not a business.</span>
+              <span className="text-foreground font-bold">You have built a nursery, not a business.</span>
             </p>
           </div>
         </div>
@@ -71,30 +71,30 @@ export const BusinessProblemSection = () => {
                 className={`relative p-8 border text-center transition-all duration-500 cursor-default group
                   ${hoveredIndex === index
                     ? "border-lioner-gold/60 bg-lioner-gold/10 -translate-y-2 shadow-[0_20px_40px_-15px_rgba(179,151,88,0.3)]"
-                    : "border-white/10 bg-white/5 hover:border-white/20"
+                    : "border-foreground/10 bg-foreground/[0.02] hover:border-foreground/20"
                   }`}
               >
                 {/* Number watermark */}
                 <span className={`absolute top-4 right-4 text-5xl font-bold transition-all duration-500
-                  ${hoveredIndex === index ? "text-lioner-gold/20" : "text-white/5"}`}>
+                  ${hoveredIndex === index ? "text-lioner-gold/20" : "text-foreground/5"}`}>
                   {symptom.number}
                 </span>
 
                 <div className={`w-16 h-16 mx-auto mb-5 flex items-center justify-center transition-all duration-500
                   ${hoveredIndex === index
                     ? "bg-lioner-gold/20 scale-110"
-                    : "bg-white/5"
+                    : "bg-foreground/5"
                   }`}>
                   <symptom.icon className={`w-8 h-8 transition-all duration-500
-                    ${hoveredIndex === index ? "text-lioner-gold" : "text-white/40"}`} />
+                    ${hoveredIndex === index ? "text-lioner-gold" : "text-foreground/40"}`} />
                 </div>
 
-                <h4 className="text-lg font-bold text-white mb-3 uppercase tracking-wide">
+                <h4 className="text-lg font-bold text-foreground mb-3 uppercase tracking-wide">
                   {symptom.title}
                 </h4>
 
                 <p className={`italic transition-colors duration-300
-                  ${hoveredIndex === index ? "text-white/80" : "text-white/50"}`}>
+                  ${hoveredIndex === index ? "text-foreground/70" : "text-foreground/50"}`}>
                   {symptom.quote}
                 </p>
 
