@@ -15,9 +15,10 @@ const Business = () => {
       <BusinessNavigation />
       <main className="min-h-screen">
         <BusinessHeroSection />
+        <BusinessVideoSection />
         <BusinessProblemSection />
         <BusinessQuoteSection />
-        <BusinessVideoSection />
+        <BusinessQuoteSection />
         <BusinessSolutionSection />
         <BusinessToolkitSection />
         <BusinessEvidenceSection />
