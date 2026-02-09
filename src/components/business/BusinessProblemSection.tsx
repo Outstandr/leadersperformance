@@ -29,7 +29,7 @@ export const BusinessProblemSection = () => {
     <section className="py-16 lg:py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 border border-lioner-gold/30 bg-lioner-gold/5 hover:bg-lioner-gold/10 transition-colors duration-300 cursor-default">
+          <div className="inline-flex items-center gap-2 mb-4 px-5 py-2.5 border border-lioner-gold/30 bg-lioner-gold/5 hover:bg-lioner-gold/10 transition-colors duration-300 cursor-default">
             <AlertTriangle className="w-5 h-5 text-lioner-gold animate-pulse" />
             <span className="text-sm font-semibold uppercase tracking-widest text-lioner-gold">
               The Problem
