@@ -1,30 +1,30 @@
-import { Phone, ClipboardList, Rocket, BarChart3 } from "lucide-react";
+import { GraduationCap, FileText, ClipboardCheck, Rocket } from "lucide-react";
 
 export const BusinessProcessSection = () => {
-  const steps = [
+  const items = [
     {
       number: "01",
-      icon: Phone,
-      title: "Discovery Call",
-      description: "We start with a free 30-minute consultation to understand your organization's challenges, goals, and culture."
+      icon: GraduationCap,
+      title: "The Academy Access",
+      description: "Lifetime access to the core doctrine for your entire team."
     },
     {
       number: "02",
-      icon: ClipboardList,
-      title: "Custom Proposal",
-      description: "Based on our conversation, we design a tailored program with clear objectives, timelines, and success metrics."
+      icon: FileText,
+      title: "The SOP Library",
+      description: "Copy-paste our specific protocols for Meetings, Reporting, and Daily Planning."
     },
     {
       number: "03",
-      icon: Rocket,
-      title: "Implementation",
-      description: "Our team delivers world-class coaching and training, with ongoing support and adjustment as needed."
+      icon: ClipboardCheck,
+      title: "The Audit",
+      description: "The proprietary \"Discipline Scorecard\" to grade every employee."
     },
     {
       number: "04",
-      icon: BarChart3,
-      title: "Measure & Optimize",
-      description: "We track progress against your KPIs and continuously refine our approach to maximize results."
+      icon: Rocket,
+      title: "The Kickoff",
+      description: "A 90-Minute \"Hard Reset\" Strategy Call to deploy the system."
     }
   ];
 
@@ -33,37 +33,28 @@ export const BusinessProcessSection = () => {
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="text-sm font-medium uppercase text-muted-foreground tracking-wider">Our Process</span>
+          <span className="text-sm font-medium uppercase text-muted-foreground tracking-wider">The Arsenal</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mt-4 mb-4 text-lioner-gold">
-            How We Work Together
+            The Toolkit.
           </h2>
-          <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
-            A structured approach to ensure maximum impact for your organization.
-          </p>
         </div>
 
-        {/* Steps */}
+        {/* Items Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
+          {items.map((item, index) => (
             <div 
               key={index} 
-              className="relative"
+              className="relative bg-white p-6 border border-lioner-gold/20 hover:border-lioner-gold/40 transition-all duration-300 hover:-translate-y-1"
             >
-              {/* Connector Line (hidden on last item and mobile) */}
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-10 left-[60%] w-full h-0.5 bg-lioner-gold/30"></div>
-              )}
-              
-              <div className="bg-white p-6 border border-lioner-gold/20 hover:border-lioner-gold/40 transition-all duration-300 h-full">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="bg-lioner-gold text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">
-                    {step.number}
-                  </div>
-                  <step.icon className="w-6 h-6 text-lioner-gold" />
+              <span className="absolute top-4 right-4 text-5xl font-bold text-lioner-gold/10 select-none">{item.number}</span>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="bg-lioner-gold text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">
+                  {item.number}
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-foreground">{step.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                <item.icon className="w-6 h-6 text-lioner-gold" />
               </div>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">{item.title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>

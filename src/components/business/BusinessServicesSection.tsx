@@ -1,89 +1,67 @@
-import { Users, Target, BarChart3, Briefcase, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Clock, VolumeX, Binary, Filter } from "lucide-react";
 
 export const BusinessServicesSection = () => {
-  const services = [
+  const protocols = [
     {
-      icon: Users,
-      title: "Leadership Coaching",
-      description: "One-on-one and group coaching for executives and senior leaders to maximize their potential and drive organizational success.",
-      features: ["Executive 1:1 Coaching", "C-Suite Development", "Leadership Assessments"]
+      icon: Clock,
+      number: "01",
+      title: "The 09:00 Standard",
+      description: "No drift. No flexibility. The day starts on the second."
     },
     {
-      icon: Target,
-      title: "Team Performance",
-      description: "Transform team dynamics and unlock collective potential with our proven high-performance methodology.",
-      features: ["Team Alignment Workshops", "Performance Optimization", "Culture Transformation"]
+      icon: VolumeX,
+      number: "02",
+      title: "The Silence Protocol",
+      description: "Execution without explanation."
     },
     {
-      icon: BarChart3,
-      title: "Strategic Planning",
-      description: "Align your leadership vision with actionable strategies that deliver measurable business outcomes.",
-      features: ["Vision & Mission Alignment", "OKR Implementation", "Quarterly Planning Sessions"]
+      icon: Binary,
+      number: "03",
+      title: "Binary Accountability",
+      description: "It is done, or it is not. No \"almost.\""
     },
     {
-      icon: Briefcase,
-      title: "Corporate Training",
-      description: "Scalable training programs designed to elevate leadership capabilities across your organization.",
-      features: ["Custom Workshops", "Train-the-Trainer", "Ongoing Development"]
+      icon: Filter,
+      number: "04",
+      title: "The Problem Filter",
+      description: "No one brings a problem to your desk without a solution attached."
     }
   ];
-
-  const scrollToBooking = () => {
-    const element = document.querySelector("#book-call");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   return (
     <section id="services" className="py-8 lg:py-12 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="text-sm font-medium uppercase text-muted-foreground tracking-wider">Our Services</span>
+          <span className="text-sm font-medium uppercase text-muted-foreground tracking-wider">The Protocol</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mt-4 mb-4 text-lioner-gold">
-            Tailored Solutions for Your Organization
+            We Don't Train. We Install Code.
           </h2>
-          <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
-            Whether you're developing individual leaders or transforming your entire organization, we have the expertise to drive results.
+          <p className="text-lg max-w-3xl mx-auto text-muted-foreground">
+            Motivation is temporary. Systems are permanent. The Business Reset Blueprint is not a "workshop." It is an installation of the Vanguard Operating System. We strip away the "soft" corporate habits and replace them with the protocols of high-performance units.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {services.map((service, index) => (
-            <div 
-              key={index} 
-              className="p-8 bg-white border border-lioner-gold/20 hover:border-lioner-gold/40 transition-all duration-300 hover:-translate-y-1 group"
-            >
-              <div className="bg-lioner-gold/10 w-14 h-14 rounded-full flex items-center justify-center mb-6 group-hover:bg-lioner-gold/20 transition-colors">
-                <service.icon className="w-7 h-7 text-lioner-gold" />
-              </div>
-              <h3 className="text-2xl font-semibold mb-3 text-foreground">{service.title}</h3>
-              <p className="text-muted-foreground mb-4 leading-relaxed">{service.description}</p>
-              <ul className="space-y-2">
-                {service.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <div className="w-1.5 h-1.5 rounded-full bg-lioner-gold"></div>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        {/* Subtitle */}
+        <div className="text-center mb-8">
+          <h3 className="text-xl md:text-2xl font-semibold text-foreground uppercase tracking-wider">What We Install</h3>
         </div>
 
-        {/* CTA */}
-        <div className="text-center">
-          <Button 
-            size="lg" 
-            onClick={scrollToBooking}
-            className="bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none px-8 py-4 h-auto group"
-          >
-            Discuss Your Needs
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+        {/* Protocols Grid */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {protocols.map((protocol, index) => (
+            <div 
+              key={index} 
+              className="relative p-8 bg-white border border-lioner-gold/20 hover:border-lioner-gold/40 transition-all duration-300 hover:-translate-y-1 group"
+            >
+              <span className="absolute top-4 right-6 text-6xl font-bold text-lioner-gold/10 select-none">{protocol.number}</span>
+              <div className="bg-lioner-gold/10 w-14 h-14 rounded-full flex items-center justify-center mb-6 group-hover:bg-lioner-gold/20 transition-colors">
+                <protocol.icon className="w-7 h-7 text-lioner-gold" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-3 text-foreground">{protocol.title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{protocol.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
