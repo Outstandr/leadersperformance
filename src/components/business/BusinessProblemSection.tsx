@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AlertTriangle, UserX, ShieldAlert, BatteryLow } from "lucide-react";
+import { UserX, ShieldAlert, BatteryLow } from "lucide-react";
 
 export const BusinessProblemSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -29,17 +29,6 @@ export const BusinessProblemSection = () => {
     <section className="py-16 lg:py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 mb-4 px-5 py-2.5 border border-lioner-gold/30 bg-lioner-gold/5 hover:bg-lioner-gold/10 transition-colors duration-300 cursor-default">
-            <AlertTriangle className="w-5 h-5 text-lioner-gold animate-pulse" />
-            <span className="text-sm font-semibold uppercase tracking-widest text-lioner-gold">
-              The Problem
-            </span>
-          </div>
-
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-8 font-sans leading-tight uppercase">
-            The Cost of <span className="text-lioner-gold">Silence.</span>
-          </h2>
-
           <div className="text-lg md:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto space-y-6 text-left md:text-center">
             <p>
               You hire adults, but you manage children. Every time you repeat an instruction,{" "}
