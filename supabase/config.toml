@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.send-to-ghl]
 verify_jwt = false
+
+[functions.generate-corporate-audit-insights]
+verify_jwt = false
