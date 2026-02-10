@@ -16,14 +16,13 @@ const Business = () => {
       <BusinessNavigation />
       <main className="min-h-screen">
         <BusinessHeroSection />
-        
-        <BusinessQuoteSection />
         <BusinessWhyUsSection />
         <BusinessServicesSection />
         <BusinessProcessSection />
         <BusinessResultsSection />
         <CorporateAuditCTASection />
         <BusinessBookingSection />
+        <BusinessQuoteSection />
       </main>
       <BusinessFooter />
     </div>
