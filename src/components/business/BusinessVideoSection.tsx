@@ -9,7 +9,7 @@ export const BusinessVideoSection = () => {
           <video
             className="w-full h-full rounded-lg shadow-lg"
             controls
-            preload="metadata"
+            preload="none"
             poster={videoThumbnail}
           >
             <source
