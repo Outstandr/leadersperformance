@@ -24,11 +24,11 @@ export function AuditQuestionStep({
           <span className="text-xs uppercase tracking-widest text-lioner-gold font-semibold">
             Question {currentIndex + 1} of {totalQuestions}
           </span>
-          <span className="text-xs font-medium text-white/50">
+          <span className="text-xs font-medium text-foreground/50">
             {Math.round(progress)}%
           </span>
         </div>
-        <Progress value={progress} className="h-1 bg-white/10" />
+        <Progress value={progress} className="h-1 bg-foreground/10" />
       </div>
 
       {/* Question Title */}
@@ -39,7 +39,7 @@ export function AuditQuestionStep({
       </div>
 
       {/* Question */}
-      <h3 className="text-xl md:text-2xl font-bold text-white leading-relaxed mb-8 font-sans">
+      <h3 className="text-xl md:text-2xl font-bold text-foreground leading-relaxed mb-8 font-sans">
         "{question.question}"
       </h3>
 
@@ -48,13 +48,13 @@ export function AuditQuestionStep({
         <button
           type="button"
           onClick={() => onAnswer(question.id, question.optionA.points)}
-          className="w-full text-left p-5 rounded-none border-2 border-white/10 hover:border-red-500/50 hover:bg-red-500/5 transition-all group"
+          className="w-full text-left p-5 rounded-none border-2 border-foreground/10 hover:border-red-500/50 hover:bg-red-500/5 transition-all group"
         >
           <div className="flex items-start gap-4">
-            <span className="flex items-center justify-center w-8 h-8 rounded-none border-2 border-white/20 text-white/50 text-sm font-bold shrink-0 group-hover:border-red-500/50 group-hover:text-red-400">
+            <span className="flex items-center justify-center w-8 h-8 rounded-none border-2 border-foreground/20 text-foreground/50 text-sm font-bold shrink-0 group-hover:border-red-500/50 group-hover:text-red-500">
               A
             </span>
-            <span className="text-white/80 group-hover:text-white transition-colors">
+            <span className="text-foreground/80 group-hover:text-foreground transition-colors">
               {question.optionA.label}
             </span>
           </div>
@@ -63,13 +63,13 @@ export function AuditQuestionStep({
         <button
           type="button"
           onClick={() => onAnswer(question.id, question.optionB.points)}
-          className="w-full text-left p-5 rounded-none border-2 border-white/10 hover:border-green-500/50 hover:bg-green-500/5 transition-all group"
+          className="w-full text-left p-5 rounded-none border-2 border-foreground/10 hover:border-green-500/50 hover:bg-green-500/5 transition-all group"
         >
           <div className="flex items-start gap-4">
-            <span className="flex items-center justify-center w-8 h-8 rounded-none border-2 border-white/20 text-white/50 text-sm font-bold shrink-0 group-hover:border-green-500/50 group-hover:text-green-400">
+            <span className="flex items-center justify-center w-8 h-8 rounded-none border-2 border-foreground/20 text-foreground/50 text-sm font-bold shrink-0 group-hover:border-green-500/50 group-hover:text-green-500">
               B
             </span>
-            <span className="text-white/80 group-hover:text-white transition-colors">
+            <span className="text-foreground/80 group-hover:text-foreground transition-colors">
               {question.optionB.label}
             </span>
           </div>
@@ -77,7 +77,7 @@ export function AuditQuestionStep({
       </div>
 
       {/* No back button - by design */}
-      <p className="text-center text-xs text-white/30 mt-8 uppercase tracking-wide">
+      <p className="text-center text-xs text-foreground/30 mt-8 uppercase tracking-wide">
         Choose. No going back.
       </p>
     </div>
