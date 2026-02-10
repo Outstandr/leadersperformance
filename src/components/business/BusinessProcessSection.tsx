@@ -18,7 +18,7 @@ export const BusinessProcessSection = () => {
       number: "03",
       icon: ClipboardCheck,
       title: "The Audit",
-      description: "The proprietary \"Discipline Scorecard\" to grade every employee."
+      description: "Increase your team's effectiveness. Ultimately, it's all about the team achieving the results it was created to achieve. The proprietary \"Discipline Scorecard\" to grade every employee."
     },
     {
       number: "04",
