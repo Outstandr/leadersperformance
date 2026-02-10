@@ -1,7 +1,7 @@
 import { BusinessNavigation } from "@/components/business/BusinessNavigation";
 import { BusinessHeroSection } from "@/components/business/BusinessHeroSection";
 import { BusinessQuoteSection } from "@/components/business/BusinessQuoteSection";
-import { BusinessVideoSection } from "@/components/business/BusinessVideoSection";
+
 import { BusinessWhyUsSection } from "@/components/business/BusinessWhyUsSection";
 import { BusinessServicesSection } from "@/components/business/BusinessServicesSection";
 import { BusinessProcessSection } from "@/components/business/BusinessProcessSection";
@@ -16,7 +16,7 @@ const Business = () => {
       <BusinessNavigation />
       <main className="min-h-screen">
         <BusinessHeroSection />
-        <BusinessVideoSection />
+        
         <BusinessQuoteSection />
         <BusinessWhyUsSection />
         <BusinessServicesSection />

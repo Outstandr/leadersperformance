@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2 } from "lucide-react";
-
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import videoThumbnail from "@/assets/business-video-thumbnail.jpg";
 import { CorporateAuditDialog } from "@/components/corporate-audit/CorporateAuditDialog";
 
 const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
@@ -32,6 +33,24 @@ export const BusinessHeroSection = () => {
                 Your business is not scaling because you are tolerating mediocrity. The Business Reset Blueprint is the operational system to eliminate "Passenger Culture" and install military-grade discipline in 30 days.
               </p>
 
+              {/* Video */}
+              <div className="w-full mt-2">
+                <AspectRatio ratio={16 / 9}>
+                  <video
+                    className="w-full h-full rounded-lg shadow-lg"
+                    controls
+                    preload="none"
+                    poster={videoThumbnail}
+                  >
+                    <source
+                      src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/vsl//01.What you see is what you get..mp4"
+                      type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
+                </AspectRatio>
+              </div>
+
               {/* CTA */}
               <div className="flex flex-col sm:flex-row gap-3 mt-4">
                 <Button 
@@ -52,7 +71,6 @@ export const BusinessHeroSection = () => {
                   Audit My Team First
                 </Button>
               </div>
-              <p className="text-sm text-white/90 pt-2">For teams of 5 – 50</p>
             </div>
 
           </div>
