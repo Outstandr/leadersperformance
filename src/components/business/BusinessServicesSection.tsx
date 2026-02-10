@@ -35,7 +35,7 @@ export const BusinessServicesSection = () => {
         <div className="text-center mb-12">
           <span className="text-sm font-medium uppercase text-muted-foreground tracking-wider">The Protocol</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mt-4 mb-4 text-lioner-gold">
-            We Don't Train. We Install Code.
+            We Don't Train. We Install Structure.
           </h2>
           <p className="text-lg max-w-3xl mx-auto text-muted-foreground">
             Motivation is temporary. Systems are permanent. The Business Reset Blueprint is not a "workshop." It is an installation of the Vanguard Operating System. We strip away the "soft" corporate habits and replace them with the protocols of high-performance units.
