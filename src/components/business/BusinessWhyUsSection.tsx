@@ -26,7 +26,7 @@ export const BusinessWhyUsSection = () => {
         <div className="text-center mb-6">
           <span className="text-sm font-medium uppercase text-muted-foreground tracking-wider">The Problem</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mt-4 mb-4 text-lioner-gold">
-            The Cost of Silence.
+            No Company Culture.
           </h2>
         </div>
 
