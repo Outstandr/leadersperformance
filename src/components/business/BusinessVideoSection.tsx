@@ -1,4 +1,5 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import videoThumbnail from "@/assets/business-video-thumbnail.jpg";
 
 export const BusinessVideoSection = () => {
   return (
@@ -9,6 +10,7 @@ export const BusinessVideoSection = () => {
             className="w-full h-full rounded-lg shadow-lg"
             controls
             preload="metadata"
+            poster={videoThumbnail}
           >
             <source
               src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/vsl//01.What you see is what you get..mp4"
