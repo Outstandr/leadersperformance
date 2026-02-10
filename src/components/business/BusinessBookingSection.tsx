@@ -53,7 +53,7 @@ export const BusinessBookingSection = ({
                 className="bg-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))]/90 text-white font-bold rounded-none px-8 py-5 h-auto group text-base uppercase tracking-wider"
               >
                 <a href={calendlyUrl} target="_blank" rel="noopener noreferrer">
-                  I Choose The Standard — €4,997
+                  Book A Consultation
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </a>
               </Button>
@@ -62,7 +62,7 @@ export const BusinessBookingSection = ({
                 onClick={() => setIsAuditOpen(true)}
                 className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-[hsl(var(--lioner-charcoal))] font-medium rounded-none px-7 py-5 h-auto group transition-all"
               >
-                Audit My Team First
+                Audit My Team
               </Button>
             </div>
           </div>
