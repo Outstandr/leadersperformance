@@ -1,30 +1,30 @@
-import { Clock, VolumeX, Binary, Filter } from "lucide-react";
+import { Heart, BookOpen, Crown, Briefcase } from "lucide-react";
 
 export const BusinessServicesSection = () => {
   const protocols = [
     {
-      icon: Clock,
+      icon: Heart,
       number: "01",
-      title: "The 09:00 Standard",
-      description: "No drift. No flexibility. The day starts on the second."
+      title: "Vitality",
+      description: "Energy is the foundation. Without physical and mental sharpness, no strategy survives contact with reality."
     },
     {
-      icon: VolumeX,
+      icon: BookOpen,
       number: "02",
-      title: "The Silence Protocol",
-      description: "Execution without explanation."
+      title: "Personal Development",
+      description: "Growth is non-negotiable. Strip away the comfort zone and install a system for constant evolution."
     },
     {
-      icon: Binary,
+      icon: Crown,
       number: "03",
-      title: "Binary Accountability",
-      description: "It is done, or it is not. No \"almost.\""
+      title: "Leadership",
+      description: "You don't manage people. You set the standard. Leadership is identity, not a title."
     },
     {
-      icon: Filter,
+      icon: Briefcase,
       number: "04",
-      title: "The Problem Filter",
-      description: "No one brings a problem to your desk without a solution attached."
+      title: "Business",
+      description: "Systems over hustle. Install the operational infrastructure that scales without your constant presence."
     }
   ];
 
