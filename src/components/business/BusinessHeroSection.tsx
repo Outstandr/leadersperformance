@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2 } from "lucide-react";
-import heroImage from "@/assets/lionel-business-hero.jpg";
+
 import { CorporateAuditDialog } from "@/components/corporate-audit/CorporateAuditDialog";
 
 const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
@@ -13,7 +13,7 @@ export const BusinessHeroSection = () => {
     <section id="hero" className="pt-32 pb-20 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="overflow-hidden p-8 md:p-12 lg:p-16 bg-[hsl(var(--lioner-gold))]">
-          <div className="grid md:grid-cols-1 lg:grid-cols-[1fr_40%] gap-8 lg:gap-12 items-center">
+          <div className="max-w-3xl mx-auto">
             {/* Content */}
             <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center items-center md:items-start px-4 md:px-0 text-center md:text-left">
               {/* Badge */}
@@ -55,14 +55,6 @@ export const BusinessHeroSection = () => {
               <p className="text-sm text-white/90 pt-2">For teams of 5 – 50</p>
             </div>
 
-            {/* Image */}
-            <div className="relative aspect-[3/4] overflow-hidden shadow-2xl mx-auto md:mx-auto md:w-full md:max-w-full lg:max-w-none lg:mx-0">
-              <img 
-                src={heroImage} 
-                alt="Lionel Eersteling - Executive Leadership Coach" 
-                className="w-full h-full object-cover object-center" 
-              />
-            </div>
           </div>
         </div>
       </div>
