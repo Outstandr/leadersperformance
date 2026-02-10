@@ -24,7 +24,7 @@ export const BusinessResultsSection = () => {
         <div className="text-center mb-12">
           <span className="text-sm font-medium uppercase text-muted-foreground tracking-wider">The Evidence</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mt-4 mb-4 text-lioner-gold">
-            Results or Nothing.
+            Results Speak For Themselves.
           </h2>
         </div>
 
