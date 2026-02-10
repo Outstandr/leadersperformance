@@ -3,12 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
-import { AssessmentDialog } from "@/components/assessment/AssessmentDialog";
+import { CorporateAuditDialog } from "@/components/corporate-audit/CorporateAuditDialog";
 
 export const BusinessNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
+  const [isAuditOpen, setIsAuditOpen] = useState(false);
 
   const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
 
@@ -19,9 +19,9 @@ export const BusinessNavigation = () => {
     { label: "Process", href: "#process" }
   ];
 
-  const openAssessment = () => {
+  const openAudit = () => {
     setIsMobileMenuOpen(false);
-    setIsAssessmentOpen(true);
+    setIsAuditOpen(true);
   };
 
   useEffect(() => {
@@ -65,11 +65,11 @@ export const BusinessNavigation = () => {
                 </a>
               ))}
               <Button 
-                onClick={openAssessment}
+                onClick={openAudit}
                 variant="outline"
                 className="border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white rounded-none px-5 py-2 text-sm font-medium"
               >
-                Take Leader Assessment
+                Take Team Audit
               </Button>
               <Button 
                 asChild
@@ -104,11 +104,11 @@ export const BusinessNavigation = () => {
                   </a>
                 ))}
                 <Button 
-                  onClick={openAssessment}
+                  onClick={openAudit}
                   variant="outline"
                   className="mx-4 border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white rounded-none py-3"
                 >
-                  Take Leader Assessment
+                  Take Team Audit
                 </Button>
                 <Button 
                   asChild
@@ -124,7 +124,7 @@ export const BusinessNavigation = () => {
         </div>
       </nav>
 
-      <AssessmentDialog open={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+      <CorporateAuditDialog open={isAuditOpen} onOpenChange={setIsAuditOpen} />
     </>
   );
 };
