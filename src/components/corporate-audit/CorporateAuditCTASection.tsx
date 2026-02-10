@@ -22,6 +22,10 @@ export const CorporateAuditCTASection = () => {
           </h2>
 
           <p className="text-lg md:text-xl text-foreground/70 mb-4 max-w-2xl mx-auto">
+            Increase your team's effectiveness. Ultimately, it's all about the team achieving the results it was created to achieve.
+          </p>
+
+          <p className="text-lg md:text-xl text-foreground/70 mb-4 max-w-2xl mx-auto">
             Audit them in 2 minutes. Get a score. Get the truth.
           </p>
 
