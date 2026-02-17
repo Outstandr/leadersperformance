@@ -1,61 +1,21 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 import heroImage from "@/assets/hero-executive.jpg";
 
 export const HomeHeroSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-
-  // Content fades out as user scrolls
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -60]);
-
   return (
-    <section ref={sectionRef} className="relative h-screen overflow-hidden">
-      {/* Background image — fixed, no movement */}
-      <div className="absolute inset-0">
+    <>
+      {/* Fixed background image that stays in place */}
+      <div className="fixed inset-0 z-0">
         <img
           src={heroImage}
           alt="Executive leadership"
           className="w-full h-full object-cover"
         />
-        {/* Dark overlay for text legibility */}
         <div className="absolute inset-0 bg-foreground/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/20 to-transparent" />
       </div>
 
-      {/* Bottom curved gradient fade into white */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
-        <svg
-          viewBox="0 0 1440 180"
-          preserveAspectRatio="none"
-          className="w-full h-[120px] md:h-[180px]"
-        >
-          <defs>
-            <linearGradient id="heroFadeGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="white" stopOpacity="0" />
-              <stop offset="100%" stopColor="white" stopOpacity="1" />
-            </linearGradient>
-          </defs>
-          <ellipse
-            cx="720"
-            cy="180"
-            rx="900"
-            ry="180"
-            fill="url(#heroFadeGrad)"
-          />
-        </svg>
-      </div>
-
-      {/* Hero content — positioned near bottom */}
-      <motion.div
-        className="relative z-[5] h-full flex items-end pb-24 md:pb-32"
-        style={{ opacity: contentOpacity, y: contentY }}
-      >
+      {/* Hero section — scrolls normally, content visible over fixed bg */}
+      <section className="relative z-10 h-screen flex items-end pb-24 md:pb-32">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-end">
             {/* Left — Headline */}
@@ -86,7 +46,21 @@ export const HomeHeroSection = () => {
             </div>
           </div>
         </div>
-      </motion.div>
-    </section>
+      </section>
+
+      {/* Curved transition — this scrolls up over the fixed image */}
+      <div className="relative z-10 -mt-1">
+        <svg
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          className="w-full h-[60px] md:h-[80px] block"
+        >
+          <path
+            d="M0,80 C360,0 1080,0 1440,80 L1440,80 L0,80 Z"
+            fill="hsl(var(--background))"
+          />
+        </svg>
+      </div>
+    </>
   );
 };
