@@ -3,24 +3,24 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 const pillars = [
   {
-    title: "Clarity",
+    title: "Vitality",
     description:
-      "We help you cut through the noise and identify what truly matters. Through structured reflection and strategic questioning, you gain the clarity needed to make decisions with confidence — not hesitation.",
+      "Energy is the foundation of leadership. We optimise your health, sleep, nutrition, and physical performance so you operate at full capacity — not running on fumes.",
   },
   {
-    title: "Discipline",
+    title: "Personal Development",
     description:
-      "Sustainable success isn't built on motivation — it's built on discipline. We install daily systems, rituals, and accountability structures that keep you performing at your highest level, consistently.",
+      "Growth is non-negotiable. We strip away comfort zones and install a system for continuous evolution — sharpening self-awareness, emotional intelligence, and mindset mastery.",
   },
   {
-    title: "Resilience",
+    title: "Personal Leadership",
     description:
-      "Pressure doesn't break strong leaders — it reveals them. We train you to recover faster, stay composed under stress, and turn setbacks into stepping stones for growth.",
+      "Before you lead others, you lead yourself. We build the discipline, clarity, and purpose that make you the standard — not just the strategy.",
   },
   {
-    title: "Execution",
+    title: "Business",
     description:
-      "Strategy without execution is just theory. We bridge the gap between knowing and doing, ensuring your vision translates into measurable results — week after week.",
+      "Systems over hustle. We install the operational infrastructure, strategic thinking, and execution frameworks that scale your impact without burning you out.",
   },
 ];
 
