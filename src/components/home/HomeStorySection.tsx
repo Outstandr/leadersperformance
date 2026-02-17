@@ -1,18 +1,9 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 const STORAGE_URL = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/websiteimages`;
 
-const ParallaxImage = ({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) => {
+export const HomeStorySection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -20,19 +11,6 @@ const ParallaxImage = ({
   });
   const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
-  return (
-    <div ref={ref} className={`relative overflow-hidden ${className ?? ""}`}>
-      <motion.img
-        src={src}
-        alt={alt}
-        style={{ y }}
-        className="w-full h-[115%] object-cover absolute inset-0"
-      />
-    </div>
-  );
-};
-
-export const HomeStorySection = () => {
   return (
     <section className="py-24 md:py-36 bg-background">
       <div className="container mx-auto px-6 max-w-7xl">
@@ -63,19 +41,13 @@ export const HomeStorySection = () => {
             </div>
           </div>
 
-          {/* Overlapping images */}
-          <div className="relative h-[500px] md:h-[650px]">
-            {/* Background large image */}
-            <ParallaxImage
+          {/* Single image with parallax, square corners */}
+          <div ref={ref} className="relative aspect-[3/4] overflow-hidden">
+            <motion.img
               src={`${STORAGE_URL}/Unmasked.png`}
-              alt="Portrait close-up"
-              className="absolute top-0 right-0 w-[65%] h-[75%] rounded-2xl"
-            />
-            {/* Foreground overlapping image */}
-            <ParallaxImage
-              src={`${STORAGE_URL}/Leadersperformance`}
-              alt="Portrait full"
-              className="absolute bottom-0 left-[5%] w-[55%] h-[65%] rounded-2xl shadow-2xl z-10"
+              alt="Finding balance after burnout"
+              style={{ y }}
+              className="w-full h-[115%] object-cover absolute inset-0"
             />
           </div>
         </div>
