@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import heroImage from "@/assets/hero-sovereignty.png";
+import logoWhite from "@/assets/logo-white.png";
 
 export const HomeHeroSection = () => {
   const [fadeOpacity, setFadeOpacity] = useState(0);
@@ -8,7 +8,6 @@ export const HomeHeroSection = () => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowH = window.innerHeight;
-      // Start fading at 30% of viewport, fully white at 100%
       const progress = Math.min(Math.max((scrollY - windowH * 0.1) / (windowH * 0.4), 0), 1);
       setFadeOpacity(progress);
     };
@@ -19,15 +18,8 @@ export const HomeHeroSection = () => {
 
   return (
     <>
-      {/* Fixed background image */}
-      <div className="fixed inset-0 z-0">
-        <img
-          src={heroImage}
-          alt="Executive leadership"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-foreground/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/20 to-transparent" />
+      {/* Fixed dark blue background */}
+      <div className="fixed inset-0 z-0 bg-[hsl(220,70%,12%)]">
         {/* White fade overlay */}
         <div
           className="absolute inset-0 bg-background transition-none"
@@ -36,33 +28,24 @@ export const HomeHeroSection = () => {
       </div>
 
       {/* Hero content */}
-      <section className="relative z-10 h-screen flex items-end pb-24 md:pb-32">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-end">
-            <div>
-              <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium text-background leading-[1.05] tracking-tight">
-                A Path That
-                <br />
-                Shapes Your
-                <br />
-                <span className="text-lioner-gold italic">Future.</span>
-              </h1>
-            </div>
-            <div className="flex flex-col items-start md:items-end gap-6">
-              <p className="text-background/80 text-base md:text-lg leading-relaxed max-w-md md:text-right">
-                We offer strategic advisory and controlled reset environments to help
-                founders navigate complexity with confidence. Together, we'll build
-                clarity, execution discipline, and lasting performance.
-              </p>
-              <a
-                href="#start-here"
-                className="inline-flex items-center gap-3 bg-lioner-gold text-foreground rounded-full px-8 py-4 text-sm font-medium tracking-wider uppercase hover:bg-lioner-gold/90 transition-colors"
-              >
-                Start Your Journey
-                <span className="w-2 h-2 rounded-full bg-foreground/40" />
-              </a>
-            </div>
-          </div>
+      <section className="relative z-10 h-screen flex items-center justify-center">
+        <div className="container mx-auto px-6 max-w-7xl flex flex-col items-center gap-10">
+          <img
+            src={logoWhite}
+            alt="Leaders Performance"
+            className="w-[320px] md:w-[480px] lg:w-[600px] h-auto"
+          />
+          <p className="text-background/70 text-base md:text-lg leading-relaxed max-w-lg text-center">
+            Strategic advisory and controlled reset environments for founders
+            navigating complexity with confidence.
+          </p>
+          <a
+            href="#start-here"
+            className="inline-flex items-center gap-3 bg-lioner-gold text-foreground rounded-full px-8 py-4 text-sm font-medium tracking-wider uppercase hover:bg-lioner-gold/90 transition-colors"
+          >
+            Start Your Journey
+            <span className="w-2 h-2 rounded-full bg-foreground/40" />
+          </a>
         </div>
       </section>
 
