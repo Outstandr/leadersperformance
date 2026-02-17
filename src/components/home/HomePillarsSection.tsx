@@ -51,7 +51,7 @@ export const HomePillarsSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 0.08, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="font-serif text-[12rem] md:text-[18rem] lg:text-[24rem] font-bold leading-none text-foreground select-none"
+              className="font-serif text-[12rem] md:text-[18rem] lg:text-[24rem] font-bold leading-none text-lioner-gold select-none"
             >
               {formattedNumber}
             </motion.span>
