@@ -6,6 +6,7 @@ import { HomeStorySection } from "@/components/home/HomeStorySection";
 import { HomeIntroSection } from "@/components/home/HomeIntroSection";
 import { HomePillarsSection } from "@/components/home/HomePillarsSection";
 import { HomeFooter } from "@/components/home/HomeFooter";
+import { HomeFAQSection } from "@/components/home/HomeFAQSection";
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
           <HomeIntroSection />
           <HomeStorySection />
           <HomePillarsSection />
+          <HomeFAQSection />
         </div>
       </main>
       <div className="relative z-10 bg-background">
