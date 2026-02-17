@@ -107,9 +107,15 @@ export const HomePillarsSection = () => {
                 <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground mb-6">
                   {pillar.title}
                 </h2>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8">
                   {pillar.description}
                 </p>
+                <a
+                  href="#services"
+                  className="inline-block border border-lioner-gold text-lioner-gold px-8 py-3 text-sm font-medium tracking-widest uppercase hover:bg-lioner-gold hover:text-white transition-all duration-300"
+                >
+                  Choose Your Path
+                </a>
               </div>
             </div>
           </div>
