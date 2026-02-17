@@ -18,8 +18,8 @@ const Index = () => {
       <main>
         <HomeHeroSection />
         {/* All sections after hero have solid bg so they scroll over the fixed image */}
+        <HomeTransitionSection />
         <div className="relative z-10 bg-background">
-          <HomeTransitionSection />
           <HomeFeaturesGrid />
           <HomeIntroSection />
           <HomeShowcaseSection />
