@@ -1,79 +1,77 @@
-import { ArrowUpRight } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import serviceMindfulness from "@/assets/service-mindfulness.jpg";
+import serviceCoaching from "@/assets/service-coaching.jpg";
+import serviceClarity from "@/assets/service-clarity.jpg";
+import serviceLeadership from "@/assets/service-leadership.jpg";
 
-const features = [
+const services = [
   {
-    title: "Decision Clarity",
-    description: "Strip away operational noise and rebuild your decision-making framework from the ground up.",
+    title: "UNMASKED\nDesert Reset",
+    description:
+      "A 4-day controlled recalibration in the desert to strip away noise, confront deferred decisions, and rebuild your strategy.",
+    image: serviceMindfulness,
   },
   {
-    title: "Execution Discipline",
-    description: "Move beyond planning into structured, accountable action with measurable outcomes.",
+    title: "Individual\nAdvisory",
+    description:
+      "One-on-one strategic sessions for execution clarity, accountability, and deeper self-leadership.",
+    image: serviceCoaching,
   },
   {
-    title: "Strategic Recalibration",
-    description: "Realign your personal operating rhythm with your business growth trajectory.",
+    title: "Clarity\nConsult",
+    description:
+      "A short-term space to gain insight, assess your needs, or reset your strategic course.",
+    image: serviceClarity,
   },
   {
-    title: "Sustainable Performance",
-    description: "Build systems that protect vitality while scaling complexity and responsibility.",
+    title: "Leadership\nCoaching",
+    description:
+      "Goal-focused sessions to build direction, sustainable performance, and executive confidence.",
+    image: serviceLeadership,
   },
 ];
 
 export const HomeFeaturesGrid = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="py-20 md:py-28">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="mb-12">
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-foreground leading-tight max-w-2xl">
-            Transforming Complexity into{" "}
-            <span className="text-lioner-gold">Clarity.</span>
-          </h2>
-          <p className="mt-4 text-base text-muted-foreground max-w-2xl leading-relaxed">
-            We build controlled environments for founders to eliminate decision backlog, restore strategic focus, and scale without sacrificing vitality.
-          </p>
-        </div>
-
-        {/* Top row — tall cards */}
-        <div className="grid md:grid-cols-[0.8fr_1.2fr] gap-5">
-          {features.slice(0, 2).map((feature) => (
-            <div
-              key={feature.title}
-              className="group relative bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 min-h-[340px] flex flex-col justify-between hover:bg-[hsl(0,0%,93%)] transition-all duration-300 border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)]"
+    <section className="py-20 md:py-28 bg-background">
+      <div className="container mx-auto px-6 max-w-7xl" ref={ref}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {services.map((service, i) => (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
+              className="group relative rounded-2xl overflow-hidden cursor-pointer"
+              style={{ minHeight: "520px" }}
             >
-              <div className="flex items-start justify-between">
-                <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
-                  {feature.description}
-                </p>
-                <div className="w-10 h-10 rounded-full bg-lioner-gold flex items-center justify-center shrink-0 ml-4 group-hover:scale-110 transition-transform">
-                  <ArrowUpRight className="w-4 h-4 text-background" />
+              {/* Image */}
+              <img
+                src={service.image}
+                alt={service.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-foreground/20 via-foreground/30 to-foreground/80" />
+
+              {/* Content */}
+              <div className="relative h-full flex flex-col justify-between p-7">
+                <h3 className="font-serif text-2xl md:text-3xl text-background leading-tight whitespace-pre-line">
+                  {service.title}
+                </h3>
+                <div>
+                  <p className="text-sm text-background/70 leading-relaxed mb-6">
+                    {service.description}
+                  </p>
+                  <div className="w-3 h-3 rounded-full border-2 border-lioner-gold group-hover:bg-lioner-gold transition-colors" />
                 </div>
               </div>
-              <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-foreground mt-auto pt-8">
-                {feature.title}
-              </h3>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom row — shorter cards */}
-        <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-5 mt-5">
-          {features.slice(2, 4).map((feature) => (
-            <div
-              key={feature.title}
-              className="group relative bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 min-h-[340px] flex flex-col justify-between hover:bg-[hsl(0,0%,93%)] transition-all duration-300 border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)]"
-            >
-              <div className="flex items-start justify-between">
-                <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
-                  {feature.description}
-                </p>
-                <div className="w-10 h-10 rounded-full bg-lioner-gold flex items-center justify-center shrink-0 ml-4 group-hover:scale-110 transition-transform">
-                  <ArrowUpRight className="w-4 h-4 text-background" />
-                </div>
-              </div>
-              <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-foreground mt-auto pt-8">
-                {feature.title}
-              </h3>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
