@@ -39,7 +39,7 @@ export const HomeFeaturesGrid = () => {
   return (
     <section className="relative z-10 py-20 md:py-28 bg-background">
       <div className="container mx-auto px-6 max-w-7xl" ref={ref}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -47,7 +47,10 @@ export const HomeFeaturesGrid = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
               className="group relative overflow-hidden cursor-pointer"
-              style={{ minHeight: i % 2 === 0 ? "560px" : "480px" }}
+              style={{
+                height: i % 2 === 0 ? "520px" : "580px",
+                marginTop: i % 2 === 1 ? "60px" : "0px",
+              }}
             >
               {/* Image */}
               <img
