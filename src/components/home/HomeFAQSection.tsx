@@ -30,17 +30,17 @@ const faqs = [
 
 export const HomeFAQSection = () => {
   return (
-    <section id="faq" className="py-20 md:py-28">
+    <section id="faq" className="py-20 md:py-28" style={{ background: "hsl(0 0% 12%)" }}>
       <div className="container mx-auto px-6 max-w-7xl">
-        <div className="bg-[hsl(0,0%,96%)] rounded-3xl p-10 md:p-16 border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)]">
+        <div className="rounded-3xl p-10 md:p-16 border-2 border-lioner-gold/30" style={{ background: "rgba(255,255,255,0.06)" }}>
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             {/* Left: Title */}
             <div>
-              <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-foreground leading-tight">
+              <h2 className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight" style={{ color: "white" }}>
                 Understanding the{" "}
                 <span className="text-lioner-gold">Process.</span>
               </h2>
-              <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-md">
+              <p className="mt-4 text-sm leading-relaxed max-w-md" style={{ color: "rgba(255,255,255,0.6)" }}>
                 Have questions about our advisory and experiences? Find answers to the most common questions below.
               </p>
             </div>
@@ -49,11 +49,11 @@ export const HomeFAQSection = () => {
             <div>
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, i) => (
-                  <AccordionItem key={i} value={`item-${i}`} className="border-b border-border/60 py-1">
-                    <AccordionTrigger className="text-left text-sm md:text-base font-medium text-foreground hover:no-underline py-5">
+                  <AccordionItem key={i} value={`item-${i}`} className="border-b border-white/10 py-1">
+                    <AccordionTrigger className="text-left text-sm md:text-base font-medium hover:no-underline py-5" style={{ color: "white" }}>
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-6">
+                    <AccordionContent className="text-sm leading-relaxed pb-6" style={{ color: "rgba(255,255,255,0.6)" }}>
                       {faq.answer}
                     </AccordionContent>
                   </AccordionItem>
