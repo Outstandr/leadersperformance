@@ -12,20 +12,25 @@ import { HomeFooter } from "@/components/home/HomeFooter";
 
 const Index = () => {
   return (
-    <div className="bg-background">
+    <div>
       <HomeNavigation />
       <main>
         <HomeHeroSection />
-        <HomeFeaturesGrid />
-        <HomeIntroSection />
-        <HomeShowcaseSection />
-        <HomeOfferingsSection />
-        <HomeTestimonialsSection />
-        <HomeInsightsSection />
-        <HomeFAQSection />
-        <HomeFinalCTA />
+        {/* All sections after hero have solid bg so they scroll over the fixed image */}
+        <div className="relative z-10 bg-background">
+          <HomeFeaturesGrid />
+          <HomeIntroSection />
+          <HomeShowcaseSection />
+          <HomeOfferingsSection />
+          <HomeTestimonialsSection />
+          <HomeInsightsSection />
+          <HomeFAQSection />
+          <HomeFinalCTA />
+        </div>
       </main>
-      <HomeFooter />
+      <div className="relative z-10 bg-background">
+        <HomeFooter />
+      </div>
     </div>
   );
 };
