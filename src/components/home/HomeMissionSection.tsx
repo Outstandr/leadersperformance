@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { Play, Pause, RotateCcw } from "lucide-react";
-
+import lionelMission from "@/assets/lionel-mission.png";
 
 const SCROLL_SPEED = 1.2; // pixels per frame
 
@@ -212,8 +212,8 @@ export const HomeMissionSection = () => {
           {/* Right: Image */}
           <div className="relative aspect-[3/4] overflow-hidden sticky top-24">
             <img
-              src={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/websiteimages/Unmasked.png`}
-              alt="Leadership vision"
+              src={lionelMission}
+              alt="Lionel Eersteling"
               className="w-full h-full object-cover"
             />
           </div>
