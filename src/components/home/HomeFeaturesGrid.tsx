@@ -1,17 +1,17 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import { X } from "lucide-react";
-import serviceMindfulness from "@/assets/service-mindfulness.jpg";
+import serviceUnmasked from "@/assets/service-unmasked-desert.jpg";
 import serviceCoaching from "@/assets/service-coaching.jpg";
-import serviceClarity from "@/assets/service-clarity.jpg";
-import serviceLeadership from "@/assets/service-leadership.jpg";
+import serviceAcademy from "@/assets/service-academy.jpg";
+import serviceBusiness from "@/assets/service-business.jpg";
 
 const services = [
   {
     title: "UNMASKED\nDesert Intervention",
     description:
       "A 4-day controlled recalibration in the desert to strip away noise, confront deferred decisions, and rebuild your strategy.",
-    image: serviceMindfulness,
+    image: serviceUnmasked,
     details: {
       headline: "UNMASKED — Desert Intervention",
       body: "A private 4-day immersive experience designed for leaders who have hit a ceiling they can't think their way through. Removed from your environment, stripped of distractions, you confront the decisions you've been deferring — the ones silently eroding your performance, your relationships, and your clarity.",
@@ -47,7 +47,7 @@ const services = [
     title: "Leaders Performance\nAcademy",
     description:
       "A short-term space to gain insight, assess your needs, or reset your strategic course.",
-    image: serviceClarity,
+    image: serviceAcademy,
     details: {
       headline: "Leaders Performance Academy",
       body: "A focused, short-term engagement for leaders at an inflection point. Whether you're navigating a transition, evaluating your next move, or simply need an honest external perspective — the Leaders Performance Academy gives you the space and structure to see clearly again.",
@@ -65,7 +65,7 @@ const services = [
     title: "Business\nCoaching",
     description:
       "Goal-focused sessions to build direction, sustainable performance, and executive confidence.",
-    image: serviceLeadership,
+    image: serviceBusiness,
     details: {
       headline: "Business Coaching",
       body: "Structured coaching engagements for leaders ready to build the discipline, presence, and strategic thinking required to lead at the highest level. This is where ambition meets execution — where you stop managing and start commanding your trajectory.",
