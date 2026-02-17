@@ -46,8 +46,8 @@ export const HomeFeaturesGrid = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer"
-              style={{ minHeight: "520px" }}
+              className="group relative overflow-hidden cursor-pointer"
+              style={{ minHeight: i % 2 === 0 ? "560px" : "480px" }}
             >
               {/* Image */}
               <img
