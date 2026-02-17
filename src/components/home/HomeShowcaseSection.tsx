@@ -1,3 +1,5 @@
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Shield, Users, TrendingUp } from "lucide-react";
 
@@ -33,6 +35,26 @@ const showcases = [
   },
 ];
 
+const ParallaxImage = ({ src, alt }: { src: string; alt: string }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
+
+  return (
+    <div ref={ref} className="relative aspect-square max-w-md mx-auto overflow-hidden rounded-3xl border border-lioner-gold/40 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.12)]">
+      <motion.img
+        src={src}
+        alt={alt}
+        style={{ y }}
+        className="w-full h-[120%] object-cover absolute inset-0"
+      />
+    </div>
+  );
+};
+
 export const HomeShowcaseSection = () => {
   return (
     <section className="py-20 md:py-28">
@@ -57,20 +79,9 @@ export const HomeShowcaseSection = () => {
               </div>
             </div>
 
-            {/* Visual placeholder */}
+            {/* Visual with parallax */}
             <div className={item.reverse ? "md:[direction:ltr]" : ""}>
-              <div className="relative aspect-square max-w-md mx-auto overflow-hidden rounded-3xl border border-lioner-gold/40 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.12)]">
-                {item.image ? (
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-                ) : (
-                  <>
-                    <div className="absolute inset-0 bg-gradient-to-br from-lioner-gold/20 via-lioner-gold/5 to-transparent" />
-                    <div className="absolute inset-4 bg-background rounded-2xl shadow-lg flex items-center justify-center">
-                      <item.icon className="w-16 h-16 text-lioner-gold/30" />
-                    </div>
-                  </>
-                )}
-              </div>
+              <ParallaxImage src={item.image} alt={item.title} />
             </div>
           </div>
         ))}
