@@ -37,7 +37,7 @@ export const HomeFeaturesGrid = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 md:py-28 bg-background">
+    <section className="relative z-10 py-20 md:py-28 bg-background">
       <div className="container mx-auto px-6 max-w-7xl" ref={ref}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {services.map((service, i) => (

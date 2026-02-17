@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export const HomeTransitionSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-background text-center">
+    <section className="sticky top-0 z-0 py-24 md:py-32 bg-background text-center flex items-center min-h-[70vh]">
       <div className="container mx-auto px-6 max-w-3xl">
         {/* Small label */}
         <motion.p
