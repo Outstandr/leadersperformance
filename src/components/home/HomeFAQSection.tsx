@@ -32,7 +32,7 @@ export const HomeFAQSection = () => {
   return (
     <section id="faq" className="py-20 md:py-28">
       <div className="container mx-auto px-6 max-w-7xl">
-        <div className="bg-[hsl(0,0%,96%)] rounded-3xl p-10 md:p-16">
+        <div className="bg-[hsl(0,0%,96%)] rounded-3xl p-10 md:p-16 border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)]">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             {/* Left: Title */}
             <div>
