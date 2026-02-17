@@ -74,7 +74,7 @@ export const HomeHeroSection = () => {
           className="w-full h-[60px] md:h-[80px] block"
         >
           <path
-            d="M0,80 C360,0 1080,0 1440,80 L1440,80 L0,80 Z"
+            d="M0,0 C360,80 1080,80 1440,0 L1440,80 L0,80 Z"
             fill="hsl(var(--background))"
           />
         </svg>
