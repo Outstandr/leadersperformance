@@ -26,12 +26,12 @@ const services = [
     },
   },
   {
-    title: "Individual\nAdvisory",
+    title: "High Performance\nCoaching",
     description:
       "One-on-one strategic sessions for execution clarity, accountability, and deeper self-leadership.",
     image: serviceCoaching,
     details: {
-      headline: "Individual Advisory",
+      headline: "High Performance Coaching",
       body: "Ongoing strategic partnership for high-performers who refuse to plateau. These are not therapy sessions — they are structured, results-driven conversations designed to sharpen your decision-making, hold you accountable to your own standards, and systematically eliminate the blind spots slowing you down.",
       bullets: [
         "Private one-on-one sessions (in-person or virtual)",
@@ -44,13 +44,13 @@ const services = [
     },
   },
   {
-    title: "Clarity\nConsult",
+    title: "Leaders Performance\nAcademy",
     description:
       "A short-term space to gain insight, assess your needs, or reset your strategic course.",
     image: serviceClarity,
     details: {
-      headline: "Clarity Consult",
-      body: "A focused, short-term engagement for leaders at an inflection point. Whether you're navigating a transition, evaluating your next move, or simply need an honest external perspective — the Clarity Consult gives you the space and structure to see clearly again.",
+      headline: "Leaders Performance Academy",
+      body: "A focused, short-term engagement for leaders at an inflection point. Whether you're navigating a transition, evaluating your next move, or simply need an honest external perspective — the Leaders Performance Academy gives you the space and structure to see clearly again.",
       bullets: [
         "Single or multi-session format",
         "Rapid diagnostic of your current situation",
@@ -62,12 +62,12 @@ const services = [
     },
   },
   {
-    title: "Leadership\nCoaching",
+    title: "Business\nCoaching",
     description:
       "Goal-focused sessions to build direction, sustainable performance, and executive confidence.",
     image: serviceLeadership,
     details: {
-      headline: "Leadership Coaching",
+      headline: "Business Coaching",
       body: "Structured coaching engagements for leaders ready to build the discipline, presence, and strategic thinking required to lead at the highest level. This is where ambition meets execution — where you stop managing and start commanding your trajectory.",
       bullets: [
         "Goal-oriented coaching trajectory",
