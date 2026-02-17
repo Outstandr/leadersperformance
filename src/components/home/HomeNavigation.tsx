@@ -54,7 +54,7 @@ export const HomeNavigation = () => {
             <img
               src={isDark ? logoWhite : logo}
               alt="Leaders Performance"
-              className="h-28 md:h-32 lg:h-40 w-auto transition-opacity duration-300"
+              className="h-14 w-auto transition-opacity duration-300"
             />
           </Link>
 
