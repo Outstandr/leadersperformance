@@ -26,15 +26,8 @@ export const HomeHeroSection = () => {
         />
       </div>
 
-      {/* Centered logo */}
-      <div className="fixed inset-0 z-[1] flex items-center justify-center pointer-events-none">
-        <img
-          src={logoWhite}
-          alt="Leaders Performance"
-          className="h-10 w-auto"
-          style={{ opacity: 1 - fadeOpacity }}
-        />
-      </div>
+
+
 
       {/* Hero content */}
       <section className="relative z-10 h-screen flex flex-col justify-end pb-24 md:pb-32">
