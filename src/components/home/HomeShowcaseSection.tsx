@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Users, TrendingUp } from "lucide-react";
+import unmaskedImage from "@/assets/unmasked-desert.png";
 
 const showcases = [
   {
@@ -8,6 +9,7 @@ const showcases = [
     cta: "Explore UNMASKED",
     link: "#",
     icon: Shield,
+    image: unmaskedImage,
     reverse: false,
   },
   {
@@ -16,6 +18,7 @@ const showcases = [
     cta: "Learn about Advisory",
     link: "#advisory",
     icon: Users,
+    image: undefined,
     reverse: true,
   },
   {
@@ -54,11 +57,17 @@ export const HomeShowcaseSection = () => {
 
             {/* Visual placeholder */}
             <div className={item.reverse ? "md:[direction:ltr]" : ""}>
-              <div className="relative aspect-square max-w-md mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-br from-lioner-gold/20 via-lioner-gold/5 to-transparent rounded-3xl" />
-                <div className="absolute inset-4 bg-background rounded-2xl shadow-lg flex items-center justify-center">
-                  <item.icon className="w-16 h-16 text-lioner-gold/30" />
-                </div>
+              <div className="relative aspect-square max-w-md mx-auto overflow-hidden rounded-3xl">
+                {item.image ? (
+                  <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                ) : (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-br from-lioner-gold/20 via-lioner-gold/5 to-transparent" />
+                    <div className="absolute inset-4 bg-background rounded-2xl shadow-lg flex items-center justify-center">
+                      <item.icon className="w-16 h-16 text-lioner-gold/30" />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
