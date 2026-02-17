@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
+        sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'Inter', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -27,6 +27,7 @@ export default {
         'secondary-blue': "hsl(var(--secondary-blue))",
         'secondary-purple': "hsl(var(--secondary-purple))",
         'neutral-gray': "hsl(var(--neutral-gray))",
+        'off-white': "hsl(var(--off-white))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
