@@ -38,7 +38,7 @@ export const HomeShowcaseSection = () => {
         {showcases.map((item) => (
           <div
             key={item.title}
-            className={`grid md:grid-cols-2 gap-12 md:gap-20 items-center border border-lioner-gold/30 rounded-3xl p-8 md:p-12 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)] ${item.reverse ? "md:[direction:rtl]" : ""}`}
+            className={`grid md:grid-cols-2 gap-12 md:gap-20 items-center border-2 border-lioner-gold/30 rounded-3xl p-8 md:p-12 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)] ${item.reverse ? "md:[direction:rtl]" : ""}`}
           >
             {/* Text */}
             <div className={item.reverse ? "md:[direction:ltr]" : ""}>

@@ -5,7 +5,7 @@ export const HomeHeroSection = () => {
   return (
     <section id="hero" className="pt-28 pb-16 md:pt-36 md:pb-24">
       <div className="container mx-auto px-6 max-w-7xl">
-        <div className="bg-[hsl(0,0%,96%)] rounded-3xl p-10 md:p-16 lg:p-20">
+        <div className="bg-[hsl(0,0%,96%)] rounded-3xl p-10 md:p-16 lg:p-20 border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)]">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-foreground leading-[1.08]">
               Clarity Under{" "}

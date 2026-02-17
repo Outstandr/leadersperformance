@@ -36,7 +36,7 @@ export const HomeOfferingsSection = () => {
           {offerings.map((item) => (
             <div
               key={item.title}
-              className="group bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 flex flex-col justify-between hover:bg-[hsl(0,0%,93%)] transition-all duration-300"
+              className="group bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 flex flex-col justify-between hover:bg-[hsl(0,0%,93%)] transition-all duration-300 border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)]"
             >
               <div>
                 <div className="w-12 h-12 rounded-xl bg-lioner-gold/10 flex items-center justify-center mb-6">

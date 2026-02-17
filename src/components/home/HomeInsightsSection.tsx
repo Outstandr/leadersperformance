@@ -41,7 +41,7 @@ export const HomeInsightsSection = () => {
             <a
               key={article.title}
               href="#"
-              className="group bg-[hsl(0,0%,96%)] rounded-2xl overflow-hidden hover:bg-[hsl(0,0%,93%)] transition-all duration-300"
+              className="group bg-[hsl(0,0%,96%)] rounded-2xl overflow-hidden hover:bg-[hsl(0,0%,93%)] transition-all duration-300 border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)]"
             >
               <div className="aspect-[16/10] bg-[hsl(0,0%,90%)] relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-lioner-gold/20 to-transparent" />

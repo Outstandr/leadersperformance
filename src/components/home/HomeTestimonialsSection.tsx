@@ -77,7 +77,7 @@ export const HomeTestimonialsSection = () => {
         {testimonials.map((t) => (
           <div
             key={t.name}
-            className="bg-[hsl(0,0%,96%)] rounded-2xl p-8 min-w-[340px] max-w-[400px] shrink-0 flex flex-col gap-6"
+            className="bg-[hsl(0,0%,96%)] rounded-2xl p-8 min-w-[340px] max-w-[400px] shrink-0 flex flex-col gap-6 border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)]"
           >
             <div className="flex items-center gap-4">
               <img
