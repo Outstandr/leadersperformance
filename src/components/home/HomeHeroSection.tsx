@@ -27,21 +27,15 @@ export const HomeHeroSection = () => {
       </div>
 
       {/* Hero content */}
-      <section className="relative z-10 h-screen flex flex-col items-center justify-between py-24 md:py-32">
-        {/* Spacer */}
-        <div />
-
-        {/* Centered logo */}
-        <img
-          src={logoWhite}
-          alt="Leaders Performance"
-          className="w-[320px] md:w-[480px] lg:w-[600px] h-auto"
-        />
-
-        {/* Bottom text */}
-        <div className="flex flex-col items-center md:items-end gap-6 w-full max-w-7xl px-6">
+      <section className="relative z-10 h-screen flex flex-col justify-end pb-24 md:pb-32">
+        <div className="w-full max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-end w-full">
             <div>
+              <img
+                src={logoWhite}
+                alt="Leaders Performance"
+                className="w-[160px] md:w-[200px] h-auto mb-6"
+              />
               <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium text-background leading-[1.05] tracking-tight">
                 A Path That
                 <br />
