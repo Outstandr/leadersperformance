@@ -7,6 +7,7 @@ import { HomeIntroSection } from "@/components/home/HomeIntroSection";
 import { HomePillarsSection } from "@/components/home/HomePillarsSection";
 import { HomeFooter } from "@/components/home/HomeFooter";
 import { HomeFAQSection } from "@/components/home/HomeFAQSection";
+import { HomeGoldLines } from "@/components/home/HomeGoldLines";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
         <HomeHeroSection />
         <HomeTransitionSection />
         <div className="relative z-10 bg-background">
+          <HomeGoldLines />
           <HomeFeaturesGrid />
           <HomeIntroSection />
           <HomeStorySection />
