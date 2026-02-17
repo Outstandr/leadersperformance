@@ -9,7 +9,7 @@ export const HomeHeroSection = () => {
       const scrollY = window.scrollY;
       const windowH = window.innerHeight;
       // Start fading at 30% of viewport, fully white at 100%
-      const progress = Math.min(Math.max((scrollY - windowH * 0.3) / (windowH * 0.7), 0), 1);
+      const progress = Math.min(Math.max((scrollY - windowH * 0.1) / (windowH * 0.4), 0), 1);
       setFadeOpacity(progress);
     };
 
