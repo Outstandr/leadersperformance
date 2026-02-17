@@ -10,19 +10,14 @@ export const HomeHeroSection = () => {
     offset: ["start start", "end start"],
   });
 
-  // Image scrolls up (parallax) as user scrolls
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
   // Content fades out as user scrolls
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -60]);
 
   return (
     <section ref={sectionRef} className="relative h-screen overflow-hidden">
-      {/* Background image — parallax scroll up */}
-      <motion.div
-        className="absolute inset-0 w-full h-[130%]"
-        style={{ y: imageY }}
-      >
+      {/* Background image — fixed, no movement */}
+      <div className="absolute inset-0">
         <img
           src={heroImage}
           alt="Executive leadership"
@@ -31,7 +26,7 @@ export const HomeHeroSection = () => {
         {/* Dark overlay for text legibility */}
         <div className="absolute inset-0 bg-foreground/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/30 to-transparent" />
-      </motion.div>
+      </div>
 
       {/* Bottom curved gradient fade into white */}
       <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
