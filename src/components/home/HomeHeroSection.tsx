@@ -1,20 +1,24 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
 import heroImage from "@/assets/hero-executive.jpg";
 
 export const HomeHeroSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const [fadeOpacity, setFadeOpacity] = useState(0);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowH = window.innerHeight;
+      // Start fading at 30% of viewport, fully white at 100%
+      const progress = Math.min(Math.max((scrollY - windowH * 0.3) / (windowH * 0.7), 0), 1);
+      setFadeOpacity(progress);
+    };
 
-  // White overlay fades in as user scrolls past the hero
-  const whiteOverlayOpacity = useTransform(scrollYProgress, [0.3, 1], [0, 1]);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div ref={sectionRef}>
+    <>
       {/* Fixed background image */}
       <div className="fixed inset-0 z-0">
         <img
@@ -24,10 +28,10 @@ export const HomeHeroSection = () => {
         />
         <div className="absolute inset-0 bg-foreground/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/20 to-transparent" />
-        {/* White fade overlay — driven by scroll */}
-        <motion.div
-          className="absolute inset-0 bg-background"
-          style={{ opacity: whiteOverlayOpacity }}
+        {/* White fade overlay */}
+        <div
+          className="absolute inset-0 bg-background transition-none"
+          style={{ opacity: fadeOpacity }}
         />
       </div>
 
@@ -75,6 +79,6 @@ export const HomeHeroSection = () => {
           />
         </svg>
       </div>
-    </div>
+    </>
   );
 };
