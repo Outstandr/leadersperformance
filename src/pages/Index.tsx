@@ -8,6 +8,7 @@ import { HomePillarsSection } from "@/components/home/HomePillarsSection";
 import { HomeFooter } from "@/components/home/HomeFooter";
 import { HomeFAQSection } from "@/components/home/HomeFAQSection";
 import { HomeGoldLines } from "@/components/home/HomeGoldLines";
+import { HomeArticlesSection } from "@/components/home/HomeArticlesSection";
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
           <HomeIntroSection />
           <HomeMissionSection />
           <HomePillarsSection />
+          <HomeArticlesSection />
           <HomeFAQSection />
         </div>
       </main>
