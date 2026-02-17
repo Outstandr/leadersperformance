@@ -60,7 +60,7 @@ export const HomeFeaturesGrid = () => {
           {features.slice(2, 4).map((feature) => (
             <div
               key={feature.title}
-              className="group relative bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 min-h-[220px] flex flex-col justify-between hover:bg-[hsl(0,0%,93%)] transition-all duration-300"
+              className="group relative bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 min-h-[340px] flex flex-col justify-between hover:bg-[hsl(0,0%,93%)] transition-all duration-300"
             >
               <div className="flex items-start justify-between">
                 <p className="text-sm text-muted-foreground leading-relaxed max-w-md">

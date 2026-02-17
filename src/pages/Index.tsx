@@ -1,6 +1,7 @@
 import { HomeNavigation } from "@/components/home/HomeNavigation";
 import { HomeHeroSection } from "@/components/home/HomeHeroSection";
 import { HomeFeaturesGrid } from "@/components/home/HomeFeaturesGrid";
+import { HomeShowcaseSection } from "@/components/home/HomeShowcaseSection";
 import { HomeIntroSection } from "@/components/home/HomeIntroSection";
 import { HomeOfferingsSection } from "@/components/home/HomeOfferingsSection";
 import { HomeTestimonialsSection } from "@/components/home/HomeTestimonialsSection";
@@ -16,6 +17,7 @@ const Index = () => {
       <main>
         <HomeHeroSection />
         <HomeFeaturesGrid />
+        <HomeShowcaseSection />
         <HomeIntroSection />
         <HomeOfferingsSection />
         <HomeTestimonialsSection />
