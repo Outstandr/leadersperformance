@@ -57,7 +57,7 @@ export const HomeShowcaseSection = () => {
 
             {/* Visual placeholder */}
             <div className={item.reverse ? "md:[direction:ltr]" : ""}>
-              <div className="relative aspect-square max-w-md mx-auto overflow-hidden rounded-3xl">
+              <div className="relative aspect-square max-w-md mx-auto overflow-hidden rounded-3xl border border-lioner-gold/40 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.12)]">
                 {item.image ? (
                   <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
                 ) : (
