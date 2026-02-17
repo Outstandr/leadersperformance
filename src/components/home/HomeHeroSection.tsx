@@ -1,9 +1,21 @@
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import heroImage from "@/assets/hero-executive.jpg";
 
 export const HomeHeroSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // White overlay fades in as user scrolls past the hero
+  const whiteOverlayOpacity = useTransform(scrollYProgress, [0.3, 1], [0, 1]);
+
   return (
-    <>
-      {/* Fixed background image that stays in place */}
+    <div ref={sectionRef}>
+      {/* Fixed background image */}
       <div className="fixed inset-0 z-0">
         <img
           src={heroImage}
@@ -12,13 +24,17 @@ export const HomeHeroSection = () => {
         />
         <div className="absolute inset-0 bg-foreground/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/20 to-transparent" />
+        {/* White fade overlay — driven by scroll */}
+        <motion.div
+          className="absolute inset-0 bg-background"
+          style={{ opacity: whiteOverlayOpacity }}
+        />
       </div>
 
-      {/* Hero section — scrolls normally, content visible over fixed bg */}
+      {/* Hero content */}
       <section className="relative z-10 h-screen flex items-end pb-24 md:pb-32">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-end">
-            {/* Left — Headline */}
             <div>
               <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium text-background leading-[1.05] tracking-tight">
                 A Path That
@@ -28,8 +44,6 @@ export const HomeHeroSection = () => {
                 <span className="text-lioner-gold italic">Future.</span>
               </h1>
             </div>
-
-            {/* Right — Description + CTA */}
             <div className="flex flex-col items-start md:items-end gap-6">
               <p className="text-background/80 text-base md:text-lg leading-relaxed max-w-md md:text-right">
                 We offer strategic advisory and controlled reset environments to help
@@ -48,7 +62,7 @@ export const HomeHeroSection = () => {
         </div>
       </section>
 
-      {/* Curved transition — this scrolls up over the fixed image */}
+      {/* Curved transition */}
       <div className="relative z-10 -mt-1">
         <svg
           viewBox="0 0 1440 80"
@@ -61,6 +75,6 @@ export const HomeHeroSection = () => {
           />
         </svg>
       </div>
-    </>
+    </div>
   );
 };
