@@ -56,7 +56,7 @@ export const HomeFeaturesGrid = () => {
         </div>
 
         {/* Bottom row — shorter cards */}
-        <div className="grid md:grid-cols-2 gap-5 mt-5">
+        <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-5 mt-5">
           {features.slice(2, 4).map((feature) => (
             <div
               key={feature.title}
