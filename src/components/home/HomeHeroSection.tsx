@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import heroImage from "@/assets/hero-sovereignty.png";
+import logoWhite from "@/assets/logo-white.png";
 
 export const HomeHeroSection = () => {
   const [fadeOpacity, setFadeOpacity] = useState(0);
@@ -8,7 +8,6 @@ export const HomeHeroSection = () => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowH = window.innerHeight;
-      // Start fading at 30% of viewport, fully white at 100%
       const progress = Math.min(Math.max((scrollY - windowH * 0.1) / (windowH * 0.4), 0), 1);
       setFadeOpacity(progress);
     };
@@ -19,16 +18,8 @@ export const HomeHeroSection = () => {
 
   return (
     <>
-      {/* Fixed background image */}
-      <div className="fixed inset-0 z-0">
-        <img
-          src={heroImage}
-          alt="Executive leadership"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-foreground/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/20 to-transparent" />
-        {/* White fade overlay */}
+      {/* Fixed black background */}
+      <div className="fixed inset-0 z-0 bg-foreground">
         <div
           className="absolute inset-0 bg-background transition-none"
           style={{ opacity: fadeOpacity }}
@@ -36,9 +27,20 @@ export const HomeHeroSection = () => {
       </div>
 
       {/* Hero content */}
-      <section className="relative z-10 h-screen flex items-end pb-24 md:pb-32">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-end">
+      <section className="relative z-10 h-screen flex flex-col items-center justify-between py-24 md:py-32">
+        {/* Spacer */}
+        <div />
+
+        {/* Centered logo */}
+        <img
+          src={logoWhite}
+          alt="Leaders Performance"
+          className="w-[320px] md:w-[480px] lg:w-[600px] h-auto"
+        />
+
+        {/* Bottom text */}
+        <div className="flex flex-col items-center md:items-end gap-6 w-full max-w-7xl px-6">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-end w-full">
             <div>
               <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium text-background leading-[1.05] tracking-tight">
                 A Path That
