@@ -5,26 +5,33 @@ const articles = [
   {
     title: "The Cost of Decision Fatigue at the Executive Level",
     category: "Strategy",
+    date: "Apr 8, 2025",
+    readTime: "6 min read",
   },
   {
     title: "Building Structure in Chaos: The 90-Day Execution Rule",
     category: "Execution",
+    date: "Mar 15, 2025",
+    readTime: "5 min read",
   },
   {
     title: "Why Most Founders Plateau — And What to Do About It",
     category: "Performance",
+    date: "Feb 28, 2025",
+    readTime: "7 min read",
   },
 ];
 
 export const HomeInsightsSection = () => {
   return (
-    <section id="insights" className="py-20 md:py-28 bg-[hsl(var(--off-white))]">
+    <section id="insights" className="py-20 md:py-28">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
-            Open-Source Strategy.
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-foreground">
+            Open-Source{" "}
+            <span className="text-lioner-gold">Strategy.</span>
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground max-w-xl">
+          <p className="mt-4 text-base text-muted-foreground max-w-2xl leading-relaxed">
             Educational insights on founder pressure, decision fatigue, and executive discipline.
           </p>
         </div>
@@ -34,24 +41,26 @@ export const HomeInsightsSection = () => {
             <a
               key={article.title}
               href="#"
-              className="group bg-card rounded-2xl border border-border p-8 hover:border-lioner-gold/40 hover:shadow-lg transition-all duration-300"
+              className="group bg-[hsl(0,0%,96%)] rounded-2xl overflow-hidden hover:bg-[hsl(0,0%,93%)] transition-all duration-300"
             >
-              <span className="text-xs font-medium uppercase tracking-widest text-lioner-gold">
-                {article.category}
-              </span>
-              <h3 className="mt-4 text-lg font-semibold tracking-tight text-foreground leading-snug group-hover:text-lioner-gold transition-colors">
-                {article.title}
-              </h3>
-              <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-                Read
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </span>
+              <div className="aspect-[16/10] bg-[hsl(0,0%,90%)] relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-lioner-gold/20 to-transparent" />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
+                  <span>{article.date}</span>
+                  <span>{article.readTime}</span>
+                </div>
+                <h3 className="text-base font-semibold tracking-tight text-foreground leading-snug group-hover:text-lioner-gold transition-colors">
+                  {article.title}
+                </h3>
+              </div>
             </a>
           ))}
         </div>
 
         <div className="mt-12 text-center">
-          <Button variant="outline" className="rounded-full px-8 h-auto py-3 text-sm font-medium">
+          <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 h-auto py-3 text-sm font-medium">
             Read all Insights
           </Button>
         </div>

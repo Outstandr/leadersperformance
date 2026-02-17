@@ -31,23 +31,37 @@ const faqs = [
 export const HomeFAQSection = () => {
   return (
     <section id="faq" className="py-20 md:py-28">
-      <div className="container mx-auto px-6 max-w-3xl">
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-12">
-          Understanding the Process.
-        </h2>
+      <div className="container mx-auto px-6 max-w-7xl">
+        <div className="bg-[hsl(0,0%,96%)] rounded-3xl p-10 md:p-16">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+            {/* Left: Title */}
+            <div>
+              <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-foreground leading-tight">
+                Understanding the{" "}
+                <span className="text-lioner-gold">Process.</span>
+              </h2>
+              <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-md">
+                Have questions about our advisory and experiences? Find answers to the most common questions below.
+              </p>
+            </div>
 
-        <Accordion type="single" collapsible className="w-full">
-          {faqs.map((faq, i) => (
-            <AccordionItem key={i} value={`item-${i}`} className="border-b border-border py-1">
-              <AccordionTrigger className="text-left text-base font-medium text-foreground hover:no-underline py-5">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-6">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+            {/* Right: Accordion */}
+            <div>
+              <Accordion type="single" collapsible className="w-full">
+                {faqs.map((faq, i) => (
+                  <AccordionItem key={i} value={`item-${i}`} className="border-b border-border/60 py-1">
+                    <AccordionTrigger className="text-left text-sm md:text-base font-medium text-foreground hover:no-underline py-5">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-6">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
