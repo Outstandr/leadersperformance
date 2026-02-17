@@ -33,11 +33,34 @@ export const HomeFeaturesGrid = () => {
           </p>
         </div>
 
+        {/* Top row — tall cards */}
         <div className="grid md:grid-cols-2 gap-5">
-          {features.map((feature) => (
+          {features.slice(0, 2).map((feature) => (
             <div
               key={feature.title}
-              className="group relative bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 min-h-[260px] flex flex-col justify-between hover:bg-[hsl(0,0%,93%)] transition-all duration-300"
+              className="group relative bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 min-h-[340px] flex flex-col justify-between hover:bg-[hsl(0,0%,93%)] transition-all duration-300"
+            >
+              <div className="flex items-start justify-between">
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
+                  {feature.description}
+                </p>
+                <div className="w-10 h-10 rounded-full bg-lioner-gold flex items-center justify-center shrink-0 ml-4 group-hover:scale-110 transition-transform">
+                  <ArrowUpRight className="w-4 h-4 text-background" />
+                </div>
+              </div>
+              <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-foreground mt-auto pt-8">
+                {feature.title}
+              </h3>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom row — shorter cards */}
+        <div className="grid md:grid-cols-2 gap-5 mt-5">
+          {features.slice(2, 4).map((feature) => (
+            <div
+              key={feature.title}
+              className="group relative bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 min-h-[220px] flex flex-col justify-between hover:bg-[hsl(0,0%,93%)] transition-all duration-300"
             >
               <div className="flex items-start justify-between">
                 <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
