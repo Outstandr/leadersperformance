@@ -1,7 +1,8 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Compass, Target, BarChart3 } from "lucide-react";
 
 const offerings = [
   {
+    icon: Compass,
     eyebrow: "Private Reset",
     title: "UNMASKED",
     body: "A 4-day controlled recalibration in the desert. Designed to strip away noise and rebuild execution strategy.",
@@ -10,6 +11,7 @@ const offerings = [
     linkText: "View Experience details",
   },
   {
+    icon: Target,
     eyebrow: "Ongoing Strategy",
     title: "Boardroom Advisory",
     body: "Strategic performance audits, execution discipline, and accountability for business owners navigating critical inflection points.",
@@ -17,6 +19,7 @@ const offerings = [
     linkText: "Explore Advisory",
   },
   {
+    icon: BarChart3,
     eyebrow: "Foundation",
     title: "The RESET Method",
     body: "Begin by mapping your current baseline. Use our foundational scorecard to identify where performance is drifting.",
@@ -33,13 +36,16 @@ export const HomeOfferingsSection = () => {
           {offerings.map((item) => (
             <div
               key={item.title}
-              className="group bg-card rounded-2xl border border-border p-8 md:p-10 flex flex-col justify-between hover:border-lioner-gold/40 hover:shadow-lg transition-all duration-300"
+              className="group bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 flex flex-col justify-between hover:bg-[hsl(0,0%,93%)] transition-all duration-300"
             >
               <div>
+                <div className="w-12 h-12 rounded-xl bg-lioner-gold/10 flex items-center justify-center mb-6">
+                  <item.icon className="w-5 h-5 text-lioner-gold" />
+                </div>
                 <span className="text-xs font-medium uppercase tracking-widest text-lioner-gold">
                   {item.eyebrow}
                 </span>
-                <h3 className="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-foreground">
+                <h3 className="mt-3 text-xl md:text-2xl font-semibold tracking-tight text-foreground">
                   {item.title}
                 </h3>
                 <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
