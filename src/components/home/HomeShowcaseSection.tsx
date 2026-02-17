@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Users, TrendingUp } from "lucide-react";
-import unmaskedImage from "@/assets/unmasked-desert.png";
+
+const STORAGE_URL = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/websiteimages`;
 
 const showcases = [
   {
@@ -9,7 +10,7 @@ const showcases = [
     cta: "Explore UNMASKED",
     link: "#",
     icon: Shield,
-    image: unmaskedImage,
+    image: `${STORAGE_URL}/Unmasked.png`,
     reverse: false,
   },
   {
@@ -18,7 +19,7 @@ const showcases = [
     cta: "Learn about Advisory",
     link: "#advisory",
     icon: Users,
-    image: undefined,
+    image: `${STORAGE_URL}/Leadersperformance`,
     reverse: true,
   },
   {
@@ -27,6 +28,7 @@ const showcases = [
     cta: "Take the Assessment",
     link: "#start-here",
     icon: TrendingUp,
+    image: `${STORAGE_URL}/le`,
     reverse: false,
   },
 ];
