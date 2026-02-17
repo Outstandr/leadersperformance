@@ -1,5 +1,6 @@
 import { HomeNavigation } from "@/components/home/HomeNavigation";
 import { HomeHeroSection } from "@/components/home/HomeHeroSection";
+import { HomeTransitionSection } from "@/components/home/HomeTransitionSection";
 import { HomeFeaturesGrid } from "@/components/home/HomeFeaturesGrid";
 import { HomeShowcaseSection } from "@/components/home/HomeShowcaseSection";
 import { HomeIntroSection } from "@/components/home/HomeIntroSection";
@@ -18,6 +19,7 @@ const Index = () => {
         <HomeHeroSection />
         {/* All sections after hero have solid bg so they scroll over the fixed image */}
         <div className="relative z-10 bg-background">
+          <HomeTransitionSection />
           <HomeFeaturesGrid />
           <HomeIntroSection />
           <HomeShowcaseSection />
