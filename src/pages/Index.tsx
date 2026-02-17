@@ -17,8 +17,8 @@ const Index = () => {
       <main>
         <HomeHeroSection />
         <HomeFeaturesGrid />
-        <HomeShowcaseSection />
         <HomeIntroSection />
+        <HomeShowcaseSection />
         <HomeOfferingsSection />
         <HomeTestimonialsSection />
         <HomeInsightsSection />
