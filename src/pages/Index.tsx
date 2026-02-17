@@ -2,7 +2,7 @@ import { HomeNavigation } from "@/components/home/HomeNavigation";
 import { HomeHeroSection } from "@/components/home/HomeHeroSection";
 import { HomeTransitionSection } from "@/components/home/HomeTransitionSection";
 import { HomeFeaturesGrid } from "@/components/home/HomeFeaturesGrid";
-import { HomeShowcaseSection } from "@/components/home/HomeShowcaseSection";
+import { HomeStorySection } from "@/components/home/HomeStorySection";
 import { HomeIntroSection } from "@/components/home/HomeIntroSection";
 import { HomeOfferingsSection } from "@/components/home/HomeOfferingsSection";
 import { HomeTestimonialsSection } from "@/components/home/HomeTestimonialsSection";
@@ -22,7 +22,7 @@ const Index = () => {
         <div className="relative z-10 bg-background">
           <HomeFeaturesGrid />
           <HomeIntroSection />
-          <HomeShowcaseSection />
+          <HomeStorySection />
           <HomeOfferingsSection />
           <HomeTestimonialsSection />
           <HomeInsightsSection />
