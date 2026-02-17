@@ -66,19 +66,8 @@ export const HomeHeroSection = () => {
         </div>
       </section>
 
-      {/* Curved transition */}
-      <div className="relative z-10 -mt-1">
-        <svg
-          viewBox="0 0 1440 80"
-          preserveAspectRatio="none"
-          className="w-full h-[60px] md:h-[80px] block"
-        >
-          <path
-            d="M0,0 C360,80 1080,80 1440,0 L1440,80 L0,80 Z"
-            fill="hsl(var(--background))"
-          />
-        </svg>
-      </div>
+      {/* Bottom gradient fade */}
+      <div className="relative z-10 h-32 md:h-48 -mt-32 md:-mt-48 bg-gradient-to-b from-transparent to-background" />
     </>
   );
 };
