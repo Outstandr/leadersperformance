@@ -47,7 +47,7 @@ export const Navigation = () => {
               <img 
                 src={logo} 
                 alt="Leaders Performance" 
-                className="h-14 md:h-16 lg:h-20 w-auto transition-all duration-300"
+                className="h-28 md:h-32 lg:h-40 w-auto transition-all duration-300"
               />
             </a>
 
