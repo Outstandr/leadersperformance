@@ -2,7 +2,7 @@ import { HomeNavigation } from "@/components/home/HomeNavigation";
 import { HomeHeroSection } from "@/components/home/HomeHeroSection";
 import { HomeTransitionSection } from "@/components/home/HomeTransitionSection";
 import { HomeFeaturesGrid } from "@/components/home/HomeFeaturesGrid";
-import { HomeStorySection } from "@/components/home/HomeStorySection";
+import { HomeMissionSection } from "@/components/home/HomeMissionSection";
 import { HomeIntroSection } from "@/components/home/HomeIntroSection";
 import { HomePillarsSection } from "@/components/home/HomePillarsSection";
 import { HomeFooter } from "@/components/home/HomeFooter";
@@ -20,7 +20,7 @@ const Index = () => {
           <HomeGoldLines />
           <HomeFeaturesGrid />
           <HomeIntroSection />
-          <HomeStorySection />
+          <HomeMissionSection />
           <HomePillarsSection />
           <HomeFAQSection />
         </div>
