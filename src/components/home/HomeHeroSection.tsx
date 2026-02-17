@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import heroImage from "@/assets/hero-executive.jpg";
+import heroImage from "@/assets/lionel-hero-bg.png";
 
 export const HomeHeroSection = () => {
   const [fadeOpacity, setFadeOpacity] = useState(0);
