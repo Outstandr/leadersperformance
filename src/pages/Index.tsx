@@ -1,7 +1,9 @@
 import { HomeNavigation } from "@/components/home/HomeNavigation";
 import { HomeHeroSection } from "@/components/home/HomeHeroSection";
+import { HomeFeaturesGrid } from "@/components/home/HomeFeaturesGrid";
 import { HomeIntroSection } from "@/components/home/HomeIntroSection";
 import { HomeOfferingsSection } from "@/components/home/HomeOfferingsSection";
+import { HomeTestimonialsSection } from "@/components/home/HomeTestimonialsSection";
 import { HomeInsightsSection } from "@/components/home/HomeInsightsSection";
 import { HomeFAQSection } from "@/components/home/HomeFAQSection";
 import { HomeFinalCTA } from "@/components/home/HomeFinalCTA";
@@ -13,8 +15,10 @@ const Index = () => {
       <HomeNavigation />
       <main>
         <HomeHeroSection />
+        <HomeFeaturesGrid />
         <HomeIntroSection />
         <HomeOfferingsSection />
+        <HomeTestimonialsSection />
         <HomeInsightsSection />
         <HomeFAQSection />
         <HomeFinalCTA />
