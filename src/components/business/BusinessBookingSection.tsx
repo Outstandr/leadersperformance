@@ -35,7 +35,7 @@ export const BusinessBookingSection = ({
               </div>
               <div className="p-6 border-2 border-[hsl(var(--lioner-gold))]">
                 <h3 className="text-xl font-bold mb-3 text-[hsl(var(--lioner-gold))]">{t("business.booking.optionBLabel")}</h3>
-                <p className="text-white/90 leading-relaxed">
+                <p className="text-white/90 leading-relaxed whitespace-pre-line">
                   {t("business.booking.optionBText")}
                 </p>
               </div>
