@@ -262,8 +262,8 @@ const en: Record<string, string> = {
 
   // Business – Services
   "business.services.eyebrow": "The Protocol",
-  "business.services.heading": "We Don't Train. We Install Structure.",
-  "business.services.subheading": "Motivation is temporary. Systems are permanent. The Business Reset Blueprint is not a \"workshop.\" It is an installation of the Vanguard Operating System. We strip away the \"soft\" corporate habits and replace them with the protocols of high-performance units.",
+  "business.services.heading": "We don't train. We install structure.",
+  "business.services.subheading": "Motivation is temporary. Systems remain.\n\nThe Business Reset Blueprint isn't a workshop. It's an implementation.\n\nWe analyze where dependencies have arisen. Where standards have blurred. Where responsibility is unclear.\n\nThen we apply structure:\n• Clear roles\n• Clear decision rules\n• Measurable standards\n• Consequences that make sense\n\nNo extra pressure. Clear frameworks.\n\nPerformance isn't a coincidence. It becomes the result of the system.",
   "business.services.installHeading": "What We Install",
   "business.services.item1.title": "Vitality",
   "business.services.item1.desc": "Energy is the foundation. Without physical and mental sharpness, no strategy survives contact with reality.",
@@ -584,7 +584,7 @@ const nl: Record<string, string> = {
   // Business – Services (NL)
   "business.services.eyebrow": "Het protocol",
   "business.services.heading": "Wij trainen niet. Wij installeren structuur.",
-  "business.services.subheading": "Motivatie is tijdelijk. Systemen zijn permanent. De Business Reset Blueprint is geen \"workshop.\" Het is een installatie van het Vanguard Operating System. Wij stropen de \"zachte\" bedrijfsgewoonten weg en vervangen ze door de protocollen van high-performance eenheden.",
+  "business.services.subheading": "Motivatie is tijdelijk. Systemen blijven.\n\nDe Business Reset Blueprint is geen workshop. Het is een implementatie.\n\nWe analyseren waar afhankelijkheid is ontstaan. Waar normen vervaagd zijn. Waar verantwoordelijkheid niet helder is.\n\nVervolgens brengen we structuur aan:\n• Heldere rollen\n• Duidelijke beslisregels\n• Meetbare standaarden\n• Consequenties die kloppen\n\nGeen extra druk. Wel duidelijke kaders.\n\nPrestaties worden geen toeval. Ze worden het resultaat van het systeem.",
   "business.services.installHeading": "Wat wij installeren",
   "business.services.item1.title": "Vitaliteit",
   "business.services.item1.desc": "Energie is het fundament. Zonder fysieke en mentale scherpte overleeft geen enkele strategie de confrontatie met de realiteit.",
