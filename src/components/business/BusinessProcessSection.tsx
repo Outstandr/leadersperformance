@@ -11,7 +11,7 @@ export const BusinessProcessSection = () => {
     {
       number: "02",
       icon: FileText,
-      title: "The SOP Library",
+      title: "The Company Culture Report",
       description: "Copy-paste our specific protocols for Meetings, Reporting, and Daily Planning."
     },
     {
