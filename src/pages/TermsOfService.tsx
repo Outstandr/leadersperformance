@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { HomeFooter } from "@/components/home/HomeFooter";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -156,6 +157,7 @@ const TermsOfService = () => {
           </Link>
         </div>
       </main>
+      <HomeFooter />
     </div>
   );
 };
