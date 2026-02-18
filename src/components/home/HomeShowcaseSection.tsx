@@ -2,38 +2,9 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Shield, Users, TrendingUp } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const STORAGE_URL = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/websiteimages`;
-
-const showcases = [
-  {
-    title: "Private Desert Reset",
-    description: "A 4-day controlled recalibration experience in the desert. Strip away noise, confront deferred decisions, and rebuild your execution strategy from the ground up.",
-    cta: "Explore UNMASKED",
-    link: "#",
-    icon: Shield,
-    image: `${STORAGE_URL}/Unmasked.png`,
-    reverse: false,
-  },
-  {
-    title: "Strategic Advisory",
-    description: "Ongoing strategic performance audits, execution discipline, and accountability for business owners navigating critical inflection points.",
-    cta: "Learn about Advisory",
-    link: "#advisory",
-    icon: Users,
-    image: `${STORAGE_URL}/Leadersperformance`,
-    reverse: true,
-  },
-  {
-    title: "Measurable Performance",
-    description: "Track your leadership discipline with our proprietary scorecard. Identify where performance is drifting and course-correct before it compounds.",
-    cta: "Take the Assessment",
-    link: "#start-here",
-    icon: TrendingUp,
-    image: `${STORAGE_URL}/le`,
-    reverse: false,
-  },
-];
 
 const ParallaxImage = ({ src, alt }: { src: string; alt: string }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -56,6 +27,38 @@ const ParallaxImage = ({ src, alt }: { src: string; alt: string }) => {
 };
 
 export const HomeShowcaseSection = () => {
+  const { t } = useLanguage();
+
+  const showcases = [
+    {
+      title: t("home.showcase.title1"),
+      description: t("home.showcase.desc1"),
+      cta: t("home.showcase.cta1"),
+      link: "#",
+      icon: Shield,
+      image: `${STORAGE_URL}/Unmasked.png`,
+      reverse: false,
+    },
+    {
+      title: t("home.showcase.title2"),
+      description: t("home.showcase.desc2"),
+      cta: t("home.showcase.cta2"),
+      link: "#advisory",
+      icon: Users,
+      image: `${STORAGE_URL}/Leadersperformance`,
+      reverse: true,
+    },
+    {
+      title: t("home.showcase.title3"),
+      description: t("home.showcase.desc3"),
+      cta: t("home.showcase.cta3"),
+      link: "#start-here",
+      icon: TrendingUp,
+      image: `${STORAGE_URL}/le`,
+      reverse: false,
+    },
+  ];
+
   return (
     <section className="py-20 md:py-28">
       <div className="container mx-auto px-6 max-w-7xl space-y-20 md:space-y-32">
@@ -64,7 +67,6 @@ export const HomeShowcaseSection = () => {
             key={item.title}
             className={`grid md:grid-cols-2 gap-12 md:gap-20 items-center border-2 border-lioner-gold/30 rounded-3xl p-8 md:p-12 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)] ${item.reverse ? "md:[direction:rtl]" : ""}`}
           >
-            {/* Text */}
             <div className={item.reverse ? "md:[direction:ltr]" : ""}>
               <h3 className="text-3xl md:text-5xl font-semibold tracking-tight text-foreground leading-tight">
                 {item.title}
@@ -78,8 +80,6 @@ export const HomeShowcaseSection = () => {
                 </Button>
               </div>
             </div>
-
-            {/* Visual with parallax */}
             <div className={item.reverse ? "md:[direction:ltr]" : ""}>
               <ParallaxImage src={item.image} alt={item.title} />
             </div>

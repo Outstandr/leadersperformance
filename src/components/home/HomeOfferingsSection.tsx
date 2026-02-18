@@ -1,34 +1,37 @@
 import { ArrowRight, Compass, Target, BarChart3 } from "lucide-react";
-
-const offerings = [
-  {
-    icon: Compass,
-    eyebrow: "Private Reset",
-    title: "UNMASKED",
-    body: "A 4-day controlled recalibration in the desert. Designed to strip away noise and rebuild execution strategy.",
-    specs: "Limited to 2–4 participants per edition.",
-    link: "#",
-    linkText: "View Experience details",
-  },
-  {
-    icon: Target,
-    eyebrow: "Ongoing Strategy",
-    title: "Boardroom Advisory",
-    body: "Strategic performance audits, execution discipline, and accountability for business owners navigating critical inflection points.",
-    link: "#advisory",
-    linkText: "Explore Advisory",
-  },
-  {
-    icon: BarChart3,
-    eyebrow: "Foundation",
-    title: "The RESET Method",
-    body: "Begin by mapping your current baseline. Use our foundational scorecard to identify where performance is drifting.",
-    link: "#start-here",
-    linkText: "Take the Assessment",
-  },
-];
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const HomeOfferingsSection = () => {
+  const { t } = useLanguage();
+
+  const offerings = [
+    {
+      icon: Compass,
+      eyebrow: t("home.offerings.eyebrow1"),
+      title: t("home.offerings.title1"),
+      body: t("home.offerings.body1"),
+      specs: t("home.offerings.specs1"),
+      link: "#",
+      linkText: t("home.offerings.link1"),
+    },
+    {
+      icon: Target,
+      eyebrow: t("home.offerings.eyebrow2"),
+      title: t("home.offerings.title2"),
+      body: t("home.offerings.body2"),
+      link: "#advisory",
+      linkText: t("home.offerings.link2"),
+    },
+    {
+      icon: BarChart3,
+      eyebrow: t("home.offerings.eyebrow3"),
+      title: t("home.offerings.title3"),
+      body: t("home.offerings.body3"),
+      link: "#start-here",
+      linkText: t("home.offerings.link3"),
+    },
+  ];
+
   return (
     <section id="start-here" className="py-20 md:py-28">
       <div className="container mx-auto px-6 max-w-7xl">

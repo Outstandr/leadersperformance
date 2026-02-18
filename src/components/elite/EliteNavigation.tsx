@@ -4,19 +4,22 @@ import { Menu, X, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { AssessmentDialog } from "@/components/assessment/AssessmentDialog";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
 
 export const EliteNavigation = () => {
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
   const navItems = [
-    { label: "Program", href: "#program" },
-    { label: "Transformation", href: "#transformation" },
-    { label: "Results", href: "#results" },
-    { label: "Process", href: "#process" }
+    { label: t("nav.program"), href: "#program" },
+    { label: t("nav.transformation"), href: "#transformation" },
+    { label: t("nav.results"), href: "#results" },
+    { label: t("nav.process"), href: "#process" }
   ];
 
   const openAssessment = () => {
@@ -69,25 +72,29 @@ export const EliteNavigation = () => {
                 variant="outline"
                 className="border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white rounded-none px-5 py-2 text-sm font-medium"
               >
-                Take Leader Assessment
+                {t("nav.takeLeaderAssessment")}
               </Button>
               <Button 
                 asChild
                 className="bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none px-5 py-2 text-sm font-medium"
               >
                 <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                  Apply Now
+                  {t("nav.applyNow")}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
+              <LanguageToggle />
             </div>
 
-            <button 
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
-              className="lg:hidden p-2 rounded-lg transition-colors duration-300 text-foreground hover:bg-muted"
-            >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            <div className="flex items-center gap-3 lg:hidden">
+              <LanguageToggle />
+              <button 
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+                className="p-2 rounded-lg transition-colors duration-300 text-foreground hover:bg-muted"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
 
           {isMobileMenuOpen && (
@@ -108,14 +115,14 @@ export const EliteNavigation = () => {
                   variant="outline"
                   className="mx-4 border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white rounded-none py-3"
                 >
-                  Take Leader Assessment
+                  {t("nav.takeLeaderAssessment")}
                 </Button>
                 <Button 
                   asChild
                   className="mx-4 bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none py-3"
                 >
                   <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                    Apply Now
+                    {t("nav.applyNow")}
                   </a>
                 </Button>
               </div>
