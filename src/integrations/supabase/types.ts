@@ -152,6 +152,36 @@ export type Database = {
         }
         Relationships: []
       }
+      voice_leads: {
+        Row: {
+          conversation_summary: string | null
+          created_at: string
+          email: string | null
+          first_name: string | null
+          id: string
+          phone: string | null
+          recommended_path: string | null
+        }
+        Insert: {
+          conversation_summary?: string | null
+          created_at?: string
+          email?: string | null
+          first_name?: string | null
+          id?: string
+          phone?: string | null
+          recommended_path?: string | null
+        }
+        Update: {
+          conversation_summary?: string | null
+          created_at?: string
+          email?: string | null
+          first_name?: string | null
+          id?: string
+          phone?: string | null
+          recommended_path?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
