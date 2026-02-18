@@ -211,7 +211,7 @@ const en: Record<string, string> = {
   "business.hero.badge": "For Teams of 5 – 50",
   "business.hero.headline": "Stop Managing People. Start Leading Performers.",
   "business.hero.description": "Your business is not scaling because you are tolerating mediocrity. The Business Reset Blueprint is the operational system to eliminate \"Passenger Culture\" and install military-grade discipline in 30 days.",
-  "business.hero.ctaPrimary": "Deploy The System",
+  "business.hero.ctaPrimary": "Book a Consultation",
   "business.hero.ctaSecondary": "Audit My Team First",
 };
 
@@ -393,6 +393,6 @@ const nl: Record<string, string> = {
   "business.hero.badge": "Voor teams van 5 – 50",
   "business.hero.headline": "Stop met managen. Begin met leiden.",
   "business.hero.description": "Jouw bedrijf schaalt niet omdat je middelmatigheid tolereert. De Business Reset Blueprint is het operationeel systeem om 'passagierscultuur' te elimineren en militaire discipline te installeren in 30 dagen.",
-  "business.hero.ctaPrimary": "Installeer het systeem",
+  "business.hero.ctaPrimary": "Boek een Consultatie",
   "business.hero.ctaSecondary": "Audit mijn team eerst",
 };
