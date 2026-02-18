@@ -52,7 +52,7 @@ export const EliteNavigation = () => {
               <img 
                 src={logo} 
                 alt="Leaders Performance" 
-                className="h-14 md:h-16 lg:h-20 w-auto transition-all duration-300"
+                className="h-10 md:h-12 w-auto transition-all duration-300"
               />
             </Link>
 
