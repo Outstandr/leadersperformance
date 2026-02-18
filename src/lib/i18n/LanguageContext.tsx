@@ -351,7 +351,7 @@ const nl: Record<string, string> = {
   // Navigation – Elite
   "nav.program": "Programma",
   "nav.transformation": "Transformatie",
-  "nav.takeLeaderAssessment": "Start de leiderschapstest",
+  "nav.takeLeaderAssessment": "Start de disciplinetest",
   "nav.applyNow": "Aanmelden voor elite coaching",
 
   // Hero – Home
@@ -558,7 +558,7 @@ const nl: Record<string, string> = {
   "elite.hero.stat3Value": "100%",
   "elite.hero.stat3Label": "Gepersonaliseerd",
   "elite.hero.ctaPrimary": "Aanmelden voor elite coaching",
-  "elite.hero.ctaSecondary": "Start de leiderschapstest",
+  "elite.hero.ctaSecondary": "Start de disciplinetest",
   "elite.hero.disclaimer": "Beperkt aantal plaatsen • Aanmelding vereist",
 
   // Business Hero
