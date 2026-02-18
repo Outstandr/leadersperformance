@@ -1,11 +1,12 @@
 import { motion, useInView, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { X } from "lucide-react";
 import serviceUnmasked from "@/assets/unmasked-desert-new.png";
 import serviceCoaching from "@/assets/service-coaching.jpg";
 import serviceAcademy from "@/assets/service-academy.jpg";
 import serviceBusiness from "@/assets/service-business.jpg";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+
 
 // ─── Translations ──────────────────────────────────────────────────────────
 
@@ -45,6 +46,7 @@ const cards = {
         closing: "Not motivation. Not theory. Structural change.",
         cta: "Apply For Mentorship",
         disclaimer: "Limited spots. Application required.",
+        showCalendar: true,
       },
     },
     {
@@ -83,6 +85,7 @@ const cards = {
         closing: "You cannot scale chaos. Execute or be replaced.",
         cta: "Book a Consultation",
         disclaimer: "Pricing not displayed · All engagements by application",
+        showCalendar: true,
       },
     },
   ],
@@ -121,6 +124,7 @@ const cards = {
         closing: "Geen motivatie. Geen theorie. Structurele verandering.",
         cta: "Aanmelden voor mentorschap",
         disclaimer: "Beperkt aantal plaatsen. Aanmelding vereist.",
+        showCalendar: true,
       },
     },
     {
@@ -159,6 +163,7 @@ const cards = {
         closing: "Je kunt chaos niet schalen. Executeer of word vervangen.",
         cta: "Boek een Consultatie",
         disclaimer: "Prijzen niet weergegeven · Alle trajecten op aanvraag",
+        showCalendar: true,
       },
     },
   ],
@@ -233,6 +238,22 @@ export const HomeFeaturesGrid = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selected, setSelected] = useState<number | null>(null);
 
+  const selectedService = selected !== null ? services[selected] : null;
+  const showCalendar = selectedService && (selectedService.details as any).showCalendar;
+
+  // Load LeadConnector script once when a calendar card is opened
+  useEffect(() => {
+    if (!showCalendar) return;
+    const existing = document.getElementById("lc-form-embed-script");
+    if (!existing) {
+      const script = document.createElement("script");
+      script.id = "lc-form-embed-script";
+      script.src = "https://link.msgsndr.com/js/form_embed.js";
+      script.type = "text/javascript";
+      document.body.appendChild(script);
+    }
+  }, [showCalendar]);
+
   return (
     <>
       <section className="relative z-10 pt-32 pb-20 md:pt-40 md:pb-28 bg-background">
@@ -269,7 +290,7 @@ export const HomeFeaturesGrid = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.97 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-background border-2 border-lioner-gold/30 shadow-2xl"
+              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-background border-2 border-lioner-gold/30 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Hero image */}
@@ -318,12 +339,24 @@ export const HomeFeaturesGrid = () => {
                   </p>
                   {'cta' in services[selected].details && (
                     <div className="space-y-2">
-                      <button className="w-full bg-lioner-gold text-background font-medium text-sm tracking-wider uppercase py-3 px-6 hover:bg-lioner-gold/90 transition-colors">
-                        {(services[selected].details as any).cta}
-                      </button>
                       <p className="text-center text-xs text-muted-foreground">
                         {(services[selected].details as any).disclaimer}
                       </p>
+                    </div>
+                  )}
+
+                  {/* Booking calendar for High Performance & Business cards */}
+                  {showCalendar && (
+                    <div className="pt-2">
+                      <p className="text-xs font-medium tracking-widest uppercase text-lioner-gold mb-3">
+                        Book Your Session
+                      </p>
+                      <iframe
+                        src="https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j"
+                        style={{ width: "100%", border: "none", overflow: "hidden", minHeight: "600px" }}
+                        scrolling="no"
+                        id={`NE13SD9blCXUJeVghk6j_${selected}`}
+                      />
                     </div>
                   )}
                 </div>
