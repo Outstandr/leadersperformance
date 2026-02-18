@@ -55,7 +55,7 @@ export const BusinessWhyUsSection = () => {
                 <symptom.icon className="w-7 h-7 text-lioner-gold" />
               </div>
               <h3 className="text-lg font-semibold mb-2 text-foreground">{symptom.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed italic">{symptom.quote}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{symptom.quote}</p>
             </div>
           ))}
         </div>
