@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import logoWhite from "@/assets/logo-white.png";
+import heroBg from "@/assets/hero-dubai-cityscape.webp";
 
 export const HomeHeroSection = () => {
   const [fadeOpacity, setFadeOpacity] = useState(0);
@@ -18,8 +19,10 @@ export const HomeHeroSection = () => {
 
   return (
     <>
-      {/* Fixed black background */}
-      <div className="fixed inset-0 z-0 bg-foreground">
+      {/* Fixed background with Dubai cityscape */}
+      <div className="fixed inset-0 z-0">
+        <img src={heroBg} alt="" className="w-full h-full object-cover object-center" />
+        <div className="absolute inset-0 bg-foreground/60" />
         <div
           className="absolute inset-0 bg-background transition-none"
           style={{ opacity: fadeOpacity }}
