@@ -12,7 +12,7 @@ const TermsOfService = () => {
       </Helmet>
       
       <Navigation />
-      <main className="container mx-auto px-4 py-16 max-w-4xl">
+      <main className="container mx-auto px-4 pt-32 pb-16 max-w-4xl">
         <h1 className="text-4xl font-bold mb-4">Terms of Service</h1>
         <p className="text-sm text-foreground/60 mb-8">Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
         
