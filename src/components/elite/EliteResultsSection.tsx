@@ -12,7 +12,7 @@ export const EliteResultsSection = () => {
     },
     {
       name: "Jitteke Blussé",
-      role: "Advocaat, Caland Advocaten",
+      role: "Lawyer, Caland Advocaten",
       quote: "Working with Lionel was transformative. Facing crucial changes, his no-nonsense approach gave me the clarity and drive to start my own office. Lionel's coaching is direct and efficient, making you move beyond your limitations. I highly recommend his program, impactful results.",
       image: jittekeImage
     }

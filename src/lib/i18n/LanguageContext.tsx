@@ -356,8 +356,8 @@ const nl: Record<string, string> = {
   // Navigation – Elite
   "nav.program": "Programma",
   "nav.transformation": "Transformatie",
-  "nav.takeLeaderAssessment": "Leider assessment doen",
-  "nav.applyNow": "Nu aanmelden",
+  "nav.takeLeaderAssessment": "Start de leiderschapstest",
+  "nav.applyNow": "Aanmelden voor elite coaching",
 
   // Hero – Home
   "home.hero.headline1": "Een pad dat",
@@ -368,7 +368,7 @@ const nl: Record<string, string> = {
 
   // Intro
   "home.intro.philosophy": "Onze filosofie",
-  "home.intro.text": "Bij Leaders Performance haasten we verandering niet — we helpen het zich ontvouwen met intentie. Via gestructureerde omgevingen, strategische verantwoordelijkheid en een consistent tempo, ondersteunen we groei die beklijft.",
+  "home.intro.text": "Bij Leaders Performance versnellen we verandering niet kunstmatig — we geven het richting. Via structuur, duidelijke verantwoordelijkheid en ritme creëren we groei die duurzaam verankerd is in gedrag en resultaat.",
   "home.intro.cta": "Over Leaders Performance",
 
   // Offerings
@@ -410,8 +410,8 @@ const nl: Record<string, string> = {
   "home.mission.bullet2": "• technologie gebruiken zonder jouw denken uit te besteden",
   "home.mission.bullet3": "• bouwen vanuit afstemming in plaats van ego of validatie",
   "home.mission.bullet4": "• meetbare bedrijfsgroei realiseren als resultaat van interne congruentie",
-  "home.mission.notOptimize": "Wij optimaliseren bedrijven niet als eerste.",
-  "home.mission.strengthen": "Wij versterken de persoon die ze leidt.",
+  "home.mission.notOptimize": "De kwaliteit van een organisatie wordt bepaald",
+  "home.mission.strengthen": "door de kwaliteit van degene die haar leidt.",
   "home.vision.heading": "Onze visie",
   "home.vision.tagline": "Een nieuwe generatie leiders vormen die het evenwicht beheersen tussen menselijk bewustzijn en technologische versnelling.",
   "home.vision.p1": "Nu AI industrieën hervormt en snelheid versterkt, wordt menselijk bewustzijn het echte concurrentievoordeel.",
@@ -554,8 +554,8 @@ const nl: Record<string, string> = {
   // Elite Hero
 
   "elite.hero.badge": "Elite 1-op-1 coaching",
-  "elite.hero.headline": "Transformeer jouw leven via persoonlijke elite coaching",
-  "elite.hero.description": "Ontgrendel jouw volledige potentieel met gepersonaliseerde, high-performance coaching ontworpen voor ambitieuze individuen die klaar zijn hun grenzen te doorbreken en buitengewone resultaten te bereiken.",
+  "elite.hero.headline": "Transformeer jouw leven met elite coaching",
+  "elite.hero.description": "Ontgrendel jouw volledige potentieel met gepersonaliseerde, high-performance coaching, ontworpen voor ambitieuze individuen die klaar zijn hun grenzen te doorbreken en buitengewone resultaten te bereiken.",
   "elite.hero.stat1Value": "1.000+",
   "elite.hero.stat1Label": "Levens getransformeerd",
   "elite.hero.stat2Value": "12 wkn",
@@ -563,7 +563,7 @@ const nl: Record<string, string> = {
   "elite.hero.stat3Value": "100%",
   "elite.hero.stat3Label": "Gepersonaliseerd",
   "elite.hero.ctaPrimary": "Aanmelden voor elite coaching",
-  "elite.hero.ctaSecondary": "Doe de leider assessment",
+  "elite.hero.ctaSecondary": "Start de leiderschapstest",
   "elite.hero.disclaimer": "Beperkt aantal plaatsen • Aanmelding vereist",
 
   // Business Hero
