@@ -1,10 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-
-const fullText =
-  "At Leaders Performance, we don't rush change — we help it unfold with intention. Through structured environments, strategic accountability, and a steady pace, we support growth that lasts.";
-
-const words = fullText.split(" ");
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const Word = ({ word, index, total, scrollYProgress }: { word: string; index: number; total: number; scrollYProgress: any }) => {
   const start = index / total;
@@ -19,17 +15,21 @@ const Word = ({ word, index, total, scrollYProgress }: { word: string; index: nu
 };
 
 export const HomeIntroSection = () => {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start 0.8", "end 0.4"],
   });
 
+  const text = t("home.intro.text");
+  const words = text.split(" ");
+
   return (
     <section id="about" className="py-28 md:py-40 bg-background">
       <div className="container mx-auto px-6 max-w-4xl text-center" ref={containerRef}>
         <p className="text-xs tracking-[0.3em] uppercase text-lioner-gold font-medium mb-8">
-          Our Philosophy
+          {t("home.intro.philosophy")}
         </p>
         <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl leading-tight">
           {words.map((word, i) => (
@@ -41,7 +41,7 @@ export const HomeIntroSection = () => {
             href="#about"
             className="inline-flex items-center gap-3 bg-foreground text-background rounded-full px-8 py-4 text-sm font-medium tracking-wider uppercase hover:bg-foreground/90 transition-colors"
           >
-            About Leaders Performance
+            {t("home.intro.cta")}
             <span className="w-2 h-2 rounded-full bg-lioner-gold" />
           </a>
         </div>

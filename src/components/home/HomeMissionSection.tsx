@@ -1,10 +1,12 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { Play, Pause, RotateCcw } from "lucide-react";
 import lionelMission from "@/assets/lionel-mission.png";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-const SCROLL_SPEED = 1.2; // pixels per frame
+const SCROLL_SPEED = 1.2;
 
 export const HomeMissionSection = () => {
+  const { t } = useLanguage();
   const scrollRef = useRef<HTMLDivElement>(null);
   const animRef = useRef<number | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -46,41 +48,28 @@ export const HomeMissionSection = () => {
   return (
     <section className="py-24 md:py-36 bg-background">
       <div className="container mx-auto px-6 max-w-7xl">
-        {/* Header */}
         <div className="flex items-center justify-between mb-12">
           <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold">
-            Our Purpose
+            {t("home.mission.eyebrow")}
           </p>
           <button
             onClick={toggle}
             className="flex items-center gap-2 bg-foreground text-background rounded-full px-6 py-3 text-sm font-medium tracking-wider uppercase hover:bg-foreground/90 transition-colors"
           >
             {atEnd ? (
-              <>
-                <RotateCcw className="w-4 h-4" />
-                Restart
-              </>
+              <><RotateCcw className="w-4 h-4" />{t("home.mission.restart")}</>
             ) : isPlaying ? (
-              <>
-                <Pause className="w-4 h-4" />
-                Pause
-              </>
+              <><Pause className="w-4 h-4" />{t("home.mission.pause")}</>
             ) : (
-              <>
-                <Play className="w-4 h-4" />
-                Read
-              </>
+              <><Play className="w-4 h-4" />{t("home.mission.read")}</>
             )}
           </button>
         </div>
 
-      {/* Two-column layout */}
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
-          {/* Left: Teleprompter */}
           <div className="relative">
             <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
             <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
-
             <div
               ref={scrollRef}
               className="max-h-[70vh] overflow-y-auto scroll-smooth"
@@ -99,123 +88,93 @@ export const HomeMissionSection = () => {
                 {/* MISSION */}
                 <div className="space-y-8">
                   <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground">
-                    Our Mission
+                    {t("home.mission.heading")}
                   </h2>
-                  <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold">
-                    Leaders Performance
-                  </p>
-
+                  <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold">Leaders Performance</p>
                   <p className="text-lg md:text-xl text-foreground leading-relaxed font-medium">
-                    To develop leaders who become the foundation of their own success.
+                    {t("home.mission.tagline")}
                   </p>
-
                   <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-                    <p>At Leaders Performance, we build the human first.</p>
-                    <p>Then the leader.</p>
-                    <p>Then the business.</p>
+                    <p>{t("home.mission.p1")}</p>
+                    <p>{t("home.mission.p2")}</p>
+                    <p>{t("home.mission.p3")}</p>
                   </div>
-
                   <div className="space-y-3">
                     <p className="text-sm font-medium tracking-wide uppercase text-foreground">
-                      Through the RESET Blueprint, we integrate four core dimensions:
+                      {t("home.mission.pillarsIntro")}
                     </p>
                     <ol className="space-y-3 text-base md:text-lg text-muted-foreground leading-relaxed pl-1">
-                      <li>
-                        <span className="text-lioner-gold font-medium">1. Vitality</span> — Physical strength and energy as the base of capacity.
-                      </li>
-                      <li>
-                        <span className="text-lioner-gold font-medium">2. Personal Development</span> — Self-awareness, responsibility, and autonomy beyond conditioning.
-                      </li>
-                      <li>
-                        <span className="text-lioner-gold font-medium">3. Leadership</span> — The ability to empower others from stability and integrity.
-                      </li>
-                      <li>
-                        <span className="text-lioner-gold font-medium">4. AI Integration</span> — Leveraging technology as an amplifier without losing human sovereignty.
-                      </li>
+                      <li><span className="text-lioner-gold font-medium">1. {t("home.mission.pillar1")}</span>{t("home.mission.pillar1desc")}</li>
+                      <li><span className="text-lioner-gold font-medium">2. {t("home.mission.pillar2")}</span>{t("home.mission.pillar2desc")}</li>
+                      <li><span className="text-lioner-gold font-medium">3. {t("home.mission.pillar3")}</span>{t("home.mission.pillar3desc")}</li>
+                      <li><span className="text-lioner-gold font-medium">4. {t("home.mission.pillar4")}</span>{t("home.mission.pillar4desc")}</li>
                     </ol>
                   </div>
-
                   <div className="space-y-2">
                     <p className="text-sm font-medium tracking-wide uppercase text-foreground">
-                      Our mission is to create leaders who:
+                      {t("home.mission.createLeaders")}
                     </p>
                     <ul className="space-y-2 text-base md:text-lg text-muted-foreground leading-relaxed pl-1">
-                      <li>• act from conscious choice rather than unconscious programming</li>
-                      <li>• use technology without becoming dependent on it</li>
-                      <li>• build from alignment instead of ego or validation</li>
-                      <li>• produce measurable business growth as a result of internal congruence</li>
+                      <li>{t("home.mission.bullet1")}</li>
+                      <li>{t("home.mission.bullet2")}</li>
+                      <li>{t("home.mission.bullet3")}</li>
+                      <li>{t("home.mission.bullet4")}</li>
                     </ul>
                   </div>
-
                   <div className="space-y-2 text-base md:text-lg text-muted-foreground leading-relaxed">
-                    <p>We do not optimize businesses first.</p>
-                    <p className="text-foreground font-medium">We strengthen the individual who leads them.</p>
+                    <p>{t("home.mission.notOptimize")}</p>
+                    <p className="text-foreground font-medium">{t("home.mission.strengthen")}</p>
                   </div>
                 </div>
 
-                {/* Divider */}
                 <div className="w-16 h-px bg-lioner-gold" />
 
                 {/* VISION */}
                 <div className="space-y-8">
                   <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground">
-                    Our Vision
+                    {t("home.vision.heading")}
                   </h2>
-                  <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold">
-                    Leaders Performance
-                  </p>
-
+                  <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold">Leaders Performance</p>
                   <p className="text-lg md:text-xl text-foreground leading-relaxed font-medium">
-                    To shape a new generation of leaders who master the balance between human consciousness and technological acceleration.
+                    {t("home.vision.tagline")}
                   </p>
-
                   <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                    As AI reshapes industries and amplifies speed, human awareness becomes the true competitive advantage.
+                    {t("home.vision.p1")}
                   </p>
-
                   <div className="space-y-2">
                     <p className="text-sm font-medium tracking-wide uppercase text-foreground">
-                      The future belongs to leaders who are:
+                      {t("home.vision.futureLeaders")}
                     </p>
                     <ul className="space-y-2 text-base md:text-lg text-muted-foreground leading-relaxed pl-1">
-                      <li>• physically strong</li>
-                      <li>• mentally clear</li>
-                      <li>• emotionally mature</li>
-                      <li>• technologically capable</li>
-                      <li>• strategically disciplined</li>
+                      <li>{t("home.vision.b1")}</li>
+                      <li>{t("home.vision.b2")}</li>
+                      <li>{t("home.vision.b3")}</li>
+                      <li>{t("home.vision.b4")}</li>
+                      <li>{t("home.vision.b5")}</li>
                     </ul>
                   </div>
-
                   <div className="space-y-2">
                     <p className="text-sm font-medium tracking-wide uppercase text-foreground">
-                      Leaders Performance builds an ecosystem where:
+                      {t("home.vision.ecosystem")}
                     </p>
                     <ul className="space-y-2 text-base md:text-lg text-muted-foreground leading-relaxed pl-1">
-                      <li>• high performance becomes a lifestyle</li>
-                      <li>• AI becomes a strategic multiplier</li>
-                      <li>• human depth remains the differentiator</li>
-                      <li>• companies grow from a solid internal foundation</li>
+                      <li>{t("home.vision.e1")}</li>
+                      <li>{t("home.vision.e2")}</li>
+                      <li>{t("home.vision.e3")}</li>
+                      <li>{t("home.vision.e4")}</li>
                     </ul>
                   </div>
-
                   <div className="space-y-2 text-base md:text-lg text-muted-foreground leading-relaxed">
-                    <p>We are not building followers.</p>
-                    <p className="text-foreground font-medium">
-                      We are building autonomous leaders who create the companies of the future.
-                    </p>
+                    <p>{t("home.vision.notFollowers")}</p>
+                    <p className="text-foreground font-medium">{t("home.vision.autonomous")}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right: Image */}
           <div className="relative aspect-[3/4] overflow-hidden sticky top-24">
-            <img
-              src={lionelMission}
-              alt="Lionel Eersteling"
-              className="w-full h-full object-cover"
-            />
+            <img src={lionelMission} alt="Lionel Eersteling" className="w-full h-full object-cover" />
           </div>
         </div>
       </div>

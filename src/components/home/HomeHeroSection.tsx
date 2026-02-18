@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import logoWhite from "@/assets/logo-white.png";
 import heroBg from "@/assets/hero-dubai-dark.webp";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const HomeHeroSection = () => {
+  const { t } = useLanguage();
   const [fadeOpacity, setFadeOpacity] = useState(0);
 
   useEffect(() => {
@@ -29,33 +31,28 @@ export const HomeHeroSection = () => {
         />
       </div>
 
-
-
-
       {/* Hero content */}
       <section className="relative z-10 h-screen flex flex-col justify-end pb-24 md:pb-32">
         <div className="w-full max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-end w-full">
             <div>
               <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium text-background leading-[1.05] tracking-tight">
-                A Path That
+                {t("home.hero.headline1")}
                 <br />
-                Shapes Your
+                {t("home.hero.headline2")}
                 <br />
-                <span className="text-lioner-gold italic">Future.</span>
+                <span className="text-lioner-gold italic">{t("home.hero.headline3")}</span>
               </h1>
             </div>
             <div className="flex flex-col items-start md:items-end gap-6">
               <p className="text-background/80 text-base md:text-lg leading-relaxed max-w-md md:text-right">
-                We offer strategic advisory and controlled reset environments to help
-                founders navigate complexity with confidence. Together, we'll build
-                clarity, execution discipline, and lasting performance.
+                {t("home.hero.description")}
               </p>
               <a
                 href="#start-here"
                 className="inline-flex items-center gap-3 bg-lioner-gold text-foreground rounded-full px-8 py-4 text-sm font-medium tracking-wider uppercase hover:bg-lioner-gold/90 transition-colors"
               >
-                Choose Your Path
+                {t("home.hero.cta")}
                 <span className="w-2 h-2 rounded-full bg-foreground/40" />
               </a>
             </div>

@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 import logoWhite from "@/assets/logo-white.png";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const HomeNavigation = () => {
+  const { t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [pastHero, setPastHero] = useState(false);
@@ -22,12 +25,12 @@ export const HomeNavigation = () => {
   const isDark = !pastHero;
 
   const navItems = [
-    { label: "About", href: "#about" },
+    { label: t("nav.about"), href: "#about" },
     { label: "BUSINESS", href: "/business" },
     { label: "ELITE", href: "/elite" },
-    { label: "Blog", href: "#insights" },
-    { label: "Start Here", href: "#start-here" },
-    { label: "Q&A", href: "#faq" },
+    { label: t("nav.blog"), href: "#insights" },
+    { label: t("nav.startHere"), href: "#start-here" },
+    { label: t("nav.faq"), href: "#faq" },
   ];
 
   const handleNav = (href: string) => {
@@ -102,16 +105,20 @@ export const HomeNavigation = () => {
                   : "bg-foreground text-background hover:bg-foreground/90"
               }`}
             >
-              Book a Session
+              {t("nav.bookSession")}
             </a>
+            <LanguageToggle dark={isDark} />
           </div>
 
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden p-2 ${isDark ? "text-background" : "text-foreground"}`}
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          <div className="flex items-center gap-3 lg:hidden">
+            <LanguageToggle dark={isDark} />
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`p-2 ${isDark ? "text-background" : "text-foreground"}`}
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
 
         {isMobileMenuOpen && (

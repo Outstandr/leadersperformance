@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const HomeFooter = () => {
+  const { t } = useLanguage();
+
   const navItems = [
-    { label: "Home", href: "/" },
+    { label: t("footer.home"), href: "/" },
     { label: "Business", href: "/business" },
     { label: "Elite", href: "/elite" },
-    { label: "Blog", href: "#insights" },
-    { label: "Start Here", href: "#start-here" },
-    { label: "Q&A", href: "#faq" },
+    { label: t("footer.blog"), href: "#insights" },
+    { label: t("footer.startHere"), href: "#start-here" },
+    { label: t("footer.faq"), href: "#faq" },
   ];
 
   return (
@@ -42,14 +45,14 @@ export const HomeFooter = () => {
         </div>
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8">
           <p className="text-xs text-background/40">
-            © {new Date().getFullYear()} Leaders Performance. All rights reserved.
+            {t("footer.copyright")}
           </p>
           <div className="flex items-center gap-6">
             <Link to="/privacy-policy" className="text-xs text-background/40 hover:text-background/60 transition-colors">
-              Privacy Policy
+              {t("footer.privacy")}
             </Link>
             <Link to="/terms-of-service" className="text-xs text-background/40 hover:text-background/60 transition-colors">
-              Terms & Conditions
+              {t("footer.terms")}
             </Link>
           </div>
         </div>

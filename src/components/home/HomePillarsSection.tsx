@@ -1,30 +1,17 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-
-const pillars = [
-  {
-    title: "Vitality",
-    description:
-      "Energy is the foundation of leadership. We optimise your health, sleep, nutrition, and physical performance so you operate at full capacity — not running on fumes.",
-  },
-  {
-    title: "Personal Development",
-    description:
-      "Growth is non-negotiable. We strip away comfort zones and install a system for continuous evolution — sharpening self-awareness, emotional intelligence, and mindset mastery.",
-  },
-  {
-    title: "Personal Leadership",
-    description:
-      "Before you lead others, you lead yourself. We build the discipline, clarity, and purpose that make you the standard — not just the strategy.",
-  },
-  {
-    title: "Business",
-    description:
-      "Systems over hustle. We install the operational infrastructure, strategic thinking, and execution frameworks that scale your impact without burning you out.",
-  },
-];
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const HomePillarsSection = () => {
+  const { t } = useLanguage();
+
+  const pillars = [
+    { title: t("home.pillars.title1"), description: t("home.pillars.desc1") },
+    { title: t("home.pillars.title2"), description: t("home.pillars.desc2") },
+    { title: t("home.pillars.title3"), description: t("home.pillars.desc3") },
+    { title: t("home.pillars.title4"), description: t("home.pillars.desc4") },
+  ];
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -51,30 +38,10 @@ export const HomePillarsSection = () => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            d="M-100,200 C200,100 300,500 600,300 S900,600 1200,200 S1500,400 1600,300"
-            stroke="hsl(42 35% 53% / 0.12)"
-            strokeWidth="1.5"
-            fill="none"
-          />
-          <path
-            d="M-50,500 C150,200 400,700 700,400 S1000,100 1300,500 S1500,200 1600,400"
-            stroke="hsl(42 35% 53% / 0.08)"
-            strokeWidth="1"
-            fill="none"
-          />
-          <path
-            d="M100,100 C300,400 500,50 800,350 S1100,700 1400,150"
-            stroke="hsl(42 35% 53% / 0.10)"
-            strokeWidth="1.2"
-            fill="none"
-          />
-          <path
-            d="M-200,600 C100,300 350,800 650,450 S950,50 1250,600 S1450,300 1600,500"
-            stroke="hsl(42 35% 53% / 0.06)"
-            strokeWidth="1"
-            fill="none"
-          />
+          <path d="M-100,200 C200,100 300,500 600,300 S900,600 1200,200 S1500,400 1600,300" stroke="hsl(42 35% 53% / 0.12)" strokeWidth="1.5" fill="none" />
+          <path d="M-50,500 C150,200 400,700 700,400 S1000,100 1300,500 S1500,200 1600,400" stroke="hsl(42 35% 53% / 0.08)" strokeWidth="1" fill="none" />
+          <path d="M100,100 C300,400 500,50 800,350 S1100,700 1400,150" stroke="hsl(42 35% 53% / 0.10)" strokeWidth="1.2" fill="none" />
+          <path d="M-200,600 C100,300 350,800 650,450 S950,50 1250,600 S1450,300 1600,500" stroke="hsl(42 35% 53% / 0.06)" strokeWidth="1" fill="none" />
         </svg>
       </div>
 
@@ -95,14 +62,14 @@ export const HomePillarsSection = () => {
         </div>
       </div>
 
-      {/* Scrolling text blocks on the left – offset both sticky layers */}
+      {/* Scrolling text blocks */}
       <div className="relative z-10" style={{ marginTop: `-200vh` }}>
         {pillars.map((pillar, i) => (
           <div key={i} className="h-screen flex items-center">
             <div className="container mx-auto px-6 max-w-7xl">
               <div className="max-w-lg">
                 <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold mb-8">
-                  The Four Pillars
+                  {t("home.pillars.eyebrow")}
                 </p>
                 <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground mb-6">
                   {pillar.title}
@@ -114,7 +81,7 @@ export const HomePillarsSection = () => {
                   href="#services"
                   className="inline-block border border-lioner-gold text-lioner-gold px-8 py-3 text-sm font-medium tracking-widest uppercase hover:bg-lioner-gold hover:text-white transition-all duration-300"
                 >
-                  Choose Your Path
+                  {t("home.pillars.cta")}
                 </a>
               </div>
             </div>
