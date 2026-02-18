@@ -1,6 +1,7 @@
 import { motion, useInView, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { X } from "lucide-react";
+import { UnmaskedBookingDialog } from "./UnmaskedBookingDialog";
 import serviceUnmasked from "@/assets/unmasked-desert-new.png";
 import serviceCoaching from "@/assets/service-coaching.jpg";
 import serviceAcademy from "@/assets/service-academy.jpg";
@@ -28,8 +29,8 @@ const cards = {
         closing: "This is not a retreat. It's an intervention.",
         cta: "Apply Here",
         disclaimer: "Investment: €8,500 · 2026 Editions: March · April · May — Dubai",
-        showCalendar: true,
-        calendarUrl: "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY",
+        showCalendar: false,
+        isUnmasked: true,
       },
     },
     {
@@ -110,8 +111,8 @@ const cards = {
         closing: "Dit is geen retraite. Het is een interventie.",
         cta: "Aanmelden",
         disclaimer: "Investering: €8.500 · 2026 Edities: Maart · April · Mei — Dubai",
-        showCalendar: true,
-        calendarUrl: "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY",
+        showCalendar: false,
+        isUnmasked: true,
       },
     },
     {
@@ -245,10 +246,12 @@ export const HomeFeaturesGrid = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selected, setSelected] = useState<number | null>(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   const selectedService = selected !== null ? services[selected] : null;
   const showCalendar = selectedService && (selectedService.details as any).showCalendar;
   const calendarUrl = selectedService ? (selectedService.details as any).calendarUrl : null;
+  const isUnmasked = selectedService ? (selectedService.details as any).isUnmasked : false;
 
   // Load LeadConnector script once when a calendar card is opened
   useEffect(() => {
@@ -347,15 +350,24 @@ export const HomeFeaturesGrid = () => {
                     {services[selected].details.closing}
                   </p>
                   {'cta' in services[selected].details && (
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       <p className="text-center text-xs text-muted-foreground">
                         {(services[selected].details as any).disclaimer}
                       </p>
+                      {/* UNMASKED: open internal booking dialog */}
+                      {isUnmasked && (
+                        <button
+                          onClick={() => { setSelected(null); setTimeout(() => setBookingOpen(true), 200); }}
+                          className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                        >
+                          {(services[selected].details as any).cta}
+                        </button>
+                      )}
                     </div>
                   )}
 
                   {/* Booking calendar for High Performance & Business cards */}
-                  {showCalendar && (
+                  {showCalendar && !isUnmasked && (
                     <div className="pt-2">
                       <p className="text-xs font-medium tracking-widest uppercase text-lioner-gold mb-3">
                         Book Your Session
@@ -374,6 +386,8 @@ export const HomeFeaturesGrid = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <UnmaskedBookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
     </>
   );
 };
