@@ -8,7 +8,7 @@ import { EliteResultsSection } from "@/components/elite/EliteResultsSection";
 import { EliteQuoteSection2 } from "@/components/elite/EliteQuoteSection2";
 import { EliteProcessSection } from "@/components/elite/EliteProcessSection";
 import { EliteBookingSection } from "@/components/elite/EliteBookingSection";
-import { EliteFooter } from "@/components/elite/EliteFooter";
+import { HomeFooter } from "@/components/home/HomeFooter";
 import { AssessmentCTASection } from "@/components/AssessmentCTASection";
 
 const Elite = () => {
@@ -27,7 +27,7 @@ const Elite = () => {
         <EliteProcessSection />
         <EliteBookingSection />
       </main>
-      <EliteFooter />
+      <HomeFooter />
     </div>
   );
 };

@@ -8,7 +8,7 @@ import { BusinessProcessSection } from "@/components/business/BusinessProcessSec
 import { BusinessResultsSection } from "@/components/business/BusinessResultsSection";
 import { CorporateAuditCTASection } from "@/components/corporate-audit/CorporateAuditCTASection";
 import { BusinessBookingSection } from "@/components/business/BusinessBookingSection";
-import { BusinessFooter } from "@/components/business/BusinessFooter";
+import { HomeFooter } from "@/components/home/HomeFooter";
 
 const Business = () => {
   return (
@@ -24,7 +24,7 @@ const Business = () => {
         <BusinessBookingSection />
         <BusinessQuoteSection />
       </main>
-      <BusinessFooter />
+      <HomeFooter />
     </div>
   );
 };
