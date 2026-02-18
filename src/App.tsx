@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { VoiceAgentProvider, useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 import { VoiceAgentDialog } from "@/components/voice/VoiceAgentDialog";
+import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Business from "./pages/Business";
 import Elite from "./pages/Elite";
@@ -20,6 +21,7 @@ const AppRoutes = () => {
   const { isOpen, closeVoiceAgent } = useVoiceAgent();
   return (
     <>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/business" element={<Business />} />
