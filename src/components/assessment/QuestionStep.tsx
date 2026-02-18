@@ -39,13 +39,30 @@ export function QuestionStep({
     onAnswer(question.id, value);
   };
 
+  const ui = {
+    en: {
+      questionOf: `Question ${currentIndex + 1} of ${totalQuestions}`,
+      back: "Back",
+      next: "Next",
+      analyzing: "Analyzing...",
+      seeResults: "See Results",
+    },
+    nl: {
+      questionOf: `Vraag ${currentIndex + 1} van ${totalQuestions}`,
+      back: "Terug",
+      next: "Volgende",
+      analyzing: "Analyseren...",
+      seeResults: "Bekijk resultaten",
+    },
+  }[language];
+
   return (
     <div className="p-6 md:p-8">
       {/* Progress Header */}
       <div className="mb-8">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-muted-foreground">
-            Question {currentIndex + 1} of {totalQuestions}
+            {ui.questionOf}
           </span>
           <span className="text-sm font-medium text-lioner-gold">
             {Math.round(progress)}%
@@ -100,7 +117,7 @@ export function QuestionStep({
           disabled={isSubmitting}
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back
+          {ui.back}
         </Button>
         <Button
           onClick={onNext}
@@ -110,13 +127,13 @@ export function QuestionStep({
           {isSubmitting ? (
             <>
               <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              Analyzing...
+              {ui.analyzing}
             </>
           ) : isLastQuestion ? (
-            "See Results"
+            ui.seeResults
           ) : (
             <>
-              Next
+              {ui.next}
               <ArrowRight className="w-4 h-4 ml-2" />
             </>
           )}

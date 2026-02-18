@@ -21,14 +21,61 @@ const userInfoSchema = z.object({
   country: z.string().min(1, "Please select your country")
 });
 
+const uiTranslations = {
+  en: {
+    title: "Discipline Assessment",
+    subtitle: "Discover your discipline type and receive personalized insights",
+    takesTime: "Takes 10 minutes",
+    freeReport: "Free personalized report",
+    firstName: "First Name",
+    firstNamePlaceholder: "Enter your first name",
+    lastName: "Last Name",
+    lastNamePlaceholder: "Enter your last name",
+    email: "Email Address",
+    emailPlaceholder: "Enter your email address",
+    country: "Country",
+    countryPlaceholder: "Select your country",
+    startBtn: "Start Assessment",
+    disclaimer: "By starting the assessment, you agree to receive your personalized report via email.",
+    errors: {
+      firstName: "First name is required",
+      lastName: "Last name is required",
+      email: "Please enter a valid email address",
+      country: "Please select your country",
+    }
+  },
+  nl: {
+    title: "Discipline Assessment",
+    subtitle: "Ontdek jouw discipline type en ontvang persoonlijke inzichten",
+    takesTime: "Duurt 10 minuten",
+    freeReport: "Gratis persoonlijk rapport",
+    firstName: "Voornaam",
+    firstNamePlaceholder: "Vul je voornaam in",
+    lastName: "Achternaam",
+    lastNamePlaceholder: "Vul je achternaam in",
+    email: "E-mailadres",
+    emailPlaceholder: "Vul je e-mailadres in",
+    country: "Land",
+    countryPlaceholder: "Selecteer je land",
+    startBtn: "Start Assessment",
+    disclaimer: "Door de assessment te starten, ga je akkoord met het ontvangen van je persoonlijk rapport via e-mail.",
+    errors: {
+      firstName: "Voornaam is verplicht",
+      lastName: "Achternaam is verplicht",
+      email: "Vul een geldig e-mailadres in",
+      country: "Selecteer je land",
+    }
+  }
+};
+
 export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps) {
+  const ui = uiTranslations[language as 'en' | 'nl'] ?? uiTranslations.en;
   const [formData, setFormData] = useState<UserInfo>(userInfo);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const clearError = (field: string) => {
     setErrors((prev) => {
       if (!prev[field]) return prev;
-      // remove the key entirely so we don't render empty messages
       const next = { ...prev };
       delete next[field];
       return next;
@@ -68,10 +115,10 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
           <Target className="w-8 h-8 text-lioner-gold" />
         </div>
         <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-2">
-          Discipline Assessment
+          {ui.title}
         </h2>
         <p className="text-muted-foreground">
-          Discover your discipline type and receive personalized insights
+          {ui.subtitle}
         </p>
       </div>
 
@@ -79,11 +126,11 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
       <div className="grid grid-cols-2 gap-4 mb-8">
         <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
           <Clock className="w-5 h-5 text-lioner-gold shrink-0" />
-          <span className="text-sm text-muted-foreground">Takes 10 minutes</span>
+          <span className="text-sm text-muted-foreground">{ui.takesTime}</span>
         </div>
         <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
           <FileText className="w-5 h-5 text-lioner-gold shrink-0" />
-          <span className="text-sm text-muted-foreground">Free personalized report</span>
+          <span className="text-sm text-muted-foreground">{ui.freeReport}</span>
         </div>
       </div>
 
@@ -91,7 +138,7 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="firstName">First Name</Label>
+            <Label htmlFor="firstName">{ui.firstName}</Label>
             <Input
               id="firstName"
               value={formData.firstName}
@@ -99,13 +146,13 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
                 setFormData((prev) => ({ ...prev, firstName: e.target.value }));
                 clearError("firstName");
               }}
-              placeholder="Enter your first name"
+              placeholder={ui.firstNamePlaceholder}
               className={errors.firstName ? "border-destructive" : ""}
             />
             {errors.firstName && <p className="text-sm text-destructive">{errors.firstName}</p>}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="lastName">Last Name</Label>
+            <Label htmlFor="lastName">{ui.lastName}</Label>
             <Input
               id="lastName"
               value={formData.lastName}
@@ -113,7 +160,7 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
                 setFormData((prev) => ({ ...prev, lastName: e.target.value }));
                 clearError("lastName");
               }}
-              placeholder="Enter your last name"
+              placeholder={ui.lastNamePlaceholder}
               className={errors.lastName ? "border-destructive" : ""}
             />
             {errors.lastName && <p className="text-sm text-destructive">{errors.lastName}</p>}
@@ -121,7 +168,7 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="email">Email Address</Label>
+          <Label htmlFor="email">{ui.email}</Label>
           <Input
             id="email"
             type="email"
@@ -130,14 +177,14 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
               setFormData((prev) => ({ ...prev, email: e.target.value }));
               clearError("email");
             }}
-            placeholder="Enter your email address"
+            placeholder={ui.emailPlaceholder}
             className={errors.email ? "border-destructive" : ""}
           />
           {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="country">Country</Label>
+          <Label htmlFor="country">{ui.country}</Label>
           <Select
             value={formData.country}
             onValueChange={(value) => {
@@ -146,7 +193,7 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
             }}
           >
             <SelectTrigger className={errors.country ? "border-destructive" : ""}>
-              <SelectValue placeholder="Select your country" />
+              <SelectValue placeholder={ui.countryPlaceholder} />
             </SelectTrigger>
             <SelectContent>
               {countries.map((country) => (
@@ -163,11 +210,11 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
           type="submit"
           className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none py-6 text-base font-medium"
         >
-          Start Assessment
+          {ui.startBtn}
         </Button>
 
         <p className="text-xs text-center text-muted-foreground">
-          By starting the assessment, you agree to receive your personalized report via email.
+          {ui.disclaimer}
         </p>
       </form>
     </div>

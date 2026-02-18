@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { AuditUserInfo, AuditInsights } from "./CorporateAuditDialog";
 import { AuditScores } from "@/lib/corporateAuditScoring";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface AuditResultsStepProps {
   userInfo: AuditUserInfo;
@@ -9,6 +10,27 @@ interface AuditResultsStepProps {
   insights: AuditInsights | null;
   onClose: () => void;
 }
+
+const ui = {
+  en: {
+    verdict: "The Verdict",
+    hereIsScore: "here's your Discipline Score.",
+    realityCheck: "The Reality Check",
+    actionPlan: "The Action Plan",
+    ctaBtn: "Review This Audit With Lionel",
+    warning: "Warning: Do not book unless you are ready to change the score.",
+    close: "Close",
+  },
+  nl: {
+    verdict: "Het Verdict",
+    hereIsScore: "hier is jouw Discipline Score.",
+    realityCheck: "De realiteitscheck",
+    actionPlan: "Het actieplan",
+    ctaBtn: "Bespreek deze audit met Lionel",
+    warning: "Waarschuwing: boek alleen als je klaar bent om de score te veranderen.",
+    close: "Sluiten",
+  },
+};
 
 function ScoreGauge({ score, tier }: { score: number; tier: string }) {
   const getColor = () => {
@@ -50,6 +72,8 @@ function ScoreGauge({ score, tier }: { score: number; tier: string }) {
 }
 
 export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditResultsStepProps) {
+  const { language } = useLanguage();
+  const t = ui[language] ?? ui.en;
   const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
 
   return (
@@ -57,9 +81,9 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
       {/* Header */}
       <div className="text-center">
         <h2 className="text-2xl md:text-3xl font-black text-foreground mb-1 font-sans uppercase tracking-wide">
-          The Verdict
+          {t.verdict}
         </h2>
-        <p className="text-foreground/50 text-sm">{userInfo.firstName}, here's your Discipline Score.</p>
+        <p className="text-foreground/50 text-sm">{userInfo.firstName}, {t.hereIsScore}</p>
       </div>
 
       {/* Score Gauge */}
@@ -72,7 +96,7 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
         "{scores.tierDescription}"
       </p>
 
-      {/* AI Insights - Immediate Truth */}
+      {/* AI Insights */}
       {insights && (
         <div className="space-y-6">
           {/* Headline */}
@@ -83,7 +107,7 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
           {/* Reality Check */}
           <div className="p-5 border border-foreground/10 bg-foreground/[0.03]">
             <h4 className="text-xs uppercase tracking-widest text-red-500 font-bold mb-3">
-              The Reality Check
+              {t.realityCheck}
             </h4>
             <p className="text-foreground/80 leading-relaxed">{insights.realityCheck}</p>
           </div>
@@ -91,7 +115,7 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
           {/* Action Plan */}
           <div className="p-5 border border-foreground/10 bg-foreground/[0.03]">
             <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold mb-3">
-              The Action Plan
+              {t.actionPlan}
             </h4>
             <ul className="space-y-3">
               {insights.actionPlan.map((action, i) => (
@@ -119,19 +143,19 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
           className="bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
         >
           <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-            Review This Audit With Lionel
+            {t.ctaBtn}
             <ArrowRight className="w-5 h-5 ml-3" />
           </a>
         </Button>
         <p className="text-xs text-foreground/40 italic">
-          Warning: Do not book unless you are ready to change the score.
+          {t.warning}
         </p>
       </div>
 
       {/* Close */}
       <div className="text-center">
         <Button variant="ghost" onClick={onClose} className="text-foreground/40 hover:text-foreground/60">
-          Close
+          {t.close}
         </Button>
       </div>
     </div>
