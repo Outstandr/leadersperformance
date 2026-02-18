@@ -213,6 +213,80 @@ const en: Record<string, string> = {
   "business.hero.description": "Your business is not scaling because you are tolerating mediocrity. The Business Reset Blueprint is the operational system to eliminate \"Passenger Culture\" and install military-grade discipline in 30 days.",
   "business.hero.ctaPrimary": "Book a Consult",
   "business.hero.ctaSecondary": "Audit My Team First",
+
+  // Business – Why Us
+  "business.whyUs.eyebrow": "The Problem",
+  "business.whyUs.heading": "No Company Culture.",
+  "business.whyUs.body1": "You hire adults, but you manage children. Every time you repeat an instruction, you lose money. Every time you accept a missed deadline with an excuse, you lower the standard.",
+  "business.whyUs.body2": "Your team is not \"confused.\" They are comfortable. They know you will fix their mistakes. They know you will stay late to finish their work. You have built a nursery, not a business.",
+  "business.whyUs.symptomsHeading": "The Symptoms",
+  "business.whyUs.symptom1.title": "Zero Ownership",
+  "business.whyUs.symptom1.quote": "\"I thought someone else was doing it.\"",
+  "business.whyUs.symptom2.title": "The Hero Trap",
+  "business.whyUs.symptom2.quote": "You are the only one who can solve problems.",
+  "business.whyUs.symptom3.title": "Quiet Quitting",
+  "business.whyUs.symptom3.quote": "They do the bare minimum to not get fired.",
+
+  // Business – Services
+  "business.services.eyebrow": "The Protocol",
+  "business.services.heading": "We Don't Train. We Install Structure.",
+  "business.services.subheading": "Motivation is temporary. Systems are permanent. The Business Reset Blueprint is not a \"workshop.\" It is an installation of the Vanguard Operating System. We strip away the \"soft\" corporate habits and replace them with the protocols of high-performance units.",
+  "business.services.installHeading": "What We Install",
+  "business.services.item1.title": "Vitality",
+  "business.services.item1.desc": "Energy is the foundation. Without physical and mental sharpness, no strategy survives contact with reality.",
+  "business.services.item2.title": "Personal Development",
+  "business.services.item2.desc": "Growth is non-negotiable. Strip away the comfort zone and install a system for constant evolution.",
+  "business.services.item3.title": "Leadership",
+  "business.services.item3.desc": "You don't manage people. You set the standard. Leadership is identity, not a title.",
+  "business.services.item4.title": "Business",
+  "business.services.item4.desc": "Systems over hustle. Install the operational infrastructure that scales without your constant presence.",
+
+  // Business – Process
+  "business.process.eyebrow": "The Arsenal",
+  "business.process.heading": "The Toolkit.",
+  "business.process.item1.title": "The Academy Access",
+  "business.process.item1.desc": "Lifetime access to the core doctrine for your entire team.",
+  "business.process.item2.title": "The Company Culture Report",
+  "business.process.item2.desc": "Copy-paste our specific protocols for Meetings, Reporting, and Daily Planning.",
+  "business.process.item3.title": "The Audit",
+  "business.process.item3.desc": "Increase your team's effectiveness. Ultimately, it's all about the team achieving the results it was created to achieve. The proprietary \"Discipline Scorecard\" to grade every employee.",
+  "business.process.item4.title": "The Kickoff",
+  "business.process.item4.desc": "A 90-Minute \"Hard Reset\" Strategy Call to deploy the system.",
+
+  // Business – Results
+  "business.results.eyebrow": "The Evidence",
+  "business.results.heading": "Results Speak For Themselves.",
+  "business.results.quote1": "We stopped babysitting. Revenue went up 40% in Q1 because I finally had time to lead instead of manage.",
+  "business.results.quote2": "Lionel didn't motivate my team. He scared them straight. Best investment we made.",
+
+  "business.booking.eyebrow": "The Decision",
+  "business.booking.heading": "You Have Two Choices.",
+  "business.booking.optionALabel": "Option A",
+  "business.booking.optionAText": "Keep tolerating the excuses. Keep working weekends to fix their mess. Keep the \"Passenger Culture.\"",
+  "business.booking.optionBLabel": "Option B",
+  "business.booking.optionBText": "Install the Blueprint. Set the Standard. Reclaim your time.",
+  "business.booking.quote": "The standard you walk past is the standard you accept.",
+  "business.booking.ctaPrimary": "Book A Consult",
+  "business.booking.ctaSecondary": "Audit My Team",
+
+  // Business – Quote
+  "business.quote.text": "\"You cannot scale chaos. Execute or be replaced.\"",
+
+  // Business – Footer
+  "business.footer.description": "Transforming organizations through elite leadership development and high-performance coaching.",
+  "business.footer.quickLinks": "Quick Links",
+  "business.footer.bookCall": "Book a Call",
+  "business.footer.legal": "Legal",
+  "business.footer.copyright": "© {year} Leaders Performance Institute. All rights reserved.",
+
+  // Business – Audit CTA
+  "business.auditCTA.badge": "Corporate Discipline Audit",
+  "business.auditCTA.heading": "Is your team an asset or a liability?",
+  "business.auditCTA.body1": "Increase your team's effectiveness. Ultimately, it's all about the team achieving the results it was created to achieve.",
+  "business.auditCTA.body2": "Audit them in 2 minutes. Get a score. Get the truth.",
+  "business.auditCTA.body3": "7 questions. No fluff. Immediate verdict.",
+  "business.auditCTA.cta": "Start The Audit",
+  "business.auditCTA.disclaimer": "Warning: The truth doesn't care about your feelings.",
 };
 
 // ─── Dutch ────────────────────────────────────────────────────────────────────
@@ -395,4 +469,78 @@ const nl: Record<string, string> = {
   "business.hero.description": "Jouw bedrijf schaalt niet omdat je middelmatigheid tolereert. De Business Reset Blueprint is het operationeel systeem om 'passagierscultuur' te elimineren en militaire discipline te installeren in 30 dagen.",
   "business.hero.ctaPrimary": "Boek een consult",
   "business.hero.ctaSecondary": "Team audit uitvoeren",
+
+  // Business – Why Us (NL)
+  "business.whyUs.eyebrow": "Het probleem",
+  "business.whyUs.heading": "Geen bedrijfscultuur.",
+  "business.whyUs.body1": "Je huurt volwassenen in, maar je managet kinderen. Elke keer dat je een instructie herhaalt, verlies je geld. Elke keer dat je een gemiste deadline accepteert met een excuus, verlaag je de norm.",
+  "business.whyUs.body2": "Jouw team is niet \"in de war.\" Ze zijn comfortabel. Ze weten dat jij hun fouten herstelt. Ze weten dat jij overwerkt om hun werk af te maken. Je hebt een crèche gebouwd, geen bedrijf.",
+  "business.whyUs.symptomsHeading": "De symptomen",
+  "business.whyUs.symptom1.title": "Nul eigenaarschap",
+  "business.whyUs.symptom1.quote": "\"Ik dacht dat iemand anders het deed.\"",
+  "business.whyUs.symptom2.title": "De heldenval",
+  "business.whyUs.symptom2.quote": "Jij bent de enige die problemen kan oplossen.",
+  "business.whyUs.symptom3.title": "Stil stoppen",
+  "business.whyUs.symptom3.quote": "Ze doen het absolute minimum om niet ontslagen te worden.",
+
+  // Business – Services (NL)
+  "business.services.eyebrow": "Het protocol",
+  "business.services.heading": "Wij trainen niet. Wij installeren structuur.",
+  "business.services.subheading": "Motivatie is tijdelijk. Systemen zijn permanent. De Business Reset Blueprint is geen \"workshop.\" Het is een installatie van het Vanguard Operating System. Wij stropen de \"zachte\" bedrijfsgewoonten weg en vervangen ze door de protocollen van high-performance eenheden.",
+  "business.services.installHeading": "Wat wij installeren",
+  "business.services.item1.title": "Vitaliteit",
+  "business.services.item1.desc": "Energie is het fundament. Zonder fysieke en mentale scherpte overleeft geen enkele strategie de confrontatie met de realiteit.",
+  "business.services.item2.title": "Persoonlijke ontwikkeling",
+  "business.services.item2.desc": "Groei is niet onderhandelbaar. Breek de comfortzone en installeer een systeem voor constante evolutie.",
+  "business.services.item3.title": "Leiderschap",
+  "business.services.item3.desc": "Je managet geen mensen. Je stelt de norm. Leiderschap is identiteit, geen titel.",
+  "business.services.item4.title": "Business",
+  "business.services.item4.desc": "Systemen boven inspanning. Installeer de operationele infrastructuur die schaalt zonder jouw constante aanwezigheid.",
+
+  // Business – Process (NL)
+  "business.process.eyebrow": "Het arsenaal",
+  "business.process.heading": "De toolkit.",
+  "business.process.item1.title": "Toegang tot de Academy",
+  "business.process.item1.desc": "Levenslange toegang tot de kerndoctrine voor je gehele team.",
+  "business.process.item2.title": "Het bedrijfscultuurrapport",
+  "business.process.item2.desc": "Kopieer en plak onze specifieke protocollen voor vergaderingen, rapportages en dagelijkse planning.",
+  "business.process.item3.title": "De audit",
+  "business.process.item3.desc": "Vergroot de effectiviteit van jouw team. Het draait uiteindelijk om het behalen van de resultaten waarvoor het team is opgericht. De eigen \"Discipline Scorecard\" om elke medewerker te beoordelen.",
+  "business.process.item4.title": "De kickoff",
+  "business.process.item4.desc": "Een 90 minuten durend \"Hard Reset\" strategiegesprek om het systeem te implementeren.",
+
+  // Business – Results (NL)
+  "business.results.eyebrow": "Het bewijs",
+  "business.results.heading": "Resultaten spreken voor zich.",
+  "business.results.quote1": "We zijn gestopt met kleuterwerk. De omzet steeg met 40% in Q1 omdat ik eindelijk tijd had om te leiden in plaats van te managen.",
+  "business.results.quote2": "Lionel motiveerde mijn team niet. Hij schrikte ze wakker. Beste investering die we hebben gedaan.",
+
+  "business.booking.eyebrow": "De beslissing",
+  "business.booking.heading": "Je hebt twee keuzes.",
+  "business.booking.optionALabel": "Optie A",
+  "business.booking.optionAText": "Blijf de excuses tolereren. Blijf in het weekend werken om hun rommel op te ruimen. Houd de \"passagierscultuur\" in stand.",
+  "business.booking.optionBLabel": "Optie B",
+  "business.booking.optionBText": "Installeer de Blueprint. Stel de norm. Herwin je tijd.",
+  "business.booking.quote": "De norm die jij accepteert, is de norm die jij instelt.",
+  "business.booking.ctaPrimary": "Boek een consult",
+  "business.booking.ctaSecondary": "Team audit uitvoeren",
+
+  // Business – Quote (NL)
+  "business.quote.text": "\"Je kunt chaos niet opschalen. Voer uit of word vervangen.\"",
+
+  // Business – Footer (NL)
+  "business.footer.description": "Organisaties transformeren via elite leiderschapsontwikkeling en high-performance coaching.",
+  "business.footer.quickLinks": "Snelle links",
+  "business.footer.bookCall": "Boek een gesprek",
+  "business.footer.legal": "Juridisch",
+  "business.footer.copyright": "© {year} Leaders Performance Institute. Alle rechten voorbehouden.",
+
+  // Business – Audit CTA (NL)
+  "business.auditCTA.badge": "Bedrijfsdiscipline audit",
+  "business.auditCTA.heading": "Is jouw team een aanwinst of een aansprakelijkheid?",
+  "business.auditCTA.body1": "Vergroot de effectiviteit van jouw team. Het draait uiteindelijk om het behalen van de resultaten waarvoor het team is opgericht.",
+  "business.auditCTA.body2": "Auditeer ze in 2 minuten. Krijg een score. Krijg de waarheid.",
+  "business.auditCTA.body3": "7 vragen. Geen opvulling. Onmiddellijk oordeel.",
+  "business.auditCTA.cta": "Start de audit",
+  "business.auditCTA.disclaimer": "Waarschuwing: De waarheid geeft niet om jouw gevoelens.",
 };

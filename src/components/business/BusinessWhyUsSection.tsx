@@ -1,55 +1,54 @@
 import { AlertTriangle, UserX, Ghost } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const BusinessWhyUsSection = () => {
+  const { t } = useLanguage();
+
   const symptoms = [
     {
       icon: AlertTriangle,
-      title: "Zero Ownership",
-      quote: "\"I thought someone else was doing it.\""
+      title: t("business.whyUs.symptom1.title"),
+      quote: t("business.whyUs.symptom1.quote"),
     },
     {
       icon: UserX,
-      title: "The Hero Trap",
-      quote: "You are the only one who can solve problems."
+      title: t("business.whyUs.symptom2.title"),
+      quote: t("business.whyUs.symptom2.quote"),
     },
     {
       icon: Ghost,
-      title: "Quiet Quitting",
-      quote: "They do the bare minimum to not get fired."
-    }
+      title: t("business.whyUs.symptom3.title"),
+      quote: t("business.whyUs.symptom3.quote"),
+    },
   ];
 
   return (
     <section id="why-us" className="py-8 lg:py-12 bg-gradient-to-b from-muted/60 to-muted/80">
       <div className="container mx-auto px-4 max-w-7xl">
-        {/* Header */}
         <div className="text-center mb-6">
-          <span className="text-sm font-medium uppercase text-muted-foreground tracking-wider">The Problem</span>
+          <span className="text-sm font-medium uppercase text-muted-foreground tracking-wider">{t("business.whyUs.eyebrow")}</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mt-4 mb-4 text-lioner-gold">
-            No Company Culture.
+            {t("business.whyUs.heading")}
           </h2>
         </div>
 
-        {/* Body */}
         <div className="max-w-3xl mx-auto text-center mb-12">
           <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-            You hire adults, but you manage children. Every time you repeat an instruction, you lose money. Every time you accept a missed deadline with an excuse, you lower the standard.
+            {t("business.whyUs.body1")}
           </p>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Your team is not "confused." They are comfortable. They know you will fix their mistakes. They know you will stay late to finish their work. You have built a nursery, not a business.
+            {t("business.whyUs.body2")}
           </p>
         </div>
 
-        {/* Subtitle */}
         <div className="text-center mb-8">
-          <h3 className="text-xl md:text-2xl font-semibold text-foreground uppercase tracking-wider">The Symptoms</h3>
+          <h3 className="text-xl md:text-2xl font-semibold text-foreground uppercase tracking-wider">{t("business.whyUs.symptomsHeading")}</h3>
         </div>
 
-        {/* Symptoms Grid */}
         <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {symptoms.map((symptom, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="p-6 bg-white border border-lioner-gold/20 hover:border-lioner-gold/40 transition-all duration-300 hover:-translate-y-1 text-center"
             >
               <div className="bg-white w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-lioner-gold">
