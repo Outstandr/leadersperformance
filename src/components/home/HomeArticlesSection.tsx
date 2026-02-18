@@ -1,45 +1,44 @@
 import { ArrowUpRight } from "lucide-react";
-
-const articles = [
-  {
-    title: "The Power of Mental Sovereignty",
-    description:
-      "Discover how reclaiming control over your thoughts and emotions can transform your leadership presence and decision-making under pressure.",
-    link: "/blog",
-  },
-  {
-    title: "Why Discipline Beats Motivation",
-    description:
-      "Motivation fades. Discipline endures. Learn why the most effective leaders rely on systems and structure — not fleeting inspiration.",
-    link: "/blog",
-  },
-  {
-    title: "Leading Through Uncertainty",
-    description:
-      "In times of crisis, your team looks to you. Build the resilience and composure needed to lead with clarity when it matters most.",
-    link: "/blog",
-  },
-  {
-    title: "The Reset Method Explained",
-    description:
-      "A deep dive into our proven framework for breaking old patterns, installing new habits, and achieving lasting personal transformation.",
-    link: "/blog",
-  },
-];
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const HomeArticlesSection = () => {
+  const { t } = useLanguage();
+
+  const articles = [
+    {
+      title: t("home.articles.title1"),
+      description: t("home.articles.desc1"),
+      link: "/blog",
+    },
+    {
+      title: t("home.articles.title2"),
+      description: t("home.articles.desc2"),
+      link: "/blog",
+    },
+    {
+      title: t("home.articles.title3"),
+      description: t("home.articles.desc3"),
+      link: "/blog",
+    },
+    {
+      title: t("home.articles.title4"),
+      description: t("home.articles.desc4"),
+      link: "/blog",
+    },
+  ];
+
   return (
     <section className="relative z-10 py-20 lg:py-28" style={{ background: "hsl(0 0% 12%)" }}>
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="mb-14">
           <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold mb-4">
-            Insights
+            {t("home.articles.eyebrow")}
           </p>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-tight" style={{ color: "white" }}>
-            Latest <span className="text-lioner-gold italic">Articles</span>
+            {t("home.articles.heading")} <span className="text-lioner-gold italic">{t("home.articles.headingGold")}</span>
           </h2>
           <p className="mt-4 max-w-2xl text-base md:text-lg leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
-            Explore our latest thinking on leadership, discipline, and personal mastery.
+            {t("home.articles.subheading")}
           </p>
         </div>
 

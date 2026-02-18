@@ -30,7 +30,7 @@ export const HomePillarsSection = () => {
   const formattedNumber = String(activeIndex + 1).padStart(2, "0");
 
   return (
-    <section ref={containerRef} className="relative bg-background" style={{ height: `${pillars.length * 100}vh` }}>
+    <section ref={containerRef} className="relative bg-background" style={{ height: `${pillars.length * 60}vh` }}>
       {/* Decorative gold swirling lines */}
       <div className="sticky top-0 h-screen pointer-events-none z-0 overflow-hidden">
         <svg

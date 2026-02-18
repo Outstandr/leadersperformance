@@ -1,5 +1,6 @@
 import { Progress } from "@/components/ui/progress";
 import { AuditQuestion } from "@/lib/corporateAuditQuestions";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface AuditQuestionStepProps {
   question: AuditQuestion;
@@ -14,6 +15,7 @@ export function AuditQuestionStep({
   totalQuestions,
   onAnswer,
 }: AuditQuestionStepProps) {
+  const { t } = useLanguage();
   const progress = ((currentIndex + 1) / totalQuestions) * 100;
 
   return (
@@ -22,7 +24,7 @@ export function AuditQuestionStep({
       <div className="mb-8">
         <div className="flex justify-between items-center mb-3">
           <span className="text-xs uppercase tracking-widest text-lioner-gold font-semibold">
-            Question {currentIndex + 1} of {totalQuestions}
+            {t("audit.question")} {currentIndex + 1} {t("audit.of")} {totalQuestions}
           </span>
           <span className="text-xs font-medium text-foreground/50">
             {Math.round(progress)}%
@@ -43,15 +45,15 @@ export function AuditQuestionStep({
         "{question.question}"
       </h3>
 
-      {/* Binary Options */}
+      {/* Binary Options — no green/red, use gold */}
       <div className="space-y-4">
         <button
           type="button"
           onClick={() => onAnswer(question.id, question.optionA.points)}
-          className="w-full text-left p-5 rounded-none border-2 border-foreground/10 hover:border-red-500/50 hover:bg-red-500/5 transition-all group"
+          className="w-full text-left p-5 rounded-none border-2 border-foreground/10 hover:border-lioner-gold/60 hover:bg-lioner-gold/5 transition-all group"
         >
           <div className="flex items-start gap-4">
-            <span className="flex items-center justify-center w-8 h-8 rounded-none border-2 border-foreground/20 text-foreground/50 text-sm font-bold shrink-0 group-hover:border-red-500/50 group-hover:text-red-500">
+            <span className="flex items-center justify-center w-8 h-8 rounded-none border-2 border-foreground/20 text-foreground/50 text-sm font-bold shrink-0 group-hover:border-lioner-gold/60 group-hover:text-lioner-gold">
               A
             </span>
             <span className="text-foreground/80 group-hover:text-foreground transition-colors">
@@ -63,10 +65,10 @@ export function AuditQuestionStep({
         <button
           type="button"
           onClick={() => onAnswer(question.id, question.optionB.points)}
-          className="w-full text-left p-5 rounded-none border-2 border-foreground/10 hover:border-green-500/50 hover:bg-green-500/5 transition-all group"
+          className="w-full text-left p-5 rounded-none border-2 border-foreground/10 hover:border-lioner-gold/60 hover:bg-lioner-gold/5 transition-all group"
         >
           <div className="flex items-start gap-4">
-            <span className="flex items-center justify-center w-8 h-8 rounded-none border-2 border-foreground/20 text-foreground/50 text-sm font-bold shrink-0 group-hover:border-green-500/50 group-hover:text-green-500">
+            <span className="flex items-center justify-center w-8 h-8 rounded-none border-2 border-foreground/20 text-foreground/50 text-sm font-bold shrink-0 group-hover:border-lioner-gold/60 group-hover:text-lioner-gold">
               B
             </span>
             <span className="text-foreground/80 group-hover:text-foreground transition-colors">
@@ -76,9 +78,8 @@ export function AuditQuestionStep({
         </button>
       </div>
 
-      {/* No back button - by design */}
       <p className="text-center text-xs text-foreground/30 mt-8 uppercase tracking-wide">
-        Choose. No going back.
+        {t("audit.chooseNoBack")}
       </p>
     </div>
   );
