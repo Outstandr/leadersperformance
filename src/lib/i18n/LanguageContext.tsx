@@ -624,7 +624,7 @@ const nl: Record<string, string> = {
   "business.booking.ctaSecondary": "Team audit uitvoeren",
 
   // Business – Quote (NL)
-  "business.quote.text": "\"Je kunt chaos niet opschalen. Voer uit of word vervangen.\"",
+  "business.quote.text": "\"Chaos schaalt niet. Structuur wel.\"",
 
   // Business – Footer (NL)
   "business.footer.description": "Organisaties transformeren via elite leiderschapsontwikkeling en high-performance coaching.",
