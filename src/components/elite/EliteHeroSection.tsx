@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Crown } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import eliteThumbnail from "@/assets/lionel-elite-hero.png";
 import { AssessmentDialog } from "@/components/assessment/AssessmentDialog";
 
 const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
@@ -56,6 +57,7 @@ export const EliteHeroSection = () => {
                   className="w-full h-full rounded-lg shadow-lg"
                   controls
                   preload="none"
+                  poster={eliteThumbnail}
                 >
                   <source
                     src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/vsl//High ticket Choice 02.mov"
