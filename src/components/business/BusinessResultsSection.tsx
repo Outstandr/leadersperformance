@@ -4,7 +4,7 @@ import reneImage from "@/assets/testimonial-rene.png";
 export const BusinessResultsSection = () => {
   const testimonials = [
     {
-      quote: "We stopped babysitting. Revenue went up 40% in Q1 because I finally had time to be a CEO instead of a manager.",
+      quote: "We stopped babysitting. Revenue went up 40% in Q1 because I finally had time to lead instead of manage.",
       author: "Hans van Berghem",
       role: "Manager Underwriting & Broking, Post & Co",
       image: hansImage

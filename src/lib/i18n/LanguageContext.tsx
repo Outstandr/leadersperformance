@@ -208,10 +208,10 @@ const en: Record<string, string> = {
   "elite.hero.disclaimer": "Limited spots available • Application required",
 
   // Business Hero
-  "business.hero.badge": "For Teams of 5 – 50",
+  "business.hero.badge": "For teams of 5-50 persons",
   "business.hero.headline": "Stop Managing People. Start Leading Performers.",
   "business.hero.description": "Your business is not scaling because you are tolerating mediocrity. The Business Reset Blueprint is the operational system to eliminate \"Passenger Culture\" and install military-grade discipline in 30 days.",
-  "business.hero.ctaPrimary": "Book a Consultation",
+  "business.hero.ctaPrimary": "Book a Consult",
   "business.hero.ctaSecondary": "Audit My Team First",
 };
 
@@ -230,7 +230,7 @@ const nl: Record<string, string> = {
   "nav.results": "Resultaten",
   "nav.process": "Werkwijze",
   "nav.takeTeamAudit": "Team audit uitvoeren",
-  "nav.bookConsultation": "Consultatie boeken",
+  "nav.bookConsultation": "Boek een consult",
 
   // Navigation – Elite
   "nav.program": "Programma",
@@ -390,9 +390,9 @@ const nl: Record<string, string> = {
   "elite.hero.disclaimer": "Beperkt aantal plaatsen • Aanmelding vereist",
 
   // Business Hero
-  "business.hero.badge": "Voor teams van 5 – 50",
+  "business.hero.badge": "Voor teams van 5-50 personen",
   "business.hero.headline": "Stop met managen. Begin met leiden.",
   "business.hero.description": "Jouw bedrijf schaalt niet omdat je middelmatigheid tolereert. De Business Reset Blueprint is het operationeel systeem om 'passagierscultuur' te elimineren en militaire discipline te installeren in 30 dagen.",
-  "business.hero.ctaPrimary": "Boek een Consultatie",
-  "business.hero.ctaSecondary": "Audit mijn team eerst",
+  "business.hero.ctaPrimary": "Boek een consult",
+  "business.hero.ctaSecondary": "Team audit uitvoeren",
 };
