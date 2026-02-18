@@ -98,6 +98,13 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
             discipline_score: auditScores.disciplineScore,
             tier: auditScores.tier,
             audit_type: "corporate",
+            audit_q1: responses.q1 ?? 0,
+            audit_q2: responses.q2 ?? 0,
+            audit_q3: responses.q3 ?? 0,
+            audit_q4: responses.q4 ?? 0,
+            audit_q5: responses.q5 ?? 0,
+            audit_q6: responses.q6 ?? 0,
+            audit_q7: responses.q7 ?? 0,
           },
         })
         .then(({ error }) => {

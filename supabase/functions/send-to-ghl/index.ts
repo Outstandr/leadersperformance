@@ -20,28 +20,8 @@ Deno.serve(async (req) => {
 
     const payload = await req.json();
 
-    const ghlPayload = {
-      first_name: payload.first_name,
-      last_name: payload.last_name,
-      email: payload.email,
-      country: payload.country,
-      language: payload.language,
-      self_discipline_score: payload.self_discipline_score,
-      impulse_control_score: payload.impulse_control_score,
-      consistency_score: payload.consistency_score,
-      overall_score: payload.overall_score,
-      discipline_type: payload.discipline_type,
-      q1_follow_through: payload.q1_follow_through,
-      q2_maintain_focus: payload.q2_maintain_focus,
-      q3_give_up: payload.q3_give_up,
-      q4_resist_pleasure: payload.q4_resist_pleasure,
-      q8_act_impulse: payload.q8_act_impulse,
-      q9_control_stress: payload.q9_control_stress,
-      q10_regret_purchases: payload.q10_regret_purchases,
-      q15_daily_routines: payload.q15_daily_routines,
-      q16_productivity_varies: payload.q16_productivity_varies,
-      q17_bounce_back: payload.q17_bounce_back,
-    };
+    // Pass through all payload fields to GHL
+    const ghlPayload = { ...payload };
 
     console.log('Sending to GHL:', JSON.stringify(ghlPayload));
 
