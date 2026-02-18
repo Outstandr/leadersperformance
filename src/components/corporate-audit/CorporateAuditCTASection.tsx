@@ -23,13 +23,15 @@ export const CorporateAuditCTASection = () => {
             {t("business.auditCTA.heading")}
           </h2>
 
-          <p className="text-lg md:text-xl text-foreground/70 mb-4 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-foreground/70 mb-4 max-w-2xl mx-auto whitespace-pre-line text-left">
             {t("business.auditCTA.body1")}
           </p>
 
-          <p className="text-lg md:text-xl text-foreground/70 mb-4 max-w-2xl mx-auto">
-            {t("business.auditCTA.body2")}
-          </p>
+          {t("business.auditCTA.body2") && (
+            <p className="text-lg md:text-xl text-foreground/70 mb-4 max-w-2xl mx-auto">
+              {t("business.auditCTA.body2")}
+            </p>
+          )}
 
           <p className="text-sm text-foreground/50 mb-10">
             {t("business.auditCTA.body3")}
