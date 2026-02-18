@@ -27,11 +27,13 @@ export const HomeNavigation = () => {
 
   const isDark = !pastHero;
 
+  const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
+
   const navItems = [
     { label: t("nav.about"), href: "#about" },
     { label: "BUSINESS", href: "/business" },
     { label: "ELITE", href: "/elite" },
-    { label: t("nav.blog"), href: "#insights" },
+    { label: "ARTICLES", href: "#articles" },
     { label: t("nav.startHere"), href: "#start-here" },
     { label: t("nav.faq"), href: "#faq" },
   ];
@@ -109,11 +111,9 @@ export const HomeNavigation = () => {
               Find Your Path
             </button>
             <a
-              href="#start-here"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNav("#start-here");
-              }}
+              href={bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`text-[13px] font-medium tracking-wide px-6 py-2.5 rounded-full transition-all ${
                 isDark
                   ? "bg-background/10 backdrop-blur-sm text-background border border-background/20 hover:bg-background/20"
