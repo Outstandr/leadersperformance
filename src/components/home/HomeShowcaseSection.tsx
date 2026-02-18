@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Shield, Users, TrendingUp } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { UnmaskedBookingDialog } from "./UnmaskedBookingDialog";
 
 const STORAGE_URL = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/websiteimages`;
 
@@ -28,12 +29,14 @@ const ParallaxImage = ({ src, alt }: { src: string; alt: string }) => {
 
 export const HomeShowcaseSection = () => {
   const { t } = useLanguage();
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   const showcases = [
     {
       title: t("home.showcase.title1"),
       description: t("home.showcase.desc1"),
       cta: t("home.showcase.cta1"),
+      isUnmasked: true,
       link: "#",
       icon: Shield,
       image: `${STORAGE_URL}/Unmasked.png`,
@@ -43,6 +46,7 @@ export const HomeShowcaseSection = () => {
       title: t("home.showcase.title2"),
       description: t("home.showcase.desc2"),
       cta: t("home.showcase.cta2"),
+      isUnmasked: false,
       link: "#advisory",
       icon: Users,
       image: `${STORAGE_URL}/Leadersperformance`,
@@ -52,6 +56,7 @@ export const HomeShowcaseSection = () => {
       title: t("home.showcase.title3"),
       description: t("home.showcase.desc3"),
       cta: t("home.showcase.cta3"),
+      isUnmasked: false,
       link: "#start-here",
       icon: TrendingUp,
       image: `${STORAGE_URL}/le`,
@@ -75,9 +80,21 @@ export const HomeShowcaseSection = () => {
                 {item.description}
               </p>
               <div className="mt-8">
-                <Button className="bg-lioner-gold hover:bg-lioner-gold/90 text-background rounded-full px-8 py-3 h-auto text-sm font-medium">
-                  {item.cta}
-                </Button>
+                {item.isUnmasked ? (
+                  <Button
+                    onClick={() => setBookingOpen(true)}
+                    className="bg-lioner-gold hover:bg-lioner-gold/90 text-background rounded-full px-8 py-3 h-auto text-sm font-medium"
+                  >
+                    {item.cta}
+                  </Button>
+                ) : (
+                  <Button
+                    asChild
+                    className="bg-lioner-gold hover:bg-lioner-gold/90 text-background rounded-full px-8 py-3 h-auto text-sm font-medium"
+                  >
+                    <a href={item.link}>{item.cta}</a>
+                  </Button>
+                )}
               </div>
             </div>
             <div className={item.reverse ? "md:[direction:ltr]" : ""}>
@@ -86,6 +103,8 @@ export const HomeShowcaseSection = () => {
           </div>
         ))}
       </div>
+
+      <UnmaskedBookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
     </section>
   );
 };
