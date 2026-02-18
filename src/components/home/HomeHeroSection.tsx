@@ -52,7 +52,7 @@ export const HomeHeroSection = () => {
                 href="#start-here"
                 className="inline-flex items-center gap-3 bg-lioner-gold text-foreground rounded-full px-8 py-4 text-sm font-medium tracking-wider uppercase hover:bg-lioner-gold/90 transition-colors"
               >
-                Start Your Journey
+                Choose Your Path
                 <span className="w-2 h-2 rounded-full bg-foreground/40" />
               </a>
             </div>
