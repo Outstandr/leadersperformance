@@ -10,19 +10,21 @@ const services = [
   {
     title: "UNMASKED\nDesert Intervention",
     description:
-      "A 4-day controlled recalibration in the desert to strip away noise, confront deferred decisions, and rebuild your strategy.",
+      "For high-performance entrepreneurs and executives who have built success — and lost themselves in the process. This is not a retreat. This is an intervention.",
     image: serviceUnmasked,
     details: {
-      headline: "UNMASKED — Desert Intervention",
-      body: "A private 4-day immersive experience designed for leaders who have hit a ceiling they can't think their way through. Removed from your environment, stripped of distractions, you confront the decisions you've been deferring — the ones silently eroding your performance, your relationships, and your clarity.",
+      headline: "UNMASKED Private Executive Reset · Dubai",
+      tag: "Invitation Only · Maximum 4 Men Per Edition",
+      body: "Motivation is a sedative. Discipline is the cure. He doesn't tell you what you want to hear. He tells you what you need to hear. The mirror you've been avoiding — no fluff, no theory, no inspiration porn.",
       bullets: [
-        "4 days in a controlled desert environment",
-        "One-on-one sessions with Lionel Eersteling",
-        "Complete digital detox and environmental reset",
-        "Strategic recalibration of your execution blueprint",
-        "Post-intervention follow-up and accountability structure",
+        "Vitality — Recalibrate your biological baseline",
+        "Mindset — Map the patterns running your decisions",
+        "Leadership — Reset your command presence",
+        "Business — Build your 90-day war map",
       ],
-      closing: "This is not a retreat. It's an intervention on the patterns keeping you stuck.",
+      closing: "This is not a retreat. It's an intervention.",
+      cta: "Apply Here",
+      disclaimer: "Investment: €8,500 · 2026 Editions: March · April · May — Dubai",
     },
   },
   {
