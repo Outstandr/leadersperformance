@@ -596,16 +596,16 @@ const nl: Record<string, string> = {
   "business.services.item4.desc": "Systemen boven inspanning. Installeer de operationele infrastructuur die schaalt zonder jouw constante aanwezigheid.",
 
   // Business – Process (NL)
-  "business.process.eyebrow": "Het arsenaal",
+  "business.process.eyebrow": "Het proces",
   "business.process.heading": "De toolkit.",
   "business.process.item1.title": "Toegang tot de Academy",
-  "business.process.item1.desc": "Levenslange toegang tot de kerndoctrine voor je gehele team.",
-  "business.process.item2.title": "Het bedrijfscultuurrapport",
-  "business.process.item2.desc": "Kopieer en plak onze specifieke protocollen voor vergaderingen, rapportages en dagelijkse planning.",
+  "business.process.item1.desc": "Levenslange toegang tot de academy voor je gehele team.",
+  "business.process.item2.title": "Bedrijfscultuur aanpassen",
+  "business.process.item2.desc": "Implementeer onze specifieke protocollen voor vergaderingen, rapportages en dagelijkse planning.",
   "business.process.item3.title": "De audit",
-  "business.process.item3.desc": "Vergroot de effectiviteit van jouw team. Het draait uiteindelijk om het behalen van de resultaten waarvoor het team is opgericht. De eigen \"Discipline Scorecard\" om elke medewerker te beoordelen.",
+  "business.process.item3.desc": "Vergroot de effectiviteit van jouw team. Het draait uiteindelijk om het behalen van de resultaten waarvoor het team is opgericht. Iedere medewerker wordt individueel beoordeeld.",
   "business.process.item4.title": "De kickoff",
-  "business.process.item4.desc": "Een 90 minuten durend \"Hard Reset\" strategiegesprek om het systeem te implementeren.",
+  "business.process.item4.desc": "Tijdens een strategiegesprek van 90 minuten, implementeren we het nieuwe systeem.",
 
   // Business – Results (NL)
   "business.results.eyebrow": "Het bewijs",
