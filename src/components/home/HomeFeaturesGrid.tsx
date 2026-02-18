@@ -1,7 +1,7 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import { X } from "lucide-react";
-import serviceUnmasked from "@/assets/service-unmasked-desert.jpg";
+import serviceUnmasked from "@/assets/unmasked-desert-new.png";
 import serviceCoaching from "@/assets/service-coaching.jpg";
 import serviceAcademy from "@/assets/service-academy.jpg";
 import serviceBusiness from "@/assets/service-business.jpg";
