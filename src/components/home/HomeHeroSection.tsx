@@ -64,7 +64,7 @@ export const HomeHeroSection = () => {
       </section>
 
       {/* Bottom gradient fade */}
-      <div className="relative z-10 h-32 md:h-48 -mt-32 md:-mt-48 bg-gradient-to-b from-transparent to-background" />
+      <div className="relative z-10 h-32 md:h-48 -mt-32 md:-mt-48 bg-gradient-to-b from-transparent to-background pointer-events-none" />
     </>
   );
 };
