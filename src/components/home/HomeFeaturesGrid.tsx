@@ -28,6 +28,8 @@ const cards = {
         closing: "This is not a retreat. It's an intervention.",
         cta: "Apply Here",
         disclaimer: "Investment: €8,500 · 2026 Editions: March · April · May — Dubai",
+        showCalendar: true,
+        calendarUrl: "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY",
       },
     },
     {
@@ -47,6 +49,7 @@ const cards = {
         cta: "Apply For Mentorship",
         disclaimer: "Limited spots. Application required.",
         showCalendar: true,
+        calendarUrl: "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j",
       },
     },
     {
@@ -86,6 +89,7 @@ const cards = {
         cta: "Book a Consultation",
         disclaimer: "Pricing not displayed · All engagements by application",
         showCalendar: true,
+        calendarUrl: "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j",
       },
     },
   ],
@@ -106,6 +110,8 @@ const cards = {
         closing: "Dit is geen retraite. Het is een interventie.",
         cta: "Aanmelden",
         disclaimer: "Investering: €8.500 · 2026 Edities: Maart · April · Mei — Dubai",
+        showCalendar: true,
+        calendarUrl: "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY",
       },
     },
     {
@@ -125,6 +131,7 @@ const cards = {
         cta: "Aanmelden voor mentorschap",
         disclaimer: "Beperkt aantal plaatsen. Aanmelding vereist.",
         showCalendar: true,
+        calendarUrl: "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j",
       },
     },
     {
@@ -164,6 +171,7 @@ const cards = {
         cta: "Boek een Consultatie",
         disclaimer: "Prijzen niet weergegeven · Alle trajecten op aanvraag",
         showCalendar: true,
+        calendarUrl: "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j",
       },
     },
   ],
@@ -240,6 +248,7 @@ export const HomeFeaturesGrid = () => {
 
   const selectedService = selected !== null ? services[selected] : null;
   const showCalendar = selectedService && (selectedService.details as any).showCalendar;
+  const calendarUrl = selectedService ? (selectedService.details as any).calendarUrl : null;
 
   // Load LeadConnector script once when a calendar card is opened
   useEffect(() => {
@@ -352,10 +361,10 @@ export const HomeFeaturesGrid = () => {
                         Book Your Session
                       </p>
                       <iframe
-                        src="https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j"
+                        src={calendarUrl}
                         style={{ width: "100%", border: "none", overflow: "hidden", minHeight: "600px" }}
                         scrolling="no"
-                        id={`NE13SD9blCXUJeVghk6j_${selected}`}
+                        id={`lc-calendar-${selected}`}
                       />
                     </div>
                   )}
