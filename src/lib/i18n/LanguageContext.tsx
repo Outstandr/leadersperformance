@@ -57,7 +57,7 @@ const en: Record<string, string> = {
   // Offerings
   "home.offerings.eyebrow1": "Private Reset",
   "home.offerings.title1": "UNMASKED",
-  "home.offerings.body1": "A 4-day controlled recalibration in the desert. Designed to strip away noise and rebuild execution strategy.",
+  "home.offerings.body1": "I lead UNMASKED personally.\n\nThis is not a seminar. It's a controlled reset.\n\nWe strip away what no longer serves you and rebuild from structure.\n\nBody. Clarity. Command. Execution.\n\nVitality — Recalibrate your biological baseline so your energy matches your ambition.\nMindset — Expose the patterns driving your decisions under pressure.\nLeadership — Reset your command presence from the inside out.\nBusiness — Build a precise 90-day execution map grounded in reality.\n\nMy name is Lionel Eersteling.\nFormer professional athlete.\nMulti-entrepreneur.\nInvestor.\nFounder of the Leaders Performance Group.\n\nI don't sell motivation.\nI build operating systems for leaders who refuse to drift.",
   "home.offerings.specs1": "Limited to 2–4 participants per edition.",
   "home.offerings.link1": "View Experience details",
   "home.offerings.eyebrow2": "Ongoing Strategy",
@@ -369,7 +369,7 @@ const nl: Record<string, string> = {
   // Offerings
   "home.offerings.eyebrow1": "Privé reset",
   "home.offerings.title1": "UNMASKED",
-  "home.offerings.body1": "Een 4-daagse gecontroleerde heroriëntatie in de woestijn. Ontworpen om ruis weg te nemen en je uitvoeringsstrategie opnieuw op te bouwen.",
+  "home.offerings.body1": "Ik leid UNMASKED persoonlijk.\n\nDit is geen seminar. Het is een gecontroleerde reset.\n\nWe strippen weg wat je niet meer dient en bouwen opnieuw op vanuit structuur.\n\nLichaam. Helderheid. Commando. Executie.\n\nVitaliteit — Kalibreer je biologische basis opnieuw zodat je energie overeenkomt met je ambitie.\nMindset — Bloot de patronen die je beslissingen onder druk sturen.\nLeiderschap — Reset je commandoaanwezigheid van binnenuit.\nBusiness — Bouw een precieze 90-daagse uitvoeringskaart gebaseerd op realiteit.\n\nMijn naam is Lionel Eersteling.\nOud-professioneel atleet.\nMulti-ondernemer.\nInvesteerder.\nOprichter van de Leaders Performance Group.\n\nIk verkoop geen motivatie.\nIk bouw besturingssystemen voor leiders die weigeren te driften.",
   "home.offerings.specs1": "Beperkt tot 2–4 deelnemers per editie.",
   "home.offerings.link1": "Bekijk ervaringsdetails",
   "home.offerings.eyebrow2": "Doorlopende strategie",
