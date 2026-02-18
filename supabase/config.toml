@@ -21,5 +21,8 @@ verify_jwt = false
 [functions.update-elevenlabs-agent]
 verify_jwt = false
 
+[functions.test-webhook]
+verify_jwt = false
+
 
 
