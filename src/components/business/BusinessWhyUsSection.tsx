@@ -36,7 +36,7 @@ export const BusinessWhyUsSection = () => {
           <p className="text-lg text-muted-foreground leading-relaxed mb-4">
             {t("business.whyUs.body1")}
           </p>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
             {t("business.whyUs.body2")}
           </p>
         </div>
