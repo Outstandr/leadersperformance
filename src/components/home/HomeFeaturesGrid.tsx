@@ -5,85 +5,156 @@ import serviceUnmasked from "@/assets/unmasked-desert-new.png";
 import serviceCoaching from "@/assets/service-coaching.jpg";
 import serviceAcademy from "@/assets/service-academy.jpg";
 import serviceBusiness from "@/assets/service-business.jpg";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-const services = [
-  {
-    title: "UNMASKED\nDesert Intervention",
-    description:
-      "For high-performance entrepreneurs and executives who have built success — and lost themselves in the process. This is not a retreat. This is an intervention.",
-    image: serviceUnmasked,
-    details: {
-      headline: "UNMASKED Private Executive Reset · Dubai",
-      tag: "Invitation Only · Maximum 4 Men Per Edition",
-      body: "Motivation is a sedative. Discipline is the cure. He doesn't tell you what you want to hear. He tells you what you need to hear. The mirror you've been avoiding — no fluff, no theory, no inspiration porn.",
-      bullets: [
-        "Vitality — Recalibrate your biological baseline",
-        "Mindset — Map the patterns running your decisions",
-        "Leadership — Reset your command presence",
-        "Business — Build your 90-day war map",
-      ],
-      closing: "This is not a retreat. It's an intervention.",
-      cta: "Apply Here",
-      disclaimer: "Investment: €8,500 · 2026 Editions: March · April · May — Dubai",
+// ─── Translations ──────────────────────────────────────────────────────────
+
+const cards = {
+  en: [
+    {
+      title: "UNMASKED\nDesert Intervention",
+      description: "For high-performance entrepreneurs and executives who have built success — and lost themselves in the process. This is not a retreat. This is an intervention.",
+      details: {
+        headline: "UNMASKED Private Executive Reset · Dubai",
+        tag: "Invitation Only · Maximum 4 Men Per Edition",
+        body: "Motivation is a sedative. Discipline is the cure. He doesn't tell you what you want to hear. He tells you what you need to hear. The mirror you've been avoiding — no fluff, no theory, no inspiration porn.",
+        bullets: [
+          "Vitality — Recalibrate your biological baseline",
+          "Mindset — Map the patterns running your decisions",
+          "Leadership — Reset your command presence",
+          "Business — Build your 90-day war map",
+        ],
+        closing: "This is not a retreat. It's an intervention.",
+        cta: "Apply Here",
+        disclaimer: "Investment: €8,500 · 2026 Editions: March · April · May — Dubai",
+      },
     },
-  },
-  {
-    title: "High Performance\nCoaching",
-    description:
-      "Work directly with Lionel in a private, high-performance mentorship built for entrepreneurs and executives ready to close the gap between where they are and where they're meant to be.",
-    image: serviceCoaching,
-    details: {
-      headline: "Lionel Eersteling — 1-on-1 High Performance Mentorship",
-      tag: "Exclusive · By Application Only",
-      body: "Lionel Eersteling is a certified high-performance coach, neuroscience-informed mentor, and strategic leadership practitioner. His 1-on-1 mentorship is designed for professionals who are doing the work but not seeing the results — because effort without alignment doesn't scale. Lionel works with a select group of clients over 6 months to dismantle the hidden patterns keeping them stuck and replace them with structures that produce permanent results.",
-      bullets: [
-        "1,249 Professionals Mentored",
-        "€22M+ Combined Revenue Generated",
-        "82% Pattern Breakthrough Rate",
-        "6-Month Average Program Duration",
-      ],
-      closing: "Not motivation. Not theory. Structural change.",
-      cta: "Apply For Mentorship",
-      disclaimer: "Limited spots. Application required.",
+    {
+      title: "High Performance\nCoaching",
+      description: "Work directly with Lionel in a private, high-performance mentorship built for entrepreneurs and executives ready to close the gap between where they are and where they're meant to be.",
+      details: {
+        headline: "Lionel Eersteling — 1-on-1 High Performance Mentorship",
+        tag: "Exclusive · By Application Only",
+        body: "Lionel Eersteling is a certified high-performance coach, neuroscience-informed mentor, and strategic leadership practitioner. His 1-on-1 mentorship is designed for professionals who are doing the work but not seeing the results — because effort without alignment doesn't scale.",
+        bullets: [
+          "1,249 Professionals Mentored",
+          "€22M+ Combined Revenue Generated",
+          "82% Pattern Breakthrough Rate",
+          "6-Month Average Program Duration",
+        ],
+        closing: "Not motivation. Not theory. Structural change.",
+        cta: "Apply For Mentorship",
+        disclaimer: "Limited spots. Application required.",
+      },
     },
-  },
-  {
-    title: "Leaders Performance\nAcademy",
-    description:
-      "A short-term space to gain insight, assess your needs, or reset your strategic course.",
-    image: serviceAcademy,
-    details: {
-      headline: "Leaders Performance Academy",
-      body: "A focused, short-term engagement for leaders at an inflection point. Whether you're navigating a transition, evaluating your next move, or simply need an honest external perspective — the Leaders Performance Academy gives you the space and structure to see clearly again.",
-      bullets: [
-        "Single or multi-session format",
-        "Rapid diagnostic of your current situation",
-        "Identification of blind spots and leverage points",
-        "Actionable strategic recommendations",
-        "Option to transition into ongoing Advisory",
-      ],
-      closing: "Sometimes the most powerful move is to stop and see the board clearly.",
+    {
+      title: "Leaders Performance\nAcademy",
+      description: "A short-term space to gain insight, assess your needs, or reset your strategic course.",
+      details: {
+        headline: "Leaders Performance Academy",
+        body: "A focused, short-term engagement for leaders at an inflection point. Whether you're navigating a transition, evaluating your next move, or simply need an honest external perspective — the Leaders Performance Academy gives you the space and structure to see clearly again.",
+        bullets: [
+          "Single or multi-session format",
+          "Rapid diagnostic of your current situation",
+          "Identification of blind spots and leverage points",
+          "Actionable strategic recommendations",
+          "Option to transition into ongoing Advisory",
+        ],
+        closing: "Sometimes the most powerful move is to stop and see the board clearly.",
+      },
     },
-  },
-  {
-    title: "Business\nCoaching",
-    description:
-      "Goal-focused sessions to build direction, sustainable performance, and executive confidence.",
-    image: serviceBusiness,
-    details: {
-      headline: "Business Coaching",
-      body: "Structured coaching engagements for leaders ready to build the discipline, presence, and strategic thinking required to lead at the highest level. This is where ambition meets execution — where you stop managing and start commanding your trajectory.",
-      bullets: [
-        "Goal-oriented coaching trajectory",
-        "Leadership identity and presence development",
-        "Sustainable high-performance systems",
-        "Stress mastery and energy management",
-        "Quarterly progress reviews and recalibration",
-      ],
-      closing: "Leadership isn't a title. It's a daily practice of showing up at your standard.",
+    {
+      title: "Business\nCoaching",
+      description: "Goal-focused sessions to build direction, sustainable performance, and executive confidence.",
+      details: {
+        headline: "Business Coaching",
+        body: "Structured coaching engagements for leaders ready to build the discipline, presence, and strategic thinking required to lead at the highest level. This is where ambition meets execution — where you stop managing and start commanding your trajectory.",
+        bullets: [
+          "Goal-oriented coaching trajectory",
+          "Leadership identity and presence development",
+          "Sustainable high-performance systems",
+          "Stress mastery and energy management",
+          "Quarterly progress reviews and recalibration",
+        ],
+        closing: "Leadership isn't a title. It's a daily practice of showing up at your standard.",
+      },
     },
-  },
-];
+  ],
+  nl: [
+    {
+      title: "UNMASKED\nWoestijn Interventie",
+      description: "Voor high-performance ondernemers en executives die succes hebben opgebouwd — en zichzelf zijn kwijtgeraakt in het proces. Dit is geen retraite. Dit is een interventie.",
+      details: {
+        headline: "UNMASKED Privé Executive Reset · Dubai",
+        tag: "Uitsluitend op uitnodiging · Maximaal 4 mannen per editie",
+        body: "Motivatie is een kalmeringsmiddel. Discipline is het antwoord. Hij vertelt je niet wat je wilt horen. Hij vertelt je wat je moet horen. De spiegel die je al een tijdje vermijdt — geen fluff, geen theorie, geen inspiratieporno.",
+        bullets: [
+          "Vitaliteit — Kalibreer je biologische basislijn opnieuw",
+          "Mindset — Breng de patronen in kaart die je beslissingen sturen",
+          "Leiderschap — Reset je commandopositie",
+          "Business — Bouw je 90-dagenoorlogskaart",
+        ],
+        closing: "Dit is geen retraite. Het is een interventie.",
+        cta: "Aanmelden",
+        disclaimer: "Investering: €8.500 · 2026 Edities: Maart · April · Mei — Dubai",
+      },
+    },
+    {
+      title: "High Performance\nCoaching",
+      description: "Werk direct samen met Lionel in een privé, high-performance mentorschap gebouwd voor ondernemers en executives die de kloof willen overbruggen tussen waar ze zijn en waar ze horen te zijn.",
+      details: {
+        headline: "Lionel Eersteling — 1-op-1 High Performance Mentorschap",
+        tag: "Exclusief · Uitsluitend op aanvraag",
+        body: "Lionel Eersteling is een gecertificeerde high-performance coach, neurowetenschappelijk geïnformeerde mentor en strategisch leiderschapspractitioner. Zijn 1-op-1 mentorschap is ontworpen voor professionals die hard werken maar de resultaten niet zien — omdat inspanning zonder afstemming niet schaalt.",
+        bullets: [
+          "1.249 professionals begeleid",
+          "€22M+ gecombineerde omzet gegenereerd",
+          "82% patroomdoorbraakpercentage",
+          "6 maanden gemiddelde programmasduur",
+        ],
+        closing: "Geen motivatie. Geen theorie. Structurele verandering.",
+        cta: "Aanmelden voor mentorschap",
+        disclaimer: "Beperkt aantal plaatsen. Aanmelding vereist.",
+      },
+    },
+    {
+      title: "Leaders Performance\nAcademie",
+      description: "Een kortdurende ruimte om inzicht te krijgen, je behoeften te beoordelen of je strategische koers opnieuw in te stellen.",
+      details: {
+        headline: "Leaders Performance Academie",
+        body: "Een gerichte, kortdurende samenwerking voor leiders op een keerpunt. Of je nu een transitie navigeert, je volgende stap evalueert of gewoon een eerlijk extern perspectief nodig hebt — de Leaders Performance Academie geeft je de ruimte en structuur om weer helder te zien.",
+        bullets: [
+          "Enkelvoudig of meersessie-formaat",
+          "Snelle diagnose van je huidige situatie",
+          "Identificatie van blinde vlekken en hefboomkansen",
+          "Concrete strategische aanbevelingen",
+          "Optie om over te stappen naar doorlopend advies",
+        ],
+        closing: "Soms is de krachtigste zet: stoppen en het bord helder zien.",
+      },
+    },
+    {
+      title: "Business\nCoaching",
+      description: "Doelgerichte sessies om richting, duurzame prestaties en executive-vertrouwen op te bouwen.",
+      details: {
+        headline: "Business Coaching",
+        body: "Gestructureerde coachingstrajecten voor leiders die klaar zijn om de discipline, aanwezigheid en het strategisch denken te ontwikkelen die nodig zijn om op het hoogste niveau te leiden. Hier ontmoet ambitie de uitvoering — hier stop je met managen en begin je je koers te commanderen.",
+        bullets: [
+          "Doelgericht coachingstraject",
+          "Ontwikkeling van leiderschapsidentiteit en -aanwezigheid",
+          "Duurzame high-performance systemen",
+          "Stressbeheersing en energiemanagement",
+          "Kwartaalreview en heroriëntatie",
+        ],
+        closing: "Leiderschap is geen titel. Het is een dagelijkse praktijk van verschijnen op jouw standaard.",
+      },
+    },
+  ],
+};
+
+const images = [serviceUnmasked, serviceCoaching, serviceAcademy, serviceBusiness];
+
+// ─── Sub-components ────────────────────────────────────────────────────────
 
 const ParallaxCard = ({
   service,
@@ -91,7 +162,7 @@ const ParallaxCard = ({
   isInView,
   onClick,
 }: {
-  service: (typeof services)[number];
+  service: (typeof cards.en)[number];
   i: number;
   isInView: boolean;
   onClick: () => void;
@@ -119,7 +190,7 @@ const ParallaxCard = ({
       onClick={onClick}
     >
       <motion.img
-        src={service.image}
+        src={images[i]}
         alt={service.title}
         style={{ y }}
         className="absolute inset-0 w-full h-[130%] object-cover -top-[15%]"
@@ -140,7 +211,12 @@ const ParallaxCard = ({
   );
 };
 
+// ─── Main component ────────────────────────────────────────────────────────
+
 export const HomeFeaturesGrid = () => {
+  const { language } = useLanguage();
+  const services = cards[language];
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selected, setSelected] = useState<number | null>(null);
@@ -152,7 +228,7 @@ export const HomeFeaturesGrid = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
             {services.map((service, i) => (
               <ParallaxCard
-                key={service.title}
+                key={i}
                 service={service}
                 i={i}
                 isInView={isInView}
@@ -174,10 +250,8 @@ export const HomeFeaturesGrid = () => {
             className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 pt-20 md:pt-24"
             onClick={() => setSelected(null)}
           >
-            {/* Backdrop */}
             <div className="absolute inset-0 bg-foreground/80 backdrop-blur-sm" />
 
-            {/* Content */}
             <motion.div
               initial={{ opacity: 0, y: 30, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -189,7 +263,7 @@ export const HomeFeaturesGrid = () => {
               {/* Hero image */}
               <div className="relative h-48 md:h-64 overflow-hidden">
                 <img
-                  src={services[selected].image}
+                  src={images[selected]}
                   alt={services[selected].details.headline}
                   className="w-full h-full object-cover"
                 />
