@@ -1,4 +1,4 @@
-import { motion, useInView, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useState } from "react";
 import { X } from "lucide-react";
 import serviceUnmasked from "@/assets/unmasked-desert-new.png";
@@ -101,7 +101,8 @@ const ParallaxCard = ({
     target: cardRef,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+  const rawY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+  const y = useSpring(rawY, { stiffness: 60, damping: 20, mass: 0.1 });
 
   return (
     <motion.div
@@ -121,7 +122,7 @@ const ParallaxCard = ({
         src={service.image}
         alt={service.title}
         style={{ y }}
-        className="absolute inset-0 w-full h-[130%] object-cover -top-[15%] transition-transform duration-700 group-hover:scale-105"
+        className="absolute inset-0 w-full h-[130%] object-cover -top-[15%]"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-foreground/20 via-foreground/30 to-foreground/80" />
       <div className="relative h-full flex flex-col justify-between p-7">
