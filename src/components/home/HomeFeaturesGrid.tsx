@@ -147,7 +147,7 @@ export const HomeFeaturesGrid = () => {
 
   return (
     <>
-      <section className="relative z-10 py-20 md:py-28 bg-background">
+      <section className="relative z-10 pt-32 pb-20 md:pt-40 md:pb-28 bg-background">
         <div className="container mx-auto px-6 max-w-7xl" ref={ref}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
             {services.map((service, i) => (
@@ -171,7 +171,7 @@ export const HomeFeaturesGrid = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 pt-20 md:pt-24"
             onClick={() => setSelected(null)}
           >
             {/* Backdrop */}
