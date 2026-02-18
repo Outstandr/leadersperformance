@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Crown, Target, Zap } from "lucide-react";
-import heroImage from "@/assets/lionel-elite-hero.png";
+import { ArrowRight, Crown } from "lucide-react";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { AssessmentDialog } from "@/components/assessment/AssessmentDialog";
 
 const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
@@ -12,7 +12,7 @@ export const EliteHeroSection = () => {
     <section id="hero" className="pt-32 pb-20 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="overflow-hidden p-8 md:p-12 lg:p-16 bg-[hsl(var(--lioner-gold))]">
-          <div className="grid md:grid-cols-1 lg:grid-cols-[1fr_40%] gap-8 lg:gap-12 items-center">
+          <div className="flex flex-col gap-8">
             {/* Content */}
             <div className="space-y-4 md:space-y-6 text-white flex flex-col justify-center items-center md:items-start px-4 md:px-0 text-center md:text-left">
               {/* Badge */}
@@ -70,13 +70,21 @@ export const EliteHeroSection = () => {
               <p className="text-sm text-white/90 pt-2">Limited spots available • Application required</p>
             </div>
 
-            {/* Image */}
-            <div className="relative aspect-[3/4] overflow-hidden shadow-2xl mx-auto md:mx-auto md:w-full md:max-w-full lg:max-w-none lg:mx-0">
-              <img 
-                src={heroImage} 
-                alt="Lionel Eersteling - Elite Performance Coach" 
-                className="w-full h-full object-cover object-center" 
-              />
+            {/* VSL Video */}
+            <div className="w-full">
+              <AspectRatio ratio={16 / 9}>
+                <video
+                  className="w-full h-full rounded-lg shadow-lg"
+                  controls
+                  preload="none"
+                >
+                  <source
+                    src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/vsl//High ticket Choice 02.mov"
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              </AspectRatio>
             </div>
           </div>
         </div>
