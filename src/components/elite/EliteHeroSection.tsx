@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Crown } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import eliteThumbnail from "@/assets/lionel-elite-hero.png";
+import eliteThumbnail from "@/assets/lionel-portrait-new-5.jpg";
 import { AssessmentDialog } from "@/components/assessment/AssessmentDialog";
 
 const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
