@@ -1,49 +1,50 @@
 import { GraduationCap, FileText, ClipboardCheck, Rocket } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const BusinessProcessSection = () => {
+  const { t } = useLanguage();
+
   const items = [
     {
       number: "01",
       icon: GraduationCap,
-      title: "The Academy Access",
-      description: "Lifetime access to the core doctrine for your entire team."
+      title: t("business.process.item1.title"),
+      description: t("business.process.item1.desc"),
     },
     {
       number: "02",
       icon: FileText,
-      title: "The Company Culture Report",
-      description: "Copy-paste our specific protocols for Meetings, Reporting, and Daily Planning."
+      title: t("business.process.item2.title"),
+      description: t("business.process.item2.desc"),
     },
     {
       number: "03",
       icon: ClipboardCheck,
-      title: "The Audit",
-      description: "Increase your team's effectiveness. Ultimately, it's all about the team achieving the results it was created to achieve. The proprietary \"Discipline Scorecard\" to grade every employee."
+      title: t("business.process.item3.title"),
+      description: t("business.process.item3.desc"),
     },
     {
       number: "04",
       icon: Rocket,
-      title: "The Kickoff",
-      description: "A 90-Minute \"Hard Reset\" Strategy Call to deploy the system."
-    }
+      title: t("business.process.item4.title"),
+      description: t("business.process.item4.desc"),
+    },
   ];
 
   return (
     <section id="process" className="py-8 lg:py-12 bg-gradient-to-b from-muted/60 to-muted/80">
       <div className="container mx-auto px-4 max-w-7xl">
-        {/* Header */}
         <div className="text-center mb-12">
-          <span className="text-sm font-medium uppercase text-muted-foreground tracking-wider">The Arsenal</span>
+          <span className="text-sm font-medium uppercase text-muted-foreground tracking-wider">{t("business.process.eyebrow")}</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mt-4 mb-4 text-lioner-gold">
-            The Toolkit.
+            {t("business.process.heading")}
           </h2>
         </div>
 
-        {/* Items Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {items.map((item, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="relative bg-white p-6 border border-lioner-gold/20 hover:border-lioner-gold/40 transition-all duration-300 hover:-translate-y-1"
             >
               <span className="absolute top-4 right-4 text-5xl font-bold text-lioner-gold/10 select-none">{item.number}</span>
