@@ -29,7 +29,7 @@ export const BusinessBookingSection = ({
             <div className="grid md:grid-cols-2 gap-8 mb-10 text-left">
               <div className="p-6 border border-white/20">
                 <h3 className="text-xl font-bold mb-3 text-white/60">{t("business.booking.optionALabel")}</h3>
-                <p className="text-white/70 leading-relaxed">
+                <p className="text-white/70 leading-relaxed whitespace-pre-line">
                   {t("business.booking.optionAText")}
                 </p>
               </div>
