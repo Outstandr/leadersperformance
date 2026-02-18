@@ -28,19 +28,21 @@ const services = [
   {
     title: "High Performance\nCoaching",
     description:
-      "One-on-one strategic sessions for execution clarity, accountability, and deeper self-leadership.",
+      "Work directly with Lionel in a private, high-performance mentorship built for entrepreneurs and executives ready to close the gap between where they are and where they're meant to be.",
     image: serviceCoaching,
     details: {
-      headline: "High Performance Coaching",
-      body: "Ongoing strategic partnership for high-performers who refuse to plateau. These are not therapy sessions — they are structured, results-driven conversations designed to sharpen your decision-making, hold you accountable to your own standards, and systematically eliminate the blind spots slowing you down.",
+      headline: "Lionel Eersteling — 1-on-1 High Performance Mentorship",
+      tag: "Exclusive · By Application Only",
+      body: "Lionel Eersteling is a certified high-performance coach, neuroscience-informed mentor, and strategic leadership practitioner. His 1-on-1 mentorship is designed for professionals who are doing the work but not seeing the results — because effort without alignment doesn't scale. Lionel works with a select group of clients over 6 months to dismantle the hidden patterns keeping them stuck and replace them with structures that produce permanent results.",
       bullets: [
-        "Private one-on-one sessions (in-person or virtual)",
-        "Customised performance and leadership framework",
-        "Execution tracking and accountability protocols",
-        "Strategic decision-making support",
-        "Direct access between sessions for critical moments",
+        "1,249 Professionals Mentored",
+        "€22M+ Combined Revenue Generated",
+        "82% Pattern Breakthrough Rate",
+        "6-Month Average Program Duration",
       ],
-      closing: "For leaders who want a strategic mirror, not a motivational speaker.",
+      closing: "Not motivation. Not theory. Structural change.",
+      cta: "Apply For Mentorship",
+      disclaimer: "Limited spots. Application required.",
     },
   },
   {
@@ -171,6 +173,12 @@ export const HomeFeaturesGrid = () => {
 
               {/* Body */}
               <div className="p-8 md:p-10 space-y-6">
+                {'tag' in services[selected].details && (
+                  <span className="inline-block text-xs font-medium tracking-widest uppercase text-lioner-gold border border-lioner-gold/40 px-3 py-1">
+                    {(services[selected].details as any).tag}
+                  </span>
+                )}
+
                 <p className="text-muted-foreground leading-relaxed">
                   {services[selected].details.body}
                 </p>
@@ -184,10 +192,20 @@ export const HomeFeaturesGrid = () => {
                   ))}
                 </div>
 
-                <div className="pt-4 border-t border-lioner-gold/20">
+                <div className="pt-4 border-t border-lioner-gold/20 space-y-4">
                   <p className="text-sm font-medium text-lioner-gold italic">
                     {services[selected].details.closing}
                   </p>
+                  {'cta' in services[selected].details && (
+                    <div className="space-y-2">
+                      <button className="w-full bg-lioner-gold text-background font-medium text-sm tracking-wider uppercase py-3 px-6 hover:bg-lioner-gold/90 transition-colors">
+                        {(services[selected].details as any).cta}
+                      </button>
+                      <p className="text-center text-xs text-muted-foreground">
+                        {(services[selected].details as any).disclaimer}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
