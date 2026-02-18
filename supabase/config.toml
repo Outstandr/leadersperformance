@@ -8,3 +8,10 @@ verify_jwt = false
 
 [functions.generate-corporate-audit-insights]
 verify_jwt = false
+
+[functions.elevenlabs-voice-token]
+verify_jwt = false
+
+[functions.voice-lead-capture]
+verify_jwt = false
+
