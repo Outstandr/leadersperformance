@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { ArrowRight, Compass, Target, BarChart3 } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { UnmaskedBookingDialog } from "./UnmaskedBookingDialog";
 
 export const HomeOfferingsSection = () => {
   const { t } = useLanguage();
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   const offerings = [
     {
@@ -11,6 +14,7 @@ export const HomeOfferingsSection = () => {
       title: t("home.offerings.title1"),
       body: t("home.offerings.body1"),
       specs: t("home.offerings.specs1"),
+      isUnmasked: true,
       link: "#",
       linkText: t("home.offerings.link1"),
     },
@@ -19,6 +23,7 @@ export const HomeOfferingsSection = () => {
       eyebrow: t("home.offerings.eyebrow2"),
       title: t("home.offerings.title2"),
       body: t("home.offerings.body2"),
+      isUnmasked: false,
       link: "#advisory",
       linkText: t("home.offerings.link2"),
     },
@@ -27,6 +32,7 @@ export const HomeOfferingsSection = () => {
       eyebrow: t("home.offerings.eyebrow3"),
       title: t("home.offerings.title3"),
       body: t("home.offerings.body3"),
+      isUnmasked: false,
       link: "#start-here",
       linkText: t("home.offerings.link3"),
     },
@@ -60,17 +66,29 @@ export const HomeOfferingsSection = () => {
                   </p>
                 )}
               </div>
-              <a
-                href={item.link}
-                className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-lioner-gold transition-colors"
-              >
-                {item.linkText}
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </a>
+              {item.isUnmasked ? (
+                <button
+                  onClick={() => setBookingOpen(true)}
+                  className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-lioner-gold transition-colors"
+                >
+                  {item.linkText}
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </button>
+              ) : (
+                <a
+                  href={item.link}
+                  className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-lioner-gold transition-colors"
+                >
+                  {item.linkText}
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </a>
+              )}
             </div>
           ))}
         </div>
       </div>
+
+      <UnmaskedBookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
     </section>
   );
 };
