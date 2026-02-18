@@ -249,9 +249,9 @@ const en: Record<string, string> = {
 
   // Business – Why Us
   "business.whyUs.eyebrow": "The Problem",
-  "business.whyUs.heading": "No Company Culture.",
-  "business.whyUs.body1": "You hire adults, but you manage children. Every time you repeat an instruction, you lose money. Every time you accept a missed deadline with an excuse, you lower the standard.",
-  "business.whyUs.body2": "Your team is not \"confused.\" They are comfortable. They know you will fix their mistakes. They know you will stay late to finish their work. You have built a nursery, not a business.",
+  "business.whyUs.heading": "There's no clear performance standard.",
+  "business.whyUs.body1": "You hire professionals, but you keep correcting, explaining, and fixing things. Every repeated instruction takes time. Every missed deadline without consequence lowers the standard.",
+  "business.whyUs.body2": "This isn't about capacity. This is about tolerance.\n\nIf you catch mistakes, no one takes ownership. If you keep adjusting, dependency becomes the culture.\n\nYour business runs. But it depends on you. And that's not a scalable system.",
   "business.whyUs.symptomsHeading": "The Symptoms",
   "business.whyUs.symptom1.title": "Zero Ownership",
   "business.whyUs.symptom1.quote": "\"I thought someone else was doing it.\"",
@@ -570,9 +570,9 @@ const nl: Record<string, string> = {
 
   // Business – Why Us (NL)
   "business.whyUs.eyebrow": "Het probleem",
-  "business.whyUs.heading": "Geen bedrijfscultuur.",
-  "business.whyUs.body1": "Je huurt volwassenen in, maar je managet kinderen. Elke keer dat je een instructie herhaalt, verlies je geld. Elke keer dat je een gemiste deadline accepteert met een excuus, verlaag je de norm.",
-  "business.whyUs.body2": "Jouw team is niet \"in de war.\" Ze zijn comfortabel. Ze weten dat jij hun fouten herstelt. Ze weten dat jij overwerkt om hun werk af te maken. Je hebt een crèche gebouwd, geen bedrijf.",
+  "business.whyUs.heading": "Er is geen duidelijke prestatienorm.",
+  "business.whyUs.body1": "Je neemt professionals aan, maar je blijft corrigeren, uitleggen en herstellen. Elke herhaalde instructie kost tijd. Elke gemiste deadline zonder consequentie verlaagt de standaard.",
+  "business.whyUs.body2": "Dit gaat niet over capaciteit. Dit gaat over tolerantie.\n\nAls jij fouten opvangt, neemt niemand eigenaarschap. Als jij blijft bijsturen, wordt afhankelijkheid de cultuur.\n\nJe bedrijf draait. Maar het leunt op jou. En dat is geen schaalbaar systeem.",
   "business.whyUs.symptomsHeading": "De symptomen",
   "business.whyUs.symptom1.title": "Nul eigenaarschap",
   "business.whyUs.symptom1.quote": "\"Ik dacht dat iemand anders het deed.\"",
