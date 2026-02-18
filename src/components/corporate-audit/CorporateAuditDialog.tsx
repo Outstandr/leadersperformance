@@ -7,6 +7,8 @@ import { auditQuestions } from "@/lib/corporateAuditQuestions";
 import { calculateAuditScore, AuditScores } from "@/lib/corporateAuditScoring";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+
 
 interface CorporateAuditDialogProps {
   open: boolean;
@@ -30,6 +32,7 @@ export interface AuditInsights {
 type Step = "questions" | "gate" | "results";
 
 export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialogProps) {
+  const { t } = useLanguage();
   const [step, setStep] = useState<Step>("questions");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [responses, setResponses] = useState<Record<string, number>>({});
@@ -163,7 +166,13 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white border-lioner-gold/20">
         {step === "questions" && (
           <AuditQuestionStep
-            question={auditQuestions[currentQuestionIndex]}
+            question={{
+              ...auditQuestions[currentQuestionIndex],
+              title: t(`audit.q${currentQuestionIndex + 1}.title`),
+              question: t(`audit.q${currentQuestionIndex + 1}.question`),
+              optionA: { ...auditQuestions[currentQuestionIndex].optionA, label: t(`audit.q${currentQuestionIndex + 1}.optionA`) },
+              optionB: { ...auditQuestions[currentQuestionIndex].optionB, label: t(`audit.q${currentQuestionIndex + 1}.optionB`) },
+            }}
             currentIndex={currentQuestionIndex}
             totalQuestions={auditQuestions.length}
             onAnswer={handleAnswer}
