@@ -39,7 +39,7 @@ export const BusinessHeroSection = () => {
                     poster={videoThumbnail}
                   >
                     <source
-                      src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/vsl//01.What you see is what you get..mp4"
+                      src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/vsl/01.What%20you%20see%20is%20what%20you%20get..mp4"
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.
