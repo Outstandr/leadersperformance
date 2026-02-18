@@ -51,8 +51,8 @@ export const HomeNavigation = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? pastHero
-            ? "bg-background/80 backdrop-blur-xl border-b border-border/50"
-            : "bg-foreground/40 backdrop-blur-xl border-b border-background/10"
+            ? "bg-white shadow-sm border-b border-border/30"
+            : "bg-foreground/70 backdrop-blur-xl border-b border-background/10"
           : "bg-transparent"
       }`}
     >
@@ -114,9 +114,9 @@ export const HomeNavigation = () => {
               href={bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-[13px] font-medium tracking-wide px-6 py-2.5 rounded-full transition-all ${
+              className={`text-[13px] font-medium tracking-wide px-6 py-2.5 transition-all ${
                 isDark
-                  ? "bg-background/10 backdrop-blur-sm text-background border border-background/20 hover:bg-background/20"
+                  ? "bg-lioner-gold text-white hover:bg-lioner-gold/90"
                   : "bg-foreground text-background hover:bg-foreground/90"
               }`}
             >
