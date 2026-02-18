@@ -30,7 +30,7 @@ export const HomePillarsSection = () => {
   const formattedNumber = String(activeIndex + 1).padStart(2, "0");
 
   return (
-    <section ref={containerRef} className="relative bg-background" style={{ height: `${pillars.length * 60}vh` }}>
+    <section ref={containerRef} className="relative bg-background" style={{ height: `${pillars.length * 100}vh` }}>
       {/* Decorative gold swirling lines */}
       <div className="sticky top-0 h-screen pointer-events-none z-0 overflow-hidden">
         <svg
@@ -47,16 +47,49 @@ export const HomePillarsSection = () => {
         </svg>
       </div>
 
-      {/* Sticky number on the right */}
-      <div className="sticky top-0 h-screen pointer-events-none z-0">
+      {/* Sticky content panel */}
+      <div className="sticky top-0 h-screen z-10" style={{ marginTop: `-100vh` }}>
         <div className="container mx-auto px-6 max-w-7xl h-full flex items-center">
-          <div className="w-full flex justify-end">
+          <div className="w-full flex items-center justify-between">
+            {/* Left: pillar text */}
+            <div className="max-w-lg">
+              <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold mb-8">
+                {t("home.pillars.eyebrow")}
+              </p>
+              <motion.h2
+                key={`title-${activeIndex}`}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.4 }}
+                className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground mb-6"
+              >
+                {pillars[activeIndex].title}
+              </motion.h2>
+              <motion.p
+                key={`desc-${activeIndex}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8"
+              >
+                {pillars[activeIndex].description}
+              </motion.p>
+              <button
+                onClick={openVoiceAgent}
+                className="inline-block border border-lioner-gold text-lioner-gold px-8 py-3 text-sm font-medium tracking-widest uppercase hover:bg-lioner-gold hover:text-white transition-all duration-300"
+              >
+                {t("home.pillars.cta")}
+              </button>
+            </div>
+
+            {/* Right: large number */}
             <motion.span
               key={formattedNumber}
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 0.15, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="font-serif text-[12rem] md:text-[18rem] lg:text-[24rem] font-bold leading-none text-lioner-gold select-none"
+              className="font-serif text-[12rem] md:text-[18rem] lg:text-[24rem] font-bold leading-none text-lioner-gold select-none hidden md:block"
             >
               {formattedNumber}
             </motion.span>
@@ -64,32 +97,13 @@ export const HomePillarsSection = () => {
         </div>
       </div>
 
-      {/* Scrolling text blocks */}
-      <div className="relative z-10" style={{ marginTop: `-200vh` }}>
-        {pillars.map((pillar, i) => (
-          <div key={i} className="h-screen flex items-center">
-            <div className="container mx-auto px-6 max-w-7xl">
-              <div className="max-w-lg">
-                <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold mb-8">
-                  {t("home.pillars.eyebrow")}
-                </p>
-                <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground mb-6">
-                  {pillar.title}
-                </h2>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8">
-                  {pillar.description}
-                </p>
-                <button
-                  onClick={openVoiceAgent}
-                  className="inline-block border border-lioner-gold text-lioner-gold px-8 py-3 text-sm font-medium tracking-widest uppercase hover:bg-lioner-gold hover:text-white transition-all duration-300"
-                >
-                  {t("home.pillars.cta")}
-                </button>
-              </div>
-            </div>
-          </div>
+      {/* Invisible scroll spacers — one per pillar to drive scrollYProgress */}
+      <div className="relative z-0">
+        {pillars.map((_, i) => (
+          <div key={i} className="h-screen" />
         ))}
       </div>
     </section>
+
   );
 };
