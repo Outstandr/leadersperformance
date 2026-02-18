@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Mic } from "lucide-react";
 import logo from "@/assets/logo.png";
 import logoWhite from "@/assets/logo-white.png";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { VoiceAgentDialog } from "@/components/voice/VoiceAgentDialog";
+
 
 export const HomeNavigation = () => {
   const { t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVoiceOpen, setIsVoiceOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [pastHero, setPastHero] = useState(false);
 
@@ -93,6 +96,18 @@ export const HomeNavigation = () => {
                 </a>
               )
             )}
+            {/* Voice Agent Button */}
+            <button
+              onClick={() => setIsVoiceOpen(true)}
+              className={`flex items-center gap-2 text-[13px] font-medium tracking-wide px-4 py-2.5 rounded-full transition-all border ${
+                isDark
+                  ? "border-[#b39758]/50 text-[#b39758] hover:bg-[#b39758]/10"
+                  : "border-[#b39758]/50 text-[#b39758] hover:bg-[#b39758]/10"
+              }`}
+            >
+              <Mic className="w-3.5 h-3.5" />
+              Find Your Path
+            </button>
             <a
               href="#start-here"
               onClick={(e) => {
@@ -111,6 +126,12 @@ export const HomeNavigation = () => {
           </div>
 
           <div className="flex items-center gap-3 lg:hidden">
+            <button
+              onClick={() => setIsVoiceOpen(true)}
+              className={`p-2 rounded-full border border-[#b39758]/40 text-[#b39758]`}
+            >
+              <Mic className="w-4 h-4" />
+            </button>
             <LanguageToggle dark={isDark} />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -156,6 +177,7 @@ export const HomeNavigation = () => {
           </div>
         )}
       </div>
+      <VoiceAgentDialog isOpen={isVoiceOpen} onClose={() => setIsVoiceOpen(false)} />
     </nav>
   );
 };
