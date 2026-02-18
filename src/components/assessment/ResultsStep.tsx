@@ -127,7 +127,7 @@ export function ResultsStep({ userInfo, results, insights, onClose, language }: 
           <div className="text-5xl font-bold text-lioner-gold mb-2">
             {Math.round(results.scores.overall)}
           </div>
-          <div className="text-sm text-muted-foreground">out of 100</div>
+          <div className="text-sm text-muted-foreground">{language === 'nl' ? 'van de 100' : 'out of 100'}</div>
         </div>
         
         <div className="bg-muted/50 rounded-lg p-6 text-center">

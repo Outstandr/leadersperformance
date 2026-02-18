@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Loader2, Lock } from "lucide-react";
 import { AuditUserInfo } from "./CorporateAuditDialog";
 import { z } from "zod";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface AuditGateStepProps {
   userInfo: AuditUserInfo;
@@ -19,7 +20,42 @@ const gateSchema = z.object({
   phone: z.string().trim().min(6, "Enter a valid phone number").max(30),
 });
 
+const ui = {
+  en: {
+    heading: "Your Audit Is Complete.",
+    subheading: "Enter your details to see the verdict.",
+    firstName: "First Name",
+    lastName: "Last Name",
+    email: "Email",
+    phone: "Phone",
+    firstNamePlaceholder: "First name",
+    lastNamePlaceholder: "Last name",
+    emailPlaceholder: "your@email.com",
+    phonePlaceholder: "+31 6 1234 5678",
+    submitBtn: "Show Me The Verdict",
+    analyzing: "Analyzing...",
+    disclaimer: "Your data is processed securely. We don't share your information.",
+  },
+  nl: {
+    heading: "Jouw audit is voltooid.",
+    subheading: "Vul je gegevens in om het verdict te zien.",
+    firstName: "Voornaam",
+    lastName: "Achternaam",
+    email: "E-mail",
+    phone: "Telefoon",
+    firstNamePlaceholder: "Voornaam",
+    lastNamePlaceholder: "Achternaam",
+    emailPlaceholder: "jouw@email.com",
+    phonePlaceholder: "+31 6 1234 5678",
+    submitBtn: "Toon mij het verdict",
+    analyzing: "Analyseren...",
+    disclaimer: "Je gegevens worden veilig verwerkt. We delen je informatie niet.",
+  },
+};
+
 export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateStepProps) {
+  const { language } = useLanguage();
+  const t = ui[language] ?? ui.en;
   const [formData, setFormData] = useState<AuditUserInfo>(userInfo);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -61,10 +97,10 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
           <Lock className="w-7 h-7 text-lioner-gold" />
         </div>
         <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2 font-sans">
-          Your Audit Is Complete.
+          {t.heading}
         </h2>
         <p className="text-foreground/60">
-          Enter your details to see the verdict.
+          {t.subheading}
         </p>
       </div>
 
@@ -73,7 +109,7 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="audit-firstName" className="text-foreground/70 text-xs uppercase tracking-wider">
-              First Name
+              {t.firstName}
             </Label>
             <Input
               id="audit-firstName"
@@ -82,14 +118,14 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
                 setFormData((prev) => ({ ...prev, firstName: e.target.value }));
                 clearError("firstName");
               }}
-              placeholder="First name"
+              placeholder={t.firstNamePlaceholder}
               className={`bg-foreground/5 border-foreground/10 text-foreground placeholder:text-foreground/30 rounded-none ${errors.firstName ? "border-red-500" : ""}`}
             />
             {errors.firstName && <p className="text-xs text-red-500">{errors.firstName}</p>}
           </div>
           <div className="space-y-2">
             <Label htmlFor="audit-lastName" className="text-foreground/70 text-xs uppercase tracking-wider">
-              Last Name
+              {t.lastName}
             </Label>
             <Input
               id="audit-lastName"
@@ -98,7 +134,7 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
                 setFormData((prev) => ({ ...prev, lastName: e.target.value }));
                 clearError("lastName");
               }}
-              placeholder="Last name"
+              placeholder={t.lastNamePlaceholder}
               className={`bg-foreground/5 border-foreground/10 text-foreground placeholder:text-foreground/30 rounded-none ${errors.lastName ? "border-red-500" : ""}`}
             />
             {errors.lastName && <p className="text-xs text-red-500">{errors.lastName}</p>}
@@ -107,7 +143,7 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
 
         <div className="space-y-2">
           <Label htmlFor="audit-email" className="text-foreground/70 text-xs uppercase tracking-wider">
-            Email
+            {t.email}
           </Label>
           <Input
             id="audit-email"
@@ -117,7 +153,7 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
               setFormData((prev) => ({ ...prev, email: e.target.value }));
               clearError("email");
             }}
-            placeholder="your@email.com"
+            placeholder={t.emailPlaceholder}
             className={`bg-foreground/5 border-foreground/10 text-foreground placeholder:text-foreground/30 rounded-none ${errors.email ? "border-red-500" : ""}`}
           />
           {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
@@ -125,7 +161,7 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
 
         <div className="space-y-2">
           <Label htmlFor="audit-phone" className="text-foreground/70 text-xs uppercase tracking-wider">
-            Phone
+            {t.phone}
           </Label>
           <Input
             id="audit-phone"
@@ -135,7 +171,7 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
               setFormData((prev) => ({ ...prev, phone: e.target.value }));
               clearError("phone");
             }}
-            placeholder="+31 6 1234 5678"
+            placeholder={t.phonePlaceholder}
             className={`bg-foreground/5 border-foreground/10 text-foreground placeholder:text-foreground/30 rounded-none ${errors.phone ? "border-red-500" : ""}`}
           />
           {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
@@ -149,15 +185,15 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
           {isSubmitting ? (
             <>
               <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              Analyzing...
+              {t.analyzing}
             </>
           ) : (
-            "Show Me The Verdict"
+            t.submitBtn
           )}
         </Button>
 
         <p className="text-xs text-center text-foreground/30">
-          Your data is processed securely. We don't share your information.
+          {t.disclaimer}
         </p>
       </form>
     </div>
