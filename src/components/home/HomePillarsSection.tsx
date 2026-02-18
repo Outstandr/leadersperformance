@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
 export const HomePillarsSection = () => {
   const { t } = useLanguage();
+  const { openVoiceAgent } = useVoiceAgent();
 
   const pillars = [
     { title: t("home.pillars.title1"), description: t("home.pillars.desc1") },
@@ -77,12 +79,12 @@ export const HomePillarsSection = () => {
                 <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8">
                   {pillar.description}
                 </p>
-                <a
-                  href="#services"
+                <button
+                  onClick={openVoiceAgent}
                   className="inline-block border border-lioner-gold text-lioner-gold px-8 py-3 text-sm font-medium tracking-widest uppercase hover:bg-lioner-gold hover:text-white transition-all duration-300"
                 >
                   {t("home.pillars.cta")}
-                </a>
+                </button>
               </div>
             </div>
           </div>
