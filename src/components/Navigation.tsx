@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { Link, useNavigate } from "react-router-dom";
 import { AssessmentDialog } from "./assessment/AssessmentDialog";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navItems = [
     { label: "Home", href: "#hero" },
@@ -26,10 +28,13 @@ export const Navigation = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
+    setIsMobileMenuOpen(false);
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
-      setIsMobileMenuOpen(false);
+    } else {
+      // Not on homepage — navigate there first
+      navigate("/" + href);
     }
   };
 
@@ -43,13 +48,13 @@ export const Navigation = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 bg-white/95 shadow-sm">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex items-center justify-between h-20">
-            <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection("#hero"); }} className="flex items-center">
+            <Link to="/" className="flex items-center">
               <img 
                 src={logo} 
                 alt="Leaders Performance" 
                 className="h-14 md:h-16 w-auto transition-all duration-300"
               />
-            </a>
+            </Link>
 
             <div className="hidden lg:flex items-center space-x-8">
               {navItems.map((item) => (
