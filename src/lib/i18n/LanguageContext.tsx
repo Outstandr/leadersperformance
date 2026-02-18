@@ -8,7 +8,7 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const useLanguage = () => {
   const ctx = useContext(LanguageContext);
@@ -16,22 +16,8 @@ export const useLanguage = () => {
   return ctx;
 };
 
-export { LanguageContext };
+// ─── Dictionaries defined first so LanguageProvider can reference them safely ──
 
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>("en");
-
-  const t = (key: string): string => {
-    const dict = language === "nl" ? nl : en;
-    return (dict as Record<string, string>)[key] ?? key;
-  };
-
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
-      {children}
-    </LanguageContext.Provider>
-  );
-};
 
 // ─── English ──────────────────────────────────────────────────────────────────
 const en: Record<string, string> = {
@@ -646,4 +632,20 @@ const nl: Record<string, string> = {
   "business.auditCTA.body3": "7 vragen. Geen opvulling. Onmiddellijk oordeel.",
   "business.auditCTA.cta": "Start de audit",
   "business.auditCTA.disclaimer": "Waarschuwing: De waarheid geeft niet om jouw gevoelens.",
+};
+
+// ─── Provider (declared after dictionaries to ensure initialization order) ────
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+  const [language, setLanguage] = useState<Language>("en");
+
+  const t = (key: string): string => {
+    const dict = language === "nl" ? nl : en;
+    return (dict as Record<string, string>)[key] ?? key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
 };
