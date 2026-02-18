@@ -1,5 +1,5 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import videoThumbnail from "@/assets/business-video-thumbnail.jpg";
+import videoThumbnail from "@/assets/lioneltwo.png";
 
 export const BusinessVideoSection = () => {
   return (
