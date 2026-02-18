@@ -25,9 +25,11 @@ export const BusinessHeroSection = () => {
               <h1 className="text-4xl md:text-5xl lg:text-5xl font-semibold font-sans leading-tight tracking-tight">
                 {t("business.hero.headline")}
               </h1>
-              <p className="text-lg text-white leading-relaxed tracking-normal max-w-xl">
-                {t("business.hero.description")}
-              </p>
+              <div className="space-y-4 text-lg text-white leading-relaxed tracking-normal max-w-xl">
+                {t("business.hero.description").split("\n\n").map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+              </div>
 
               {/* Video */}
               <div className="w-full mt-2">

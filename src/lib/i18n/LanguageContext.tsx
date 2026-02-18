@@ -243,7 +243,7 @@ const en: Record<string, string> = {
   // Business Hero
   "business.hero.badge": "For teams of 5-50 persons",
   "business.hero.headline": "Stop Managing People. Start Leading Performers.",
-  "business.hero.description": "Your business is not scaling because you are tolerating mediocrity. The Business Reset Blueprint is the operational system to eliminate \"Passenger Culture\" and install military-grade discipline in 30 days.",
+  "business.hero.description": "Your business grows to the level you tolerate. If mediocrity persists, that's a choice.\n\nThe Business Reset Blueprint restructures your organisation so that accountability is in the right place and performance is no longer dependent on you alone.\n\nWithin 30 days, a system is in place that enforces discipline, ownership and results.",
   "business.hero.ctaPrimary": "Book a Consult",
   "business.hero.ctaSecondary": "Audit My Team First",
 
@@ -320,6 +320,15 @@ const en: Record<string, string> = {
   "business.auditCTA.body3": "7 questions. No fluff. Immediate verdict.",
   "business.auditCTA.cta": "Start The Audit",
   "business.auditCTA.disclaimer": "Warning: The truth doesn't care about your feelings.",
+
+  // Footer (EN)
+  "footer.home": "Home",
+  "footer.blog": "Articles",
+  "footer.startHere": "Start Here",
+  "footer.faq": "FAQ",
+  "footer.copyright": `© ${new Date().getFullYear()} Leaders Performance. All rights reserved.`,
+  "footer.privacy": "Privacy Policy",
+  "footer.terms": "Terms of Service",
 };
 
 // ─── Dutch ────────────────────────────────────────────────────────────────────
@@ -530,7 +539,7 @@ const nl: Record<string, string> = {
 
   // Footer (NL)
   "footer.home": "Home",
-  "footer.blog": "Blog",
+  "footer.blog": "Artikelen",
   "footer.startHere": "Begin hier",
   "footer.faq": "FAQ",
   "footer.copyright": `© ${new Date().getFullYear()} Leaders Performance. Alle rechten voorbehouden.`,
@@ -555,7 +564,7 @@ const nl: Record<string, string> = {
   // Business Hero
   "business.hero.badge": "Voor teams van 5-50 personen",
   "business.hero.headline": "Stop met managen. Begin met leiden.",
-  "business.hero.description": "Jouw bedrijf schaalt niet omdat je middelmatigheid tolereert. De Business Reset Blueprint is het operationeel systeem om 'passagierscultuur' te elimineren en militaire discipline te installeren in 30 dagen.",
+  "business.hero.description": "Je bedrijf groeit tot het niveau dat jij tolereert. Als middelmatigheid blijft bestaan, is dat een keuze.\n\nDe Business Reset Blueprint herstructureert je organisatie zodat verantwoordelijkheid weer op de juiste plek ligt en prestaties niet afhankelijk zijn van jou alleen.\n\nBinnen 30 dagen staat er een systeem dat discipline, eigenaarschap en resultaat afdwingt.",
   "business.hero.ctaPrimary": "Boek een consult",
   "business.hero.ctaSecondary": "Team audit uitvoeren",
 
