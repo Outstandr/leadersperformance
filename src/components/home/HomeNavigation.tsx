@@ -5,13 +5,13 @@ import logo from "@/assets/logo.png";
 import logoWhite from "@/assets/logo-white.png";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { VoiceAgentDialog } from "@/components/voice/VoiceAgentDialog";
+import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
 
 export const HomeNavigation = () => {
   const { t } = useLanguage();
+  const { openVoiceAgent } = useVoiceAgent();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isVoiceOpen, setIsVoiceOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [pastHero, setPastHero] = useState(false);
 
@@ -98,7 +98,7 @@ export const HomeNavigation = () => {
             )}
             {/* Voice Agent Button */}
             <button
-              onClick={() => setIsVoiceOpen(true)}
+              onClick={openVoiceAgent}
               className={`flex items-center gap-2 text-[13px] font-medium tracking-wide px-4 py-2.5 rounded-full transition-all border ${
                 isDark
                   ? "border-[#b39758]/50 text-[#b39758] hover:bg-[#b39758]/10"
@@ -127,7 +127,7 @@ export const HomeNavigation = () => {
 
           <div className="flex items-center gap-3 lg:hidden">
             <button
-              onClick={() => setIsVoiceOpen(true)}
+              onClick={openVoiceAgent}
               className={`p-2 rounded-full border border-[#b39758]/40 text-[#b39758]`}
             >
               <Mic className="w-4 h-4" />
@@ -177,7 +177,6 @@ export const HomeNavigation = () => {
           </div>
         )}
       </div>
-      <VoiceAgentDialog isOpen={isVoiceOpen} onClose={() => setIsVoiceOpen(false)} />
     </nav>
   );
 };

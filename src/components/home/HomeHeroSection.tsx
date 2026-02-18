@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import logoWhite from "@/assets/logo-white.png";
 import heroBg from "@/assets/hero-dubai-dark.webp";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
+
 
 export const HomeHeroSection = () => {
   const { t } = useLanguage();
+  const { openVoiceAgent } = useVoiceAgent();
   const [fadeOpacity, setFadeOpacity] = useState(0);
 
   useEffect(() => {
@@ -48,13 +51,13 @@ export const HomeHeroSection = () => {
               <p className="text-background/80 text-base md:text-lg leading-relaxed max-w-md md:text-right">
                 {t("home.hero.description")}
               </p>
-              <a
-                href="#start-here"
+              <button
+                onClick={openVoiceAgent}
                 className="inline-flex items-center gap-3 bg-lioner-gold text-foreground rounded-full px-8 py-4 text-sm font-medium tracking-wider uppercase hover:bg-lioner-gold/90 transition-colors"
               >
                 {t("home.hero.cta")}
                 <span className="w-2 h-2 rounded-full bg-foreground/40" />
-              </a>
+              </button>
             </div>
           </div>
         </div>
