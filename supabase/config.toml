@@ -18,4 +18,8 @@ verify_jwt = false
 [functions.create-elevenlabs-agent]
 verify_jwt = false
 
+[functions.update-elevenlabs-agent]
+verify_jwt = false
+
+
 
