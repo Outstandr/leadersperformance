@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2 } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import videoThumbnail from "@/assets/business-video-thumbnail.jpg";
+import videoThumbnail from "@/assets/lioneltwo.png";
 import { CorporateAuditDialog } from "@/components/corporate-audit/CorporateAuditDialog";
 
 const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
