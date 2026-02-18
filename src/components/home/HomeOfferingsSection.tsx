@@ -57,7 +57,7 @@ export const HomeOfferingsSection = () => {
                 <h3 className="mt-3 text-xl md:text-2xl font-semibold tracking-tight text-foreground">
                   {item.title}
                 </h3>
-                <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+                <p className="mt-4 text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
                   {item.body}
                 </p>
                 {item.specs && (
