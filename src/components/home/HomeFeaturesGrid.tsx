@@ -201,6 +201,66 @@ const ParallaxCard = ({
   const rawY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
   const y = useSpring(rawY, { stiffness: 60, damping: 20, mass: 0.1 });
 
+  // UNMASKED card: full text with internal scroll
+  if (i === 0) {
+    return (
+      <motion.div
+        ref={cardRef}
+        key={service.title}
+        initial={{ opacity: 0, y: 40 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
+        className="group relative cursor-pointer flex flex-col bg-foreground"
+        style={{ height: "520px" }}
+        onClick={onClick}
+      >
+        {/* Small image at top */}
+        <div className="relative h-32 shrink-0 overflow-hidden">
+          <motion.img
+            src={images[i]}
+            alt={service.title}
+            style={{ y }}
+            className="absolute inset-0 w-full h-[160%] object-cover -top-[20%]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 to-foreground/90" />
+          <h3 className="absolute bottom-4 left-6 font-serif text-2xl text-background leading-tight whitespace-pre-line">
+            {service.title}
+          </h3>
+        </div>
+
+        {/* Scrollable full text */}
+        <div
+          className="flex-1 overflow-y-scroll p-6 pt-4"
+          style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(180,150,80,0.4) transparent" }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <p className="text-sm text-background/80 leading-relaxed whitespace-pre-line">
+            {service.details.body}
+          </p>
+          {service.details.bullets && (
+            <ul className="mt-4 space-y-2">
+              {service.details.bullets.map((b, idx) => (
+                <li key={idx} className="text-sm text-background/70 leading-relaxed">
+                  <span className="text-lioner-gold mr-1">—</span>{b}
+                </li>
+              ))}
+            </ul>
+          )}
+          {service.details.closing && (
+            <p className="mt-4 text-sm text-background/60 italic leading-relaxed">
+              {service.details.closing}
+            </p>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div className="shrink-0 px-6 pb-5 pt-2 border-t border-background/10">
+          <div className="w-3 h-3 rounded-full border-2 border-lioner-gold group-hover:bg-lioner-gold transition-colors" />
+        </div>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       ref={cardRef}
