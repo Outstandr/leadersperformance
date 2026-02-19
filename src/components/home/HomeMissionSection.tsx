@@ -183,7 +183,7 @@ export const HomeMissionSection = () => {
                   </p>
                   <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
                     <p>A former professional athlete with 25+ years in human performance and leadership, he has built and scaled companies across multiple industries, operated under pressure, and advised founders operating at €30M+ in revenue.</p>
-                    <p>Leaders Performance is not coaching — but a structured operating system that integrates vitality, personal development, leadership, and business execution, with UNMASKED as its intervention layer.</p>
+                    <p>Leaders Performance is not coaching — but a structured operating system that integrates vitality, personal development, leadership, and business execution, with <span className="text-lioner-gold font-semibold">UNMASKED</span> as its intervention layer.</p>
                     <p className="text-foreground font-medium">At 55, Lionel operates with the presence, strength, and discipline of someone decades younger — not by chance, but by design.</p>
                   </div>
                 </div>
