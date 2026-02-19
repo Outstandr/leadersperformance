@@ -22,8 +22,8 @@ const ui = {
     close: "Close",
   },
   nl: {
-    verdict: "Het Verdict",
-    hereIsScore: "hier is jouw Discipline Score.",
+    verdict: "Het Resultaat",
+    hereIsScore: "hier is jouw Team Audit Score.",
     realityCheck: "De realiteitscheck",
     actionPlan: "Het actieplan",
     ctaBtn: "Bespreek deze audit met Lionel",

@@ -123,6 +123,7 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
             tier: auditScores.tier,
             answers: responses,
             firstName: info.firstName,
+            language: t("audit.question") === "Vraag" ? "nl" : "en",
           },
         }
       );
