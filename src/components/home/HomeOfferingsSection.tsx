@@ -7,99 +7,88 @@ export const HomeOfferingsSection = () => {
   const { t } = useLanguage();
   const [bookingOpen, setBookingOpen] = useState(false);
 
-  const offerings = [
-    {
-      icon: Compass,
-      eyebrow: t("home.offerings.eyebrow1"),
-      title: t("home.offerings.title1"),
-      body: t("home.offerings.body1"),
-      specs: t("home.offerings.specs1"),
-      isUnmasked: true,
-      link: "#",
-      linkText: t("home.offerings.link1"),
-    },
-    {
-      icon: Target,
-      eyebrow: t("home.offerings.eyebrow2"),
-      title: t("home.offerings.title2"),
-      body: t("home.offerings.body2"),
-      isUnmasked: false,
-      link: "#advisory",
-      linkText: t("home.offerings.link2"),
-    },
-    {
-      icon: BarChart3,
-      eyebrow: t("home.offerings.eyebrow3"),
-      title: t("home.offerings.title3"),
-      body: t("home.offerings.body3"),
-      isUnmasked: false,
-      link: "#start-here",
-      linkText: t("home.offerings.link3"),
-    },
-  ];
-
   return (
     <section id="start-here" className="py-20 md:py-28">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="grid md:grid-cols-3 gap-6 items-start">
-          {offerings.map((item) => (
-            <div
-              key={item.title}
-              className={`group bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 flex flex-col hover:bg-[hsl(0,0%,93%)] transition-all duration-300 border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)]${item.isUnmasked ? " h-[520px]" : ""}`}
-            >
-              <div className={`flex flex-col${item.isUnmasked ? " flex-1 min-h-0" : ""}`}>
-                <div className="w-12 h-12 rounded-xl bg-lioner-gold/10 flex items-center justify-center mb-6 shrink-0">
-                  <item.icon className="w-5 h-5 text-lioner-gold" />
-                </div>
-                <span className="text-xs font-medium uppercase tracking-widest text-lioner-gold shrink-0">
-                  {item.eyebrow}
-                </span>
-                <h3 className="mt-3 text-xl md:text-2xl font-semibold tracking-tight text-foreground shrink-0">
-                  {item.title}
-                </h3>
-                {item.isUnmasked ? (
-                  <div className="mt-4 flex-1 min-h-0 overflow-y-auto pr-1" style={{ scrollbarWidth: "thin" }}>
-                    <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
-                      {item.body}
-                    </p>
-                    {item.specs && (
-                      <p className="mt-3 text-xs text-muted-foreground/60">
-                        {item.specs}
-                      </p>
-                    )}
-                  </div>
-                ) : (
-                  <>
-                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
-                      {item.body}
-                    </p>
-                    {item.specs && (
-                      <p className="mt-3 text-xs text-muted-foreground/60">
-                        {item.specs}
-                      </p>
-                    )}
-                  </>
-                )}
-              </div>
-              {item.isUnmasked ? (
-                <button
-                  onClick={() => setBookingOpen(true)}
-                  className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-lioner-gold transition-colors shrink-0"
-                >
-                  {item.linkText}
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </button>
-              ) : (
-                <a
-                  href={item.link}
-                  className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-lioner-gold transition-colors"
-                >
-                  {item.linkText}
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </a>
-              )}
+
+          {/* UNMASKED card — fixed height with internal scroll */}
+          <div className="group bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 flex flex-col border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)] hover:bg-[hsl(0,0%,93%)] transition-all duration-300" style={{ height: "480px" }}>
+            <div className="w-12 h-12 rounded-xl bg-lioner-gold/10 flex items-center justify-center mb-6 shrink-0">
+              <Compass className="w-5 h-5 text-lioner-gold" />
             </div>
-          ))}
+            <span className="text-xs font-medium uppercase tracking-widest text-lioner-gold shrink-0">
+              {t("home.offerings.eyebrow1")}
+            </span>
+            <h3 className="mt-3 text-xl md:text-2xl font-semibold tracking-tight text-foreground shrink-0">
+              {t("home.offerings.title1")}
+            </h3>
+
+            {/* Scrollable body */}
+            <div className="mt-4 overflow-y-scroll flex-1" style={{ scrollbarWidth: "thin", scrollbarColor: "hsl(var(--lioner-gold) / 0.4) transparent" }}>
+              <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
+                {t("home.offerings.body1")}
+              </p>
+              <p className="mt-3 text-xs text-muted-foreground/60">
+                {t("home.offerings.specs1")}
+              </p>
+            </div>
+
+            <button
+              onClick={() => setBookingOpen(true)}
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-lioner-gold transition-colors shrink-0"
+            >
+              {t("home.offerings.link1")}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+          </div>
+
+          {/* Boardroom Advisory */}
+          <div className="group bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 flex flex-col border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)] hover:bg-[hsl(0,0%,93%)] transition-all duration-300">
+            <div className="w-12 h-12 rounded-xl bg-lioner-gold/10 flex items-center justify-center mb-6">
+              <Target className="w-5 h-5 text-lioner-gold" />
+            </div>
+            <span className="text-xs font-medium uppercase tracking-widest text-lioner-gold">
+              {t("home.offerings.eyebrow2")}
+            </span>
+            <h3 className="mt-3 text-xl md:text-2xl font-semibold tracking-tight text-foreground">
+              {t("home.offerings.title2")}
+            </h3>
+            <p className="mt-4 text-sm text-muted-foreground leading-relaxed whitespace-pre-line flex-1">
+              {t("home.offerings.body2")}
+            </p>
+            <a
+              href="#advisory"
+              className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-lioner-gold transition-colors"
+            >
+              {t("home.offerings.link2")}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+          </div>
+
+          {/* The RESET Method */}
+          <div className="group bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 flex flex-col border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)] hover:bg-[hsl(0,0%,93%)] transition-all duration-300">
+            <div className="w-12 h-12 rounded-xl bg-lioner-gold/10 flex items-center justify-center mb-6">
+              <BarChart3 className="w-5 h-5 text-lioner-gold" />
+            </div>
+            <span className="text-xs font-medium uppercase tracking-widest text-lioner-gold">
+              {t("home.offerings.eyebrow3")}
+            </span>
+            <h3 className="mt-3 text-xl md:text-2xl font-semibold tracking-tight text-foreground">
+              {t("home.offerings.title3")}
+            </h3>
+            <p className="mt-4 text-sm text-muted-foreground leading-relaxed whitespace-pre-line flex-1">
+              {t("home.offerings.body3")}
+            </p>
+            <a
+              href="#start-here"
+              className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-lioner-gold transition-colors"
+            >
+              {t("home.offerings.link3")}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+          </div>
+
         </div>
       </div>
 
