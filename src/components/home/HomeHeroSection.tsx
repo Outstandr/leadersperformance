@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import logoWhite from "@/assets/logo-white.png";
-import heroBg from "@/assets/hero-dubai-dark.webp";
+import heroBg from "@/assets/hero-dubai-skyline-new.png";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
