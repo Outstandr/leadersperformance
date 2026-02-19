@@ -101,6 +101,7 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
             discipline_score: auditScores.disciplineScore,
             tier: auditScores.tier,
             audit_type: "corporate",
+            language: t("audit.question") === "Vraag" ? "nl" : "en",
             audit_q1: responses.q1 ?? 0,
             audit_q2: responses.q2 ?? 0,
             audit_q3: responses.q3 ?? 0,
