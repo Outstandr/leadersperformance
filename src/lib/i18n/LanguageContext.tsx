@@ -275,16 +275,16 @@ const en: Record<string, string> = {
   "business.services.item4.desc": "Systems over hustle. Install the operational infrastructure that scales without your constant presence.",
 
   // Business – Process
-  "business.process.eyebrow": "The Arsenal",
+  "business.process.eyebrow": "The Process",
   "business.process.heading": "The Toolkit.",
   "business.process.item1.title": "The Academy Access",
-  "business.process.item1.desc": "Lifetime access to the core doctrine for your entire team.",
-  "business.process.item2.title": "The Company Culture Report",
-  "business.process.item2.desc": "Copy-paste our specific protocols for Meetings, Reporting, and Daily Planning.",
+  "business.process.item1.desc": "Lifetime access to the core Academy for your entire team.",
+  "business.process.item2.title": "The Company Culture",
+  "business.process.item2.desc": "Implement our specific protocols for Meetings, Reporting, and Daily Planning.",
   "business.process.item3.title": "The Audit",
-  "business.process.item3.desc": "Increase your team's effectiveness. Ultimately, it's all about the team achieving the results it was created to achieve. The proprietary \"Discipline Scorecard\" to grade every employee.",
+  "business.process.item3.desc": "Increase your team's effectiveness. Ultimately, it's all about the team achieving the results it was created to achieve. Every employee will be assessed individually.",
   "business.process.item4.title": "The Kickoff",
-  "business.process.item4.desc": "A 90-Minute \"Hard Reset\" Strategy Call to deploy the system.",
+  "business.process.item4.desc": "In a 90-minute strategy call we implement the new system.",
 
   // Business – Results
   "business.results.eyebrow": "The Evidence",
@@ -610,8 +610,8 @@ const nl: Record<string, string> = {
   // Business – Results (NL)
   "business.results.eyebrow": "Het bewijs",
   "business.results.heading": "Resultaten spreken voor zich.",
-  "business.results.quote1": "We zijn gestopt met kleuterwerk. De omzet steeg met 40% in Q1 omdat ik eindelijk tijd had om te leiden in plaats van te managen.",
-  "business.results.quote2": "Lionel motiveerde mijn team niet. Hij schrikte ze wakker. Beste investering die we hebben gedaan.",
+  "business.results.quote1": "We stopped babysitting. Revenue went up 40% in Q1 because I finally had time to lead instead of manage.",
+  "business.results.quote2": "Lionel didn't motivate my team. He scared them straight. Best investment we made.",
 
   "business.booking.eyebrow": "De beslissing",
   "business.booking.heading": "Je hebt twee keuzes.",
