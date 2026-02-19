@@ -315,9 +315,9 @@ const en: Record<string, string> = {
   // Business – Audit CTA
   "business.auditCTA.badge": "Corporate Discipline Audit",
   "business.auditCTA.heading": "Is your team an asset or a risk?",
-  "business.auditCTA.body1": "The effectiveness of your organization is determined by the standards you use.\n\nA team isn't a cost center. It's a multiplier or a drag.\n\nGain insight in two minutes.\n\nAnswer seven focused questions.\nReceive a score.\nSee where you stand.\n\nNo theory. No explanation. Just clarity.",
+  "business.auditCTA.body1": "The effectiveness of your organization is determined by the standards you use.\n\nA team isn't a cost center. It's a multiplier or a drag.\n\nGain insight in two minutes.\n\nAnswer seven focused questions.\nReceive a score.\nSee where you stand.",
   "business.auditCTA.body2": "",
-  "business.auditCTA.body3": "7 questions. No fluff. Immediate verdict.",
+  "business.auditCTA.body3": "No theory. No explanation. Just clarity.",
   "business.auditCTA.cta": "Start The Audit",
   "business.auditCTA.disclaimer": "Warning: The truth doesn't care about your feelings.",
 
@@ -636,9 +636,9 @@ const nl: Record<string, string> = {
   // Business – Audit CTA (NL)
   "business.auditCTA.badge": "Bedrijfsdiscipline audit",
   "business.auditCTA.heading": "Is jouw team een aanwinst of een risico?",
-  "business.auditCTA.body1": "De effectiviteit van je organisatie wordt bepaald door de standaard die je hanteert.\n\nEen team is geen kostenpost. Het is een vermenigvuldiger of een vertragende factor.\n\nIn twee minuten krijg je inzicht.\n\nBeantwoord zeven gerichte vragen.\nOntvang een score.\nZie waar je staat.\n\nGeen theorie. Geen uitleg eromheen. Gewoon duidelijkheid.",
+  "business.auditCTA.body1": "De effectiviteit van je organisatie wordt bepaald door de standaard die je hanteert.\n\nEen team is geen kostenpost. Het is een vermenigvuldiger of een vertragende factor.\n\nIn twee minuten krijg je inzicht.\n\nBeantwoord zeven gerichte vragen.\nOntvang een score.\nZie waar je staat.",
   "business.auditCTA.body2": "",
-  "business.auditCTA.body3": "7 vragen. Geen opvulling. Onmiddellijk oordeel.",
+  "business.auditCTA.body3": "Geen theorie. Geen uitleg eromheen. Gewoon duidelijkheid.",
   "business.auditCTA.cta": "Start de audit",
   "business.auditCTA.disclaimer": "Waarschuwing: De waarheid geeft niet om jouw gevoelens.",
 };
