@@ -116,7 +116,7 @@ export function AssessmentDialog({ open, onOpenChange }: AssessmentDialogProps) 
           last_name: userInfo.lastName,
           email: userInfo.email,
           country: userInfo.country,
-          language,
+          language: language,
           self_discipline_score: fullResults.scores.selfDiscipline,
           impulse_control_score: fullResults.scores.impulseControl,
           consistency_score: fullResults.scores.consistency,
