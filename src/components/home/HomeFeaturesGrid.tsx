@@ -15,7 +15,7 @@ const cards = {
   en: [
     {
       title: "UNMASKED\nDesert Intervention",
-      description: "I lead UNMASKED personally.\n\nThis is not a seminar.\n\nIt's a controlled reset.\n\nWe strip away what no longer serves you\nand rebuild from structure.\n\nBody.\n\nClarity.\n\nCommand.\n\nExecution.\n\nVitality — Recalibrate your biological baseline so your energy matches your ambition.\n\nMindset — Expose the patterns driving your decisions under pressure.\n\nLeadership — Reset your command presence from the inside out.\n\nBusiness — Build a precise 90-day execution map grounded in reality.\n\nMy name is Lionel Eersteling.\nFormer professional athlete.\nMulti-entrepreneur.\nInvestor.\nFounder of the Leaders Performance Group.\n\nI don't sell motivation.\n\nI build operating systems for leaders who refuse to drift.",
+      description: "For high-performance entrepreneurs and executives who have built success — and lost themselves in the process.\n\nThis is not a retreat.\n\nThis is an intervention.",
       details: {
         headline: "UNMASKED Private Executive Reset · Dubai",
         tag: "Invitation Only · Maximum 4 Men Per Edition",
@@ -227,11 +227,7 @@ const ParallaxCard = ({
           {service.title}
         </h3>
         <div>
-          <div
-            className="mb-6"
-            style={i === 0 ? { maxHeight: "320px", overflowY: "scroll", scrollbarWidth: "none" } : {}}
-            onClick={i === 0 ? (e) => e.stopPropagation() : undefined}
-          >
+          <div className="mb-6">
             <p className="text-sm text-background/70 leading-relaxed whitespace-pre-line">
               {service.description}
             </p>
@@ -338,7 +334,7 @@ export const HomeFeaturesGrid = () => {
                   </span>
                 )}
 
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                   {services[selected].details.body}
                 </p>
 
