@@ -57,7 +57,8 @@ export const HomeOfferingsSection = () => {
                 <h3 className="mt-3 text-xl md:text-2xl font-semibold tracking-tight text-foreground">
                   {item.title}
                 </h3>
-                <p className="mt-4 text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
+                <p className={`mt-4 text-sm text-muted-foreground leading-relaxed whitespace-pre-line${item.isUnmasked ? " max-h-64 overflow-y-auto pr-1" : ""}`}
+                  style={item.isUnmasked ? { scrollbarWidth: "thin" } : {}}>
                   {item.body}
                 </p>
                 {item.specs && (
