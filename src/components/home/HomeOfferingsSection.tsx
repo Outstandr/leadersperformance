@@ -41,36 +41,50 @@ export const HomeOfferingsSection = () => {
   return (
     <section id="start-here" className="py-20 md:py-28">
       <div className="container mx-auto px-6 max-w-7xl">
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 items-start">
           {offerings.map((item) => (
             <div
               key={item.title}
-              className="group bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 flex flex-col justify-between hover:bg-[hsl(0,0%,93%)] transition-all duration-300 border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)]"
+              className={`group bg-[hsl(0,0%,96%)] rounded-2xl p-8 md:p-10 flex flex-col hover:bg-[hsl(0,0%,93%)] transition-all duration-300 border-2 border-lioner-gold/30 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.08)]${item.isUnmasked ? " h-[520px]" : ""}`}
             >
-              <div>
-                <div className="w-12 h-12 rounded-xl bg-lioner-gold/10 flex items-center justify-center mb-6">
+              <div className={`flex flex-col${item.isUnmasked ? " flex-1 min-h-0" : ""}`}>
+                <div className="w-12 h-12 rounded-xl bg-lioner-gold/10 flex items-center justify-center mb-6 shrink-0">
                   <item.icon className="w-5 h-5 text-lioner-gold" />
                 </div>
-                <span className="text-xs font-medium uppercase tracking-widest text-lioner-gold">
+                <span className="text-xs font-medium uppercase tracking-widest text-lioner-gold shrink-0">
                   {item.eyebrow}
                 </span>
-                <h3 className="mt-3 text-xl md:text-2xl font-semibold tracking-tight text-foreground">
+                <h3 className="mt-3 text-xl md:text-2xl font-semibold tracking-tight text-foreground shrink-0">
                   {item.title}
                 </h3>
-                <p className={`mt-4 text-sm text-muted-foreground leading-relaxed whitespace-pre-line${item.isUnmasked ? " max-h-64 overflow-y-auto pr-1" : ""}`}
-                  style={item.isUnmasked ? { scrollbarWidth: "thin" } : {}}>
-                  {item.body}
-                </p>
-                {item.specs && (
-                  <p className="mt-3 text-xs text-muted-foreground/60">
-                    {item.specs}
-                  </p>
+                {item.isUnmasked ? (
+                  <div className="mt-4 flex-1 min-h-0 overflow-y-auto pr-1" style={{ scrollbarWidth: "thin" }}>
+                    <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
+                      {item.body}
+                    </p>
+                    {item.specs && (
+                      <p className="mt-3 text-xs text-muted-foreground/60">
+                        {item.specs}
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  <>
+                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
+                      {item.body}
+                    </p>
+                    {item.specs && (
+                      <p className="mt-3 text-xs text-muted-foreground/60">
+                        {item.specs}
+                      </p>
+                    )}
+                  </>
                 )}
               </div>
               {item.isUnmasked ? (
                 <button
                   onClick={() => setBookingOpen(true)}
-                  className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-lioner-gold transition-colors"
+                  className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-lioner-gold transition-colors shrink-0"
                 >
                   {item.linkText}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
