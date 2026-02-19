@@ -19,15 +19,15 @@ const Index = () => {
         <HomeTransitionSection />
         <div className="relative z-10 bg-background">
           <HomeGoldLines />
-        <HomeFeaturesGrid />
-          <div className="flex justify-center py-4">
+          <HomeFeaturesGrid />
+          <HomeMissionSection />
+          <div className="flex justify-center py-8">
             <span className="inline-flex items-center gap-3 bg-foreground text-background rounded-full px-8 py-4 text-xs font-medium tracking-[0.2em] uppercase">
               About Leaders Performance
               <span className="w-2 h-2 rounded-full bg-lioner-gold" />
             </span>
           </div>
           <HomeIntroSection />
-          <HomeMissionSection />
           <HomePillarsSection />
           <HomeArticlesSection />
           <HomeFAQSection />
