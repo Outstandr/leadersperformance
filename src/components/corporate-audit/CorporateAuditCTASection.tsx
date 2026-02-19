@@ -23,7 +23,7 @@ export const CorporateAuditCTASection = () => {
             {t("business.auditCTA.heading")}
           </h2>
 
-          <p className="text-lg md:text-xl text-foreground/70 mb-4 max-w-2xl mx-auto whitespace-pre-line text-left">
+          <p className="text-lg md:text-xl text-foreground/70 mb-4 max-w-2xl mx-auto whitespace-pre-line text-center">
             {t("business.auditCTA.body1")}
           </p>
 
