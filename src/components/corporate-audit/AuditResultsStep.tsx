@@ -26,7 +26,7 @@ const ui = {
     hereIsScore: "hier is jouw Team Audit Score.",
     realityCheck: "De realiteitscheck",
     actionPlan: "Het actieplan",
-    ctaBtn: "Bespreek deze audit met Lionel",
+    ctaBtn: "Bespreek mijn resultaat met Lionel",
     warning: "Waarschuwing: boek alleen als je klaar bent om de score te veranderen.",
     close: "Sluiten",
   },
