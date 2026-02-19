@@ -14,7 +14,7 @@ interface AuditResultsStepProps {
 const ui = {
   en: {
     verdict: "The Verdict",
-    hereIsScore: "here's your Discipline Score.",
+    hereIsScore: "here's your Team Audit Score.",
     realityCheck: "The Reality Check",
     actionPlan: "The Action Plan",
     ctaBtn: "Review This Audit With Lionel",
@@ -23,7 +23,7 @@ const ui = {
   },
   nl: {
     verdict: "Het Resultaat",
-    hereIsScore: "hier is jouw Team Audit Score.",
+    hereIsScore: "hier is jouw Teamaudit Score.",
     realityCheck: "De realiteitscheck",
     actionPlan: "Het actieplan",
     ctaBtn: "Bespreek mijn resultaat met Lionel",
