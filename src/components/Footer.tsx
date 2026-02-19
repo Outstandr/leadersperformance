@@ -19,7 +19,7 @@ export const Footer = () => {
 
   const externalLinks = [
     { label: "The Reset by Discipline", href: "https://leaders-performance.com/reset-by-discipline" },
-    { label: "Elite Self-Discipline Masterclass", href: "https://088a79d3-9360-4ae6-93aa-a92a0dcbf8e0.lovableproject.com/elite-self-discipline" },
+    { label: "Elite Self-Discipline Masterclass", href: "https://leaders-performance.com/elite-self-discipline" },
     { label: "Lionel Eersteling Official Site", href: "https://lioneleersteling.com" },
   ];
 
