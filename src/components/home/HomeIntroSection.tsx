@@ -36,15 +36,6 @@ export const HomeIntroSection = () => {
             <Word key={i} word={word} index={i} total={words.length} scrollYProgress={scrollYProgress} />
           ))}
         </h2>
-        <div className="mt-12">
-          <a
-            href="#about"
-            className="inline-flex items-center gap-3 bg-foreground text-background rounded-full px-8 py-4 text-sm font-medium tracking-wider uppercase hover:bg-foreground/90 transition-colors"
-          >
-            {t("home.intro.cta")}
-            <span className="w-2 h-2 rounded-full bg-lioner-gold" />
-          </a>
-        </div>
       </div>
     </section>
   );
