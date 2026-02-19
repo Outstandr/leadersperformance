@@ -2,10 +2,10 @@ import { motion, useInView, AnimatePresence, useScroll, useTransform, useSpring 
 import { useRef, useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { UnmaskedBookingDialog } from "./UnmaskedBookingDialog";
-import serviceUnmasked from "@/assets/unmasked-desert-new.png";
-import serviceCoaching from "@/assets/service-coaching.jpg";
-import serviceAcademy from "@/assets/service-academy.jpg";
-import serviceBusiness from "@/assets/service-business.jpg";
+import serviceUnmasked from "@/assets/card-unmasked.png";
+import serviceCoaching from "@/assets/card-coaching.png";
+import serviceAcademy from "@/assets/card-masterclass.png";
+import serviceBusiness from "@/assets/card-business.png";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 
