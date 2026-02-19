@@ -15,7 +15,7 @@ const cards = {
   en: [
     {
       title: "UNMASKED\nDesert Intervention",
-      description: "For high-performance entrepreneurs and executives who have built success — and lost themselves in the process.\n\nThis is not a retreat.\n\nThis is an intervention.",
+      description: "For high-performance entrepreneurs and executives who have built success — and lost themselves in the process.",
       details: {
         headline: "UNMASKED Private Executive Reset · Dubai",
         tag: "Invitation Only · Maximum 4 Men Per Edition",
