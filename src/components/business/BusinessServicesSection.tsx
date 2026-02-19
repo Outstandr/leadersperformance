@@ -39,7 +39,7 @@ export const BusinessServicesSection = () => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mt-4 mb-4 text-lioner-gold">
             {t("business.services.heading")}
           </h2>
-          <p className="text-lg max-w-3xl mx-auto text-muted-foreground whitespace-pre-line text-left">
+          <p className="text-lg max-w-3xl mx-auto text-muted-foreground whitespace-pre-line text-center">
             {t("business.services.subheading")}
           </p>
         </div>

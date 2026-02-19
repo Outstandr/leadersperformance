@@ -587,13 +587,13 @@ const nl: Record<string, string> = {
   "business.services.subheading": "Motivatie is tijdelijk. Systemen blijven.\n\nDe Business Reset Blueprint is geen workshop. Het is een implementatie.\n\nWe analyseren waar afhankelijkheid is ontstaan. Waar normen vervaagd zijn. Waar verantwoordelijkheid niet helder is.\n\nVervolgens brengen we structuur aan:\n• Heldere rollen\n• Duidelijke beslisregels\n• Meetbare standaarden\n• Consequenties die kloppen\n\nGeen extra druk. Wel duidelijke kaders.\n\nPrestaties worden geen toeval. Ze worden het resultaat van het systeem.",
   "business.services.installHeading": "Wat wij installeren",
   "business.services.item1.title": "Vitaliteit",
-  "business.services.item1.desc": "Energie is het fundament. Zonder fysieke en mentale scherpte overleeft geen enkele strategie de confrontatie met de realiteit.",
+  "business.services.item1.desc": "Vitaliteit en energie zijn de basis om op hoog niveau te kunnen presteren.",
   "business.services.item2.title": "Persoonlijke ontwikkeling",
-  "business.services.item2.desc": "Groei is niet onderhandelbaar. Breek de comfortzone en installeer een systeem voor constante evolutie.",
+  "business.services.item2.desc": "Groei vindt buiten de comfortzone plaats. Doorbreek de comfortzone en implementeer een systeem dat constante groei stimuleert.",
   "business.services.item3.title": "Leiderschap",
-  "business.services.item3.desc": "Je managet geen mensen. Je stelt de norm. Leiderschap is identiteit, geen titel.",
+  "business.services.item3.desc": "Jij stelt de norm. Leiderschap is identiteit, geen titel.",
   "business.services.item4.title": "Business",
-  "business.services.item4.desc": "Systemen boven inspanning. Installeer de operationele infrastructuur die schaalt zonder jouw constante aanwezigheid.",
+  "business.services.item4.desc": "Implementeer een strategie die werkt en schaalt zonder jouw constante aanwezigheid.",
 
   // Business – Process (NL)
   "business.process.eyebrow": "Het proces",
