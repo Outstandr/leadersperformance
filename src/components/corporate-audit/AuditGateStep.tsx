@@ -38,7 +38,7 @@ const ui = {
   },
   nl: {
     heading: "Jouw audit is voltooid.",
-    subheading: "Vul je gegevens in om het verdict te zien.",
+    subheading: "Vul je gegevens in om het resultaat te zien.",
     firstName: "Voornaam",
     lastName: "Achternaam",
     email: "E-mail",
@@ -47,7 +47,7 @@ const ui = {
     lastNamePlaceholder: "Achternaam",
     emailPlaceholder: "jouw@email.com",
     phonePlaceholder: "+31 6 1234 5678",
-    submitBtn: "Toon mij het verdict",
+    submitBtn: "Toon mij de resultaten",
     analyzing: "Analyseren...",
     disclaimer: "Je gegevens worden veilig verwerkt. We delen je informatie niet.",
   },

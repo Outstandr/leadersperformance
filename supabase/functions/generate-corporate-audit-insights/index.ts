@@ -12,7 +12,8 @@ serve(async (req) => {
   }
 
   try {
-    const { score, tier, answers, firstName } = await req.json();
+    const { score, tier, answers, firstName, language } = await req.json();
+    const isNL = language === "nl";
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
 
     if (!LOVABLE_API_KEY) {
@@ -33,6 +34,10 @@ serve(async (req) => {
       .map(([key, val]) => `${questionLabels[key] || key}: ${val === 10 ? "STRONG" : "WEAK"}`)
       .join("\n");
 
+    const languageInstruction = isNL
+      ? "\n\nIMPORTANT: You MUST write ALL output in Dutch (Nederlands). Every word of the headline, reality check, action plan, and closing MUST be in Dutch."
+      : "";
+
     const systemPrompt = `You are Lionel Eersteling. You are a high-ticket corporate strategist. You are direct, confrontational, and professional. You do not use fluff. You do not offer 'hugs.' You offer truth.
 
 TASK: Analyze the user's 'Discipline Score' based on the inputs provided.
@@ -42,15 +47,15 @@ ${answerSummary}
 
 OUTPUT FORMAT (JSON for PDF Generation):
 - HEADLINE: Based on the Tier (Nursery / Drift / Vanguard).
-- THE REALITY CHECK: A 3-sentence paragraph explaining exactly why they are losing money based on their specific bad answers. Use the phrase 'The cost of this is...'
-- THE ACTION PLAN: 3 Bullet points of immediate correction. (e.g., 'Stop accepting excuses', 'Fire the weakest link').
-- THE CLOSING: 'You cannot scale chaos. Book the call.' or similar powerful closing.
+- THE REALITY CHECK: A 3-sentence paragraph explaining exactly why they are losing money based on their specific bad answers. Use the phrase '${isNL ? "De kosten hiervan zijn..." : "The cost of this is..."}'
+- THE ACTION PLAN: 3 Bullet points of immediate correction. (e.g., '${isNL ? "Stop met het accepteren van excuses" : "Stop accepting excuses"}', '${isNL ? "Ontsla de zwakste schakel" : "Fire the weakest link"}').
+- THE CLOSING: '${isNL ? "Je kunt geen chaos schalen. Boek het gesprek." : "You cannot scale chaos. Book the call."}' or similar powerful closing.
 
 TONE RULES:
-- Never say 'It's okay.'
-- Never say 'Don't worry.'
-- Say: 'This is a liability.' 'Fix this.' 'Execute.'
-- Keep it short.`;
+- Never say '${isNL ? "Het is oké." : "It's okay."}'
+- Never say '${isNL ? "Maak je geen zorgen." : "Don't worry."}'
+- Say: '${isNL ? "Dit is een risico." : "This is a liability."}' '${isNL ? "Los dit op." : "Fix this."}' '${isNL ? "Uitvoeren." : "Execute."}'
+- Keep it short.${languageInstruction}`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
