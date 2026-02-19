@@ -19,7 +19,7 @@ const cards = {
       details: {
         headline: "UNMASKED Private Executive Reset · Dubai",
         tag: "Invitation Only · Maximum 4 Men Per Edition",
-        body: "I lead UNMASKED personally.\n\nThis is not a seminar. It's a controlled reset.\n\nNo noise. No empty inspiration. No performance theatre.\n\nWe strip away what no longer serves you and rebuild from structure.",
+        body: "I lead UNMASKED personally.\n\nThis is not a seminar.\n\nIt's a controlled reset.\n\nWe strip away what no longer serves you and rebuild from structure.\n\nBody.\n\nClarity.\n\nCommand.\n\nExecution.\n\nVitality — Recalibrate your biological baseline so your energy matches your ambition.\n\nMindset — Expose the patterns driving your decisions under pressure.\n\nLeadership — Reset your command presence from the inside out.\n\nBusiness — Build a precise 90-day execution map grounded in reality.\n\nMy name is Lionel Eersteling.\nFormer professional athlete.\nMulti-entrepreneur.\nInvestor.\nFounder of the Leaders Performance Group.\n\nI don't sell motivation.\n\nI build operating systems for leaders who refuse to drift.",
         bullets: [
           "Vitality — Recalibrate your biological baseline so your energy matches your ambition.",
           "Mindset — Identify the patterns shaping your decisions under pressure.",
@@ -101,7 +101,7 @@ const cards = {
       details: {
         headline: "UNMASKED Privé Executive Reset · Dubai",
         tag: "Uitsluitend op uitnodiging · Maximaal 4 mannen per editie",
-        body: "Ik leid UNMASKED persoonlijk.\n\nDit is geen seminar. Het is een gecontroleerde reset.\n\nGeen ruis. Geen lege inspiratie. Geen performance theater.\n\nWe verwijderen wat je niet meer dient en bouwen opnieuw op vanuit structuur.",
+        body: "Ik leid UNMASKED persoonlijk.\n\nDit is geen seminar.\n\nHet is een gecontroleerde reset.\n\nWe verwijderen wat je niet meer dient en bouwen opnieuw op vanuit structuur.\n\nLichaam.\n\nHelderheid.\n\nLeiderschap.\n\nUitvoering.\n\nVitaliteit — Herkalibreer je biologische basislijn zodat je energie je ambitie ondersteunt.\n\nMindset — Maak zichtbaar welke patronen jouw beslissingen onder druk sturen.\n\nLeiderschap — Versterk je gezag van binnenuit.\n\nBusiness — Ontwikkel een scherp en realistisch 90-dagen uitvoeringsplan.\n\nMijn naam is Lionel Eersteling.\nVoormalig professioneel topsporter.\nMulti-ondernemer.\nInvesteerder.\nOprichter van de Leaders Performance Group.\n\nIk verkoop geen motivatie.\n\nIk bouw besturingssystemen voor leiders die weigeren te blijven draaien.",
         bullets: [
           "Vitaliteit — Kalibreer je biologische basislijn opnieuw zodat je energie overeenkomt met je ambitie.",
           "Mindset — Identificeer de patronen die je beslissingen onder druk bepalen.",
