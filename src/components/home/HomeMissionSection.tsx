@@ -169,6 +169,24 @@ export const HomeMissionSection = () => {
                     <p className="text-foreground font-medium">{t("home.vision.autonomous")}</p>
                   </div>
                 </div>
+
+                <div className="w-16 h-px bg-lioner-gold" />
+
+                {/* ABOUT LIONEL */}
+                <div className="space-y-8">
+                  <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground">
+                    About Lionel
+                  </h2>
+                  <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold">Our Mission</p>
+                  <p className="text-lg md:text-xl text-foreground leading-relaxed font-medium">
+                    Lionel Eersteling is the Founder of Leaders Performance, a performance architecture built for leaders who refuse internal decline.
+                  </p>
+                  <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
+                    <p>A former professional athlete with 25+ years in human performance and leadership, he has built and scaled companies across multiple industries, operated under pressure, and advised founders operating at €30M+ in revenue.</p>
+                    <p>Leaders Performance is not coaching — but a structured operating system that integrates vitality, personal development, leadership, and business execution, with UNMASKED as its intervention layer.</p>
+                    <p className="text-foreground font-medium">At 55, Lionel operates with the presence, strength, and discipline of someone decades younger — not by chance, but by design.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
