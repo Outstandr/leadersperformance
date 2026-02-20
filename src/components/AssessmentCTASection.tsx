@@ -2,19 +2,21 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Target, BarChart3, Rocket, ArrowRight } from "lucide-react";
 import { AssessmentDialog } from "./assessment/AssessmentDialog";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const AssessmentCTASection = () => {
+  const { t } = useLanguage();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const benefits = [{
     icon: Target,
-    text: "Identify your leadership strengths & growth areas"
+    text: t("assessmentCTA.benefit1")
   }, {
     icon: BarChart3,
-    text: "Get your personalized RESET Blueprint report"
+    text: t("assessmentCTA.benefit2")
   }, {
     icon: Rocket,
-    text: "Receive elite strategies for your profile"
+    text: t("assessmentCTA.benefit3")
   }];
 
   return (
@@ -24,13 +26,13 @@ export const AssessmentCTASection = () => {
           {/* Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-4">
-              <span className="text-lg font-medium uppercase text-muted-foreground">Take The First Step</span>
+              <span className="text-lg font-medium uppercase text-muted-foreground">{t("assessmentCTA.badge")}</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mb-4 text-lioner-gold">
-              Discover Your Leadership Blueprint
+              {t("assessmentCTA.heading")}
             </h2>
             <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
-              Take our comprehensive RESET assessment and receive a personalized roadmap to elite performance.
+              {t("assessmentCTA.description")}
             </p>
           </div>
 
@@ -55,11 +57,11 @@ export const AssessmentCTASection = () => {
               onClick={() => setIsDialogOpen(true)}
               className="bg-white text-lioner-gold hover:bg-lioner-gold hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group text-sm transition-all border-2 border-transparent"
             >
-              Take The Assessment
+              {t("assessmentCTA.cta")}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <p className="text-sm mt-4 text-muted-foreground">
-              Complete in 10 minutes • Free personalized report
+              {t("assessmentCTA.disclaimer")}
             </p>
           </div>
         </div>

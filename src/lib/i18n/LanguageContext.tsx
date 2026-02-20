@@ -409,6 +409,16 @@ const en: Record<string, string> = {
   "footer.copyright": `© ${new Date().getFullYear()} Leaders Performance. All rights reserved.`,
   "footer.privacy": "Privacy Policy",
   "footer.terms": "Terms of Service",
+
+  // Assessment CTA
+  "assessmentCTA.badge": "Take The First Step",
+  "assessmentCTA.heading": "Discover Your Leadership Blueprint",
+  "assessmentCTA.description": "Take our comprehensive RESET assessment and receive a personalized roadmap to elite performance.",
+  "assessmentCTA.benefit1": "Identify your leadership strengths & growth areas",
+  "assessmentCTA.benefit2": "Get your personalized RESET Blueprint report",
+  "assessmentCTA.benefit3": "Receive elite strategies for your profile",
+  "assessmentCTA.cta": "Take The Assessment",
+  "assessmentCTA.disclaimer": "Complete in 10 minutes • Free personalized report",
 };
 
 // ─── Dutch ────────────────────────────────────────────────────────────────────
@@ -799,6 +809,16 @@ const nl: Record<string, string> = {
   "business.auditCTA.body3": "7 vragen. Geen opvulling. Onmiddellijk oordeel.",
   "business.auditCTA.cta": "Start de audit",
   "business.auditCTA.disclaimer": "Waarschuwing: De waarheid geeft niet om jouw gevoelens.",
+
+  // Assessment CTA
+  "assessmentCTA.badge": "Neem de eerste stap",
+  "assessmentCTA.heading": "Ontdek jouw leiderschapsblauwdruk",
+  "assessmentCTA.description": "Doe onze uitgebreide discipline test en ontvang een gepersonaliseerde routekaart voor topprestaties.",
+  "assessmentCTA.benefit1": "Identificeer je sterke en zwakke leiderschapskwaliteiten. Ontdek waar je groei ligt.",
+  "assessmentCTA.benefit2": "Ontvang direct je resultaten",
+  "assessmentCTA.benefit3": "Ontvang elite strategieën op basis van jouw profiel.",
+  "assessmentCTA.cta": "Doe de discipline test",
+  "assessmentCTA.disclaimer": "De test duurt slechts 10 minuten en je ontvangt je resultaat direct.",
 };
 
 // ─── Provider (declared after dictionaries to ensure initialization order) ────
