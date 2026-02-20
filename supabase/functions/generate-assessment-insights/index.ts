@@ -40,6 +40,8 @@ serve(async (req) => {
 
 Based on the user's discipline assessment results, generate personalized insights that are specific, actionable, and encouraging.
 
+IMPORTANT: Do NOT include question references like (Q1), (Q17), (Q16) etc. in your output. Write natural sentences without referencing question numbers.
+
 The assessment measures three domains:
 - Self-Discipline (0-100): Ability to follow through on commitments and maintain focus
 - Impulse Control (0-100): Ability to resist immediate gratification and manage reactions
