@@ -657,12 +657,12 @@ const nl: Record<string, string> = {
 
   // Elite – Program (NL)
   "elite.program.eyebrow": "Het programma",
-  "elite.program.heading": "Vier pijlers van persoonlijke transformatie",
-  "elite.program.subheading": "Ons elite coachingprogramma richt zich op elke dimensie van je leven en creëert blijvende verandering via een bewezen, holistische aanpak.",
+  "elite.program.heading": "De vier pijlers van persoonlijke transformatie",
+  "elite.program.subheading": "Ons elite coachingsprogramma behandelt elke dimensie van je leven en creëert blijvende verandering door een bewezen, holistische aanpak.",
   "elite.program.title1": "Vitaliteit",
-  "elite.program.desc1": "Optimaliseer je gezondheid, energie en fysiek welzijn om elke dag op je best te presteren.",
+  "elite.program.desc1": "Optimaliseer je gezondheid, energie en fysieke welzijn om elke dag op je best te presteren.",
   "elite.program.title2": "Persoonlijke ontwikkeling",
-  "elite.program.desc2": "Ontgrendel je potentieel door continue groei, zelfbewustzijn en mindset-beheersing.",
+  "elite.program.desc2": "Ontgrendel je potentieel door continue groei, zelfbewustzijn, emotionele intelligentie en mentale weerbaarheid.",
   "elite.program.title3": "Persoonlijk leiderschap",
   "elite.program.desc3": "Leid jezelf met discipline, helderheid en doelgerichtheid voordat je anderen leidt.",
   "elite.program.title4": "Business",
