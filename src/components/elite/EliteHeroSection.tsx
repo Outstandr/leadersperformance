@@ -88,7 +88,7 @@ export const EliteHeroSection = () => {
         </div>
       </div>
 
-      <AssessmentDialog open={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+      <AssessmentDialog open={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} source="elite" />
     </section>
   );
 };

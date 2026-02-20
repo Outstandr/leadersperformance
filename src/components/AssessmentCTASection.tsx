@@ -4,7 +4,7 @@ import { Target, BarChart3, Rocket, ArrowRight } from "lucide-react";
 import { AssessmentDialog } from "./assessment/AssessmentDialog";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-export const AssessmentCTASection = () => {
+export const AssessmentCTASection = ({ source }: { source?: string }) => {
   const { t } = useLanguage();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -67,7 +67,7 @@ export const AssessmentCTASection = () => {
         </div>
       </section>
 
-      <AssessmentDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
+      <AssessmentDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} source={source} />
     </>
   );
 };

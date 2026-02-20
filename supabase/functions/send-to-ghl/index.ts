@@ -11,10 +11,12 @@ Deno.serve(async (req) => {
   try {
     const payload = await req.json();
 
-    // Route corporate audit to its dedicated webhook, everything else uses GHL_WEBHOOK_URL
+    // Route to dedicated webhooks based on payload type
     let webhookUrl: string;
     if (payload.audit_type === 'corporate') {
       webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/cae4e9db-73c9-4e86-b8d0-381606a3579e';
+    } else if (payload.source === 'elite') {
+      webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/ecab520f-e10b-4cca-8d20-d7ba2cb5c727';
     } else {
       const envUrl = Deno.env.get('GHL_WEBHOOK_URL');
       if (!envUrl) {

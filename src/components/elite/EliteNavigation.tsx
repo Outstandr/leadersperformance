@@ -131,7 +131,7 @@ export const EliteNavigation = () => {
         </div>
       </nav>
 
-      <AssessmentDialog open={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+      <AssessmentDialog open={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} source="elite" />
     </>
   );
 };
