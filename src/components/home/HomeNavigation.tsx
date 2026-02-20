@@ -34,7 +34,6 @@ export const HomeNavigation = () => {
     { label: "BUSINESS", href: "/business" },
     { label: "ELITE", href: "/elite" },
     { label: "ARTICLES", href: "#articles" },
-    { label: t("nav.startHere"), href: "#start-here" },
     { label: t("nav.faq"), href: "#faq" },
   ];
 
