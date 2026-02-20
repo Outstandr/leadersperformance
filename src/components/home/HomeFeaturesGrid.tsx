@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { UnmaskedBookingDialog } from "./UnmaskedBookingDialog";
 import { MentorshipApplicationDialog } from "./MentorshipApplicationDialog";
+import { BusinessConsultationDialog } from "./BusinessConsultationDialog";
 import serviceUnmasked from "@/assets/card-unmasked.png";
 import serviceCoaching from "@/assets/card-coaching.png";
 import serviceAcademy from "@/assets/card-masterclass.png";
@@ -251,6 +252,7 @@ export const HomeFeaturesGrid = () => {
   const [selected, setSelected] = useState<number | null>(null);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [mentorshipOpen, setMentorshipOpen] = useState(false);
+  const [businessConsultOpen, setBusinessConsultOpen] = useState(false);
 
   const selectedService = selected !== null ? services[selected] : null;
   const showCalendar = selectedService && (selectedService.details as any).showCalendar;
@@ -370,8 +372,8 @@ export const HomeFeaturesGrid = () => {
                     </div>
                   )}
 
-                  {/* Booking calendar for Business card only */}
-                  {showCalendar && !isUnmasked && selected !== 1 && (
+                  {/* Booking calendar for non-mentorship, non-business, non-unmasked cards */}
+                  {showCalendar && !isUnmasked && selected !== 1 && selected !== 3 && (
                     <div className="pt-2">
                       <p className="text-xs font-medium tracking-widest uppercase text-lioner-gold mb-3">
                         Book Your Session
@@ -383,6 +385,16 @@ export const HomeFeaturesGrid = () => {
                         id={`lc-calendar-${selected}`}
                       />
                     </div>
+                  )}
+
+                  {/* Business Consultation application (index 3) */}
+                  {selected === 3 && (
+                    <button
+                      onClick={() => { setSelected(null); setTimeout(() => setBusinessConsultOpen(true), 200); }}
+                      className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                    >
+                      {(services[selected].details as any).cta}
+                    </button>
                   )}
 
                   {/* Mentorship application for High Performance Coaching (index 1) */}
@@ -403,6 +415,7 @@ export const HomeFeaturesGrid = () => {
 
       <UnmaskedBookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
       <MentorshipApplicationDialog open={mentorshipOpen} onOpenChange={setMentorshipOpen} />
+      <BusinessConsultationDialog open={businessConsultOpen} onOpenChange={setBusinessConsultOpen} />
     </>
   );
 };
