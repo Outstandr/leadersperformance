@@ -86,6 +86,78 @@ export type Database = {
         }
         Relationships: []
       }
+      business_consultations: {
+        Row: {
+          booking_date: string | null
+          company: string
+          country: string
+          created_at: string
+          discipline_score: number
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          phone: string
+          position: string
+          q1_morning_standard: number
+          q2_silence_test: number
+          q3_deadline_protocol: number
+          q4_confrontation: number
+          q5_meeting_tax: number
+          q6_problem_solver: number
+          q7_mirror: number
+          raw_score: number
+          status: string
+          tier: string
+        }
+        Insert: {
+          booking_date?: string | null
+          company: string
+          country: string
+          created_at?: string
+          discipline_score?: number
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          phone?: string
+          position: string
+          q1_morning_standard?: number
+          q2_silence_test?: number
+          q3_deadline_protocol?: number
+          q4_confrontation?: number
+          q5_meeting_tax?: number
+          q6_problem_solver?: number
+          q7_mirror?: number
+          raw_score?: number
+          status?: string
+          tier?: string
+        }
+        Update: {
+          booking_date?: string | null
+          company?: string
+          country?: string
+          created_at?: string
+          discipline_score?: number
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          phone?: string
+          position?: string
+          q1_morning_standard?: number
+          q2_silence_test?: number
+          q3_deadline_protocol?: number
+          q4_confrontation?: number
+          q5_meeting_tax?: number
+          q6_problem_solver?: number
+          q7_mirror?: number
+          raw_score?: number
+          status?: string
+          tier?: string
+        }
+        Relationships: []
+      }
       corporate_discipline_audits: {
         Row: {
           ai_insights: Json | null
