@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 interface AssessmentDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  source?: string;
 }
 
 export interface UserInfo {
@@ -30,7 +31,7 @@ export interface AssessmentInsights {
 
 type Step = 'userInfo' | 'questions' | 'results';
 
-export function AssessmentDialog({ open, onOpenChange }: AssessmentDialogProps) {
+export function AssessmentDialog({ open, onOpenChange, source }: AssessmentDialogProps) {
   const [step, setStep] = useState<Step>('userInfo');
   const [userInfo, setUserInfo] = useState<UserInfo>({
     firstName: '',
@@ -132,6 +133,7 @@ export function AssessmentDialog({ open, onOpenChange }: AssessmentDialogProps) 
           q15_daily_routines: responses.q15,
           q16_productivity_varies: responses.q16,
           q17_bounce_back: responses.q17,
+          ...(source ? { source } : {}),
         }
       }).then(({ error }) => {
         if (error) console.error('GHL webhook error:', error);

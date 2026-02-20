@@ -22,7 +22,7 @@ const Elite = () => {
         <EliteProgramSection />
         <EliteTransformationSection />
         <EliteResultsSection />
-        <AssessmentCTASection />
+        <AssessmentCTASection source="elite" />
         <EliteQuoteSection2 />
         <EliteProcessSection />
         <EliteBookingSection />
