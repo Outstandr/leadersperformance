@@ -1,23 +1,21 @@
 
 
-## Corporate Audit CTA Section Updates
+## Fix: UNMASKED Booking Sending to Wrong Webhook
 
-### Changes
+### Problem
+The `unmasked-booking` edge function reads from the shared `GHL_WEBHOOK_URL` secret, which points to the High Performance Coaching funnel. UNMASKED bookings need to go to their own dedicated webhook.
 
-**1. Center-align the paragraph text**
-- In `CorporateAuditCTASection.tsx` (line 26): Change `text-left` to `text-center` on the body1 paragraph.
+### Solution
+Hardcode the correct UNMASKED webhook URL directly in the edge function (same approach used in `submit-business-consultation` which has its webhook hardcoded).
 
-**2. English text updates** (in `LanguageContext.tsx`, line 318-320):
-- Remove "No theory. No explanation. Just clarity." from `body1` (last line of the block)
-- Replace `body3` value `"7 questions. No fluff. Immediate verdict."` with `"No theory. No explanation. Just clarity."`
+### Change
+**File: `supabase/functions/unmasked-booking/index.ts`**
+- Replace `Deno.env.get('GHL_WEBHOOK_URL')` on line 12 with the dedicated UNMASKED webhook URL: `https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/gxP5ZQ0OvedG47O9s5Rl`
+- Remove the `if (!ghlWebhookUrl)` error check since the URL will be hardcoded
+- Also add the `summary` field to the calendar event call so it gets tagged as `UNMASKED - {Name}` (currently missing from the payload on line 74)
 
-**3. Dutch text updates** (in `LanguageContext.tsx`, line 639-641):
-- Remove "Geen theorie. Geen uitleg eromheen. Gewoon duidelijkheid." from Dutch `body1` (last line)
-- Replace Dutch `body3` value `"7 vragen. Geen opvulling. Onmiddellijk oordeel."` with `"Geen theorie. Geen uitleg eromheen. Gewoon duidelijkheid."`
-
-### Technical Details
-
-Two files modified:
-- `src/components/corporate-audit/CorporateAuditCTASection.tsx` -- alignment class change
-- `src/lib/i18n/LanguageContext.tsx` -- four string value swaps (EN body1, EN body3, NL body1, NL body3)
+### Webhook Summary (for reference)
+- **High Performance Coaching**: `GHL_WEBHOOK_URL` secret (used by `submit-application`)
+- **Business Consultation**: hardcoded in `submit-business-consultation` (`...RkysrTHNhiqHMSQoOXpB`)
+- **UNMASKED**: will be hardcoded in `unmasked-booking` (`...gxP5ZQ0OvedG47O9s5Rl`)
 
