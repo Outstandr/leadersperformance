@@ -54,7 +54,7 @@ LEAD CAPTURE: After 3-4 natural exchanges, ask for their email to send the right
             language: "en",
           },
           tts: {
-            voice_id: "nPczCjzI2devNBz1zQrb",
+            voice_id: "CIVWxnZSyymKengqS8XS",
           },
         },
       }),
