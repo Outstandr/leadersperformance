@@ -1,14 +1,12 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, Check, Calendar as CalendarIcon } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Check, Calendar as CalendarIcon, ClipboardList } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { auditQuestions } from "@/lib/corporateAuditQuestions";
-import { calculateAuditScore } from "@/lib/corporateAuditScoring";
 import logoWhite from "@/assets/logo-white.png";
 
 // ─── Country list ──────────────────────────────────────────────────────
@@ -44,7 +42,6 @@ const isWeekday = (date: Date) => {
 
 const STEP_TITLES = [
   "Contact Information",
-  "Discipline Audit",
   "Book Consultation",
 ];
 
@@ -56,7 +53,6 @@ type FormData = {
   email: string;
   country: string;
   phone: string;
-  auditResponses: Record<string, number>;
   bookingDate: Date | null;
   bookingTime: string;
 };
@@ -69,7 +65,6 @@ const initialForm: FormData = {
   email: "",
   country: "",
   phone: "",
-  auditResponses: {},
   bookingDate: null,
   bookingTime: "",
 };
@@ -86,6 +81,7 @@ export function BusinessConsultationDialog({
   const [direction, setDirection] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [showAudit, setShowAudit] = useState(false);
   const [countryOpen, setCountryOpen] = useState(false);
   const [countrySearch, setCountrySearch] = useState("");
   const countryRef = useRef<HTMLDivElement>(null);
@@ -111,6 +107,7 @@ export function BusinessConsultationDialog({
         setStep(0);
         setForm({ ...initialForm });
         setSubmitted(false);
+        setShowAudit(false);
         setDirection(1);
       }, 300);
       return () => clearTimeout(timer);
@@ -118,8 +115,6 @@ export function BusinessConsultationDialog({
   }, [open]);
 
   const update = (field: keyof FormData, value: any) => setForm(prev => ({ ...prev, [field]: value }));
-  const updateAudit = (qId: string, value: number) =>
-    setForm(prev => ({ ...prev, auditResponses: { ...prev.auditResponses, [qId]: value } }));
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
 
@@ -128,8 +123,6 @@ export function BusinessConsultationDialog({
       case 0:
         return !!(form.firstName && form.lastName && form.company && form.position && form.email && form.country && form.phone && emailValid);
       case 1:
-        return Object.keys(form.auditResponses).length === auditQuestions.length;
-      case 2:
         return !!(form.bookingDate && form.bookingTime);
       default:
         return false;
@@ -138,7 +131,7 @@ export function BusinessConsultationDialog({
 
   const next = () => {
     if (!canAdvance()) return;
-    if (step < 2) {
+    if (step < 1) {
       setDirection(1);
       setStep(s => s + 1);
     }
@@ -171,7 +164,7 @@ export function BusinessConsultationDialog({
           country: form.country,
           email: form.email,
           phone: form.phone,
-          auditResponses: form.auditResponses,
+          auditResponses: {},
           bookingDateTime,
         },
       });
@@ -294,42 +287,6 @@ export function BusinessConsultationDialog({
       case 1:
         return (
           <div className="space-y-5">
-            <p className="text-sm text-muted-foreground mb-2">
-              Answer each question honestly. This helps us understand your team's current operating standard.
-            </p>
-            {auditQuestions.map((q) => (
-              <div key={q.id} className="space-y-2">
-                <div className="flex items-start gap-2">
-                  <span className="text-xs font-bold text-lioner-gold mt-0.5">{q.questionNumber}.</span>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-lioner-gold">{q.title}</p>
-                    <p className="text-sm font-medium text-foreground mt-1">{q.question}</p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 gap-2 pl-5">
-                  <button
-                    type="button"
-                    onClick={() => updateAudit(q.id, 0)}
-                    className={`text-left px-4 py-3 text-xs border transition-colors rounded ${form.auditResponses[q.id] === 0 ? "border-lioner-gold bg-lioner-gold/10 text-foreground" : "border-foreground/10 hover:border-foreground/30 text-foreground/70"}`}
-                  >
-                    {q.optionA.label}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => updateAudit(q.id, 10)}
-                    className={`text-left px-4 py-3 text-xs border transition-colors rounded ${form.auditResponses[q.id] === 10 ? "border-lioner-gold bg-lioner-gold/10 text-foreground" : "border-foreground/10 hover:border-foreground/30 text-foreground/70"}`}
-                  >
-                    {q.optionB.label}
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        );
-
-      case 2:
-        return (
-          <div className="space-y-5">
             {/* Calendar */}
             <div>
               <Label className="text-foreground/70 text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
@@ -402,7 +359,7 @@ export function BusinessConsultationDialog({
   };
 
   // ─── Success screen ───────────────────────────────────────────────────
-  if (submitted) {
+  if (submitted && !showAudit) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="sm:max-w-md bg-[#0a0a0a] border-lioner-gold/20 text-center p-10">
@@ -418,6 +375,34 @@ export function BusinessConsultationDialog({
                 Your consultation request has been received. Our team will confirm your booking within 24 hours. Prepare for a direct, no-nonsense strategy session.
               </p>
             </div>
+
+            {/* Optional assessment CTA */}
+            <div className="w-full border-t border-white/10 pt-6 mt-2">
+              <p className="text-xs text-white/40 uppercase tracking-widest mb-3">Optional</p>
+              <button
+                onClick={() => {
+                  onOpenChange(false);
+                  // Small delay to let dialog close, then navigate
+                  setTimeout(() => {
+                    const auditSection = document.getElementById("corporate-audit");
+                    if (auditSection) {
+                      auditSection.scrollIntoView({ behavior: "smooth" });
+                      // Click the audit CTA button if it exists
+                      const auditBtn = auditSection.querySelector("button");
+                      if (auditBtn) auditBtn.click();
+                    }
+                  }, 400);
+                }}
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 border border-lioner-gold/40 hover:border-lioner-gold hover:bg-lioner-gold/10 text-lioner-gold text-sm font-semibold uppercase tracking-wider transition-all"
+              >
+                <ClipboardList className="w-4 h-4" />
+                Take the Team Discipline Audit
+              </button>
+              <p className="text-xs text-white/40 mt-2">
+                Assess your team's discipline score before the call — it only takes 2 minutes.
+              </p>
+            </div>
+
             <button
               onClick={() => onOpenChange(false)}
               className="mt-2 px-8 py-3 bg-lioner-gold hover:bg-lioner-gold/90 text-white text-sm font-semibold uppercase tracking-widest transition-colors"
@@ -438,10 +423,10 @@ export function BusinessConsultationDialog({
         {/* Header */}
         <div className="px-6 pt-6 pb-4 border-b border-foreground/10">
           <p className="text-xs uppercase tracking-widest text-lioner-gold font-medium mb-1">
-            Step {step + 1} of 3
+            Step {step + 1} of 2
           </p>
           <h2 className="font-serif text-xl text-foreground">{STEP_TITLES[step]}</h2>
-          <Progress value={((step + 1) / 3) * 100} className="mt-3 h-1 bg-foreground/10" />
+          <Progress value={((step + 1) / 2) * 100} className="mt-3 h-1 bg-foreground/10" />
         </div>
 
         {/* Animated content */}
@@ -471,7 +456,7 @@ export function BusinessConsultationDialog({
             <div />
           )}
 
-          {step < 2 ? (
+          {step < 1 ? (
             <button
               onClick={next}
               disabled={!canAdvance()}

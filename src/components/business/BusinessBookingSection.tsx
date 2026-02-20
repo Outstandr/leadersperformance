@@ -1,19 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { BusinessConsultationDialog } from "@/components/home/BusinessConsultationDialog";
 import { CorporateAuditDialog } from "@/components/corporate-audit/CorporateAuditDialog";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-interface BusinessBookingSectionProps {
-  calendlyUrl?: string;
-}
-
-const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
-
-export const BusinessBookingSection = ({
-  calendlyUrl = bookingUrl,
-}: BusinessBookingSectionProps) => {
+export const BusinessBookingSection = () => {
   const { t } = useLanguage();
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [isAuditOpen, setIsAuditOpen] = useState(false);
 
   return (
@@ -48,13 +42,11 @@ export const BusinessBookingSection = ({
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                asChild
+                onClick={() => setIsConsultationOpen(true)}
                 className="bg-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))]/90 text-white font-bold rounded-none px-8 py-5 h-auto group text-base uppercase tracking-wider"
               >
-                <a href={calendlyUrl} target="_blank" rel="noopener noreferrer">
-                  {t("business.booking.ctaPrimary")}
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </a>
+                {t("business.booking.ctaPrimary")}
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
                 size="lg"
@@ -68,6 +60,7 @@ export const BusinessBookingSection = ({
         </div>
       </div>
 
+      <BusinessConsultationDialog open={isConsultationOpen} onOpenChange={setIsConsultationOpen} />
       <CorporateAuditDialog open={isAuditOpen} onOpenChange={setIsAuditOpen} />
     </section>
   );
