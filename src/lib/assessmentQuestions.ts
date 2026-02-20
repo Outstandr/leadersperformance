@@ -15,7 +15,7 @@ export const questions: Question[] = [
     questionNumber: 1,
     text: {
       en: "I consistently follow through on commitments I make to myself",
-      nl: "Ik volg consequent de toezeggingen na die ik aan mezelf doe"
+      nl: "Ik kom de afspraken met mijzelf altijd na"
     },
     domain: 'selfDiscipline',
     reverseScored: false
@@ -45,7 +45,7 @@ export const questions: Question[] = [
     questionNumber: 4,
     text: {
       en: "I can resist immediate pleasures to achieve larger, future rewards",
-      nl: "Ik kan directe genoegens weerstaan om grotere, toekomstige beloningen te bereiken"
+      nl: "Ik kan verleidingen weerstaan om grotere, toekomstige beloningen te bereiken"
     },
     domain: 'selfDiscipline',
     reverseScored: false
@@ -121,11 +121,11 @@ export const ratingLabels = {
     "Extremely like me"
   ],
   nl: [
-    "Helemaal niet zoals ik",
-    "Een beetje zoals ik",
-    "Redelijk zoals ik",
-    "Erg zoals ik",
-    "Helemaal zoals ik"
+    "Helemaal oneens",
+    "Oneens",
+    "Niet eens, niet oneens",
+    "Eens",
+    "Helemaal eens"
   ]
 };
 
