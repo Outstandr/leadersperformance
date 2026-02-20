@@ -4,7 +4,7 @@ import jittekeImage from "@/assets/testimonial-jitteke.png";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const EliteResultsSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const testimonials = [
     {
@@ -15,7 +15,7 @@ export const EliteResultsSection = () => {
     },
     {
       name: "Jitteke Blussé",
-      role: "Lawyer, Caland Advocaten",
+      role: language === "nl" ? "Advocaat, Caland Advocaten" : "Lawyer, Caland Advocaten",
       quote: "Working with Lionel was transformative. Facing crucial changes, his no-nonsense approach gave me the clarity and drive to start my own office. Lionel's coaching is direct and efficient, making you move beyond your limitations. I highly recommend his program, impactful results.",
       image: jittekeImage
     }

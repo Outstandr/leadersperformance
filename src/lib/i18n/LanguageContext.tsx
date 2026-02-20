@@ -39,7 +39,7 @@ const en: Record<string, string> = {
   // Navigation – Elite
   "nav.program": "Program",
   "nav.transformation": "Transformation",
-  "nav.takeLeaderAssessment": "Take Leader Assessment",
+  "nav.takeLeaderAssessment": "Take Discipline Assessment",
   "nav.applyNow": "Apply Now",
 
   // Hero – Home
@@ -237,7 +237,7 @@ const en: Record<string, string> = {
   "elite.hero.stat3Value": "100%",
   "elite.hero.stat3Label": "Personalized",
   "elite.hero.ctaPrimary": "Apply For Elite Coaching",
-  "elite.hero.ctaSecondary": "Take Leader Assessment",
+  "elite.hero.ctaSecondary": "Take Discipline Assessment",
   "elite.hero.disclaimer": "Limited spots available • Application required",
 
   // Elite – Quote
@@ -413,9 +413,9 @@ const en: Record<string, string> = {
   // Assessment CTA
   "assessmentCTA.badge": "Take The First Step",
   "assessmentCTA.heading": "Discover Your Leadership Blueprint",
-  "assessmentCTA.description": "Take our comprehensive RESET assessment and receive a personalized roadmap to elite performance.",
+  "assessmentCTA.description": "Take our comprehensive discipline assessment and receive a personalized roadmap to elite performance.",
   "assessmentCTA.benefit1": "Identify your leadership strengths & growth areas",
-  "assessmentCTA.benefit2": "Get your personalized RESET Blueprint report",
+  "assessmentCTA.benefit2": "Get your personalized report",
   "assessmentCTA.benefit3": "Receive elite strategies for your profile",
   "assessmentCTA.cta": "Take The Assessment",
   "assessmentCTA.disclaimer": "Complete in 10 minutes • Free personalized report",
@@ -704,8 +704,8 @@ const nl: Record<string, string> = {
 
   // Elite – Results (NL)
   "elite.results.eyebrow": "Succesverhalen",
-  "elite.results.heading": "Echte resultaten van echte mensen",
-  "elite.results.subheading": "Sluit je aan bij honderden individuen die hun leven hebben getransformeerd door elite 1-op-1 coaching.",
+  "elite.results.heading": "Dit hebben jouw voorgangers bereikt",
+  "elite.results.subheading": "Sluit je aan bij honderden individuen die hun leven hebben getransformeerd met elite 1-op-1 coaching.",
 
   // Elite – Booking (NL)
   "elite.booking.badge": "Beperkt aantal plaatsen beschikbaar",
