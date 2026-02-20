@@ -1,39 +1,26 @@
 import { Heart, Sparkles, Crown, Briefcase } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const EliteProgramSection = () => {
+  const { t } = useLanguage();
+
   const pillars = [
-    {
-      icon: Heart,
-      title: "Vitality",
-      description: "Optimize your health, energy, and physical well-being to perform at your peak every day."
-    },
-    {
-      icon: Sparkles,
-      title: "Personal Development",
-      description: "Unlock your potential through continuous growth, self-awareness, and mindset mastery."
-    },
-    {
-      icon: Crown,
-      title: "Personal Leadership",
-      description: "Lead yourself with discipline, clarity, and purpose before leading others."
-    },
-    {
-      icon: Briefcase,
-      title: "Business",
-      description: "Build and scale your business with strategic thinking, execution, and sustainable success."
-    }
+    { icon: Heart, title: t("elite.program.title1"), description: t("elite.program.desc1") },
+    { icon: Sparkles, title: t("elite.program.title2"), description: t("elite.program.desc2") },
+    { icon: Crown, title: t("elite.program.title3"), description: t("elite.program.desc3") },
+    { icon: Briefcase, title: t("elite.program.title4"), description: t("elite.program.desc4") },
   ];
 
   return (
     <section id="program" className="py-8 lg:py-12 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
-          <span className="text-sm font-medium uppercase tracking-wider text-lioner-gold">The Program</span>
+          <span className="text-sm font-medium uppercase tracking-wider text-lioner-gold">{t("elite.program.eyebrow")}</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mt-4 mb-6">
-            Four Pillars of Personal Transformation
+            {t("elite.program.heading")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Our elite coaching program addresses every dimension of your life, creating lasting change through a proven, holistic approach.
+            {t("elite.program.subheading")}
           </p>
         </div>
 
