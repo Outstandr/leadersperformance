@@ -1,43 +1,26 @@
 import { MessageSquare, ClipboardCheck, Rocket, Trophy } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const EliteProcessSection = () => {
+  const { t } = useLanguage();
+
   const steps = [
-    {
-      number: "01",
-      icon: MessageSquare,
-      title: "Discovery Call",
-      description: "We start with a deep-dive conversation to understand your goals, challenges, and what's truly holding you back from the life you want."
-    },
-    {
-      number: "02",
-      icon: ClipboardCheck,
-      title: "Personal Assessment",
-      description: "Complete a comprehensive life assessment that reveals exactly where you are and creates a clear roadmap for your transformation."
-    },
-    {
-      number: "03",
-      icon: Rocket,
-      title: "Weekly 1-to-1 Sessions",
-      description: "Engage in powerful weekly coaching sessions designed specifically for you, with ongoing support and accountability between sessions."
-    },
-    {
-      number: "04",
-      icon: Trophy,
-      title: "Lasting Transformation",
-      description: "Integrate your new mindset, habits, and strategies for sustainable success that continues long after the program ends."
-    }
+    { number: "01", icon: MessageSquare, title: t("elite.process.step1"), description: t("elite.process.step1Desc") },
+    { number: "02", icon: ClipboardCheck, title: t("elite.process.step2"), description: t("elite.process.step2Desc") },
+    { number: "03", icon: Rocket, title: t("elite.process.step3"), description: t("elite.process.step3Desc") },
+    { number: "04", icon: Trophy, title: t("elite.process.step4"), description: t("elite.process.step4Desc") },
   ];
 
   return (
     <section id="process" className="py-8 lg:py-12 bg-muted/30">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
-          <span className="text-sm font-medium uppercase tracking-wider text-lioner-gold">Your Journey</span>
+          <span className="text-sm font-medium uppercase tracking-wider text-lioner-gold">{t("elite.process.eyebrow")}</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mt-4 mb-6">
-            The Path to Your Transformation
+            {t("elite.process.heading")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            A structured yet personalized journey designed to create deep, lasting change in your life.
+            {t("elite.process.subheading")}
           </p>
         </div>
 

@@ -1,8 +1,11 @@
 import { Quote } from "lucide-react";
 import willemImage from "@/assets/testimonial-willem-elite.png";
 import jittekeImage from "@/assets/testimonial-jitteke.png";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const EliteResultsSection = () => {
+  const { t } = useLanguage();
+
   const testimonials = [
     {
       name: "Willem Ledeboer",
@@ -22,12 +25,12 @@ export const EliteResultsSection = () => {
     <section id="results" className="py-8 lg:py-12 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-12">
-          <span className="text-sm font-medium uppercase tracking-wider text-lioner-gold">Success Stories</span>
+          <span className="text-sm font-medium uppercase tracking-wider text-lioner-gold">{t("elite.results.eyebrow")}</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mt-4 mb-6">
-            Real Results from Real People
+            {t("elite.results.heading")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Join hundreds of individuals who have transformed their lives through elite 1-to-1 coaching.
+            {t("elite.results.subheading")}
           </p>
         </div>
 

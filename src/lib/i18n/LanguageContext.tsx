@@ -240,6 +240,86 @@ const en: Record<string, string> = {
   "elite.hero.ctaSecondary": "Take Leader Assessment",
   "elite.hero.disclaimer": "Limited spots available • Application required",
 
+  // Elite – Quote
+  "elite.quote1": "You're not stuck. You're just not being challenged where it matters.",
+  "elite.quote2": "If you keep starting over, you don't need a new plan — you need a stronger frame.",
+
+  // Elite – Program
+  "elite.program.eyebrow": "The Program",
+  "elite.program.heading": "Four Pillars of Personal Transformation",
+  "elite.program.subheading": "Our elite coaching program addresses every dimension of your life, creating lasting change through a proven, holistic approach.",
+  "elite.program.title1": "Vitality",
+  "elite.program.desc1": "Optimize your health, energy, and physical well-being to perform at your peak every day.",
+  "elite.program.title2": "Personal Development",
+  "elite.program.desc2": "Unlock your potential through continuous growth, self-awareness, and mindset mastery.",
+  "elite.program.title3": "Personal Leadership",
+  "elite.program.desc3": "Lead yourself with discipline, clarity, and purpose before leading others.",
+  "elite.program.title4": "Business",
+  "elite.program.desc4": "Build and scale your business with strategic thinking, execution, and sustainable success.",
+
+  // Elite – Transformation
+  "elite.transformation.eyebrow": "The Transformation",
+  "elite.transformation.heading": "From Where You Are to Where You Want to Be",
+  "elite.transformation.subheading": "This isn't about small improvements. It's about a complete transformation in how you think, feel, and perform.",
+  "elite.transformation.beforeTitle": "Before Elite Coaching",
+  "elite.transformation.afterTitle": "After Elite Coaching",
+  "elite.transformation.before1": "Poor sleep, low recovery",
+  "elite.transformation.before2": "Weight goes up and down",
+  "elite.transformation.before3": "Inconsistent results",
+  "elite.transformation.before4": "Lack of discipline",
+  "elite.transformation.before5": "Self-doubt",
+  "elite.transformation.before6": "No structure or overview",
+  "elite.transformation.before7": "Not living at your full potential",
+  "elite.transformation.after1": "Better sleep and recovery",
+  "elite.transformation.after2": "Leaner, fitter body",
+  "elite.transformation.after3": "Stable, lasting results",
+  "elite.transformation.after4": "Strong discipline",
+  "elite.transformation.after5": "Self-confidence",
+  "elite.transformation.after6": "Clear structure and focus",
+  "elite.transformation.after7": "Living as your best self",
+
+  // Elite – Process
+  "elite.process.eyebrow": "Your Journey",
+  "elite.process.heading": "The Path to Your Transformation",
+  "elite.process.subheading": "A structured yet personalized journey designed to create deep, lasting change in your life.",
+  "elite.process.step1": "Discovery Call",
+  "elite.process.step1Desc": "We start with a deep-dive conversation to understand your goals, challenges, and what's truly holding you back from the life you want.",
+  "elite.process.step2": "Personal Assessment",
+  "elite.process.step2Desc": "Complete a comprehensive life assessment that reveals exactly where you are and creates a clear roadmap for your transformation.",
+  "elite.process.step3": "Weekly 1-to-1 Sessions",
+  "elite.process.step3Desc": "Engage in powerful weekly coaching sessions designed specifically for you, with ongoing support and accountability between sessions.",
+  "elite.process.step4": "Lasting Transformation",
+  "elite.process.step4Desc": "Integrate your new mindset, habits, and strategies for sustainable success that continues long after the program ends.",
+
+  // Elite – Results
+  "elite.results.eyebrow": "Success Stories",
+  "elite.results.heading": "Real Results from Real People",
+  "elite.results.subheading": "Join hundreds of individuals who have transformed their lives through elite 1-to-1 coaching.",
+
+  // Elite – Booking
+  "elite.booking.badge": "Limited Availability",
+  "elite.booking.heading": "Ready to Transform Your Life?",
+  "elite.booking.subheading": "This program is for ambitious individuals who are ready to invest in themselves and commit to real change. If that's you, apply for your discovery call today.",
+  "elite.booking.cta": "Apply for Elite Coaching",
+  "elite.booking.spotsLeft": "Only 5 spots available per month",
+  "elite.booking.includedTitle": "What's Included",
+  "elite.booking.include1": "12 weeks of intensive 1-to-1 coaching",
+  "elite.booking.include2": "Weekly 60-minute private sessions",
+  "elite.booking.include3": "Unlimited voice/text support between sessions",
+  "elite.booking.include4": "Personalized action plans and exercises",
+  "elite.booking.include5": "Access to exclusive resources and tools",
+  "elite.booking.include6": "Lifetime access to session recordings",
+
+  // Elite – Video
+  "elite.video.cta": "Book a Consultation",
+
+  // Elite – Footer
+  "elite.footer.description": "Transforming lives through elite personal coaching and high-performance strategies.",
+  "elite.footer.quickLinks": "Quick Links",
+  "elite.footer.apply": "Apply Now",
+  "elite.footer.legal": "Legal",
+  "elite.footer.copyright": "© {year} Leaders Performance Institute. All rights reserved.",
+
   // Business Hero
   "business.hero.badge": "For teams of 5-50 persons",
   "business.hero.headline": "Stop Managing People. Start Leading Performers.",
@@ -561,7 +641,85 @@ const nl: Record<string, string> = {
   "elite.hero.ctaSecondary": "Start de disciplinetest",
   "elite.hero.disclaimer": "Beperkt aantal plaatsen • Aanmelding vereist",
 
-  // Business Hero
+  // Elite – Quote (NL)
+  "elite.quote1": "Je zit niet vast. Je wordt alleen niet uitgedaagd waar het ertoe doet.",
+  "elite.quote2": "Als je steeds opnieuw begint, heb je geen nieuw plan nodig — je hebt een sterker fundament nodig.",
+
+  // Elite – Program (NL)
+  "elite.program.eyebrow": "Het programma",
+  "elite.program.heading": "Vier pijlers van persoonlijke transformatie",
+  "elite.program.subheading": "Ons elite coachingprogramma richt zich op elke dimensie van je leven en creëert blijvende verandering via een bewezen, holistische aanpak.",
+  "elite.program.title1": "Vitaliteit",
+  "elite.program.desc1": "Optimaliseer je gezondheid, energie en fysiek welzijn om elke dag op je best te presteren.",
+  "elite.program.title2": "Persoonlijke ontwikkeling",
+  "elite.program.desc2": "Ontgrendel je potentieel door continue groei, zelfbewustzijn en mindset-beheersing.",
+  "elite.program.title3": "Persoonlijk leiderschap",
+  "elite.program.desc3": "Leid jezelf met discipline, helderheid en doelgerichtheid voordat je anderen leidt.",
+  "elite.program.title4": "Business",
+  "elite.program.desc4": "Bouw en schaal je bedrijf met strategisch denken, uitvoering en duurzaam succes.",
+
+  // Elite – Transformation (NL)
+  "elite.transformation.eyebrow": "De transformatie",
+  "elite.transformation.heading": "Van waar je nu staat naar waar je wilt zijn",
+  "elite.transformation.subheading": "Dit gaat niet over kleine verbeteringen. Het gaat over een complete transformatie in hoe je denkt, voelt en presteert.",
+  "elite.transformation.beforeTitle": "Vóór elite coaching",
+  "elite.transformation.afterTitle": "Na elite coaching",
+  "elite.transformation.before1": "Slechte slaap, laag herstel",
+  "elite.transformation.before2": "Gewicht schommelt",
+  "elite.transformation.before3": "Inconsistente resultaten",
+  "elite.transformation.before4": "Gebrek aan discipline",
+  "elite.transformation.before5": "Twijfel aan jezelf",
+  "elite.transformation.before6": "Geen structuur of overzicht",
+  "elite.transformation.before7": "Niet op je volle potentieel leven",
+  "elite.transformation.after1": "Betere slaap en herstel",
+  "elite.transformation.after2": "Strakker, fitter lichaam",
+  "elite.transformation.after3": "Stabiele, blijvende resultaten",
+  "elite.transformation.after4": "Sterke discipline",
+  "elite.transformation.after5": "Zelfvertrouwen",
+  "elite.transformation.after6": "Heldere structuur en focus",
+  "elite.transformation.after7": "Leven als je beste versie",
+
+  // Elite – Process (NL)
+  "elite.process.eyebrow": "Jouw traject",
+  "elite.process.heading": "Het pad naar jouw transformatie",
+  "elite.process.subheading": "Een gestructureerd maar persoonlijk traject ontworpen om diepe, blijvende verandering in je leven te creëren.",
+  "elite.process.step1": "Kennismakingsgesprek",
+  "elite.process.step1Desc": "We beginnen met een diepgaand gesprek om je doelen, uitdagingen en wat je werkelijk tegenhoudt te begrijpen.",
+  "elite.process.step2": "Persoonlijke assessment",
+  "elite.process.step2Desc": "Vul een uitgebreide levensassessment in die precies laat zien waar je staat en een duidelijke routekaart voor je transformatie creëert.",
+  "elite.process.step3": "Wekelijkse 1-op-1 sessies",
+  "elite.process.step3Desc": "Neem deel aan krachtige wekelijkse coachingsessies speciaal voor jou ontworpen, met doorlopende ondersteuning en verantwoordelijkheid.",
+  "elite.process.step4": "Blijvende transformatie",
+  "elite.process.step4Desc": "Integreer je nieuwe mindset, gewoontes en strategieën voor duurzaam succes dat doorgaat lang na afloop van het programma.",
+
+  // Elite – Results (NL)
+  "elite.results.eyebrow": "Succesverhalen",
+  "elite.results.heading": "Echte resultaten van echte mensen",
+  "elite.results.subheading": "Sluit je aan bij honderden individuen die hun leven hebben getransformeerd door elite 1-op-1 coaching.",
+
+  // Elite – Booking (NL)
+  "elite.booking.badge": "Beperkte beschikbaarheid",
+  "elite.booking.heading": "Klaar om je leven te transformeren?",
+  "elite.booking.subheading": "Dit programma is voor ambitieuze individuen die klaar zijn om in zichzelf te investeren en zich te committeren aan echte verandering. Als dat jij bent, meld je aan voor een kennismakingsgesprek.",
+  "elite.booking.cta": "Aanmelden voor elite coaching",
+  "elite.booking.spotsLeft": "Slechts 5 plekken beschikbaar per maand",
+  "elite.booking.includedTitle": "Wat is inbegrepen",
+  "elite.booking.include1": "12 weken intensieve 1-op-1 coaching",
+  "elite.booking.include2": "Wekelijkse privésessies van 60 minuten",
+  "elite.booking.include3": "Onbeperkte spraak-/tekstondersteuning tussen sessies",
+  "elite.booking.include4": "Gepersonaliseerde actieplannen en oefeningen",
+  "elite.booking.include5": "Toegang tot exclusieve bronnen en tools",
+  "elite.booking.include6": "Levenslange toegang tot sessie-opnames",
+
+  // Elite – Video (NL)
+  "elite.video.cta": "Boek een consult",
+
+  // Elite – Footer (NL)
+  "elite.footer.description": "Levens transformeren door elite persoonlijke coaching en high-performance strategieën.",
+  "elite.footer.quickLinks": "Snelle links",
+  "elite.footer.apply": "Aanmelden",
+  "elite.footer.legal": "Juridisch",
+  "elite.footer.copyright": "© {year} Leaders Performance Institute. Alle rechten voorbehouden.",
   "business.hero.badge": "Voor teams van 5-50 personen",
   "business.hero.headline": "Stop met managen. Begin met leiden.",
   "business.hero.description": "Je bedrijf groeit tot het niveau dat jij tolereert. Als middelmatigheid blijft bestaan, is dat een keuze.\n\nDe Business Reset Blueprint herstructureert je organisatie zodat verantwoordelijkheid weer op de juiste plek ligt en prestaties niet afhankelijk zijn van jou alleen.\n\nBinnen 30 dagen staat er een systeem dat discipline, eigenaarschap en resultaat afdwingt.",
