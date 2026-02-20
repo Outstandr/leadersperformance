@@ -35,10 +35,10 @@ serve(async (req) => {
       .join("\n");
 
     const languageInstruction = isNL
-      ? "\n\nIMPORTANT: You MUST write ALL output in Dutch (Nederlands). Every word of the headline, reality check, action plan, and closing MUST be in Dutch."
+      ? "\n\nCRITICAL LANGUAGE REQUIREMENT: You MUST write ALL output ENTIRELY in Dutch (Nederlands). Every single word of the headline, reality check, action plan items, and closing MUST be written in Dutch. Do NOT use any English words or phrases. This is a strict requirement."
       : "";
 
-    const systemPrompt = `You are Lionel Eersteling. You are a high-ticket corporate strategist. You are direct, confrontational, and professional. You do not use fluff. You do not offer 'hugs.' You offer truth.
+    const systemPrompt = `You are Lionel Eersteling. You are a high-ticket corporate strategist. You are direct, confrontational, and professional. You do not use fluff. You do not offer 'hugs.' You offer truth.${isNL ? " You MUST respond ENTIRELY in Dutch (Nederlands). Not a single word in English." : ""}
 
 TASK: Analyze the user's 'Discipline Score' based on the inputs provided.
 USER SCORE: ${score}/100 (Tier: ${tier})
@@ -77,29 +77,36 @@ TONE RULES:
             type: "function",
             function: {
               name: "generate_audit_insights",
-              description: "Generate corporate discipline audit insights",
+              description: isNL
+                ? "Genereer bedrijfsdiscipline audit inzichten. ALLES MOET IN HET NEDERLANDS."
+                : "Generate corporate discipline audit insights",
               parameters: {
                 type: "object",
                 properties: {
                   headline: {
                     type: "string",
-                    description:
-                      "Bold headline based on tier, e.g. 'YOUR BUSINESS IS A NURSERY' or 'YOU ARE DRIFTING' or 'VANGUARD STATUS'",
+                    description: isNL
+                      ? "Vetgedrukte kop in het NEDERLANDS gebaseerd op tier, bijv. 'JOUW BEDRIJF IS EEN KLEUTERKLAS' of 'JE DRIJFT AF' of 'VOORHOEDE STATUS'"
+                      : "Bold headline based on tier, e.g. 'YOUR BUSINESS IS A NURSERY' or 'YOU ARE DRIFTING' or 'VANGUARD STATUS'",
                   },
                   realityCheck: {
                     type: "string",
-                    description:
-                      "3-sentence paragraph explaining why they are losing money based on their weak answers. Must include 'The cost of this is...'",
+                    description: isNL
+                      ? "Paragraaf van 3 zinnen IN HET NEDERLANDS die uitlegt waarom ze geld verliezen. Moet 'De kosten hiervan zijn...' bevatten."
+                      : "3-sentence paragraph explaining why they are losing money based on their weak answers. Must include 'The cost of this is...'",
                   },
                   actionPlan: {
                     type: "array",
                     items: { type: "string" },
-                    description: "Exactly 3 bullet points of immediate correction actions",
+                    description: isNL
+                      ? "Precies 3 actiepunten IN HET NEDERLANDS voor onmiddellijke correctie"
+                      : "Exactly 3 bullet points of immediate correction actions",
                   },
                   closing: {
                     type: "string",
-                    description:
-                      "Powerful closing statement. e.g. 'You cannot scale chaos. Book the call.'",
+                    description: isNL
+                      ? "Krachtige afsluiting IN HET NEDERLANDS, bijv. 'Je kunt geen chaos schalen. Boek het gesprek.'"
+                      : "Powerful closing statement. e.g. 'You cannot scale chaos. Book the call.'",
                   },
                 },
                 required: ["headline", "realityCheck", "actionPlan", "closing"],

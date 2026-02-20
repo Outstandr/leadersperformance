@@ -11,6 +11,32 @@ interface AuditResultsStepProps {
   onClose: () => void;
 }
 
+const tierTranslations: Record<string, Record<string, string>> = {
+  en: {
+    "THE NURSERY": "THE NURSERY",
+    "THE DRIFT": "THE DRIFT",
+    "THE VANGUARD": "THE VANGUARD",
+  },
+  nl: {
+    "THE NURSERY": "DE KLEUTERKLAS",
+    "THE DRIFT": "DE AFDRIFT",
+    "THE VANGUARD": "DE VOORHOEDE",
+  },
+};
+
+const tierDescTranslations: Record<string, Record<string, string>> = {
+  en: {
+    "THE NURSERY": "The CEO is a babysitter. Danger zone.",
+    "THE DRIFT": "Revenue is accidental. One crisis away from collapse.",
+    "THE VANGUARD": "Elite. Just needs optimization.",
+  },
+  nl: {
+    "THE NURSERY": "De CEO is een oppas. Gevarenzone.",
+    "THE DRIFT": "Omzet is toevallig. Één crisis verwijderd van instorten.",
+    "THE VANGUARD": "Elite. Alleen optimalisatie nodig.",
+  },
+};
+
 const ui = {
   en: {
     verdict: "The Verdict",
@@ -32,7 +58,7 @@ const ui = {
   },
 };
 
-function ScoreGauge({ score, tier }: { score: number; tier: string }) {
+function ScoreGauge({ score, tier, language }: { score: number; tier: string; language: string }) {
   const getColor = () => {
     if (score <= 50) return { stroke: "#ef4444", text: "text-red-500", bg: "bg-red-500" };
     if (score <= 79) return { stroke: "#eab308", text: "text-yellow-500", bg: "bg-yellow-500" };
@@ -40,6 +66,7 @@ function ScoreGauge({ score, tier }: { score: number; tier: string }) {
   };
   const color = getColor();
   const dashOffset = 251.2 - (score / 100) * 251.2;
+  const translatedTier = tierTranslations[language]?.[tier] || tier;
 
   return (
     <div className="flex flex-col items-center">
@@ -65,7 +92,7 @@ function ScoreGauge({ score, tier }: { score: number; tier: string }) {
         </div>
       </div>
       <div className={`mt-4 px-4 py-2 ${color.bg}/20 border border-current ${color.text} text-sm font-bold uppercase tracking-widest`}>
-        STATUS: {tier}
+        STATUS: {translatedTier}
       </div>
     </div>
   );
@@ -88,12 +115,12 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
 
       {/* Score Gauge */}
       <div className="flex justify-center">
-        <ScoreGauge score={scores.disciplineScore} tier={scores.tier} />
+        <ScoreGauge score={scores.disciplineScore} tier={scores.tier} language={language} />
       </div>
 
       {/* Tier Description */}
       <p className="text-center text-foreground/60 text-lg italic">
-        "{scores.tierDescription}"
+        "{tierDescTranslations[language]?.[scores.tier] || scores.tierDescription}"
       </p>
 
       {/* AI Insights */}
