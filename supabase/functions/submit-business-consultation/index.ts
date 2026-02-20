@@ -114,12 +114,48 @@ Deno.serve(async (req) => {
     // Fire GHL webhook (mid-ticket endpoint)
     const ghlUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/RkysrTHNhiqHMSQoOXpB';
 
-    fetch(ghlUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(webhookPayload),
-    }).then(r => console.log('GHL business response:', r.status))
-      .catch(e => console.error('GHL business error:', e));
+    // Fire GHL webhook + iCloud calendar in parallel
+    const promises: Promise<any>[] = [];
+
+    promises.push(
+      fetch(ghlUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(webhookPayload),
+      }).then(r => console.log('GHL business response:', r.status))
+        .catch(e => console.error('GHL business error:', e))
+    );
+
+    // Create iCloud calendar event via create-calendar-event function
+    const supabaseUrl = Deno.env.get('SUPABASE_URL');
+    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY');
+    if (supabaseUrl && supabaseAnonKey && body.bookingDateTime) {
+      promises.push(
+        fetch(`${supabaseUrl}/functions/v1/create-calendar-event`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': supabaseAnonKey,
+            'Authorization': `Bearer ${supabaseAnonKey}`,
+          },
+          body: JSON.stringify({
+            firstName: body.firstName.trim(),
+            lastName: body.lastName.trim(),
+            email: body.email.trim(),
+            phone: body.phone?.trim() || 'Not provided',
+            dateTime: body.bookingDateTime,
+            summary: `BUSINESS CONSULTATION - ${body.firstName.trim()} ${body.lastName.trim()}`,
+          }),
+        })
+          .then(async r => {
+            const d = await r.json();
+            console.log('iCloud calendar result:', d);
+          })
+          .catch(e => console.error('iCloud calendar error:', e))
+      );
+    }
+
+    await Promise.allSettled(promises);
 
     return new Response(JSON.stringify({ success: true, consultationId: consultation.id }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

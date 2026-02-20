@@ -30,5 +30,11 @@ verify_jwt = false
 [functions.submit-business-consultation]
 verify_jwt = false
 
+[functions.create-calendar-event]
+verify_jwt = false
+
+[functions.unmasked-booking]
+verify_jwt = false
+
 
 

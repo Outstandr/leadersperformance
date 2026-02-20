@@ -104,7 +104,7 @@ Deno.serve(async (req) => {
       submitted_at: new Date().toISOString(),
     };
 
-    // Fire GHL webhook
+    // Fire GHL webhook + iCloud calendar in parallel
     const ghlUrl = Deno.env.get('GHL_WEBHOOK_URL');
     const webhookPromises: Promise<any>[] = [];
 
@@ -116,6 +116,35 @@ Deno.serve(async (req) => {
           body: JSON.stringify(webhookPayload),
         }).then(r => console.log('GHL response:', r.status))
           .catch(e => console.error('GHL error:', e))
+      );
+    }
+
+    // Create iCloud calendar event
+    const supabaseUrl = Deno.env.get('SUPABASE_URL');
+    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY');
+    if (supabaseUrl && supabaseAnonKey && body.bookingDateTime) {
+      webhookPromises.push(
+        fetch(`${supabaseUrl}/functions/v1/create-calendar-event`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': supabaseAnonKey,
+            'Authorization': `Bearer ${supabaseAnonKey}`,
+          },
+          body: JSON.stringify({
+            firstName: body.firstName.trim(),
+            lastName: body.lastName.trim(),
+            email: body.email.trim(),
+            phone: 'Not provided',
+            dateTime: body.bookingDateTime,
+            summary: `HIGH PERFORMANCE COACHING - ${body.firstName.trim()} ${body.lastName.trim()}`,
+          }),
+        })
+          .then(async r => {
+            const d = await r.json();
+            console.log('iCloud calendar result:', d);
+          })
+          .catch(e => console.error('iCloud calendar error:', e))
       );
     }
 
