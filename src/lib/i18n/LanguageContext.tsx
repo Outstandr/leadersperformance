@@ -708,18 +708,18 @@ const nl: Record<string, string> = {
   "elite.results.subheading": "Sluit je aan bij honderden individuen die hun leven hebben getransformeerd door elite 1-op-1 coaching.",
 
   // Elite – Booking (NL)
-  "elite.booking.badge": "Beperkte beschikbaarheid",
+  "elite.booking.badge": "Beperkt aantal plaatsen beschikbaar",
   "elite.booking.heading": "Klaar om je leven te transformeren?",
-  "elite.booking.subheading": "Dit programma is voor ambitieuze individuen die klaar zijn om in zichzelf te investeren en zich te committeren aan echte verandering. Als dat jij bent, meld je aan voor een kennismakingsgesprek.",
+  "elite.booking.subheading": "Dit programma is voor ambitieuze mensen die klaar zijn om in zichzelf te investeren en zich in te zetten voor echte verandering. Als dat op jou van toepassing is, vraag dan vandaag nog een kennismakingsgesprek aan.",
   "elite.booking.cta": "Aanmelden voor elite coaching",
-  "elite.booking.spotsLeft": "Slechts 5 plekken beschikbaar per maand",
-  "elite.booking.includedTitle": "Wat is inbegrepen",
+  "elite.booking.spotsLeft": "Slechts 5 plekken per maand beschikbaar",
+  "elite.booking.includedTitle": "Dit is wat je ontvangt",
   "elite.booking.include1": "12 weken intensieve 1-op-1 coaching",
-  "elite.booking.include2": "Wekelijkse privésessies van 60 minuten",
-  "elite.booking.include3": "Onbeperkte spraak-/tekstondersteuning tussen sessies",
+  "elite.booking.include2": "Wekelijkse privé sessies van 60 minuten",
+  "elite.booking.include3": "Onbeperkte online ondersteuning via spraak/tekstberichten",
   "elite.booking.include4": "Gepersonaliseerde actieplannen en oefeningen",
   "elite.booking.include5": "Toegang tot exclusieve bronnen en tools",
-  "elite.booking.include6": "Levenslange toegang tot sessie-opnames",
+  "elite.booking.include6": "Onbeperkte toegang tot de opnames van jouw coachingsessies",
 
   // Elite – Video (NL)
   "elite.video.cta": "Boek een consult",
