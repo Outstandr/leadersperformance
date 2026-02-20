@@ -9,16 +9,9 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const ghlWebhookUrl = Deno.env.get('GHL_WEBHOOK_URL');
+    const ghlWebhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/gxP5ZQ0OvedG47O9s5Rl';
     const supabaseUrl = Deno.env.get('SUPABASE_URL');
     const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY');
-
-    if (!ghlWebhookUrl) {
-      return new Response(JSON.stringify({ error: 'GHL_WEBHOOK_URL not configured' }), {
-        status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
 
     const body = await req.json();
     const { firstName, lastName, email, phone, dateTime, timeSlot } = body;
@@ -71,7 +64,7 @@ Deno.serve(async (req) => {
             'apikey': supabaseAnonKey,
             'Authorization': `Bearer ${supabaseAnonKey}`,
           },
-          body: JSON.stringify({ firstName, lastName, email, phone, dateTime }),
+          body: JSON.stringify({ firstName, lastName, email, phone, dateTime, summary: `UNMASKED - ${firstName} ${lastName}` }),
         });
         const calData = await calRes.json();
         results.calendar = calData.success === true;
