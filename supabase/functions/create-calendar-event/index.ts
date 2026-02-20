@@ -259,9 +259,11 @@ Deno.serve(async (req) => {
     const uid = generateUID();
     const attendeeName = `${firstName} ${lastName}`;
 
+    const customSummary = body.summary || `UNMASKED - ${attendeeName}`;
+
     const icsContent = buildICSEvent({
       uid,
-      summary: `UNMASKED - ${attendeeName}`,
+      summary: customSummary,
       description: '',
       dtstart,
       dtend,
