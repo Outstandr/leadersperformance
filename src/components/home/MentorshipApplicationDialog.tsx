@@ -94,18 +94,11 @@ const STEP_TITLES = [
   "Book Strategy Call",
 ];
 
-// Generate 30-min time slots from 09:00 to 17:00 GST
-const TIME_SLOTS = Array.from({ length: 17 }, (_, i) => {
-  const hour = 9 + Math.floor(i / 2);
-  const minutes = i % 2 === 0 ? "00" : "30";
-  const ampm = hour >= 12 ? "PM" : "AM";
-  const displayHour = hour > 12 ? hour - 12 : hour;
-  return `${String(displayHour).padStart(2, '0')}:${minutes} ${ampm}`;
-}).filter((_, i) => {
-  // 09:00 to 17:00 = 16 half-hour slots
-  const hour = 9 + Math.floor(i / 2);
-  return hour < 17 || (hour === 17 && i % 2 === 0);
-});
+// Morning: 09:00–12:00, Afternoon: 03:00–05:00 (30-min slots, Dubai/GST)
+const TIME_SLOTS = [
+  "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
+  "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM",
+];
 
 const isWeekday = (date: Date) => {
   const day = date.getDay();
