@@ -30,9 +30,9 @@ export const HomeFooter = () => {
     { label: t("footer.home"), href: "/" },
     { label: "Business", href: "/business" },
     { label: "Elite", href: "/elite" },
-    { label: t("footer.blog"), href: "#insights" },
-    { label: t("footer.startHere"), href: "#start-here" },
-    { label: t("footer.faq"), href: "#faq" },
+    { label: t("footer.blog"), href: "/#articles" },
+    { label: t("footer.startHere"), href: "/#start-here" },
+    { label: t("footer.faq"), href: "/#faq" },
   ];
 
   return (

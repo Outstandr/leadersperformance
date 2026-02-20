@@ -13,6 +13,10 @@ import Elite from "./pages/Elite";
 import NotFound from "./pages/NotFound";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import MentalSovereignty from "./pages/articles/MentalSovereignty";
+import DisciplineBeatsMotivation from "./pages/articles/DisciplineBeatsMotivation";
+import LeadingThroughUncertainty from "./pages/articles/LeadingThroughUncertainty";
+import ResetBlueprint from "./pages/articles/ResetBlueprint";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +32,10 @@ const AppRoutes = () => {
         <Route path="/elite" element={<Elite />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/articles/mental-sovereignty" element={<MentalSovereignty />} />
+        <Route path="/articles/discipline-beats-motivation" element={<DisciplineBeatsMotivation />} />
+        <Route path="/articles/leading-through-uncertainty" element={<LeadingThroughUncertainty />} />
+        <Route path="/articles/reset-blueprint" element={<ResetBlueprint />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
