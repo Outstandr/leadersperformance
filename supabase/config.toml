@@ -24,5 +24,8 @@ verify_jwt = false
 [functions.test-webhook]
 verify_jwt = false
 
+[functions.submit-application]
+verify_jwt = false
+
 
 
