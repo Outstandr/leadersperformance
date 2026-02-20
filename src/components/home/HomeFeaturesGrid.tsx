@@ -2,6 +2,7 @@ import { motion, useInView, AnimatePresence, useScroll, useTransform, useSpring 
 import { useRef, useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { UnmaskedBookingDialog } from "./UnmaskedBookingDialog";
+import { MentorshipApplicationDialog } from "./MentorshipApplicationDialog";
 import serviceUnmasked from "@/assets/card-unmasked.png";
 import serviceCoaching from "@/assets/card-coaching.png";
 import serviceAcademy from "@/assets/card-masterclass.png";
@@ -249,6 +250,7 @@ export const HomeFeaturesGrid = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selected, setSelected] = useState<number | null>(null);
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [mentorshipOpen, setMentorshipOpen] = useState(false);
 
   const selectedService = selected !== null ? services[selected] : null;
   const showCalendar = selectedService && (selectedService.details as any).showCalendar;
@@ -368,8 +370,8 @@ export const HomeFeaturesGrid = () => {
                     </div>
                   )}
 
-                  {/* Booking calendar for High Performance & Business cards */}
-                  {showCalendar && !isUnmasked && (
+                  {/* Booking calendar for Business card only */}
+                  {showCalendar && !isUnmasked && selected !== 1 && (
                     <div className="pt-2">
                       <p className="text-xs font-medium tracking-widest uppercase text-lioner-gold mb-3">
                         Book Your Session
@@ -382,6 +384,16 @@ export const HomeFeaturesGrid = () => {
                       />
                     </div>
                   )}
+
+                  {/* Mentorship application for High Performance Coaching (index 1) */}
+                  {selected === 1 && (
+                    <button
+                      onClick={() => { setSelected(null); setTimeout(() => setMentorshipOpen(true), 200); }}
+                      className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                    >
+                      {(services[selected].details as any).cta}
+                    </button>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -390,6 +402,7 @@ export const HomeFeaturesGrid = () => {
       </AnimatePresence>
 
       <UnmaskedBookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
+      <MentorshipApplicationDialog open={mentorshipOpen} onOpenChange={setMentorshipOpen} />
     </>
   );
 };
