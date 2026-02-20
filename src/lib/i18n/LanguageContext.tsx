@@ -690,17 +690,17 @@ const nl: Record<string, string> = {
   "elite.transformation.after7": "Leven als je beste versie",
 
   // Elite – Process (NL)
-  "elite.process.eyebrow": "Jouw traject",
-  "elite.process.heading": "Het pad naar jouw transformatie",
-  "elite.process.subheading": "Een gestructureerd maar persoonlijk traject ontworpen om diepe, blijvende verandering in je leven te creëren.",
+  "elite.process.eyebrow": "Werkwijze",
+  "elite.process.heading": "Het pad van transformatie",
+  "elite.process.subheading": "Een gestructureerde en persoonlijke reis, ontworpen om diepgaande, blijvende verandering in je leven te creëren.",
   "elite.process.step1": "Kennismakingsgesprek",
-  "elite.process.step1Desc": "We beginnen met een diepgaand gesprek om je doelen, uitdagingen en wat je werkelijk tegenhoudt te begrijpen.",
-  "elite.process.step2": "Persoonlijke assessment",
-  "elite.process.step2Desc": "Vul een uitgebreide levensassessment in die precies laat zien waar je staat en een duidelijke routekaart voor je transformatie creëert.",
+  "elite.process.step1Desc": "We beginnen met een diepgaand gesprek om je doelen, uitdagingen en obstakels in kaart te brengen die je ervan weerhouden het leven te leiden dat je wilt.",
+  "elite.process.step2": "Persoonlijk Assessment",
+  "elite.process.step2Desc": "Voltooi een uitgebreid assessment die precies onthult waar je op dit moment staat en die een duidelijke routekaart creëert voor jouw transformatie.",
   "elite.process.step3": "Wekelijkse 1-op-1 sessies",
-  "elite.process.step3Desc": "Neem deel aan krachtige wekelijkse coachingsessies speciaal voor jou ontworpen, met doorlopende ondersteuning en verantwoordelijkheid.",
+  "elite.process.step3Desc": "Wekelijks heb je krachtige coachingsessies die speciaal op maat gemaakt zijn voor jou. Inclusief online ondersteuning tussen de sessies.",
   "elite.process.step4": "Blijvende transformatie",
-  "elite.process.step4Desc": "Integreer je nieuwe mindset, gewoontes en strategieën voor duurzaam succes dat doorgaat lang na afloop van het programma.",
+  "elite.process.step4Desc": "Integreer je nieuwe mindset, gewoonten en strategieën voor levenslang succes.",
 
   // Elite – Results (NL)
   "elite.results.eyebrow": "Succesverhalen",
