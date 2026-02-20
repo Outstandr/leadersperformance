@@ -14,6 +14,78 @@ export type Database = {
   }
   public: {
     Tables: {
+      applications: {
+        Row: {
+          booking_date: string | null
+          booking_time: string | null
+          commitment_level: string
+          company: string
+          cost_of_inaction: string
+          country: string
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          impossible_target: string
+          income_level: string
+          investment_ready: string
+          lack_of_discipline: string
+          last_name: string
+          past_attempts: string
+          position: string
+          professional_arena: string
+          status: string
+          why_mentor: string
+          willing_to_be_wrong: string
+        }
+        Insert: {
+          booking_date?: string | null
+          booking_time?: string | null
+          commitment_level: string
+          company: string
+          cost_of_inaction: string
+          country: string
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          impossible_target: string
+          income_level: string
+          investment_ready: string
+          lack_of_discipline: string
+          last_name: string
+          past_attempts: string
+          position: string
+          professional_arena: string
+          status?: string
+          why_mentor: string
+          willing_to_be_wrong: string
+        }
+        Update: {
+          booking_date?: string | null
+          booking_time?: string | null
+          commitment_level?: string
+          company?: string
+          cost_of_inaction?: string
+          country?: string
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          impossible_target?: string
+          income_level?: string
+          investment_ready?: string
+          lack_of_discipline?: string
+          last_name?: string
+          past_attempts?: string
+          position?: string
+          professional_arena?: string
+          status?: string
+          why_mentor?: string
+          willing_to_be_wrong?: string
+        }
+        Relationships: []
+      }
       corporate_discipline_audits: {
         Row: {
           ai_insights: Json | null
