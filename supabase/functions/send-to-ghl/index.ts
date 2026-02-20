@@ -9,16 +9,23 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const webhookUrl = Deno.env.get('GHL_WEBHOOK_URL');
-    if (!webhookUrl) {
-      console.error('GHL_WEBHOOK_URL not configured');
-      return new Response(JSON.stringify({ error: 'Webhook URL not configured' }), {
-        status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
-
     const payload = await req.json();
+
+    // Route corporate audit to its dedicated webhook, everything else uses GHL_WEBHOOK_URL
+    let webhookUrl: string;
+    if (payload.audit_type === 'corporate') {
+      webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/cae4e9db-73c9-4e86-b8d0-381606a3579e';
+    } else {
+      const envUrl = Deno.env.get('GHL_WEBHOOK_URL');
+      if (!envUrl) {
+        console.error('GHL_WEBHOOK_URL not configured');
+        return new Response(JSON.stringify({ error: 'Webhook URL not configured' }), {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      webhookUrl = envUrl;
+    }
 
     // Pass through all payload fields to GHL
     const ghlPayload = { ...payload };
