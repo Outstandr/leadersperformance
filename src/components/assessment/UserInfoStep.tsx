@@ -45,7 +45,7 @@ const uiTranslations = {
     }
   },
   nl: {
-    title: "Discipline Assessment",
+    title: "Disciplinetest",
     subtitle: "Ontdek jouw discipline type en ontvang persoonlijke inzichten",
     takesTime: "Duurt 10 minuten",
     freeReport: "Gratis persoonlijk rapport",
@@ -57,8 +57,8 @@ const uiTranslations = {
     emailPlaceholder: "Vul je e-mailadres in",
     country: "Land",
     countryPlaceholder: "Selecteer je land",
-    startBtn: "Start Assessment",
-    disclaimer: "Door de assessment te starten, ga je akkoord met het ontvangen van je persoonlijk rapport via e-mail.",
+    startBtn: "Start de test",
+    disclaimer: "Door de test te starten, ga je akkoord met het ontvangen van je persoonlijk rapport via e-mail.",
     errors: {
       firstName: "Voornaam is verplicht",
       lastName: "Achternaam is verplicht",
