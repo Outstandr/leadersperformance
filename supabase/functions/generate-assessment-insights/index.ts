@@ -19,6 +19,17 @@ interface AssessmentData {
   language: string;
 }
 
+function sanitizeString(input: unknown, maxLength = 100): string {
+  if (typeof input !== "string") return "";
+  return input.trim().slice(0, maxLength).replace(/[\n\r]/g, " ").replace(/[<>"']/g, "").replace(/\s+/g, " ");
+}
+
+function validateScore(score: unknown): number {
+  const num = Number(score);
+  if (!Number.isFinite(num) || num < 1 || num > 5) throw new Error("Invalid score value");
+  return num;
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -32,7 +43,26 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const languageInstructions = assessmentData.language === 'nl' 
+    // Sanitize and validate all user inputs
+    const safeName = sanitizeString(assessmentData.firstName, 50);
+    const safeLastName = sanitizeString(assessmentData.lastName, 50);
+    const safeLanguage = assessmentData.language === 'nl' ? 'nl' : 'en';
+    const safeDisciplineType = sanitizeString(assessmentData.disciplineType, 50);
+
+    // Validate all numeric scores
+    const validatedResponses: Record<string, number> = {};
+    for (const key of ['q1', 'q2', 'q3', 'q4', 'q8', 'q9', 'q10', 'q15', 'q16', 'q17']) {
+      validatedResponses[key] = validateScore(assessmentData.responses[key]);
+    }
+
+    const validatedScores = {
+      selfDiscipline: Math.max(0, Math.min(100, Number(assessmentData.scores.selfDiscipline) || 0)),
+      impulseControl: Math.max(0, Math.min(100, Number(assessmentData.scores.impulseControl) || 0)),
+      consistency: Math.max(0, Math.min(100, Number(assessmentData.scores.consistency) || 0)),
+      overall: Math.max(0, Math.min(100, Number(assessmentData.scores.overall) || 0)),
+    };
+
+    const languageInstructions = safeLanguage === 'nl' 
       ? 'Respond entirely in Dutch (Nederlands).' 
       : 'Respond in English.';
 
@@ -54,26 +84,26 @@ Discipline Types:
 - The Perfectionist: Extremely disciplined but sometimes too rigid
 - The Steady Climber: Consistent across areas but could optimize efficiency`;
 
-    const userPrompt = `Generate personalized insights for ${assessmentData.firstName} based on their assessment:
+    const userPrompt = `Generate personalized insights for ${safeName} based on their assessment:
 
 Scores:
-- Self-Discipline: ${assessmentData.scores.selfDiscipline.toFixed(1)}/100
-- Impulse Control: ${assessmentData.scores.impulseControl.toFixed(1)}/100
-- Consistency: ${assessmentData.scores.consistency.toFixed(1)}/100
-- Overall Score: ${assessmentData.scores.overall.toFixed(1)}/100
-- Discipline Type: ${assessmentData.disciplineType}
+- Self-Discipline: ${validatedScores.selfDiscipline.toFixed(1)}/100
+- Impulse Control: ${validatedScores.impulseControl.toFixed(1)}/100
+- Consistency: ${validatedScores.consistency.toFixed(1)}/100
+- Overall Score: ${validatedScores.overall.toFixed(1)}/100
+- Discipline Type: ${safeDisciplineType}
 
 Individual Responses (1-5 scale):
-- Q1 (Follow through on commitments): ${assessmentData.responses.q1}
-- Q2 (Maintain focus on long-term goals): ${assessmentData.responses.q2}
-- Q3 (Give up on sustained effort tasks - reverse): ${assessmentData.responses.q3}
-- Q4 (Resist immediate pleasures): ${assessmentData.responses.q4}
-- Q8 (Act on impulse - reverse): ${assessmentData.responses.q8}
-- Q9 (Control reactions under stress): ${assessmentData.responses.q9}
-- Q10 (Regret purchases - reverse): ${assessmentData.responses.q10}
-- Q15 (Maintain daily routines): ${assessmentData.responses.q15}
-- Q16 (Productivity varies dramatically - reverse): ${assessmentData.responses.q16}
-- Q17 (Bounce back from setbacks): ${assessmentData.responses.q17}`;
+- Q1 (Follow through on commitments): ${validatedResponses.q1}
+- Q2 (Maintain focus on long-term goals): ${validatedResponses.q2}
+- Q3 (Give up on sustained effort tasks - reverse): ${validatedResponses.q3}
+- Q4 (Resist immediate pleasures): ${validatedResponses.q4}
+- Q8 (Act on impulse - reverse): ${validatedResponses.q8}
+- Q9 (Control reactions under stress): ${validatedResponses.q9}
+- Q10 (Regret purchases - reverse): ${validatedResponses.q10}
+- Q15 (Maintain daily routines): ${validatedResponses.q15}
+- Q16 (Productivity varies dramatically - reverse): ${validatedResponses.q16}
+- Q17 (Bounce back from setbacks): ${validatedResponses.q17}`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
