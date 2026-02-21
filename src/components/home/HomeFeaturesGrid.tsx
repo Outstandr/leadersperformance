@@ -221,6 +221,9 @@ const ParallaxCard = ({
         src={images[i]}
         alt={service.title}
         style={{ y }}
+        loading="lazy"
+        width={400}
+        height={600}
         className="absolute inset-0 w-full h-[130%] object-cover -top-[15%]"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-foreground/20 via-foreground/30 to-foreground/80" />

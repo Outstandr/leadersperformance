@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,15 +9,17 @@ import { VoiceAgentProvider, useVoiceAgent } from "@/components/voice/VoiceAgent
 import { VoiceAgentDialog } from "@/components/voice/VoiceAgentDialog";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
-import Business from "./pages/Business";
-import Elite from "./pages/Elite";
-import NotFound from "./pages/NotFound";
-import TermsOfService from "./pages/TermsOfService";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import MentalSovereignty from "./pages/articles/MentalSovereignty";
-import DisciplineBeatsMotivation from "./pages/articles/DisciplineBeatsMotivation";
-import LeadingThroughUncertainty from "./pages/articles/LeadingThroughUncertainty";
-import ResetBlueprint from "./pages/articles/ResetBlueprint";
+
+// Lazy load non-critical routes
+const Business = lazy(() => import("./pages/Business"));
+const Elite = lazy(() => import("./pages/Elite"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const MentalSovereignty = lazy(() => import("./pages/articles/MentalSovereignty"));
+const DisciplineBeatsMotivation = lazy(() => import("./pages/articles/DisciplineBeatsMotivation"));
+const LeadingThroughUncertainty = lazy(() => import("./pages/articles/LeadingThroughUncertainty"));
+const ResetBlueprint = lazy(() => import("./pages/articles/ResetBlueprint"));
 
 const queryClient = new QueryClient();
 
@@ -26,19 +29,21 @@ const AppRoutes = () => {
   return (
     <>
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/business" element={<Business />} />
-        <Route path="/elite" element={<Elite />} />
-        <Route path="/terms-of-service" element={<TermsOfService />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/articles/mental-sovereignty" element={<MentalSovereignty />} />
-        <Route path="/articles/discipline-beats-motivation" element={<DisciplineBeatsMotivation />} />
-        <Route path="/articles/leading-through-uncertainty" element={<LeadingThroughUncertainty />} />
-        <Route path="/articles/reset-blueprint" element={<ResetBlueprint />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={<div className="min-h-screen bg-background" />}>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/business" element={<Business />} />
+          <Route path="/elite" element={<Elite />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/articles/mental-sovereignty" element={<MentalSovereignty />} />
+          <Route path="/articles/discipline-beats-motivation" element={<DisciplineBeatsMotivation />} />
+          <Route path="/articles/leading-through-uncertainty" element={<LeadingThroughUncertainty />} />
+          <Route path="/articles/reset-blueprint" element={<ResetBlueprint />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
       <VoiceAgentDialog isOpen={isOpen} onClose={closeVoiceAgent} />
     </>
   );

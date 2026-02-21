@@ -26,7 +26,7 @@ export const HomeHeroSection = () => {
     <>
       {/* Fixed background with Dubai cityscape */}
       <div className="fixed inset-0 z-0">
-        <img src={heroBg} alt="" className="w-full h-full object-cover object-center" />
+        <img src={heroBg} alt="" className="w-full h-full object-cover object-center" width={1920} height={1080} fetchPriority="high" />
         <div className="absolute inset-0 bg-foreground/20" />
         <div
           className="absolute inset-0 bg-background transition-none"

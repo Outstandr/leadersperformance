@@ -21,6 +21,9 @@ const ParallaxImage = ({ src, alt }: { src: string; alt: string }) => {
         src={src}
         alt={alt}
         style={{ y }}
+        loading="lazy"
+        width={500}
+        height={500}
         className="w-full h-[120%] object-cover absolute inset-0"
       />
     </div>
