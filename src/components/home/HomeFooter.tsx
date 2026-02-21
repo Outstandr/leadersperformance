@@ -31,7 +31,7 @@ export const HomeFooter = () => {
     { label: "Business", href: "/business" },
     { label: "Elite", href: "/elite" },
     { label: t("footer.blog"), href: "/#articles" },
-    { label: t("footer.startHere"), href: "/#start-here" },
+    
     { label: t("footer.faq"), href: "/#faq" },
   ];
 
