@@ -26,13 +26,20 @@ const TikTokIcon = () => (
 export const HomeFooter = () => {
   const { t } = useLanguage();
 
+  const handleScrollNav = (hash: string) => {
+    const el = document.querySelector(hash);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = "/" + hash;
+    }
+  };
+
   const navItems = [
-    { label: t("footer.home"), href: "/" },
     { label: "Business", href: "/business" },
     { label: "Elite", href: "/elite" },
-    { label: t("footer.blog"), href: "/#articles" },
-    
-    { label: t("footer.faq"), href: "/#faq" },
+    { label: t("footer.blog"), href: "#articles" },
+    { label: t("footer.faq"), href: "#faq" },
   ];
 
   return (
@@ -50,7 +57,12 @@ export const HomeFooter = () => {
                   {item.label}
                 </Link>
               ) : (
-                <a key={item.label} href={item.href} className="text-sm text-background/60 hover:text-background transition-colors">
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => { e.preventDefault(); handleScrollNav(item.href); }}
+                  className="text-sm text-background/60 hover:text-background transition-colors cursor-pointer"
+                >
                   {item.label}
                 </a>
               )
