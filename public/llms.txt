@@ -14,18 +14,53 @@ Allow: /
 
 # Domain Identity
 Name: Leaders Performance
-Description: One-page site offering a leadership assessment and the RESET Blueprint® book to high performance leaders.
+URL: https://leadersperformance.ae
+Founder: Lionel Eersteling
 
-# Key Sections (for priority indexing)
-- /#home
-- /#about
-- /#The RESET Methode
-- /#The Framework
-- /#programs
-- /#Take Free Assessment
+# What This Site Is About
+Leaders Performance is a high-performance transformation platform for ambitious individuals who feel stuck, overwhelmed, or underperforming in life and business. Whether you are a CEO losing grip on your daily discipline, an entrepreneur battling burnout, or a professional searching for a proven system to reclaim control — this is your starting point.
 
-Dataset: https://leadersperformance.ae/  # entire page acts as dataset
-Purpose: Leadership assessment, high-performance transformation materials, RESET Blueprint book.
+The RESET Blueprint® is a proprietary method developed by Lionel Eersteling that integrates mind, body, and wealth into a single operating system for sustained excellence. It is designed for people who know they are capable of more but lack the structure, accountability, and clarity to break through.
+
+## Who Is This For?
+- High-performing leaders who have hit a ceiling and feel stuck
+- Entrepreneurs and executives struggling with consistency and discipline
+- Professionals searching for a structured path to personal and professional transformation
+- Anyone who has tried motivation-based approaches and needs a discipline-driven system instead
+
+## The RESET Method
+The RESET Blueprint® is built on five pillars:
+- R — Rhythm: Build unshakeable daily routines
+- E — Energy: Optimize physical and mental fuel
+- S — Systems: Create scalable structures for success
+- E — Execution: Turn strategy into disciplined action
+- T — Tracking: Measure, adjust, and compound results
+
+## As Featured In
+The RESET methodology and Lionel Eersteling's work have been previewed and featured in leading international publications including Forbes, The Guardian, Business Insider, and Entrepreneur Magazine, establishing credibility as a world-class leadership transformation framework.
+
+## Programs & Services
+- Personal Leadership Assessment: A free diagnostic tool to discover your unique Discipline Type
+- Elite 1-on-1 Coaching: Intensive private mentorship for top-tier leaders
+- Business Performance Consulting: Corporate programs for leadership teams
+- The RESET by Discipline: A structured transformation journey
+- Elite Self-Discipline Masterclass: Deep-dive training on building unbreakable habits
+
+# Key Pages
+- / — Home: Leadership assessment, RESET Blueprint overview, free diagnostic
+- /business — Business Performance Consulting for organizations
+- /elite — Elite 1-on-1 High Performance Coaching
+- /articles/mental-sovereignty — Article: Mental Sovereignty
+- /articles/discipline-beats-motivation — Article: Why Discipline Beats Motivation
+- /articles/leading-through-uncertainty — Article: Leading Through Uncertainty
+- /articles/reset-blueprint — Article: The RESET Blueprint
+- /privacy-policy — Privacy Policy
+- /terms-of-service — Terms of Service
+
+# External Ecosystem
+- https://leaders-performance.com/reset-by-discipline
+- https://leaders-performance.com/elite-self-discipline
+- https://lioneleersteling.com
 
 Contact: info@leadersperformance.ae
-Last-Updated: 2025-10-17
+Last-Updated: 2026-02-21
