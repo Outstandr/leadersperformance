@@ -6,6 +6,17 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+function sanitizeString(input: unknown, maxLength = 100): string {
+  if (typeof input !== "string") return "";
+  return input.trim().slice(0, maxLength).replace(/[\n\r]/g, " ").replace(/[<>"']/g, "").replace(/\s+/g, " ");
+}
+
+function validateBinaryAnswer(val: unknown): number {
+  const num = Number(val);
+  if (num !== 0 && num !== 10) throw new Error("Invalid answer value");
+  return num;
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -13,7 +24,20 @@ serve(async (req) => {
 
   try {
     const { score, tier, answers, firstName, language } = await req.json();
+    
+    // Sanitize and validate inputs
+    const safeName = sanitizeString(firstName, 50);
     const isNL = language === "nl";
+    const safeScore = Math.max(0, Math.min(100, Math.round(Number(score) || 0)));
+    const validTiers = ["Nursery", "Drift", "Vanguard"];
+    const safeTier = validTiers.includes(tier) ? tier : "unknown";
+    
+    // Validate answers
+    const validatedAnswers: Record<string, number> = {};
+    for (const key of ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7']) {
+      validatedAnswers[key] = validateBinaryAnswer(answers?.[key]);
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
 
     if (!LOVABLE_API_KEY) {
@@ -30,7 +54,7 @@ serve(async (req) => {
       q7: "The Mirror (would re-hire team)",
     };
 
-    const answerSummary = Object.entries(answers)
+    const answerSummary = Object.entries(validatedAnswers)
       .map(([key, val]) => `${questionLabels[key] || key}: ${val === 10 ? "STRONG" : "WEAK"}`)
       .join("\n");
 
@@ -41,7 +65,7 @@ serve(async (req) => {
     const systemPrompt = `You are Lionel Eersteling. You are a high-ticket corporate strategist. You are direct, confrontational, and professional. You do not use fluff. You do not offer 'hugs.' You offer truth.${isNL ? " You MUST respond ENTIRELY in Dutch (Nederlands). Not a single word in English." : ""}
 
 TASK: Analyze the user's 'Discipline Score' based on the inputs provided.
-USER SCORE: ${score}/100 (Tier: ${tier})
+USER SCORE: ${safeScore}/100 (Tier: ${safeTier})
 USER ANSWERS:
 ${answerSummary}
 
@@ -69,7 +93,7 @@ TONE RULES:
           { role: "system", content: systemPrompt },
           {
             role: "user",
-            content: `Generate the audit analysis for ${firstName}. Score: ${score}, Tier: ${tier}.`,
+            content: `Generate the audit analysis for ${safeName}. Score: ${safeScore}, Tier: ${safeTier}.`,
           },
         ],
         tools: [
