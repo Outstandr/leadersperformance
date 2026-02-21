@@ -192,7 +192,7 @@ export const HomeMissionSection = () => {
           </div>
 
           <div className="relative aspect-[3/4] overflow-hidden sticky top-24">
-            <img src={lionelMission} alt="Lionel Eersteling" className="w-full h-full object-cover" />
+            <img src={lionelMission} alt="Lionel Eersteling" className="w-full h-full object-cover" width={600} height={800} loading="lazy" />
           </div>
         </div>
       </div>
