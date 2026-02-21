@@ -42,7 +42,7 @@ const NotFound = () => {
         <Button
           asChild
           variant="outline"
-          className="border-primary-foreground/20 text-primary-foreground/70 hover:bg-primary-foreground/5 hover:text-primary-foreground rounded-none px-8 py-3"
+          className="border-primary-foreground/20 bg-transparent text-primary-foreground/70 hover:bg-primary-foreground/10 hover:text-primary-foreground rounded-none px-8 py-3"
         >
           <a href="javascript:history.back()">
             <ArrowLeft className="mr-2 h-4 w-4" />
