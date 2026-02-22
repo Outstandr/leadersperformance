@@ -9,12 +9,25 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const ELEVENLABS_API_KEY = Deno.env.get('ELEVENLABS_API_KEY');
-    if (!ELEVENLABS_API_KEY) {
-      throw new Error('ELEVENLABS_API_KEY is not configured');
+    // Require service-role key for agent management
+    const authHeader = req.headers.get('authorization') || '';
+    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+    if (!serviceRoleKey || !authHeader.includes(serviceRoleKey)) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+        status: 401,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
-    // Create the agent via ElevenLabs API
+    const ELEVENLABS_API_KEY = Deno.env.get('ELEVENLABS_API_KEY');
+    if (!ELEVENLABS_API_KEY) {
+      console.error('ELEVENLABS_API_KEY is not configured');
+      return new Response(JSON.stringify({ error: 'Service unavailable' }), {
+        status: 503,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     const systemPrompt = `You are Lionel, a confident and direct AI advisor for Leaders Performance — a premium leadership and performance platform. Your tone is warm, direct, and premium — like a trusted executive coach.
 
 Your role: Help users find the right program for their situation through natural conversation. Never list everything at once. Ask one question at a time.
@@ -63,7 +76,11 @@ LEAD CAPTURE: After 3-4 natural exchanges, ask for their email to send details. 
 
     if (!createResponse.ok) {
       const error = await createResponse.text();
-      throw new Error(`ElevenLabs create agent error [${createResponse.status}]: ${error}`);
+      console.error('ElevenLabs create agent error:', createResponse.status, error);
+      return new Response(JSON.stringify({ error: 'Failed to create agent' }), {
+        status: 502,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
     const agent = await createResponse.json();
@@ -78,7 +95,7 @@ LEAD CAPTURE: After 3-4 natural exchanges, ask for their email to send details. 
     });
   } catch (error) {
     console.error('Error creating agent:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: 'An error occurred' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });

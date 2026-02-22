@@ -9,11 +9,25 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Require service-role key for agent management
+    const authHeader = req.headers.get('authorization') || '';
+    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+    if (!serviceRoleKey || !authHeader.includes(serviceRoleKey)) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+        status: 401,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     const ELEVENLABS_API_KEY = Deno.env.get('ELEVENLABS_API_KEY');
     const AGENT_ID = Deno.env.get('ELEVENLABS_AGENT_ID');
 
     if (!ELEVENLABS_API_KEY || !AGENT_ID) {
-      throw new Error('Missing required secrets');
+      console.error('Missing required secrets for agent update');
+      return new Response(JSON.stringify({ error: 'Service unavailable' }), {
+        status: 503,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
     const systemPrompt = `You are a voice advisor for Leaders Performance — a premium leadership and performance platform. Your name is Lionel. Your tone is warm, direct, and premium — like a trusted executive coach.
@@ -62,17 +76,21 @@ LEAD CAPTURE: After 3-4 natural exchanges, ask for their email to send the right
 
     if (!updateResponse.ok) {
       const error = await updateResponse.text();
-      throw new Error(`ElevenLabs update error [${updateResponse.status}]: ${error}`);
+      console.error('ElevenLabs update error:', updateResponse.status, error);
+      return new Response(JSON.stringify({ error: 'Failed to update agent' }), {
+        status: 502,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
-    const result = await updateResponse.json();
+    await updateResponse.json();
 
     return new Response(JSON.stringify({ success: true, agent_id: AGENT_ID }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {
     console.error('Error updating agent:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: 'An error occurred' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });

@@ -11,12 +11,20 @@ Deno.serve(async (req) => {
   try {
     const ELEVENLABS_API_KEY = Deno.env.get('ELEVENLABS_API_KEY');
     if (!ELEVENLABS_API_KEY) {
-      throw new Error('ELEVENLABS_API_KEY is not configured');
+      console.error('ELEVENLABS_API_KEY is not configured');
+      return new Response(JSON.stringify({ error: 'Service unavailable' }), {
+        status: 503,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
     const AGENT_ID = Deno.env.get('ELEVENLABS_AGENT_ID');
     if (!AGENT_ID) {
-      throw new Error('ELEVENLABS_AGENT_ID is not configured');
+      console.error('ELEVENLABS_AGENT_ID is not configured');
+      return new Response(JSON.stringify({ error: 'Service unavailable' }), {
+        status: 503,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
     const response = await fetch(
@@ -30,7 +38,11 @@ Deno.serve(async (req) => {
 
     if (!response.ok) {
       const error = await response.text();
-      throw new Error(`ElevenLabs API error [${response.status}]: ${error}`);
+      console.error('ElevenLabs API error:', response.status, error);
+      return new Response(JSON.stringify({ error: 'Failed to get token' }), {
+        status: 502,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
     const { token } = await response.json();
@@ -40,7 +52,7 @@ Deno.serve(async (req) => {
     });
   } catch (error) {
     console.error('Error getting voice token:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: 'An error occurred' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
