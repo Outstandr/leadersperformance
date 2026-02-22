@@ -48,7 +48,7 @@ export const HomeMissionSection = () => {
   return (
     <section className="py-24 md:py-36 bg-background">
       <div className="container mx-auto px-6 max-w-7xl">
-        <div className="flex items-center justify-between mb-12">
+        <div className="mb-12 space-y-4">
           <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold">
             {t("home.mission.eyebrow")}
           </p>
