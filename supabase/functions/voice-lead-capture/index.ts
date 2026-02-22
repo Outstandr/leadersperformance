@@ -5,6 +5,13 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function sanitize(val: unknown, maxLen = 500): string {
+  if (typeof val !== 'string') return '';
+  return val.trim().slice(0, maxLen).replace(/<[^>]*>/g, '');
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -17,17 +24,29 @@ Deno.serve(async (req) => {
     );
 
     const payload = await req.json();
-    const { first_name, email, phone, recommended_path, conversation_summary } = payload;
+
+    const first_name = sanitize(payload.first_name, 100);
+    const email = sanitize(payload.email, 254);
+    const phone = sanitize(payload.phone, 30);
+    const recommended_path = sanitize(payload.recommended_path, 200);
+    const conversation_summary = sanitize(payload.conversation_summary, 2000);
+
+    if (email && !EMAIL_RE.test(email)) {
+      return new Response(JSON.stringify({ error: 'Invalid email format' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
 
     // Save to database
     const { error: dbError } = await supabase
       .from('voice_leads')
       .insert({
-        first_name,
-        email,
-        phone,
-        recommended_path,
-        conversation_summary,
+        first_name: first_name || null,
+        email: email || null,
+        phone: phone || null,
+        recommended_path: recommended_path || null,
+        conversation_summary: conversation_summary || null,
       });
 
     if (dbError) {
@@ -61,7 +80,7 @@ Deno.serve(async (req) => {
     });
   } catch (error) {
     console.error('Error capturing voice lead:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: 'An error occurred' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
