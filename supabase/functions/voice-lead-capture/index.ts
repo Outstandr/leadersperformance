@@ -55,43 +55,23 @@ Deno.serve(async (req) => {
 
     // Send to GHL if email is provided
     if (email) {
-      const webhookUrl = Deno.env.get('GHL_WEBHOOK_URL');
-      if (webhookUrl) {
-        const ghlPayload = {
-          first_name,
-          email,
-          phone: phone || '',
-          source: 'voice_agent',
-          recommended_path,
-          conversation_summary,
-          tag: 'voice-lead',
-        };
+      const webhookUrl = 'https://services.leadconnectorhq.com/hooks/Yo1FDBIRLuWeMDpP2I4R/webhook-trigger/718fb129-0f5b-4c2e-a428-dfdc530b0999';
 
-        await fetch(webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(ghlPayload),
-        });
-      }
+      const ghlPayload = {
+        first_name,
+        email,
+        phone: phone || '',
+        source: 'voice_agent',
+        recommended_path,
+        conversation_summary,
+        tag: 'voice-lead',
+      };
 
-      // Fire-and-forget: send follow-up email
-      const supabaseUrl = Deno.env.get('SUPABASE_URL');
-      const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
-      if (supabaseUrl && serviceRoleKey) {
-        fetch(`${supabaseUrl}/functions/v1/send-voice-followup-email`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${serviceRoleKey}`,
-          },
-          body: JSON.stringify({
-            email,
-            first_name,
-            recommended_path,
-            conversation_summary,
-          }),
-        }).catch((err) => console.error('Email trigger failed:', err));
-      }
+      await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(ghlPayload),
+      });
     }
 
     return new Response(JSON.stringify({ success: true }), {
