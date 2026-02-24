@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
-import { X, Mic, MicOff, PhoneOff, Volume2 } from "lucide-react";
+import { X, Mic, MicOff, PhoneOff, Volume2, Send } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 interface VoiceAgentDialogProps {
@@ -15,6 +15,8 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
   const [isMuted, setIsMuted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [transcript, setTranscript] = useState<{ role: "user" | "agent"; text: string }[]>([]);
+  const [emailInput, setEmailInput] = useState("");
+  const [showEmailInput, setShowEmailInput] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
 
   const conversation = useConversation({
@@ -26,14 +28,20 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
       setStatus("ended");
     },
     onMessage: (msg: any) => {
-      // Capture transcripts for display
       if (msg.type === "user_transcript") {
         const text = msg.user_transcription_event?.user_transcript;
         if (text) setTranscript((prev) => [...prev, { role: "user", text }]);
       }
       if (msg.type === "agent_response") {
         const text = msg.agent_response_event?.agent_response;
-        if (text) setTranscript((prev) => [...prev, { role: "agent", text }]);
+        if (text) {
+          setTranscript((prev) => [...prev, { role: "agent", text }]);
+          // Show email input when agent asks for email
+          const lower = text.toLowerCase();
+          if (lower.includes("email") || lower.includes("e-mail") || lower.includes("type")) {
+            setShowEmailInput(true);
+          }
+        }
       }
     },
     onError: (err) => {
@@ -57,6 +65,8 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
       setTranscript([]);
       setError(null);
       setIsMuted(false);
+      setEmailInput("");
+      setShowEmailInput(false);
     }
   }, [isOpen]);
 
@@ -109,9 +119,9 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
     // Extract basic info heuristically from transcript text
     const fullText = transcript.map((t) => t.text).join(" ").toLowerCase();
 
-    // Try to find email pattern
-    const emailMatch = transcript.map((t) => t.text).join(" ").match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
-    const email = emailMatch ? emailMatch[0] : undefined;
+    // Try to find email from typed input first, then from transcript
+    const emailMatch = emailInput.trim() || transcript.map((t) => t.text).join(" ").match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/)?.[0];
+    const email = emailMatch || undefined;
 
     // Determine recommended path from conversation
     let recommended_path = "general";
@@ -281,6 +291,30 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
                       {line.text}
                     </div>
                   ))}
+                </div>
+              )}
+
+              {/* Email input */}
+              {showEmailInput && (
+                <div className="flex gap-2 mb-4">
+                  <input
+                    type="email"
+                    value={emailInput}
+                    onChange={(e) => setEmailInput(e.target.value)}
+                    placeholder="Type your email here..."
+                    className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#b39758]/50"
+                  />
+                  {emailInput && (
+                    <button
+                      onClick={() => {
+                        setTranscript((prev) => [...prev, { role: "user", text: emailInput }]);
+                        setShowEmailInput(false);
+                      }}
+                      className="px-3 rounded-xl bg-[#b39758]/20 border border-[#b39758]/30 text-[#b39758] hover:bg-[#b39758]/30 transition-all"
+                    >
+                      <Send className="w-4 h-4" />
+                    </button>
+                  )}
                 </div>
               )}
 
