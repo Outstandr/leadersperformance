@@ -28,13 +28,24 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
       setStatus("ended");
     },
     onMessage: (msg: any) => {
-      // SDK v0.14+ uses { message, source } format
-      const message = msg?.message || msg?.user_transcription_event?.user_transcript || msg?.agent_response_event?.agent_response;
-      const source = msg?.source || (msg?.type === "user_transcript" ? "user" : msg?.type === "agent_response" ? "ai" : null);
-      
-      if (message && source) {
-        const role = source === "user" ? "user" : "agent";
-        setTranscript((prev) => [...prev, { role, text: message }]);
+      console.log("ElevenLabs onMessage:", JSON.stringify(msg));
+      let message: string | null = null;
+      let role: "user" | "agent" | null = null;
+
+      // Handle different SDK message formats
+      if (msg?.message && msg?.source) {
+        message = msg.message;
+        role = msg.source === "user" ? "user" : "agent";
+      } else if (msg?.type === "user_transcript") {
+        message = msg.user_transcription_event?.user_transcript;
+        role = "user";
+      } else if (msg?.type === "agent_response") {
+        message = msg.agent_response_event?.agent_response;
+        role = "agent";
+      }
+
+      if (message && role) {
+        setTranscript((prev) => [...prev, { role, text: message! }]);
         
         if (role === "agent") {
           const lower = message.toLowerCase();
@@ -288,6 +299,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
                     className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#b39758]/50"
                     onKeyDown={(e) => {
                       if (e.key === "Enter" && emailInput.trim()) {
+                        conversation.sendUserMessage(`My email is ${emailInput.trim()}`);
                         setTranscript((prev) => [...prev, { role: "user", text: emailInput }]);
                         setShowEmailInput(false);
                       }
@@ -296,6 +308,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
                   {emailInput && (
                     <button
                       onClick={() => {
+                        conversation.sendUserMessage(`My email is ${emailInput.trim()}`);
                         setTranscript((prev) => [...prev, { role: "user", text: emailInput }]);
                         setShowEmailInput(false);
                       }}
