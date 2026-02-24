@@ -375,6 +375,18 @@ export const HomeFeaturesGrid = () => {
                     </div>
                   )}
 
+                  {/* Leaders Performance Academy CTA (index 2) */}
+                  {selected === 2 && (
+                    <a
+                      href="https://testgroup.leadersperformance.ae/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors text-center"
+                    >
+                      {(services[selected].details as any).cta}
+                    </a>
+                  )}
+
                   {/* Booking calendar for non-mentorship, non-business, non-unmasked cards */}
                   {showCalendar && !isUnmasked && selected !== 1 && selected !== 3 && (
                     <div className="pt-2">
