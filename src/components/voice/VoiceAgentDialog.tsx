@@ -28,16 +28,16 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
       setStatus("ended");
     },
     onMessage: (msg: any) => {
-      if (msg.type === "user_transcript") {
-        const text = msg.user_transcription_event?.user_transcript;
-        if (text) setTranscript((prev) => [...prev, { role: "user", text }]);
-      }
-      if (msg.type === "agent_response") {
-        const text = msg.agent_response_event?.agent_response;
-        if (text) {
-          setTranscript((prev) => [...prev, { role: "agent", text }]);
-          // Show email input when agent asks for email
-          const lower = text.toLowerCase();
+      // SDK v0.14+ uses { message, source } format
+      const message = msg?.message || msg?.user_transcription_event?.user_transcript || msg?.agent_response_event?.agent_response;
+      const source = msg?.source || (msg?.type === "user_transcript" ? "user" : msg?.type === "agent_response" ? "ai" : null);
+      
+      if (message && source) {
+        const role = source === "user" ? "user" : "agent";
+        setTranscript((prev) => [...prev, { role, text: message }]);
+        
+        if (role === "agent") {
+          const lower = message.toLowerCase();
           if (lower.includes("email") || lower.includes("e-mail") || lower.includes("type")) {
             setShowEmailInput(true);
           }
