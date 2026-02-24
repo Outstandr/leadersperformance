@@ -110,7 +110,11 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
   }, [conversation]);
 
   const endConversation = useCallback(async () => {
-    await conversation.endSession();
+    try {
+      await conversation.endSession();
+    } catch (e) {
+      console.error("Error ending session:", e);
+    }
     setStatus("ended");
 
     // Capture lead from transcript
