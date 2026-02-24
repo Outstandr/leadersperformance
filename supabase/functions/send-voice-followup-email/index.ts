@@ -35,9 +35,96 @@ function getPathInfo(recommended_path: string): PathInfo {
   return { name: 'Leaders Performance', url: 'https://leadersperformance.lovable.app/', cta: 'Explore Your Path' };
 }
 
-function buildEmailHtml(firstName: string, conversationSummary: string, pathInfo: PathInfo): string {
-  const greeting = firstName ? `Hi ${firstName},` : 'Hi there,';
+async function generatePersonalizedEmail(
+  firstName: string,
+  conversationSummary: string,
+  pathInfo: PathInfo
+): Promise<{ subject: string; greeting: string; intro: string; highlights: string; pathPitch: string; closing: string }> {
+  const lovableApiKey = Deno.env.get('LOVABLE_API_KEY');
+  if (!lovableApiKey) {
+    // Fallback to generic content
+    return {
+      subject: 'Your Leadership Path — Next Steps from Lionel',
+      greeting: firstName ? `Hi ${firstName},` : 'Hi there,',
+      intro: 'Thank you for speaking with our Path Advisor. It was a valuable conversation, and I want to make sure you have everything we discussed readily available.',
+      highlights: conversationSummary || 'We discussed your leadership goals and performance aspirations.',
+      pathPitch: `Based on our conversation, I believe ${pathInfo.name} is the right fit for where you are right now.`,
+      closing: 'If you\'re ready to take the next step, I invite you to book a personal strategy session where we can map out your path in detail.',
+    };
+  }
 
+  const prompt = `You are Lionel, a leadership performance coach. You just had a voice conversation with ${firstName || 'a potential client'}. 
+
+Here is a summary of the conversation:
+"${conversationSummary || 'General discussion about leadership growth and performance.'}"
+
+The recommended path for them is: ${pathInfo.name}
+
+Write a personalized follow-up email that feels like it's coming directly from Lionel after the conversation. Make it warm, direct, and reference specific things from the conversation summary. Don't be generic — make them feel heard and understood.
+
+Return a JSON object with these exact keys:
+- "subject": A personalized email subject line (max 60 chars). Don't use generic subjects.
+- "greeting": The opening greeting line (e.g., "Hi Marcus,")
+- "intro": 2-3 sentences that reference something specific from the conversation, showing you remember and care. Don't start with "Thank you for..."
+- "highlights": 2-4 sentences summarizing the key insights or challenges discussed, written as if reflecting on what you heard. Use "you" language.
+- "pathPitch": 2-3 sentences explaining why ${pathInfo.name} is specifically right for them based on what was discussed. Be specific, not generic.
+- "closing": 1-2 sentences with a confident but warm invitation to book a session.
+
+Keep the tone: direct, confident, warm — like a mentor who genuinely wants to see them win. No fluff. No corporate speak.
+
+IMPORTANT: Return ONLY valid JSON, no markdown, no code fences.`;
+
+  try {
+    const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${lovableApiKey}`,
+      },
+      body: JSON.stringify({
+        model: 'google/gemini-2.5-flash',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.7,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('AI API error:', response.status);
+      throw new Error('AI API failed');
+    }
+
+    const data = await response.json();
+    const content = data.choices?.[0]?.message?.content || '';
+    
+    // Parse JSON from response
+    const cleaned = content.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+    const parsed = JSON.parse(cleaned);
+
+    return {
+      subject: parsed.subject || 'Your Leadership Path — Next Steps from Lionel',
+      greeting: parsed.greeting || (firstName ? `Hi ${firstName},` : 'Hi there,'),
+      intro: parsed.intro || 'It was great connecting with you.',
+      highlights: parsed.highlights || conversationSummary,
+      pathPitch: parsed.pathPitch || `${pathInfo.name} is the right fit for you.`,
+      closing: parsed.closing || 'Let\'s book a session to map this out.',
+    };
+  } catch (err) {
+    console.error('AI personalization failed, using fallback:', err);
+    return {
+      subject: 'Your Leadership Path — Next Steps from Lionel',
+      greeting: firstName ? `Hi ${firstName},` : 'Hi there,',
+      intro: 'Thank you for speaking with our Path Advisor. It was a valuable conversation.',
+      highlights: conversationSummary || 'We discussed your leadership goals and performance aspirations.',
+      pathPitch: `Based on our conversation, I believe ${pathInfo.name} is the right fit for where you are right now.`,
+      closing: 'If you\'re ready to take the next step, I invite you to book a personal strategy session where we can map out your path in detail.',
+    };
+  }
+}
+
+function buildEmailHtml(
+  emailContent: { greeting: string; intro: string; highlights: string; pathPitch: string; closing: string },
+  pathInfo: PathInfo
+): string {
   return `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
@@ -56,19 +143,19 @@ function buildEmailHtml(firstName: string, conversationSummary: string, pathInfo
         <!-- Body -->
         <tr><td style="padding:40px;">
           <p style="color:#e8e8e8;font-size:17px;line-height:1.7;margin:0 0 24px;">
-            ${greeting}
+            ${emailContent.greeting}
           </p>
           <p style="color:#b8b8b8;font-size:15px;line-height:1.7;margin:0 0 24px;">
-            Thank you for speaking with our Path Advisor. It was a valuable conversation, and I want to make sure you have everything we discussed readily available.
+            ${emailContent.intro}
           </p>
           
-          <!-- Conversation Summary -->
+          <!-- Personalized Highlights -->
           <div style="background-color:#1a1a1a;border-left:3px solid #c9a84c;padding:20px 24px;margin:0 0 32px;border-radius:0 4px 4px 0;">
             <p style="color:#c9a84c;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin:0 0 12px;font-family:Arial,sans-serif;">
-              CONVERSATION HIGHLIGHTS
+              WHAT I HEARD FROM YOU
             </p>
             <p style="color:#d0d0d0;font-size:14px;line-height:1.7;margin:0;">
-              ${conversationSummary}
+              ${emailContent.highlights}
             </p>
           </div>
           
@@ -77,16 +164,19 @@ function buildEmailHtml(firstName: string, conversationSummary: string, pathInfo
             <p style="color:#c9a84c;font-size:11px;letter-spacing:3px;text-transform:uppercase;margin:0 0 8px;font-family:Arial,sans-serif;">
               YOUR RECOMMENDED PATH
             </p>
-            <h2 style="color:#e8e8e8;font-size:24px;font-weight:400;margin:0 0 20px;">
+            <h2 style="color:#e8e8e8;font-size:24px;font-weight:400;margin:0 0 16px;">
               ${pathInfo.name}
             </h2>
+            <p style="color:#b8b8b8;font-size:14px;line-height:1.7;margin:0 0 20px;">
+              ${emailContent.pathPitch}
+            </p>
             <a href="${pathInfo.url}" style="display:inline-block;background-color:#c9a84c;color:#0a0a0a;text-decoration:none;padding:14px 36px;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:600;font-family:Arial,sans-serif;border-radius:2px;">
               ${pathInfo.cta}
             </a>
           </div>
           
           <p style="color:#b8b8b8;font-size:15px;line-height:1.7;margin:0 0 24px;">
-            If you're ready to take the next step, I invite you to book a personal strategy session where we can map out your path in detail.
+            ${emailContent.closing}
           </p>
           
           <!-- Book CTA -->
@@ -156,13 +246,20 @@ Deno.serve(async (req) => {
     }
 
     const pathInfo = getPathInfo(recommended_path);
-    const summaryText = conversation_summary || 'We discussed your leadership goals and performance aspirations.';
-    const htmlBody = buildEmailHtml(first_name, summaryText, pathInfo);
+    
+    // Generate AI-personalized email content
+    const emailContent = await generatePersonalizedEmail(
+      first_name,
+      conversation_summary,
+      pathInfo
+    );
+
+    const htmlBody = buildEmailHtml(emailContent, pathInfo);
 
     const client = new SMTPClient({
       connection: {
         hostname: 'smtp.mail.me.com',
-        port: 587,
+        port: 465,
         tls: true,
         auth: {
           username: icloudEmail,
@@ -174,14 +271,14 @@ Deno.serve(async (req) => {
     await client.send({
       from: icloudEmail,
       to: email,
-      subject: 'Your Leadership Path — Next Steps from Lionel',
+      subject: emailContent.subject,
       content: 'auto',
       html: htmlBody,
     });
 
     await client.close();
 
-    console.log('Follow-up email sent to:', email);
+    console.log('Personalized follow-up email sent to:', email);
 
     return new Response(JSON.stringify({ success: true }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

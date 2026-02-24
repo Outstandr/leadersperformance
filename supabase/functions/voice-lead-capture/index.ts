@@ -72,6 +72,25 @@ Deno.serve(async (req) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(ghlPayload),
       });
+
+      // Fire-and-forget: send personalized follow-up email
+      const supabaseUrl = Deno.env.get('SUPABASE_URL');
+      const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+      if (supabaseUrl && serviceRoleKey) {
+        fetch(`${supabaseUrl}/functions/v1/send-voice-followup-email`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${serviceRoleKey}`,
+          },
+          body: JSON.stringify({
+            email,
+            first_name,
+            recommended_path,
+            conversation_summary,
+          }),
+        }).catch((err) => console.error('Email trigger failed:', err));
+      }
     }
 
     return new Response(JSON.stringify({ success: true }), {
