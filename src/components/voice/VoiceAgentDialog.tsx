@@ -303,6 +303,12 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
                     onChange={(e) => setEmailInput(e.target.value)}
                     placeholder="Type your email here..."
                     className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#b39758]/50"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && emailInput.trim()) {
+                        setTranscript((prev) => [...prev, { role: "user", text: emailInput }]);
+                        setShowEmailInput(false);
+                      }
+                    }}
                   />
                   {emailInput && (
                     <button
@@ -331,6 +337,15 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
                   {isMuted ? <MicOff className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
                   {isMuted ? "Unmute" : "Mute"}
                 </button>
+                {!showEmailInput && (
+                  <button
+                    onClick={() => setShowEmailInput(true)}
+                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium bg-[#b39758]/10 border border-[#b39758]/30 text-[#b39758] hover:bg-[#b39758]/20 transition-all"
+                  >
+                    <Send className="w-4 h-4" />
+                    Chat
+                  </button>
+                )}
                 <button
                   onClick={endConversation}
                   className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 transition-all"
