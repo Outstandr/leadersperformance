@@ -135,29 +135,28 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
       recommended_path = "Leaders Performance Academy";
     }
 
-    if (email || fullSummary.length > 50) {
-      try {
-        await fetch(
-          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/voice-lead-capture`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
-              Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-            },
-            body: JSON.stringify({
-              email,
-              recommended_path,
-              conversation_summary: fullSummary.slice(0, 2000),
-            }),
-          }
-        );
-      } catch (e) {
-        console.error("Lead capture failed:", e);
-      }
+    // Always attempt lead capture when call ends
+    try {
+      await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/voice-lead-capture`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify({
+            email,
+            recommended_path,
+            conversation_summary: fullSummary.slice(0, 2000),
+          }),
+        }
+      );
+    } catch (e) {
+      console.error("Lead capture failed:", e);
     }
-  }, [conversation, transcript]);
+  }, [conversation, transcript, emailInput]);
 
   const toggleMute = useCallback(async () => {
     const newVol = isMuted ? 1 : 0;
@@ -272,27 +271,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
                 </p>
               </div>
 
-              {/* Transcript */}
-              {transcript.length > 0 && (
-                <div
-                  ref={transcriptRef}
-                  className="bg-white/5 rounded-xl p-4 max-h-40 overflow-y-auto mb-4 space-y-2"
-                >
-                  {transcript.map((line, i) => (
-                    <div
-                      key={i}
-                      className={`text-xs leading-relaxed ${
-                        line.role === "agent" ? "text-[#b39758]/90" : "text-white/70"
-                      }`}
-                    >
-                      <span className="font-semibold uppercase text-[10px] tracking-widest opacity-60 mr-2">
-                        {line.role === "agent" ? "Lionel" : "You"}
-                      </span>
-                      {line.text}
-                    </div>
-                  ))}
-                </div>
-              )}
+              {/* Transcript removed - runs silently in background */}
 
               {/* Email input */}
               {showEmailInput && (
