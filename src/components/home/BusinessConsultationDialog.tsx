@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import logoWhite from "@/assets/logo-white.png";
+import { CorporateAuditDialog } from "@/components/corporate-audit/CorporateAuditDialog";
 
 // ─── Country list ──────────────────────────────────────────────────────
 const COUNTRIES = [
@@ -82,6 +83,7 @@ export function BusinessConsultationDialog({
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [showAudit, setShowAudit] = useState(false);
+  const [auditOpen, setAuditOpen] = useState(false);
   const [countryOpen, setCountryOpen] = useState(false);
   const [countrySearch, setCountrySearch] = useState("");
   const countryRef = useRef<HTMLDivElement>(null);
@@ -361,61 +363,56 @@ export function BusinessConsultationDialog({
   // ─── Success screen ───────────────────────────────────────────────────
   if (submitted && !showAudit) {
     return (
-      <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="sm:max-w-md bg-[#0a0a0a] border-lioner-gold/20 text-center p-10">
-          <DialogTitle className="sr-only">Consultation Booked</DialogTitle>
-          <div className="flex flex-col items-center gap-6">
-            <img src={logoWhite} alt="Logo" className="w-20 h-auto opacity-80" />
-            <div className="w-16 h-16 rounded-full border-2 border-lioner-gold flex items-center justify-center">
-              <Check className="w-8 h-8 text-lioner-gold" />
-            </div>
-            <div>
-              <h3 className="text-xl font-serif text-white mb-2">Consultation Booked</h3>
-              <p className="text-sm text-white/60 leading-relaxed">
-                Your consultation request has been received. Our team will confirm your booking within 24 hours. Prepare for a direct, no-nonsense strategy session.
-              </p>
-            </div>
+      <>
+        <Dialog open={open} onOpenChange={onOpenChange}>
+          <DialogContent className="sm:max-w-md bg-[#0a0a0a] border-lioner-gold/20 text-center p-10">
+            <DialogTitle className="sr-only">Consultation Booked</DialogTitle>
+            <div className="flex flex-col items-center gap-6">
+              <img src={logoWhite} alt="Logo" className="w-20 h-auto opacity-80" />
+              <div className="w-16 h-16 rounded-full border-2 border-lioner-gold flex items-center justify-center">
+                <Check className="w-8 h-8 text-lioner-gold" />
+              </div>
+              <div>
+                <h3 className="text-xl font-serif text-white mb-2">Consultation Booked</h3>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Your consultation request has been received. Our team will confirm your booking within 24 hours. Prepare for a direct, no-nonsense strategy session.
+                </p>
+              </div>
 
-            {/* Optional assessment CTA */}
-            <div className="w-full border-t border-white/10 pt-6 mt-2">
-              <p className="text-xs text-white/40 uppercase tracking-widest mb-3">Optional</p>
+              {/* Optional assessment CTA */}
+              <div className="w-full border-t border-white/10 pt-6 mt-2">
+                <p className="text-xs text-white/40 uppercase tracking-widest mb-3">Optional</p>
+                <button
+                  onClick={() => {
+                    onOpenChange(false);
+                    setTimeout(() => setAuditOpen(true), 300);
+                  }}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 border border-lioner-gold/40 hover:border-lioner-gold hover:bg-lioner-gold/10 text-lioner-gold text-sm font-semibold uppercase tracking-wider transition-all"
+                >
+                  <ClipboardList className="w-4 h-4" />
+                  Take the Team Discipline Audit
+                </button>
+                <p className="text-xs text-white/40 mt-2">
+                  Assess your team's discipline score before the call — it only takes 2 minutes.
+                </p>
+              </div>
+
               <button
-                onClick={() => {
-                  onOpenChange(false);
-                  // Small delay to let dialog close, then navigate
-                  setTimeout(() => {
-                    const auditSection = document.getElementById("corporate-audit");
-                    if (auditSection) {
-                      auditSection.scrollIntoView({ behavior: "smooth" });
-                      // Click the audit CTA button if it exists
-                      const auditBtn = auditSection.querySelector("button");
-                      if (auditBtn) auditBtn.click();
-                    }
-                  }, 400);
-                }}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 border border-lioner-gold/40 hover:border-lioner-gold hover:bg-lioner-gold/10 text-lioner-gold text-sm font-semibold uppercase tracking-wider transition-all"
+                onClick={() => onOpenChange(false)}
+                className="mt-2 px-8 py-3 bg-lioner-gold hover:bg-lioner-gold/90 text-white text-sm font-semibold uppercase tracking-widest transition-colors"
               >
-                <ClipboardList className="w-4 h-4" />
-                Take the Team Discipline Audit
+                Close
               </button>
-              <p className="text-xs text-white/40 mt-2">
-                Assess your team's discipline score before the call — it only takes 2 minutes.
-              </p>
             </div>
-
-            <button
-              onClick={() => onOpenChange(false)}
-              className="mt-2 px-8 py-3 bg-lioner-gold hover:bg-lioner-gold/90 text-white text-sm font-semibold uppercase tracking-widest transition-colors"
-            >
-              Close
-            </button>
-          </div>
-        </DialogContent>
-      </Dialog>
+          </DialogContent>
+        </Dialog>
+        <CorporateAuditDialog open={auditOpen} onOpenChange={setAuditOpen} />
+      </>
     );
   }
 
   return (
+    <>
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto bg-background border-lioner-gold/20 p-0">
         <DialogTitle className="sr-only">Business Consultation Application</DialogTitle>
@@ -476,5 +473,8 @@ export function BusinessConsultationDialog({
         </div>
       </DialogContent>
     </Dialog>
+
+      <CorporateAuditDialog open={auditOpen} onOpenChange={setAuditOpen} />
+    </>
   );
 }
