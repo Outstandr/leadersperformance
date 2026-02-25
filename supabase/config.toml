@@ -39,6 +39,9 @@ verify_jwt = false
 [functions.unmasked-booking]
 verify_jwt = false
 
+[functions.ghl-booking]
+verify_jwt = false
+
 [functions.send-voice-followup-email]
 verify_jwt = false
 
