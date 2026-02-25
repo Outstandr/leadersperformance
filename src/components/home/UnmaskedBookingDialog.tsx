@@ -128,7 +128,7 @@ export function UnmaskedBookingDialog({ open, onOpenChange }: UnmaskedBookingDia
       const dateStr = format(selectedDate, "yyyy-MM-dd");
       const dateTime = `${dateStr}T${selectedSlot}:00`;
 
-      const { error } = await supabase.functions.invoke("unmasked-booking", {
+      const { error } = await supabase.functions.invoke("ghl-booking", {
         body: {
           ...formData,
           dateTime,
