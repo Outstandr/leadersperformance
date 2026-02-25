@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useBookedSlots } from "@/hooks/useBookedSlots";
 import { X, ChevronLeft, ChevronRight, Check, Calendar as CalendarIcon } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -120,7 +121,7 @@ export function MentorshipApplicationDialog({
   const [countryOpen, setCountryOpen] = useState(false);
   const [countrySearch, setCountrySearch] = useState("");
   const countryRef = useRef<HTMLDivElement>(null);
-
+  const { bookedSlots12h, isLoading: slotsLoading } = useBookedSlots(form.bookingDate);
   const filteredCountries = useMemo(
     () => COUNTRIES.filter(c => c.toLowerCase().includes(countrySearch.toLowerCase())),
     [countrySearch]
@@ -519,16 +520,24 @@ export function MentorshipApplicationDialog({
                   Select a Time (Dubai / GST)
                 </Label>
                 <div className="grid grid-cols-4 gap-2">
-                  {TIME_SLOTS.map(slot => (
-                    <button
-                      key={slot}
-                      type="button"
-                      onClick={() => update("bookingTime", slot)}
-                      className={`px-2 py-2 text-xs border rounded transition-colors ${form.bookingTime === slot ? "border-lioner-gold bg-lioner-gold/10 text-foreground font-medium" : "border-foreground/10 hover:border-foreground/30 text-foreground/70"}`}
-                    >
-                      {slot}
-                    </button>
-                  ))}
+                  {slotsLoading ? (
+                    <div className="col-span-4 text-center py-4 text-xs text-muted-foreground">Loading availability...</div>
+                  ) : (
+                    TIME_SLOTS.map(slot => {
+                      const isBooked = bookedSlots12h.has(slot);
+                      return (
+                        <button
+                          key={slot}
+                          type="button"
+                          disabled={isBooked}
+                          onClick={() => update("bookingTime", slot)}
+                          className={`px-2 py-2 text-xs border rounded transition-colors ${isBooked ? "border-foreground/5 bg-foreground/5 text-muted-foreground/40 cursor-not-allowed line-through" : form.bookingTime === slot ? "border-lioner-gold bg-lioner-gold/10 text-foreground font-medium" : "border-foreground/10 hover:border-foreground/30 text-foreground/70"}`}
+                        >
+                          {isBooked ? "Booked" : slot}
+                        </button>
+                      );
+                    })
+                  )}
                 </div>
               </div>
             )}
