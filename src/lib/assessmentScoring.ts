@@ -31,11 +31,11 @@ export function calculateScores(responses: Record<string, number>): Scores {
   const impulseControlAvg = impulseControlQuestions.reduce((sum, q) => sum + adjustedResponses[q.id], 0) / impulseControlQuestions.length;
   const consistencyAvg = consistencyQuestions.reduce((sum, q) => sum + adjustedResponses[q.id], 0) / consistencyQuestions.length;
 
-  // Convert to 0-100 scale
-  const selfDiscipline = selfDisciplineAvg * 20;
-  const impulseControl = impulseControlAvg * 20;
-  const consistency = consistencyAvg * 20;
-  const overall = (selfDiscipline + impulseControl + consistency) / 3;
+  // Convert to 0-100 scale (rounded to whole numbers)
+  const selfDiscipline = Math.round(selfDisciplineAvg * 20);
+  const impulseControl = Math.round(impulseControlAvg * 20);
+  const consistency = Math.round(consistencyAvg * 20);
+  const overall = Math.round((selfDiscipline + impulseControl + consistency) / 3);
 
   return {
     selfDiscipline,
