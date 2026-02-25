@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useBookedSlots } from "@/hooks/useBookedSlots";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -98,6 +99,7 @@ export function UnmaskedBookingDialog({ open, onOpenChange }: UnmaskedBookingDia
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [selectedSlot, setSelectedSlot] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { bookedSlots24h, isLoading: slotsLoading } = useBookedSlots(selectedDate ?? null);
 
   const clearError = (field: string) => {
     setErrors((prev) => { const n = { ...prev }; delete n[field]; return n; });
@@ -272,20 +274,30 @@ export function UnmaskedBookingDialog({ open, onOpenChange }: UnmaskedBookingDia
                         {period === "Morning" ? t.morning : t.afternoon}
                       </p>
                       <div className="grid grid-cols-3 gap-2">
-                        {TIME_SLOTS.filter(s => s.period === period).map((slot) => (
-                          <button
-                            key={slot.value}
-                            onClick={() => setSelectedSlot(slot.value)}
-                            className={cn(
-                              "py-2.5 text-sm font-medium border-2 transition-all",
-                              selectedSlot === slot.value
-                                ? "border-lioner-gold bg-lioner-gold/10 text-foreground"
-                                : "border-border hover:border-lioner-gold/50 text-muted-foreground hover:text-foreground"
-                            )}
-                          >
-                            {slot.label}
-                          </button>
-                        ))}
+                        {slotsLoading ? (
+                          <div className="col-span-3 text-center py-3 text-xs text-muted-foreground">Loading availability...</div>
+                        ) : (
+                          TIME_SLOTS.filter(s => s.period === period).map((slot) => {
+                            const isBooked = bookedSlots24h.has(slot.value);
+                            return (
+                              <button
+                                key={slot.value}
+                                disabled={isBooked}
+                                onClick={() => setSelectedSlot(slot.value)}
+                                className={cn(
+                                  "py-2.5 text-sm font-medium border-2 transition-all",
+                                  isBooked
+                                    ? "border-border/30 bg-muted/30 text-muted-foreground/40 cursor-not-allowed line-through"
+                                    : selectedSlot === slot.value
+                                      ? "border-lioner-gold bg-lioner-gold/10 text-foreground"
+                                      : "border-border hover:border-lioner-gold/50 text-muted-foreground hover:text-foreground"
+                                )}
+                              >
+                                {isBooked ? "Booked" : slot.label}
+                              </button>
+                            );
+                          })
+                        )}
                       </div>
                     </div>
                   ))}
