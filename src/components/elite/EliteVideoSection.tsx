@@ -1,12 +1,13 @@
+import { useState } from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-
-const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
+import { EliteBookingDialog } from "./EliteBookingDialog";
 
 export const EliteVideoSection = () => {
   const { t } = useLanguage();
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   return (
     <section className="py-12 bg-white">
@@ -28,16 +29,16 @@ export const EliteVideoSection = () => {
         <div className="text-center mt-8">
           <Button 
             size="lg" 
-            asChild
+            onClick={() => setBookingOpen(true)}
             className="bg-lioner-gold text-white hover:bg-lioner-gold/90 font-medium rounded-none px-8 py-4 h-auto group"
           >
-            <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-              {t("elite.video.cta")}
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </a>
+            {t("elite.video.cta")}
+            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
       </div>
+
+      <EliteBookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
     </section>
   );
 };

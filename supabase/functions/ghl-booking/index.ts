@@ -120,7 +120,7 @@ async function bookAppointment(body: {
   const locationId = Deno.env.get('GHL_LOCATION_ID');
   if (!calendarId || !locationId) throw new Error('GHL_CALENDAR_ID or GHL_LOCATION_ID not configured');
 
-  const { firstName, lastName, email, phone, dateTime } = body;
+  const { firstName, lastName, email, phone, dateTime, bookingType } = body;
 
   // Validate
   if (!firstName || !lastName || !email || !phone || !dateTime) {
@@ -139,7 +139,7 @@ async function bookAppointment(body: {
       email,
       phone,
       source: 'Leaders Performance Website',
-      tags: ['UNMASKED', 'Booking'],
+      tags: [bookingType || 'UNMASKED', 'Booking'],
     }),
   });
 
@@ -175,7 +175,7 @@ async function bookAppointment(body: {
       contactId,
       startTime,
       endTime,
-      title: `UNMASKED - ${firstName} ${lastName}`,
+      title: `${bookingType || 'UNMASKED'} - ${firstName} ${lastName}`,
       appointmentStatus: 'confirmed',
       assignedUserId: '', // will use calendar's default
     }),

@@ -95,10 +95,14 @@ const STEP_TITLES = [
   "Book Strategy Call",
 ];
 
-// Morning: 09:00–12:00, Afternoon: 03:00–05:00 (30-min slots, Dubai/GST)
+// Standardized GHL calendar time slots
 const TIME_SLOTS = [
-  "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
-  "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM",
+  { label: "10:00 AM", value: "10:00", period: "Morning" },
+  { label: "11:00 AM", value: "11:00", period: "Morning" },
+  { label: "12:00 PM", value: "12:00", period: "Morning" },
+  { label: "3:00 PM", value: "15:00", period: "Afternoon" },
+  { label: "4:00 PM", value: "16:00", period: "Afternoon" },
+  { label: "5:00 PM", value: "17:00", period: "Afternoon" },
 ];
 
 const isWeekday = (date: Date) => {
@@ -121,7 +125,7 @@ export function MentorshipApplicationDialog({
   const [countryOpen, setCountryOpen] = useState(false);
   const [countrySearch, setCountrySearch] = useState("");
   const countryRef = useRef<HTMLDivElement>(null);
-  const { bookedSlots12h, isLoading: slotsLoading } = useBookedSlots(form.bookingDate);
+  const { bookedSlots24h, isLoading: slotsLoading } = useBookedSlots(form.bookingDate);
   const filteredCountries = useMemo(
     () => COUNTRIES.filter(c => c.toLowerCase().includes(countrySearch.toLowerCase())),
     [countrySearch]
@@ -205,14 +209,15 @@ export function MentorshipApplicationDialog({
     setSubmitting(true);
 
     try {
-      // Format date + time as MM-DD-YYYY HH:MM AM/PM
       const d = form.bookingDate!;
       const month = String(d.getMonth() + 1).padStart(2, "0");
       const day = String(d.getDate()).padStart(2, "0");
       const year = d.getFullYear();
       const bookingDateTime = `${month}-${day}-${year} ${form.bookingTime}`;
+      const dateStr = `${year}-${month}-${day}`;
+      const dateTime = `${dateStr}T${form.bookingTime}:00`;
 
-      const { data, error } = await supabase.functions.invoke("submit-application", {
+      const { error } = await supabase.functions.invoke("submit-application", {
         body: {
           firstName: form.firstName,
           lastName: form.lastName,
@@ -235,6 +240,20 @@ export function MentorshipApplicationDialog({
       });
 
       if (error) throw error;
+
+      // Also book on GHL calendar
+      await supabase.functions.invoke("ghl-booking", {
+        body: {
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          phone: "",
+          dateTime,
+          timeSlot: form.bookingTime,
+          bookingType: "MENTORSHIP",
+        },
+      });
+
       setSubmitted(true);
     } catch (err: any) {
       toast({ title: "Submission failed", description: err.message || "Please try again.", variant: "destructive" });
@@ -519,21 +538,21 @@ export function MentorshipApplicationDialog({
                 <Label className="text-foreground/70 text-xs uppercase tracking-wider mb-2 block">
                   Select a Time (Dubai / GST)
                 </Label>
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   {slotsLoading ? (
-                    <div className="col-span-4 text-center py-4 text-xs text-muted-foreground">Loading availability...</div>
+                    <div className="col-span-3 text-center py-4 text-xs text-muted-foreground">Loading availability...</div>
                   ) : (
                     TIME_SLOTS.map(slot => {
-                      const isBooked = bookedSlots12h.has(slot);
+                      const isBooked = bookedSlots24h.has(slot.value);
                       return (
                         <button
-                          key={slot}
+                          key={slot.value}
                           type="button"
                           disabled={isBooked}
-                          onClick={() => update("bookingTime", slot)}
-                          className={`px-2 py-2 text-xs border rounded transition-colors ${isBooked ? "border-foreground/5 bg-foreground/5 text-muted-foreground/40 cursor-not-allowed line-through" : form.bookingTime === slot ? "border-lioner-gold bg-lioner-gold/10 text-foreground font-medium" : "border-foreground/10 hover:border-foreground/30 text-foreground/70"}`}
+                          onClick={() => update("bookingTime", slot.value)}
+                          className={`px-2 py-2 text-xs border rounded transition-colors ${isBooked ? "border-foreground/5 bg-foreground/5 text-muted-foreground/40 cursor-not-allowed line-through" : form.bookingTime === slot.value ? "border-lioner-gold bg-lioner-gold/10 text-foreground font-medium" : "border-foreground/10 hover:border-foreground/30 text-foreground/70"}`}
                         >
-                          {isBooked ? "Booked" : slot}
+                          {isBooked ? "Booked" : slot.label}
                         </button>
                       );
                     })
@@ -547,7 +566,7 @@ export function MentorshipApplicationDialog({
               <div className="bg-lioner-gold/5 border border-lioner-gold/20 rounded-md p-4">
                 <p className="text-sm font-medium text-foreground">Your Strategy Call</p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  {form.bookingDate.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })} at {form.bookingTime} (Dubai / GST)
+                  {form.bookingDate.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })} at {TIME_SLOTS.find(s => s.value === form.bookingTime)?.label || form.bookingTime} (Dubai / GST)
                 </p>
               </div>
             )}

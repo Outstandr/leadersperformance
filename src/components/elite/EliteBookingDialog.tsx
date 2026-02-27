@@ -14,7 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-interface UnmaskedBookingDialogProps {
+interface EliteBookingDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
@@ -37,8 +37,8 @@ const formSchema = z.object({
 
 const ui = {
   en: {
-    title: "Reserve Your UNMASKED Session",
-    subtitle: "4-day private desert reset — limited to 2–4 participants",
+    title: "Book Your Elite Strategy Call",
+    subtitle: "Private 1-on-1 strategy session with Lionel",
     step1: "Your Details",
     step2: "Select Date & Time",
     firstName: "First Name",
@@ -57,13 +57,13 @@ const ui = {
     confirm: "Confirm Booking",
     confirming: "Confirming...",
     successTitle: "You're booked in.",
-    successBody: "We'll reach out within 24 hours to confirm your UNMASKED session and share preparation details.",
+    successBody: "We'll reach out within 24 hours to confirm your Elite strategy call and share preparation details.",
     successCta: "Close",
     notice: "Application subject to availability. We'll confirm within 24 hours.",
   },
   nl: {
-    title: "Reserveer jouw UNMASKED sessie",
-    subtitle: "4-daagse privé woestijn reset — beperkt tot 2–4 deelnemers",
+    title: "Boek je Elite Strategiegesprek",
+    subtitle: "Privé 1-op-1 strategiesessie met Lionel",
     step1: "Jouw gegevens",
     step2: "Selecteer datum & tijd",
     firstName: "Voornaam",
@@ -82,13 +82,13 @@ const ui = {
     confirm: "Bevestig boeking",
     confirming: "Bevestigen...",
     successTitle: "Je bent ingepland.",
-    successBody: "We nemen binnen 24 uur contact op om je UNMASKED sessie te bevestigen en voorbereidingsdetails te delen.",
+    successBody: "We nemen binnen 24 uur contact op om je Elite strategiegesprek te bevestigen.",
     successCta: "Sluiten",
-    notice: "Aanmelding onder voorbehoud van beschikbaarheid. We bevestigen binnen 24 uur.",
+    notice: "Onder voorbehoud van beschikbaarheid. We bevestigen binnen 24 uur.",
   },
 };
 
-export function UnmaskedBookingDialog({ open, onOpenChange }: UnmaskedBookingDialogProps) {
+export function EliteBookingDialog({ open, onOpenChange }: EliteBookingDialogProps) {
   const { language } = useLanguage();
   const t = ui[language] ?? ui.en;
   const { toast } = useToast();
@@ -133,6 +133,7 @@ export function UnmaskedBookingDialog({ open, onOpenChange }: UnmaskedBookingDia
           ...formData,
           dateTime,
           timeSlot: selectedSlot,
+          bookingType: "ELITE MENTORSHIP",
         },
       });
 
@@ -165,14 +166,13 @@ export function UnmaskedBookingDialog({ open, onOpenChange }: UnmaskedBookingDia
         {/* Header */}
         <div className="bg-foreground text-background px-8 py-7">
           <div className="text-xs uppercase tracking-[0.2em] text-lioner-gold font-semibold mb-2">
-            UNMASKED · Private Desert Reset
+            ELITE · High Performance Mentorship
           </div>
           <h2 className="text-2xl font-bold leading-tight">{t.title}</h2>
           <p className="mt-1 text-background/60 text-sm">{t.subtitle}</p>
         </div>
 
         <div className="px-8 py-7">
-          {/* Step: Details */}
           {step === "details" && (
             <div className="space-y-5">
               <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">{t.step1}</p>
@@ -230,12 +230,10 @@ export function UnmaskedBookingDialog({ open, onOpenChange }: UnmaskedBookingDia
             </div>
           )}
 
-          {/* Step: Date & Time */}
           {step === "datetime" && (
             <div className="space-y-6">
               <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">{t.step2}</p>
 
-              {/* Date picker */}
               <div className="space-y-2">
                 <Label className="text-xs uppercase tracking-wider text-foreground/60">Date</Label>
                 <Popover>
@@ -261,7 +259,6 @@ export function UnmaskedBookingDialog({ open, onOpenChange }: UnmaskedBookingDia
                 </Popover>
               </div>
 
-              {/* Time slots */}
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-lioner-gold" />
@@ -306,11 +303,7 @@ export function UnmaskedBookingDialog({ open, onOpenChange }: UnmaskedBookingDia
               </div>
 
               <div className="flex gap-3">
-                <Button
-                  variant="outline"
-                  onClick={() => setStep("details")}
-                  className="flex-1 rounded-none py-5"
-                >
+                <Button variant="outline" onClick={() => setStep("details")} className="flex-1 rounded-none py-5">
                   Back
                 </Button>
                 <Button
@@ -328,7 +321,6 @@ export function UnmaskedBookingDialog({ open, onOpenChange }: UnmaskedBookingDia
             </div>
           )}
 
-          {/* Step: Success */}
           {step === "success" && (
             <div className="text-center py-6 space-y-5">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-50">

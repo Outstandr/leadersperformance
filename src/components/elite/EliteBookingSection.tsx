@@ -1,11 +1,12 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Crown, Check, Users } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-
-const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
+import { EliteBookingDialog } from "./EliteBookingDialog";
 
 export const EliteBookingSection = () => {
   const { t } = useLanguage();
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   const includes = [
     t("elite.booking.include1"),
@@ -36,13 +37,11 @@ export const EliteBookingSection = () => {
               
               <Button 
                 size="lg" 
-                asChild
+                onClick={() => setBookingOpen(true)}
                 className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-white/90 font-medium rounded-none px-8 py-4 h-auto group"
               >
-                <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                  {t("elite.booking.cta")}
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </a>
+                {t("elite.booking.cta")}
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               
               <p className="text-sm text-white/70 mt-4">
@@ -67,6 +66,8 @@ export const EliteBookingSection = () => {
           </div>
         </div>
       </div>
+
+      <EliteBookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
     </section>
   );
 };
