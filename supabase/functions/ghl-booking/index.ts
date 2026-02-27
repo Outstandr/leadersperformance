@@ -155,7 +155,15 @@ async function bookAppointment(body: {
     throw new Error('Could not get contact ID from GHL');
   }
 
-  // 2. Create appointment
+  // 2. Re-check availability right before booking to prevent race conditions
+  const dateOnly = dateTime.split('T')[0]; // "2026-02-26"
+  const slotTime = dateTime.split('T')[1]?.substring(0, 5); // "10:00"
+  const { blocked24h } = await getFreeSlots(dateOnly);
+  if (blocked24h.includes(slotTime)) {
+    throw new Error(`This time slot (${slotTime}) is no longer available. Please choose another.`);
+  }
+
+  // 3. Create appointment
   // dateTime format: "2026-02-26T10:00:00"
   // GHL expects ISO with timezone
   const startTime = `${dateTime}+04:00`;
