@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { Youtube, Instagram, Facebook, Linkedin } from "lucide-react";
+import { Youtube, Linkedin } from "lucide-react";
 
 const socialLinks = [
   { label: "YouTube", href: "https://www.youtube.com/@lioneleersteling", icon: Youtube },
-  { label: "Instagram", href: "https://www.instagram.com/lionel_eersteling", icon: Instagram },
-  { label: "Facebook", href: "https://www.facebook.com/lionel.eersteling/", icon: Facebook },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/lionel-eersteling/", icon: Linkedin },
   { label: "TikTok", href: "https://www.tiktok.com/@lioneleersteling", icon: null },
 ];
