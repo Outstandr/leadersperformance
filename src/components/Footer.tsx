@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Youtube, Instagram, Facebook, Linkedin } from "lucide-react";
+import { Youtube, Linkedin } from "lucide-react";
 
 // TikTok icon component (not available in lucide-react)
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -11,8 +11,6 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 export const Footer = () => {
   const socialLinks = [
     { icon: Youtube, href: "https://www.youtube.com/@lioneleersteling", label: "YouTube" },
-    { icon: Instagram, href: "https://www.instagram.com/lionel_eersteling", label: "Instagram" },
-    { icon: Facebook, href: "https://www.facebook.com/lionel.eersteling/?locale=nl_NL", label: "Facebook" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/lionel-eersteling/", label: "LinkedIn" },
     { icon: TikTokIcon, href: "https://www.tiktok.com/@lioneleersteling?lang=en", label: "TikTok" },
   ];
