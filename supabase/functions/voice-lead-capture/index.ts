@@ -80,7 +80,7 @@ The recommended path for them is: ${pathName}
 I need TWO things from you:
 
 **1. DIAGNOSTIC EXTRACTION** — Analyze the conversation and extract:
-- "pillar_focus": Which of these 4 pillars best fits their needs: "Energy & Identity", "Execution & Systems", "Rhythm & Consistency", or "Tracking & Reflection". Pick the single best match based on what they discussed.
+- "pillar_focus": Which of these 4 pillars best fits their needs: "Vitality", "Personal Development", "Personal Leadership", or "Business". Pick the single best match based on what they discussed.
 - "capacity_score": Rate their current operational capacity from 1-10 based on the conversation (1=overwhelmed/stuck, 10=high-performing). Give a number as string like "6/10".
 - "primary_bottleneck": In 2-5 words, what is their #1 challenge or bottleneck discussed? E.g. "Lack of team alignment", "No morning routine", "Decision fatigue".
 - "current_role": Their job title or role if mentioned, otherwise "Not specified".
