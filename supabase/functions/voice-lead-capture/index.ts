@@ -158,7 +158,6 @@ Deno.serve(async (req) => {
 
     const first_name = sanitize(payload.first_name, 100);
     const email = sanitize(payload.email, 254);
-    const phone = sanitize(payload.phone, 30);
     const recommended_path = sanitize(payload.recommended_path, 200);
     const conversation_summary = sanitize(payload.conversation_summary, 2000);
 
@@ -175,7 +174,6 @@ Deno.serve(async (req) => {
       .insert({
         first_name: first_name || null,
         email: email || null,
-        phone: phone || null,
         recommended_path: recommended_path || null,
         conversation_summary: conversation_summary || null,
       });
@@ -200,7 +198,6 @@ Deno.serve(async (req) => {
         // Contact info
         first_name,
         email,
-        phone: phone || '',
         source: 'voice_agent',
         tag: 'voice-lead',
         
