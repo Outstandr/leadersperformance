@@ -186,7 +186,7 @@ Deno.serve(async (req) => {
 
     // Send to GHL if email is provided
     if (email) {
-      const webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/a916ceaa-1585-45fc-9b67-282f1816eeed';
+      const webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/9dbd02ad-5a75-409a-ba92-38b7feb9eca7';
       const pathInfo = getPathInfo(recommended_path);
 
       // Extract diagnostics AND generate personalized email content in one AI call
