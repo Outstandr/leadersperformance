@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
-import { X, Mic, MicOff, PhoneOff, Volume2, Send } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { X, Mic, MicOff, PhoneOff, Volume2, Send, Check } from "lucide-react";
 
 interface VoiceAgentDialogProps {
   isOpen: boolean;
@@ -17,6 +16,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
   const [transcript, setTranscript] = useState<{ role: "user" | "agent"; text: string }[]>([]);
   const [emailInput, setEmailInput] = useState("");
   const [showEmailInput, setShowEmailInput] = useState(false);
+  const [emailConfirmed, setEmailConfirmed] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
 
   const conversation = useConversation({
@@ -32,7 +32,6 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
       let message: string | null = null;
       let role: "user" | "agent" | null = null;
 
-      // Handle different SDK message formats
       if (msg?.message && msg?.source) {
         message = msg.message;
         role = msg.source === "user" ? "user" : "agent";
@@ -46,10 +45,13 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
 
       if (message && role) {
         setTranscript((prev) => [...prev, { role, text: message! }]);
-        
+
         if (role === "agent") {
           const lower = message.toLowerCase();
-          if (lower.includes("email") || lower.includes("e-mail") || lower.includes("type")) {
+          if (
+            (lower.includes("email") || lower.includes("e-mail")) &&
+            (lower.includes("type") || lower.includes("enter") || lower.includes("share") || lower.includes("provide") || lower.includes("what") || lower.includes("address"))
+          ) {
             setShowEmailInput(true);
           }
         }
@@ -78,8 +80,19 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
       setIsMuted(false);
       setEmailInput("");
       setShowEmailInput(false);
+      setEmailConfirmed(false);
     }
   }, [isOpen]);
+
+  const submitEmail = useCallback(() => {
+    const trimmed = emailInput.trim();
+    if (!trimmed) return;
+    // Send to agent so it reads the email back for confirmation
+    conversation.sendUserMessage(`My email address is ${trimmed}. Please read it back to me to confirm.`);
+    setTranscript((prev) => [...prev, { role: "user", text: trimmed }]);
+    setEmailConfirmed(true);
+    setShowEmailInput(false);
+  }, [conversation, emailInput]);
 
   const startConversation = useCallback(async () => {
     setStatus("connecting");
@@ -128,17 +141,27 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
     }
     setStatus("ended");
 
-    // Capture lead from transcript
+    // Build full summary
     const fullSummary = transcript.map((t) => `${t.role === "agent" ? "Lionel" : "User"}: ${t.text}`).join("\n");
-
-    // Extract basic info heuristically from transcript text
     const fullText = transcript.map((t) => t.text).join(" ").toLowerCase();
 
-    // Try to find email from typed input first, then from transcript
+    // Extract email — prioritize typed input
     const emailMatch = emailInput.trim() || transcript.map((t) => t.text).join(" ").match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/)?.[0];
     const email = emailMatch || undefined;
 
-    // Determine recommended path from conversation
+    // Extract first name from transcript heuristically
+    let first_name = "";
+    for (const t of transcript) {
+      if (t.role === "user") {
+        const nameMatch = t.text.match(/(?:my name is|i'm|i am|call me)\s+([A-Z][a-z]+)/i);
+        if (nameMatch) {
+          first_name = nameMatch[1];
+          break;
+        }
+      }
+    }
+
+    // Determine recommended path
     let recommended_path = "general";
     if (fullText.includes("business") || fullText.includes("team") || fullText.includes("organization")) {
       recommended_path = "/business";
@@ -150,7 +173,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
       recommended_path = "Leaders Performance Academy";
     }
 
-    // Always attempt lead capture when call ends
+    // Fire lead capture
     try {
       await fetch(
         `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/voice-lead-capture`,
@@ -162,6 +185,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
             Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
           },
           body: JSON.stringify({
+            first_name,
             email,
             recommended_path,
             conversation_summary: fullSummary.slice(0, 2000),
@@ -286,37 +310,41 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
                 </p>
               </div>
 
-              {/* Transcript removed - runs silently in background */}
-
               {/* Email input */}
-              {showEmailInput && (
-                <div className="flex gap-2 mb-4">
-                  <input
-                    type="email"
-                    value={emailInput}
-                    onChange={(e) => setEmailInput(e.target.value)}
-                    placeholder="Type your email here..."
-                    className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#b39758]/50"
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" && emailInput.trim()) {
-                        conversation.sendUserMessage(`My email is ${emailInput.trim()}`);
-                        setTranscript((prev) => [...prev, { role: "user", text: emailInput }]);
-                        setShowEmailInput(false);
-                      }
-                    }}
-                  />
-                  {emailInput && (
-                    <button
-                      onClick={() => {
-                        conversation.sendUserMessage(`My email is ${emailInput.trim()}`);
-                        setTranscript((prev) => [...prev, { role: "user", text: emailInput }]);
-                        setShowEmailInput(false);
+              {showEmailInput && !emailConfirmed && (
+                <div className="mb-4">
+                  <p className="text-[#b39758] text-xs mb-2 font-medium">Type your email below — Lionel will read it back to confirm:</p>
+                  <div className="flex gap-2">
+                    <input
+                      type="email"
+                      value={emailInput}
+                      onChange={(e) => setEmailInput(e.target.value)}
+                      placeholder="your@email.com"
+                      className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#b39758]/50"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && emailInput.trim()) {
+                          submitEmail();
+                        }
                       }}
-                      className="px-3 rounded-xl bg-[#b39758]/20 border border-[#b39758]/30 text-[#b39758] hover:bg-[#b39758]/30 transition-all"
-                    >
-                      <Send className="w-4 h-4" />
-                    </button>
-                  )}
+                      autoFocus
+                    />
+                    {emailInput && (
+                      <button
+                        onClick={submitEmail}
+                        className="px-3 rounded-xl bg-[#b39758]/20 border border-[#b39758]/30 text-[#b39758] hover:bg-[#b39758]/30 transition-all"
+                      >
+                        <Send className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Email confirmed indicator */}
+              {emailConfirmed && (
+                <div className="flex items-center gap-2 mb-4 px-3 py-2 rounded-xl bg-green-500/10 border border-green-500/20">
+                  <Check className="w-4 h-4 text-green-400" />
+                  <span className="text-green-400 text-xs">Email sent to Lionel for confirmation</span>
                 </div>
               )}
 
@@ -333,13 +361,13 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
                   {isMuted ? <MicOff className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
                   {isMuted ? "Unmute" : "Mute"}
                 </button>
-                {!showEmailInput && (
+                {!showEmailInput && !emailConfirmed && (
                   <button
                     onClick={() => setShowEmailInput(true)}
                     className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium bg-[#b39758]/10 border border-[#b39758]/30 text-[#b39758] hover:bg-[#b39758]/20 transition-all"
                   >
                     <Send className="w-4 h-4" />
-                    Chat
+                    Email
                   </button>
                 )}
                 <button
