@@ -86,6 +86,63 @@ export type Database = {
         }
         Relationships: []
       }
+      articles: {
+        Row: {
+          author: string | null
+          content: string
+          created_at: string | null
+          excerpt: string
+          id: string
+          keywords: string[] | null
+          meta_description: string
+          meta_title: string
+          pillar: string
+          pillar_color: string | null
+          publish_date: string | null
+          published: boolean | null
+          reading_time: number | null
+          slug: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          author?: string | null
+          content: string
+          created_at?: string | null
+          excerpt: string
+          id?: string
+          keywords?: string[] | null
+          meta_description: string
+          meta_title: string
+          pillar: string
+          pillar_color?: string | null
+          publish_date?: string | null
+          published?: boolean | null
+          reading_time?: number | null
+          slug: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          author?: string | null
+          content?: string
+          created_at?: string | null
+          excerpt?: string
+          id?: string
+          keywords?: string[] | null
+          meta_description?: string
+          meta_title?: string
+          pillar?: string
+          pillar_color?: string | null
+          publish_date?: string | null
+          published?: boolean | null
+          reading_time?: number | null
+          slug?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       business_consultations: {
         Row: {
           booking_date: string | null
