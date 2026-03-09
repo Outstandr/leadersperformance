@@ -20,6 +20,8 @@ const MentalSovereignty = lazy(() => import("./pages/articles/MentalSovereignty"
 const DisciplineBeatsMotivation = lazy(() => import("./pages/articles/DisciplineBeatsMotivation"));
 const LeadingThroughUncertainty = lazy(() => import("./pages/articles/LeadingThroughUncertainty"));
 const ResetBlueprint = lazy(() => import("./pages/articles/ResetBlueprint"));
+const Articles = lazy(() => import("./pages/Articles"));
+const ArticleDetail = lazy(() => import("./pages/ArticleDetail"));
 
 const queryClient = new QueryClient();
 
