@@ -20,6 +20,8 @@ const MentalSovereignty = lazy(() => import("./pages/articles/MentalSovereignty"
 const DisciplineBeatsMotivation = lazy(() => import("./pages/articles/DisciplineBeatsMotivation"));
 const LeadingThroughUncertainty = lazy(() => import("./pages/articles/LeadingThroughUncertainty"));
 const ResetBlueprint = lazy(() => import("./pages/articles/ResetBlueprint"));
+const Articles = lazy(() => import("./pages/Articles"));
+const ArticleDetail = lazy(() => import("./pages/ArticleDetail"));
 
 const queryClient = new QueryClient();
 
@@ -40,6 +42,8 @@ const AppRoutes = () => {
           <Route path="/articles/discipline-beats-motivation" element={<DisciplineBeatsMotivation />} />
           <Route path="/articles/leading-through-uncertainty" element={<LeadingThroughUncertainty />} />
           <Route path="/articles/reset-blueprint" element={<ResetBlueprint />} />
+          <Route path="/articles" element={<Articles />} />
+          <Route path="/articles/:slug" element={<ArticleDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
