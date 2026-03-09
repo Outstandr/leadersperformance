@@ -45,5 +45,8 @@ verify_jwt = false
 [functions.send-voice-followup-email]
 verify_jwt = false
 
+[functions.manage-articles]
+verify_jwt = false
+
 
 
