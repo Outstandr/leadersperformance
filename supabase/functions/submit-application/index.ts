@@ -104,8 +104,9 @@ Deno.serve(async (req) => {
       submitted_at: new Date().toISOString(),
     };
 
-    // Fire GHL webhook + iCloud calendar in parallel
+    // Fire GHL webhook + HQ webhook + iCloud calendar in parallel
     const ghlUrl = Deno.env.get('GHL_WEBHOOK_URL');
+    const hqUrl = Deno.env.get('HQ_WEBHOOK_URL');
     const webhookPromises: Promise<any>[] = [];
 
     if (ghlUrl) {
@@ -116,6 +117,17 @@ Deno.serve(async (req) => {
           body: JSON.stringify(webhookPayload),
         }).then(r => console.log('GHL response:', r.status))
           .catch(e => console.error('GHL error:', e))
+      );
+    }
+
+    if (hqUrl) {
+      webhookPromises.push(
+        fetch(hqUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(webhookPayload),
+        }).then(r => console.log('HQ webhook response:', r.status))
+          .catch(e => console.error('HQ webhook error:', e))
       );
     }
 

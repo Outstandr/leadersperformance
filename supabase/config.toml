@@ -48,5 +48,8 @@ verify_jwt = false
 [functions.manage-articles]
 verify_jwt = false
 
+[functions.dashboard-api]
+verify_jwt = false
+
 
 
