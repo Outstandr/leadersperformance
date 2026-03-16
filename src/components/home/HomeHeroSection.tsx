@@ -35,7 +35,7 @@ export const HomeHeroSection = () => {
       </div>
 
       {/* Hero content */}
-      <section className="relative z-10 h-screen flex flex-col justify-end pb-[15rem] sm:pb-[15rem] md:pb-[15rem] lg:pb-[15rem]">
+      <section className="relative z-10 h-screen flex flex-col justify-end pb-16 sm:pb-24 md:pb-[15rem] lg:pb-[15rem]">
         <div className="w-full max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 w-full">
             <div className="flex flex-col gap-5 max-w-3xl">
