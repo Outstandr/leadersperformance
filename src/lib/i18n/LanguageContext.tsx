@@ -573,10 +573,10 @@ const nl: Record<string, string> = {
   "home.finalCta.cta": "Begin de aanmelding",
 
   // Transition section (NL)
-  "home.transition.eyebrow": "Balans",
-  "home.transition.headline1": "Er is misschien geen enkelvoudige schakelaar,",
-  "home.transition.headline2": "maar er zijn duidelijke stappen vooruit.",
-  "home.transition.body": "Elk pad is anders. Dit zijn de manieren waarop wij mensen helpen met vertrouwen vooruit te gaan.",
+  "home.transition.eyebrow": "Advies",
+  "home.transition.headline1": "Grote bedrijven worden gebouwd door helderheid,",
+  "home.transition.headline2": "discipline en besluitvaardig leiderschap.",
+  "home.transition.body": "Leaders Performance biedt de structuur die founders nodig hebben om scherper te denken, sterker uit te voeren en bedrijven te bouwen die blijven bestaan.",
 
   // Articles section (NL)
   "home.articles.eyebrow": "Inzichten",

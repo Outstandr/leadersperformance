@@ -107,7 +107,7 @@ export const HomeNavigation = () => {
               }`}
             >
               <Mic className="w-3.5 h-3.5" />
-              Find Your Path
+              Find Your Next Move
             </button>
             <a
               href={bookingUrl}
