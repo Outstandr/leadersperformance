@@ -171,16 +171,21 @@ export const HomeMissionSection = () => {
                 {/* ABOUT LIONEL */}
                 <div className="space-y-8">
                   <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground">
-                    About Lionel
+                    About Lionel Eersteling
                   </h2>
-                  <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold">Our Mission</p>
-                  <p className="text-lg md:text-xl text-foreground leading-relaxed font-medium">
-                    Lionel Eersteling is the Founder of Leaders Performance, a performance architecture built for leaders who refuse internal decline.
-                  </p>
                   <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-                    <p>A former professional athlete with 25+ years in human performance and leadership, he has built and scaled companies across multiple industries, operated under pressure, and advised founders operating at €30M+ in revenue.</p>
-                    <p>Leaders Performance is not coaching — but a structured operating system that integrates vitality, personal development, leadership, and business execution, with <span className="text-lioner-gold font-semibold">UNMASKED</span> as its intervention layer.</p>
-                    <p className="text-foreground font-medium">At 55, Lionel operates with the presence, strength, and discipline of someone decades younger — not by chance, but by design.</p>
+                    <p>Lionel Eersteling is the founder of Leaders Performance.</p>
+                    <p>He is a former professional athlete, entrepreneur, and high-performance specialist with more than 25 years of experience.</p>
+                    <p>Lionel works directly with a very limited number of founders each year.</p>
+                    <p>Founders choose to work with him because he helps them:</p>
+                    <ul className="space-y-2 pl-5 list-disc">
+                      <li>sharpen strategic thinking</li>
+                      <li>challenge blind spots in leadership</li>
+                      <li>strengthen company execution</li>
+                      <li>restructure priorities when necessary</li>
+                      <li>protect the capital and assets they have built</li>
+                    </ul>
+                    <p>Leaders Performance operates as a principal-led boutique advisory supported by an international network of specialists.</p>
                   </div>
                 </div>
               </div>
