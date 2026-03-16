@@ -445,11 +445,11 @@ const nl: Record<string, string> = {
   "nav.applyNow": "Aanmelden voor elite coaching",
 
   // Hero – Home
-  "home.hero.headline1": "Een pad dat",
-  "home.hero.headline2": "jouw toekomst",
-  "home.hero.headline3": "Vormt.",
-  "home.hero.description": "Wij bieden strategisch advies en gecontroleerde reset-omgevingen om ondernemers te helpen complexiteit met vertrouwen te navigeren. Samen bouwen we aan helderheid, uitvoeringsdiscipline en blijvende prestaties.",
-  "home.hero.cta": "Kies jouw pad",
+  "home.hero.headline1": "Strategische Sparring",
+  "home.hero.headline2": "voor",
+  "home.hero.headline3": "Founders.",
+  "home.hero.description": "Leaders Performance is een boutique adviesbureau waar founders strategie, leiderschap en uitvoering aanscherpen.",
+  "home.hero.cta": "Vind Je Volgende Stap",
 
   // Intro
   "home.intro.philosophy": "Onze filosofie",
