@@ -43,11 +43,11 @@ const en: Record<string, string> = {
   "nav.applyNow": "Apply Now",
 
   // Hero – Home
-  "home.hero.headline1": "A Path That",
-  "home.hero.headline2": "Shapes Your",
-  "home.hero.headline3": "Future.",
-  "home.hero.description": "We offer strategic advisory and controlled reset environments to help founders navigate complexity with confidence. Together, we'll build clarity, execution discipline, and lasting performance.",
-  "home.hero.cta": "Choose Your Path",
+  "home.hero.headline1": "Strategic Sparring",
+  "home.hero.headline2": "for",
+  "home.hero.headline3": "Founders.",
+  "home.hero.description": "Leaders Performance is a boutique advisory where founders sharpen strategy, leadership and execution.",
+  "home.hero.cta": "Find Your Next Move",
 
   // Intro
   "home.intro.philosophy": "Our Philosophy",
