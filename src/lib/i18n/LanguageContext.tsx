@@ -528,15 +528,15 @@ const nl: Record<string, string> = {
   "home.testimonials.q4": "De gestructureerde aanpak van besluitvorming is van onschatbare waarde geweest. Ik voel me niet langer verlamd door de complexiteit van het opschalen van mijn bedrijf.",
 
   // Showcase
-  "home.showcase.title1": "Privé woestijn reset",
-  "home.showcase.desc1": "Een 4-daagse gecontroleerde heroriëntatie in de woestijn. Schrap ruis, confronteer uitgestelde beslissingen en herbouw je uitvoeringsstrategie van de grond af.",
-  "home.showcase.cta1": "Verken UNMASKED",
-  "home.showcase.title2": "Strategisch advies",
-  "home.showcase.desc2": "Doorlopende strategische prestatieaudits, uitvoeringsdiscipline en verantwoordelijkheid voor ondernemers die cruciale keerpunten navigeren.",
-  "home.showcase.cta2": "Meer over advies",
-  "home.showcase.title3": "Meetbare prestaties",
-  "home.showcase.desc3": "Volg je leiderschapsdiscipline met onze eigen scorecard. Identificeer waar prestaties wegglippen en corrigeer voordat het escaleert.",
-  "home.showcase.cta3": "Doe de assessment",
+  "home.showcase.title1": "UNMASKED Interventie",
+  "home.showcase.desc1": "Een privé interventieomgeving in de woestijn van Dubai voor founders die helderheid, structurele reset en besluitvaardige uitvoering nodig hebben.",
+  "home.showcase.cta1": "Aanmelden voor UNMASKED",
+  "home.showcase.title2": "Founder Strategisch Advies",
+  "home.showcase.desc2": "Werk direct samen met Lionel Eersteling als strategische sparringpartner voor scherper denken, sterker leiderschap en gedisciplineerde uitvoering.",
+  "home.showcase.cta2": "Advies aanvragen",
+  "home.showcase.title3": "Kapitaalbescherming",
+  "home.showcase.desc3": "Voor founders die geconfronteerd worden met situaties waarbij kapitaal, partnerschappen of eigendomsstructuren worden blootgesteld. Ondersteund door internationale specialisten.",
+  "home.showcase.cta3": "Start assessment",
 
   // Story
   "home.story.eyebrow": "Echte mensen. Echte verandering.",
