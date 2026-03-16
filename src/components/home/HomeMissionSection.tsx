@@ -88,22 +88,22 @@ export const HomeMissionSection = () => {
                 {/* ABOUT LIONEL */}
                 <div className="space-y-8">
                   <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground">
-                    About Lionel
+                    {t("home.mission.heading")}
                   </h2>
                   <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-                    <p>Lionel Eersteling is the founder of Leaders Performance, a boutique advisory platform built for founders who take their companies seriously.</p>
-                    <p>A former professional athlete with more than 25 years of experience in human performance, leadership and entrepreneurship, Lionel combines performance discipline with strategic business thinking.</p>
-                    <p>Over the past decades he has built and scaled companies across multiple industries and worked alongside founders navigating growth, leadership challenges and complex business environments.</p>
-                    <p>Today he works with a limited number of founders each year as a strategic sparring partner.</p>
-                    <p>His role is not to coach from the sidelines, but to work alongside founders to:</p>
+                    <p>{t("home.about.p1")}</p>
+                    <p>{t("home.about.p2")}</p>
+                    <p>{t("home.about.p3")}</p>
+                    <p>{t("home.about.p4")}</p>
+                    <p>{t("home.about.p5")}</p>
                     <ul className="space-y-2 pl-5 list-disc">
-                      <li>sharpen strategic thinking</li>
-                      <li>challenge blind spots</li>
-                      <li>strengthen leadership discipline</li>
-                      <li>improve execution inside the company</li>
-                      <li>protect the capital they have built</li>
+                      <li>{t("home.about.b1")}</li>
+                      <li>{t("home.about.b2")}</li>
+                      <li>{t("home.about.b3")}</li>
+                      <li>{t("home.about.b4")}</li>
+                      <li>{t("home.about.b5")}</li>
                     </ul>
-                    <p>Leaders Performance operates as a boutique leadership infrastructure, supported by an international network of specialists when situations require legal, investigative or strategic expertise.</p>
+                    <p>{t("home.about.closing")}</p>
                   </div>
                 </div>
 
@@ -112,14 +112,14 @@ export const HomeMissionSection = () => {
                 {/* MISSION */}
                 <div className="space-y-8">
                   <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground">
-                    Our Mission
+                    {t("home.missionNew.heading")}
                   </h2>
                   <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-                    <p className="text-foreground font-medium">To strengthen the founder behind the company.</p>
-                    <p>At Leaders Performance we believe that companies rarely fail because of ideas.</p>
-                    <p>They fail because leadership becomes unclear, decisions lose sharpness, and execution drifts.</p>
-                    <p>Our mission is to help founders build companies with stronger foundations through disciplined thinking, clear leadership and structured execution.</p>
-                    <p>We do this through strategic sparring, focused intervention environments and leadership infrastructure designed for founders who are serious about building enduring companies.</p>
+                    <p className="text-foreground font-medium">{t("home.missionNew.tagline")}</p>
+                    <p>{t("home.missionNew.p1")}</p>
+                    <p>{t("home.missionNew.p2")}</p>
+                    <p>{t("home.missionNew.p3")}</p>
+                    <p>{t("home.missionNew.p4")}</p>
                   </div>
                 </div>
 
@@ -128,21 +128,21 @@ export const HomeMissionSection = () => {
                 {/* VISION */}
                 <div className="space-y-8">
                   <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground">
-                    Our Vision
+                    {t("home.visionNew.heading")}
                   </h2>
                   <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-                    <p className="text-foreground font-medium">To build an environment where founders develop the clarity, discipline and leadership required to build resilient companies.</p>
-                    <p>As technology accelerates and markets move faster than ever, the real competitive advantage will not be tools or tactics.</p>
-                    <p>It will be leadership.</p>
-                    <p>The future belongs to founders who combine:</p>
+                    <p className="text-foreground font-medium">{t("home.visionNew.tagline")}</p>
+                    <p>{t("home.visionNew.p1")}</p>
+                    <p>{t("home.visionNew.p2")}</p>
+                    <p>{t("home.visionNew.p3")}</p>
                     <ul className="space-y-2 pl-5 list-disc">
-                      <li>strategic clarity</li>
-                      <li>disciplined execution</li>
-                      <li>strong leadership</li>
-                      <li>technological awareness</li>
-                      <li>personal resilience</li>
+                      <li>{t("home.visionNew.b1")}</li>
+                      <li>{t("home.visionNew.b2")}</li>
+                      <li>{t("home.visionNew.b3")}</li>
+                      <li>{t("home.visionNew.b4")}</li>
+                      <li>{t("home.visionNew.b5")}</li>
                     </ul>
-                    <p>Leaders Performance exists to support those founders.</p>
+                    <p>{t("home.visionNew.closing")}</p>
                   </div>
                 </div>
               </div>
