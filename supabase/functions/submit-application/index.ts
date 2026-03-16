@@ -149,7 +149,7 @@ Deno.serve(async (req) => {
             email: body.email.trim(),
             phone: 'Not provided',
             dateTime: body.bookingDateTime,
-            summary: `HIGH PERFORMANCE COACHING - ${body.firstName.trim()} ${body.lastName.trim()}`,
+            summary: `FOUNDER STRATEGIC ADVISORY - ${body.firstName.trim()} ${body.lastName.trim()}`,
           }),
         })
           .then(async r => {

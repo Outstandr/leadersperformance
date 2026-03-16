@@ -129,15 +129,15 @@ const en: Record<string, string> = {
   "home.testimonials.q4": "The structured approach to decision-making has been invaluable. I no longer feel paralyzed by the complexity of scaling my business.",
 
   // Showcase
-  "home.showcase.title1": "Private Desert Reset",
-  "home.showcase.desc1": "A 4-day controlled recalibration experience in the desert. Strip away noise, confront deferred decisions, and rebuild your execution strategy from the ground up.",
-  "home.showcase.cta1": "Explore UNMASKED",
-  "home.showcase.title2": "Strategic Advisory",
-  "home.showcase.desc2": "Ongoing strategic performance audits, execution discipline, and accountability for business owners navigating critical inflection points.",
-  "home.showcase.cta2": "Learn about Advisory",
-  "home.showcase.title3": "Measurable Performance",
-  "home.showcase.desc3": "Track your leadership discipline with our proprietary scorecard. Identify where performance is drifting and course-correct before it compounds.",
-  "home.showcase.cta3": "Take the Assessment",
+  "home.showcase.title1": "UNMASKED Intervention",
+  "home.showcase.desc1": "A private intervention environment in the Dubai desert for founders who require clarity, structural reset and decisive execution.",
+  "home.showcase.cta1": "Apply for UNMASKED",
+  "home.showcase.title2": "Founder Strategic Advisory",
+  "home.showcase.desc2": "Work directly with Lionel Eersteling as a strategic sparring partner for sharper thinking, stronger leadership and disciplined execution.",
+  "home.showcase.cta2": "Request Advisory",
+  "home.showcase.title3": "Capital Protection",
+  "home.showcase.desc3": "For founders facing situations where capital, partnerships or ownership structures become exposed. Supported by international specialists.",
+  "home.showcase.cta3": "Start Assessment",
 
   // Story
   "home.story.eyebrow": "Real People. Real Change.",
@@ -528,15 +528,15 @@ const nl: Record<string, string> = {
   "home.testimonials.q4": "De gestructureerde aanpak van besluitvorming is van onschatbare waarde geweest. Ik voel me niet langer verlamd door de complexiteit van het opschalen van mijn bedrijf.",
 
   // Showcase
-  "home.showcase.title1": "Privé woestijn reset",
-  "home.showcase.desc1": "Een 4-daagse gecontroleerde heroriëntatie in de woestijn. Schrap ruis, confronteer uitgestelde beslissingen en herbouw je uitvoeringsstrategie van de grond af.",
-  "home.showcase.cta1": "Verken UNMASKED",
-  "home.showcase.title2": "Strategisch advies",
-  "home.showcase.desc2": "Doorlopende strategische prestatieaudits, uitvoeringsdiscipline en verantwoordelijkheid voor ondernemers die cruciale keerpunten navigeren.",
-  "home.showcase.cta2": "Meer over advies",
-  "home.showcase.title3": "Meetbare prestaties",
-  "home.showcase.desc3": "Volg je leiderschapsdiscipline met onze eigen scorecard. Identificeer waar prestaties wegglippen en corrigeer voordat het escaleert.",
-  "home.showcase.cta3": "Doe de assessment",
+  "home.showcase.title1": "UNMASKED Interventie",
+  "home.showcase.desc1": "Een privé interventieomgeving in de woestijn van Dubai voor founders die helderheid, structurele reset en besluitvaardige uitvoering nodig hebben.",
+  "home.showcase.cta1": "Aanmelden voor UNMASKED",
+  "home.showcase.title2": "Founder Strategisch Advies",
+  "home.showcase.desc2": "Werk direct samen met Lionel Eersteling als strategische sparringpartner voor scherper denken, sterker leiderschap en gedisciplineerde uitvoering.",
+  "home.showcase.cta2": "Advies aanvragen",
+  "home.showcase.title3": "Kapitaalbescherming",
+  "home.showcase.desc3": "Voor founders die geconfronteerd worden met situaties waarbij kapitaal, partnerschappen of eigendomsstructuren worden blootgesteld. Ondersteund door internationale specialisten.",
+  "home.showcase.cta3": "Start assessment",
 
   // Story
   "home.story.eyebrow": "Echte mensen. Echte verandering.",
@@ -555,8 +555,8 @@ const nl: Record<string, string> = {
   "home.faq.a2": "Uitsluitend voor ondernemers, CEO's en entrepreneurs die momenteel zware operationele druk dragen en complexe beslissingen moeten nemen. Niet voor beginners of mensen op zoek naar een lifestyleretraite.",
   "home.faq.q3": "Waarom zijn UNMASKED-edities beperkt tot 2–4 personen?",
   "home.faq.a3": "Om privacy te beschermen en diepgang te waarborgen. Dit maakt direct, hoogst gepersonaliseerd strategisch werk met Lionel mogelijk, zonder groepsdynamiek.",
-  "home.faq.q4": "Wat is het verschil tussen UNMASKED en High Performance Coaching en Business Coaching?",
-  "home.faq.a4": "UNMASKED is een snelle, 4-daagse fysieke en mentale reset om onmiddellijke helderheid te creëren. High Performance Coaching en Business Coaching zijn een doorlopend, langdurig strategisch partnerschap voor gedisciplineerde uitvoering in de tijd.",
+  "home.faq.q4": "Wat is het verschil tussen UNMASKED en Founder Strategic Advisory?",
+  "home.faq.a4": "UNMASKED is een intensieve, meerdaagse interventie-omgeving voor onmiddellijke helderheid en structurele reset. Founder Strategic Advisory is een doorlopend strategisch partnerschap voor gedisciplineerde uitvoering in de tijd.",
 
   // Final CTA
   "home.finalCta.heading": "Helderheid is een beslissing.",
