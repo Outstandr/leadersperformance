@@ -452,8 +452,8 @@ const nl: Record<string, string> = {
   "home.hero.cta": "Vind Je Volgende Stap",
 
   // Intro
-  "home.intro.philosophy": "Onze filosofie",
-  "home.intro.text": "Bij Leaders Performance versnellen we verandering niet kunstmatig — we geven het richting. Via structuur, duidelijke verantwoordelijkheid en ritme creëren we groei die duurzaam verankerd is in gedrag en resultaat.",
+  "home.intro.philosophy": "Serieuze Bedrijven Vereisen Serieus Leiderschap",
+  "home.intro.text": "Leaders Performance bestaat om de founder achter het bedrijf te versterken. Wij bieden strategische sparring, gestructureerde interventies en leiderschapsinfrastructuur die founders helpen scherpere beslissingen te nemen, sterker uit te voeren en bedrijven te bouwen met duurzame fundamenten.",
   "home.intro.cta": "Over Leaders Performance",
 
   // Offerings
