@@ -456,6 +456,7 @@ const nl: Record<string, string> = {
   "home.intro.philosophy": "Serieuze Bedrijven Vereisen Serieus Leiderschap",
   "home.intro.text": "Leaders Performance bestaat om de founder achter het bedrijf te versterken. Wij bieden strategische sparring, gestructureerde interventies en leiderschapsinfrastructuur die founders helpen scherpere beslissingen te nemen, sterker uit te voeren en bedrijven te bouwen met duurzame fundamenten.",
   "home.intro.cta": "Over Leaders Performance",
+  "home.intro.quote": "Uitvoering creëert bedrijven. Helderheid creëert uitvoering.",
 
   // Offerings
   "home.offerings.eyebrow1": "Privé reset",
