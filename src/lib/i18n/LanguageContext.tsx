@@ -171,10 +171,10 @@ const en: Record<string, string> = {
   "home.finalCta.cta": "Begin the Application",
 
   // Transition section
-  "home.transition.eyebrow": "Balance",
-  "home.transition.headline1": "There may not be a single switch,",
-  "home.transition.headline2": "but there are clear steps forward.",
-  "home.transition.body": "Every path is different. These are the ways we help people move forward with confidence.",
+  "home.transition.eyebrow": "Advisory",
+  "home.transition.headline1": "Great companies are built through clarity,",
+  "home.transition.headline2": "discipline and decisive leadership.",
+  "home.transition.body": "Leaders Performance provides the structure founders need to think sharper, execute stronger and build companies that last.",
 
   // Articles section
   "home.articles.eyebrow": "Insights",
