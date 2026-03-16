@@ -48,7 +48,7 @@ export const HomeHeroSection = () => {
                 {t("home.hero.description")}
               </p>
             </div>
-            <div className="flex flex-col items-start md:items-end gap-3 shrink-0 max-w-sm md:text-right md:mb-[-11.25rem]">
+            <div className="flex flex-col items-start md:items-end gap-3 shrink-0 max-w-sm md:text-right md:mb-[-7rem]">
               <p className="text-background/80 text-xs sm:text-sm leading-relaxed drop-shadow-md">
                 {t("home.hero.buttonIntro")}
               </p>
