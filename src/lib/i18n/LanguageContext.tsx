@@ -43,16 +43,17 @@ const en: Record<string, string> = {
   "nav.applyNow": "Apply Now",
 
   // Hero – Home
-  "home.hero.headline1": "A Path That",
-  "home.hero.headline2": "Shapes Your",
-  "home.hero.headline3": "Future.",
-  "home.hero.description": "We offer strategic advisory and controlled reset environments to help founders navigate complexity with confidence. Together, we'll build clarity, execution discipline, and lasting performance.",
-  "home.hero.cta": "Choose Your Path",
+  "home.hero.headline1": "Strategic Sparring",
+  "home.hero.headline2": "for",
+  "home.hero.headline3": "Founders.",
+  "home.hero.description": "Leaders Performance is a boutique advisory where founders sharpen strategy, leadership and execution.",
+  "home.hero.cta": "Find Your Next Move",
 
   // Intro
-  "home.intro.philosophy": "Our Philosophy",
-  "home.intro.text": "At Leaders Performance, we don't rush change — we help it unfold with intention. Through structured environments, strategic accountability, and a steady pace, we support growth that lasts.",
+  "home.intro.philosophy": "Serious Companies Require Serious Leadership",
+  "home.intro.text": "Leaders Performance exists to strengthen the founder behind the company. We provide strategic sparring, structured interventions and leadership infrastructure that help founders sharpen decisions, strengthen execution and build companies with durable foundations.",
   "home.intro.cta": "About Leaders Performance",
+  "home.intro.quote": "Execution creates companies. Clarity creates execution.",
 
   // Offerings
   "home.offerings.eyebrow1": "Private Reset",
@@ -171,10 +172,10 @@ const en: Record<string, string> = {
   "home.finalCta.cta": "Begin the Application",
 
   // Transition section
-  "home.transition.eyebrow": "Balance",
-  "home.transition.headline1": "There may not be a single switch,",
-  "home.transition.headline2": "but there are clear steps forward.",
-  "home.transition.body": "Every path is different. These are the ways we help people move forward with confidence.",
+  "home.transition.eyebrow": "Advisory",
+  "home.transition.headline1": "Great companies are built through clarity,",
+  "home.transition.headline2": "discipline and decisive leadership.",
+  "home.transition.body": "Leaders Performance provides the structure founders need to think sharper, execute stronger and build companies that last.",
 
   // Articles section
   "home.articles.eyebrow": "Insights",
@@ -445,16 +446,17 @@ const nl: Record<string, string> = {
   "nav.applyNow": "Aanmelden voor elite coaching",
 
   // Hero – Home
-  "home.hero.headline1": "Een pad dat",
-  "home.hero.headline2": "jouw toekomst",
-  "home.hero.headline3": "Vormt.",
-  "home.hero.description": "Wij bieden strategisch advies en gecontroleerde reset-omgevingen om ondernemers te helpen complexiteit met vertrouwen te navigeren. Samen bouwen we aan helderheid, uitvoeringsdiscipline en blijvende prestaties.",
-  "home.hero.cta": "Kies jouw pad",
+  "home.hero.headline1": "Strategische Sparring",
+  "home.hero.headline2": "voor",
+  "home.hero.headline3": "Founders.",
+  "home.hero.description": "Leaders Performance is een boutique adviesbureau waar founders strategie, leiderschap en uitvoering aanscherpen.",
+  "home.hero.cta": "Vind Je Volgende Stap",
 
   // Intro
-  "home.intro.philosophy": "Onze filosofie",
-  "home.intro.text": "Bij Leaders Performance versnellen we verandering niet kunstmatig — we geven het richting. Via structuur, duidelijke verantwoordelijkheid en ritme creëren we groei die duurzaam verankerd is in gedrag en resultaat.",
+  "home.intro.philosophy": "Serieuze Bedrijven Vereisen Serieus Leiderschap",
+  "home.intro.text": "Leaders Performance bestaat om de founder achter het bedrijf te versterken. Wij bieden strategische sparring, gestructureerde interventies en leiderschapsinfrastructuur die founders helpen scherpere beslissingen te nemen, sterker uit te voeren en bedrijven te bouwen met duurzame fundamenten.",
   "home.intro.cta": "Over Leaders Performance",
+  "home.intro.quote": "Uitvoering creëert bedrijven. Helderheid creëert uitvoering.",
 
   // Offerings
   "home.offerings.eyebrow1": "Privé reset",
@@ -573,10 +575,10 @@ const nl: Record<string, string> = {
   "home.finalCta.cta": "Begin de aanmelding",
 
   // Transition section (NL)
-  "home.transition.eyebrow": "Balans",
-  "home.transition.headline1": "Er is misschien geen enkelvoudige schakelaar,",
-  "home.transition.headline2": "maar er zijn duidelijke stappen vooruit.",
-  "home.transition.body": "Elk pad is anders. Dit zijn de manieren waarop wij mensen helpen met vertrouwen vooruit te gaan.",
+  "home.transition.eyebrow": "Advies",
+  "home.transition.headline1": "Grote bedrijven worden gebouwd door helderheid,",
+  "home.transition.headline2": "discipline en besluitvaardig leiderschap.",
+  "home.transition.body": "Leaders Performance biedt de structuur die founders nodig hebben om scherper te denken, sterker uit te voeren en bedrijven te bouwen die blijven bestaan.",
 
   // Articles section (NL)
   "home.articles.eyebrow": "Inzichten",

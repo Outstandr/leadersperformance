@@ -31,10 +31,10 @@ export const HomeNavigation = () => {
 
   const navItems = [
     { label: t("nav.about"), href: "#about" },
-    { label: "BUSINESS", href: "/business" },
-    { label: "ELITE", href: "/elite" },
+    { label: "FOUNDER ADVISORY", href: "/business" },
+    { label: "UNMASKED", href: "/elite" },
+    { label: "ACADEMY", href: "#articles" },
     { label: "ARTICLES", href: "#articles" },
-    { label: t("nav.faq"), href: "#faq" },
   ];
 
   const handleNav = (href: string) => {
@@ -107,7 +107,7 @@ export const HomeNavigation = () => {
               }`}
             >
               <Mic className="w-3.5 h-3.5" />
-              Find Your Path
+              Find Your Next Move
             </button>
             <a
               href={bookingUrl}
