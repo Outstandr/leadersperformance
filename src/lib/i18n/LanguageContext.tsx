@@ -47,7 +47,7 @@ const en: Record<string, string> = {
   "home.hero.headline2": "for",
   "home.hero.headline3": "Founders.",
   "home.hero.description": "Leaders Performance is a boutique advisory where founders sharpen strategy, leadership and execution.",
-  "home.hero.cta": "Find Your Next Move",
+  "home.hero.cta": "Choose Your Path",
 
   // Intro
   "home.intro.philosophy": "Serious Companies Require Serious Leadership",
