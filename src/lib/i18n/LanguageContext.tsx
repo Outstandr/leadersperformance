@@ -472,7 +472,6 @@ const nl: Record<string, string> = {
   "home.mission.read": "Lees",
   "home.mission.pause": "Pauzeer",
   "home.mission.restart": "Herstart",
-  "home.mission.heading": "Onze missie",
   "home.mission.heading": "Over Lionel",
   "home.about.p1": "Lionel Eersteling is de oprichter van Leaders Performance, een boutique adviesplatform gebouwd voor founders die hun bedrijven serieus nemen.",
   "home.about.p2": "Een voormalig professioneel atleet met meer dan 25 jaar ervaring in menselijke prestaties, leiderschap en ondernemerschap. Lionel combineert prestatiediscipline met strategisch zakelijk denken.",
