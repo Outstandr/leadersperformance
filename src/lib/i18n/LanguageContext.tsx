@@ -53,6 +53,7 @@ const en: Record<string, string> = {
   "home.intro.philosophy": "Serious Companies Require Serious Leadership",
   "home.intro.text": "Leaders Performance exists to strengthen the founder behind the company. We provide strategic sparring, structured interventions and leadership infrastructure that help founders sharpen decisions, strengthen execution and build companies with durable foundations.",
   "home.intro.cta": "About Leaders Performance",
+  "home.intro.quote": "Execution creates companies. Clarity creates execution.",
 
   // Offerings
   "home.offerings.eyebrow1": "Private Reset",
