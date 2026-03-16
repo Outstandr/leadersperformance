@@ -38,19 +38,19 @@ export const HomeHeroSection = () => {
       <section className="relative z-10 h-screen flex flex-col justify-end pb-16 sm:pb-24 md:pb-28 lg:pb-32">
         <div className="w-full max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 w-full">
-            <div className="flex flex-col items-center gap-5 max-w-3xl">
-              <h1 className="font-serif text-[clamp(2.75rem,8vw,6.5rem)] font-medium text-background leading-[1.05] tracking-tight text-center">
+            <div className="flex flex-col gap-5 max-w-3xl">
+              <h1 className="font-serif text-[clamp(2.75rem,8vw,6.5rem)] font-medium text-background leading-[1.05] tracking-tight">
                 {t("home.hero.headline1")}
                 <br />
                 <span className="text-lioner-gold italic">{t("home.hero.headline2")} {t("home.hero.headline3")}</span>
               </h1>
-              <p className="text-background/90 font-normal text-sm sm:text-base md:text-lg leading-relaxed max-w-md drop-shadow-md text-center">
+              <p className="text-background/90 font-normal text-sm sm:text-base md:text-lg leading-relaxed max-w-md drop-shadow-md">
                 {t("home.hero.description")}
               </p>
             </div>
             <button
               onClick={openVoiceAgent}
-              className="inline-flex items-center gap-3 bg-lioner-gold text-foreground rounded-full px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-medium tracking-wider uppercase hover:bg-lioner-gold/90 transition-colors whitespace-nowrap self-center md:self-end shrink-0"
+              className="inline-flex items-center gap-3 bg-lioner-gold text-foreground rounded-full px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-medium tracking-wider uppercase hover:bg-lioner-gold/90 transition-colors whitespace-nowrap self-start md:self-end shrink-0"
             >
               {t("home.hero.cta")}
               <span className="w-2 h-2 rounded-full bg-foreground/40" />
