@@ -452,6 +452,7 @@ const nl: Record<string, string> = {
   "home.hero.headline3": "Founders.",
   "home.hero.description": "Leaders Performance is een boutique adviesbureau waar founders strategie, leiderschap en uitvoering aanscherpen.",
   "home.hero.cta": "Vind Je Volgende Stap",
+  "home.hero.buttonIntro": "Niet elke founder heeft dezelfde volgende stap nodig. Start een kort gesprek om de meest relevante stap binnen Leaders Performance te bepalen.",
 
   // Intro
   "home.intro.philosophy": "Serieuze Bedrijven Vereisen Serieus Leiderschap",
