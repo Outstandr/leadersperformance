@@ -48,13 +48,18 @@ export const HomeHeroSection = () => {
                 {t("home.hero.description")}
               </p>
             </div>
-            <button
-              onClick={openVoiceAgent}
-              className="inline-flex items-center gap-3 bg-lioner-gold text-foreground rounded-full px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-medium tracking-wider uppercase hover:bg-lioner-gold/90 transition-colors whitespace-nowrap self-start md:self-end shrink-0"
-            >
-              {t("home.hero.cta")}
-              <span className="w-2 h-2 rounded-full bg-foreground/40" />
-            </button>
+            <div className="flex flex-col items-start md:items-end gap-3 shrink-0 max-w-sm md:text-right">
+              <p className="text-background/80 text-xs sm:text-sm leading-relaxed drop-shadow-md">
+                {t("home.hero.buttonIntro")}
+              </p>
+              <button
+                onClick={openVoiceAgent}
+                className="inline-flex items-center gap-3 bg-lioner-gold text-foreground rounded-full px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-medium tracking-wider uppercase hover:bg-lioner-gold/90 transition-colors whitespace-nowrap"
+              >
+                {t("home.hero.cta")}
+                <span className="w-2 h-2 rounded-full bg-foreground/40" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
