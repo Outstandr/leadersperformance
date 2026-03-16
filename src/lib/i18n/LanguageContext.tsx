@@ -106,11 +106,7 @@ const en: Record<string, string> = {
   "home.vision.b3": "• emotionally mature",
   "home.vision.b4": "• technologically capable",
   "home.vision.b5": "• strategically disciplined",
-  "home.vision.ecosystem": "Leaders Performance builds an ecosystem where:",
-  "home.vision.e1": "• high performance becomes a lifestyle",
-  "home.vision.e2": "• AI becomes a strategic multiplier",
-  "home.vision.e3": "• human depth remains the differentiator",
-  "home.vision.e4": "• companies grow from a solid internal foundation",
+  "home.vision.ecosystem": "Leaders Performance provides a leadership infrastructure where founders sharpen strategy, strengthen leadership and execute with discipline.",
   "home.vision.notFollowers": "We are not building followers.",
   "home.vision.autonomous": "We are building autonomous leaders who create the companies of the future.",
 
