@@ -46,7 +46,7 @@ export const HomeHeroSection = () => {
               </h1>
             </div>
             <div className="flex flex-col items-start md:items-end gap-5">
-              <p className="text-background/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-md md:text-right">
+              <p className="text-background font-semibold text-sm sm:text-base md:text-lg leading-relaxed max-w-md md:text-right drop-shadow-md">
                 {t("home.hero.description")}
               </p>
               <button
