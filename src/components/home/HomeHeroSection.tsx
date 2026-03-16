@@ -35,7 +35,7 @@ export const HomeHeroSection = () => {
       </div>
 
       {/* Hero content */}
-      <section className="relative z-10 h-screen flex flex-col justify-end pb-[15rem] sm:pb-[15rem] md:pb-[15rem] lg:pb-[15rem]">
+      <section className="relative z-10 h-screen flex flex-col justify-end pb-16 sm:pb-24 md:pb-[15rem] lg:pb-[15rem]">
         <div className="w-full max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 w-full">
             <div className="flex flex-col gap-5 max-w-3xl">
@@ -48,7 +48,7 @@ export const HomeHeroSection = () => {
                 {t("home.hero.description")}
               </p>
             </div>
-            <div className="flex flex-col items-start md:items-end gap-3 shrink-0 max-w-sm md:text-right mb-[-3rem] md:mb-[-7rem]">
+            <div className="flex flex-col items-start md:items-end gap-3 shrink-0 max-w-sm md:text-right mt-4 md:mt-0 md:mb-[-7rem]">
               <p className="text-background/80 text-xs sm:text-sm leading-relaxed drop-shadow-md">
                 {t("home.hero.buttonIntro")}
               </p>
