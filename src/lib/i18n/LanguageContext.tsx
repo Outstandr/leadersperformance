@@ -50,8 +50,8 @@ const en: Record<string, string> = {
   "home.hero.cta": "Find Your Next Move",
 
   // Intro
-  "home.intro.philosophy": "Our Philosophy",
-  "home.intro.text": "At Leaders Performance, we don't rush change — we help it unfold with intention. Through structured environments, strategic accountability, and a steady pace, we support growth that lasts.",
+  "home.intro.philosophy": "Serious Companies Require Serious Leadership",
+  "home.intro.text": "Leaders Performance exists to strengthen the founder behind the company. We provide strategic sparring, structured interventions and leadership infrastructure that help founders sharpen decisions, strengthen execution and build companies with durable foundations.",
   "home.intro.cta": "About Leaders Performance",
 
   // Offerings
