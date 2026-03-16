@@ -506,11 +506,7 @@ const nl: Record<string, string> = {
   "home.vision.b3": "• emotioneel volwassen zijn",
   "home.vision.b4": "• technologisch vaardig zijn",
   "home.vision.b5": "• strategisch gedisciplineerd zijn",
-  "home.vision.ecosystem": "Leaders Performance bouwt een ecosysteem waar:",
-  "home.vision.e1": "• topprestaties een levensstijl worden",
-  "home.vision.e2": "• AI een strategische vermenigvuldiger wordt",
-  "home.vision.e3": "• menselijke diepgang de onderscheidende factor blijft",
-  "home.vision.e4": "• bedrijven groeien vanuit een solide intern fundament",
+  "home.vision.ecosystem": "Leaders Performance biedt een leiderschapsinfrastructuur waar founders strategie aanscherpen, leiderschap versterken en gedisciplineerd uitvoeren.",
   "home.vision.notFollowers": "We bouwen geen volgers.",
   "home.vision.autonomous": "We bouwen autonome leiders die de bedrijven van de toekomst creëren.",
 
