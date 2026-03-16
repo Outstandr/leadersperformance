@@ -55,23 +55,23 @@ export const HomeNavigation = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-6 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex-shrink-0">
             <img
               src={isDark ? logoWhite : logo}
               alt="Leaders Performance"
-              className="h-14 w-auto transition-opacity duration-300"
+              className="h-12 xl:h-14 w-auto transition-opacity duration-300"
             />
           </Link>
 
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
             {navItems.map((item) =>
               item.href.startsWith("/") ? (
                 <Link
                   key={item.label}
                   to={item.href}
-                  className={`text-[13px] font-medium tracking-wide transition-colors ${
+                  className={`whitespace-nowrap text-[11px] xl:text-[13px] font-medium tracking-widest uppercase transition-colors ${
                     isDark
                       ? "text-background/70 hover:text-background"
                       : "text-muted-foreground hover:text-foreground"
@@ -87,7 +87,7 @@ export const HomeNavigation = () => {
                     e.preventDefault();
                     handleNav(item.href);
                   }}
-                  className={`text-[13px] font-medium tracking-wide transition-colors ${
+                  className={`whitespace-nowrap text-[11px] xl:text-[13px] font-medium tracking-widest uppercase transition-colors ${
                     isDark
                       ? "text-background/70 hover:text-background"
                       : "text-muted-foreground hover:text-foreground"
@@ -100,20 +100,20 @@ export const HomeNavigation = () => {
             {/* Voice Agent Button */}
             <button
               onClick={openVoiceAgent}
-              className={`flex items-center gap-2 text-[13px] font-medium tracking-wide px-4 py-2.5 rounded-full transition-all border ${
+              className={`flex items-center gap-2 whitespace-nowrap text-[11px] xl:text-[13px] font-medium tracking-wide px-3 xl:px-4 py-2 rounded-full transition-all border ${
                 isDark
-                  ? "border-[#b39758]/50 text-[#b39758] hover:bg-[#b39758]/10"
-                  : "border-[#b39758]/50 text-[#b39758] hover:bg-[#b39758]/10"
+                  ? "border-lioner-gold/50 text-lioner-gold hover:bg-lioner-gold/10"
+                  : "border-lioner-gold/50 text-lioner-gold hover:bg-lioner-gold/10"
               }`}
             >
-              <Mic className="w-3.5 h-3.5" />
+              <Mic className="w-3.5 h-3.5 flex-shrink-0" />
               Find Your Next Move
             </button>
             <a
               href={bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-[13px] font-medium tracking-wide px-6 py-2.5 transition-all ${
+              className={`whitespace-nowrap text-[11px] xl:text-[13px] font-medium tracking-wide px-4 xl:px-6 py-2.5 transition-all ${
                 isDark
                   ? "bg-lioner-gold text-white hover:bg-lioner-gold/90"
                   : "bg-foreground text-background hover:bg-foreground/90"
