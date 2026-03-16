@@ -48,6 +48,7 @@ const en: Record<string, string> = {
   "home.hero.headline3": "Founders.",
   "home.hero.description": "Leaders Performance is a boutique advisory where founders sharpen strategy, leadership and execution.",
   "home.hero.cta": "Find Your Next Move",
+  "home.hero.buttonIntro": "Not every founder needs the same next step. Start a short conversation to determine the most relevant move inside Leaders Performance.",
 
   // Intro
   "home.intro.philosophy": "Serious Companies Require Serious Leadership",
@@ -451,6 +452,7 @@ const nl: Record<string, string> = {
   "home.hero.headline3": "Founders.",
   "home.hero.description": "Leaders Performance is een boutique adviesbureau waar founders strategie, leiderschap en uitvoering aanscherpen.",
   "home.hero.cta": "Vind Je Volgende Stap",
+  "home.hero.buttonIntro": "Niet elke founder heeft dezelfde volgende stap nodig. Start een kort gesprek om de meest relevante stap binnen Leaders Performance te bepalen.",
 
   // Intro
   "home.intro.philosophy": "Serieuze Bedrijven Vereisen Serieus Leiderschap",
