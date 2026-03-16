@@ -42,9 +42,7 @@ export const HomeHeroSection = () => {
               <h1 className="font-serif text-[clamp(2.75rem,8vw,6.5rem)] font-medium text-background leading-[1.05] tracking-tight">
                 {t("home.hero.headline1")}
                 <br />
-                {t("home.hero.headline2")}
-                <br />
-                <span className="text-lioner-gold italic">{t("home.hero.headline3")}</span>
+                <span className="text-lioner-gold italic">{t("home.hero.headline2")} {t("home.hero.headline3")}</span>
               </h1>
             </div>
             <div className="flex flex-col items-start md:items-end gap-5">
