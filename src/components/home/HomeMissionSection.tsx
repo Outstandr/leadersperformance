@@ -88,17 +88,13 @@ export const HomeMissionSection = () => {
                 {/* MISSION */}
                 <div className="space-y-8">
                   <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground">
-                    {t("home.mission.heading")}
+                    Strategic Sparring
+                    <br />
+                    <span className="text-lioner-gold italic">for Founders.</span>
                   </h2>
-                  <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold">Leaders Performance</p>
-                  <p className="text-lg md:text-xl text-foreground leading-relaxed font-medium">
-                    {t("home.mission.tagline")}
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                    Leaders Performance is a boutique advisory where founders sharpen strategy, leadership and execution
                   </p>
-                  <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-                    <p>{t("home.mission.p1")}</p>
-                    <p>{t("home.mission.p2")}</p>
-                    <p>{t("home.mission.p3")}</p>
-                  </div>
                   <div className="space-y-3">
                     <p className="text-sm font-medium tracking-wide uppercase text-foreground">
                       {t("home.mission.pillarsIntro")}
