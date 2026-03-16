@@ -555,8 +555,8 @@ const nl: Record<string, string> = {
   "home.faq.a2": "Uitsluitend voor ondernemers, CEO's en entrepreneurs die momenteel zware operationele druk dragen en complexe beslissingen moeten nemen. Niet voor beginners of mensen op zoek naar een lifestyleretraite.",
   "home.faq.q3": "Waarom zijn UNMASKED-edities beperkt tot 2–4 personen?",
   "home.faq.a3": "Om privacy te beschermen en diepgang te waarborgen. Dit maakt direct, hoogst gepersonaliseerd strategisch werk met Lionel mogelijk, zonder groepsdynamiek.",
-  "home.faq.q4": "Wat is het verschil tussen UNMASKED en High Performance Coaching en Business Coaching?",
-  "home.faq.a4": "UNMASKED is een snelle, 4-daagse fysieke en mentale reset om onmiddellijke helderheid te creëren. High Performance Coaching en Business Coaching zijn een doorlopend, langdurig strategisch partnerschap voor gedisciplineerde uitvoering in de tijd.",
+  "home.faq.q4": "Wat is het verschil tussen UNMASKED en Founder Strategic Advisory?",
+  "home.faq.a4": "UNMASKED is een intensieve, meerdaagse interventie-omgeving voor onmiddellijke helderheid en structurele reset. Founder Strategic Advisory is een doorlopend strategisch partnerschap voor gedisciplineerde uitvoering in de tijd.",
 
   // Final CTA
   "home.finalCta.heading": "Helderheid is een beslissing.",
