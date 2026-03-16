@@ -387,35 +387,20 @@ export const HomeFeaturesGrid = () => {
                     </a>
                   )}
 
-                  {/* Booking calendar for non-mentorship, non-business, non-unmasked cards */}
-                  {showCalendar && !isUnmasked && selected !== 1 && selected !== 3 && (
-                    <div className="pt-2">
-                      <p className="text-xs font-medium tracking-widest uppercase text-lioner-gold mb-3">
-                        Book Your Session
-                      </p>
-                      <iframe
-                        src={calendarUrl}
-                        style={{ width: "100%", border: "none", overflow: "hidden", minHeight: "600px" }}
-                        scrolling="no"
-                        id={`lc-calendar-${selected}`}
-                      />
-                    </div>
-                  )}
-
-                  {/* Business Consultation application (index 3) */}
-                  {selected === 3 && (
+                  {/* Founder Strategic Advisory application (index 0) */}
+                  {selected === 0 && (
                     <button
-                      onClick={() => { setSelected(null); setTimeout(() => setBusinessConsultOpen(true), 200); }}
+                      onClick={() => { setSelected(null); setTimeout(() => setMentorshipOpen(true), 200); }}
                       className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
                     >
                       {(services[selected].details as any).cta}
                     </button>
                   )}
 
-                  {/* Mentorship application for High Performance Coaching (index 1) */}
-                  {selected === 1 && (
+                  {/* Capital Protection (index 3) */}
+                  {selected === 3 && (
                     <button
-                      onClick={() => { setSelected(null); setTimeout(() => setMentorshipOpen(true), 200); }}
+                      onClick={() => { setSelected(null); setTimeout(() => setBusinessConsultOpen(true), 200); }}
                       className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
                     >
                       {(services[selected].details as any).cta}
