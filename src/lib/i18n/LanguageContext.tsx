@@ -129,15 +129,15 @@ const en: Record<string, string> = {
   "home.testimonials.q4": "The structured approach to decision-making has been invaluable. I no longer feel paralyzed by the complexity of scaling my business.",
 
   // Showcase
-  "home.showcase.title1": "Private Desert Reset",
-  "home.showcase.desc1": "A 4-day controlled recalibration experience in the desert. Strip away noise, confront deferred decisions, and rebuild your execution strategy from the ground up.",
-  "home.showcase.cta1": "Explore UNMASKED",
-  "home.showcase.title2": "Strategic Advisory",
-  "home.showcase.desc2": "Ongoing strategic performance audits, execution discipline, and accountability for business owners navigating critical inflection points.",
-  "home.showcase.cta2": "Learn about Advisory",
-  "home.showcase.title3": "Measurable Performance",
-  "home.showcase.desc3": "Track your leadership discipline with our proprietary scorecard. Identify where performance is drifting and course-correct before it compounds.",
-  "home.showcase.cta3": "Take the Assessment",
+  "home.showcase.title1": "UNMASKED Intervention",
+  "home.showcase.desc1": "A private intervention environment in the Dubai desert for founders who require clarity, structural reset and decisive execution.",
+  "home.showcase.cta1": "Apply for UNMASKED",
+  "home.showcase.title2": "Founder Strategic Advisory",
+  "home.showcase.desc2": "Work directly with Lionel Eersteling as a strategic sparring partner for sharper thinking, stronger leadership and disciplined execution.",
+  "home.showcase.cta2": "Request Advisory",
+  "home.showcase.title3": "Capital Protection",
+  "home.showcase.desc3": "For founders facing situations where capital, partnerships or ownership structures become exposed. Supported by international specialists.",
+  "home.showcase.cta3": "Start Assessment",
 
   // Story
   "home.story.eyebrow": "Real People. Real Change.",
