@@ -85,41 +85,41 @@ export const HomeMissionSection = () => {
               }}
             >
               <div className="py-16 space-y-20">
+                {/* ABOUT LIONEL */}
+                <div className="space-y-8">
+                  <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground">
+                    About Lionel
+                  </h2>
+                  <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
+                    <p>Lionel Eersteling is the founder of Leaders Performance, a boutique advisory platform built for founders who take their companies seriously.</p>
+                    <p>A former professional athlete with more than 25 years of experience in human performance, leadership and entrepreneurship, Lionel combines performance discipline with strategic business thinking.</p>
+                    <p>Over the past decades he has built and scaled companies across multiple industries and worked alongside founders navigating growth, leadership challenges and complex business environments.</p>
+                    <p>Today he works with a limited number of founders each year as a strategic sparring partner.</p>
+                    <p>His role is not to coach from the sidelines, but to work alongside founders to:</p>
+                    <ul className="space-y-2 pl-5 list-disc">
+                      <li>sharpen strategic thinking</li>
+                      <li>challenge blind spots</li>
+                      <li>strengthen leadership discipline</li>
+                      <li>improve execution inside the company</li>
+                      <li>protect the capital they have built</li>
+                    </ul>
+                    <p>Leaders Performance operates as a boutique leadership infrastructure, supported by an international network of specialists when situations require legal, investigative or strategic expertise.</p>
+                  </div>
+                </div>
+
+                <div className="w-16 h-px bg-lioner-gold" />
+
                 {/* MISSION */}
                 <div className="space-y-8">
                   <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground">
-                    Strategic Sparring
-                    <br />
-                    <span className="text-lioner-gold italic">for Founders.</span>
+                    Our Mission
                   </h2>
-                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                    Leaders Performance is a boutique advisory where founders sharpen strategy, leadership and execution
-                  </p>
-                  <div className="space-y-3">
-                    <p className="text-sm font-medium tracking-wide uppercase text-foreground">
-                      {t("home.mission.pillarsIntro")}
-                    </p>
-                    <ol className="space-y-3 text-base md:text-lg text-muted-foreground leading-relaxed pl-1">
-                      <li><span className="text-lioner-gold font-medium">1. {t("home.mission.pillar1")}</span>{t("home.mission.pillar1desc")}</li>
-                      <li><span className="text-lioner-gold font-medium">2. {t("home.mission.pillar2")}</span>{t("home.mission.pillar2desc")}</li>
-                      <li><span className="text-lioner-gold font-medium">3. {t("home.mission.pillar3")}</span>{t("home.mission.pillar3desc")}</li>
-                      <li><span className="text-lioner-gold font-medium">4. {t("home.mission.pillar4")}</span>{t("home.mission.pillar4desc")}</li>
-                    </ol>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-sm font-medium tracking-wide uppercase text-foreground">
-                      {t("home.mission.createLeaders")}
-                    </p>
-                    <ul className="space-y-2 text-base md:text-lg text-muted-foreground leading-relaxed pl-1">
-                      <li>{t("home.mission.bullet1")}</li>
-                      <li>{t("home.mission.bullet2")}</li>
-                      <li>{t("home.mission.bullet3")}</li>
-                      <li>{t("home.mission.bullet4")}</li>
-                    </ul>
-                  </div>
-                  <div className="space-y-2 text-base md:text-lg text-muted-foreground leading-relaxed">
-                    <p>{t("home.mission.notOptimize")}</p>
-                    <p className="text-foreground font-medium">{t("home.mission.strengthen")}</p>
+                  <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-foreground font-medium">To strengthen the founder behind the company.</p>
+                    <p>At Leaders Performance we believe that companies rarely fail because of ideas.</p>
+                    <p>They fail because leadership becomes unclear, decisions lose sharpness, and execution drifts.</p>
+                    <p>Our mission is to help founders build companies with stronger foundations through disciplined thinking, clear leadership and structured execution.</p>
+                    <p>We do this through strategic sparring, focused intervention environments and leadership infrastructure designed for founders who are serious about building enduring companies.</p>
                   </div>
                 </div>
 
@@ -128,64 +128,21 @@ export const HomeMissionSection = () => {
                 {/* VISION */}
                 <div className="space-y-8">
                   <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground">
-                    {t("home.vision.heading")}
-                  </h2>
-                  <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold">Leaders Performance</p>
-                  <p className="text-lg md:text-xl text-foreground leading-relaxed font-medium">
-                    {t("home.vision.tagline")}
-                  </p>
-                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                    {t("home.vision.p1")}
-                  </p>
-                  <div className="space-y-2">
-                    <p className="text-sm font-medium tracking-wide uppercase text-foreground">
-                      {t("home.vision.futureLeaders")}
-                    </p>
-                    <ul className="space-y-2 text-base md:text-lg text-muted-foreground leading-relaxed pl-1">
-                      <li>{t("home.vision.b1")}</li>
-                      <li>{t("home.vision.b2")}</li>
-                      <li>{t("home.vision.b3")}</li>
-                      <li>{t("home.vision.b4")}</li>
-                      <li>{t("home.vision.b5")}</li>
-                    </ul>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-sm font-medium tracking-wide uppercase text-foreground">
-                      {t("home.vision.ecosystem")}
-                    </p>
-                    <ul className="space-y-2 text-base md:text-lg text-muted-foreground leading-relaxed pl-1">
-                      <li>{t("home.vision.e1")}</li>
-                      <li>{t("home.vision.e2")}</li>
-                      <li>{t("home.vision.e3")}</li>
-                      <li>{t("home.vision.e4")}</li>
-                    </ul>
-                  </div>
-                  <div className="space-y-2 text-base md:text-lg text-muted-foreground leading-relaxed">
-                    <p>{t("home.vision.notFollowers")}</p>
-                    <p className="text-foreground font-medium">{t("home.vision.autonomous")}</p>
-                  </div>
-                </div>
-
-                <div className="w-16 h-px bg-lioner-gold" />
-
-                {/* ABOUT LIONEL */}
-                <div className="space-y-8">
-                  <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground">
-                    About Lionel Eersteling
+                    Our Vision
                   </h2>
                   <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-                    <p>Lionel Eersteling is the founder of Leaders Performance.</p>
-                    <p>He is a former professional athlete, entrepreneur, and high-performance specialist with more than 25 years of experience.</p>
-                    <p>Lionel works directly with a very limited number of founders each year.</p>
-                    <p>Founders choose to work with him because he helps them:</p>
+                    <p className="text-foreground font-medium">To build an environment where founders develop the clarity, discipline and leadership required to build resilient companies.</p>
+                    <p>As technology accelerates and markets move faster than ever, the real competitive advantage will not be tools or tactics.</p>
+                    <p>It will be leadership.</p>
+                    <p>The future belongs to founders who combine:</p>
                     <ul className="space-y-2 pl-5 list-disc">
-                      <li>sharpen strategic thinking</li>
-                      <li>challenge blind spots in leadership</li>
-                      <li>strengthen company execution</li>
-                      <li>restructure priorities when necessary</li>
-                      <li>protect the capital and assets they have built</li>
+                      <li>strategic clarity</li>
+                      <li>disciplined execution</li>
+                      <li>strong leadership</li>
+                      <li>technological awareness</li>
+                      <li>personal resilience</li>
                     </ul>
-                    <p>Leaders Performance operates as a principal-led boutique advisory supported by an international network of specialists.</p>
+                    <p>Leaders Performance exists to support those founders.</p>
                   </div>
                 </div>
               </div>
