@@ -198,11 +198,11 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
       {report ? (
         <>
           {/* Situation Summary */}
-          <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
+           <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.03] space-y-2 sm:space-y-3">
             <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold flex items-center gap-2">
               <FileText className="w-4 h-4" /> {t.summary}
             </h4>
-            <p className="text-foreground/80 leading-relaxed">{report.situation_summary}</p>
+            <p className="text-foreground/80 leading-relaxed text-sm sm:text-base">{report.situation_summary}</p>
           </div>
 
           {/* Risk Indicators */}
