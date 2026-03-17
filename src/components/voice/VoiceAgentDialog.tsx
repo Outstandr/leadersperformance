@@ -139,11 +139,14 @@ Recommendation: ${scores.recommendation}
         throw new Error("Failed to get voice token");
       }
 
-      const { token } = await response.json();
+      const { signed_url } = await response.json();
+
+      if (!signed_url) {
+        throw new Error("No signed URL received");
+      }
 
       await conversation.startSession({
-        conversationToken: token,
-        connectionType: "webrtc",
+        signedUrl: signed_url,
       });
     } catch (err: any) {
       console.error("Failed to start conversation:", err);
