@@ -176,10 +176,10 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
       </div>
 
       {/* Overall Gauge */}
-      <div className="text-center space-y-3">
+      <div className="text-center space-y-2 sm:space-y-3">
         <h3 className="text-xs uppercase tracking-widest text-foreground/50 font-semibold">{t.recoveryPotential}</h3>
         <OverallGauge score={result.overallScore} color={result.overallColor} />
-        <div className={`inline-block px-5 py-2 ${c.bg} border ${c.border} ${c.text} text-sm font-bold uppercase tracking-widest`}>
+        <div className={`inline-block px-3 sm:px-5 py-1.5 sm:py-2 ${c.bg} border ${c.border} ${c.text} text-xs sm:text-sm font-bold uppercase tracking-widest`}>
           {result.headline[language]}
         </div>
       </div>
