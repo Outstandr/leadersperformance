@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mic, Shield, Loader2, AlertTriangle, FileText, Lock } from "lucide-react";
+import { ArrowRight, Mic, Shield, Loader2, AlertTriangle, FileText, Lock, Volume2 } from "lucide-react";
 import { CPResult, CPSectionScore } from "@/lib/capitalProtectionScoring";
 import { CPUserInfo } from "./CPUserInfoStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
