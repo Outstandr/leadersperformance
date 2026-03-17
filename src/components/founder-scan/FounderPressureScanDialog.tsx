@@ -22,6 +22,7 @@ export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressur
   const [step, setStep] = useState<Step>("intro");
   const [currentQ, setCurrentQ] = useState(0);
   const [responses, setResponses] = useState<Record<string, number>>({});
+  const [userInfo, setUserInfo] = useState<ScanUserInfo | null>(null);
   const [scores, setScores] = useState<PressureScores | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
