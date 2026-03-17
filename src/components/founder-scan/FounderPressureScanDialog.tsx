@@ -37,6 +37,7 @@ export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressur
   };
 
   const handleGateSubmit = async (info: ScanUserInfo) => {
+    setUserInfo(info);
     setIsSubmitting(true);
     try {
       const result = calculatePressureScores(responses, language);
