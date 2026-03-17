@@ -25,6 +25,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
 
   const conversation = useConversation({
     onConnect: () => {
+      console.log("[Daisy] Connected successfully");
       setStatus("connected");
       setError(null);
 
