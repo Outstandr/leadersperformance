@@ -2,12 +2,15 @@ import { createContext, useContext, useState, ReactNode } from "react";
 import { PressureScores } from "@/lib/founderPressureScoring";
 import { ScanUserInfo } from "@/components/founder-scan/ScanGateStep";
 
-export type VoiceAgentMode = "general" | "pressure_scan";
+export type VoiceAgentMode = "general" | "pressure_scan" | "capital_protection";
 
 export interface VoiceAgentContextData {
   mode: VoiceAgentMode;
   scanScores?: PressureScores;
   scanUserInfo?: ScanUserInfo;
+  cpReport?: any;
+  cpUserInfo?: any;
+  cpResult?: any;
 }
 
 interface VoiceAgentContextType {

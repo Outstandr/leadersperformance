@@ -1,122 +1,121 @@
 
 
-# Capital Protection Assessment — Implementation Plan
+## Updated Plan: Availability System with iCloud Calendar Sync
 
-## Overview
+### The Gap You Identified
 
-Build the full Capital Protection Assessment funnel: **Intro → User Info → 8 multi-step question sections → AI-generated report → Voice Agent (Daisy) auto-popup**. Follows existing Founder Pressure Scan patterns closely.
+The original plan only tracks bookings made through the website. But Lionel has existing appointments on his iCloud calendar (personal meetings, other commitments) that should also block time slots. Without syncing those, the website could still offer times when Lionel is busy.
 
----
+### Updated Architecture
 
-## 1. Database Migration
+```text
+┌──────────────────────────────────────┐
+│  iCloud Calendar (source of truth)   │
+│  - Website bookings (already synced) │
+│  - Manual appointments               │
+│  - External meetings                 │
+└──────────────┬───────────────────────┘
+               │ CalDAV REPORT query
+               │ (fetches events for date range)
+               ▼
+┌──────────────────────────────────────┐
+│  Edge Function: check-availability   │
+│  1. Query iCloud via CalDAV REPORT   │
+│     for all events on requested date │
+│  2. Parse VEVENT start/end times     │
+│  3. Return blocked time ranges       │
+└──────────────┬───────────────────────┘
+               │
+               ▼
+┌──────────────────────────────────────┐
+│  Frontend: useBookedSlots hook       │
+│  - Calls check-availability on       │
+│    date selection                    │
+│  - Disables occupied time slots      │
+│  - Works in all 3 booking dialogs   │
+└──────────────────────────────────────┘
+```
 
-Create `capital_protection_assessments` table:
-- `id` (uuid, PK), `created_at` (timestamptz)
-- `full_name`, `company`, `role`, `country`, `email`, `phone` (text fields)
-- `situation_types` (text[]), `capital_exposure` (text), `timeline` (text)
-- `evidence_types` (text[]), `jurisdictions` (text[]), `legal_status` (text)
-- `objective` (text), `situation_summary` (text), `consent_review` (boolean)
-- `recovery_potential` (text), `risk_level` (text), `ai_report` (jsonb)
-- RLS: INSERT-only for public (same as other assessment tables)
+### Why iCloud-First Instead of a Database Table
 
----
+Since we already have CalDAV credentials and the `create-calendar-event` function already discovers Lionel's calendar, we can **query the same calendar directly** for existing events. This means:
 
-## 2. Assessment Data Layer
+- No need for a `booked_slots` database table
+- No need to keep two systems in sync
+- Manually added appointments on iCloud automatically block slots
+- Appointments from any source (phone, other apps) are respected
+- Single source of truth: Lionel's iCloud calendar
 
-### `src/lib/capitalProtectionQuestions.ts`
-Define all sections (2–10) from the document as structured data (EN + NL):
-- Section 2: Situation Type (multi-select: Fraud, Crypto fraud, Misappropriation, Partner dispute, etc.)
-- Section 3: Capital Exposure (single-select: €100K–€500K through €20M+)
-- Section 4: Timeline (single-select)
-- Section 5: Evidence (multi-select)
-- Section 6: Jurisdictions (3 text inputs)
-- Section 7: Legal Status (single-select)
-- Section 8: Objective (single-select)
-- Section 9: Situation Summary (open text)
-- Section 10: Strategic Review Consent (Yes/No)
+### Implementation Steps
 
-### `src/lib/capitalProtectionScoring.ts`
-Calculate "Founder Protection Score" based on weighted factors (exposure amount, evidence count, timeline recency, jurisdiction count, legal status). Produce 3 tiers: **High Recovery Potential**, **Moderate Strategic Complexity**, **Limited Recovery Potential** with corresponding headline/body text from the document.
+#### 1. Create Edge Function: `check-availability`
 
----
+A new backend function that:
+- Accepts a `date` parameter (YYYY-MM-DD)
+- Reuses the CalDAV discovery logic from `create-calendar-event` (steps 1-3) to find the target calendar
+- Sends a CalDAV `REPORT` request with a `calendar-query` filter for the given date range
+- Parses returned VEVENT blocks to extract DTSTART/DTEND times
+- Converts those into blocked time slot strings (e.g., "09:00 AM", "10:00 AM")
+- Returns the list of unavailable slots
+- Caches nothing — always queries live calendar data
 
-## 3. Frontend Components
+#### 2. Create Shared React Hook: `useBookedSlots`
 
-All follow existing Founder Scan component patterns:
+- Takes a `Date | null` as input
+- When the date changes, calls `check-availability` with that date
+- Returns `{ bookedSlots: Set<string>, isLoading: boolean }`
+- Debounces to avoid excessive calls on rapid date changes
 
-### `src/components/capital-protection/CapitalProtectionDialog.tsx`
-Main dialog orchestrating steps: `intro → userInfo → questions → results`. Handles DB save, GHL webhook, and AI report generation.
+#### 3. Update All 3 Booking Dialogs
 
-### `src/components/capital-protection/CPIntroStep.tsx`
-Introduction screen (mirrors `ScanIntroStep`): eyebrow, heading, description bullets, "Start Assessment" CTA.
+**UnmaskedBookingDialog** — uses slots like `"10:00"`, `"15:00"` (24h values):
+- Import `useBookedSlots`, pass selected date
+- Disable time slot buttons where the value appears in the booked set
+- Show "Unavailable" label on disabled slots
 
-### `src/components/capital-protection/CPUserInfoStep.tsx`
-Section 1: Name, Company, Role (dropdown), Country (dropdown), Email, Phone. Validated with zod (mirrors `ScanGateStep`).
+**BusinessConsultationDialog** — uses slots like `"09:00 AM"`, `"03:30 PM"`:
+- Same integration pattern
+- The edge function will return slots in both 12h and 24h format for compatibility
 
-### `src/components/capital-protection/CPQuestionStep.tsx`
-Renders sections 2–10 progressively. Handles single-select, multi-select, text inputs, and open text. Progress bar across all steps.
+**MentorshipApplicationDialog** — same slot format as Business:
+- Same integration pattern
 
-### `src/components/capital-protection/CPResultsStep.tsx`
-Displays AI-generated report with: Situation Summary, Strategic Risk Level, Key Risk Indicators, Possible Strategic Paths, Recommended Next Step, Confidentiality Notice, and CTA buttons (Discuss with Daisy + Schedule Case Review). Auto-opens voice agent after 2-second delay.
+### Technical Details
 
----
+**CalDAV REPORT Query** (the core of `check-availability`):
+```xml
+<c:calendar-query xmlns:d="DAV:" xmlns:c="urn:ietf:params:xml:ns:caldav">
+  <d:prop>
+    <d:getetag/>
+    <c:calendar-data/>
+  </d:prop>
+  <c:filter>
+    <c:comp-filter name="VCALENDAR">
+      <c:comp-filter name="VEVENT">
+        <c:time-range start="20260225T000000Z" end="20260226T000000Z"/>
+      </c:comp-filter>
+    </c:comp-filter>
+  </c:filter>
+</c:calendar-query>
+```
 
-## 4. AI Report Generation — Edge Function
+This returns all events on the requested date. The function then parses each VEVENT's DTSTART/DTEND to determine which 30-min slots are blocked.
 
-### `supabase/functions/generate-capital-protection-report/index.ts`
-Uses Lovable AI (`google/gemini-3-flash-preview`) with tool calling to return structured report:
-- `situation_summary`, `risk_level` (High/Moderate/Limited), `risk_indicators[]`, `strategic_paths[]`, `recommended_next_step`, `recovery_potential`
+**Slot Blocking Logic**: If an event runs from 10:00-11:30, the function marks "10:00 AM", "10:30 AM", and "11:00 AM" as unavailable — any slot whose start time falls within the event's duration is blocked.
 
-Follows exact same pattern as `generate-assessment-insights`. Add to `config.toml` with `verify_jwt = false`.
+**Time Zone Handling**: All times are in Asia/Dubai (GST, UTC+4), matching the existing calendar event creation. The CalDAV query uses UTC boundaries for the date filter, then parses returned times in Dubai timezone.
 
----
+### Files to Create
+- `supabase/functions/check-availability/index.ts` — CalDAV query + slot parsing
+- `src/hooks/useBookedSlots.ts` — shared React hook
 
-## 5. Voice Agent Updates
+### Files to Modify
+- `src/components/home/BusinessConsultationDialog.tsx` — integrate hook, disable taken slots
+- `src/components/home/MentorshipApplicationDialog.tsx` — integrate hook, disable taken slots
+- `src/components/home/UnmaskedBookingDialog.tsx` — integrate hook, disable taken slots
+- `supabase/config.toml` — register new function with `verify_jwt = false`
 
-### `src/components/voice/VoiceAgentContext.tsx`
-- Add `"capital_protection"` to `VoiceAgentMode` type
-- Add optional `cpReport` and `cpUserInfo` fields to `VoiceAgentContextData`
+### No Database Changes Needed
 
-### `src/components/voice/VoiceAgentDialog.tsx`
-- Handle `capital_protection` mode: custom title/subtitle, header "Daisy — Capital Protection Advisor"
-- On connect, send contextual update with recovery potential, risk level, situation types, exposure amount
-- Same conversation flow as daisy_unmasked.txt: acknowledge results → ask if happy → deep discussion → transition to booking with Lionel using `show_calendar` tool → acknowledge booking
-
----
-
-## 6. GHL Integration
-
-### `supabase/functions/send-to-ghl/index.ts`
-Add routing: `audit_type === 'capital_protection'` sends to a dedicated CP webhook URL (or falls through to default GHL_WEBHOOK_URL).
-
----
-
-## 7. Wire Up in HomeFeaturesGrid
-
-### `src/components/home/HomeFeaturesGrid.tsx`
-- Import `CapitalProtectionDialog`
-- Add `capitalProtectionOpen` state
-- Change Capital Protection CTA (index 2) from opening `BusinessConsultationDialog` to opening the new `CapitalProtectionDialog`
-- Render `<CapitalProtectionDialog>` in the dialog section
-
----
-
-## File Summary
-
-| Action | File |
-|--------|------|
-| Migration | `capital_protection_assessments` table |
-| Create | `src/lib/capitalProtectionQuestions.ts` |
-| Create | `src/lib/capitalProtectionScoring.ts` |
-| Create | `src/components/capital-protection/CapitalProtectionDialog.tsx` |
-| Create | `src/components/capital-protection/CPIntroStep.tsx` |
-| Create | `src/components/capital-protection/CPUserInfoStep.tsx` |
-| Create | `src/components/capital-protection/CPQuestionStep.tsx` |
-| Create | `src/components/capital-protection/CPResultsStep.tsx` |
-| Create | `supabase/functions/generate-capital-protection-report/index.ts` |
-| Edit | `supabase/config.toml` — add function config |
-| Edit | `src/components/voice/VoiceAgentContext.tsx` — add CP mode |
-| Edit | `src/components/voice/VoiceAgentDialog.tsx` — handle CP context |
-| Edit | `supabase/functions/send-to-ghl/index.ts` — add CP routing |
-| Edit | `src/components/home/HomeFeaturesGrid.tsx` — wire up dialog |
+This approach eliminates the need for the `booked_slots` table entirely. The iCloud calendar is the single source of truth — every booking the website creates is already written there, and any appointment Lionel adds manually is automatically respected.
 

@@ -22,6 +22,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
   const transcriptRef = useRef<HTMLDivElement>(null);
 
   const isPressureScan = contextData.mode === "pressure_scan";
+  const isCapitalProtection = contextData.mode === "capital_protection";
 
   const conversation = useConversation({
     onConnect: () => {
@@ -43,7 +44,25 @@ Diagnosis: ${scores.diagnosis}
 Recommendation: ${scores.recommendation}
 [END CONTEXT — Use this to personalize the conversation. Address the visitor by name and reference their specific pressure points.]`;
 
-        // Send as contextual update so Daisy has the data
+        setTimeout(() => {
+          conversation.sendContextualUpdate(contextMessage);
+        }, 500);
+      }
+
+      // Capital Protection context
+      if (isCapitalProtection && contextData.cpUserInfo) {
+        const user = contextData.cpUserInfo;
+        const report = contextData.cpReport;
+        const result = contextData.cpResult;
+        const contextMessage = `[CONTEXT — Capital Protection Assessment Results for ${user.fullName} from ${user.company}]
+Recovery Potential: ${result?.recoveryPotential ?? "unknown"}
+Risk Level: ${result?.headline?.en ?? "unknown"}
+Situation Summary: ${report?.situation_summary ?? "Not available"}
+Risk Indicators: ${report?.risk_indicators?.join("; ") ?? "Not available"}
+Strategic Paths: ${report?.strategic_paths?.join("; ") ?? "Not available"}
+Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case review with Lionel Eersteling"}
+[END CONTEXT — This is a Capital Protection case. The visitor has completed the Capital Protection Assessment. Acknowledge their results, ask if they are happy or if something surprised them, have a genuine strategic conversation about their situation, and ultimately guide them toward booking a 30-minute case review with Lionel Eersteling. Lionel specializes in capital protection and special situations. Use the show_calendar tool when they agree to book.]`;
+
         setTimeout(() => {
           conversation.sendContextualUpdate(contextMessage);
         }, 500);
@@ -249,9 +268,13 @@ Recommendation: ${scores.recommendation}
 
   const idleTitle = isPressureScan
     ? "Let's discuss your results"
+    : isCapitalProtection
+    ? "Let's discuss your assessment"
     : "Speak with our advisor to discover the path that fits your goals.";
   const idleSubtitle = isPressureScan
     ? "Daisy will walk you through your pressure scan findings and help determine the right next step."
+    : isCapitalProtection
+    ? "Daisy will review your capital protection assessment and help determine the strategic next step."
     : "Microphone access required";
 
   return (
@@ -274,7 +297,7 @@ Recommendation: ${scores.recommendation}
               Leaders Performance
             </p>
             <h2 className="text-white font-semibold text-lg leading-tight mt-0.5">
-              {isPressureScan ? "Daisy — Founder Advisor" : "Daisy — Your Path Advisor"}
+              {isPressureScan ? "Daisy — Founder Advisor" : isCapitalProtection ? "Daisy — Capital Protection Advisor" : "Daisy — Your Path Advisor"}
             </h2>
           </div>
           <button

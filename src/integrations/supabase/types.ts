@@ -215,6 +215,75 @@ export type Database = {
         }
         Relationships: []
       }
+      capital_protection_assessments: {
+        Row: {
+          ai_report: Json | null
+          capital_exposure: string
+          company: string
+          consent_review: boolean
+          country: string
+          created_at: string
+          email: string
+          evidence_types: string[]
+          full_name: string
+          id: string
+          jurisdictions: string[]
+          legal_status: string
+          objective: string
+          phone: string
+          recovery_potential: string | null
+          risk_level: string | null
+          role: string
+          situation_summary: string
+          situation_types: string[]
+          timeline: string
+        }
+        Insert: {
+          ai_report?: Json | null
+          capital_exposure?: string
+          company: string
+          consent_review?: boolean
+          country: string
+          created_at?: string
+          email: string
+          evidence_types?: string[]
+          full_name: string
+          id?: string
+          jurisdictions?: string[]
+          legal_status?: string
+          objective?: string
+          phone: string
+          recovery_potential?: string | null
+          risk_level?: string | null
+          role: string
+          situation_summary?: string
+          situation_types?: string[]
+          timeline?: string
+        }
+        Update: {
+          ai_report?: Json | null
+          capital_exposure?: string
+          company?: string
+          consent_review?: boolean
+          country?: string
+          created_at?: string
+          email?: string
+          evidence_types?: string[]
+          full_name?: string
+          id?: string
+          jurisdictions?: string[]
+          legal_status?: string
+          objective?: string
+          phone?: string
+          recovery_potential?: string | null
+          risk_level?: string | null
+          role?: string
+          situation_summary?: string
+          situation_types?: string[]
+          timeline?: string
+        }
+        Relationships: []
+      }
       corporate_discipline_audits: {
         Row: {
           ai_insights: Json | null

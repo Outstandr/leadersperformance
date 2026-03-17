@@ -39,7 +39,9 @@ Deno.serve(async (req) => {
 
     // Route to dedicated webhooks based on payload type
     let webhookUrl: string;
-    if (sanitizedPayload.audit_type === 'corporate') {
+    if (sanitizedPayload.audit_type === 'capital_protection') {
+      webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/cae4e9db-73c9-4e86-b8d0-381606a3579e';
+    } else if (sanitizedPayload.audit_type === 'corporate') {
       webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/cae4e9db-73c9-4e86-b8d0-381606a3579e';
     } else if (sanitizedPayload.source === 'elite') {
       webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/ecab520f-e10b-4cca-8d20-d7ba2cb5c727';
