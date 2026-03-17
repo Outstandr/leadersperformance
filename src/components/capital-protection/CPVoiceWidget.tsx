@@ -80,6 +80,7 @@ export function CPVoiceWidget({ userInfo, result, aiReport }: CPVoiceWidgetProps
   }, [transcript]);
 
   const buildContextMessage = () => {
+    const firstName = userInfo.fullName.trim().split(/\s+/)[0];
     const sections = result.sections.map(s => `${s.label.en}: ${s.score}% (${s.color})`).join("\n  ");
     const aiSection = aiReport ? `
 AI STRATEGIC REPORT:
