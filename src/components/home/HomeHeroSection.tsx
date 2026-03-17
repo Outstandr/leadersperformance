@@ -53,7 +53,7 @@ export const HomeHeroSection = () => {
                 {t("home.hero.buttonIntro")}
               </p>
               <button
-                onClick={openVoiceAgent}
+                onClick={() => openVoiceAgent()}
                 className="inline-flex items-center gap-3 bg-lioner-gold text-foreground rounded-full px-6 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-sm font-medium tracking-wider uppercase hover:bg-lioner-gold/90 transition-colors whitespace-nowrap"
               >
                 {t("home.hero.cta")}

@@ -126,7 +126,7 @@ export const HomeNavigation = () => {
 
           <div className="flex items-center gap-3 lg:hidden">
             <button
-              onClick={openVoiceAgent}
+              onClick={() => openVoiceAgent()}
               className={`p-2 rounded-full border border-[#b39758]/40 text-[#b39758]`}
             >
               <Mic className="w-4 h-4" />

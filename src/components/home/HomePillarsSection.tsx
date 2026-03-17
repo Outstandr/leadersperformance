@@ -76,7 +76,7 @@ export const HomePillarsSection = () => {
                 {pillars[activeIndex].description}
               </motion.p>
               <button
-                onClick={openVoiceAgent}
+                onClick={() => openVoiceAgent()}
                 className="inline-block border border-lioner-gold text-lioner-gold px-8 py-3 text-sm font-medium tracking-widest uppercase hover:bg-lioner-gold hover:text-white transition-all duration-300"
               >
                 {t("home.pillars.cta")}
