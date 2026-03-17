@@ -283,15 +283,15 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
   if (!isOpen) return null;
 
   const idleTitle = isPressureScan
-    ? "Let's discuss your results"
+    ? "Speak with Daisy, your AI founder advisor"
     : isCapitalProtection
-    ? "Let's discuss your assessment"
-    : "Speak with our advisor to discover the path that fits your goals.";
+    ? "Speak with Daisy, your AI capital protection advisor"
+    : "Speak with Daisy, our AI advisor";
   const idleSubtitle = isPressureScan
-    ? "Daisy will walk you through your pressure scan findings and help determine the right next step."
+    ? "Tap Start Conversation to enable microphone access. Daisy will walk you through your pressure scan findings and the right next step."
     : isCapitalProtection
-    ? "Daisy will review your capital protection assessment and help determine the strategic next step."
-    : "Microphone access required";
+    ? "Tap Start Conversation to enable microphone access. Daisy will review your assessment and talk through the strategic next step."
+    : "Tap Start Conversation to enable microphone access.";
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center">
@@ -313,7 +313,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
               Leaders Performance
             </p>
             <h2 className="text-white font-semibold text-lg leading-tight mt-0.5">
-              {isPressureScan ? "Daisy — Founder Advisor" : isCapitalProtection ? "Daisy — Capital Protection Advisor" : "Daisy — Your Path Advisor"}
+              {isPressureScan ? "Daisy — AI Founder Advisor" : isCapitalProtection ? "Daisy — AI Capital Protection Advisor" : "Daisy — AI Advisor"}
             </h2>
           </div>
           <button
