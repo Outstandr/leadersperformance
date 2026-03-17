@@ -268,9 +268,13 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
 
   const idleTitle = isPressureScan
     ? "Let's discuss your results"
+    : isCapitalProtection
+    ? "Let's discuss your assessment"
     : "Speak with our advisor to discover the path that fits your goals.";
   const idleSubtitle = isPressureScan
     ? "Daisy will walk you through your pressure scan findings and help determine the right next step."
+    : isCapitalProtection
+    ? "Daisy will review your capital protection assessment and help determine the strategic next step."
     : "Microphone access required";
 
   return (
