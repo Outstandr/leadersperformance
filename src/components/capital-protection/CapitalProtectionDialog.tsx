@@ -7,7 +7,6 @@ import { CPResultsStep } from "./CPResultsStep";
 import { cpSections } from "@/lib/capitalProtectionQuestions";
 import { calculateCPResult, CPResult, CPAssessmentData } from "@/lib/capitalProtectionScoring";
 import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface CapitalProtectionDialogProps {
@@ -35,11 +34,18 @@ export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectio
   const [result, setResult] = useState<CPResult | null>(null);
   const [aiReport, setAiReport] = useState<AIReport | null>(null);
   const [isLoadingAI, setIsLoadingAI] = useState(false);
-  const { toast } = useToast();
 
   const handleUserInfoSubmit = (info: CPUserInfo) => {
     setUserInfo(info);
     setStep("questions");
+  };
+
+  const handleBack = () => {
+    if (currentQ > 0) {
+      setCurrentQ((prev) => prev - 1);
+    } else {
+      setStep("userInfo");
+    }
   };
 
   const handleAnswer = (sectionId: string, value: string | string[] | boolean) => {
@@ -49,7 +55,6 @@ export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectio
     if (currentQ < cpSections.length - 1) {
       setCurrentQ((prev) => prev + 1);
     } else {
-      // All questions answered — calculate and show results
       finishAssessment(updated);
     }
   };
@@ -74,7 +79,7 @@ export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectio
     const cpResult = calculateCPResult(assessmentData);
     setResult(cpResult);
 
-    // Save to DB (fire-and-forget)
+    // Save to DB
     supabase
       .from("capital_protection_assessments" as any)
       .insert({
@@ -133,7 +138,6 @@ export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectio
       if (data?.report) {
         setAiReport(data.report);
 
-        // Update DB with AI report
         supabase
           .from("capital_protection_assessments" as any)
           .update({ ai_report: data.report } as any)
@@ -146,7 +150,6 @@ export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectio
       }
     } catch (err) {
       console.error("AI report generation error:", err);
-      // Results will show fallback static content
     } finally {
       setIsLoadingAI(false);
     }
@@ -167,7 +170,13 @@ export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectio
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white border-lioner-gold/20">
         {step === "intro" && <CPIntroStep onStart={() => setStep("userInfo")} />}
         {step === "userInfo" && <CPUserInfoStep onSubmit={handleUserInfoSubmit} />}
-        {step === "questions" && <CPQuestionStep currentIndex={currentQ} onAnswer={handleAnswer} />}
+        {step === "questions" && (
+          <CPQuestionStep
+            currentIndex={currentQ}
+            onAnswer={handleAnswer}
+            onBack={handleBack}
+          />
+        )}
         {step === "results" && result && userInfo && (
           <CPResultsStep
             userInfo={userInfo}

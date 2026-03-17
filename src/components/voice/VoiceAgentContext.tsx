@@ -6,6 +6,7 @@ export type VoiceAgentMode = "general" | "pressure_scan" | "capital_protection";
 
 export interface VoiceAgentContextData {
   mode: VoiceAgentMode;
+  autoConnect?: boolean;
   scanScores?: PressureScores;
   scanUserInfo?: ScanUserInfo;
   cpReport?: any;
@@ -16,6 +17,8 @@ export interface VoiceAgentContextData {
 interface VoiceAgentContextType {
   isOpen: boolean;
   contextData: VoiceAgentContextData;
+  isSpeaking: boolean;
+  setIsSpeaking: (v: boolean) => void;
   openVoiceAgent: (data?: VoiceAgentContextData) => void;
   closeVoiceAgent: () => void;
 }
@@ -27,12 +30,15 @@ const VoiceAgentContext = createContext<VoiceAgentContextType | null>(null);
 export const VoiceAgentProvider = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [contextData, setContextData] = useState<VoiceAgentContextData>(defaultContext);
+  const [isSpeaking, setIsSpeaking] = useState(false);
 
   return (
     <VoiceAgentContext.Provider
       value={{
         isOpen,
         contextData,
+        isSpeaking,
+        setIsSpeaking,
         openVoiceAgent: (data) => {
           setContextData(data || defaultContext);
           setIsOpen(true);
@@ -40,6 +46,7 @@ export const VoiceAgentProvider = ({ children }: { children: ReactNode }) => {
         closeVoiceAgent: () => {
           setIsOpen(false);
           setContextData(defaultContext);
+          setIsSpeaking(false);
         },
       }}
     >
