@@ -84,7 +84,7 @@ function OverallGauge({ score, color }: { score: number; color: "green" | "orang
   const strokeColor = gaugeColors[color];
 
   return (
-    <div className="relative w-36 h-36 mx-auto">
+    <div className="relative w-24 h-24 sm:w-36 sm:h-36 mx-auto">
       <svg viewBox="0 0 128 128" className="w-full h-full -rotate-90">
         <circle cx="64" cy="64" r={radius} fill="none" stroke="hsl(var(--foreground) / 0.08)" strokeWidth="8" />
         <circle
@@ -96,7 +96,7 @@ function OverallGauge({ score, color }: { score: number; color: "green" | "orang
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-3xl font-black text-foreground">{score}%</span>
+        <span className="text-xl sm:text-3xl font-black text-foreground">{score}%</span>
       </div>
     </div>
   );
@@ -149,10 +149,10 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
 
   if (isLoadingAI) {
     return (
-      <div className="p-6 md:p-10 text-center py-20">
-        <Loader2 className="w-12 h-12 text-lioner-gold animate-spin mx-auto mb-6" />
-        <p className="text-foreground/80 font-semibold text-lg mb-2">{t.generating}</p>
-        <p className="text-foreground/40 text-sm">{t.generatingSubtitle}</p>
+      <div className="p-4 sm:p-6 md:p-10 text-center py-12 sm:py-20">
+        <Loader2 className="w-10 h-10 sm:w-12 sm:h-12 text-lioner-gold animate-spin mx-auto mb-4 sm:mb-6" />
+        <p className="text-foreground/80 font-semibold text-base sm:text-lg mb-2">{t.generating}</p>
+        <p className="text-foreground/40 text-xs sm:text-sm">{t.generatingSubtitle}</p>
       </div>
     );
   }
@@ -161,13 +161,13 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
   const firstName = userInfo.fullName.split(" ")[0];
 
   return (
-    <div className="p-6 md:p-10 space-y-8">
+    <div className="p-4 sm:p-6 md:p-10 space-y-5 sm:space-y-8">
       {/* Header */}
       <div className="text-center">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-none border-2 border-lioner-gold/50 mb-4">
-          <Shield className="w-7 h-7 text-lioner-gold" />
+        <div className="inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 rounded-none border-2 border-lioner-gold/50 mb-3 sm:mb-4">
+          <Shield className="w-5 h-5 sm:w-7 sm:h-7 text-lioner-gold" />
         </div>
-        <h2 className="text-2xl md:text-3xl font-black text-foreground mb-1 font-sans uppercase tracking-wide">
+        <h2 className="text-lg sm:text-2xl md:text-3xl font-black text-foreground mb-1 font-sans uppercase tracking-wide">
           {t.title}
         </h2>
         <p className="text-foreground/50 text-sm">
@@ -176,17 +176,17 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
       </div>
 
       {/* Overall Gauge */}
-      <div className="text-center space-y-3">
+      <div className="text-center space-y-2 sm:space-y-3">
         <h3 className="text-xs uppercase tracking-widest text-foreground/50 font-semibold">{t.recoveryPotential}</h3>
         <OverallGauge score={result.overallScore} color={result.overallColor} />
-        <div className={`inline-block px-5 py-2 ${c.bg} border ${c.border} ${c.text} text-sm font-bold uppercase tracking-widest`}>
+        <div className={`inline-block px-3 sm:px-5 py-1.5 sm:py-2 ${c.bg} border ${c.border} ${c.text} text-xs sm:text-sm font-bold uppercase tracking-widest`}>
           {result.headline[language]}
         </div>
       </div>
 
       {/* Section Scores */}
-      <div className="p-5 border border-foreground/10 bg-foreground/[0.02] space-y-4">
-        <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold mb-2">
+      <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.02] space-y-3 sm:space-y-4">
+        <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold mb-1 sm:mb-2">
           {language === "nl" ? "Dimensieanalyse" : "Dimension Analysis"}
         </h4>
         {result.sections.map((section, i) => (
@@ -198,24 +198,24 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
       {report ? (
         <>
           {/* Situation Summary */}
-          <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
+           <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.03] space-y-2 sm:space-y-3">
             <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold flex items-center gap-2">
               <FileText className="w-4 h-4" /> {t.summary}
             </h4>
-            <p className="text-foreground/80 leading-relaxed">{report.situation_summary}</p>
+            <p className="text-foreground/80 leading-relaxed text-sm sm:text-base">{report.situation_summary}</p>
           </div>
 
           {/* Risk Indicators */}
           {report.risk_indicators?.length > 0 && (
-            <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
+            <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.03] space-y-2 sm:space-y-3">
               <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4" /> {t.indicators}
               </h4>
-              <ul className="space-y-2">
+              <ul className="space-y-1.5 sm:space-y-2">
                 {report.risk_indicators.map((ind, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-lioner-gold mt-2 shrink-0" />
-                    <span className="text-foreground/80 text-sm">{ind}</span>
+                  <li key={i} className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-lioner-gold mt-1.5 sm:mt-2 shrink-0" />
+                    <span className="text-foreground/80 text-xs sm:text-sm">{ind}</span>
                   </li>
                 ))}
               </ul>
@@ -224,13 +224,13 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
 
           {/* Strategic Paths */}
           {report.strategic_paths?.length > 0 && (
-            <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
+            <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.03] space-y-2 sm:space-y-3">
               <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.paths}</h4>
-              <ul className="space-y-2">
+              <ul className="space-y-1.5 sm:space-y-2">
                 {report.strategic_paths.map((path, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-lioner-gold mt-2 shrink-0" />
-                    <span className="text-foreground/80 text-sm">{path}</span>
+                  <li key={i} className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-lioner-gold mt-1.5 sm:mt-2 shrink-0" />
+                    <span className="text-foreground/80 text-xs sm:text-sm">{path}</span>
                   </li>
                 ))}
               </ul>
@@ -238,9 +238,9 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
           )}
 
           {/* Recommended Next Step */}
-          <div className="p-5 border border-lioner-gold/30 bg-lioner-gold/5 space-y-3">
+          <div className="p-3 sm:p-5 border border-lioner-gold/30 bg-lioner-gold/5 space-y-2 sm:space-y-3">
             <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.nextStep}</h4>
-            <p className="text-foreground/80 leading-relaxed">{report.recommended_next_step}</p>
+            <p className="text-foreground/80 leading-relaxed text-sm sm:text-base">{report.recommended_next_step}</p>
           </div>
         </>
       ) : (
@@ -251,23 +251,23 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
       )}
 
       {/* Confidentiality Notice */}
-      <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
+      <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.03] space-y-2 sm:space-y-3">
         <h4 className="text-xs uppercase tracking-widest text-foreground/40 font-bold flex items-center gap-2">
           <Lock className="w-4 h-4" /> {t.confidentiality}
         </h4>
-        <p className="text-foreground/50 text-sm leading-relaxed">{t.confidentialityText}</p>
+        <p className="text-foreground/50 text-xs sm:text-sm leading-relaxed">{t.confidentialityText}</p>
       </div>
 
       {/* CTA Button — only booking, Daisy connects automatically */}
-      <div className="text-center space-y-3 pt-4">
+      <div className="text-center space-y-3 pt-2 sm:pt-4">
         <Button
           asChild
           variant="outline"
-          className="w-full border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
+          className="w-full border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white rounded-none px-6 sm:px-10 py-5 sm:py-7 h-auto font-bold uppercase tracking-wider text-sm sm:text-base"
         >
           <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
             {t.bookBtn}
-            <ArrowRight className="w-5 h-5 ml-3" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3" />
           </a>
         </Button>
       </div>
