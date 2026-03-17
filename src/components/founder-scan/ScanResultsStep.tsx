@@ -87,6 +87,7 @@ const ui = {
 
 export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepProps) {
   const { language } = useLanguage();
+  const { openVoiceAgent } = useVoiceAgent();
   const t = ui[language] ?? ui.en;
   const c = colorMap[scores.overallColor];
   const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j";
