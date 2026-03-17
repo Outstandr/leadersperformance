@@ -259,15 +259,15 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
       </div>
 
       {/* CTA Button — only booking, Daisy connects automatically */}
-      <div className="text-center space-y-3 pt-4">
+      <div className="text-center space-y-3 pt-2 sm:pt-4">
         <Button
           asChild
           variant="outline"
-          className="w-full border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
+          className="w-full border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white rounded-none px-6 sm:px-10 py-5 sm:py-7 h-auto font-bold uppercase tracking-wider text-sm sm:text-base"
         >
           <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
             {t.bookBtn}
-            <ArrowRight className="w-5 h-5 ml-3" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3" />
           </a>
         </Button>
       </div>
