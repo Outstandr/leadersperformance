@@ -44,7 +44,7 @@ const daisyAgentConfig = {
         prompt: daisySystemPrompt,
       },
       first_message:
-        "Hi, this is Daisy from UNMASKED. I'm here to help you make sense of your next move. What feels most pressing for you right now?",
+        "Hi, this is Daisy from Leaders Performance. I'm here to help you make sense of your next move. What feels most pressing for you right now?",
       language: 'en',
     },
   },
