@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mic } from "lucide-react";
 import { PressureScores } from "@/lib/founderPressureScoring";
 import { ScanUserInfo } from "./ScanGateStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
 interface ScanResultsStepProps {
   userInfo: ScanUserInfo;
@@ -86,6 +87,7 @@ const ui = {
 
 export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepProps) {
   const { language } = useLanguage();
+  const { openVoiceAgent } = useVoiceAgent();
   const t = ui[language] ?? ui.en;
   const c = colorMap[scores.overallColor];
   const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j";
@@ -133,9 +135,29 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
 
       {/* CTA */}
       <div className="text-center space-y-3 pt-4">
+        {/* Speak with Daisy */}
+        <Button
+          onClick={() => {
+            onClose();
+            setTimeout(() => {
+              openVoiceAgent({
+                mode: "pressure_scan",
+                scanScores: scores,
+                scanUserInfo: userInfo,
+              });
+            }, 300);
+          }}
+          className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
+        >
+          <Mic className="w-5 h-5 mr-3" />
+          {language === "nl" ? "Bespreek met Daisy" : "Discuss with Daisy"}
+        </Button>
+
+        {/* Book directly */}
         <Button
           asChild
-          className="bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
+          variant="outline"
+          className="w-full border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
         >
           <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
             {t.ctaBtn}

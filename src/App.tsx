@@ -27,7 +27,7 @@ const queryClient = new QueryClient();
 
 // Inner component so it has access to VoiceAgentContext
 const AppRoutes = () => {
-  const { isOpen, closeVoiceAgent } = useVoiceAgent();
+  const { isOpen, closeVoiceAgent, contextData } = useVoiceAgent();
   return (
     <>
       <ScrollToTop />
@@ -48,7 +48,7 @@ const AppRoutes = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
-      <VoiceAgentDialog isOpen={isOpen} onClose={closeVoiceAgent} />
+      <VoiceAgentDialog isOpen={isOpen} onClose={closeVoiceAgent} contextData={contextData} />
     </>
   );
 };
