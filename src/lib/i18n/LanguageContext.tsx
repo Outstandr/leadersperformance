@@ -106,17 +106,21 @@ const en: Record<string, string> = {
   "home.visionNew.b5": "personal resilience",
   "home.visionNew.closing": "Leaders Performance exists to support those founders.",
 
-  // Pillars
-  "home.pillars.eyebrow": "The Four Pillars",
-  "home.pillars.cta": "Choose Your Path",
-  "home.pillars.title1": "Vitality",
-  "home.pillars.desc1": "Energy and physical capacity as the foundation of leadership performance.",
-  "home.pillars.title2": "Personal Development",
-  "home.pillars.desc2": "Self-awareness and personal discipline that allow founders to lead without ego or blind spots.",
-  "home.pillars.title3": "Leadership",
-  "home.pillars.desc3": "The ability to lead people, decisions and uncertainty with clarity.",
-  "home.pillars.title4": "Business Execution",
-  "home.pillars.desc4": "Translating strategy into disciplined execution inside the company.",
+  // Intervention Process
+  "home.pillars.eyebrow": "The Process",
+  "home.pillars.heading": "How an Intervention Typically Unfolds",
+  "home.pillars.intro": "Every situation is different, but most founder engagements follow a similar strategic process.",
+  "home.pillars.cta": "Find Your Next Move",
+  "home.pillars.title1": "Situation Assessment",
+  "home.pillars.desc1": "A private conversation to understand the real pressure points inside the business and leadership structure.\n\nWe assess:\n• leadership dynamics\n• operational clarity\n• decision pressure\n• structural risks",
+  "home.pillars.title2": "Strategic Diagnosis",
+  "home.pillars.desc2": "We identify the underlying problem behind the visible symptoms.\n\nIn many cases the issue is not growth, revenue or market — but structure, leadership alignment or decision quality.",
+  "home.pillars.title3": "Intervention Environment",
+  "home.pillars.desc3": "Depending on the situation, the next step may include:\n• UNMASKED intervention\n• Founder Strategic Advisory\n• Leadership alignment sessions\n• Special situations coordination\n\nThe goal is to create a controlled environment where real decisions can be made.",
+  "home.pillars.title4": "Structural Reset",
+  "home.pillars.desc4": "Once clarity is established, we implement structural changes such as:\n• leadership alignment\n• decision frameworks\n• operational structure\n• strategic direction\n\nThis stage focuses on restoring control and execution discipline.",
+  "home.pillars.title5": "Strategic Continuation",
+  "home.pillars.desc5": "Some founders continue through Founder Strategic Advisory to maintain clarity, discipline and performance as the business grows.",
 
   // Testimonials
   "home.testimonials.heading": "Client",
