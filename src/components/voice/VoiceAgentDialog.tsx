@@ -128,8 +128,22 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       setEmailInput("");
       setShowEmailInput(false);
       setEmailConfirmed(false);
+      autoConnectTriggered.current = false;
     }
   }, [isOpen]);
+
+  // Sync isSpeaking to context
+  useEffect(() => {
+    setIsSpeaking(conversation.isSpeaking ?? false);
+  }, [conversation.isSpeaking, setIsSpeaking]);
+
+  // Auto-connect when autoConnect is set
+  useEffect(() => {
+    if (isOpen && contextData.autoConnect && status === "idle" && !autoConnectTriggered.current) {
+      autoConnectTriggered.current = true;
+      startConversation();
+    }
+  }, [isOpen, contextData.autoConnect, status]);
 
   const submitEmail = useCallback(() => {
     const trimmed = emailInput.trim();

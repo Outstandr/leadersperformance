@@ -80,10 +80,21 @@ export default {
             height: "0",
           },
         },
+        "border-pulse": {
+          "0%, 100%": {
+            borderColor: "hsl(42 35% 53% / 0.6)",
+            boxShadow: "0 0 15px hsl(42 35% 53% / 0.15)",
+          },
+          "50%": {
+            borderColor: "hsl(42 35% 53% / 0.2)",
+            boxShadow: "0 0 5px hsl(42 35% 53% / 0.05)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "border-pulse": "border-pulse 2s ease-in-out infinite",
       },
     },
   },
