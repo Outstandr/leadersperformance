@@ -27,8 +27,9 @@ Deno.serve(async (req) => {
       });
     }
 
+    // Get signed URL for WebSocket connection (more reliable than WebRTC token)
     const response = await fetch(
-      `https://api.elevenlabs.io/v1/convai/conversation/token?agent_id=${AGENT_ID}`,
+      `https://api.elevenlabs.io/v1/convai/conversation/get-signed-url?agent_id=${AGENT_ID}`,
       {
         headers: {
           'xi-api-key': ELEVENLABS_API_KEY,
@@ -39,15 +40,15 @@ Deno.serve(async (req) => {
     if (!response.ok) {
       const error = await response.text();
       console.error('ElevenLabs API error:', response.status, error);
-      return new Response(JSON.stringify({ error: 'Failed to get token' }), {
+      return new Response(JSON.stringify({ error: 'Failed to get signed URL' }), {
         status: 502,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
-    const { token } = await response.json();
+    const { signed_url } = await response.json();
 
-    return new Response(JSON.stringify({ token }), {
+    return new Response(JSON.stringify({ signed_url }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {
