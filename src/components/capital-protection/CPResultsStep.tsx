@@ -207,15 +207,15 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
 
           {/* Risk Indicators */}
           {report.risk_indicators?.length > 0 && (
-            <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
+            <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.03] space-y-2 sm:space-y-3">
               <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4" /> {t.indicators}
               </h4>
-              <ul className="space-y-2">
+              <ul className="space-y-1.5 sm:space-y-2">
                 {report.risk_indicators.map((ind, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-lioner-gold mt-2 shrink-0" />
-                    <span className="text-foreground/80 text-sm">{ind}</span>
+                  <li key={i} className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-lioner-gold mt-1.5 sm:mt-2 shrink-0" />
+                    <span className="text-foreground/80 text-xs sm:text-sm">{ind}</span>
                   </li>
                 ))}
               </ul>
