@@ -80,6 +80,7 @@ export function CPVoiceWidget({ userInfo, result, aiReport }: CPVoiceWidgetProps
   }, [transcript]);
 
   const buildContextMessage = () => {
+    const firstName = userInfo.fullName.trim().split(/\s+/)[0];
     const sections = result.sections.map(s => `${s.label.en}: ${s.score}% (${s.color})`).join("\n  ");
     const aiSection = aiReport ? `
 AI STRATEGIC REPORT:
@@ -91,6 +92,8 @@ AI STRATEGIC REPORT:
   Recommended Next Step: ${aiReport.recommended_next_step}` : "";
 
     return `CAPITAL PROTECTION ASSESSMENT — FULL CONTEXT
+
+IMPORTANT: Your first message to this user must be exactly: "Hi, this is Daisy from Leaders Performance." Then address them by their first name (${firstName}), and ask if they are happy with their results. Do NOT use a generic opener.
 
 CLIENT PROFILE:
   Name: ${userInfo.fullName}
@@ -175,11 +178,15 @@ IMPORTANT INSTRUCTIONS:
   const handleBookingComplete = useCallback(() => {
     setBookingConfirmed(true);
     setShowCalendar(false);
-    // Notify Daisy the booking was confirmed
+    // Notify Daisy and end session after a brief farewell
     if (conversation.status === "connected") {
       conversation.sendContextualUpdate(
-        "The user has just successfully booked a case review appointment with Lionel. Congratulate them and let them know the team will be in touch."
+        "The user has just successfully booked a case review appointment with Lionel. Say one short congratulatory sentence, tell them the team will be in touch, and then say goodbye. Do NOT keep talking after that — the conversation is ending."
       );
+      // Give Daisy a moment to deliver the farewell, then end
+      setTimeout(() => {
+        conversation.endSession();
+      }, 12000);
     }
   }, [conversation]);
 
