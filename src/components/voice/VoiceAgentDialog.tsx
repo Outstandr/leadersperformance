@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
 import { X, Mic, MicOff, PhoneOff, Volume2, Send, Check } from "lucide-react";
-import { VoiceAgentContextData } from "./VoiceAgentContext";
+import { VoiceAgentContextData, useVoiceAgent } from "./VoiceAgentContext";
 
 interface VoiceAgentDialogProps {
   isOpen: boolean;
