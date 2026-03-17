@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mic, Shield, Loader2, AlertTriangle, FileText, Lock, Volume2 } from "lucide-react";
+import { Shield, Loader2, AlertTriangle, FileText, Lock } from "lucide-react";
 import { CPResult, CPSectionScore } from "@/lib/capitalProtectionScoring";
 import { CPUserInfo } from "./CPUserInfoStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
 interface AIReport {
   situation_summary: string;
@@ -47,15 +45,12 @@ const ui = {
     generating: "Generating your strategic report...",
     generatingSubtitle: "Our AI is analyzing your situation across multiple dimensions...",
     recoveryPotential: "Recovery Potential",
-    riskLevel: "Strategic Risk Level",
     summary: "Situation Summary",
     indicators: "Key Risk Indicators",
     paths: "Possible Strategic Paths",
     nextStep: "Recommended Next Step",
     confidentiality: "Confidentiality Notice",
     confidentialityText: "This report is generated for internal assessment purposes only. All information is treated as strictly confidential. No data is shared with third parties without your explicit consent.",
-    discussBtn: "Discuss with Daisy",
-    bookBtn: "Schedule Case Review",
     close: "Close",
   },
   nl: {
@@ -63,20 +58,16 @@ const ui = {
     generating: "Uw strategisch rapport wordt gegenereerd...",
     generatingSubtitle: "Onze AI analyseert uw situatie over meerdere dimensies...",
     recoveryPotential: "Herstelpotentieel",
-    riskLevel: "Strategisch Risiconiveau",
     summary: "Situatieoverzicht",
     indicators: "Belangrijkste Risico-indicatoren",
     paths: "Mogelijke Strategische Paden",
     nextStep: "Aanbevolen Volgende Stap",
     confidentiality: "Vertrouwelijkheidsverklaring",
     confidentialityText: "Dit rapport is uitsluitend gegenereerd voor interne beoordelingsdoeleinden. Alle informatie wordt strikt vertrouwelijk behandeld. Geen gegevens worden gedeeld met derden zonder uw uitdrukkelijke toestemming.",
-    discussBtn: "Bespreek met Daisy",
-    bookBtn: "Plan Casebeoordeling",
     close: "Sluiten",
   },
 };
 
-// SVG circular gauge component
 function OverallGauge({ score, color }: { score: number; color: "green" | "orange" | "red" }) {
   const radius = 54;
   const circumference = 2 * Math.PI * radius;
@@ -102,7 +93,6 @@ function OverallGauge({ score, color }: { score: number; color: "green" | "orang
   );
 }
 
-// Section score bar
 function SectionBar({ section, language }: { section: CPSectionScore; language: "en" | "nl" }) {
   const colors = barColors[section.color];
   return (
@@ -123,37 +113,8 @@ function SectionBar({ section, language }: { section: CPSectionScore; language: 
 
 export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose }: CPResultsStepProps) {
   const { language } = useLanguage();
-  const { openVoiceAgent, isSpeaking, isOpen: isDaisyOpen } = useVoiceAgent();
   const t = ui[language] ?? ui.en;
   const c = tierColorClasses[result.recoveryPotential];
-  const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j";
-  const [voiceTriggered, setVoiceTriggered] = useState(false);
-
-  useEffect(() => {
-    if (!isLoadingAI && result && !voiceTriggered) {
-      setVoiceTriggered(true);
-      const timer = setTimeout(() => {
-        openVoiceAgent({
-          mode: "capital_protection",
-          autoConnect: false,
-          cpReport: aiReport,
-          cpUserInfo: userInfo,
-          cpResult: result,
-        });
-      }, 600);
-      return () => clearTimeout(timer);
-    }
-  }, [aiReport, isLoadingAI, openVoiceAgent, result, userInfo, voiceTriggered]);
-
-  const handleOpenDaisy = () => {
-    openVoiceAgent({
-      mode: "capital_protection",
-      autoConnect: false,
-      cpReport: aiReport,
-      cpUserInfo: userInfo,
-      cpResult: result,
-    });
-  };
 
   if (isLoadingAI) {
     return (
@@ -183,73 +144,6 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
         </p>
       </div>
 
-      {/* Daisy AI Advisor Banner */}
-      <div className={`p-3 sm:p-4 border rounded-lg transition-all duration-300 ${
-        isSpeaking
-          ? "bg-lioner-gold/10 border-lioner-gold/40"
-          : isDaisyOpen
-          ? "bg-lioner-gold/5 border-lioner-gold/20"
-          : "bg-foreground/[0.02] border-foreground/10"
-      }`}>
-        <div className="flex items-start gap-3">
-          <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-all ${
-            isSpeaking ? "bg-lioner-gold/20 animate-pulse" : "bg-lioner-gold/10"
-          }`}>
-            {isSpeaking ? (
-              <Volume2 className="w-5 h-5 text-lioner-gold" />
-            ) : (
-              <Mic className="w-5 h-5 text-lioner-gold" />
-            )}
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-foreground">
-              {isSpeaking
-                ? language === "nl"
-                  ? "Daisy spreekt…"
-                  : "Daisy is speaking…"
-                : "Daisy — AI Voice Advisor"}
-            </p>
-            <p className="text-xs text-foreground/50 leading-snug">
-              {isSpeaking
-                ? language === "nl"
-                  ? "U spreekt nu live met Daisy over uw assessmentresultaten."
-                  : "You are now in a live AI voice conversation about your assessment results."
-                : isDaisyOpen
-                ? language === "nl"
-                  ? "Daisy staat klaar. Tik op Start Conversation in het Daisy-venster om microfoontoegang te geven en het gesprek te beginnen."
-                  : "Daisy is ready. Tap Start Conversation in the Daisy window to grant microphone access and begin speaking."
-                : language === "nl"
-                ? "U gaat zo spreken met Daisy, onze AI adviseur. Microfoontoegang wordt pas gevraagd nadat u op Start Conversation tikt."
-                : "You are about to speak with Daisy, our AI advisor. Microphone access is only requested after you tap Start Conversation."}
-            </p>
-          </div>
-          {isSpeaking && (
-            <div className="flex items-center gap-0.5 shrink-0">
-              {[1, 2, 3, 4].map((i) => (
-                <div
-                  key={i}
-                  className="w-1 bg-lioner-gold rounded-full animate-pulse"
-                  style={{ height: `${8 + Math.random() * 12}px`, animationDelay: `${i * 100}ms` }}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-
-        {!isDaisyOpen && !isSpeaking && (
-          <div className="mt-3">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleOpenDaisy}
-              className="w-full border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white"
-            >
-              {language === "nl" ? "Open Daisy" : "Open Daisy"}
-            </Button>
-          </div>
-        )}
-      </div>
-
       {/* Overall Gauge */}
       <div className="text-center space-y-2 sm:space-y-3">
         <h3 className="text-xs uppercase tracking-widest text-foreground/50 font-semibold">{t.recoveryPotential}</h3>
@@ -269,18 +163,16 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
         ))}
       </div>
 
-      {/* AI Report or fallback */}
+      {/* AI Report */}
       {report ? (
         <>
-          {/* Situation Summary */}
-           <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.03] space-y-2 sm:space-y-3">
+          <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.03] space-y-2 sm:space-y-3">
             <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold flex items-center gap-2">
               <FileText className="w-4 h-4" /> {t.summary}
             </h4>
             <p className="text-foreground/80 leading-relaxed text-sm sm:text-base">{report.situation_summary}</p>
           </div>
 
-          {/* Risk Indicators */}
           {report.risk_indicators?.length > 0 && (
             <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.03] space-y-2 sm:space-y-3">
               <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold flex items-center gap-2">
@@ -297,7 +189,6 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
             </div>
           )}
 
-          {/* Strategic Paths */}
           {report.strategic_paths?.length > 0 && (
             <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.03] space-y-2 sm:space-y-3">
               <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.paths}</h4>
@@ -312,7 +203,6 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
             </div>
           )}
 
-          {/* Recommended Next Step */}
           <div className="p-3 sm:p-5 border border-lioner-gold/30 bg-lioner-gold/5 space-y-2 sm:space-y-3">
             <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.nextStep}</h4>
             <p className="text-foreground/80 leading-relaxed text-sm sm:text-base">{report.recommended_next_step}</p>
@@ -333,22 +223,8 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
         <p className="text-foreground/50 text-xs sm:text-sm leading-relaxed">{t.confidentialityText}</p>
       </div>
 
-      {/* CTA Button — only booking, Daisy connects automatically */}
-      <div className="text-center space-y-3 pt-2 sm:pt-4">
-        <Button
-          asChild
-          variant="outline"
-          className="w-full border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white rounded-none px-6 sm:px-10 py-5 sm:py-7 h-auto font-bold uppercase tracking-wider text-sm sm:text-base"
-        >
-          <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-            {t.bookBtn}
-            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3" />
-          </a>
-        </Button>
-      </div>
-
       {/* Close */}
-      <div className="text-center">
+      <div className="text-center pb-4">
         <Button variant="ghost" onClick={onClose} className="text-foreground/40 hover:text-foreground/60">
           {t.close}
         </Button>

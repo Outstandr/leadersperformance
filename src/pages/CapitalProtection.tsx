@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { CapitalProtectionDialog } from "@/components/capital-protection/CapitalProtectionDialog";
 import { CPResultsStep } from "@/components/capital-protection/CPResultsStep";
+import { CPVoiceWidget } from "@/components/capital-protection/CPVoiceWidget";
 import { CPResult } from "@/lib/capitalProtectionScoring";
 import { CPUserInfo } from "@/components/capital-protection/CPUserInfoStep";
 import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
@@ -52,26 +53,37 @@ const CapitalProtection = () => {
         onLoadingComplete={handleLoadingComplete}
       />
 
-      {/* Results shown directly on page (no dialog blocking VoiceAgent) */}
       {resultsData && (
-        <div className="min-h-screen flex items-start justify-center py-6 sm:py-10 px-4">
-          <div className={`w-full max-w-2xl bg-white border rounded-lg shadow-xl transition-all duration-300 ${
-            isSpeaking
-              ? "border-2 border-lioner-gold/60 animate-border-pulse shadow-[0_0_30px_hsl(var(--lioner-gold)/0.2)]"
-              : "border-foreground/10"
-          }`}>
-            <CPResultsStep
-              userInfo={resultsData.userInfo}
-              result={resultsData.result}
-              aiReport={resultsData.aiReport}
-              isLoadingAI={resultsData.isLoadingAI}
-              onClose={handleClose}
-            />
+        <div className="min-h-screen flex flex-col">
+          <div className="flex-1 flex items-start justify-center py-6 sm:py-10 px-4">
+            <div className={`w-full max-w-2xl bg-white border rounded-lg shadow-xl transition-all duration-300 ${
+              isSpeaking
+                ? "border-2 border-lioner-gold/60 animate-border-pulse shadow-[0_0_30px_hsl(var(--lioner-gold)/0.2)]"
+                : "border-foreground/10"
+            }`}>
+              <CPResultsStep
+                userInfo={resultsData.userInfo}
+                result={resultsData.result}
+                aiReport={resultsData.aiReport}
+                isLoadingAI={resultsData.isLoadingAI}
+                onClose={handleClose}
+              />
+            </div>
           </div>
+
+          {/* Embedded Daisy voice widget — always visible below report */}
+          {!resultsData.isLoadingAI && (
+            <div className="sticky bottom-0 z-50">
+              <CPVoiceWidget
+                userInfo={resultsData.userInfo}
+                result={resultsData.result}
+                aiReport={resultsData.aiReport}
+              />
+            </div>
+          )}
         </div>
       )}
 
-      {/* Fallback when no dialog and no results */}
       {!dialogOpen && !resultsData && (
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center space-y-4">
