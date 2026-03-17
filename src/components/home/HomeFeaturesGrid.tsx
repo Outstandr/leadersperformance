@@ -56,26 +56,6 @@ const cards = {
       },
     },
     {
-      title: "Leaders Performance\nAcademy",
-      description: "The digital leadership platform built around the RESET Blueprint. Structured learning, leadership frameworks and development tools for discipline, decision-making and execution.",
-      details: {
-        headline: "Leaders Performance Academy",
-        tag: "Digital Leadership Platform",
-        body: "The Leaders Performance Academy is the digital leadership platform built around the RESET Blueprint.\n\nIt combines structured digital learning, leadership frameworks and development tools designed to strengthen discipline, decision-making and execution.\n\nThe platform supports founders, executives and professionals who want to strengthen their leadership capacity and performance.",
-        bullets: [
-          "Leadership masterclasses",
-          "Structured RESET Blueprint modules",
-          "The RESET book series",
-          "Digital leadership tools",
-          "AI-supported coaching tools",
-          "A leadership community",
-        ],
-        closing: "Built for founders, executives and professionals serious about leadership.",
-        cta: "Explore the Academy",
-        disclaimer: "RESET Blueprint® Ecosystem",
-      },
-    },
-    {
       title: "Capital Protection\n& Special Situations",
       description: "For founders facing situations where capital, partnerships or ownership structures become exposed. Supported by an international network of legal, forensic and investigative specialists.",
       details: {
@@ -93,6 +73,26 @@ const cards = {
         cta: "Start Capital Protection Assessment",
         disclaimer: "Confidential · International network",
         showCalendar: false,
+      },
+    },
+    {
+      title: "Leaders Performance\nAcademy",
+      description: "The digital leadership platform built around the RESET Blueprint. Structured learning, leadership frameworks and development tools for discipline, decision-making and execution.",
+      details: {
+        headline: "Leaders Performance Academy",
+        tag: "Digital Leadership Platform",
+        body: "The Leaders Performance Academy is the digital leadership platform built around the RESET Blueprint.\n\nIt combines structured digital learning, leadership frameworks and development tools designed to strengthen discipline, decision-making and execution.\n\nThe platform supports founders, executives and professionals who want to strengthen their leadership capacity and performance.",
+        bullets: [
+          "Leadership masterclasses",
+          "Structured RESET Blueprint modules",
+          "The RESET book series",
+          "Digital leadership tools",
+          "AI-supported coaching tools",
+          "A leadership community",
+        ],
+        closing: "Built for founders, executives and professionals serious about leadership.",
+        cta: "Explore the Academy",
+        disclaimer: "RESET Blueprint® Ecosystem",
       },
     },
   ],
