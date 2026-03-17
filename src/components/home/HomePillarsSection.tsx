@@ -7,11 +7,12 @@ export const HomePillarsSection = () => {
   const { t } = useLanguage();
   const { openVoiceAgent } = useVoiceAgent();
 
-  const pillars = [
+  const steps = [
     { title: t("home.pillars.title1"), description: t("home.pillars.desc1") },
     { title: t("home.pillars.title2"), description: t("home.pillars.desc2") },
     { title: t("home.pillars.title3"), description: t("home.pillars.desc3") },
     { title: t("home.pillars.title4"), description: t("home.pillars.desc4") },
+    { title: t("home.pillars.title5"), description: t("home.pillars.desc5") },
   ];
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -23,14 +24,38 @@ export const HomePillarsSection = () => {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
-    const idx = Math.min(Math.floor(v * pillars.length), pillars.length - 1);
+    const idx = Math.min(Math.floor(v * steps.length), steps.length - 1);
     setActiveIndex(idx);
   });
 
-  const formattedNumber = String(activeIndex + 1).padStart(2, "0");
+  const formattedNumber = String(activeIndex + 1);
+
+  // Split description into paragraphs and render bullet points
+  const renderDescription = (desc: string) => {
+    return desc.split("\n\n").map((block, i) => {
+      if (block.startsWith("•") || block.includes("\n•")) {
+        const lines = block.split("\n").filter(Boolean);
+        return (
+          <ul key={i} className={`space-y-1 ${i > 0 ? "mt-4" : ""}`}>
+            {lines.map((line, j) => (
+              <li key={j} className="text-base text-muted-foreground flex items-start gap-2">
+                <span className="text-lioner-gold mt-1.5 shrink-0">•</span>
+                <span>{line.replace(/^•\s*/, "")}</span>
+              </li>
+            ))}
+          </ul>
+        );
+      }
+      return (
+        <p key={i} className={`text-base md:text-lg text-muted-foreground leading-relaxed ${i > 0 ? "mt-4" : ""}`}>
+          {block}
+        </p>
+      );
+    });
+  };
 
   return (
-    <section ref={containerRef} className="relative bg-background" style={{ height: `${pillars.length * 100}vh` }}>
+    <section ref={containerRef} className="relative bg-background" style={{ height: `${steps.length * 100}vh` }}>
       {/* Decorative gold swirling lines */}
       <div className="sticky top-0 h-screen pointer-events-none z-0 overflow-hidden">
         <svg
@@ -51,30 +76,33 @@ export const HomePillarsSection = () => {
       <div className="sticky top-0 h-screen z-10" style={{ marginTop: `-100vh` }}>
         <div className="container mx-auto px-6 max-w-7xl h-full flex items-center">
           <div className="w-full flex items-center justify-between">
-            {/* Left: pillar text */}
+            {/* Left: step text */}
             <div className="max-w-lg">
-              <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold mb-8">
+              <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold mb-4">
                 {t("home.pillars.eyebrow")}
               </p>
-              <motion.h2
+              <h2 className="font-serif text-2xl md:text-3xl font-medium text-foreground/60 mb-8">
+                {t("home.pillars.heading")}
+              </h2>
+              <motion.h3
                 key={`title-${activeIndex}`}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -30 }}
                 transition={{ duration: 0.4 }}
-                className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight tracking-tight text-foreground mb-6"
+                className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-tight tracking-tight text-foreground mb-6"
               >
-                {pillars[activeIndex].title}
-              </motion.h2>
-              <motion.p
+                {steps[activeIndex].title}
+              </motion.h3>
+              <motion.div
                 key={`desc-${activeIndex}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8"
+                className="mb-8"
               >
-                {pillars[activeIndex].description}
-              </motion.p>
+                {renderDescription(steps[activeIndex].description)}
+              </motion.div>
               <button
                 onClick={() => openVoiceAgent()}
                 className="inline-block border border-lioner-gold text-lioner-gold px-8 py-3 text-sm font-medium tracking-widest uppercase hover:bg-lioner-gold hover:text-white transition-all duration-300"
@@ -97,13 +125,12 @@ export const HomePillarsSection = () => {
         </div>
       </div>
 
-      {/* Invisible scroll spacers — one per pillar to drive scrollYProgress */}
+      {/* Invisible scroll spacers — one per step to drive scrollYProgress */}
       <div className="relative z-0">
-        {pillars.map((_, i) => (
+        {steps.map((_, i) => (
           <div key={i} className="h-screen" />
         ))}
       </div>
     </section>
-
   );
 };
