@@ -50,10 +50,11 @@ Recommendation: ${scores.recommendation}
       }
     },
     onDisconnect: () => {
+      console.log("[Daisy] Disconnected - previous status was:", status);
       setStatus("ended");
     },
     onMessage: (msg: any) => {
-      console.log("ElevenLabs onMessage:", JSON.stringify(msg));
+      console.log("[Daisy] onMessage:", JSON.stringify(msg));
       let message: string | null = null;
       let role: "user" | "agent" | null = null;
 
