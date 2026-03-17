@@ -25,6 +25,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
 
   const conversation = useConversation({
     onConnect: () => {
+      console.log("[Daisy] Connected successfully");
       setStatus("connected");
       setError(null);
 
@@ -49,10 +50,11 @@ Recommendation: ${scores.recommendation}
       }
     },
     onDisconnect: () => {
+      console.log("[Daisy] Disconnected - previous status was:", status);
       setStatus("ended");
     },
     onMessage: (msg: any) => {
-      console.log("ElevenLabs onMessage:", JSON.stringify(msg));
+      console.log("[Daisy] onMessage:", JSON.stringify(msg));
       let message: string | null = null;
       let role: "user" | "agent" | null = null;
 
@@ -82,7 +84,7 @@ Recommendation: ${scores.recommendation}
       }
     },
     onError: (err) => {
-      console.error("Voice agent error:", err);
+      console.error("[Daisy] Voice agent error:", JSON.stringify(err));
       setError("Connection error. Please check your microphone and try again.");
       setStatus("idle");
     },
@@ -140,14 +142,17 @@ Recommendation: ${scores.recommendation}
       }
 
       const { signed_url } = await response.json();
+      console.log("[Daisy] Got signed URL, length:", signed_url?.length);
 
       if (!signed_url) {
         throw new Error("No signed URL received");
       }
 
-      await conversation.startSession({
+      console.log("[Daisy] Calling startSession with signedUrl...");
+      const session = await conversation.startSession({
         signedUrl: signed_url,
       });
+      console.log("[Daisy] startSession returned:", session);
     } catch (err: any) {
       console.error("Failed to start conversation:", err);
       if (err.name === "NotAllowedError") {
