@@ -38,7 +38,7 @@ const cards = {
     },
     {
       title: "UNMASKED\nIntervention",
-      description: "A private intervention environment designed for founders and leadership teams who require clarity, structural reset and decisive execution.",
+      description: "Work directly with Lionel Eersteling as a strategic sparring partner for sharper strategic thinking, stronger leadership discipline and disciplined execution.",
       details: {
         headline: "UNMASKED Intervention",
         tag: "Invitation Only · Dubai Desert",
