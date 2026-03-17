@@ -36,9 +36,6 @@ export const HomeIntroSection = () => {
             <Word key={i} word={word} index={i} total={words.length} scrollYProgress={scrollYProgress} />
           ))}
         </h2>
-        <p className="mt-12 font-serif text-xl md:text-2xl text-lioner-gold italic leading-relaxed">
-          {t("home.intro.quote")}
-        </p>
       </div>
     </section>
   );
