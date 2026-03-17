@@ -1,11 +1,11 @@
 import { motion, useInView, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { UnmaskedBookingDialog } from "./UnmaskedBookingDialog";
 import { MentorshipApplicationDialog } from "./MentorshipApplicationDialog";
 import { BusinessConsultationDialog } from "./BusinessConsultationDialog";
 import { FounderPressureScanDialog } from "@/components/founder-scan/FounderPressureScanDialog";
-import { CapitalProtectionDialog } from "@/components/capital-protection/CapitalProtectionDialog";
 import serviceUnmasked from "@/assets/card-unmasked.png";
 import serviceCoaching from "@/assets/card-coaching.png";
 import serviceAcademy from "@/assets/card-masterclass.png";
@@ -257,7 +257,7 @@ export const HomeFeaturesGrid = () => {
   const [mentorshipOpen, setMentorshipOpen] = useState(false);
   const [businessConsultOpen, setBusinessConsultOpen] = useState(false);
   const [pressureScanOpen, setPressureScanOpen] = useState(false);
-  const [capitalProtectionOpen, setCapitalProtectionOpen] = useState(false);
+  const navigate = useNavigate();
   const selectedService = selected !== null ? services[selected] : null;
   const showCalendar = selectedService && (selectedService.details as any).showCalendar;
   const calendarUrl = selectedService ? (selectedService.details as any).calendarUrl : null;
@@ -379,7 +379,7 @@ export const HomeFeaturesGrid = () => {
                   {/* Capital Protection (index 2) */}
                   {selected === 2 && (
                     <button
-                      onClick={() => { setSelected(null); setTimeout(() => setCapitalProtectionOpen(true), 200); }}
+                      onClick={() => { setSelected(null); navigate("/capital-protection"); }}
                       className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
                     >
                       {(services[selected].details as any).cta}
@@ -408,7 +408,7 @@ export const HomeFeaturesGrid = () => {
       <MentorshipApplicationDialog open={mentorshipOpen} onOpenChange={setMentorshipOpen} />
       <BusinessConsultationDialog open={businessConsultOpen} onOpenChange={setBusinessConsultOpen} />
       <FounderPressureScanDialog open={pressureScanOpen} onOpenChange={setPressureScanOpen} />
-      <CapitalProtectionDialog open={capitalProtectionOpen} onOpenChange={setCapitalProtectionOpen} />
+      
     </>
   );
 };
