@@ -22,6 +22,7 @@ const LeadingThroughUncertainty = lazy(() => import("./pages/articles/LeadingThr
 const ResetBlueprint = lazy(() => import("./pages/articles/ResetBlueprint"));
 const Articles = lazy(() => import("./pages/Articles"));
 const ArticleDetail = lazy(() => import("./pages/ArticleDetail"));
+const CapitalProtection = lazy(() => import("./pages/CapitalProtection"));
 
 const queryClient = new QueryClient();
 
