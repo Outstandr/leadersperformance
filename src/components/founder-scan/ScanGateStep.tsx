@@ -89,7 +89,7 @@ export function ScanGateStep({ onSubmit, isSubmitting }: ScanGateStepProps) {
       return;
     }
     setErrors({});
-    onSubmit(result.data);
+    onSubmit(result.data as ScanUserInfo);
   };
 
   const inputClass = (field: string) =>
