@@ -122,6 +122,7 @@ export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressur
     setCurrentQ(0);
     setResponses({});
     setScores(null);
+    setUserInfo(null);
     onOpenChange(false);
   };
 
