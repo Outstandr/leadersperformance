@@ -185,8 +185,8 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
       </div>
 
       {/* Section Scores */}
-      <div className="p-5 border border-foreground/10 bg-foreground/[0.02] space-y-4">
-        <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold mb-2">
+      <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.02] space-y-3 sm:space-y-4">
+        <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold mb-1 sm:mb-2">
           {language === "nl" ? "Dimensieanalyse" : "Dimension Analysis"}
         </h4>
         {result.sections.map((section, i) => (
