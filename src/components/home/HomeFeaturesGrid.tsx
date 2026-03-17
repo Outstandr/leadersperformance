@@ -4,6 +4,7 @@ import { X } from "lucide-react";
 import { UnmaskedBookingDialog } from "./UnmaskedBookingDialog";
 import { MentorshipApplicationDialog } from "./MentorshipApplicationDialog";
 import { BusinessConsultationDialog } from "./BusinessConsultationDialog";
+import { FounderPressureScanDialog } from "@/components/founder-scan/FounderPressureScanDialog";
 import serviceUnmasked from "@/assets/card-unmasked.png";
 import serviceCoaching from "@/assets/card-coaching.png";
 import serviceAcademy from "@/assets/card-masterclass.png";
@@ -49,10 +50,9 @@ const cards = {
           "Strengthening long-term value creation",
         ],
         closing: "Engagement is limited and by application only.",
-        cta: "Request Advisory",
+        cta: "Take the Founders Pressure Scan",
         disclaimer: "All engagements by application",
-        showCalendar: true,
-        calendarUrl: "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j",
+        showCalendar: false,
       },
     },
     {
@@ -131,10 +131,9 @@ const cards = {
           "Versterken van langetermijn waardecreatie",
         ],
         closing: "Het traject is beperkt en uitsluitend op aanvraag.",
-        cta: "Advies aanvragen",
+        cta: "Start de Founders Drukscan",
         disclaimer: "Alle trajecten op aanvraag",
-        showCalendar: true,
-        calendarUrl: "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j",
+        showCalendar: false,
       },
     },
     {
@@ -256,7 +255,7 @@ export const HomeFeaturesGrid = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [mentorshipOpen, setMentorshipOpen] = useState(false);
   const [businessConsultOpen, setBusinessConsultOpen] = useState(false);
-
+  const [pressureScanOpen, setPressureScanOpen] = useState(false);
   const selectedService = selected !== null ? services[selected] : null;
   const showCalendar = selectedService && (selectedService.details as any).showCalendar;
   const calendarUrl = selectedService ? (selectedService.details as any).calendarUrl : null;
@@ -387,10 +386,20 @@ export const HomeFeaturesGrid = () => {
                     </a>
                   )}
 
-                  {/* Founder Strategic Advisory application (index 0) */}
-                  {selected === 0 && (
+                  {/* UNMASKED application (index 0) — kept for non-isUnmasked fallback */}
+                  {selected === 0 && !isUnmasked && (
                     <button
                       onClick={() => { setSelected(null); setTimeout(() => setMentorshipOpen(true), 200); }}
+                      className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                    >
+                      {(services[selected].details as any).cta}
+                    </button>
+                  )}
+
+                  {/* Founder Strategic Advisory — Pressure Scan (index 1) */}
+                  {selected === 1 && (
+                    <button
+                      onClick={() => { setSelected(null); setTimeout(() => setPressureScanOpen(true), 200); }}
                       className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
                     >
                       {(services[selected].details as any).cta}
@@ -416,6 +425,7 @@ export const HomeFeaturesGrid = () => {
       <UnmaskedBookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
       <MentorshipApplicationDialog open={mentorshipOpen} onOpenChange={setMentorshipOpen} />
       <BusinessConsultationDialog open={businessConsultOpen} onOpenChange={setBusinessConsultOpen} />
+      <FounderPressureScanDialog open={pressureScanOpen} onOpenChange={setPressureScanOpen} />
     </>
   );
 };
