@@ -149,10 +149,10 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
 
   if (isLoadingAI) {
     return (
-      <div className="p-6 md:p-10 text-center py-20">
-        <Loader2 className="w-12 h-12 text-lioner-gold animate-spin mx-auto mb-6" />
-        <p className="text-foreground/80 font-semibold text-lg mb-2">{t.generating}</p>
-        <p className="text-foreground/40 text-sm">{t.generatingSubtitle}</p>
+      <div className="p-4 sm:p-6 md:p-10 text-center py-12 sm:py-20">
+        <Loader2 className="w-10 h-10 sm:w-12 sm:h-12 text-lioner-gold animate-spin mx-auto mb-4 sm:mb-6" />
+        <p className="text-foreground/80 font-semibold text-base sm:text-lg mb-2">{t.generating}</p>
+        <p className="text-foreground/40 text-xs sm:text-sm">{t.generatingSubtitle}</p>
       </div>
     );
   }
