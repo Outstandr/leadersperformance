@@ -99,7 +99,7 @@ const cards = {
   nl: [
     {
       title: "Founder Strategisch\nAdvies",
-      description: "Werk direct samen met Lionel Eersteling als strategische sparringpartner voor scherpere strategische besluitvorming, sterker leiderschap en gedisciplineerde uitvoering.",
+      description: "Een privé interventieomgeving ontworpen voor founders en leiderschapsteams die helderheid, structurele reset en besluitvaardige uitvoering nodig hebben.",
       details: {
         headline: "Founder Strategisch Advies",
         tag: "Beperkt · Uitsluitend op aanvraag",
