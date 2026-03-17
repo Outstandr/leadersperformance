@@ -120,7 +120,7 @@ const cards = {
     },
     {
       title: "UNMASKED\nInterventie",
-      description: "Een privé interventieomgeving ontworpen voor founders en leiderschapsteams die helderheid, structurele reset en besluitvaardige uitvoering nodig hebben.",
+      description: "Werk direct samen met Lionel Eersteling als strategische sparringpartner voor scherpere strategische besluitvorming, sterker leiderschap en gedisciplineerde uitvoering.",
       details: {
         headline: "UNMASKED Interventie",
         tag: "Uitsluitend op uitnodiging · Dubai woestijn",
