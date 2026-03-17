@@ -84,7 +84,7 @@ function OverallGauge({ score, color }: { score: number; color: "green" | "orang
   const strokeColor = gaugeColors[color];
 
   return (
-    <div className="relative w-36 h-36 mx-auto">
+    <div className="relative w-24 h-24 sm:w-36 sm:h-36 mx-auto">
       <svg viewBox="0 0 128 128" className="w-full h-full -rotate-90">
         <circle cx="64" cy="64" r={radius} fill="none" stroke="hsl(var(--foreground) / 0.08)" strokeWidth="8" />
         <circle
@@ -96,7 +96,7 @@ function OverallGauge({ score, color }: { score: number; color: "green" | "orang
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-3xl font-black text-foreground">{score}%</span>
+        <span className="text-xl sm:text-3xl font-black text-foreground">{score}%</span>
       </div>
     </div>
   );
