@@ -27,9 +27,9 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Get signed URL for WebSocket connection (more reliable than WebRTC token)
+    // Get WebRTC conversation token (recommended approach)
     const response = await fetch(
-      `https://api.elevenlabs.io/v1/convai/conversation/get-signed-url?agent_id=${AGENT_ID}`,
+      `https://api.elevenlabs.io/v1/convai/conversation/get_signed_url?agent_id=${AGENT_ID}`,
       {
         headers: {
           'xi-api-key': ELEVENLABS_API_KEY,
@@ -38,17 +38,39 @@ Deno.serve(async (req) => {
     );
 
     if (!response.ok) {
-      const error = await response.text();
-      console.error('ElevenLabs API error:', response.status, error);
-      return new Response(JSON.stringify({ error: 'Failed to get signed URL' }), {
-        status: 502,
+      const errorText = await response.text();
+      console.error('ElevenLabs API error:', response.status, errorText);
+      
+      // Fallback: try token endpoint
+      const tokenResponse = await fetch(
+        `https://api.elevenlabs.io/v1/convai/conversation/token?agent_id=${AGENT_ID}`,
+        {
+          headers: {
+            'xi-api-key': ELEVENLABS_API_KEY,
+          },
+        }
+      );
+      
+      if (!tokenResponse.ok) {
+        const tokenError = await tokenResponse.text();
+        console.error('Token fallback also failed:', tokenResponse.status, tokenError);
+        return new Response(JSON.stringify({ error: 'Failed to authenticate with voice service' }), {
+          status: 502,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      
+      const tokenData = await tokenResponse.json();
+      console.log('Using token fallback');
+      return new Response(JSON.stringify({ signed_url: null, token: tokenData.token }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
-    const { signed_url } = await response.json();
+    const data = await response.json();
+    console.log('Got signed URL successfully');
 
-    return new Response(JSON.stringify({ signed_url }), {
+    return new Response(JSON.stringify({ signed_url: data.signed_url, token: null }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {

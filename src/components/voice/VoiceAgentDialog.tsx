@@ -141,17 +141,38 @@ Recommendation: ${scores.recommendation}
         throw new Error("Failed to get voice token");
       }
 
-      const { signed_url } = await response.json();
-      console.log("[Daisy] Got signed URL, length:", signed_url?.length);
+      const { signed_url, token } = await response.json();
+      console.log("[Daisy] Got signed_url:", !!signed_url, "token:", !!token);
 
-      if (!signed_url) {
-        throw new Error("No signed URL received");
+      if (!signed_url && !token) {
+        throw new Error("No credentials received");
       }
 
-      console.log("[Daisy] Calling startSession with signedUrl...");
-      const session = await conversation.startSession({
-        signedUrl: signed_url,
-      });
+      // Build first message based on context
+      const firstName = isPressureScan
+        ? contextData.scanUserInfo?.fullName?.split(" ")[0] || ""
+        : "";
+
+      const firstMessage = isPressureScan && firstName
+        ? `Hi ${firstName}, this is Daisy from Leaders Performance. You've just been through the Founder Pressure Scan and seen your results. Before we go further — what was your first reaction? Were you expecting what you saw, or did something catch you off guard?`
+        : `Hi, this is Daisy from Leaders Performance. I'm here to help you find the right path — whether that's executive coaching, a team intervention, or something else entirely. What's on your mind?`;
+
+      console.log("[Daisy] Calling startSession...");
+      const sessionOptions: any = {
+        overrides: {
+          agent: {
+            firstMessage,
+          },
+        },
+      };
+
+      if (signed_url) {
+        sessionOptions.signedUrl = signed_url;
+      } else {
+        sessionOptions.conversationToken = token;
+      }
+
+      const session = await conversation.startSession(sessionOptions);
       console.log("[Daisy] startSession returned:", session);
     } catch (err: any) {
       console.error("Failed to start conversation:", err);
