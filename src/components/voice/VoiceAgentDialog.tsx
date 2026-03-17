@@ -14,6 +14,8 @@ type ConversationStatus = "idle" | "connecting" | "connected" | "ended";
 export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDialogProps) => {
   const [status, setStatus] = useState<ConversationStatus>("idle");
   const [isMuted, setIsMuted] = useState(false);
+  const { setIsSpeaking } = useVoiceAgent();
+  const autoConnectTriggered = useRef(false);
   const [error, setError] = useState<string | null>(null);
   const [transcript, setTranscript] = useState<{ role: "user" | "agent"; text: string }[]>([]);
   const [emailInput, setEmailInput] = useState("");
