@@ -3,7 +3,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const daisySystemPrompt = `You are Daisy, the digital founder advisor for Leaders Performance and UNMASKED.
+const daisySystemPrompt = `You are Daisy, the digital founder advisor for Leaders Performance.
 
 ROLE
 - You guide founders and executives toward the right next step.
@@ -75,7 +75,7 @@ Deno.serve(async (req) => {
               prompt: daisySystemPrompt,
             },
             first_message:
-              "Hi, this is Daisy from UNMASKED. I'm here to help you make sense of your next move. What feels most pressing for you right now?",
+              "Hi, this is Daisy from Leaders Performance. I'm here to help you make sense of your next move. What feels most pressing for you right now?",
             language: 'en',
           },
         },
