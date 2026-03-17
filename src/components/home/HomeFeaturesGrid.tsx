@@ -16,8 +16,27 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 const cards = {
   en: [
     {
-      title: "Founder Strategic\nAdvisory",
+      title: "UNMASKED\nIntervention",
       description: "A private intervention environment designed for founders and leadership teams who require clarity, structural reset and decisive execution.",
+      details: {
+        headline: "UNMASKED Intervention",
+        tag: "Invitation Only · Dubai Desert",
+        body: "A private intervention environment designed for founders and leadership teams who require clarity, structural reset and decisive execution.\n\nUNMASKED takes place in the Dubai desert and removes the distractions of daily operations.\n\nThis is not a seminar or retreat.\n\nIt is a controlled reset where leadership structure and decision clarity are rebuilt from the ground up.\n\nUNMASKED is available in two formats:\n\nFounder Edition\nFocused on the founder as the central decision maker.\n\nBusiness Edition\nFocused on founders together with their leadership or management team to improve company performance.",
+        bullets: [
+          "Clarity",
+          "Command",
+          "Execution",
+        ],
+        closing: "Leaders Performance is where founders sharpen strategy, strengthen leadership and protect what they have built.",
+        cta: "Apply for UNMASKED",
+        disclaimer: "Investment: €8,500 · 2026 Editions: March · April · May — Dubai",
+        showCalendar: false,
+        isUnmasked: true,
+      },
+    },
+    {
+      title: "Founder Strategic\nAdvisory",
+      description: "Work directly with Lionel Eersteling as a strategic sparring partner for sharper strategic thinking, stronger leadership discipline and disciplined execution.",
       details: {
         headline: "Founder Strategic Advisory",
         tag: "Limited · By Application Only",
@@ -34,25 +53,6 @@ const cards = {
         disclaimer: "All engagements by application",
         showCalendar: true,
         calendarUrl: "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j",
-      },
-    },
-    {
-      title: "UNMASKED\nIntervention",
-      description: "Work directly with Lionel Eersteling as a strategic sparring partner for sharper strategic thinking, stronger leadership discipline and disciplined execution.",
-      details: {
-        headline: "UNMASKED Intervention",
-        tag: "Invitation Only · Dubai Desert",
-        body: "A private intervention environment designed for founders and leadership teams who require clarity, structural reset and decisive execution.\n\nUNMASKED takes place in the Dubai desert and removes the distractions of daily operations.\n\nThis is not a seminar or retreat.\n\nIt is a controlled reset where leadership structure and decision clarity are rebuilt from the ground up.\n\nUNMASKED is available in two formats:\n\nFounder Edition\nFocused on the founder as the central decision maker.\n\nBusiness Edition\nFocused on founders together with their leadership or management team to improve company performance.",
-        bullets: [
-          "Clarity",
-          "Command",
-          "Execution",
-        ],
-        closing: "Leaders Performance is where founders sharpen strategy, strengthen leadership and protect what they have built.",
-        cta: "Apply for UNMASKED",
-        disclaimer: "Investment: €8,500 · 2026 Editions: March · April · May — Dubai",
-        showCalendar: false,
-        isUnmasked: true,
       },
     },
     {
@@ -98,8 +98,27 @@ const cards = {
   ],
   nl: [
     {
-      title: "Founder Strategisch\nAdvies",
+      title: "UNMASKED\nInterventie",
       description: "Een privé interventieomgeving ontworpen voor founders en leiderschapsteams die helderheid, structurele reset en besluitvaardige uitvoering nodig hebben.",
+      details: {
+        headline: "UNMASKED Interventie",
+        tag: "Uitsluitend op uitnodiging · Dubai woestijn",
+        body: "Een privé interventieomgeving ontworpen voor founders en leiderschapsteams die helderheid, structurele reset en besluitvaardige uitvoering nodig hebben.\n\nUNMASKED vindt plaats in de woestijn van Dubai en verwijdert de afleidingen van dagelijkse operaties.\n\nDit is geen seminar of retraite.\n\nHet is een gecontroleerde reset waarbij leiderschapsstructuur en besluitvaardigheid van de grond af worden opgebouwd.\n\nUNMASKED is beschikbaar in twee formaten:\n\nFounder Editie\nGericht op de founder als centrale beslisser.\n\nBusiness Editie\nGericht op founders samen met hun leiderschaps- of managementteam om bedrijfsprestaties te verbeteren.",
+        bullets: [
+          "Helderheid",
+          "Leiderschap",
+          "Uitvoering",
+        ],
+        closing: "Leaders Performance is waar founders strategie aanscherpen, leiderschap versterken en beschermen wat ze hebben opgebouwd.",
+        cta: "Aanmelden voor UNMASKED",
+        disclaimer: "Investering: €8.500 · 2026 Edities: Maart · April · Mei — Dubai",
+        showCalendar: false,
+        isUnmasked: true,
+      },
+    },
+    {
+      title: "Founder Strategisch\nAdvies",
+      description: "Werk direct samen met Lionel Eersteling als strategische sparringpartner voor scherpere strategische besluitvorming, sterker leiderschap en gedisciplineerde uitvoering.",
       details: {
         headline: "Founder Strategisch Advies",
         tag: "Beperkt · Uitsluitend op aanvraag",
@@ -116,25 +135,6 @@ const cards = {
         disclaimer: "Alle trajecten op aanvraag",
         showCalendar: true,
         calendarUrl: "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j",
-      },
-    },
-    {
-      title: "UNMASKED\nInterventie",
-      description: "Werk direct samen met Lionel Eersteling als strategische sparringpartner voor scherpere strategische besluitvorming, sterker leiderschap en gedisciplineerde uitvoering.",
-      details: {
-        headline: "UNMASKED Interventie",
-        tag: "Uitsluitend op uitnodiging · Dubai woestijn",
-        body: "Een privé interventieomgeving ontworpen voor founders en leiderschapsteams die helderheid, structurele reset en besluitvaardige uitvoering nodig hebben.\n\nUNMASKED vindt plaats in de woestijn van Dubai en verwijdert de afleidingen van dagelijkse operaties.\n\nDit is geen seminar of retraite.\n\nHet is een gecontroleerde reset waarbij leiderschapsstructuur en besluitvaardigheid van de grond af worden opgebouwd.\n\nUNMASKED is beschikbaar in twee formaten:\n\nFounder Editie\nGericht op de founder als centrale beslisser.\n\nBusiness Editie\nGericht op founders samen met hun leiderschaps- of managementteam om bedrijfsprestaties te verbeteren.",
-        bullets: [
-          "Helderheid",
-          "Leiderschap",
-          "Uitvoering",
-        ],
-        closing: "Leaders Performance is waar founders strategie aanscherpen, leiderschap versterken en beschermen wat ze hebben opgebouwd.",
-        cta: "Aanmelden voor UNMASKED",
-        disclaimer: "Investering: €8.500 · 2026 Edities: Maart · April · Mei — Dubai",
-        showCalendar: false,
-        isUnmasked: true,
       },
     },
     {
