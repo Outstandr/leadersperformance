@@ -137,26 +137,6 @@ const cards = {
       },
     },
     {
-      title: "Leaders Performance\nAcademie",
-      description: "Het digitale leiderschapsplatform gebouwd rondom de RESET Blueprint. Gestructureerd leren, leiderschapskaders en ontwikkeltools voor discipline, besluitvorming en uitvoering.",
-      details: {
-        headline: "Leaders Performance Academie",
-        tag: "Digitaal Leiderschapsplatform",
-        body: "De Leaders Performance Academy is het digitale leiderschapsplatform gebouwd rondom de RESET Blueprint.\n\nHet combineert gestructureerd digitaal leren, leiderschapskaders en ontwikkeltools ontworpen om discipline, besluitvorming en uitvoering te versterken.\n\nHet platform ondersteunt founders, executives en professionals die hun leiderschapscapaciteit en prestaties willen versterken.",
-        bullets: [
-          "Leiderschap masterclasses",
-          "Gestructureerde RESET Blueprint modules",
-          "De RESET boekenserie",
-          "Digitale leiderschapstools",
-          "AI-ondersteunde coaching tools",
-          "Een leiderschapscommunity",
-        ],
-        closing: "Gebouwd voor founders, executives en professionals die serieus zijn over leiderschap.",
-        cta: "Ontdek de Academie",
-        disclaimer: "RESET Blueprint® Ecosysteem",
-      },
-    },
-    {
       title: "Kapitaalbescherming\n& Bijzondere Situaties",
       description: "Voor founders die geconfronteerd worden met situaties waarbij kapitaal, partnerschappen of eigendomsstructuren worden blootgesteld. Ondersteund door een internationaal netwerk van juridische, forensische en onderzoeksspecialisten.",
       details: {
@@ -174,6 +154,26 @@ const cards = {
         cta: "Start Kapitaalbeschermingsassessment",
         disclaimer: "Vertrouwelijk · Internationaal netwerk",
         showCalendar: false,
+      },
+    },
+    {
+      title: "Leaders Performance\nAcademie",
+      description: "Het digitale leiderschapsplatform gebouwd rondom de RESET Blueprint. Gestructureerd leren, leiderschapskaders en ontwikkeltools voor discipline, besluitvorming en uitvoering.",
+      details: {
+        headline: "Leaders Performance Academie",
+        tag: "Digitaal Leiderschapsplatform",
+        body: "De Leaders Performance Academy is het digitale leiderschapsplatform gebouwd rondom de RESET Blueprint.\n\nHet combineert gestructureerd digitaal leren, leiderschapskaders en ontwikkeltools ontworpen om discipline, besluitvorming en uitvoering te versterken.\n\nHet platform ondersteunt founders, executives en professionals die hun leiderschapscapaciteit en prestaties willen versterken.",
+        bullets: [
+          "Leiderschap masterclasses",
+          "Gestructureerde RESET Blueprint modules",
+          "De RESET boekenserie",
+          "Digitale leiderschapstools",
+          "AI-ondersteunde coaching tools",
+          "Een leiderschapscommunity",
+        ],
+        closing: "Gebouwd voor founders, executives en professionals die serieus zijn over leiderschap.",
+        cta: "Ontdek de Academie",
+        disclaimer: "RESET Blueprint® Ecosysteem",
       },
     },
   ],
