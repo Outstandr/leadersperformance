@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mic } from "lucide-react";
 import { PressureScores } from "@/lib/founderPressureScoring";
 import { ScanUserInfo } from "./ScanGateStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
 interface ScanResultsStepProps {
   userInfo: ScanUserInfo;
