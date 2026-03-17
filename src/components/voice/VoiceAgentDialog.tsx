@@ -142,14 +142,17 @@ Recommendation: ${scores.recommendation}
       }
 
       const { signed_url } = await response.json();
+      console.log("[Daisy] Got signed URL, length:", signed_url?.length);
 
       if (!signed_url) {
         throw new Error("No signed URL received");
       }
 
-      await conversation.startSession({
+      console.log("[Daisy] Calling startSession with signedUrl...");
+      const session = await conversation.startSession({
         signedUrl: signed_url,
       });
+      console.log("[Daisy] startSession returned:", session);
     } catch (err: any) {
       console.error("Failed to start conversation:", err);
       if (err.name === "NotAllowedError") {
