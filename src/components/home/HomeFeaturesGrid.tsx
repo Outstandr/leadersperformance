@@ -50,10 +50,9 @@ const cards = {
           "Strengthening long-term value creation",
         ],
         closing: "Engagement is limited and by application only.",
-        cta: "Request Advisory",
+        cta: "Take the Founders Pressure Scan",
         disclaimer: "All engagements by application",
-        showCalendar: true,
-        calendarUrl: "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j",
+        showCalendar: false,
       },
     },
     {
