@@ -161,13 +161,13 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
   const firstName = userInfo.fullName.split(" ")[0];
 
   return (
-    <div className="p-6 md:p-10 space-y-8">
+    <div className="p-4 sm:p-6 md:p-10 space-y-5 sm:space-y-8">
       {/* Header */}
       <div className="text-center">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-none border-2 border-lioner-gold/50 mb-4">
-          <Shield className="w-7 h-7 text-lioner-gold" />
+        <div className="inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 rounded-none border-2 border-lioner-gold/50 mb-3 sm:mb-4">
+          <Shield className="w-5 h-5 sm:w-7 sm:h-7 text-lioner-gold" />
         </div>
-        <h2 className="text-2xl md:text-3xl font-black text-foreground mb-1 font-sans uppercase tracking-wide">
+        <h2 className="text-lg sm:text-2xl md:text-3xl font-black text-foreground mb-1 font-sans uppercase tracking-wide">
           {t.title}
         </h2>
         <p className="text-foreground/50 text-sm">

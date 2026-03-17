@@ -168,7 +168,7 @@ export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectio
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={onOpenChange} modal={step !== "results"}>
       <DialogContent className={`max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white transition-all duration-300 ${
         step === "results" && isSpeaking
           ? "border-2 border-lioner-gold/60 animate-border-pulse shadow-[0_0_30px_hsl(var(--lioner-gold)/0.2)]"
