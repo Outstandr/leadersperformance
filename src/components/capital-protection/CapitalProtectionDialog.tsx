@@ -28,6 +28,7 @@ interface AIReport {
 
 export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectionDialogProps) {
   const { language } = useLanguage();
+  const { isSpeaking } = useVoiceAgent();
   const [step, setStep] = useState<Step>("intro");
   const [currentQ, setCurrentQ] = useState(0);
   const [responses, setResponses] = useState<Record<string, string | string[] | boolean>>({});
