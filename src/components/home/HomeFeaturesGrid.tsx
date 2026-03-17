@@ -131,10 +131,9 @@ const cards = {
           "Versterken van langetermijn waardecreatie",
         ],
         closing: "Het traject is beperkt en uitsluitend op aanvraag.",
-        cta: "Advies aanvragen",
+        cta: "Start de Founders Drukscan",
         disclaimer: "Alle trajecten op aanvraag",
-        showCalendar: true,
-        calendarUrl: "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j",
+        showCalendar: false,
       },
     },
     {
