@@ -1,11 +1,11 @@
 import { motion, useInView, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { UnmaskedBookingDialog } from "./UnmaskedBookingDialog";
 import { MentorshipApplicationDialog } from "./MentorshipApplicationDialog";
 import { BusinessConsultationDialog } from "./BusinessConsultationDialog";
 import { FounderPressureScanDialog } from "@/components/founder-scan/FounderPressureScanDialog";
-import { CapitalProtectionDialog } from "@/components/capital-protection/CapitalProtectionDialog";
 import serviceUnmasked from "@/assets/card-unmasked.png";
 import serviceCoaching from "@/assets/card-coaching.png";
 import serviceAcademy from "@/assets/card-masterclass.png";
