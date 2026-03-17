@@ -148,19 +148,26 @@ Recommendation: ${scores.recommendation}
         throw new Error("No credentials received");
       }
 
-      // Build first message based on context
+      // Build runtime Daisy config based on context
       const firstName = isPressureScan
         ? contextData.scanUserInfo?.fullName?.split(" ")[0] || ""
         : "";
 
       const firstMessage = isPressureScan && firstName
-        ? `Hi ${firstName}, this is Daisy from Leaders Performance. You've just been through the Founder Pressure Scan and seen your results. Before we go further — what was your first reaction? Were you expecting what you saw, or did something catch you off guard?`
-        : `Hi, this is Daisy from Leaders Performance. I'm here to help you find the right path — whether that's executive coaching, a team intervention, or something else entirely. What's on your mind?`;
+        ? `Hi ${firstName}, this is Daisy from UNMASKED. You've just been through the Founder Pressure Scan and seen your results. Before we go further — what was your first reaction? Were you expecting what you saw, or did something catch you off guard?`
+        : `Hi, this is Daisy from UNMASKED. I'm here to help you make sense of your next move. What feels most pressing for you right now?`;
+
+      const promptText = isPressureScan
+        ? `You are Daisy, the digital founder advisor for Leaders Performance and UNMASKED. The user has just completed the Founder Pressure Scan. Use the scan context already provided to explore their reaction, clarify the biggest pressure point, and guide them to the single best next step. Never use placeholder names or pretend you know data you were not given.`
+        : `You are Daisy, the digital founder advisor for Leaders Performance and UNMASKED. Help the visitor clarify their biggest bottleneck and guide them to the single best next step. Keep your tone calm, premium, and direct. Never use placeholder names or pretend you know data you were not given.`;
 
       console.log("[Daisy] Calling startSession...");
       const sessionOptions: any = {
         overrides: {
           agent: {
+            prompt: {
+              prompt: promptText,
+            },
             firstMessage,
           },
         },
