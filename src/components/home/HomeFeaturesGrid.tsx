@@ -388,10 +388,20 @@ export const HomeFeaturesGrid = () => {
                     </a>
                   )}
 
-                  {/* Founder Strategic Advisory application (index 0) */}
-                  {selected === 0 && (
+                  {/* UNMASKED application (index 0) — kept for non-isUnmasked fallback */}
+                  {selected === 0 && !isUnmasked && (
                     <button
                       onClick={() => { setSelected(null); setTimeout(() => setMentorshipOpen(true), 200); }}
+                      className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                    >
+                      {(services[selected].details as any).cta}
+                    </button>
+                  )}
+
+                  {/* Founder Strategic Advisory — Pressure Scan (index 1) */}
+                  {selected === 1 && (
+                    <button
+                      onClick={() => { setSelected(null); setTimeout(() => setPressureScanOpen(true), 200); }}
                       className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
                     >
                       {(services[selected].details as any).cta}
