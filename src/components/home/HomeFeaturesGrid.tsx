@@ -257,7 +257,7 @@ export const HomeFeaturesGrid = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [mentorshipOpen, setMentorshipOpen] = useState(false);
   const [businessConsultOpen, setBusinessConsultOpen] = useState(false);
-
+  const [pressureScanOpen, setPressureScanOpen] = useState(false);
   const selectedService = selected !== null ? services[selected] : null;
   const showCalendar = selectedService && (selectedService.details as any).showCalendar;
   const calendarUrl = selectedService ? (selectedService.details as any).calendarUrl : null;
