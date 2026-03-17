@@ -427,6 +427,7 @@ export const HomeFeaturesGrid = () => {
       <UnmaskedBookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
       <MentorshipApplicationDialog open={mentorshipOpen} onOpenChange={setMentorshipOpen} />
       <BusinessConsultationDialog open={businessConsultOpen} onOpenChange={setBusinessConsultOpen} />
+      <FounderPressureScanDialog open={pressureScanOpen} onOpenChange={setPressureScanOpen} />
     </>
   );
 };
