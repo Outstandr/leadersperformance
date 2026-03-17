@@ -264,24 +264,8 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
         <p className="text-foreground/50 text-sm leading-relaxed">{t.confidentialityText}</p>
       </div>
 
-      {/* CTA Buttons */}
+      {/* CTA Button — only booking, Daisy connects automatically */}
       <div className="text-center space-y-3 pt-4">
-        <Button
-          onClick={() => {
-            openVoiceAgent({
-              mode: "capital_protection",
-              autoConnect: true,
-              cpReport: aiReport ?? undefined,
-              cpUserInfo: userInfo,
-              cpResult: result,
-            });
-          }}
-          className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
-        >
-          <Mic className="w-5 h-5 mr-3" />
-          {t.discussBtn}
-        </Button>
-
         <Button
           asChild
           variant="outline"
