@@ -374,8 +374,18 @@ export const HomeFeaturesGrid = () => {
                     </div>
                   )}
 
-                  {/* Leaders Performance Academy CTA (index 2) */}
+                  {/* Capital Protection (index 2) */}
                   {selected === 2 && (
+                    <button
+                      onClick={() => { setSelected(null); setTimeout(() => setBusinessConsultOpen(true), 200); }}
+                      className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                    >
+                      {(services[selected].details as any).cta}
+                    </button>
+                  )}
+
+                  {/* Leaders Performance Academy CTA (index 3) */}
+                  {selected === 3 && (
                     <a
                       href="https://testgroup.leadersperformance.ae/"
                       target="_blank"
@@ -384,36 +394,6 @@ export const HomeFeaturesGrid = () => {
                     >
                       {(services[selected].details as any).cta}
                     </a>
-                  )}
-
-                  {/* UNMASKED application (index 0) — kept for non-isUnmasked fallback */}
-                  {selected === 0 && !isUnmasked && (
-                    <button
-                      onClick={() => { setSelected(null); setTimeout(() => setMentorshipOpen(true), 200); }}
-                      className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
-                    >
-                      {(services[selected].details as any).cta}
-                    </button>
-                  )}
-
-                  {/* Founder Strategic Advisory — Pressure Scan (index 1) */}
-                  {selected === 1 && (
-                    <button
-                      onClick={() => { setSelected(null); setTimeout(() => setPressureScanOpen(true), 200); }}
-                      className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
-                    >
-                      {(services[selected].details as any).cta}
-                    </button>
-                  )}
-
-                  {/* Capital Protection (index 3) */}
-                  {selected === 3 && (
-                    <button
-                      onClick={() => { setSelected(null); setTimeout(() => setBusinessConsultOpen(true), 200); }}
-                      className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
-                    >
-                      {(services[selected].details as any).cta}
-                    </button>
                   )}
                 </div>
               </div>
