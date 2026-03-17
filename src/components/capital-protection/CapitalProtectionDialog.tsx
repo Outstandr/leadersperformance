@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { CPIntroStep } from "./CPIntroStep";
+import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 import { CPUserInfoStep, CPUserInfo } from "./CPUserInfoStep";
 import { CPQuestionStep } from "./CPQuestionStep";
+import { CPResultsStep } from "./CPResultsStep";
 import { cpSections } from "@/lib/capitalProtectionQuestions";
 import { calculateCPResult, CPResult, CPAssessmentData } from "@/lib/capitalProtectionScoring";
 import { supabase } from "@/integrations/supabase/client";
@@ -20,7 +22,8 @@ interface AIReport {
 interface CapitalProtectionDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onResultsReady: (data: {
+  /** When provided, results are rendered externally (outside dialog). Dialog closes on completion. */
+  onResultsReady?: (data: {
     userInfo: CPUserInfo;
     result: CPResult;
     aiReport: AIReport | null;
@@ -30,14 +33,20 @@ interface CapitalProtectionDialogProps {
   onLoadingComplete?: () => void;
 }
 
-type Step = "intro" | "userInfo" | "questions";
+type Step = "intro" | "userInfo" | "questions" | "results";
 
 export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, onAIReportUpdate, onLoadingComplete }: CapitalProtectionDialogProps) {
   const { language } = useLanguage();
+  const { isSpeaking } = useVoiceAgent();
   const [step, setStep] = useState<Step>("intro");
   const [currentQ, setCurrentQ] = useState(0);
   const [responses, setResponses] = useState<Record<string, string | string[] | boolean>>({});
   const [userInfo, setUserInfo] = useState<CPUserInfo | null>(null);
+  const [result, setResult] = useState<CPResult | null>(null);
+  const [aiReport, setAiReport] = useState<AIReport | null>(null);
+  const [isLoadingAI, setIsLoadingAI] = useState(false);
+
+  const externalResults = !!onResultsReady;
 
   const handleUserInfoSubmit = (info: CPUserInfo) => {
     setUserInfo(info);
@@ -80,14 +89,21 @@ export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, on
 
     const cpResult = calculateCPResult(assessmentData);
 
-    // Close dialog and show results on page
-    onOpenChange(false);
-    onResultsReady({
-      userInfo,
-      result: cpResult,
-      aiReport: null,
-      isLoadingAI: true,
-    });
+    if (externalResults) {
+      // Close dialog and let parent render results
+      onOpenChange(false);
+      onResultsReady({
+        userInfo,
+        result: cpResult,
+        aiReport: null,
+        isLoadingAI: true,
+      });
+    } else {
+      // Render results inside the dialog
+      setResult(cpResult);
+      setStep("results");
+      setIsLoadingAI(true);
+    }
 
     // Save to DB
     supabase
@@ -146,7 +162,11 @@ export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, on
 
       if (error) throw error;
       if (data?.report) {
-        onAIReportUpdate?.(data.report);
+        if (externalResults) {
+          onAIReportUpdate?.(data.report);
+        } else {
+          setAiReport(data.report);
+        }
 
         supabase
           .from("capital_protection_assessments" as any)
@@ -161,13 +181,33 @@ export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, on
     } catch (err) {
       console.error("AI report generation error:", err);
     } finally {
-      onLoadingComplete?.();
+      if (externalResults) {
+        onLoadingComplete?.();
+      } else {
+        setIsLoadingAI(false);
+      }
     }
   };
 
+  const resetAssessment = () => {
+    setStep("intro");
+    setCurrentQ(0);
+    setResponses({});
+    setResult(null);
+    setAiReport(null);
+    setUserInfo(null);
+    onOpenChange(false);
+  };
+
+  const showResults = !externalResults && step === "results";
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white border-lioner-gold/20">
+    <Dialog open={open} onOpenChange={onOpenChange} modal={!showResults}>
+      <DialogContent className={`max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white transition-all duration-300 ${
+        showResults && isSpeaking
+          ? "border-2 border-lioner-gold/60 animate-border-pulse shadow-[0_0_30px_hsl(var(--lioner-gold)/0.2)]"
+          : "border-lioner-gold/20"
+      }`}>
         {step === "intro" && <CPIntroStep onStart={() => setStep("userInfo")} />}
         {step === "userInfo" && <CPUserInfoStep onSubmit={handleUserInfoSubmit} />}
         {step === "questions" && (
@@ -175,6 +215,15 @@ export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, on
             currentIndex={currentQ}
             onAnswer={handleAnswer}
             onBack={handleBack}
+          />
+        )}
+        {showResults && result && userInfo && (
+          <CPResultsStep
+            userInfo={userInfo}
+            result={result}
+            aiReport={aiReport}
+            isLoadingAI={isLoadingAI}
+            onClose={resetAssessment}
           />
         )}
       </DialogContent>
