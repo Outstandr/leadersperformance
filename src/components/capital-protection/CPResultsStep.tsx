@@ -224,13 +224,13 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
 
           {/* Strategic Paths */}
           {report.strategic_paths?.length > 0 && (
-            <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
+            <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.03] space-y-2 sm:space-y-3">
               <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.paths}</h4>
-              <ul className="space-y-2">
+              <ul className="space-y-1.5 sm:space-y-2">
                 {report.strategic_paths.map((path, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-lioner-gold mt-2 shrink-0" />
-                    <span className="text-foreground/80 text-sm">{path}</span>
+                  <li key={i} className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-lioner-gold mt-1.5 sm:mt-2 shrink-0" />
+                    <span className="text-foreground/80 text-xs sm:text-sm">{path}</span>
                   </li>
                 ))}
               </ul>
@@ -238,9 +238,9 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
           )}
 
           {/* Recommended Next Step */}
-          <div className="p-5 border border-lioner-gold/30 bg-lioner-gold/5 space-y-3">
+          <div className="p-3 sm:p-5 border border-lioner-gold/30 bg-lioner-gold/5 space-y-2 sm:space-y-3">
             <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.nextStep}</h4>
-            <p className="text-foreground/80 leading-relaxed">{report.recommended_next_step}</p>
+            <p className="text-foreground/80 leading-relaxed text-sm sm:text-base">{report.recommended_next_step}</p>
           </div>
         </>
       ) : (
