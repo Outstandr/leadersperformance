@@ -379,7 +379,7 @@ export const HomeFeaturesGrid = () => {
                   {/* Capital Protection (index 2) */}
                   {selected === 2 && (
                     <button
-                      onClick={() => { setSelected(null); setTimeout(() => setBusinessConsultOpen(true), 200); }}
+                      onClick={() => { setSelected(null); setTimeout(() => setCapitalProtectionOpen(true), 200); }}
                       className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
                     >
                       {(services[selected].details as any).cta}
