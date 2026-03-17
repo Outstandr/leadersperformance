@@ -84,7 +84,7 @@ Recommendation: ${scores.recommendation}
       }
     },
     onError: (err) => {
-      console.error("Voice agent error:", err);
+      console.error("[Daisy] Voice agent error:", JSON.stringify(err));
       setError("Connection error. Please check your microphone and try again.");
       setStatus("idle");
     },
