@@ -297,7 +297,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
               Leaders Performance
             </p>
             <h2 className="text-white font-semibold text-lg leading-tight mt-0.5">
-              {isPressureScan ? "Daisy — Founder Advisor" : "Daisy — Your Path Advisor"}
+              {isPressureScan ? "Daisy — Founder Advisor" : isCapitalProtection ? "Daisy — Capital Protection Advisor" : "Daisy — Your Path Advisor"}
             </h2>
           </div>
           <button

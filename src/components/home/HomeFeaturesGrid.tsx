@@ -408,6 +408,7 @@ export const HomeFeaturesGrid = () => {
       <MentorshipApplicationDialog open={mentorshipOpen} onOpenChange={setMentorshipOpen} />
       <BusinessConsultationDialog open={businessConsultOpen} onOpenChange={setBusinessConsultOpen} />
       <FounderPressureScanDialog open={pressureScanOpen} onOpenChange={setPressureScanOpen} />
+      <CapitalProtectionDialog open={capitalProtectionOpen} onOpenChange={setCapitalProtectionOpen} />
     </>
   );
 };
