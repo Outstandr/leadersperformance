@@ -251,11 +251,11 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
       )}
 
       {/* Confidentiality Notice */}
-      <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
+      <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.03] space-y-2 sm:space-y-3">
         <h4 className="text-xs uppercase tracking-widest text-foreground/40 font-bold flex items-center gap-2">
           <Lock className="w-4 h-4" /> {t.confidentiality}
         </h4>
-        <p className="text-foreground/50 text-sm leading-relaxed">{t.confidentialityText}</p>
+        <p className="text-foreground/50 text-xs sm:text-sm leading-relaxed">{t.confidentialityText}</p>
       </div>
 
       {/* CTA Button — only booking, Daisy connects automatically */}
