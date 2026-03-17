@@ -17,7 +17,7 @@ const cards = {
   en: [
     {
       title: "Founder Strategic\nAdvisory",
-      description: "Work directly with Lionel Eersteling as a strategic sparring partner for sharper strategic thinking, stronger leadership discipline and disciplined execution.",
+      description: "A private intervention environment designed for founders and leadership teams who require clarity, structural reset and decisive execution.",
       details: {
         headline: "Founder Strategic Advisory",
         tag: "Limited · By Application Only",
@@ -38,7 +38,7 @@ const cards = {
     },
     {
       title: "UNMASKED\nIntervention",
-      description: "A private intervention environment designed for founders and leadership teams who require clarity, structural reset and decisive execution.",
+      description: "Work directly with Lionel Eersteling as a strategic sparring partner for sharper strategic thinking, stronger leadership discipline and disciplined execution.",
       details: {
         headline: "UNMASKED Intervention",
         tag: "Invitation Only · Dubai Desert",
@@ -99,7 +99,7 @@ const cards = {
   nl: [
     {
       title: "Founder Strategisch\nAdvies",
-      description: "Werk direct samen met Lionel Eersteling als strategische sparringpartner voor scherpere strategische besluitvorming, sterker leiderschap en gedisciplineerde uitvoering.",
+      description: "Een privé interventieomgeving ontworpen voor founders en leiderschapsteams die helderheid, structurele reset en besluitvaardige uitvoering nodig hebben.",
       details: {
         headline: "Founder Strategisch Advies",
         tag: "Beperkt · Uitsluitend op aanvraag",
@@ -120,7 +120,7 @@ const cards = {
     },
     {
       title: "UNMASKED\nInterventie",
-      description: "Een privé interventieomgeving ontworpen voor founders en leiderschapsteams die helderheid, structurele reset en besluitvaardige uitvoering nodig hebben.",
+      description: "Werk direct samen met Lionel Eersteling als strategische sparringpartner voor scherpere strategische besluitvorming, sterker leiderschap en gedisciplineerde uitvoering.",
       details: {
         headline: "UNMASKED Interventie",
         tag: "Uitsluitend op uitnodiging · Dubai woestijn",
