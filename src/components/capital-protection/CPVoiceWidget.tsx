@@ -181,12 +181,9 @@ IMPORTANT INSTRUCTIONS:
     // Notify Daisy and end session after a brief farewell
     if (conversation.status === "connected") {
       conversation.sendContextualUpdate(
-        "The user has just successfully booked a case review appointment with Lionel. Say one short congratulatory sentence, tell them the team will be in touch, and then say goodbye. Do NOT keep talking after that — the conversation is ending."
+        "The user has just successfully booked a case review appointment with Lionel. The conversation is now ending."
       );
-      // Give Daisy a moment to deliver the farewell, then end
-      setTimeout(() => {
-        conversation.endSession();
-      }, 12000);
+      conversation.endSession();
     }
   }, [conversation]);
 
