@@ -17,7 +17,7 @@ const cards = {
   en: [
     {
       title: "Founder Strategic\nAdvisory",
-      description: "Work directly with Lionel Eersteling as a strategic sparring partner for sharper strategic thinking, stronger leadership discipline and disciplined execution.",
+      description: "A private intervention environment designed for founders and leadership teams who require clarity, structural reset and decisive execution.",
       details: {
         headline: "Founder Strategic Advisory",
         tag: "Limited · By Application Only",
