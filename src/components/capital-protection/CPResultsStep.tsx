@@ -185,17 +185,15 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
 
       {/* Daisy AI Advisor Banner */}
       <div className={`p-3 sm:p-4 border rounded-lg transition-all duration-300 ${
-        isSpeaking 
-          ? "bg-lioner-gold/10 border-lioner-gold/40" 
-          : isDaisyOpen 
-          ? "bg-lioner-gold/5 border-lioner-gold/20" 
+        isSpeaking
+          ? "bg-lioner-gold/10 border-lioner-gold/40"
+          : isDaisyOpen
+          ? "bg-lioner-gold/5 border-lioner-gold/20"
           : "bg-foreground/[0.02] border-foreground/10"
       }`}>
-        <div className="flex items-center gap-3">
+        <div className="flex items-start gap-3">
           <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-all ${
-            isSpeaking 
-              ? "bg-lioner-gold/20 animate-pulse" 
-              : "bg-lioner-gold/10"
+            isSpeaking ? "bg-lioner-gold/20 animate-pulse" : "bg-lioner-gold/10"
           }`}>
             {isSpeaking ? (
               <Volume2 className="w-5 h-5 text-lioner-gold" />
@@ -205,25 +203,51 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-foreground">
-              {isSpeaking ? "Daisy is speaking…" : isDaisyOpen ? "Daisy — AI Advisor" : "Connecting to Daisy…"}
+              {isSpeaking
+                ? language === "nl"
+                  ? "Daisy spreekt…"
+                  : "Daisy is speaking…"
+                : "Daisy — AI Voice Advisor"}
             </p>
             <p className="text-xs text-foreground/50 leading-snug">
-              {isDaisyOpen 
-                ? "Your AI advisor is reviewing your assessment results. Speak naturally — she'll guide you through the next steps."
-                : "Our AI advisor will discuss your results and recommend strategic next steps. Microphone access is required."}
+              {isSpeaking
+                ? language === "nl"
+                  ? "U spreekt nu live met Daisy over uw assessmentresultaten."
+                  : "You are now in a live AI voice conversation about your assessment results."
+                : isDaisyOpen
+                ? language === "nl"
+                  ? "Daisy staat klaar. Tik op Start Conversation in het Daisy-venster om microfoontoegang te geven en het gesprek te beginnen."
+                  : "Daisy is ready. Tap Start Conversation in the Daisy window to grant microphone access and begin speaking."
+                : language === "nl"
+                ? "U gaat zo spreken met Daisy, onze AI adviseur. Microfoontoegang wordt pas gevraagd nadat u op Start Conversation tikt."
+                : "You are about to speak with Daisy, our AI advisor. Microphone access is only requested after you tap Start Conversation."}
             </p>
           </div>
           {isSpeaking && (
             <div className="flex items-center gap-0.5 shrink-0">
-              {[1,2,3,4].map(i => (
-                <div key={i} className="w-1 bg-lioner-gold rounded-full animate-pulse" style={{ 
-                  height: `${8 + Math.random() * 12}px`,
-                  animationDelay: `${i * 100}ms` 
-                }} />
+              {[1, 2, 3, 4].map((i) => (
+                <div
+                  key={i}
+                  className="w-1 bg-lioner-gold rounded-full animate-pulse"
+                  style={{ height: `${8 + Math.random() * 12}px`, animationDelay: `${i * 100}ms` }}
+                />
               ))}
             </div>
           )}
         </div>
+
+        {!isDaisyOpen && !isSpeaking && (
+          <div className="mt-3">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleOpenDaisy}
+              className="w-full border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white"
+            >
+              {language === "nl" ? "Open Daisy" : "Open Daisy"}
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Overall Gauge */}
