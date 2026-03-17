@@ -1,15 +1,17 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
 import { X, Mic, MicOff, PhoneOff, Volume2, Send, Check } from "lucide-react";
+import { VoiceAgentContextData } from "./VoiceAgentContext";
 
 interface VoiceAgentDialogProps {
   isOpen: boolean;
   onClose: () => void;
+  contextData: VoiceAgentContextData;
 }
 
 type ConversationStatus = "idle" | "connecting" | "connected" | "ended";
 
-export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => {
+export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDialogProps) => {
   const [status, setStatus] = useState<ConversationStatus>("idle");
   const [isMuted, setIsMuted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -19,10 +21,32 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
   const [emailConfirmed, setEmailConfirmed] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
 
+  const isPressureScan = contextData.mode === "pressure_scan";
+
   const conversation = useConversation({
     onConnect: () => {
       setStatus("connected");
       setError(null);
+
+      // Send contextual data to Daisy after connection
+      if (isPressureScan && contextData.scanScores && contextData.scanUserInfo) {
+        const scores = contextData.scanScores;
+        const user = contextData.scanUserInfo;
+        const contextMessage = `[CONTEXT — Founders Pressure Scan Results for ${user.fullName} from ${user.company}]
+Overall Pressure Score: ${scores.overall}% (${scores.title})
+Decision Pressure: ${scores.sections[0].score}%
+Founder Dependency: ${scores.sections[1].score}%
+Leadership Alignment: ${scores.sections[2].score}%
+Execution Momentum: ${scores.sections[3].score}%
+Diagnosis: ${scores.diagnosis}
+Recommendation: ${scores.recommendation}
+[END CONTEXT — Use this to personalize the conversation. Address the visitor by name and reference their specific pressure points.]`;
+
+        // Send as contextual update so Daisy has the data
+        setTimeout(() => {
+          conversation.sendContextualUpdate(contextMessage);
+        }, 500);
+      }
     },
     onDisconnect: () => {
       setStatus("ended");
@@ -87,7 +111,6 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
   const submitEmail = useCallback(() => {
     const trimmed = emailInput.trim();
     if (!trimmed) return;
-    // Send to agent so it reads the email back for confirmation
     conversation.sendUserMessage(`My email address is ${trimmed}. Please read it back to me to confirm.`);
     setTranscript((prev) => [...prev, { role: "user", text: trimmed }]);
     setEmailConfirmed(true);
@@ -142,35 +165,39 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
     setStatus("ended");
 
     // Build full summary
-    const fullSummary = transcript.map((t) => `${t.role === "agent" ? "Lionel" : "User"}: ${t.text}`).join("\n");
+    const fullSummary = transcript.map((t) => `${t.role === "agent" ? "Daisy" : "User"}: ${t.text}`).join("\n");
     const fullText = transcript.map((t) => t.text).join(" ").toLowerCase();
 
     // Extract email — prioritize typed input
     const emailMatch = emailInput.trim() || transcript.map((t) => t.text).join(" ").match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/)?.[0];
-    const email = emailMatch || undefined;
+    const email = emailMatch || (isPressureScan ? contextData.scanUserInfo?.email : undefined);
 
-    // Extract first name from transcript heuristically
-    let first_name = "";
-    for (const t of transcript) {
-      if (t.role === "user") {
-        const nameMatch = t.text.match(/(?:my name is|i'm|i am|call me)\s+([A-Z][a-z]+)/i);
-        if (nameMatch) {
-          first_name = nameMatch[1];
-          break;
+    // Extract first name from transcript or context
+    let first_name = isPressureScan ? contextData.scanUserInfo?.fullName.split(" ")[0] || "" : "";
+    if (!first_name) {
+      for (const t of transcript) {
+        if (t.role === "user") {
+          const nameMatch = t.text.match(/(?:my name is|i'm|i am|call me)\s+([A-Z][a-z]+)/i);
+          if (nameMatch) {
+            first_name = nameMatch[1];
+            break;
+          }
         }
       }
     }
 
     // Determine recommended path
-    let recommended_path = "general";
-    if (fullText.includes("business") || fullText.includes("team") || fullText.includes("organization")) {
-      recommended_path = "/business";
-    } else if (fullText.includes("elite") || fullText.includes("personal") || fullText.includes("executive coaching")) {
-      recommended_path = "/elite";
-    } else if (fullText.includes("unmasked") || fullText.includes("dubai") || fullText.includes("retreat") || fullText.includes("reset")) {
-      recommended_path = "UNMASKED Dubai";
-    } else if (fullText.includes("academy") || fullText.includes("lpa") || fullText.includes("course")) {
-      recommended_path = "Leaders Performance Academy";
+    let recommended_path = isPressureScan ? "founder_advisory" : "general";
+    if (!isPressureScan) {
+      if (fullText.includes("business") || fullText.includes("team") || fullText.includes("organization")) {
+        recommended_path = "/business";
+      } else if (fullText.includes("elite") || fullText.includes("personal") || fullText.includes("executive coaching")) {
+        recommended_path = "/elite";
+      } else if (fullText.includes("unmasked") || fullText.includes("dubai") || fullText.includes("retreat") || fullText.includes("reset")) {
+        recommended_path = "UNMASKED Dubai";
+      } else if (fullText.includes("academy") || fullText.includes("lpa") || fullText.includes("course")) {
+        recommended_path = "Leaders Performance Academy";
+      }
     }
 
     // Fire lead capture
@@ -187,6 +214,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
           body: JSON.stringify({
             first_name,
             email,
+            phone: isPressureScan ? contextData.scanUserInfo?.phone : undefined,
             recommended_path,
             conversation_summary: fullSummary.slice(0, 2000),
           }),
@@ -195,7 +223,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
     } catch (e) {
       console.error("Lead capture failed:", e);
     }
-  }, [conversation, transcript, emailInput]);
+  }, [conversation, transcript, emailInput, isPressureScan, contextData]);
 
   const toggleMute = useCallback(async () => {
     const newVol = isMuted ? 1 : 0;
@@ -204,6 +232,13 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
   }, [conversation, isMuted]);
 
   if (!isOpen) return null;
+
+  const idleTitle = isPressureScan
+    ? "Let's discuss your results"
+    : "Speak with our advisor to discover the path that fits your goals.";
+  const idleSubtitle = isPressureScan
+    ? "Daisy will walk you through your pressure scan findings and help determine the right next step."
+    : "Microphone access required";
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center">
@@ -225,7 +260,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
               Leaders Performance
             </p>
             <h2 className="text-white font-semibold text-lg leading-tight mt-0.5">
-              Your Path Advisor
+              {isPressureScan ? "Daisy — Founder Advisor" : "Daisy — Your Path Advisor"}
             </h2>
           </div>
           <button
@@ -248,10 +283,10 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
                 <Mic className="w-8 h-8 text-[#b39758]" />
               </div>
               <p className="text-white/80 text-sm leading-relaxed mb-2">
-                Speak with our AI advisor to discover the path that fits your goals.
+                {idleTitle}
               </p>
               <p className="text-white/40 text-xs mb-8">
-                Microphone access required
+                {idleSubtitle}
               </p>
               {error && (
                 <p className="text-red-400 text-xs mb-4 bg-red-400/10 rounded-lg px-4 py-3">
@@ -306,14 +341,14 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
 
               <div className="text-center mb-4">
                 <p className="text-white/50 text-xs">
-                  {conversation.isSpeaking ? "Lionel is speaking…" : "Listening…"}
+                  {conversation.isSpeaking ? "Daisy is speaking…" : "Listening…"}
                 </p>
               </div>
 
               {/* Email input */}
               {showEmailInput && !emailConfirmed && (
                 <div className="mb-4">
-                  <p className="text-[#b39758] text-xs mb-2 font-medium">Type your email below — Lionel will read it back to confirm:</p>
+                  <p className="text-[#b39758] text-xs mb-2 font-medium">Type your email below — Daisy will read it back to confirm:</p>
                   <div className="flex gap-2">
                     <input
                       type="email"
@@ -344,7 +379,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose }: VoiceAgentDialogProps) => 
               {emailConfirmed && (
                 <div className="flex items-center gap-2 mb-4 px-3 py-2 rounded-xl bg-green-500/10 border border-green-500/20">
                   <Check className="w-4 h-4 text-green-400" />
-                  <span className="text-green-400 text-xs">Email sent to Lionel for confirmation</span>
+                  <span className="text-green-400 text-xs">Email sent to Daisy for confirmation</span>
                 </div>
               )}
 
