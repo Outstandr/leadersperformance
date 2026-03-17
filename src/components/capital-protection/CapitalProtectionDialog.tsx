@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { CPIntroStep } from "./CPIntroStep";
+import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 import { CPUserInfoStep, CPUserInfo } from "./CPUserInfoStep";
 import { CPQuestionStep } from "./CPQuestionStep";
 import { CPResultsStep } from "./CPResultsStep";
