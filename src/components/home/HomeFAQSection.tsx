@@ -14,6 +14,14 @@ export const HomeFAQSection = () => {
     { question: t("home.faq.q2"), answer: t("home.faq.a2") },
     { question: t("home.faq.q3"), answer: t("home.faq.a3") },
     { question: t("home.faq.q4"), answer: t("home.faq.a4") },
+    { question: t("home.faq.q5"), answer: t("home.faq.a5") },
+    { question: t("home.faq.q6"), answer: t("home.faq.a6") },
+    { question: t("home.faq.q7"), answer: t("home.faq.a7") },
+    { question: t("home.faq.q8"), answer: t("home.faq.a8") },
+    { question: t("home.faq.q9"), answer: t("home.faq.a9") },
+    { question: t("home.faq.q10"), answer: t("home.faq.a10") },
+    { question: t("home.faq.q11"), answer: t("home.faq.a11") },
+    { question: t("home.faq.q12"), answer: t("home.faq.a12") },
   ];
 
   return (
@@ -38,7 +46,11 @@ export const HomeFAQSection = () => {
                       {faq.question}
                     </AccordionTrigger>
                     <AccordionContent className="text-sm leading-relaxed pb-6" style={{ color: "rgba(255,255,255,0.6)" }}>
-                      {faq.answer}
+                      {faq.answer.split('\n\n').map((paragraph, idx) => (
+                        <p key={idx} className={idx > 0 ? "mt-3" : ""}>
+                          {paragraph}
+                        </p>
+                      ))}
                     </AccordionContent>
                   </AccordionItem>
                 ))}
