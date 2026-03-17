@@ -353,6 +353,90 @@ export type Database = {
         }
         Relationships: []
       }
+      founders_pressure_scans: {
+        Row: {
+          company: string
+          created_at: string
+          decision_pressure_score: number
+          email: string
+          execution_momentum_score: number
+          founder_dependency_score: number
+          full_name: string
+          id: string
+          language: string
+          leadership_alignment_score: number
+          overall_color: string
+          overall_score: number
+          phone: string
+          q1: number
+          q10: number
+          q11: number
+          q12: number
+          q2: number
+          q3: number
+          q4: number
+          q5: number
+          q6: number
+          q7: number
+          q8: number
+          q9: number
+        }
+        Insert: {
+          company: string
+          created_at?: string
+          decision_pressure_score?: number
+          email: string
+          execution_momentum_score?: number
+          founder_dependency_score?: number
+          full_name: string
+          id?: string
+          language?: string
+          leadership_alignment_score?: number
+          overall_color?: string
+          overall_score?: number
+          phone: string
+          q1?: number
+          q10?: number
+          q11?: number
+          q12?: number
+          q2?: number
+          q3?: number
+          q4?: number
+          q5?: number
+          q6?: number
+          q7?: number
+          q8?: number
+          q9?: number
+        }
+        Update: {
+          company?: string
+          created_at?: string
+          decision_pressure_score?: number
+          email?: string
+          execution_momentum_score?: number
+          founder_dependency_score?: number
+          full_name?: string
+          id?: string
+          language?: string
+          leadership_alignment_score?: number
+          overall_color?: string
+          overall_score?: number
+          phone?: string
+          q1?: number
+          q10?: number
+          q11?: number
+          q12?: number
+          q2?: number
+          q3?: number
+          q4?: number
+          q5?: number
+          q6?: number
+          q7?: number
+          q8?: number
+          q9?: number
+        }
+        Relationships: []
+      }
       voice_leads: {
         Row: {
           conversation_summary: string | null
