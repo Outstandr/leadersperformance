@@ -1,21 +1,12 @@
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { CPIntroStep } from "./CPIntroStep";
-import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 import { CPUserInfoStep, CPUserInfo } from "./CPUserInfoStep";
 import { CPQuestionStep } from "./CPQuestionStep";
-import { CPResultsStep } from "./CPResultsStep";
 import { cpSections } from "@/lib/capitalProtectionQuestions";
 import { calculateCPResult, CPResult, CPAssessmentData } from "@/lib/capitalProtectionScoring";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-
-interface CapitalProtectionDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-}
-
-type Step = "intro" | "userInfo" | "questions" | "results";
 
 interface AIReport {
   situation_summary: string;
@@ -26,16 +17,27 @@ interface AIReport {
   recovery_potential: string;
 }
 
-export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectionDialogProps) {
+interface CapitalProtectionDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onResultsReady: (data: {
+    userInfo: CPUserInfo;
+    result: CPResult;
+    aiReport: AIReport | null;
+    isLoadingAI: boolean;
+  }) => void;
+  onAIReportUpdate?: (report: AIReport) => void;
+  onLoadingComplete?: () => void;
+}
+
+type Step = "intro" | "userInfo" | "questions";
+
+export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, onAIReportUpdate, onLoadingComplete }: CapitalProtectionDialogProps) {
   const { language } = useLanguage();
-  const { isSpeaking } = useVoiceAgent();
   const [step, setStep] = useState<Step>("intro");
   const [currentQ, setCurrentQ] = useState(0);
   const [responses, setResponses] = useState<Record<string, string | string[] | boolean>>({});
   const [userInfo, setUserInfo] = useState<CPUserInfo | null>(null);
-  const [result, setResult] = useState<CPResult | null>(null);
-  const [aiReport, setAiReport] = useState<AIReport | null>(null);
-  const [isLoadingAI, setIsLoadingAI] = useState(false);
 
   const handleUserInfoSubmit = (info: CPUserInfo) => {
     setUserInfo(info);
@@ -63,8 +65,6 @@ export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectio
 
   const finishAssessment = async (allResponses: Record<string, string | string[] | boolean>) => {
     if (!userInfo) return;
-    setStep("results");
-    setIsLoadingAI(true);
 
     const assessmentData: CPAssessmentData = {
       situation_types: (allResponses.situation_types as string[]) ?? [],
@@ -79,7 +79,15 @@ export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectio
     };
 
     const cpResult = calculateCPResult(assessmentData);
-    setResult(cpResult);
+
+    // Close dialog and show results on page
+    onOpenChange(false);
+    onResultsReady({
+      userInfo,
+      result: cpResult,
+      aiReport: null,
+      isLoadingAI: true,
+    });
 
     // Save to DB
     supabase
@@ -138,7 +146,7 @@ export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectio
 
       if (error) throw error;
       if (data?.report) {
-        setAiReport(data.report);
+        onAIReportUpdate?.(data.report);
 
         supabase
           .from("capital_protection_assessments" as any)
@@ -153,27 +161,13 @@ export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectio
     } catch (err) {
       console.error("AI report generation error:", err);
     } finally {
-      setIsLoadingAI(false);
+      onLoadingComplete?.();
     }
   };
 
-  const resetAssessment = () => {
-    setStep("intro");
-    setCurrentQ(0);
-    setResponses({});
-    setResult(null);
-    setAiReport(null);
-    setUserInfo(null);
-    onOpenChange(false);
-  };
-
   return (
-    <Dialog open={open} onOpenChange={onOpenChange} modal={step !== "results"}>
-      <DialogContent className={`max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white transition-all duration-300 ${
-        step === "results" && isSpeaking
-          ? "border-2 border-lioner-gold/60 animate-border-pulse shadow-[0_0_30px_hsl(var(--lioner-gold)/0.2)]"
-          : "border-lioner-gold/20"
-      }`}>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white border-lioner-gold/20">
         {step === "intro" && <CPIntroStep onStart={() => setStep("userInfo")} />}
         {step === "userInfo" && <CPUserInfoStep onSubmit={handleUserInfoSubmit} />}
         {step === "questions" && (
@@ -181,15 +175,6 @@ export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectio
             currentIndex={currentQ}
             onAnswer={handleAnswer}
             onBack={handleBack}
-          />
-        )}
-        {step === "results" && result && userInfo && (
-          <CPResultsStep
-            userInfo={userInfo}
-            result={result}
-            aiReport={aiReport}
-            isLoadingAI={isLoadingAI}
-            onClose={resetAssessment}
           />
         )}
       </DialogContent>
