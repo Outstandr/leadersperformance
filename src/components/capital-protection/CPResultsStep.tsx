@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mic, Shield, Loader2, AlertTriangle, FileText, Lock } from "lucide-react";
+import { ArrowRight, Mic, Shield, Loader2, AlertTriangle, FileText, Lock, Volume2 } from "lucide-react";
 import { CPResult, CPSectionScore } from "@/lib/capitalProtectionScoring";
 import { CPUserInfo } from "./CPUserInfoStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -123,7 +123,7 @@ function SectionBar({ section, language }: { section: CPSectionScore; language: 
 
 export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose }: CPResultsStepProps) {
   const { language } = useLanguage();
-  const { openVoiceAgent, isSpeaking } = useVoiceAgent();
+  const { openVoiceAgent, isSpeaking, isOpen: isDaisyOpen } = useVoiceAgent();
   const t = ui[language] ?? ui.en;
   const c = tierColorClasses[result.recoveryPotential];
   const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j";
@@ -173,6 +173,49 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
         <p className="text-foreground/50 text-sm">
           {firstName}, {language === "nl" ? "hier is uw rapport." : "here is your report."}
         </p>
+      </div>
+
+      {/* Daisy AI Advisor Banner */}
+      <div className={`p-3 sm:p-4 border rounded-lg transition-all duration-300 ${
+        isSpeaking 
+          ? "bg-lioner-gold/10 border-lioner-gold/40" 
+          : isDaisyOpen 
+          ? "bg-lioner-gold/5 border-lioner-gold/20" 
+          : "bg-foreground/[0.02] border-foreground/10"
+      }`}>
+        <div className="flex items-center gap-3">
+          <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-all ${
+            isSpeaking 
+              ? "bg-lioner-gold/20 animate-pulse" 
+              : "bg-lioner-gold/10"
+          }`}>
+            {isSpeaking ? (
+              <Volume2 className="w-5 h-5 text-lioner-gold" />
+            ) : (
+              <Mic className="w-5 h-5 text-lioner-gold" />
+            )}
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-foreground">
+              {isSpeaking ? "Daisy is speaking…" : isDaisyOpen ? "Daisy — AI Advisor" : "Connecting to Daisy…"}
+            </p>
+            <p className="text-xs text-foreground/50 leading-snug">
+              {isDaisyOpen 
+                ? "Your AI advisor is reviewing your assessment results. Speak naturally — she'll guide you through the next steps."
+                : "Our AI advisor will discuss your results and recommend strategic next steps. Microphone access is required."}
+            </p>
+          </div>
+          {isSpeaking && (
+            <div className="flex items-center gap-0.5 shrink-0">
+              {[1,2,3,4].map(i => (
+                <div key={i} className="w-1 bg-lioner-gold rounded-full animate-pulse" style={{ 
+                  height: `${8 + Math.random() * 12}px`,
+                  animationDelay: `${i * 100}ms` 
+                }} />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Overall Gauge */}
