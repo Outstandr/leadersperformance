@@ -525,17 +525,21 @@ const nl: Record<string, string> = {
   "home.vision.notFollowers": "We bouwen geen volgers.",
   "home.vision.autonomous": "We bouwen autonome leiders die de bedrijven van de toekomst creëren.",
 
-  // Pillars
-  "home.pillars.eyebrow": "De vier pijlers",
-  "home.pillars.cta": "Kies jouw pad",
-  "home.pillars.title1": "Vitaliteit",
-  "home.pillars.desc1": "Energie en fysieke capaciteit als fundament van leiderschapsprestaties.",
-  "home.pillars.title2": "Persoonlijke ontwikkeling",
-  "home.pillars.desc2": "Zelfbewustzijn en persoonlijke discipline waarmee founders leiden zonder ego of blinde vlekken.",
-  "home.pillars.title3": "Leiderschap",
-  "home.pillars.desc3": "Het vermogen om mensen, beslissingen en onzekerheid met helderheid te leiden.",
-  "home.pillars.title4": "Business Executie",
-  "home.pillars.desc4": "Strategie vertalen naar gedisciplineerde uitvoering binnen het bedrijf.",
+  // Intervention Process
+  "home.pillars.eyebrow": "Het Proces",
+  "home.pillars.heading": "Hoe een Interventie Doorgaans Verloopt",
+  "home.pillars.intro": "Elke situatie is anders, maar de meeste founder-trajecten volgen een vergelijkbaar strategisch proces.",
+  "home.pillars.cta": "Vind Jouw Volgende Stap",
+  "home.pillars.title1": "Situatiebeoordeling",
+  "home.pillars.desc1": "Een privégesprek om de werkelijke drukpunten binnen de business en leiderschapsstructuur te begrijpen.\n\nWe beoordelen:\n• leiderschapsdynamiek\n• operationele helderheid\n• beslissingsdruk\n• structurele risico's",
+  "home.pillars.title2": "Strategische Diagnose",
+  "home.pillars.desc2": "We identificeren het onderliggende probleem achter de zichtbare symptomen.\n\nIn veel gevallen is het probleem niet groei, omzet of markt — maar structuur, leiderschapsafstemming of besluitkwaliteit.",
+  "home.pillars.title3": "Interventieomgeving",
+  "home.pillars.desc3": "Afhankelijk van de situatie kan de volgende stap omvatten:\n• UNMASKED interventie\n• Founder Strategic Advisory\n• Leiderschapsafstemming sessies\n• Special situations coördinatie\n\nHet doel is een gecontroleerde omgeving te creëren waar echte beslissingen genomen kunnen worden.",
+  "home.pillars.title4": "Structurele Reset",
+  "home.pillars.desc4": "Zodra helderheid is bereikt, implementeren we structurele veranderingen zoals:\n• leiderschapsafstemming\n• besluitvormingskaders\n• operationele structuur\n• strategische richting\n\nDeze fase richt zich op het herstellen van controle en uitvoeringsdiscipline.",
+  "home.pillars.title5": "Strategische Continuïteit",
+  "home.pillars.desc5": "Sommige founders gaan verder via Founder Strategic Advisory om helderheid, discipline en prestaties te behouden terwijl het bedrijf groeit.",
 
   // Testimonials
   "home.testimonials.heading": "Klant",
