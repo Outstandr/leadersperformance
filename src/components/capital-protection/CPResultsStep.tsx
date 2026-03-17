@@ -129,23 +129,31 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
   const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j";
   const [voiceTriggered, setVoiceTriggered] = useState(false);
 
-  // Auto-open voice agent immediately when report is ready
   useEffect(() => {
     if (!isLoadingAI && result && !voiceTriggered) {
       setVoiceTriggered(true);
-      // Small delay to let the UI render first
       const timer = setTimeout(() => {
         openVoiceAgent({
           mode: "capital_protection",
-          autoConnect: true,
+          autoConnect: false,
           cpReport: aiReport,
           cpUserInfo: userInfo,
           cpResult: result,
         });
-      }, 1500);
+      }, 600);
       return () => clearTimeout(timer);
     }
-  }, [isLoadingAI, result, voiceTriggered]);
+  }, [aiReport, isLoadingAI, openVoiceAgent, result, userInfo, voiceTriggered]);
+
+  const handleOpenDaisy = () => {
+    openVoiceAgent({
+      mode: "capital_protection",
+      autoConnect: false,
+      cpReport: aiReport,
+      cpUserInfo: userInfo,
+      cpResult: result,
+    });
+  };
 
   if (isLoadingAI) {
     return (
