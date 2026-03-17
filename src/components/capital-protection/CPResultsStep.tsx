@@ -123,7 +123,7 @@ function SectionBar({ section, language }: { section: CPSectionScore; language: 
 
 export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose }: CPResultsStepProps) {
   const { language } = useLanguage();
-  const { openVoiceAgent, isSpeaking } = useVoiceAgent();
+  const { openVoiceAgent, isSpeaking, isOpen: isDaisyOpen } = useVoiceAgent();
   const t = ui[language] ?? ui.en;
   const c = tierColorClasses[result.recoveryPotential];
   const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j";
