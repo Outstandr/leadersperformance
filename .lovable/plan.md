@@ -1,121 +1,117 @@
 
 
-## Updated Plan: Availability System with iCloud Calendar Sync
+## Plan: Embedded Daisy Voice Widget + Calendar Booking via Voice Command
 
-### The Gap You Identified
+### Problem
+1. Daisy opens as a fullscreen overlay dialog, blocking the report view
+2. User must click "Start Conversation" manually — no seamless experience
+3. No way for Daisy to trigger a booking calendar during conversation
+4. "Open Daisy" button adds friction
 
-The original plan only tracks bookings made through the website. But Lionel has existing appointments on his iCloud calendar (personal meetings, other commitments) that should also block time slots. Without syncing those, the website could still offer times when Lionel is busy.
-
-### Updated Architecture
+### Architecture
 
 ```text
-┌──────────────────────────────────────┐
-│  iCloud Calendar (source of truth)   │
-│  - Website bookings (already synced) │
-│  - Manual appointments               │
-│  - External meetings                 │
-└──────────────┬───────────────────────┘
-               │ CalDAV REPORT query
-               │ (fetches events for date range)
-               ▼
-┌──────────────────────────────────────┐
-│  Edge Function: check-availability   │
-│  1. Query iCloud via CalDAV REPORT   │
-│     for all events on requested date │
-│  2. Parse VEVENT start/end times     │
-│  3. Return blocked time ranges       │
-└──────────────┬───────────────────────┘
-               │
-               ▼
-┌──────────────────────────────────────┐
-│  Frontend: useBookedSlots hook       │
-│  - Calls check-availability on       │
-│    date selection                    │
-│  - Disables occupied time slots      │
-│  - Works in all 3 booking dialogs   │
-└──────────────────────────────────────┘
+┌─────────────────────────────────────────────┐
+│  Capital Protection Results Page            │
+│                                             │
+│  ┌────────────────────────────────────────┐  │
+│  │  Report Content (scrollable)          │  │
+│  │  - Gauge, scores, AI report, etc.     │  │
+│  └────────────────────────────────────────┘  │
+│                                             │
+│  ┌────────────────────────────────────────┐  │
+│  │  Embedded Daisy Widget (fixed bottom)  │  │
+│  │  ┌─────────┐ ┌──────────────────────┐ │  │
+│  │  │ Mic Btn │ │ Status + Transcript  │ │  │
+│  │  └─────────┘ └──────────────────────┘ │  │
+│  │                                        │  │
+│  │  ┌──────────────────────────────────┐  │  │
+│  │  │ Inline Calendar (when triggered) │  │  │
+│  │  │ Date picker + Time slots + Book  │  │  │
+│  │  └──────────────────────────────────┘  │  │
+│  └────────────────────────────────────────┘  │
+└─────────────────────────────────────────────┘
 ```
-
-### Why iCloud-First Instead of a Database Table
-
-Since we already have CalDAV credentials and the `create-calendar-event` function already discovers Lionel's calendar, we can **query the same calendar directly** for existing events. This means:
-
-- No need for a `booked_slots` database table
-- No need to keep two systems in sync
-- Manually added appointments on iCloud automatically block slots
-- Appointments from any source (phone, other apps) are respected
-- Single source of truth: Lionel's iCloud calendar
 
 ### Implementation Steps
 
-#### 1. Create Edge Function: `check-availability`
+#### 1. Create Embedded Voice Widget: `src/components/capital-protection/CPVoiceWidget.tsx`
 
-A new backend function that:
-- Accepts a `date` parameter (YYYY-MM-DD)
-- Reuses the CalDAV discovery logic from `create-calendar-event` (steps 1-3) to find the target calendar
-- Sends a CalDAV `REPORT` request with a `calendar-query` filter for the given date range
-- Parses returned VEVENT blocks to extract DTSTART/DTEND times
-- Converts those into blocked time slot strings (e.g., "09:00 AM", "10:00 AM")
-- Returns the list of unavailable slots
-- Caches nothing — always queries live calendar data
+A compact, inline voice widget (not an overlay) that:
+- Uses `useConversation` from `@elevenlabs/react` directly (not through VoiceAgentDialog)
+- On mount, shows a single prominent "Tap to speak with Daisy" button (required for browser mic permission)
+- Once tapped: requests mic, fetches signed URL, starts session — all in one action
+- Displays speaking/listening state with audio visualizer bars
+- Shows scrollable transcript inline
+- Registers a `show_calendar` **client tool** on the ElevenLabs conversation so Daisy can trigger the booking calendar
+- Syncs `isSpeaking` to the VoiceAgentContext for the gold border pulse effect
+- No close button that hides Daisy — she stays visible throughout
 
-#### 2. Create Shared React Hook: `useBookedSlots`
+#### 2. Create Inline Booking Calendar: `src/components/capital-protection/CPBookingCalendar.tsx`
 
-- Takes a `Date | null` as input
-- When the date changes, calls `check-availability` with that date
-- Returns `{ bookedSlots: Set<string>, isLoading: boolean }`
-- Debounces to avoid excessive calls on rapid date changes
+An inline calendar component that appears within the voice widget when Daisy calls `show_calendar`:
+- Uses the existing `Calendar` UI component for date picking
+- Uses `useBookedSlots` hook to fetch GHL availability
+- Displays available time slots (10:00-17:00, same as other booking flows)
+- Blocks weekends (Saturday/Sunday)
+- Pre-fills user info from assessment (name, email, phone) — no form needed
+- On slot selection, books via `ghl-booking` edge function POST with `bookingType: "Capital Protection"`
+- Shows confirmation state after successful booking
+- Daisy receives a callback via the client tool return value confirming the booking
 
-#### 3. Update All 3 Booking Dialogs
+#### 3. Update ElevenLabs Agent Config
 
-**UnmaskedBookingDialog** — uses slots like `"10:00"`, `"15:00"` (24h values):
-- Import `useBookedSlots`, pass selected date
-- Disable time slot buttons where the value appears in the booked set
-- Show "Unavailable" label on disabled slots
+In `supabase/functions/elevenlabs-voice-token/index.ts`, update the system prompt to include:
+- Instruction that Daisy can call `show_calendar` when the user expresses interest in booking
+- Context that the calendar will appear inline on their screen
+- No need to collect user details for booking (already captured in assessment)
 
-**BusinessConsultationDialog** — uses slots like `"09:00 AM"`, `"03:30 PM"`:
-- Same integration pattern
-- The edge function will return slots in both 12h and 24h format for compatibility
+#### 4. Update Results Page: `src/pages/CapitalProtection.tsx`
 
-**MentorshipApplicationDialog** — same slot format as Business:
-- Same integration pattern
+- Remove the `openVoiceAgent` call and all references to the global VoiceAgentDialog
+- Instead, render `CPVoiceWidget` directly below the report content
+- Pass assessment data (userInfo, result, aiReport) to the widget for Daisy's context
+- Add bottom padding to account for the fixed widget
+
+#### 5. Update Results Component: `src/components/capital-protection/CPResultsStep.tsx`
+
+- Remove the "Daisy AI Advisor Banner" section entirely
+- Remove the "Open Daisy" button
+- Remove the "Schedule Case Review" external link button (replaced by Daisy-triggered calendar)
+- Keep only the report content and close button
+- Add bottom margin/padding for the embedded widget
+
+#### 6. Skip Global VoiceAgentDialog for Capital Protection Route
+
+In `src/App.tsx`, the global `VoiceAgentDialog` will still render but won't be triggered for capital protection mode since we no longer call `openVoiceAgent`. No changes needed to App.tsx.
 
 ### Technical Details
 
-**CalDAV REPORT Query** (the core of `check-availability`):
-```xml
-<c:calendar-query xmlns:d="DAV:" xmlns:c="urn:ietf:params:xml:ns:caldav">
-  <d:prop>
-    <d:getetag/>
-    <c:calendar-data/>
-  </d:prop>
-  <c:filter>
-    <c:comp-filter name="VCALENDAR">
-      <c:comp-filter name="VEVENT">
-        <c:time-range start="20260225T000000Z" end="20260226T000000Z"/>
-      </c:comp-filter>
-    </c:comp-filter>
-  </c:filter>
-</c:calendar-query>
+**Client Tool Registration** (ElevenLabs `useConversation`):
+```tsx
+const conversation = useConversation({
+  clientTools: {
+    show_calendar: async (params) => {
+      setShowCalendar(true);
+      return "Calendar is now visible on the user's screen. Ask them to pick a date and time.";
+    },
+  },
+  // ... other handlers
+});
 ```
 
-This returns all events on the requested date. The function then parses each VEVENT's DTSTART/DTEND to determine which 30-min slots are blocked.
+Note: The `show_calendar` tool must also be configured in the ElevenLabs dashboard for the agent. The system prompt update will instruct Daisy when to use it.
 
-**Slot Blocking Logic**: If an event runs from 10:00-11:30, the function marks "10:00 AM", "10:30 AM", and "11:00 AM" as unavailable — any slot whose start time falls within the event's duration is blocked.
+**Mic Permission Flow**: Browser security requires a user gesture. The widget shows one clear "Tap to speak with Daisy about your results" button. One tap = mic request + connect. No multi-step process.
 
-**Time Zone Handling**: All times are in Asia/Dubai (GST, UTC+4), matching the existing calendar event creation. The CalDAV query uses UTC boundaries for the date filter, then parses returned times in Dubai timezone.
+**Calendar Booking Flow**: Uses the existing `ghl-booking` edge function (POST) with the user's pre-filled info. The `GHL_CALENDAR_ID` secret is used for the Special Situations calendar.
 
 ### Files to Create
-- `supabase/functions/check-availability/index.ts` — CalDAV query + slot parsing
-- `src/hooks/useBookedSlots.ts` — shared React hook
+- `src/components/capital-protection/CPVoiceWidget.tsx` — embedded voice widget with client tools
+- `src/components/capital-protection/CPBookingCalendar.tsx` — inline GHL-connected calendar
 
 ### Files to Modify
-- `src/components/home/BusinessConsultationDialog.tsx` — integrate hook, disable taken slots
-- `src/components/home/MentorshipApplicationDialog.tsx` — integrate hook, disable taken slots
-- `src/components/home/UnmaskedBookingDialog.tsx` — integrate hook, disable taken slots
-- `supabase/config.toml` — register new function with `verify_jwt = false`
-
-### No Database Changes Needed
-
-This approach eliminates the need for the `booked_slots` table entirely. The iCloud calendar is the single source of truth — every booking the website creates is already written there, and any appointment Lionel adds manually is automatically respected.
+- `src/pages/CapitalProtection.tsx` — render embedded widget, remove global voice agent usage
+- `src/components/capital-protection/CPResultsStep.tsx` — strip Daisy banner/buttons, simplify to report only
+- `supabase/functions/elevenlabs-voice-token/index.ts` — update Daisy's system prompt with `show_calendar` tool instruction and capital protection booking guidance
 
