@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { CPIntroStep } from "./CPIntroStep";
+import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 import { CPUserInfoStep, CPUserInfo } from "./CPUserInfoStep";
 import { CPQuestionStep } from "./CPQuestionStep";
 import { CPResultsStep } from "./CPResultsStep";
@@ -27,6 +28,7 @@ interface AIReport {
 
 export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectionDialogProps) {
   const { language } = useLanguage();
+  const { isSpeaking } = useVoiceAgent();
   const [step, setStep] = useState<Step>("intro");
   const [currentQ, setCurrentQ] = useState(0);
   const [responses, setResponses] = useState<Record<string, string | string[] | boolean>>({});
@@ -167,7 +169,11 @@ export function CapitalProtectionDialog({ open, onOpenChange }: CapitalProtectio
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white border-lioner-gold/20">
+      <DialogContent className={`max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white transition-all duration-300 ${
+        step === "results" && isSpeaking
+          ? "border-2 border-lioner-gold/60 animate-border-pulse shadow-[0_0_30px_hsl(var(--lioner-gold)/0.2)]"
+          : "border-lioner-gold/20"
+      }`}>
         {step === "intro" && <CPIntroStep onStart={() => setStep("userInfo")} />}
         {step === "userInfo" && <CPUserInfoStep onSubmit={handleUserInfoSubmit} />}
         {step === "questions" && (

@@ -161,13 +161,7 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
   const firstName = userInfo.fullName.split(" ")[0];
 
   return (
-    <div
-      className={`p-6 md:p-10 space-y-8 border-2 transition-all duration-300 ${
-        isSpeaking
-          ? "border-lioner-gold/60 animate-border-pulse shadow-[0_0_20px_hsl(var(--lioner-gold)/0.15)]"
-          : "border-transparent"
-      }`}
-    >
+    <div className="p-6 md:p-10 space-y-8">
       {/* Header */}
       <div className="text-center">
         <div className="inline-flex items-center justify-center w-14 h-14 rounded-none border-2 border-lioner-gold/50 mb-4">
