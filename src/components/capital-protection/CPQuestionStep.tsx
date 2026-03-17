@@ -3,16 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import { cpSections, type CPSection } from "@/lib/capitalProtectionQuestions";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface CPQuestionStepProps {
   currentIndex: number;
   onAnswer: (sectionId: string, value: string | string[] | boolean) => void;
+  onBack?: () => void;
 }
 
-export function CPQuestionStep({ currentIndex, onAnswer }: CPQuestionStepProps) {
+export function CPQuestionStep({ currentIndex, onAnswer, onBack }: CPQuestionStepProps) {
   const { language } = useLanguage();
   const section = cpSections[currentIndex];
   const total = cpSections.length;
@@ -30,6 +31,18 @@ export function CPQuestionStep({ currentIndex, onAnswer }: CPQuestionStepProps) 
         </div>
         <Progress value={progress} className="h-1 bg-foreground/10" />
       </div>
+
+      {/* Back button */}
+      {onBack && (
+        <button
+          type="button"
+          onClick={onBack}
+          className="flex items-center gap-2 text-foreground/50 hover:text-foreground/80 text-sm mb-6 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          {language === "nl" ? "Vorige" : "Back"}
+        </button>
+      )}
 
       {/* Section Title */}
       <div className="mb-2">

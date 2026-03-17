@@ -22,6 +22,7 @@ const LeadingThroughUncertainty = lazy(() => import("./pages/articles/LeadingThr
 const ResetBlueprint = lazy(() => import("./pages/articles/ResetBlueprint"));
 const Articles = lazy(() => import("./pages/Articles"));
 const ArticleDetail = lazy(() => import("./pages/ArticleDetail"));
+const CapitalProtection = lazy(() => import("./pages/CapitalProtection"));
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ const AppRoutes = () => {
           <Route path="/articles/leading-through-uncertainty" element={<LeadingThroughUncertainty />} />
           <Route path="/articles/reset-blueprint" element={<ResetBlueprint />} />
           <Route path="/articles" element={<Articles />} />
+          <Route path="/capital-protection" element={<CapitalProtection />} />
           <Route path="/articles/:slug" element={<ArticleDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

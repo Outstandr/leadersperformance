@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
 import { X, Mic, MicOff, PhoneOff, Volume2, Send, Check } from "lucide-react";
-import { VoiceAgentContextData } from "./VoiceAgentContext";
+import { VoiceAgentContextData, useVoiceAgent } from "./VoiceAgentContext";
 
 interface VoiceAgentDialogProps {
   isOpen: boolean;
@@ -14,6 +14,8 @@ type ConversationStatus = "idle" | "connecting" | "connected" | "ended";
 export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDialogProps) => {
   const [status, setStatus] = useState<ConversationStatus>("idle");
   const [isMuted, setIsMuted] = useState(false);
+  const { setIsSpeaking } = useVoiceAgent();
+  const autoConnectTriggered = useRef(false);
   const [error, setError] = useState<string | null>(null);
   const [transcript, setTranscript] = useState<{ role: "user" | "agent"; text: string }[]>([]);
   const [emailInput, setEmailInput] = useState("");
@@ -126,8 +128,22 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       setEmailInput("");
       setShowEmailInput(false);
       setEmailConfirmed(false);
+      autoConnectTriggered.current = false;
     }
   }, [isOpen]);
+
+  // Sync isSpeaking to context
+  useEffect(() => {
+    setIsSpeaking(conversation.isSpeaking ?? false);
+  }, [conversation.isSpeaking, setIsSpeaking]);
+
+  // Auto-connect when autoConnect is set
+  useEffect(() => {
+    if (isOpen && contextData.autoConnect && status === "idle" && !autoConnectTriggered.current) {
+      autoConnectTriggered.current = true;
+      startConversation();
+    }
+  }, [isOpen, contextData.autoConnect, status]);
 
   const submitEmail = useCallback(() => {
     const trimmed = emailInput.trim();
