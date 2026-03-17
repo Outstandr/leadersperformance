@@ -80,18 +80,54 @@ export function CPVoiceWidget({ userInfo, result, aiReport }: CPVoiceWidgetProps
   }, [transcript]);
 
   const buildContextMessage = () => {
-    if (!aiReport) return null;
-    return `CAPITAL PROTECTION ASSESSMENT CONTEXT:
-Client: ${userInfo.fullName}, ${userInfo.role} at ${userInfo.company}
-Country: ${userInfo.country}
-Overall Score: ${result.overallScore}% (${result.recoveryPotential} recovery potential)
-Risk Level: ${aiReport.risk_level}
-Recovery Potential: ${aiReport.recovery_potential}
-Summary: ${aiReport.situation_summary}
-Key Risks: ${aiReport.risk_indicators?.join("; ")}
-Recommended: ${aiReport.recommended_next_step}
+    const sections = result.sections.map(s => `${s.label.en}: ${s.score}% (${s.color})`).join("\n  ");
+    const aiSection = aiReport ? `
+AI STRATEGIC REPORT:
+  Risk Level: ${aiReport.risk_level}
+  Recovery Potential: ${aiReport.recovery_potential}
+  Situation Summary: ${aiReport.situation_summary}
+  Key Risk Indicators: ${aiReport.risk_indicators?.join("; ")}
+  Strategic Paths: ${aiReport.strategic_paths?.join("; ")}
+  Recommended Next Step: ${aiReport.recommended_next_step}` : "";
 
-The user is viewing their full assessment report on screen. You can call show_calendar if they want to book a case review with Lionel.`;
+    return `CAPITAL PROTECTION ASSESSMENT — FULL CONTEXT
+
+CLIENT PROFILE:
+  Name: ${userInfo.fullName}
+  Role: ${userInfo.role}
+  Company: ${userInfo.company}
+  Country: ${userInfo.country}
+
+OVERALL ASSESSMENT:
+  Overall Score: ${result.overallScore}%
+  Overall Color: ${result.overallColor}
+  Recovery Potential: ${result.recoveryPotential}
+  Headline: ${result.headline.en}
+  Summary: ${result.body.en}
+  Recommended Next Step: ${result.nextStep.en}
+
+DIMENSION SCORES:
+  ${sections}
+
+SCORING METHODOLOGY:
+  The assessment evaluates 5 dimensions with specific weights:
+  - Evidence Strength (25%): Based on types of documentation the client has (contracts, transaction records, crypto wallets, emails, legal docs, bank records). More evidence types = higher score.
+  - Timeline Advantage (20%): How recently the situation started. Under 3 months = 100%, 3-12 months = 70%, 1-3 years = 40%, 3+ years = 25%. Earlier action = better recovery odds.
+  - Jurisdictional Simplicity (15%): Fewer jurisdictions involved = simpler case. 1 country = 100%, 2 = 65%, 3+ = 30%.
+  - Legal Positioning (20%): Legal case filed = 100%, lawyer consulted = 60%, no action = 20%.
+  - Capital Exposure (20%): Higher exposure = higher strategic value. €20M+ = 100%, €5-20M = 80%, €1-5M = 60%, €500K-1M = 40%, €100-500K = 20%.
+  
+  Overall score tiers: High (65%+), Moderate (40-64%), Limited (<40%). Consent to strategic review adds 5% bonus.
+${aiSection}
+
+IMPORTANT INSTRUCTIONS:
+  - The user is viewing their full report on screen. Discuss it proactively and in detail.
+  - Reference their specific scores, strengths, and weaknesses naturally.
+  - If a dimension scores red (<40%), highlight it as a priority area.
+  - If a dimension scores green (70%+), acknowledge it as a strength.
+  - Explain what their scores mean practically for their recovery prospects.
+  - You can call show_calendar when they want to book a case review with Lionel.
+  - Do not ask for contact details — they are already captured.`;
   };
 
   const handleStart = useCallback(async () => {
