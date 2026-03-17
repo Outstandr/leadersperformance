@@ -179,7 +179,7 @@ const cards = {
   ],
 };
 
-const images = [serviceUnmasked, serviceCoaching, serviceAcademy, serviceBusiness];
+const images = [serviceUnmasked, serviceCoaching, serviceBusiness, serviceAcademy];
 
 // ─── Sub-components ────────────────────────────────────────────────────────
 
