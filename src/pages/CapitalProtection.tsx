@@ -29,6 +29,7 @@ const CapitalProtection = () => {
 
   const handleResultsReady = useCallback((data: ResultsData) => {
     setResultsData(data);
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
   const handleAIReportUpdate = useCallback((report: AIReport) => {

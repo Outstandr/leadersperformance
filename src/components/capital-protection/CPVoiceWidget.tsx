@@ -93,6 +93,8 @@ AI STRATEGIC REPORT:
 
     return `CAPITAL PROTECTION ASSESSMENT — FULL CONTEXT
 
+IMPORTANT: Your first message to this user must be exactly: "Hi, this is Daisy from Leaders Performance." Then address them by their first name (${firstName}), and ask if they are happy with their results. Do NOT use a generic opener.
+
 CLIENT PROFILE:
   Name: ${userInfo.fullName}
   Role: ${userInfo.role}
