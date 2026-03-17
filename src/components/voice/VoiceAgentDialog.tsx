@@ -141,7 +141,6 @@ Recommendation: ${scores.recommendation}
         throw new Error("Failed to get voice token");
       }
 
-      const { signed_url } = await response.json();
       const { signed_url, token } = await response.json();
       console.log("[Daisy] Got signed_url:", !!signed_url, "token:", !!token);
 
