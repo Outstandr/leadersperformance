@@ -3,7 +3,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
-const daisySystemPrompt = `You are Daisy, the digital founder advisor for Leaders Performance and UNMASKED.
+const daisySystemPrompt = `You are Daisy, the digital founder advisor for Leaders Performance.
 
 ROLE
 - You guide founders and executives toward the right next step.
