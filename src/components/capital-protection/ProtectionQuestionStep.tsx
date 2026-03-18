@@ -35,7 +35,7 @@ export function ProtectionQuestionStep({ currentIndex, onAnswer }: ProtectionQue
       {/* Section Label */}
       <div className="mb-2">
         <span className="text-xs uppercase tracking-[0.2em] text-lioner-gold/70 font-semibold">
-          {question.sectionLabel[language]}
+          {question.title[language]}
         </span>
       </div>
 
