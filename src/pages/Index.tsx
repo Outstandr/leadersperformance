@@ -26,7 +26,7 @@ const Index = () => {
               About Leaders Performance
               <span className="w-2 h-2 rounded-full bg-lioner-gold" />
             </span>
-            <p className="font-serif text-2xl md:text-3xl text-lioner-gold italic leading-relaxed max-w-2xl text-center">
+            <p className="font-serif text-lg md:text-3xl text-lioner-gold italic leading-relaxed max-w-2xl text-center">
               Leaders Performance is where founders sharpen strategy,
               <br className="hidden md:block" />
               strengthen leadership and protect what they have built.
