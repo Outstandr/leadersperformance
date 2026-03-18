@@ -337,7 +337,8 @@ const en: Record<string, string> = {
   // Business Hero
   "business.hero.badge": "For teams of 5-50 persons",
   "business.hero.headline": "Your company doesn't have a people problem.\nIt has a leadership structure problem.",
-  "business.hero.description": "Every organization reflects the standards its founder tolerates. If mediocrity persists, that's a choice.\n\nThe Business Reset Blueprint restructures your organisation so that accountability is in the right place and performance is no longer dependent on you alone.\n\nWithin 30 days, the structure is installed that restores ownership, accountability and performance.",
+  "business.hero.description": "Every organization reflects the standards its founder tolerates. If mediocrity persists, that's a choice.\n\nThe Business Reset Blueprint restructures your organisation so that accountability is in the right place and performance is no longer dependent on you alone.",
+  "business.hero.belowVideo": "Within 30 days, the structure is installed that restores ownership, accountability and performance.",
   "business.hero.ctaPrimary": "Book a Consult",
   "business.hero.ctaSecondary": "Audit My Team First",
 
@@ -763,7 +764,8 @@ const nl: Record<string, string> = {
   "elite.footer.copyright": "© {year} Leaders Performance Institute. Alle rechten voorbehouden.",
   "business.hero.badge": "Voor teams van 5-50 personen",
   "business.hero.headline": "Je bedrijf heeft geen mensenprobleem.\nHet heeft een leiderschapsstructuurprobleem.",
-  "business.hero.description": "Elke organisatie weerspiegelt de standaard die de oprichter tolereert. Als middelmatigheid blijft bestaan, is dat een keuze.\n\nDe Business Reset Blueprint herstructureert je organisatie zodat verantwoordelijkheid weer op de juiste plek ligt en prestaties niet afhankelijk zijn van jou alleen.\n\nBinnen 30 dagen is de structuur geïnstalleerd die eigenaarschap, verantwoordelijkheid en prestaties herstelt.",
+  "business.hero.description": "Elke organisatie weerspiegelt de standaard die de oprichter tolereert. Als middelmatigheid blijft bestaan, is dat een keuze.\n\nDe Business Reset Blueprint herstructureert je organisatie zodat verantwoordelijkheid weer op de juiste plek ligt en prestaties niet afhankelijk zijn van jou alleen.",
+  "business.hero.belowVideo": "Binnen 30 dagen is de structuur geïnstalleerd die eigenaarschap, verantwoordelijkheid en prestaties herstelt.",
   "business.hero.ctaPrimary": "Boek een consult",
   "business.hero.ctaSecondary": "Team audit uitvoeren",
 
