@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
@@ -123,6 +124,12 @@ export const HomePillarsSection = () => {
             </motion.span>
           </div>
         </div>
+      </div>
+
+      {/* Scroll down indicator */}
+      <div className="sticky bottom-8 z-20 flex flex-col items-center animate-bounce pointer-events-none">
+        <ChevronDown className="w-6 h-6 text-lioner-gold/60" />
+        <ChevronDown className="w-6 h-6 text-lioner-gold/40 -mt-3" />
       </div>
 
       {/* Invisible scroll spacers — one per step to drive scrollYProgress */}
