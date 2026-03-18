@@ -1,4 +1,4 @@
-import { GraduationCap, FileText, ClipboardCheck, Rocket } from "lucide-react";
+import { GraduationCap, FileText, ClipboardCheck, Rocket, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const BusinessProcessSection = () => {
@@ -58,6 +58,12 @@ export const BusinessProcessSection = () => {
               <p className="text-muted-foreground leading-relaxed">{item.description}</p>
             </div>
           ))}
+        </div>
+
+        {/* Scroll down indicator */}
+        <div className="flex flex-col items-center mt-12 animate-bounce">
+          <ChevronDown className="w-6 h-6 text-lioner-gold/60" />
+          <ChevronDown className="w-6 h-6 text-lioner-gold/40 -mt-3" />
         </div>
       </div>
     </section>
