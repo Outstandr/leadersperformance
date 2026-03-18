@@ -211,7 +211,7 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
             setTimeout(() => {
               openVoiceAgent({
                 mode: "capital_protection",
-                scanScores: scores,
+                cpResult: scores,
                 scanUserInfo: userInfo,
               });
             }, 300);
