@@ -138,8 +138,8 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
       {/* Section Breakdown */}
       <div className="space-y-4">
         <h3 className="text-xs uppercase tracking-widest text-lioner-gold font-semibold">{t.sectionBreakdown}</h3>
-        {scores.sections.map((s) => (
-          <SectionBar key={s.section} label={s.sectionLabel} score={s.score} color={s.color} />
+        {scores.sections.map((s, i) => (
+          <SectionBar key={i} label={s.label[language] ?? s.label.en} score={s.score} color={s.color} />
         ))}
       </div>
 
