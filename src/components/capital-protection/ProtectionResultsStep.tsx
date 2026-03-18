@@ -152,7 +152,7 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
       {/* Recommendation */}
       <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
         <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.recommendation}</h4>
-        <p className="text-foreground/80 leading-relaxed">{scores.recommendation}</p>
+        <p className="text-foreground/80 leading-relaxed">{scores.nextStep[language] ?? scores.nextStep.en}</p>
       </div>
 
       {/* AI Insights */}
