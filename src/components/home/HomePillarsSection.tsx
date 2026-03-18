@@ -125,6 +125,12 @@ export const HomePillarsSection = () => {
         </div>
       </div>
 
+      {/* Scroll down indicator */}
+      <div className="sticky bottom-8 z-20 flex flex-col items-center animate-bounce pointer-events-none">
+        <ChevronDown className="w-6 h-6 text-lioner-gold/60" />
+        <ChevronDown className="w-6 h-6 text-lioner-gold/40 -mt-3" />
+      </div>
+
       {/* Invisible scroll spacers — one per step to drive scrollYProgress */}
       <div className="relative z-0">
         {steps.map((_, i) => (
