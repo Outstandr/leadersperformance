@@ -1,4 +1,4 @@
-import { AlertTriangle, UserX, Ghost } from "lucide-react";
+import { AlertTriangle, UserX, Ghost, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const BusinessWhyUsSection = () => {
