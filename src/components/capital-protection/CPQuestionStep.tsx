@@ -67,19 +67,35 @@ export function CPQuestionStep({ currentIndex, onAnswer, onBack }: CPQuestionSte
 }
 
 function SingleSelect({ section, language, onAnswer }: { section: CPSection; language: "en" | "nl"; onAnswer: CPQuestionStepProps["onAnswer"] }) {
+  const [selected, setSelected] = useState<string | null>(null);
   const options = section.options?.[language] ?? [];
   return (
     <div className="space-y-3">
-      {options.map((option) => (
-        <button
-          key={option}
-          type="button"
-          onClick={() => onAnswer(section.id, option)}
-          className="w-full text-left p-5 rounded-none border-2 border-foreground/10 hover:border-lioner-gold/60 hover:bg-lioner-gold/5 transition-all group"
+      {options.map((option) => {
+        const isSelected = selected === option;
+        return (
+          <button
+            key={option}
+            type="button"
+            onClick={() => setSelected(option)}
+            className={`w-full text-left p-5 rounded-none border-2 transition-all group flex items-center justify-between ${
+              isSelected ? "border-lioner-gold bg-lioner-gold/10" : "border-foreground/10 hover:border-lioner-gold/60 hover:bg-lioner-gold/5"
+            }`}
+          >
+            <span className={isSelected ? "text-foreground font-medium" : "text-foreground/80 group-hover:text-foreground transition-colors"}>{option}</span>
+            {isSelected && <Check className="w-5 h-5 text-lioner-gold" />}
+          </button>
+        );
+      })}
+      {selected && (
+        <Button
+          onClick={() => onAnswer(section.id, selected)}
+          className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none py-6 text-base font-bold uppercase tracking-wider mt-4"
         >
-          <span className="text-foreground/80 group-hover:text-foreground transition-colors">{option}</span>
-        </button>
-      ))}
+          {language === "nl" ? "Doorgaan" : "Continue"}
+          <ArrowRight className="w-5 h-5 ml-3" />
+        </Button>
+      )}
     </div>
   );
 }
@@ -182,19 +198,35 @@ function MultiTextInput({ section, language, onAnswer }: { section: CPSection; l
 }
 
 function BooleanSelect({ section, language, onAnswer }: { section: CPSection; language: "en" | "nl"; onAnswer: CPQuestionStepProps["onAnswer"] }) {
+  const [selected, setSelected] = useState<string | null>(null);
   const options = language === "nl" ? ["Ja", "Nee"] : ["Yes", "No"];
   return (
     <div className="space-y-3">
-      {options.map((option) => (
-        <button
-          key={option}
-          type="button"
-          onClick={() => onAnswer(section.id, option === "Yes" || option === "Ja")}
-          className="w-full text-left p-5 rounded-none border-2 border-foreground/10 hover:border-lioner-gold/60 hover:bg-lioner-gold/5 transition-all group"
+      {options.map((option) => {
+        const isSelected = selected === option;
+        return (
+          <button
+            key={option}
+            type="button"
+            onClick={() => setSelected(option)}
+            className={`w-full text-left p-5 rounded-none border-2 transition-all group flex items-center justify-between ${
+              isSelected ? "border-lioner-gold bg-lioner-gold/10" : "border-foreground/10 hover:border-lioner-gold/60 hover:bg-lioner-gold/5"
+            }`}
+          >
+            <span className={isSelected ? "text-foreground font-medium" : "text-foreground/80 group-hover:text-foreground transition-colors"}>{option}</span>
+            {isSelected && <Check className="w-5 h-5 text-lioner-gold" />}
+          </button>
+        );
+      })}
+      {selected && (
+        <Button
+          onClick={() => onAnswer(section.id, selected === "Yes" || selected === "Ja")}
+          className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none py-6 text-base font-bold uppercase tracking-wider mt-4"
         >
-          <span className="text-foreground/80 group-hover:text-foreground transition-colors">{option}</span>
-        </button>
-      ))}
+          {language === "nl" ? "Doorgaan" : "Continue"}
+          <ArrowRight className="w-5 h-5 ml-3" />
+        </Button>
+      )}
     </div>
   );
 }

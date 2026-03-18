@@ -71,7 +71,7 @@ const cards = {
           "Cross-border financial conflicts",
         ],
         closing: "Leaders Performance is where founders sharpen strategy, strengthen leadership and protect what they have built.",
-        cta: "Start Capital Protection Assessment",
+        cta: "Start Capital Protection Scan",
         disclaimer: "Confidential · International network",
         showCalendar: false,
       },

@@ -1,0 +1,1074 @@
+SCAN 1
+
+FINANCIAL DISPUTE & FRAUD RECOVERY SCAN
+
+Titel
+
+Financial Dispute & Fraud Recovery Scan
+
+Subtitel
+
+This confidential assessment helps determine whether your situation involves a financial dispute, breach of agreement, or potential fraud.
+
+⸻
+
+Sectie 1
+
+Basic information
+
+Name
+
+Company
+
+Country
+
+Email
+
+Phone
+
+Your role
+
+Founder
+Investor
+Shareholder
+Lender
+Partner
+Other
+
+⸻
+
+Sectie 2
+
+Nature of the situation
+
+Which best describes your situation?
+
+Investment fraud
+
+Crypto fraud
+
+Business partner dispute
+
+Loan not repaid
+
+Shareholder conflict
+
+Misuse of company funds
+
+Other
+
+⸻
+
+Sectie 3
+
+Capital involved
+
+How much capital is involved?
+
+Below €50K
+€50K – €250K
+€250K – €1M
+€1M – €5M
+Above €5M
+
+⸻
+
+Sectie 4
+
+Transfer method
+
+How was the capital transferred?
+
+Bank transfer
+
+Crypto transaction
+
+Shareholder loan
+
+Convertible loan
+
+Investment agreement
+
+Other
+
+Upload transaction proof
+
+⸻
+
+Sectie 5
+
+Agreements
+
+Which agreements existed?
+
+Written contract
+
+Shareholder agreement
+
+Loan agreement
+
+Token presale terms
+
+Verbal agreement
+
+No formal agreement
+
+⸻
+
+Sectie 6
+
+Breach of agreement
+
+Which commitments were not fulfilled?
+
+Loan repayment
+
+Interest payments
+
+Equity transfer
+
+Token allocation
+
+Exchange listing
+
+Revenue share
+
+Other
+
+⸻
+
+Sectie 7
+
+Behaviour of the other party
+
+Communication stopped
+
+Repeated delays
+
+Funds moved unexpectedly
+
+Company became inactive
+
+Refusal to provide transparency
+
+Threats or intimidation
+
+⸻
+
+Sectie 8
+
+Evidence
+
+Which evidence do you have?
+
+Contracts
+
+Wallet transactions
+
+Bank transfers
+
+Emails
+
+Messages
+
+Screenshots
+
+Whitepaper / marketing material
+
+Upload option
+
+⸻
+
+Sectie 9
+
+Timeline
+
+When did the issue begin?
+
+Less than 3 months ago
+
+3–6 months
+
+6–12 months
+
+More than 12 months
+
+⸻
+
+Sectie 10
+
+Legal status
+
+Have legal actions already started?
+
+No
+
+Legal notice sent
+
+Lawyer involved
+
+Police complaint filed
+
+Court case ongoing
+
+⸻
+
+Result Page
+
+Preliminary Case Assessment
+
+Your answers indicate:
+
+Financial Dispute
+Possible Fraud
+Capital Misappropriation
+
+If you want a strategic recovery analysis you can request a confidential case review.
+
+⸻
+
+SCAN 2
+
+CRYPTO FRAUD DETECTION SCAN
+
+Deze richt zich puur op web3 / crypto investeringen.
+
+⸻
+
+Titel
+
+Crypto Fraud Detection Scan
+
+Subtitel
+
+Evaluate whether a crypto investment situation contains indicators of misrepresentation or fraud.
+
+⸻
+
+Sectie 1
+
+Project details
+
+Project name
+
+Token name
+
+Website
+
+Founder / team names
+
+Telegram
+
+Twitter / X
+
+Discord
+
+⸻
+
+Sectie 2
+
+Investment details
+
+Date of investment
+
+Type of investment
+
+Presale
+Token purchase
+Private round
+
+Amount invested
+
+Crypto type
+
+Wallet used
+
+Transaction hash
+
+⸻
+
+Sectie 3
+
+Promises made
+
+Which promises influenced your decision?
+
+Exchange listing
+
+Token utility
+
+Bonus tokens
+
+Guaranteed returns
+
+Partnership announcements
+
+Charity / impact narrative
+
+Other
+
+⸻
+
+Sectie 4
+
+Behaviour after investment
+
+Communication stopped
+
+Project roadmap delayed
+
+Token price collapsed immediately
+
+Liquidity removed
+
+Developers disappeared
+
+Influencers deleted posts
+
+⸻
+
+Sectie 5
+
+Wallet indicators
+
+Do you see suspicious wallet activity?
+
+Large transfers to exchanges
+
+Funds split across wallets
+
+Liquidity drained
+
+Unknown wallets receiving funds
+
+⸻
+
+Sectie 6
+
+Evidence
+
+Do you have:
+
+Wallet transactions
+
+Screenshots
+
+Telegram messages
+
+Influencer promotions
+
+Marketing materials
+
+Whitepaper
+
+⸻
+
+Sectie 7
+
+Financial damage
+
+Investment value
+
+Recovered amount
+
+Estimated loss
+
+⸻
+
+Result
+
+Risk classification
+
+Low risk project failure
+
+Structural mismanagement
+
+High fraud indicators
+
+Critical fraud probability
+
+⸻
+
+SCAN 3
+
+FOUNDER CAPITAL PROTECTION SCAN
+
+Deze is strategisch interessant voor jouw doelgroep.
+
+Dit is preventie.
+
+Veel founders raken geld kwijt door:
+	•	partners
+	•	investeerders
+	•	slechte structuren
+
+⸻
+
+Titel
+
+Founder Capital Protection Scan
+
+Subtitel
+
+Assess whether your company structure protects you against financial disputes, fraud or capital loss.
+
+⸻
+
+Sectie 1
+
+Company structure
+
+Company location
+
+Holding structure present?
+
+Yes
+No
+
+Shareholder agreements present?
+
+Yes
+No
+
+⸻
+
+Sectie 2
+
+Investor agreements
+
+Do written agreements exist for:
+
+Shareholders
+
+Loans
+
+Convertible notes
+
+Profit sharing
+
+⸻
+
+Sectie 3
+
+Capital control
+
+Who controls company bank accounts?
+
+Single founder
+
+Multiple founders
+
+External CFO
+
+Unknown structure
+
+⸻
+
+Sectie 4
+
+Crypto exposure
+
+Does your company operate in crypto?
+
+Yes
+No
+
+If yes:
+
+Wallet ownership structure
+
+Private key management
+
+Cold storage
+
+⸻
+
+Sectie 5
+
+Financial transparency
+
+Do founders receive:
+
+Monthly reports
+
+Full wallet access
+
+Financial audits
+
+⸻
+
+Sectie 6
+
+Risk indicators
+
+Have you experienced:
+
+Partner conflicts
+
+Delayed investor payments
+
+Unclear token allocations
+
+Untracked wallets
+
+Informal investment deals
+
+⸻
+
+Result
+
+Capital Risk Score
+
+Low risk structure
+
+Moderate structural risk
+
+High dispute exposure
+
+Critical capital risk
+
+SCAN 4
+
+FOUNDER FRAUD VULNERABILITY SCAN
+
+Subtitle
+
+Assess how vulnerable your company is to internal fraud, capital disputes, or financial manipulation.
+
+This confidential assessment identifies structural weaknesses that can expose founders to partner disputes, investor conflicts, or capital loss.
+
+⸻
+
+SECTION 1
+
+Founder profile
+
+Name
+
+Company
+
+Country
+
+Industry
+
+Annual revenue range
+
+Below €1M
+€1M – €5M
+€5M – €20M
+€20M+
+
+Number of founders
+
+1
+2
+3+
+
+⸻
+
+SECTION 2
+
+Ownership structure
+
+Do you have a formal shareholder agreement?
+
+Yes
+No
+
+Does the agreement define:
+
+Equity distribution
+Voting rights
+Exit conditions
+Founder removal clauses
+
+Yes
+No
+Partially
+
+⸻
+
+SECTION 3
+
+Capital control
+
+Who has access to company bank accounts?
+
+Single founder
+Multiple founders
+Finance manager
+External CFO
+
+Do you have dual authorization for large transfers?
+
+Yes
+No
+
+⸻
+
+SECTION 4
+
+Investment agreements
+
+Have you raised external capital?
+
+Yes
+No
+
+If yes:
+
+Do written agreements exist for:
+
+Convertible loans
+Equity investments
+Revenue share agreements
+
+Yes
+No
+Partially
+
+⸻
+
+SECTION 5
+
+Financial transparency
+
+How often do you review company financials?
+
+Weekly
+Monthly
+Quarterly
+Rarely
+
+Do founders have access to:
+
+Full bank records
+Wallet transactions
+Accounting dashboards
+
+⸻
+
+SECTION 6
+
+Crypto exposure (if applicable)
+
+Does your company hold crypto assets?
+
+Yes
+No
+
+If yes:
+
+Who controls the wallets?
+
+Founder
+Partner
+Developer
+External custodian
+
+Are private keys stored securely?
+
+Yes
+No
+Not sure
+
+⸻
+
+SECTION 7
+
+Internal risk indicators
+
+Have you experienced any of the following?
+
+Partner withholding financial information
+
+Delayed reporting of company revenue
+
+Funds transferred without clear explanation
+
+Unclear token allocations or crypto wallets
+
+Investors demanding undocumented changes
+
+None of the above
+
+⸻
+
+SECTION 8
+
+Governance structure
+
+Does your company have:
+
+Independent legal counsel
+
+External accountant
+
+Board or advisory board
+
+Internal financial controls
+
+⸻
+
+SECTION 9
+
+Founder pressure
+
+When financial problems appear in the company, who handles them?
+
+Founder alone
+
+Founder + finance team
+
+External advisors
+
+Lawyers
+
+⸻
+
+SECTION 10
+
+Risk perception
+
+How confident are you that your company structure protects you from financial disputes?
+
+Very confident
+
+Moderately confident
+
+Uncertain
+
+Concerned
+
+⸻
+
+SCORING MODEL
+
+Deze scan moet een score genereren.
+
+⸻
+
+LOW RISK STRUCTURE
+
+0–25
+
+Your company structure shows strong governance and financial control.
+
+⸻
+
+MODERATE RISK
+
+25–50
+
+Some structural weaknesses exist that could expose the company to disputes.
+
+⸻
+
+HIGH RISK
+
+50–75
+
+Multiple vulnerabilities could lead to capital conflicts or internal disputes.
+
+⸻
+
+CRITICAL RISK
+
+75–100
+
+Your company may be exposed to serious financial risk or potential fraud.
+
+A structural review is strongly recommended.
+
+⸻
+
+RESULT PAGE
+
+Founder Capital Risk Assessment
+
+Your answers suggest that your company may have structural vulnerabilities related to capital control, agreements, or governance.
+
+If you want a confidential strategic review of your company structure, you can request a private consultation.
+
+⸻
+
+AUTOMATED FOLLOW-UP
+
+AI assistant message example:
+
+Your assessment indicates potential structural vulnerabilities in your company’s financial governance.
+
+If you want to understand how to protect your company from disputes, capital conflicts or fraud exposure, you can request a confidential strategy call with Lionel Eersteling.
+
+SCAN 5
+
+FOUNDER FRAUD VULNERABILITY SCAN
+
+Subtitle
+
+Assess how vulnerable your company is to internal fraud, capital disputes, or financial manipulation.
+
+This confidential assessment identifies structural weaknesses that can expose founders to partner disputes, investor conflicts, or capital loss.
+
+⸻
+
+SECTION 1
+
+Founder profile
+
+Name
+
+Company
+
+Country
+
+Industry
+
+Annual revenue range
+
+Below €1M
+€1M – €5M
+€5M – €20M
+€20M+
+
+Number of founders
+
+1
+2
+3+
+
+⸻
+
+SECTION 2
+
+Ownership structure
+
+Do you have a formal shareholder agreement?
+
+Yes
+No
+
+Does the agreement define:
+
+Equity distribution
+Voting rights
+Exit conditions
+Founder removal clauses
+
+Yes
+No
+Partially
+
+⸻
+
+SECTION 3
+
+Capital control
+
+Who has access to company bank accounts?
+
+Single founder
+Multiple founders
+Finance manager
+External CFO
+
+Do you have dual authorization for large transfers?
+
+Yes
+No
+
+⸻
+
+SECTION 4
+
+Investment agreements
+
+Have you raised external capital?
+
+Yes
+No
+
+If yes:
+
+Do written agreements exist for:
+
+Convertible loans
+Equity investments
+Revenue share agreements
+
+Yes
+No
+Partially
+
+⸻
+
+SECTION 5
+
+Financial transparency
+
+How often do you review company financials?
+
+Weekly
+Monthly
+Quarterly
+Rarely
+
+Do founders have access to:
+
+Full bank records
+Wallet transactions
+Accounting dashboards
+
+⸻
+
+SECTION 6
+
+Crypto exposure (if applicable)
+
+Does your company hold crypto assets?
+
+Yes
+No
+
+If yes:
+
+Who controls the wallets?
+
+Founder
+Partner
+Developer
+External custodian
+
+Are private keys stored securely?
+
+Yes
+No
+Not sure
+
+⸻
+
+SECTION 7
+
+Internal risk indicators
+
+Have you experienced any of the following?
+
+Partner withholding financial information
+
+Delayed reporting of company revenue
+
+Funds transferred without clear explanation
+
+Unclear token allocations or crypto wallets
+
+Investors demanding undocumented changes
+
+None of the above
+
+⸻
+
+SECTION 8
+
+Governance structure
+
+Does your company have:
+
+Independent legal counsel
+
+External accountant
+
+Board or advisory board
+
+Internal financial controls
+
+⸻
+
+SECTION 9
+
+Founder pressure
+
+When financial problems appear in the company, who handles them?
+
+Founder alone
+
+Founder + finance team
+
+External advisors
+
+Lawyers
+
+⸻
+
+SECTION 10
+
+Risk perception
+
+How confident are you that your company structure protects you from financial disputes?
+
+Very confident
+
+Moderately confident
+
+Uncertain
+
+Concerned
+
+⸻
+
+SCORING MODEL
+
+Deze scan moet een score genereren.
+
+⸻
+
+LOW RISK STRUCTURE
+
+0–25
+
+Your company structure shows strong governance and financial control.
+
+⸻
+
+MODERATE RISK
+
+25–50
+
+Some structural weaknesses exist that could expose the company to disputes.
+
+⸻
+
+HIGH RISK
+
+50–75
+
+Multiple vulnerabilities could lead to capital conflicts or internal disputes.
+
+⸻
+
+CRITICAL RISK
+
+75–100
+
+Your company may be exposed to serious financial risk or potential fraud.
+
+A structural review is strongly recommended.
+
+⸻
+
+RESULT PAGE
+
+Founder Capital Risk Assessment
+
+Your answers suggest that your company may have structural vulnerabilities related to capital control, agreements, or governance.
+
+If you want a confidential strategic review of your company structure, you can request a private consultation.
+
+⸻
+
+AUTOMATED FOLLOW-UP
+
+AI assistant message example:
+
+Your assessment indicates potential structural vulnerabilities in your company’s financial governance.
+
+If you want to understand how to protect your company from disputes, capital conflicts or fraud exposure, you can request a confidential strategy call with Lionel Eersteling.

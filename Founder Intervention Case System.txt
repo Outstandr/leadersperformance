@@ -1,0 +1,569 @@
+Founder Intervention Case System (FICS)
+
+Internal Build Brief for Team
+
+Purpose
+
+The Founder Intervention Case System (FICS) is the internal operating system for all founder intervention cases.
+
+It is built to do 5 things:
+	1.	create a consistent case structure from day one
+	2.	track progress weekly in a measurable way
+	3.	create comparable data across cases
+	4.	document intervention work as proof
+	5.	turn real interventions into case studies, insights, and intellectual property
+
+This is not a simple intake form.
+This is a repeatable case documentation system.
+
+Every case must follow the same structure.
+
+⸻
+
+Core System Structure
+
+Every case contains 4 fixed layers:
+	1.	Case Profile
+	2.	Weekly Intervention Log
+	3.	Monthly Case Review
+	4.	Case Outcome Report
+
+Each case must move through these 4 layers in the same order.
+
+This ensures consistency, comparability, and clean reporting.
+
+⸻
+
+1. CASE PROFILE
+
+One-time setup at the start of the case
+
+The Case Profile is the opening file of the intervention.
+It captures the fixed information of the case.
+
+This section will usually not change much after it is created.
+
+Required fields
+
+Case Identification
+	•	Case ID
+Example: LP-2026-01
+	•	Case Status
+Options:
+	•	Active
+	•	On Hold
+	•	Completed
+	•	Closed
+
+Company Information
+	•	Company Name
+	•	Industry / Sector
+	•	Country
+	•	Revenue Range
+	•	Number of Employees
+	•	Ownership Structure
+	•	Key Decision Makers
+
+Founder Information
+	•	Founder Name
+	•	Founder Role
+	•	Founder Age
+	•	Founder Contact Details
+	•	Main Internal Stakeholders
+
+Intervention Setup
+	•	Intervention Start Date
+	•	Expected Intervention Duration
+Options:
+	•	3 months
+	•	6 months
+	•	9 months
+	•	Primary Objective
+Examples:
+	•	Leadership reset
+	•	Founder recovery
+	•	Conflict resolution
+	•	Exit preparation
+	•	Strategic repositioning
+	•	Organizational stabilization
+
+Starting Situation
+	•	Brief Case Summary
+	•	Main Pressure Point
+	•	Main Leadership Problem
+	•	Main Business Risk
+	•	Desired Outcome
+
+Team instruction
+
+This section must be completed before the first official weekly log starts.
+
+⸻
+
+2. WEEKLY INTERVENTION LOG
+
+Main tracking layer of the system
+
+This is the most important part of the entire system.
+
+The Weekly Intervention Log creates comparable data over time.
+Every active case must be updated once per week using the same categories and scoring logic.
+
+This is how progress becomes visible.
+
+Weekly Log Fields
+
+Basic Weekly Data
+	•	Week Number
+	•	Date
+	•	Session Duration
+	•	Session Type
+Options:
+	•	Founder session
+	•	Leadership session
+	•	Strategic review
+	•	Conflict intervention
+	•	Follow-up call
+	•	On-site intervention
+
+⸻
+
+A. Founder State
+
+This measures the internal condition of the founder.
+
+Required scores
+	•	Energy: 1–10
+	•	Clarity: 1–10
+	•	Decision Power: 1–10
+
+Required note
+	•	Short Note
+Maximum: 2 sentences
+
+Scoring guidance
+	•	1–3 = founder is under severe pressure
+	•	4–6 = unstable but functional
+	•	7–8 = stable and effective
+	•	9–10 = highly clear, strong, and in control
+
+⸻
+
+B. Leadership Alignment
+
+This measures how well the leadership structure is working together.
+
+Required score
+	•	Leadership Alignment: 1–10
+
+Required note
+	•	Short Note
+Maximum: 2 sentences
+
+Supporting prompt
+	•	How aligned is the leadership team this week?
+
+Scoring guidance
+	•	1–3 = major dysfunction or distrust
+	•	4–6 = partial alignment, recurring friction
+	•	7–8 = mostly aligned with manageable tension
+	•	9–10 = strong alignment and clear leadership cooperation
+
+⸻
+
+C. Decision Velocity
+
+This measures the speed and quality of important decision-making.
+
+Required score
+	•	Decision Velocity: 1–10
+
+Required notes
+	•	Short Note
+	•	What important decision was made this week?
+	•	What important decision is still being avoided?
+
+Scoring guidance
+	•	1–3 = paralysis or major delays
+	•	4–6 = decisions are slow and reactive
+	•	7–8 = decisions are being made with reasonable speed
+	•	9–10 = fast, clear, and disciplined decision-making
+
+⸻
+
+D. Structural Clarity
+
+This measures whether roles, responsibilities, and authority are clear.
+
+Required score
+	•	Structural Clarity: 1–10
+
+Required note
+	•	Short Note
+
+Supporting prompt
+	•	Is it clear who is responsible for what?
+
+Scoring guidance
+	•	1–3 = major chaos, overlap, unclear authority
+	•	4–6 = partial clarity, still dependent on founder
+	•	7–8 = responsibilities are mostly clear
+	•	9–10 = strong structure with clear accountability
+
+⸻
+
+E. Financial Awareness
+
+This measures whether the founder understands the financial reality of the business.
+
+Required score
+	•	Financial Awareness: 1–10
+
+Required note
+	•	Short Note
+
+Supporting prompt
+	•	Does the founder have a realistic understanding of financial pressure, cash, and risk?
+
+Scoring guidance
+	•	1–3 = poor visibility and low awareness
+	•	4–6 = partial understanding, some blind spots
+	•	7–8 = generally strong awareness
+	•	9–10 = clear understanding of financial reality and implications
+
+⸻
+
+F. Strategic Direction
+
+This measures how clear the direction of the company is.
+
+Required score
+	•	Strategic Direction: 1–10
+
+Required note
+	•	Short Note
+
+Supporting prompt
+	•	Is the company operating with strategic clarity or reacting to pressure?
+
+Scoring guidance
+	•	1–3 = no clear direction
+	•	4–6 = direction exists but is unstable or inconsistent
+	•	7–8 = clear direction with some adjustment needed
+	•	9–10 = strong strategic clarity and controlled execution
+
+⸻
+
+G. Founder Pressure Source
+
+This identifies the dominant pressure source of the week.
+
+Select one primary source
+	•	Team conflict
+	•	Growth pressure
+	•	Financial pressure
+	•	Legal pressure
+	•	Personal stress
+
+Optional
+	•	Select one secondary pressure source if needed
+
+⸻
+
+H. Intervention Actions
+
+This documents what was actually done during the week.
+
+Required field
+	•	Intervention Actions Taken
+
+Examples
+	•	Leadership alignment session
+	•	Strategic restructuring
+	•	Conflict mediation
+	•	Decision forcing
+	•	Founder repositioning
+	•	Exit planning
+	•	Role clarification
+	•	Pressure mapping
+	•	Stakeholder analysis
+
+Required rule
+
+This section must describe concrete intervention work.
+Do not use vague language.
+
+Bad example:
+	•	supported founder
+
+Strong example:
+	•	facilitated leadership alignment session between founder and managing director
+	•	redefined decision rights for weekly executive team
+	•	identified 3 blocked strategic decisions and forced timeline for resolution
+
+⸻
+
+3. MONTHLY CASE REVIEW
+
+Summary layer every 4 weeks
+
+A Monthly Case Review must be completed after every 4 weekly logs.
+
+The purpose is to step back from the weekly detail and identify the bigger movement in the case.
+
+Required fields
+	•	Month
+	•	Biggest Breakthrough
+	•	Biggest Risk
+	•	Leadership Situation
+	•	Founder State
+	•	Next Intervention Focus
+
+Team instruction
+
+This review must be short, clear, and strategic.
+It should summarize the pattern of the month, not repeat every weekly detail.
+
+⸻
+
+4. CASE OUTCOME REPORT
+
+Closing report when the intervention ends
+
+This report is created when the intervention is completed, paused, or formally closed.
+
+The purpose is to capture the case outcome in a way that can later be used for:
+	•	internal analysis
+	•	strategic review
+	•	anonymous case studies
+	•	website case material
+	•	intellectual property development
+
+Required fields
+	•	Start Situation
+	•	Main Intervention
+	•	Key Structural Changes
+	•	Measured Progress
+	•	Founder Outcome
+	•	Company Outcome
+	•	Future Outlook
+
+Team instruction
+
+This report must be written in a professional, factual style.
+No exaggerated claims.
+No coaching language.
+It must reflect what changed in reality.
+
+⸻
+
+FOUNDER PRESSURE INDEX (FPI)
+
+Core internal metric of the system
+
+The Founder Pressure Index is the central tracking score inside FICS.
+
+It creates one simple performance signal across the case.
+
+Formula
+
+The FPI is the average of these 4 weekly scores:
+	•	Energy
+	•	Decision Power
+	•	Leadership Alignment
+	•	Strategic Direction
+
+Formula
+
+FPI =
+(Energy + Decision Power + Leadership Alignment + Strategic Direction) ÷ 4
+
+Score interpretation
+	•	8–10 = Strong leadership control
+	•	5–7 = Unstable leadership zone
+	•	1–4 = Founder crisis zone
+
+Why this matters
+
+This becomes our own internal framework for identifying pressure and tracking movement over time.
+
+Over multiple cases, this will help us identify patterns such as:
+	•	when founders lose control
+	•	what pressure sources drive breakdown
+	•	what intervention actions create the fastest recovery
+	•	how long recovery or structural stabilization usually takes
+
+⸻
+
+SYSTEM RULES FOR THE TEAM
+
+Rule 1
+
+Every case must start with a complete Case Profile.
+
+Rule 2
+
+Every active case must have one Weekly Intervention Log per week.
+
+Rule 3
+
+Every 4 weeks, a Monthly Case Review must be added.
+
+Rule 4
+
+Every closed or completed case must have a Case Outcome Report.
+
+Rule 5
+
+The scoring system must remain consistent across all cases.
+
+Rule 6
+
+Notes must stay short, factual, and operational.
+
+Rule 7
+
+The system must be built so that it can later expand from founder-only tracking to company-level tracking.
+
+That means the architecture should allow future add-ons such as:
+	•	leadership team tracking
+	•	stakeholder mapping
+	•	conflict mapping
+	•	exit readiness scoring
+	•	financial risk scoring
+
+⸻
+
+RECOMMENDED BUILD STRUCTURE
+
+Best setup for team build
+
+This system should be built in either:
+	•	Notion
+or
+	•	Airtable
+
+Recommended database structure
+
+Main Database
+
+Cases
+
+Each case should contain:
+	•	Case Profile
+	•	Weekly Logs
+	•	Monthly Reviews
+	•	Outcome Report
+
+Linked Sub-Databases
+	1.	Weekly Logs
+	2.	Monthly Reviews
+	3.	Outcome Reports
+
+This creates a clean relational structure.
+
+⸻
+
+MINIMUM VERSION TO BUILD NOW
+
+If the team wants to move fast, build Version 1 with these 4 tables:
+
+Table 1: Cases
+
+Contains all Case Profile fields
+
+Table 2: Weekly Logs
+
+Contains all weekly tracking fields and scores
+
+Table 3: Monthly Reviews
+
+Contains monthly summaries linked to each case
+
+Table 4: Outcome Reports
+
+Contains final case closure reports linked to each case
+
+That is enough to start immediately.
+
+⸻
+
+FUTURE EXPANSION LAYER
+
+Not required now, but system must allow for it later
+
+The system should be expandable into:
+	•	Leadership Team Scorecard
+	•	Stakeholder Power Map
+	•	Conflict Tracking
+	•	Exit Readiness Framework
+	•	Strategic Risk Dashboard
+	•	Intervention Timeline View
+
+Do not overbuild this now.
+Just make sure the foundation can support it later.
+
+⸻
+
+WHY THIS SYSTEM MATTERS
+
+This system gives us 3 major advantages:
+
+1. Proof
+
+It documents intervention work over time.
+
+2. Pattern recognition
+
+It shows what pressure looks like across multiple founders and companies.
+
+3. Positioning
+
+It creates a real operational framework that can later become part of our market position, thought leadership, and case study strategy.
+
+This is how the work becomes structured, measurable, and credible.
+
+⸻
+
+FINAL TEAM DELIVERABLE
+
+The team should build:
+
+A. One master Founder Intervention Case System
+
+With:
+	•	case creation
+	•	weekly logging
+	•	monthly reviews
+	•	outcome reporting
+
+B. One dashboard view
+
+Showing:
+	•	active cases
+	•	current FPI by case
+	•	number of weeks active
+	•	primary intervention objective
+	•	case status
+
+C. One case detail page
+
+Where each case can be opened and reviewed as a full timeline
+
+⸻
+
+SIMPLE BUILD SUMMARY FOR TEAM
+
+Build a case system with 4 fixed layers:
+	1.	Case Profile
+	2.	Weekly Intervention Log
+	3.	Monthly Case Review
+	4.	Case Outcome Report
+
+Add one internal metric:
+
+Founder Pressure Index (FPI)
+
+Make the system simple enough to use weekly, but structured enough to scale across many cases over time.
+
+⸻

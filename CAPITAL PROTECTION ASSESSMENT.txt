@@ -1,0 +1,383 @@
+CAPITAL PROTECTION ASSESSMENT
+
+Founder Protection Intake
+
+Page Title
+
+Capital Protection Assessment
+
+Introduction Text
+
+If you are a founder dealing with fraud, partner disputes, misappropriation of funds, or lost capital, this assessment helps determine whether strategic recovery or intervention may be possible.
+
+The assessment is designed for situations involving serious financial exposure and complex founder environments.
+
+Once submitted, your answers will generate an initial report outlining the possible strategic paths forward.
+
+⸻
+
+SECTION 1
+
+Founder Information
+
+Name
+
+Company Name
+
+Role
+
+• Founder
+• CEO
+• Shareholder
+• Investor
+
+Country
+
+Email
+
+Phone
+
+⸻
+
+SECTION 2
+
+Situation Type
+
+What type of situation are you currently dealing with?
+
+• Fraud
+• Crypto fraud
+• Misappropriation of funds
+• Partner dispute
+• Investor dispute
+• Breach of contract
+• Ownership conflict
+• Other financial dispute
+
+⸻
+
+SECTION 3
+
+Capital Exposure
+
+What is the estimated financial exposure?
+
+• €100K – €500K
+• €500K – €1M
+• €1M – €5M
+• €5M – €20M
+• €20M+
+
+⸻
+
+SECTION 4
+
+Timeline
+
+When did the situation begin?
+
+• Less than 3 months ago
+• 3–12 months ago
+• 1–3 years ago
+• More than 3 years ago
+
+⸻
+
+SECTION 5
+
+Evidence
+
+What documentation do you currently have?
+
+• Contracts
+• Transaction records
+• Crypto wallet addresses
+• Emails or messages
+• Legal documentation
+• Bank records
+• No documentation yet
+
+⸻
+
+SECTION 6
+
+Jurisdictions Involved
+
+Where are the main parties located?
+
+Country 1
+
+Country 2
+
+Country 3
+
+⸻
+
+SECTION 7
+
+Legal Status
+
+Have you taken legal action already?
+
+• No action yet
+• Lawyer consulted
+• Legal case filed
+• Ongoing investigation
+
+⸻
+
+SECTION 8
+
+Objective
+
+What is your primary objective?
+
+• Recover lost capital
+• Stop ongoing fraud
+• Resolve partner conflict
+• Strategic settlement
+• Full investigation
+
+⸻
+
+SECTION 9
+
+Situation Summary
+
+Please describe the situation briefly.
+
+(Open text field)
+
+⸻
+
+SECTION 10
+
+Strategic Review Consent
+
+If your case qualifies, would you be open to a confidential strategic review?
+
+• Yes
+• No
+
+⸻
+
+AUTOMATED RESULTS SYSTEM
+
+After submission, the system generates a Founder Protection Score.
+
+Score is calculated based on:
+
+• Capital exposure
+• Evidence availability
+• Timeline
+• Jurisdiction complexity
+• Legal status
+
+⸻
+
+RESULT TYPES
+
+RESULT 1
+
+High Recovery Potential
+
+Headline
+
+Strategic Recovery Opportunity Identified
+
+Text
+
+Based on the information provided, your case appears to involve a significant capital exposure with potential strategic recovery paths.
+
+Situations like this often require coordinated legal, investigative, and strategic action across jurisdictions.
+
+Your situation may qualify for a confidential strategic review.
+
+Recommended Next Step:
+
+Schedule a 30-minute case review with Lionel Eersteling.
+
+⸻
+
+RESULT 2
+
+Moderate Strategic Complexity
+
+Headline
+
+Situation Requires Strategic Evaluation
+
+Text
+
+Your situation involves financial exposure and multiple strategic variables.
+
+Cases like this require careful review of documentation, jurisdiction, and recovery feasibility before determining the appropriate course of action.
+
+Recommended Next Step:
+
+Submit documentation for further review or schedule an orientation call.
+
+⸻
+
+RESULT 3
+
+Limited Recovery Potential
+
+Headline
+
+Case Requires Further Documentation
+
+Text
+
+Based on the information currently provided, it is difficult to determine whether recovery options are viable.
+
+Situations involving fraud or financial disputes often depend heavily on available documentation and legal jurisdiction.
+
+Recommended Next Step:
+
+Gather additional documentation before pursuing strategic action.
+
+⸻
+
+FOUNDER REPORT
+
+Capital Protection Assessment Report
+
+Title
+
+Founder Protection Report
+
+Subtitle
+
+Initial Strategic Assessment
+
+⸻
+
+SECTION 1
+
+Situation Summary
+
+Based on your responses, the assessment identifies the following situation type:
+
+Example output
+
+Partner dispute involving capital exposure between €1M–€5M with documentation available and multiple jurisdictions involved.
+
+⸻
+
+SECTION 2
+
+Strategic Risk Level
+
+Example output
+
+The situation indicates moderate to high strategic complexity.
+
+Factors influencing this assessment include:
+
+• financial exposure
+• jurisdictional complexity
+• documentation availability
+
+⸻
+
+SECTION 3
+
+Key Risk Indicators
+
+Example output
+
+The following risk indicators were identified:
+
+• financial exposure above €1M
+• potential breach of agreements
+• involvement of multiple jurisdictions
+• potential legal escalation required
+
+⸻
+
+SECTION 4
+
+Possible Strategic Paths
+
+Example output
+
+Depending on documentation and jurisdiction, potential paths may include:
+
+• strategic negotiation
+• legal action coordination
+• asset tracing investigation
+• structured settlement
+
+⸻
+
+SECTION 5
+
+Recommended Next Step
+
+Example output
+
+Based on this initial assessment, the next step may involve a confidential strategic review of the situation.
+
+This review evaluates:
+
+• documentation
+• jurisdictional complexity
+• recovery feasibility
+• potential legal and investigative paths.
+
+⸻
+
+SECTION 6
+
+Confidentiality Notice
+
+All information submitted through this assessment is treated confidentially.
+
+Submitting this assessment does not establish a legal relationship but allows for an initial evaluation of the situation.
+
+⸻
+
+REPORT CTA
+
+Request a Strategic Case Review
+
+Schedule a 30-minute confidential conversation with Lionel Eersteling to discuss the situation and possible strategic paths forward.
+
+Button:
+
+Schedule Case Review
+
+⸻
+
+EMAIL DELIVERY TEXT
+
+Subject
+
+Your Capital Protection Assessment Report
+
+Email Body
+
+Thank you for completing the Capital Protection Assessment.
+
+Based on your responses, we generated an initial report outlining the strategic complexity of your situation and possible next steps.
+
+Please review the report carefully.
+
+If your situation qualifies for further strategic evaluation, you may request a confidential conversation to discuss the case in more detail.
+
+Access your report below.
+
+Button
+
+View Your Assessment Report
+
+⸻
+
+IMPORTANT IMPLEMENTATION NOTE
+
+Your team should build this as:
+
+Assessment → Score → Report → Call Booking.
+
+This creates a professional funnel instead of a simple questionnaire.

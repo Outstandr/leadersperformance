@@ -3,6 +3,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { Loader2, Check } from "lucide-react";
 import { useBookedSlots } from "@/hooks/useBookedSlots";
+import { useFullyBookedDates } from "@/hooks/useFullyBookedDates";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { CPUserInfo } from "./CPUserInfoStep";
 import { cn } from "@/lib/utils";
@@ -28,8 +29,10 @@ export function CPBookingCalendar({ userInfo, onBookingComplete, onCancel }: CPB
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [isBooking, setIsBooking] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [visibleMonth, setVisibleMonth] = useState<Date>(new Date());
 
   const { bookedSlots24h, isLoading: slotsLoading } = useBookedSlots(selectedDate ?? null);
+  const { fullyBookedDates } = useFullyBookedDates(visibleMonth);
 
   const isWeekend = (date: Date) => {
     const day = date.getDay();
@@ -98,10 +101,17 @@ export function CPBookingCalendar({ userInfo, onBookingComplete, onCancel }: CPB
           setSelectedDate(d);
           setSelectedSlot(null);
         }}
+        onMonthChange={(m) => setVisibleMonth(m)}
         disabled={(date) => {
           const today = new Date();
           today.setHours(0, 0, 0, 0);
-          return date < today || isWeekend(date);
+          if (date < today || isWeekend(date)) return true;
+          // Disable fully booked dates
+          const y = date.getFullYear();
+          const mo = String(date.getMonth() + 1).padStart(2, "0");
+          const da = String(date.getDate()).padStart(2, "0");
+          const dateStr = `${y}-${mo}-${da}`;
+          return fullyBookedDates.has(dateStr);
         }}
         className={cn("p-3 pointer-events-auto mx-auto")}
       />
