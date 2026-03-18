@@ -212,7 +212,7 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
               openVoiceAgent({
                 mode: "capital_protection",
                 cpResult: scores,
-                scanUserInfo: userInfo,
+                cpUserInfo: userInfo,
               });
             }, 300);
           }}
