@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { protectionQuestions } from "@/lib/capitalProtectionQuestions";
+import { cpSections as protectionQuestions } from "@/lib/capitalProtectionQuestions";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ArrowRight, Check } from "lucide-react";
 
@@ -35,7 +35,7 @@ export function ProtectionQuestionStep({ currentIndex, onAnswer }: ProtectionQue
       {/* Section Label */}
       <div className="mb-2">
         <span className="text-xs uppercase tracking-[0.2em] text-lioner-gold/70 font-semibold">
-          {question.sectionLabel[language]}
+          {question.title[language]}
         </span>
       </div>
 
@@ -46,7 +46,7 @@ export function ProtectionQuestionStep({ currentIndex, onAnswer }: ProtectionQue
 
       {/* Options */}
       <div className="space-y-3">
-        {question.options.map((option, idx) => {
+        {(question.options?.[language] ?? []).map((option, idx) => {
           const isSelected = selectedIdx === idx;
           return (
             <button
@@ -64,7 +64,7 @@ export function ProtectionQuestionStep({ currentIndex, onAnswer }: ProtectionQue
                   {String.fromCharCode(65 + idx)}
                 </span>
                 <span className={isSelected ? "text-foreground font-medium" : "text-foreground/80 group-hover:text-foreground transition-colors"}>
-                  {option.label[language]}
+                  {option}
                 </span>
               </div>
               {isSelected && <Check className="w-5 h-5 text-lioner-gold" />}
@@ -73,7 +73,7 @@ export function ProtectionQuestionStep({ currentIndex, onAnswer }: ProtectionQue
         })}
         {selectedIdx !== null && (
           <Button
-            onClick={() => onAnswer(question.id, question.options[selectedIdx].value)}
+            onClick={() => onAnswer(question.id, selectedIdx)}
             className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none py-6 text-base font-bold uppercase tracking-wider mt-4"
           >
             {language === "nl" ? "Doorgaan" : "Continue"}

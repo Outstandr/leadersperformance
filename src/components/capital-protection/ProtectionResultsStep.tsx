@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mic, Shield, AlertTriangle } from "lucide-react";
-import { ProtectionScores } from "@/lib/capitalProtectionScoring";
+import { CPResult } from "@/lib/capitalProtectionScoring";
 import { ScanUserInfo } from "@/components/founder-scan/ScanGateStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
 interface ProtectionResultsStepProps {
   userInfo: ScanUserInfo;
-  scores: ProtectionScores;
+  scores: CPResult;
   aiInsights: ProtectionAIInsights | null;
   onClose: () => void;
 }
@@ -129,30 +129,30 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
       {/* Overall Score */}
       <div className="text-center space-y-3">
         <h3 className="text-xs uppercase tracking-widest text-foreground/50 font-semibold">{t.overallRisk}</h3>
-        <RiskGauge score={scores.overall} color={scores.overallColor} />
+        <RiskGauge score={scores.overallScore} color={scores.overallColor} />
         <div className={`inline-block px-4 py-2 ${c.bg} border ${c.border} ${c.text} text-sm font-bold uppercase tracking-widest`}>
-          {scores.tier}
+          {scores.recoveryPotential}
         </div>
       </div>
 
       {/* Section Breakdown */}
       <div className="space-y-4">
         <h3 className="text-xs uppercase tracking-widest text-lioner-gold font-semibold">{t.sectionBreakdown}</h3>
-        {scores.sections.map((s) => (
-          <SectionBar key={s.section} label={s.sectionLabel} score={s.score} color={s.color} />
+        {scores.sections.map((s, i) => (
+          <SectionBar key={i} label={s.label[language] ?? s.label.en} score={s.score} color={s.color} />
         ))}
       </div>
 
       {/* Diagnosis */}
       <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
         <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.diagnosis}</h4>
-        <p className="text-foreground/80 leading-relaxed">{scores.diagnosis}</p>
+        <p className="text-foreground/80 leading-relaxed">{scores.headline[language] ?? scores.headline.en}</p>
       </div>
 
       {/* Recommendation */}
       <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
         <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.recommendation}</h4>
-        <p className="text-foreground/80 leading-relaxed">{scores.recommendation}</p>
+        <p className="text-foreground/80 leading-relaxed">{scores.nextStep[language] ?? scores.nextStep.en}</p>
       </div>
 
       {/* AI Insights */}
@@ -210,9 +210,9 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
             onClose();
             setTimeout(() => {
               openVoiceAgent({
-                mode: "capital_protection_scan",
-                scanScores: scores,
-                scanUserInfo: userInfo,
+                mode: "capital_protection",
+                cpResult: scores,
+                cpUserInfo: userInfo,
               });
             }, 300);
           }}
