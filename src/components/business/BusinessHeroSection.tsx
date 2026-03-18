@@ -47,6 +47,9 @@ export const BusinessHeroSection = () => {
                     Your browser does not support the video tag.
                   </video>
                 </AspectRatio>
+                <p className="text-lg text-white leading-relaxed tracking-normal mt-4 max-w-xl">
+                  {t("business.hero.belowVideo")}
+                </p>
               </div>
 
               {/* CTA */}
