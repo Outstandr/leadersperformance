@@ -129,9 +129,9 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
       {/* Overall Score */}
       <div className="text-center space-y-3">
         <h3 className="text-xs uppercase tracking-widest text-foreground/50 font-semibold">{t.overallRisk}</h3>
-        <RiskGauge score={scores.overall} color={scores.overallColor} />
+        <RiskGauge score={scores.overallScore} color={scores.overallColor} />
         <div className={`inline-block px-4 py-2 ${c.bg} border ${c.border} ${c.text} text-sm font-bold uppercase tracking-widest`}>
-          {scores.tier}
+          {scores.recoveryPotential}
         </div>
       </div>
 
