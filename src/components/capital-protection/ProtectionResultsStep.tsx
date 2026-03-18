@@ -146,7 +146,7 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
       {/* Diagnosis */}
       <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
         <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.diagnosis}</h4>
-        <p className="text-foreground/80 leading-relaxed">{scores.diagnosis}</p>
+        <p className="text-foreground/80 leading-relaxed">{scores.headline[language] ?? scores.headline.en}</p>
       </div>
 
       {/* Recommendation */}
