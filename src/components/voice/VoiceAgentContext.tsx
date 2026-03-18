@@ -12,6 +12,8 @@ export interface VoiceAgentContextData {
   cpReport?: any;
   cpUserInfo?: any;
   cpResult?: any;
+  assessmentResult?: any;
+  assessmentUserInfo?: any;
 }
 
 interface VoiceAgentContextType {

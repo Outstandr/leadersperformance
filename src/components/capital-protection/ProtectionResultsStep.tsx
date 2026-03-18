@@ -7,7 +7,7 @@ import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
 interface ProtectionResultsStepProps {
   userInfo: ScanUserInfo;
-  scores: ProtectionScores;
+  scores: CPResult;
   aiInsights: ProtectionAIInsights | null;
   onClose: () => void;
 }
