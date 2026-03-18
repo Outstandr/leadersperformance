@@ -9,26 +9,28 @@ interface CPIntroStepProps {
 const ui = {
   en: {
     eyebrow: "Capital Protection & Special Situations",
-    heading: "Capital Protection Assessment",
-    description: "If you are a founder dealing with fraud, partner disputes, misappropriation of funds, or lost capital, this assessment helps determine whether strategic recovery or intervention may be possible.",
+    heading: "Capital Protection Scan",
+    description:
+      "If you are a founder dealing with fraud, partner disputes, misappropriation of funds, or lost capital, this assessment helps determine whether strategic recovery or intervention may be possible.",
     bullets: [
       "Covers exposure, evidence, jurisdiction and legal status",
       "Generates an initial strategic report",
       "Confidential — designed for serious financial situations",
     ],
-    cta: "Start Assessment",
+    cta: "Start Scan",
     time: "Takes approximately 5 minutes",
   },
   nl: {
     eyebrow: "Kapitaalbescherming & Bijzondere Situaties",
     heading: "Kapitaalbeschermingsassessment",
-    description: "Als u een founder bent die te maken heeft met fraude, partnergeschillen, verduistering van gelden of verloren kapitaal, helpt dit assessment te bepalen of strategisch herstel of interventie mogelijk is.",
+    description:
+      "Als u een founder bent die te maken heeft met fraude, partnergeschillen, verduistering van gelden of verloren kapitaal, helpt dit assessment te bepalen of strategisch herstel of interventie mogelijk is.",
     bullets: [
       "Behandelt blootstelling, bewijs, jurisdictie en juridische status",
       "Genereert een eerste strategisch rapport",
       "Vertrouwelijk — ontworpen voor serieuze financiële situaties",
     ],
-    cta: "Start Assessment",
+    cta: "Start Scan",
     time: "Duurt ongeveer 5 minuten",
   },
 };
@@ -46,9 +48,7 @@ export function CPIntroStep({ onStart }: CPIntroStepProps) {
         <span className="block text-xs uppercase tracking-widest text-lioner-gold/70 font-semibold mb-3">
           {t.eyebrow}
         </span>
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3 font-sans">
-          {t.heading}
-        </h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3 font-sans">{t.heading}</h2>
         <p className="text-foreground/60 max-w-md mx-auto">{t.description}</p>
       </div>
 
