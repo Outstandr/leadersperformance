@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { protectionQuestions } from "@/lib/capitalProtectionQuestions";
+import { cpSections as protectionQuestions } from "@/lib/capitalProtectionQuestions";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ArrowRight, Check } from "lucide-react";
 

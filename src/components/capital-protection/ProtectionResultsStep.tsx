@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mic, Shield, AlertTriangle } from "lucide-react";
-import { ProtectionScores } from "@/lib/capitalProtectionScoring";
+import { CPResult } from "@/lib/capitalProtectionScoring";
 import { ScanUserInfo } from "@/components/founder-scan/ScanGateStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
