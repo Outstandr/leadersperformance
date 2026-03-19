@@ -16,8 +16,8 @@ function ghlHeaders() {
 }
 
 // GET /ghl-booking?date=2026-02-26 → returns free slots
-async function getFreeSlots(date: string) {
-  const calendarId = Deno.env.get('GHL_CALENDAR_ID');
+async function getFreeSlots(date: string, overrideCalendarId?: string) {
+  const calendarId = overrideCalendarId || Deno.env.get('GHL_CALENDAR_ID');
   if (!calendarId) throw new Error('GHL_CALENDAR_ID not configured');
 
   // GHL free-slots API expects epoch ms
