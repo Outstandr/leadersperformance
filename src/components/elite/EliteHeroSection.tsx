@@ -12,6 +12,7 @@ const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbpta
 export const EliteHeroSection = () => {
   const { t } = useLanguage();
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
+  const [isPressureScanOpen, setIsPressureScanOpen] = useState(false);
 
   return (
     <section id="hero" className="pt-32 pb-20 bg-white">
