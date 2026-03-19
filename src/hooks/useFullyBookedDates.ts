@@ -6,7 +6,7 @@ const TIME_SLOTS_24H = ["10:00", "11:00", "12:00", "15:00", "16:00", "17:00"];
  * Fetches availability for each weekday of the given month and returns a Set
  * of date-strings (YYYY-MM-DD) that are fully booked (all time slots taken).
  */
-export function useFullyBookedDates(visibleMonth: Date | undefined): {
+export function useFullyBookedDates(visibleMonth: Date | undefined, calendarId?: string): {
   fullyBookedDates: Set<string>;
   isLoading: boolean;
 } {
