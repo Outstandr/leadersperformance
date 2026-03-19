@@ -104,7 +104,7 @@ function DimensionBar({ label, score, color }: { label: string; score: number; c
 export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditResultsStepProps) {
   const { language } = useLanguage();
   const t = ui[language] ?? ui.en;
-  const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
+  const { openVoiceAgent } = useVoiceAgent();
   const translatedTier = tierTranslations[language]?.[scores.tier] || scores.tier;
 
   return (
