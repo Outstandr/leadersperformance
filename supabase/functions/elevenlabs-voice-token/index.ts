@@ -151,18 +151,60 @@ AI REPORT
 - Recommended Next Step: ${aiReport?.recommended_next_step ?? context.nextStep ?? 'n/a'}`;
 }
 
+function formatPressureScanSnapshot(ctx: PressureScanContext) {
+  const sections = (ctx.sections ?? [])
+    .map((s) => `- ${s.sectionLabel}: ${s.score}% (${s.color})`)
+    .join('\n');
+
+  return `LIVE FOUNDER PRESSURE SCAN SESSION
+- The visitor has just completed the Founder Pressure Scan and is looking at their report on screen.
+- This is not a discovery conversation. Continue from the assessment.
+- Open by asking whether they are happy with the results or what surprised them most.
+- Do not ask broad routing questions. The primary recommendation is a Founder Strategy Intervention Session with Lionel.
+
+VISITOR PROFILE
+- Name: ${ctx.fullName ?? 'Unknown'}
+- Company: ${ctx.company ?? 'Unknown'}
+
+SCAN RESULTS
+- Overall Pressure Score: ${ctx.overall ?? 'n/a'}%
+- Overall Color: ${ctx.overallColor ?? 'n/a'}
+- Title: ${ctx.title ?? 'n/a'}
+- Diagnosis: ${ctx.diagnosis ?? 'n/a'}
+- Recommendation: ${ctx.recommendation ?? 'n/a'}
+
+DIMENSION SCORES
+${sections || '- No dimension scores provided'}
+
+PRIMARY BOTTLENECK
+- Dimension: ${ctx.primaryBottleneck?.dimensionLabel ?? 'n/a'}
+- Impact: ${ctx.primaryBottleneck?.impact ?? 'n/a'}`;
+}
+
 function buildAgentConfig(requestData: SessionRequest) {
   const context = requestData.context;
+  const scanCtx = requestData.scanContext;
   const isCapitalProtection = requestData.mode === 'capital_protection' && context;
-  const firstName = context?.firstName?.trim().split(/\s+/)[0];
+  const isPressureScan = requestData.mode === 'pressure_scan' && scanCtx;
+  const firstName = isCapitalProtection
+    ? context?.firstName?.trim().split(/\s+/)[0]
+    : isPressureScan
+    ? scanCtx?.fullName?.trim().split(/\s+/)[0]
+    : undefined;
 
-  const prompt = isCapitalProtection
-    ? `${baseDaisySystemPrompt}\n\n${formatCapitalProtectionSnapshot(context)}`
-    : baseDaisySystemPrompt;
+  let prompt = baseDaisySystemPrompt;
+  if (isCapitalProtection) {
+    prompt = `${baseDaisySystemPrompt}\n\n${formatCapitalProtectionSnapshot(context)}`;
+  } else if (isPressureScan) {
+    prompt = `${baseDaisySystemPrompt}\n\n${formatPressureScanSnapshot(scanCtx)}`;
+  }
 
-  const firstMessage = isCapitalProtection
-    ? `Hi, this is Daisy from Leaders Performance.${firstName ? ` ${firstName},` : ''} are you happy with your results?`
-    : "Hi, this is Daisy from Leaders Performance. I'm here to help you make sense of your next move. What feels most pressing for you right now?";
+  let firstMessage: string;
+  if (isCapitalProtection || isPressureScan) {
+    firstMessage = `Hi, this is Daisy from Leaders Performance.${firstName ? ` ${firstName},` : ''} are you happy with your results?`;
+  } else {
+    firstMessage = "Hi, this is Daisy from Leaders Performance. I'm here to help you make sense of your next move. What feels most pressing for you right now?";
+  }
 
   return {
     name: 'Daisy — Founder Advisor',
