@@ -11,9 +11,9 @@ function sanitizeString(input: unknown, maxLength = 100): string {
   return input.trim().slice(0, maxLength).replace(/[\n\r]/g, " ").replace(/[<>"']/g, "").replace(/\s+/g, " ");
 }
 
-function validateBinaryAnswer(val: unknown): number {
+function validateAnswer(val: unknown): number {
   const num = Number(val);
-  if (num !== 0 && num !== 10) throw new Error("Invalid answer value");
+  if (!Number.isInteger(num) || num < 1 || num > 4) throw new Error("Invalid answer value");
   return num;
 }
 
