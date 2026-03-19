@@ -361,7 +361,7 @@ const en: Record<string, string> = {
   // Business – Services
   "business.services.eyebrow": "The Protocol",
   "business.services.heading": "We don't motivate teams.\nWe install leadership structure.",
-  "business.services.subheading": "Motivation fades.\nStructure determines behaviour.\n\nThe Business Reset Blueprint is not a workshop.\nIt is an organizational intervention.\n\nWe analyze where dependencies have arisen. Where standards have blurred. Where responsibility is unclear.\n\nThen we apply structure:\n• Clear roles\n• Clear decision rules\n• Measurable standards\n• Consequences that make sense\n\nNo extra pressure. Clear frameworks.\n\nPerformance isn't a coincidence. It becomes the result of the system.",
+  "business.services.subheading": "Motivation fades.\nStructure determines behaviour.\n\nThe Business Reset Blueprint is not a workshop.\nIt is an organizational intervention.\n\nWe analyze where dependencies have arisen. Where standards have blurred. Where responsibility is unclear.\n\nThen we apply structure:\nClear roles\nClear decision rules\nMeasurable standards\nConsequences that make sense\n\nNo extra pressure. Clear frameworks.\n\nPerformance isn't a coincidence. It becomes the result of the system.",
   "business.services.installHeading": "What We Install",
   "business.services.item1.title": "Leadership Capacity",
   "business.services.item1.desc": "Without mental and physical capacity, strategic leadership collapses.",
