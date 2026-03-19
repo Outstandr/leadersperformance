@@ -210,13 +210,14 @@ Deno.serve(async (req) => {
       // Check availability
       const url = new URL(req.url);
       const date = url.searchParams.get('date');
+      const calendarId = url.searchParams.get('calendarId') || undefined;
       if (!date) {
         return new Response(JSON.stringify({ error: 'date parameter required' }), {
           status: 400,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
       }
-      const result = await getFreeSlots(date);
+      const result = await getFreeSlots(date, calendarId);
       return new Response(JSON.stringify(result), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
