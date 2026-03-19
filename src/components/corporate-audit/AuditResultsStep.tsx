@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { AuditUserInfo, AuditInsights } from "./CorporateAuditDialog";
 import { AuditScores } from "@/lib/corporateAuditScoring";
+import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface AuditResultsStepProps {
@@ -24,23 +25,14 @@ const tierTranslations: Record<string, Record<string, string>> = {
   },
 };
 
-const tierDescTranslations: Record<string, Record<string, string>> = {
-  en: {
-    "THE NURSERY": "The CEO is a babysitter. Danger zone.",
-    "THE DRIFT": "Revenue is accidental. One crisis away from collapse.",
-    "THE VANGUARD": "Elite. Just needs optimization.",
-  },
-  nl: {
-    "THE NURSERY": "De CEO is een oppas. Gevarenzone.",
-    "THE DRIFT": "Omzet is toevallig. Één crisis verwijderd van instorten.",
-    "THE VANGUARD": "Elite. Alleen optimalisatie nodig.",
-  },
-};
-
 const ui = {
   en: {
     verdict: "The Verdict",
     hereIsScore: "here's your Team Audit Score.",
+    dimensionAnalysis: "Dimension Analysis",
+    primaryBottleneck: "Primary Bottleneck",
+    diagnosis: "Strategic Interpretation",
+    recommendation: "Recommended Next Step",
     realityCheck: "The Reality Check",
     actionPlan: "The Action Plan",
     ctaBtn: "Review This Audit With Lionel",
@@ -50,6 +42,10 @@ const ui = {
   nl: {
     verdict: "Het Resultaat",
     hereIsScore: "hier is jouw Teamaudit Score.",
+    dimensionAnalysis: "Dimensieanalyse",
+    primaryBottleneck: "Primaire Bottleneck",
+    diagnosis: "Strategische Interpretatie",
+    recommendation: "Aanbevolen Volgende Stap",
     realityCheck: "De realiteitscheck",
     actionPlan: "Het actieplan",
     ctaBtn: "Bespreek mijn resultaat met Lionel",
@@ -58,15 +54,9 @@ const ui = {
   },
 };
 
-function ScoreGauge({ score, tier, language }: { score: number; tier: string; language: string }) {
-  const getColor = () => {
-    if (score <= 50) return { stroke: "#ef4444", text: "text-red-500", bg: "bg-red-500" };
-    if (score <= 79) return { stroke: "#eab308", text: "text-yellow-500", bg: "bg-yellow-500" };
-    return { stroke: "#22c55e", text: "text-green-500", bg: "bg-green-500" };
-  };
-  const color = getColor();
+function ScoreGauge({ score, color }: { score: number; color: ColorTier }) {
+  const c = colorConfig[color];
   const dashOffset = 251.2 - (score / 100) * 251.2;
-  const translatedTier = tierTranslations[language]?.[tier] || tier;
 
   return (
     <div className="flex flex-col items-center">
@@ -74,12 +64,9 @@ function ScoreGauge({ score, tier, language }: { score: number; tier: string; la
         <svg className="w-full h-full transform -rotate-90" viewBox="0 0 96 96">
           <circle cx="48" cy="48" r="40" stroke="rgba(0,0,0,0.08)" strokeWidth="8" fill="none" />
           <circle
-            cx="48"
-            cy="48"
-            r="40"
-            stroke={color.stroke}
-            strokeWidth="8"
-            fill="none"
+            cx="48" cy="48" r="40"
+            stroke={c.stroke}
+            strokeWidth="8" fill="none"
             strokeDasharray="251.2"
             strokeDashoffset={dashOffset}
             strokeLinecap="butt"
@@ -87,12 +74,27 @@ function ScoreGauge({ score, tier, language }: { score: number; tier: string; la
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className={`text-4xl font-black ${color.text}`}>{score}</span>
+          <span className={`text-4xl font-black ${c.text}`}>{score}</span>
           <span className="text-xs text-foreground/40 uppercase">/ 100</span>
         </div>
       </div>
-      <div className={`mt-4 px-4 py-2 ${color.bg}/20 border border-current ${color.text} text-sm font-bold uppercase tracking-widest`}>
-        STATUS: {translatedTier}
+    </div>
+  );
+}
+
+function DimensionBar({ label, score, color }: { label: string; score: number; color: ColorTier }) {
+  const c = colorConfig[color];
+  return (
+    <div className="space-y-2">
+      <div className="flex justify-between items-center">
+        <span className="text-sm font-medium text-foreground/80">{label}</span>
+        <span className={`text-sm font-bold ${c.text}`}>{score}%</span>
+      </div>
+      <div className="h-2 w-full bg-foreground/10 rounded-none overflow-hidden">
+        <div
+          className="h-full transition-all duration-1000"
+          style={{ width: `${score}%`, backgroundColor: c.stroke }}
+        />
       </div>
     </div>
   );
@@ -102,6 +104,7 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
   const { language } = useLanguage();
   const t = ui[language] ?? ui.en;
   const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
+  const translatedTier = tierTranslations[language]?.[scores.tier] || scores.tier;
 
   return (
     <div className="p-6 md:p-10 space-y-8">
@@ -113,25 +116,48 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
         <p className="text-foreground/50 text-sm">{userInfo.firstName}, {t.hereIsScore}</p>
       </div>
 
-      {/* Score Gauge */}
-      <div className="flex justify-center">
-        <ScoreGauge score={scores.disciplineScore} tier={scores.tier} language={language} />
+      {/* Score Gauge — show discipline score (inverted from pressure) */}
+      <div className="flex flex-col items-center">
+        <ScoreGauge score={scores.disciplineScore} color={scores.overallColor} />
+        <div className={`mt-4 px-4 py-2 ${colorConfig[scores.overallColor].bg} border ${colorConfig[scores.overallColor].border} ${colorConfig[scores.overallColor].text} text-sm font-bold uppercase tracking-widest`}>
+          STATUS: {translatedTier}
+        </div>
       </div>
 
-      {/* Tier Description */}
-      <p className="text-center text-foreground/60 text-lg italic">
-        "{tierDescTranslations[language]?.[scores.tier] || scores.tierDescription}"
-      </p>
+      {/* Dimension Analysis */}
+      <div className="space-y-4">
+        <h3 className="text-xs uppercase tracking-widest text-lioner-gold font-semibold">{t.dimensionAnalysis}</h3>
+        {scores.dimensions.map((d) => (
+          <DimensionBar key={d.key} label={d.label[language]} score={d.score} color={d.color} />
+        ))}
+      </div>
+
+      {/* Primary Bottleneck */}
+      <div className="p-5 border border-red-500/20 bg-red-500/5 space-y-3">
+        <h4 className="text-xs uppercase tracking-widest text-red-500 font-bold">{t.primaryBottleneck}</h4>
+        <p className="text-foreground font-bold">{scores.primaryBottleneck.dimensionLabel[language]}</p>
+        <p className="text-foreground/80 leading-relaxed text-sm">{scores.primaryBottleneck.impact[language]}</p>
+      </div>
+
+      {/* Diagnosis */}
+      <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
+        <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.diagnosis}</h4>
+        <p className="text-foreground/80 leading-relaxed">{scores.diagnosticNarrative[language]}</p>
+      </div>
+
+      {/* Recommendation */}
+      <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
+        <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.recommendation}</h4>
+        <p className="text-foreground/80 leading-relaxed">{scores.recommendedNextStep[language]}</p>
+      </div>
 
       {/* AI Insights */}
       {insights && (
         <div className="space-y-6">
-          {/* Headline */}
           <h3 className="text-xl font-bold text-lioner-gold text-center uppercase">
             {insights.headline}
           </h3>
 
-          {/* Reality Check */}
           <div className="p-5 border border-foreground/10 bg-foreground/[0.03]">
             <h4 className="text-xs uppercase tracking-widest text-red-500 font-bold mb-3">
               {t.realityCheck}
@@ -139,7 +165,6 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
             <p className="text-foreground/80 leading-relaxed">{insights.realityCheck}</p>
           </div>
 
-          {/* Action Plan */}
           <div className="p-5 border border-foreground/10 bg-foreground/[0.03]">
             <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold mb-3">
               {t.actionPlan}
@@ -156,7 +181,6 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
             </ul>
           </div>
 
-          {/* Closing */}
           <p className="text-center text-foreground font-bold text-lg">
             "{insights.closing}"
           </p>
