@@ -11,8 +11,7 @@ export const EliteTransformationSection = () => {
     t("elite.transformation.before4"),
     t("elite.transformation.before5"),
     t("elite.transformation.before6"),
-    t("elite.transformation.before7"),
-  ];
+  ].filter(Boolean);
 
   const afterItems = [
     t("elite.transformation.after1"),
@@ -21,8 +20,7 @@ export const EliteTransformationSection = () => {
     t("elite.transformation.after4"),
     t("elite.transformation.after5"),
     t("elite.transformation.after6"),
-    t("elite.transformation.after7"),
-  ];
+  ].filter(Boolean);
 
   return (
     <section id="transformation" className="py-8 lg:py-12 bg-muted/30">

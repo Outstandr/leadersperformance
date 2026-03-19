@@ -31,16 +31,13 @@ export const EliteHeroSection = () => {
               </p>
               <div className="grid grid-cols-3 gap-4 py-4 w-full max-w-md">
                 <div className="text-center">
-                  <div className="text-3xl font-bold">{t("elite.hero.stat1Value")}</div>
-                  <div className="text-sm text-white/80">{t("elite.hero.stat1Label")}</div>
+                  <div className="text-sm font-semibold uppercase tracking-wider">{t("elite.hero.stat1Label")}</div>
                 </div>
                 <div className="text-center border-x border-white/20">
-                  <div className="text-3xl font-bold">{t("elite.hero.stat2Value")}</div>
-                  <div className="text-sm text-white/80">{t("elite.hero.stat2Label")}</div>
+                  <div className="text-sm font-semibold uppercase tracking-wider">{t("elite.hero.stat2Label")}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold">{t("elite.hero.stat3Value")}</div>
-                  <div className="text-sm text-white/80">{t("elite.hero.stat3Label")}</div>
+                  <div className="text-sm font-semibold uppercase tracking-wider">{t("elite.hero.stat3Label")}</div>
                 </div>
               </div>
             </div>

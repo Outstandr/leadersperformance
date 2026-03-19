@@ -9,7 +9,7 @@ import { EliteQuoteSection2 } from "@/components/elite/EliteQuoteSection2";
 import { EliteProcessSection } from "@/components/elite/EliteProcessSection";
 import { EliteBookingSection } from "@/components/elite/EliteBookingSection";
 import { HomeFooter } from "@/components/home/HomeFooter";
-import { AssessmentCTASection } from "@/components/AssessmentCTASection";
+import { ElitePressureScanCTA } from "@/components/elite/ElitePressureScanCTA";
 
 const Elite = () => {
   return (
@@ -22,7 +22,7 @@ const Elite = () => {
         <EliteProgramSection />
         <EliteTransformationSection />
         <EliteResultsSection />
-        <AssessmentCTASection source="elite" />
+        <ElitePressureScanCTA />
         <EliteQuoteSection2 />
         <EliteProcessSection />
         <EliteBookingSection />

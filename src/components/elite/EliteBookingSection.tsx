@@ -15,7 +15,7 @@ export const EliteBookingSection = () => {
     t("elite.booking.include4"),
     t("elite.booking.include5"),
     t("elite.booking.include6"),
-  ];
+  ].filter(Boolean);
 
   return (
     <section id="apply" className="py-8 lg:py-12 bg-white">
