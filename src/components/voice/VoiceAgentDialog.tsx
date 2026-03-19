@@ -16,6 +16,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
   const [status, setStatus] = useState<ConversationStatus>("idle");
   const [isMuted, setIsMuted] = useState(false);
   const { setIsSpeaking } = useVoiceAgent();
+  const { language } = useLanguage();
   const autoConnectTriggered = useRef(false);
   const [error, setError] = useState<string | null>(null);
   const [transcript, setTranscript] = useState<{ role: "user" | "agent"; text: string }[]>([]);
