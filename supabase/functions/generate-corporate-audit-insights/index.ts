@@ -54,8 +54,9 @@ serve(async (req) => {
       q7: "The Mirror (would re-hire team)",
     };
 
+    const strengthLabels = ["WEAK", "INCONSISTENT", "FUNCTIONAL", "HIGH"];
     const answerSummary = Object.entries(validatedAnswers)
-      .map(([key, val]) => `${questionLabels[key] || key}: ${val === 10 ? "STRONG" : "WEAK"}`)
+      .map(([key, val]) => `${questionLabels[key] || key}: ${strengthLabels[val - 1]}`)
       .join("\n");
 
     const languageInstruction = isNL
