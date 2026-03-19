@@ -41,12 +41,10 @@ export function CPVoiceWidget({ userInfo, result, aiReport }: CPVoiceWidgetProps
     onConnect: () => {
       console.log("Daisy connected");
       setIsConnecting(false);
-      // Send contextual update with assessment data
+      // Send contextual update with assessment data immediately after connect
       const contextMsg = buildContextMessage();
       if (contextMsg) {
-        setTimeout(() => {
-          conversation.sendContextualUpdate(contextMsg);
-        }, 500);
+        conversation.sendContextualUpdate(contextMsg);
       }
     },
     onDisconnect: () => {
