@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2 } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import videoThumbnail from "@/assets/lioneltwo.png";
-import { BusinessConsultationDialog } from "@/components/home/BusinessConsultationDialog";
 import { CorporateAuditDialog } from "@/components/corporate-audit/CorporateAuditDialog";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
