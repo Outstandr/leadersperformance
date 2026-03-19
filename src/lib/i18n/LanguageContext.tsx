@@ -361,7 +361,7 @@ const en: Record<string, string> = {
   // Business – Services
   "business.services.eyebrow": "The Protocol",
   "business.services.heading": "We don't motivate teams.\nWe install leadership structure.",
-  "business.services.subheading": "Motivation fades.\nStructure determines behaviour.\n\nThe Business Reset Blueprint is not a workshop.\nIt is an organizational intervention.\n\nWe analyze where dependencies have arisen. Where standards have blurred. Where responsibility is unclear.\n\nThen we apply structure:\n• Clear roles\n• Clear decision rules\n• Measurable standards\n• Consequences that make sense\n\nNo extra pressure. Clear frameworks.\n\nPerformance isn't a coincidence. It becomes the result of the system.",
+  "business.services.subheading": "Motivation fades.\nStructure determines behaviour.\n\nThe Business Reset Blueprint is not a workshop.\nIt is an organizational intervention.\n\nWe analyze where dependencies have arisen. Where standards have blurred. Where responsibility is unclear.\n\nThen we apply structure:\nClear roles\nClear decision rules\nMeasurable standards\nConsequences that make sense\n\nNo extra pressure. Clear frameworks.\n\nPerformance isn't a coincidence. It becomes the result of the system.",
   "business.services.installHeading": "What We Install",
   "business.services.item1.title": "Leadership Capacity",
   "business.services.item1.desc": "Without mental and physical capacity, strategic leadership collapses.",
@@ -796,7 +796,7 @@ const nl: Record<string, string> = {
   // Business – Services (NL)
   "business.services.eyebrow": "Het protocol",
   "business.services.heading": "Wij motiveren geen teams.\nWij installeren leiderschapsstructuur.",
-  "business.services.subheading": "Motivatie vervaagt.\nStructuur bepaalt gedrag.\n\nDe Business Reset Blueprint is geen workshop.\nHet is een organisatorische interventie.\n\nWe analyseren waar afhankelijkheid is ontstaan. Waar normen vervaagd zijn. Waar verantwoordelijkheid niet helder is.\n\nVervolgens brengen we structuur aan:\n• Heldere rollen\n• Duidelijke beslisregels\n• Meetbare standaarden\n• Consequenties die kloppen\n\nGeen extra druk. Wel duidelijke kaders.\n\nPrestaties worden geen toeval. Ze worden het resultaat van het systeem.",
+  "business.services.subheading": "Motivatie vervaagt.\nStructuur bepaalt gedrag.\n\nDe Business Reset Blueprint is geen workshop.\nHet is een organisatorische interventie.\n\nWe analyseren waar afhankelijkheid is ontstaan. Waar normen vervaagd zijn. Waar verantwoordelijkheid niet helder is.\n\nVervolgens brengen we structuur aan:\nHeldere rollen\nDuidelijke beslisregels\nMeetbare standaarden\nConsequenties die kloppen\n\nGeen extra druk. Wel duidelijke kaders.\n\nPrestaties worden geen toeval. Ze worden het resultaat van het systeem.",
   "business.services.installHeading": "Wat wij installeren",
   "business.services.item1.title": "Leiderschapscapaciteit",
   "business.services.item1.desc": "Zonder mentale en fysieke capaciteit stort strategisch leiderschap in.",
