@@ -250,9 +250,12 @@ const en: Record<string, string> = {
   "elite.hero.stat2Label": "Strategic Clarity",
   "elite.hero.stat3Value": "",
   "elite.hero.stat3Label": "Disciplined Execution",
-  "elite.hero.ctaPrimary": "Apply for Founder Advisory",
-  "elite.hero.ctaSecondary": "Take Discipline Assessment",
-  "elite.hero.disclaimer": "Limited spots available • Application required",
+   "elite.hero.ctaPrimary": "Apply for Founder Advisory",
+   "elite.hero.ctaSecondary": "Take Discipline Assessment",
+   "elite.hero.disclaimer": "Limited spots available • Application required",
+   "elite.hero.pressureHeadline": "Founder Pressure builds long before it becomes visible.",
+   "elite.hero.pressureCTA": "Take the Founder Pressure Scan",
+   "elite.hero.pressureDuration": "Duration: 3 minutes",
 
   // Elite – Quote
   "elite.quote1": "Most founders are not lacking ambition.\nThey are lacking a structure that challenges their thinking.",
