@@ -156,27 +156,13 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
         <p className="text-foreground/80 leading-relaxed">{scores.recommendation}</p>
       </div>
 
-      {/* CTA */}
-      <div className="text-center space-y-3 pt-4">
-        <Button
-          onClick={() => {
-            onClose();
-            setTimeout(() => {
-              openVoiceAgent({
-                mode: "pressure_scan",
-                scanScores: scores,
-                scanUserInfo: userInfo,
-              });
-            }, 300);
-          }}
-          className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
-        >
-          <Mic className="w-5 h-5 mr-3" />
-          {language === "nl" ? "Bespreek uw rapport" : "Discuss your report"}
-        </Button>
-
-        <p className="text-xs text-foreground/40 italic">{t.disclaimer}</p>
-      </div>
+      {/* Embedded Daisy Voice Widget */}
+      <ScanVoiceWidget
+        mode="pressure_scan"
+        userInfo={{ fullName: userInfo.fullName, email: userInfo.email, phone: userInfo.phone }}
+        contextPayload={voiceContext}
+        bookingType="Founder Strategy Intervention"
+      />
 
       {/* Close */}
       <div className="text-center">

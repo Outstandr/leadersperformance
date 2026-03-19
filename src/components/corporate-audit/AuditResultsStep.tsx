@@ -208,28 +208,13 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
         </div>
       )}
 
-      {/* CTA */}
-      <div className="text-center space-y-3 pt-4">
-        <Button
-          onClick={() => {
-            onClose();
-            setTimeout(() => {
-              openVoiceAgent({
-                mode: "corporate_audit",
-                auditScores: scores,
-                auditUserInfo: userInfo,
-              });
-            }, 300);
-          }}
-          className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
-        >
-          <Mic className="w-5 h-5 mr-3" />
-          {t.ctaBtn}
-        </Button>
-        <p className="text-xs text-foreground/40 italic">
-          {t.warning}
-        </p>
-      </div>
+      {/* Embedded Daisy Voice Widget */}
+      <ScanVoiceWidget
+        mode="corporate_audit"
+        userInfo={{ fullName: `${userInfo.firstName} ${userInfo.lastName}`, email: userInfo.email, phone: userInfo.phone }}
+        contextPayload={voiceContext}
+        bookingType="Business Reset Intervention"
+      />
 
       {/* Close */}
       <div className="text-center">
