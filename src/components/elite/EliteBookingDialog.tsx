@@ -168,7 +168,7 @@ export function EliteBookingDialog({ open, onOpenChange }: EliteBookingDialogPro
         {/* Header */}
         <div className="bg-foreground text-background px-8 py-7">
           <div className="text-xs uppercase tracking-[0.2em] text-lioner-gold font-semibold mb-2">
-            ELITE · High Performance Mentorship
+            {t.badge}
           </div>
           <h2 className="text-2xl font-bold leading-tight">{t.title}</h2>
           <p className="mt-1 text-background/60 text-sm">{t.subtitle}</p>
