@@ -75,7 +75,7 @@ export function useBookedSlots(date: Date | null | undefined, calendarId?: strin
       clearTimeout(timer);
       controller.abort();
     };
-  }, [date?.getFullYear(), date?.getMonth(), date?.getDate()]);
+  }, [date?.getFullYear(), date?.getMonth(), date?.getDate(), calendarId]);
 
   return { bookedSlots12h, bookedSlots24h, isLoading };
 }

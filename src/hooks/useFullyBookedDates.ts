@@ -91,7 +91,7 @@ export function useFullyBookedDates(visibleMonth: Date | undefined, calendarId?:
     return () => {
       controller.abort();
     };
-  }, [year, month]);
+  }, [year, month, calendarId]);
 
   return { fullyBookedDates, isLoading };
 }
