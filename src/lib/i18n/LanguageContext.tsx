@@ -687,9 +687,12 @@ const nl: Record<string, string> = {
   "elite.hero.stat2Label": "Strategische Helderheid",
   "elite.hero.stat3Value": "",
   "elite.hero.stat3Label": "Gedisciplineerde Uitvoering",
-  "elite.hero.ctaPrimary": "Aanmelden voor Founder Advies",
-  "elite.hero.ctaSecondary": "Start de disciplinetest",
-  "elite.hero.disclaimer": "Beperkt aantal plaatsen • Aanmelding vereist",
+   "elite.hero.ctaPrimary": "Aanmelden voor Founder Advies",
+   "elite.hero.ctaSecondary": "Start de disciplinetest",
+   "elite.hero.disclaimer": "Beperkt aantal plaatsen • Aanmelding vereist",
+   "elite.hero.pressureHeadline": "Druk op de founder bouwt zich op lang voordat het zichtbaar wordt.",
+   "elite.hero.pressureCTA": "Start de Founder Pressure Scan",
+   "elite.hero.pressureDuration": "Duur: 3 minuten",
 
   // Elite – Quote (NL)
   "elite.quote1": "De meeste founders missen geen ambitie.\nZe missen een structuur die hun denken uitdaagt.",
