@@ -49,7 +49,7 @@ const ui = {
     recommendation: "Aanbevolen Volgende Stap",
     realityCheck: "De realiteitscheck",
     actionPlan: "Het actieplan",
-    ctaBtn: "Bespreek mijn resultaat met Lionel",
+    ctaBtn: "Bespreek uw rapport",
     warning: "Waarschuwing: boek alleen als je klaar bent om de score te veranderen.",
     close: "Sluiten",
   },
