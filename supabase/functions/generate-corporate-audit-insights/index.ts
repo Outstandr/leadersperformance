@@ -29,7 +29,7 @@ serve(async (req) => {
     const safeName = sanitizeString(firstName, 50);
     const isNL = language === "nl";
     const safeScore = Math.max(0, Math.min(100, Math.round(Number(score) || 0)));
-    const validTiers = ["Nursery", "Drift", "Vanguard"];
+    const validTiers = ["THE NURSERY", "THE DRIFT", "THE VANGUARD", "Nursery", "Drift", "Vanguard"];
     const safeTier = validTiers.includes(tier) ? tier : "unknown";
     
     // Validate answers
