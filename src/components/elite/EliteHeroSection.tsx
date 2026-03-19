@@ -82,6 +82,7 @@ export const EliteHeroSection = () => {
       </div>
 
       <AssessmentDialog open={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} source="elite" />
+      <FounderPressureScanDialog open={isPressureScanOpen} onOpenChange={setIsPressureScanOpen} />
     </section>
   );
 };
