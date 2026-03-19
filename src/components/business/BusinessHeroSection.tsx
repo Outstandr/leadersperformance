@@ -66,7 +66,6 @@ export const BusinessHeroSection = () => {
         </div>
       </div>
 
-      <BusinessConsultationDialog open={isConsultationOpen} onOpenChange={setIsConsultationOpen} />
       <CorporateAuditDialog open={isAuditOpen} onOpenChange={setIsAuditOpen} />
     </section>
   );
