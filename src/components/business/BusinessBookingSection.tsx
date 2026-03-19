@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { BusinessConsultationDialog } from "@/components/home/BusinessConsultationDialog";
 import { CorporateAuditDialog } from "@/components/corporate-audit/CorporateAuditDialog";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
