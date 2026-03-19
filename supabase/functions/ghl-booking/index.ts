@@ -116,7 +116,8 @@ async function bookAppointment(body: {
   dateTime: string;
   timeSlot: string;
 }) {
-  const calendarId = Deno.env.get('GHL_CALENDAR_ID');
+  const calOverride = body.calendarId;
+  const calendarId = calOverride || Deno.env.get('GHL_CALENDAR_ID');
   const locationId = Deno.env.get('GHL_LOCATION_ID');
   if (!calendarId || !locationId) throw new Error('GHL_CALENDAR_ID or GHL_LOCATION_ID not configured');
 
