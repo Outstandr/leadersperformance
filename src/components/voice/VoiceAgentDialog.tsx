@@ -161,15 +161,65 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true });
 
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/elevenlabs-voice-token`,
-        {
-          method: "GET",
+      // Build request body with context for the edge function
+      let fetchOptions: RequestInit = {
+        method: "GET",
+        headers: {
+          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+      };
+
+      if (isPressureScan && contextData.scanScores && contextData.scanUserInfo) {
+        const scores = contextData.scanScores;
+        const user = contextData.scanUserInfo;
+        fetchOptions = {
+          method: "POST",
           headers: {
+            "Content-Type": "application/json",
             apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
             Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
           },
-        }
+          body: JSON.stringify({
+            mode: "pressure_scan",
+            scanContext: {
+              firstName: user.fullName?.split(" ")[0],
+              fullName: user.fullName,
+              company: user.company,
+              phone: user.phone,
+              email: user.email,
+              overall: scores.overall,
+              overallColor: scores.overallColor,
+              title: scores.title,
+              diagnosis: scores.diagnosis,
+              recommendation: scores.recommendation,
+              sections: scores.sections,
+              primaryBottleneck: {
+                dimensionLabel: scores.primaryBottleneck?.dimensionLabel?.en ?? "",
+                impact: scores.primaryBottleneck?.impact?.en ?? "",
+              },
+            },
+          }),
+        };
+      } else if (isCapitalProtection && contextData.cpUserInfo) {
+        // Already handled via POST for capital protection
+        fetchOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify({
+            mode: "capital_protection",
+            context: contextData.cpUserInfo,
+          }),
+        };
+      }
+
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/elevenlabs-voice-token`,
+        fetchOptions
       );
 
       if (!response.ok) {
@@ -203,7 +253,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       }
       setStatus("idle");
     }
-  }, [conversation]);
+  }, [conversation, isPressureScan, isCapitalProtection, contextData]);
 
   const endConversation = useCallback(async () => {
     try {
