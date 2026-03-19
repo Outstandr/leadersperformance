@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mic } from "lucide-react";
 import { PressureScores } from "@/lib/founderPressureScoring";
+import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
 import { ScanUserInfo } from "./ScanGateStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
@@ -11,14 +12,8 @@ interface ScanResultsStepProps {
   onClose: () => void;
 }
 
-const colorMap = {
-  green: { stroke: "#22c55e", text: "text-green-500", bg: "bg-green-500/20", border: "border-green-500", label: { en: "Stable", nl: "Stabiel" } },
-  orange: { stroke: "#f59e0b", text: "text-amber-500", bg: "bg-amber-500/20", border: "border-amber-500", label: { en: "Pressure Zone", nl: "Drukzone" } },
-  red: { stroke: "#ef4444", text: "text-red-500", bg: "bg-red-500/20", border: "border-red-500", label: { en: "Bottleneck Risk", nl: "Bottleneck Risico" } },
-};
-
-function OverallGauge({ score, color }: { score: number; color: "green" | "orange" | "red" }) {
-  const c = colorMap[color];
+function OverallGauge({ score, color }: { score: number; color: ColorTier }) {
+  const c = colorConfig[color];
   const dashOffset = 251.2 - (score / 100) * 251.2;
 
   return (
@@ -44,8 +39,8 @@ function OverallGauge({ score, color }: { score: number; color: "green" | "orang
   );
 }
 
-function SectionBar({ label, score, color }: { label: string; score: number; color: "green" | "orange" | "red" }) {
-  const c = colorMap[color];
+function SectionBar({ label, score, color }: { label: string; score: number; color: ColorTier }) {
+  const c = colorConfig[color];
   return (
     <div className="space-y-2">
       <div className="flex justify-between items-center">
@@ -54,8 +49,8 @@ function SectionBar({ label, score, color }: { label: string; score: number; col
       </div>
       <div className="h-2 w-full bg-foreground/10 rounded-none overflow-hidden">
         <div
-          className={`h-full transition-all duration-1000 ${color === "green" ? "bg-green-500" : color === "orange" ? "bg-amber-500" : "bg-red-500"}`}
-          style={{ width: `${score}%` }}
+          className="h-full transition-all duration-1000"
+          style={{ width: `${score}%`, backgroundColor: c.stroke }}
         />
       </div>
     </div>
@@ -66,9 +61,10 @@ const ui = {
   en: {
     resultsTitle: "Founder Pressure Report",
     overallPressure: "Overall Founder Pressure",
-    sectionBreakdown: "Section Breakdown",
-    diagnosis: "Diagnosis",
-    recommendation: "Recommendation",
+    sectionBreakdown: "Dimension Analysis",
+    primaryBottleneck: "Primary Bottleneck",
+    diagnosis: "Strategic Interpretation",
+    recommendation: "Recommended Next Step",
     ctaBtn: "Discuss This With Lionel",
     disclaimer: "Book a strategic session to address these findings.",
     close: "Close",
@@ -76,9 +72,10 @@ const ui = {
   nl: {
     resultsTitle: "Founder Drukrapport",
     overallPressure: "Totale Founderdruk",
-    sectionBreakdown: "Sectie Overzicht",
-    diagnosis: "Diagnose",
-    recommendation: "Aanbeveling",
+    sectionBreakdown: "Dimensieanalyse",
+    primaryBottleneck: "Primaire Bottleneck",
+    diagnosis: "Strategische Interpretatie",
+    recommendation: "Aanbevolen Volgende Stap",
     ctaBtn: "Bespreek dit met Lionel",
     disclaimer: "Plan een strategische sessie om deze bevindingen te bespreken.",
     close: "Sluiten",
@@ -89,7 +86,7 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
   const { language } = useLanguage();
   const { openVoiceAgent } = useVoiceAgent();
   const t = ui[language] ?? ui.en;
-  const c = colorMap[scores.overallColor];
+  const c = colorConfig[scores.overallColor];
   const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j";
 
   const firstName = userInfo.fullName.split(" ")[0];
@@ -109,7 +106,7 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
         <h3 className="text-xs uppercase tracking-widest text-foreground/50 font-semibold">{t.overallPressure}</h3>
         <OverallGauge score={scores.overall} color={scores.overallColor} />
         <div className={`inline-block px-4 py-2 ${c.bg} border ${c.border} ${c.text} text-sm font-bold uppercase tracking-widest`}>
-          {scores.title}
+          {c.label[language]}
         </div>
       </div>
 
@@ -119,6 +116,13 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
         {scores.sections.map((s) => (
           <SectionBar key={s.section} label={s.sectionLabel} score={s.score} color={s.color} />
         ))}
+      </div>
+
+      {/* Primary Bottleneck */}
+      <div className="p-5 border border-red-500/20 bg-red-500/5 space-y-3">
+        <h4 className="text-xs uppercase tracking-widest text-red-500 font-bold">{t.primaryBottleneck}</h4>
+        <p className="text-foreground font-bold">{scores.primaryBottleneck.dimensionLabel[language]}</p>
+        <p className="text-foreground/80 leading-relaxed text-sm">{scores.primaryBottleneck.impact[language]}</p>
       </div>
 
       {/* Diagnosis */}
@@ -135,7 +139,6 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
 
       {/* CTA */}
       <div className="text-center space-y-3 pt-4">
-        {/* Speak with Daisy */}
         <Button
           onClick={() => {
             onClose();
@@ -153,7 +156,6 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
           {language === "nl" ? "Bespreek met Daisy" : "Discuss with Daisy"}
         </Button>
 
-        {/* Book directly */}
         <Button
           asChild
           variant="outline"

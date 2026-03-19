@@ -172,8 +172,10 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
               ...auditQuestions[currentQuestionIndex],
               title: t(`audit.q${currentQuestionIndex + 1}.title`),
               question: t(`audit.q${currentQuestionIndex + 1}.question`),
-              optionA: { ...auditQuestions[currentQuestionIndex].optionA, label: t(`audit.q${currentQuestionIndex + 1}.optionA`) },
-              optionB: { ...auditQuestions[currentQuestionIndex].optionB, label: t(`audit.q${currentQuestionIndex + 1}.optionB`) },
+              options: auditQuestions[currentQuestionIndex].options.map((opt, idx) => ({
+                ...opt,
+                label: t(`audit.q${currentQuestionIndex + 1}.option${idx + 1}`) || opt.label,
+              })),
             }}
             currentIndex={currentQuestionIndex}
             totalQuestions={auditQuestions.length}

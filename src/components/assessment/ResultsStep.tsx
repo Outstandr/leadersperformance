@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { UserInfo, AssessmentInsights } from "./AssessmentDialog";
 import { DisciplineResult } from "@/lib/assessmentScoring";
+import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
 import { 
   Trophy, 
   Target, 
@@ -27,10 +28,13 @@ const translations = {
     greeting: "Here's your Discipline Blueprint",
     overallScore: "Overall Score",
     disciplineType: "Your Discipline Type",
-    domainScores: "Domain Breakdown",
+    domainScores: "Dimension Analysis",
     selfDiscipline: "Self-Discipline",
     impulseControl: "Impulse Control",
     consistency: "Consistency",
+    primaryBottleneck: "Primary Development Area",
+    diagnosis: "Strategic Interpretation",
+    recommendation: "Recommended Next Step",
     strengths: "Your Strengths",
     improvements: "Areas for Growth",
     recommendations: "Action Steps",
@@ -43,10 +47,13 @@ const translations = {
     greeting: "Hier is jouw Discipline Blauwdruk",
     overallScore: "Totaalscore",
     disciplineType: "Jouw Discipline Type",
-    domainScores: "Domein Overzicht",
+    domainScores: "Dimensieanalyse",
     selfDiscipline: "Zelfdiscipline",
     impulseControl: "Impulsbeheersing",
     consistency: "Consistentie",
+    primaryBottleneck: "Primair Ontwikkelgebied",
+    diagnosis: "Strategische Interpretatie",
+    recommendation: "Aanbevolen Volgende Stap",
     strengths: "Jouw Sterke Punten",
     improvements: "Groeimogelijkheden",
     recommendations: "Actiestappen",
@@ -58,9 +65,10 @@ const translations = {
 };
 
 function ScoreCircle({ score, label }: { score: number; label: string }) {
-  const getScoreColor = (score: number) => {
-    if (score >= 80) return "text-green-600";
-    if (score >= 60) return "text-lioner-gold";
+  const inverted = 100 - score; // Convert risk score back to discipline score for display
+  const getScoreColor = (s: number) => {
+    if (s >= 80) return "text-green-600";
+    if (s >= 60) return "text-lioner-gold";
     return "text-orange-500";
   };
 
@@ -68,30 +76,16 @@ function ScoreCircle({ score, label }: { score: number; label: string }) {
     <div className="flex flex-col items-center">
       <div className="relative w-24 h-24">
         <svg className="w-full h-full transform -rotate-90">
+          <circle cx="48" cy="48" r="40" stroke="currentColor" strokeWidth="8" fill="none" className="text-muted" />
           <circle
-            cx="48"
-            cy="48"
-            r="40"
-            stroke="currentColor"
-            strokeWidth="8"
-            fill="none"
-            className="text-muted"
-          />
-          <circle
-            cx="48"
-            cy="48"
-            r="40"
-            stroke="currentColor"
-            strokeWidth="8"
-            fill="none"
-            strokeDasharray={`${(score / 100) * 251.2} 251.2`}
-            className={getScoreColor(score)}
+            cx="48" cy="48" r="40"
+            stroke="currentColor" strokeWidth="8" fill="none"
+            strokeDasharray={`${(inverted / 100) * 251.2} 251.2`}
+            className={getScoreColor(inverted)}
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className={`text-2xl font-bold ${getScoreColor(score)}`}>
-            {Math.round(score)}
-          </span>
+          <span className={`text-2xl font-bold ${getScoreColor(inverted)}`}>{Math.round(inverted)}</span>
         </div>
       </div>
       <span className="mt-2 text-sm text-muted-foreground text-center">{label}</span>
@@ -114,9 +108,7 @@ export function ResultsStep({ userInfo, results, insights, onClose, language }: 
           {t.greeting}, {userInfo.firstName}!
         </h2>
         {insights?.personalizedMessage && (
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            {insights.personalizedMessage}
-          </p>
+          <p className="text-muted-foreground max-w-lg mx-auto">{insights.personalizedMessage}</p>
         )}
       </div>
 
@@ -124,20 +116,13 @@ export function ResultsStep({ userInfo, results, insights, onClose, language }: 
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-gradient-to-br from-lioner-gold/10 to-lioner-gold/5 rounded-lg p-6 text-center">
           <h3 className="text-sm font-medium text-muted-foreground mb-4">{t.overallScore}</h3>
-          <div className="text-5xl font-bold text-lioner-gold mb-2">
-            {Math.round(results.scores.overall)}
-          </div>
+          <div className="text-5xl font-bold text-lioner-gold mb-2">{Math.round(results.scores.overall)}</div>
           <div className="text-sm text-muted-foreground">{language === 'nl' ? 'van de 100' : 'out of 100'}</div>
         </div>
-        
         <div className="bg-muted/50 rounded-lg p-6 text-center">
           <h3 className="text-sm font-medium text-muted-foreground mb-4">{t.disciplineType}</h3>
-          <div className="text-2xl font-bold text-foreground mb-2">
-            {results.disciplineType}
-          </div>
-          <p className="text-sm text-muted-foreground">
-            {results.disciplineTypeDescription}
-          </p>
+          <div className="text-2xl font-bold text-foreground mb-2">{results.disciplineType}</div>
+          <p className="text-sm text-muted-foreground">{results.disciplineTypeDescription}</p>
         </div>
       </div>
 
@@ -148,16 +133,34 @@ export function ResultsStep({ userInfo, results, insights, onClose, language }: 
           {t.domainScores}
         </h3>
         <div className="grid grid-cols-3 gap-4">
-          <ScoreCircle score={results.scores.selfDiscipline} label={t.selfDiscipline} />
-          <ScoreCircle score={results.scores.impulseControl} label={t.impulseControl} />
-          <ScoreCircle score={results.scores.consistency} label={t.consistency} />
+          {results.dimensions.map((d) => (
+            <ScoreCircle key={d.key} score={d.score} label={d.label[language]} />
+          ))}
         </div>
+      </div>
+
+      {/* Primary Development Area */}
+      <div className="p-5 border border-amber-500/20 bg-amber-500/5 space-y-3">
+        <h4 className="text-xs uppercase tracking-widest text-amber-600 font-bold">{t.primaryBottleneck}</h4>
+        <p className="text-foreground font-bold">{results.primaryBottleneck.dimensionLabel[language]}</p>
+        <p className="text-foreground/80 leading-relaxed text-sm">{results.primaryBottleneck.impact[language]}</p>
+      </div>
+
+      {/* Diagnosis */}
+      <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
+        <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.diagnosis}</h4>
+        <p className="text-foreground/80 leading-relaxed">{results.diagnosticNarrative[language]}</p>
+      </div>
+
+      {/* Recommendation */}
+      <div className="p-5 border border-foreground/10 bg-foreground/[0.03] space-y-3">
+        <h4 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.recommendation}</h4>
+        <p className="text-foreground/80 leading-relaxed">{results.recommendedNextStep[language]}</p>
       </div>
 
       {/* AI Insights */}
       {insights && (
         <>
-          {/* Strengths */}
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-green-600" />
@@ -173,7 +176,6 @@ export function ResultsStep({ userInfo, results, insights, onClose, language }: 
             </ul>
           </div>
 
-          {/* Areas for Improvement */}
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
               <AlertCircle className="w-5 h-5 text-orange-500" />
@@ -189,7 +191,6 @@ export function ResultsStep({ userInfo, results, insights, onClose, language }: 
             </ul>
           </div>
 
-          {/* Recommendations */}
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
               <Zap className="w-5 h-5 text-lioner-gold" />
@@ -207,7 +208,6 @@ export function ResultsStep({ userInfo, results, insights, onClose, language }: 
             </ul>
           </div>
 
-          {/* Key Insights */}
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
               <Lightbulb className="w-5 h-5 text-lioner-gold" />
@@ -229,10 +229,7 @@ export function ResultsStep({ userInfo, results, insights, onClose, language }: 
       <div className="bg-gradient-to-br from-lioner-navy to-lioner-navy/90 rounded-lg p-6 text-center text-white">
         <h3 className="text-xl font-semibold mb-2">{t.bookCall}</h3>
         <p className="text-white/80 mb-4">{t.bookCallDesc}</p>
-        <Button
-          asChild
-          className="bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none px-8 py-6"
-        >
+        <Button asChild className="bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none px-8 py-6">
           <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
             {t.bookCall}
             <ArrowRight className="w-4 h-4 ml-2" />
@@ -240,11 +237,9 @@ export function ResultsStep({ userInfo, results, insights, onClose, language }: 
         </Button>
       </div>
 
-      {/* Close Button */}
+      {/* Close */}
       <div className="text-center">
-        <Button variant="ghost" onClick={onClose} className="text-muted-foreground">
-          {t.close}
-        </Button>
+        <Button variant="ghost" onClick={onClose} className="text-muted-foreground">{t.close}</Button>
       </div>
     </div>
   );

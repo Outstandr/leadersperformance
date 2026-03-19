@@ -3,6 +3,7 @@ import { Shield, Loader2, AlertTriangle, FileText, Lock } from "lucide-react";
 import { CPResult, CPSectionScore } from "@/lib/capitalProtectionScoring";
 import { CPUserInfo } from "./CPUserInfoStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
 
 interface AIReport {
   situation_summary: string;
@@ -21,22 +22,26 @@ interface CPResultsStepProps {
   onClose: () => void;
 }
 
-const tierColorClasses = {
+const gaugeColors: Record<ColorTier, string> = {
+  green: "#22c55e",
+  yellow: "#eab308",
+  orange: "#f59e0b",
+  red: "#ef4444",
+  darkred: "#991b1b",
+};
+
+const barColorConfig: Record<ColorTier, { bar: string; text: string }> = {
+  green: { bar: "bg-green-500", text: "text-green-600" },
+  yellow: { bar: "bg-yellow-500", text: "text-yellow-500" },
+  orange: { bar: "bg-amber-500", text: "text-amber-500" },
+  red: { bar: "bg-red-500", text: "text-red-500" },
+  darkred: { bar: "bg-red-800", text: "text-red-800" },
+};
+
+const tierColorClasses: Record<string, { text: string; bg: string; border: string }> = {
   high: { text: "text-green-600", bg: "bg-green-500/10", border: "border-green-500/30" },
   moderate: { text: "text-amber-500", bg: "bg-amber-500/10", border: "border-amber-500/30" },
   limited: { text: "text-red-500", bg: "bg-red-500/10", border: "border-red-500/30" },
-};
-
-const barColors = {
-  green: { bar: "bg-green-500", text: "text-green-600" },
-  orange: { bar: "bg-amber-500", text: "text-amber-500" },
-  red: { bar: "bg-red-500", text: "text-red-500" },
-};
-
-const gaugeColors = {
-  green: "#22c55e",
-  orange: "#f59e0b",
-  red: "#ef4444",
 };
 
 const ui = {
@@ -45,6 +50,7 @@ const ui = {
     generating: "Generating your strategic report...",
     generatingSubtitle: "Our AI is analyzing your situation across multiple dimensions...",
     recoveryPotential: "Recovery Potential",
+    primaryRisk: "Primary Risk Area",
     summary: "Situation Summary",
     indicators: "Key Risk Indicators",
     paths: "Possible Strategic Paths",
@@ -58,6 +64,7 @@ const ui = {
     generating: "Uw strategisch rapport wordt gegenereerd...",
     generatingSubtitle: "Onze AI analyseert uw situatie over meerdere dimensies...",
     recoveryPotential: "Herstelpotentieel",
+    primaryRisk: "Primair Risicogebied",
     summary: "Situatieoverzicht",
     indicators: "Belangrijkste Risico-indicatoren",
     paths: "Mogelijke Strategische Paden",
@@ -68,7 +75,7 @@ const ui = {
   },
 };
 
-function OverallGauge({ score, color }: { score: number; color: "green" | "orange" | "red" }) {
+function OverallGauge({ score, color }: { score: number; color: ColorTier }) {
   const radius = 54;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
@@ -94,7 +101,7 @@ function OverallGauge({ score, color }: { score: number; color: "green" | "orang
 }
 
 function SectionBar({ section, language }: { section: CPSectionScore; language: "en" | "nl" }) {
-  const colors = barColors[section.color];
+  const colors = barColorConfig[section.color];
   return (
     <div className="space-y-1.5">
       <div className="flex justify-between items-center">
@@ -151,6 +158,13 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
         <div className={`inline-block px-3 sm:px-5 py-1.5 sm:py-2 ${c.bg} border ${c.border} ${c.text} text-xs sm:text-sm font-bold uppercase tracking-widest`}>
           {result.headline[language]}
         </div>
+      </div>
+
+      {/* Primary Risk Area */}
+      <div className="p-3 sm:p-5 border border-red-500/20 bg-red-500/5 space-y-2">
+        <h4 className="text-xs uppercase tracking-widest text-red-500 font-bold">{t.primaryRisk}</h4>
+        <p className="text-foreground font-bold text-sm sm:text-base">{result.primaryBottleneck.dimensionLabel[language]}</p>
+        <p className="text-foreground/80 leading-relaxed text-xs sm:text-sm">{result.primaryBottleneck.impact[language]}</p>
       </div>
 
       {/* Section Scores */}

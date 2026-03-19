@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mic, Shield, AlertTriangle } from "lucide-react";
 import { CPResult } from "@/lib/capitalProtectionScoring";
+import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
 import { ScanUserInfo } from "@/components/founder-scan/ScanGateStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
@@ -20,15 +21,8 @@ export interface ProtectionAIInsights {
   closing: string;
 }
 
-const colorMap = {
-  green: { stroke: "#22c55e", text: "text-green-500", bg: "bg-green-500/20", border: "border-green-500" },
-  orange: { stroke: "#f59e0b", text: "text-amber-500", bg: "bg-amber-500/20", border: "border-amber-500" },
-  red: { stroke: "#ef4444", text: "text-red-500", bg: "bg-red-500/20", border: "border-red-500" },
-  darkred: { stroke: "#991b1b", text: "text-red-800", bg: "bg-red-800/20", border: "border-red-800" },
-};
-
-function RiskGauge({ score, color }: { score: number; color: keyof typeof colorMap }) {
-  const c = colorMap[color];
+function RiskGauge({ score, color }: { score: number; color: ColorTier }) {
+  const c = colorConfig[color];
   const dashOffset = 251.2 - (score / 100) * 251.2;
 
   return (
@@ -54,9 +48,8 @@ function RiskGauge({ score, color }: { score: number; color: keyof typeof colorM
   );
 }
 
-function SectionBar({ label, score, color }: { label: string; score: number; color: keyof typeof colorMap }) {
-  const c = colorMap[color];
-  const barColor = color === "green" ? "bg-green-500" : color === "orange" ? "bg-amber-500" : color === "red" ? "bg-red-500" : "bg-red-800";
+function SectionBar({ label, score, color }: { label: string; score: number; color: ColorTier }) {
+  const c = colorConfig[color];
   return (
     <div className="space-y-2">
       <div className="flex justify-between items-center">
@@ -65,8 +58,8 @@ function SectionBar({ label, score, color }: { label: string; score: number; col
       </div>
       <div className="h-2 w-full bg-foreground/10 rounded-none overflow-hidden">
         <div
-          className={`h-full transition-all duration-1000 ${barColor}`}
-          style={{ width: `${score}%` }}
+          className="h-full transition-all duration-1000"
+          style={{ width: `${score}%`, backgroundColor: c.stroke }}
         />
       </div>
     </div>
@@ -77,9 +70,10 @@ const ui = {
   en: {
     resultsTitle: "Capital Risk Assessment",
     overallRisk: "Overall Capital Risk Score",
-    sectionBreakdown: "Section Breakdown",
-    diagnosis: "Diagnosis",
-    recommendation: "Recommendation",
+    sectionBreakdown: "Dimension Analysis",
+    primaryRisk: "Primary Risk Area",
+    diagnosis: "Strategic Interpretation",
+    recommendation: "Recommended Next Step",
     aiAnalysis: "AI Strategic Analysis",
     riskFactors: "Identified Risk Factors",
     strategicRecs: "Strategic Recommendations",
@@ -90,9 +84,10 @@ const ui = {
   nl: {
     resultsTitle: "Kapitaal Risicobeoordeling",
     overallRisk: "Totale Kapitaal Risicoscore",
-    sectionBreakdown: "Sectie Overzicht",
-    diagnosis: "Diagnose",
-    recommendation: "Aanbeveling",
+    sectionBreakdown: "Dimensieanalyse",
+    primaryRisk: "Primair Risicogebied",
+    diagnosis: "Strategische Interpretatie",
+    recommendation: "Aanbevolen Volgende Stap",
     aiAnalysis: "AI Strategische Analyse",
     riskFactors: "Geïdentificeerde Risicofactoren",
     strategicRecs: "Strategische Aanbevelingen",
@@ -106,7 +101,7 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
   const { language } = useLanguage();
   const { openVoiceAgent } = useVoiceAgent();
   const t = ui[language] ?? ui.en;
-  const c = colorMap[scores.overallColor];
+  const c = colorConfig[scores.overallColor];
   const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j";
 
   const firstName = userInfo.fullName.split(" ")[0];
@@ -131,8 +126,15 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
         <h3 className="text-xs uppercase tracking-widest text-foreground/50 font-semibold">{t.overallRisk}</h3>
         <RiskGauge score={scores.overallScore} color={scores.overallColor} />
         <div className={`inline-block px-4 py-2 ${c.bg} border ${c.border} ${c.text} text-sm font-bold uppercase tracking-widest`}>
-          {scores.recoveryPotential}
+          {c.label[language]}
         </div>
+      </div>
+
+      {/* Primary Risk */}
+      <div className="p-5 border border-red-500/20 bg-red-500/5 space-y-3">
+        <h4 className="text-xs uppercase tracking-widest text-red-500 font-bold">{t.primaryRisk}</h4>
+        <p className="text-foreground font-bold">{scores.primaryBottleneck.dimensionLabel[language]}</p>
+        <p className="text-foreground/80 leading-relaxed text-sm">{scores.primaryBottleneck.impact[language]}</p>
       </div>
 
       {/* Section Breakdown */}
@@ -162,14 +164,9 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
             <AlertTriangle className="w-4 h-4 text-lioner-gold" />
             <h3 className="text-xs uppercase tracking-widest text-lioner-gold font-bold">{t.aiAnalysis}</h3>
           </div>
-
-          {/* AI Headline */}
           <p className="text-lg font-bold text-foreground">{aiInsights.headline}</p>
-
-          {/* Situation Analysis */}
           <p className="text-foreground/80 leading-relaxed">{aiInsights.situationAnalysis}</p>
 
-          {/* Risk Factors */}
           {aiInsights.riskFactors.length > 0 && (
             <div className="space-y-2">
               <h4 className="text-xs uppercase tracking-widest text-foreground/50 font-semibold">{t.riskFactors}</h4>
@@ -183,7 +180,6 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
             </div>
           )}
 
-          {/* Strategic Recommendations */}
           {aiInsights.strategicRecommendations.length > 0 && (
             <div className="space-y-2">
               <h4 className="text-xs uppercase tracking-widest text-foreground/50 font-semibold">{t.strategicRecs}</h4>
@@ -197,14 +193,12 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
             </div>
           )}
 
-          {/* AI Closing */}
           <p className="text-sm font-semibold text-foreground italic">"{aiInsights.closing}"</p>
         </div>
       )}
 
       {/* CTA */}
       <div className="text-center space-y-3 pt-4">
-        {/* Speak with Daisy */}
         <Button
           onClick={() => {
             onClose();
@@ -222,7 +216,6 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
           {language === "nl" ? "Bespreek uw rapport" : "Discuss your report"}
         </Button>
 
-        {/* Book directly */}
         <Button
           asChild
           variant="outline"

@@ -9,6 +9,8 @@ interface AuditQuestionStepProps {
   onAnswer: (questionId: string, value: number) => void;
 }
 
+const optionLetters = ["A", "B", "C", "D"];
+
 export function AuditQuestionStep({
   question,
   currentIndex,
@@ -45,37 +47,25 @@ export function AuditQuestionStep({
         "{question.question}"
       </h3>
 
-      {/* Binary Options — no green/red, use gold */}
-      <div className="space-y-4">
-        <button
-          type="button"
-          onClick={() => onAnswer(question.id, question.optionA.points)}
-          className="w-full text-left p-5 rounded-none border-2 border-foreground/10 hover:border-lioner-gold/60 hover:bg-lioner-gold/5 transition-all group"
-        >
-          <div className="flex items-start gap-4">
-            <span className="flex items-center justify-center w-8 h-8 rounded-none border-2 border-foreground/20 text-foreground/50 text-sm font-bold shrink-0 group-hover:border-lioner-gold/60 group-hover:text-lioner-gold">
-              A
-            </span>
-            <span className="text-foreground/80 group-hover:text-foreground transition-colors">
-              {question.optionA.label}
-            </span>
-          </div>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => onAnswer(question.id, question.optionB.points)}
-          className="w-full text-left p-5 rounded-none border-2 border-foreground/10 hover:border-lioner-gold/60 hover:bg-lioner-gold/5 transition-all group"
-        >
-          <div className="flex items-start gap-4">
-            <span className="flex items-center justify-center w-8 h-8 rounded-none border-2 border-foreground/20 text-foreground/50 text-sm font-bold shrink-0 group-hover:border-lioner-gold/60 group-hover:text-lioner-gold">
-              B
-            </span>
-            <span className="text-foreground/80 group-hover:text-foreground transition-colors">
-              {question.optionB.label}
-            </span>
-          </div>
-        </button>
+      {/* 4-point scale options */}
+      <div className="space-y-3">
+        {question.options.map((option, idx) => (
+          <button
+            key={idx}
+            type="button"
+            onClick={() => onAnswer(question.id, option.points)}
+            className="w-full text-left p-4 rounded-none border-2 border-foreground/10 hover:border-lioner-gold/60 hover:bg-lioner-gold/5 transition-all group"
+          >
+            <div className="flex items-start gap-4">
+              <span className="flex items-center justify-center w-8 h-8 rounded-none border-2 border-foreground/20 text-foreground/50 text-sm font-bold shrink-0 group-hover:border-lioner-gold/60 group-hover:text-lioner-gold">
+                {optionLetters[idx]}
+              </span>
+              <span className="text-foreground/80 group-hover:text-foreground transition-colors text-sm">
+                {option.label}
+              </span>
+            </div>
+          </button>
+        ))}
       </div>
 
       <p className="text-center text-xs text-foreground/30 mt-8 uppercase tracking-wide">
