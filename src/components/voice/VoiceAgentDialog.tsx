@@ -290,7 +290,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       }
       setStatus("idle");
     }
-  }, [conversation, isPressureScan, isCapitalProtection, contextData]);
+  }, [conversation, isPressureScan, isCapitalProtection, isCorporateAudit, contextData]);
 
   const endConversation = useCallback(async () => {
     try {
