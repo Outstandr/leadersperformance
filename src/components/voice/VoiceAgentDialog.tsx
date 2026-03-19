@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
 import { X, Mic, MicOff, PhoneOff, Volume2, Send, Check } from "lucide-react";
 import { VoiceAgentContextData, useVoiceAgent } from "./VoiceAgentContext";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface VoiceAgentDialogProps {
   isOpen: boolean;
@@ -15,6 +16,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
   const [status, setStatus] = useState<ConversationStatus>("idle");
   const [isMuted, setIsMuted] = useState(false);
   const { setIsSpeaking } = useVoiceAgent();
+  const { language } = useLanguage();
   const autoConnectTriggered = useRef(false);
   const [error, setError] = useState<string | null>(null);
   const [transcript, setTranscript] = useState<{ role: "user" | "agent"; text: string }[]>([]);
@@ -161,15 +163,65 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true });
 
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/elevenlabs-voice-token`,
-        {
-          method: "GET",
+      // Build request body with context for the edge function
+      let fetchOptions: RequestInit = {
+        method: "GET",
+        headers: {
+          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+      };
+
+      if (isPressureScan && contextData.scanScores && contextData.scanUserInfo) {
+        const scores = contextData.scanScores;
+        const user = contextData.scanUserInfo;
+        fetchOptions = {
+          method: "POST",
           headers: {
+            "Content-Type": "application/json",
             apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
             Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
           },
-        }
+          body: JSON.stringify({
+            mode: "pressure_scan",
+            scanContext: {
+              firstName: user.fullName?.split(" ")[0],
+              fullName: user.fullName,
+              company: user.company,
+              phone: user.phone,
+              email: user.email,
+              overall: scores.overall,
+              overallColor: scores.overallColor,
+              title: scores.title,
+              diagnosis: scores.diagnosis,
+              recommendation: scores.recommendation,
+              sections: scores.sections,
+              primaryBottleneck: {
+                dimensionLabel: scores.primaryBottleneck?.dimensionLabel?.en ?? "",
+                impact: scores.primaryBottleneck?.impact?.en ?? "",
+              },
+            },
+          }),
+        };
+      } else if (isCapitalProtection && contextData.cpUserInfo) {
+        // Already handled via POST for capital protection
+        fetchOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify({
+            mode: "capital_protection",
+            context: contextData.cpUserInfo,
+          }),
+        };
+      }
+
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/elevenlabs-voice-token`,
+        fetchOptions
       );
 
       if (!response.ok) {
@@ -203,7 +255,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       }
       setStatus("idle");
     }
-  }, [conversation]);
+  }, [conversation, isPressureScan, isCapitalProtection, contextData]);
 
   const endConversation = useCallback(async () => {
     try {
@@ -313,7 +365,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
               Leaders Performance
             </p>
             <h2 className="text-white font-semibold text-lg leading-tight mt-0.5">
-              {isPressureScan ? "Daisy — AI Founder Advisor" : isCapitalProtection ? "Daisy — AI Capital Protection Advisor" : "Daisy — AI Advisor"}
+              {language === "nl" ? "Laat je begeleiden" : "Let yourself be guided"}
             </h2>
           </div>
           <button
