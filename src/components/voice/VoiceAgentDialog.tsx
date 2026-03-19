@@ -27,6 +27,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
 
   const isPressureScan = contextData.mode === "pressure_scan";
   const isCapitalProtection = contextData.mode === "capital_protection";
+  const isCorporateAudit = contextData.mode === "corporate_audit";
 
   const conversation = useConversation({
     onConnect: () => {
@@ -204,7 +205,6 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
           }),
         };
       } else if (isCapitalProtection && contextData.cpUserInfo) {
-        // Already handled via POST for capital protection
         fetchOptions = {
           method: "POST",
           headers: {
@@ -215,6 +215,41 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
           body: JSON.stringify({
             mode: "capital_protection",
             context: contextData.cpUserInfo,
+          }),
+        };
+      } else if (isCorporateAudit && contextData.auditScores && contextData.auditUserInfo) {
+        const scores = contextData.auditScores;
+        const user = contextData.auditUserInfo;
+        fetchOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify({
+            mode: "corporate_audit",
+            auditContext: {
+              firstName: user.firstName,
+              lastName: user.lastName,
+              email: user.email,
+              phone: user.phone,
+              disciplineScore: scores.disciplineScore,
+              rawScore: scores.rawScore,
+              tier: scores.tier,
+              overallColor: scores.overallColor,
+              diagnosticNarrative: scores.diagnosticNarrative?.en ?? "",
+              recommendedNextStep: scores.recommendedNextStep?.en ?? "",
+              primaryBottleneck: {
+                dimensionLabel: scores.primaryBottleneck?.dimensionLabel?.en ?? "",
+                impact: scores.primaryBottleneck?.impact?.en ?? "",
+              },
+              dimensions: (scores.dimensions ?? []).map((d: any) => ({
+                label: d.label?.en ?? d.key,
+                score: d.score,
+                color: d.color,
+              })),
+            },
           }),
         };
       }
@@ -255,7 +290,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       }
       setStatus("idle");
     }
-  }, [conversation, isPressureScan, isCapitalProtection, contextData]);
+  }, [conversation, isPressureScan, isCapitalProtection, isCorporateAudit, contextData]);
 
   const endConversation = useCallback(async () => {
     try {

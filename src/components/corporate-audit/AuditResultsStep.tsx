@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { Mic } from "lucide-react";
 import { AuditUserInfo, AuditInsights } from "./CorporateAuditDialog";
 import { AuditScores } from "@/lib/corporateAuditScoring";
 import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
 interface AuditResultsStepProps {
   userInfo: AuditUserInfo;
@@ -35,7 +36,7 @@ const ui = {
     recommendation: "Recommended Next Step",
     realityCheck: "The Reality Check",
     actionPlan: "The Action Plan",
-    ctaBtn: "Review This Audit With Lionel",
+    ctaBtn: "Discuss your report",
     warning: "Warning: Do not book unless you are ready to change the score.",
     close: "Close",
   },
@@ -48,7 +49,7 @@ const ui = {
     recommendation: "Aanbevolen Volgende Stap",
     realityCheck: "De realiteitscheck",
     actionPlan: "Het actieplan",
-    ctaBtn: "Bespreek mijn resultaat met Lionel",
+    ctaBtn: "Bespreek uw rapport",
     warning: "Waarschuwing: boek alleen als je klaar bent om de score te veranderen.",
     close: "Sluiten",
   },
@@ -103,7 +104,7 @@ function DimensionBar({ label, score, color }: { label: string; score: number; c
 export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditResultsStepProps) {
   const { language } = useLanguage();
   const t = ui[language] ?? ui.en;
-  const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
+  const { openVoiceAgent } = useVoiceAgent();
   const translatedTier = tierTranslations[language]?.[scores.tier] || scores.tier;
 
   return (
@@ -190,13 +191,20 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
       {/* CTA */}
       <div className="text-center space-y-3 pt-4">
         <Button
-          asChild
-          className="bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
+          onClick={() => {
+            onClose();
+            setTimeout(() => {
+              openVoiceAgent({
+                mode: "corporate_audit",
+                auditScores: scores,
+                auditUserInfo: userInfo,
+              });
+            }, 300);
+          }}
+          className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
         >
-          <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-            {t.ctaBtn}
-            <ArrowRight className="w-5 h-5 ml-3" />
-          </a>
+          <Mic className="w-5 h-5 mr-3" />
+          {t.ctaBtn}
         </Button>
         <p className="text-xs text-foreground/40 italic">
           {t.warning}
