@@ -54,18 +54,11 @@ export const BusinessHeroSection = () => {
               <div className="flex flex-col sm:flex-row gap-3 mt-4">
                 <Button
                   size="lg"
-                  onClick={() => setIsConsultationOpen(true)}
+                  onClick={() => setIsAuditOpen(true)}
                   className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group transition-all border-2 border-transparent shadow-lg shadow-black/10"
                 >
-                  {t("business.hero.ctaPrimary")}
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button
-                  size="lg"
-                  onClick={() => setIsAuditOpen(true)}
-                  className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-[hsl(var(--lioner-gold))] font-medium rounded-none px-7 py-3.5 h-auto group transition-all"
-                >
                   {t("business.hero.ctaSecondary")}
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
             </div>
