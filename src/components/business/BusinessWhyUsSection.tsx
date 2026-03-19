@@ -62,8 +62,8 @@ export const BusinessWhyUsSection = () => {
 
         {/* Scroll down indicator */}
         <div className="flex flex-col items-center mt-12 animate-bounce">
-          <ChevronDown className="w-6 h-6 text-lioner-gold/60" />
-          <ChevronDown className="w-6 h-6 text-lioner-gold/40 -mt-3" />
+          <ChevronDown className="w-10 h-10 text-foreground/70" />
+          <ChevronDown className="w-10 h-10 text-foreground/40 -mt-5" />
         </div>
       </div>
     </section>
