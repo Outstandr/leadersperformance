@@ -62,27 +62,21 @@ export const EliteHeroSection = () => {
               </AspectRatio>
             </div>
 
-            {/* CTA */}
-            <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
+            {/* Pressure Scan CTA */}
+            <div className="text-center space-y-3">
+              <p className="text-lg md:text-xl font-medium text-white">
+                {t("elite.hero.pressureHeadline")}
+              </p>
               <Button
                 size="lg"
-                asChild
+                onClick={() => setIsPressureScanOpen(true)}
                 className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group transition-all border-2 border-transparent shadow-lg shadow-black/10"
               >
-                <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-                  {t("elite.hero.ctaPrimary")}
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </a>
+                {t("elite.hero.pressureCTA")}
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button
-                size="lg"
-                onClick={() => setIsAssessmentOpen(true)}
-                className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-[hsl(var(--lioner-gold))] font-medium rounded-none px-7 py-3.5 h-auto group transition-all"
-              >
-                {t("elite.hero.ctaSecondary")}
-              </Button>
+              <p className="text-sm text-white/80">{t("elite.hero.pressureDuration")}</p>
             </div>
-            <p className="text-sm text-white/90 text-center">{t("elite.hero.disclaimer")}</p>
           </div>
         </div>
       </div>
