@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Crown, Check, Users } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { EliteBookingDialog } from "./EliteBookingDialog";
+import { FounderPressureScanDialog } from "@/components/founder-scan/FounderPressureScanDialog";
 
 export const EliteBookingSection = () => {
   const { t } = useLanguage();
-  const [bookingOpen, setBookingOpen] = useState(false);
+  const [scanOpen, setScanOpen] = useState(false);
 
   const includes = [
     t("elite.booking.include1"),
@@ -37,7 +37,7 @@ export const EliteBookingSection = () => {
               
               <Button 
                 size="lg" 
-                onClick={() => setBookingOpen(true)}
+                onClick={() => setScanOpen(true)}
                 className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-white/90 font-medium rounded-none px-8 py-4 h-auto group"
               >
                 {t("elite.booking.cta")}
@@ -67,7 +67,7 @@ export const EliteBookingSection = () => {
         </div>
       </div>
 
-      <EliteBookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
+      <FounderPressureScanDialog open={scanOpen} onOpenChange={setScanOpen} />
     </section>
   );
 };
