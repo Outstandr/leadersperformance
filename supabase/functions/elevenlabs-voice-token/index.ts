@@ -34,9 +34,25 @@ type CapitalProtectionContext = {
   aiReport?: CapitalProtectionAiReport | null;
 };
 
+type PressureScanContext = {
+  firstName?: string;
+  fullName?: string;
+  company?: string;
+  phone?: string;
+  email?: string;
+  overall?: number;
+  overallColor?: string;
+  title?: string;
+  diagnosis?: string;
+  recommendation?: string;
+  sections?: { section: string; sectionLabel: string; score: number; color: string }[];
+  primaryBottleneck?: { dimensionLabel: string; impact: string };
+};
+
 type SessionRequest = {
-  mode?: 'capital_protection';
+  mode?: 'capital_protection' | 'pressure_scan';
   context?: CapitalProtectionContext;
+  scanContext?: PressureScanContext;
 };
 
 const baseDaisySystemPrompt = `You are Daisy, the digital founder advisor for Leaders Performance.
