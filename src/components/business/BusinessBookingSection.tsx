@@ -40,18 +40,11 @@ export const BusinessBookingSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                onClick={() => setIsConsultationOpen(true)}
+                onClick={() => setIsAuditOpen(true)}
                 className="bg-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))]/90 text-white font-bold rounded-none px-8 py-5 h-auto group text-base uppercase tracking-wider"
               >
-                {t("business.booking.ctaPrimary")}
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button
-                size="lg"
-                onClick={() => setIsAuditOpen(true)}
-                className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-[hsl(var(--lioner-charcoal))] font-medium rounded-none px-7 py-5 h-auto group transition-all"
-              >
                 {t("business.booking.ctaSecondary")}
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
           </div>
