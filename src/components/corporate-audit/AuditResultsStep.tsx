@@ -103,8 +103,29 @@ function DimensionBar({ label, score, color }: { label: string; score: number; c
 export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditResultsStepProps) {
   const { language } = useLanguage();
   const t = ui[language] ?? ui.en;
-  const { openVoiceAgent } = useVoiceAgent();
   const translatedTier = tierTranslations[language]?.[scores.tier] || scores.tier;
+
+  const voiceContext = {
+    firstName: userInfo.firstName,
+    lastName: userInfo.lastName,
+    email: userInfo.email,
+    phone: userInfo.phone,
+    disciplineScore: scores.disciplineScore,
+    rawScore: scores.rawScore,
+    tier: scores.tier,
+    overallColor: scores.overallColor,
+    dimensions: scores.dimensions.map(d => ({
+      label: d.label[language],
+      score: d.score,
+      color: d.color,
+    })),
+    primaryBottleneck: {
+      dimensionLabel: scores.primaryBottleneck.dimensionLabel[language],
+      impact: scores.primaryBottleneck.impact[language],
+    },
+    diagnosticNarrative: scores.diagnosticNarrative[language],
+    recommendedNextStep: scores.recommendedNextStep[language],
+  };
 
   return (
     <div className="p-6 md:p-10 space-y-8">
