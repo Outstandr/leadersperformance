@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Mic } from "lucide-react";
 import { AuditUserInfo, AuditInsights } from "./CorporateAuditDialog";
 import { AuditScores } from "@/lib/corporateAuditScoring";
 import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
+import { ScanVoiceWidget } from "@/components/shared/ScanVoiceWidget";
 
 interface AuditResultsStepProps {
   userInfo: AuditUserInfo;
