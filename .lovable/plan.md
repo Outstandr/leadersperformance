@@ -1,121 +1,72 @@
 
 
-## Updated Plan: Availability System with iCloud Calendar Sync
+# Plan: Auto-Connect Daisy with Inline Booking for Founder Pressure Scan & Corporate Audit
 
-### The Gap You Identified
+## Summary
 
-The original plan only tracks bookings made through the website. But Lionel has existing appointments on his iCloud calendar (personal meetings, other commitments) that should also block time slots. Without syncing those, the website could still offer times when Lionel is busy.
+Replicate the Capital Protection flow (embedded voice widget with auto-connect + inline booking calendar) for both the Founder Pressure Scan and Corporate Discipline Audit. Uses a **new GHL Calendar ID** (`Se3SwkYLXfuW52O0F4GX`) for these two flows.
 
-### Updated Architecture
+## Architecture
 
-```text
-┌──────────────────────────────────────┐
-│  iCloud Calendar (source of truth)   │
-│  - Website bookings (already synced) │
-│  - Manual appointments               │
-│  - External meetings                 │
-└──────────────┬───────────────────────┘
-               │ CalDAV REPORT query
-               │ (fetches events for date range)
-               ▼
-┌──────────────────────────────────────┐
-│  Edge Function: check-availability   │
-│  1. Query iCloud via CalDAV REPORT   │
-│     for all events on requested date │
-│  2. Parse VEVENT start/end times     │
-│  3. Return blocked time ranges       │
-└──────────────┬───────────────────────┘
-               │
-               ▼
-┌──────────────────────────────────────┐
-│  Frontend: useBookedSlots hook       │
-│  - Calls check-availability on       │
-│    date selection                    │
-│  - Disables occupied time slots      │
-│  - Works in all 3 booking dialogs   │
-└──────────────────────────────────────┘
-```
+The Capital Protection page (`/capital-protection`) already does this:
+1. Dialog collects answers → computes results → calls `onResultsReady` → closes dialog
+2. Parent page renders results + sticky `CPVoiceWidget` at bottom
+3. Widget has "Tap to speak" → connects Daisy → `show_calendar` tool → inline `CPBookingCalendar`
 
-### Why iCloud-First Instead of a Database Table
+For the Founder Scan and Corporate Audit, the flow is different: they're triggered from **multiple parent components** (hero sections, booking sections, CTAs) via dialogs — not standalone pages. So instead of extracting results to a parent page, the voice widget will be **embedded directly inside the results step of the dialog**.
 
-Since we already have CalDAV credentials and the `create-calendar-event` function already discovers Lionel's calendar, we can **query the same calendar directly** for existing events. This means:
+## Changes
 
-- No need for a `booked_slots` database table
-- No need to keep two systems in sync
-- Manually added appointments on iCloud automatically block slots
-- Appointments from any source (phone, other apps) are respected
-- Single source of truth: Lionel's iCloud calendar
+### 1. Create `src/components/shared/ScanBookingCalendar.tsx`
+- Reusable booking calendar (adapted from `CPBookingCalendar`)
+- Accepts generic `userInfo: { fullName: string; email: string; phone: string }` and `bookingType: string`
+- Uses the **new calendar ID** by calling a new variant of `ghl-booking` that accepts a `calendarId` parameter, OR we store the new calendar ID as a new secret
+- Actually: simplest approach is to pass `calendarId` as a query param to `ghl-booking` edge function, with the new ID hardcoded in the widget
 
-### Implementation Steps
+### 2. Create `src/components/shared/ScanVoiceWidget.tsx`
+- Generic embedded voice widget (modeled on `CPVoiceWidget`)
+- Props: `mode: 'pressure_scan' | 'corporate_audit'`, `userInfo`, `scores`, `calendarId`
+- Has `show_calendar` client tool → toggles `ScanBookingCalendar`
+- "Tap to speak" button → connects to Daisy via POST to `elevenlabs-voice-token`
+- Sends full context (scores, dimensions, bottleneck, diagnosis) as `scanContext` or `auditContext`
+- On booking complete → notifies Daisy → ends session
 
-#### 1. Create Edge Function: `check-availability`
+### 3. Modify `src/components/founder-scan/ScanResultsStep.tsx`
+- Remove the "Discuss your report" button that opens VoiceAgentDialog
+- Add `<ScanVoiceWidget>` at the bottom of results, passing scan scores and user info
+- Remove `useVoiceAgent` import
 
-A new backend function that:
-- Accepts a `date` parameter (YYYY-MM-DD)
-- Reuses the CalDAV discovery logic from `create-calendar-event` (steps 1-3) to find the target calendar
-- Sends a CalDAV `REPORT` request with a `calendar-query` filter for the given date range
-- Parses returned VEVENT blocks to extract DTSTART/DTEND times
-- Converts those into blocked time slot strings (e.g., "09:00 AM", "10:00 AM")
-- Returns the list of unavailable slots
-- Caches nothing — always queries live calendar data
+### 4. Modify `src/components/corporate-audit/AuditResultsStep.tsx`
+- Same pattern: remove "Discuss your report" button
+- Add `<ScanVoiceWidget mode="corporate_audit">` at the bottom
+- Remove `useVoiceAgent` import
 
-#### 2. Create Shared React Hook: `useBookedSlots`
+### 5. Modify `supabase/functions/ghl-booking/index.ts`
+- Accept optional `calendarId` in both GET (query param) and POST (body field)
+- If provided, use it instead of `GHL_CALENDAR_ID` env var
+- This lets the scan/audit booking use calendar `Se3SwkYLXfuW52O0F4GX` while Capital Protection keeps using the existing one
 
-- Takes a `Date | null` as input
-- When the date changes, calls `check-availability` with that date
-- Returns `{ bookedSlots: Set<string>, isLoading: boolean }`
-- Debounces to avoid excessive calls on rapid date changes
+### 6. Update `supabase/functions/elevenlabs-voice-token/index.ts`
+- Add `show_calendar` instruction to the pressure scan and corporate audit snapshots
+- Update the prompts to tell Daisy: "You can call show_calendar when they want to book. The recommendation is a Founder Strategy Intervention with Lionel / Business Reset Intervention with Lionel."
 
-#### 3. Update All 3 Booking Dialogs
+### 7. No changes needed to the edge function types/modes
+- `pressure_scan` and `corporate_audit` modes already exist in the edge function
+- Context types and snapshot formatters already exist
 
-**UnmaskedBookingDialog** — uses slots like `"10:00"`, `"15:00"` (24h values):
-- Import `useBookedSlots`, pass selected date
-- Disable time slot buttons where the value appears in the booked set
-- Show "Unavailable" label on disabled slots
+## Files
 
-**BusinessConsultationDialog** — uses slots like `"09:00 AM"`, `"03:30 PM"`:
-- Same integration pattern
-- The edge function will return slots in both 12h and 24h format for compatibility
+| File | Action |
+|------|--------|
+| `src/components/shared/ScanBookingCalendar.tsx` | Create |
+| `src/components/shared/ScanVoiceWidget.tsx` | Create |
+| `src/components/founder-scan/ScanResultsStep.tsx` | Edit — replace voice button with embedded widget |
+| `src/components/corporate-audit/AuditResultsStep.tsx` | Edit — replace voice button with embedded widget |
+| `supabase/functions/ghl-booking/index.ts` | Edit — accept optional `calendarId` param |
+| `supabase/functions/elevenlabs-voice-token/index.ts` | Edit — add `show_calendar` instructions to scan/audit prompts |
 
-**MentorshipApplicationDialog** — same slot format as Business:
-- Same integration pattern
+## Booking Calendar ID
 
-### Technical Details
-
-**CalDAV REPORT Query** (the core of `check-availability`):
-```xml
-<c:calendar-query xmlns:d="DAV:" xmlns:c="urn:ietf:params:xml:ns:caldav">
-  <d:prop>
-    <d:getetag/>
-    <c:calendar-data/>
-  </d:prop>
-  <c:filter>
-    <c:comp-filter name="VCALENDAR">
-      <c:comp-filter name="VEVENT">
-        <c:time-range start="20260225T000000Z" end="20260226T000000Z"/>
-      </c:comp-filter>
-    </c:comp-filter>
-  </c:filter>
-</c:calendar-query>
-```
-
-This returns all events on the requested date. The function then parses each VEVENT's DTSTART/DTEND to determine which 30-min slots are blocked.
-
-**Slot Blocking Logic**: If an event runs from 10:00-11:30, the function marks "10:00 AM", "10:30 AM", and "11:00 AM" as unavailable — any slot whose start time falls within the event's duration is blocked.
-
-**Time Zone Handling**: All times are in Asia/Dubai (GST, UTC+4), matching the existing calendar event creation. The CalDAV query uses UTC boundaries for the date filter, then parses returned times in Dubai timezone.
-
-### Files to Create
-- `supabase/functions/check-availability/index.ts` — CalDAV query + slot parsing
-- `src/hooks/useBookedSlots.ts` — shared React hook
-
-### Files to Modify
-- `src/components/home/BusinessConsultationDialog.tsx` — integrate hook, disable taken slots
-- `src/components/home/MentorshipApplicationDialog.tsx` — integrate hook, disable taken slots
-- `src/components/home/UnmaskedBookingDialog.tsx` — integrate hook, disable taken slots
-- `supabase/config.toml` — register new function with `verify_jwt = false`
-
-### No Database Changes Needed
-
-This approach eliminates the need for the `booked_slots` table entirely. The iCloud calendar is the single source of truth — every booking the website creates is already written there, and any appointment Lionel adds manually is automatically respected.
+- **Capital Protection**: keeps existing `GHL_CALENDAR_ID` secret (`yEeXc4wSr5EOgBt4UEBP`)
+- **Founder Pressure Scan & Corporate Audit**: `Se3SwkYLXfuW52O0F4GX` (hardcoded in widget, passed to `ghl-booking`)
 
