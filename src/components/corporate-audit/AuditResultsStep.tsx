@@ -36,7 +36,7 @@ const ui = {
     recommendation: "Recommended Next Step",
     realityCheck: "The Reality Check",
     actionPlan: "The Action Plan",
-    ctaBtn: "Review This Audit With Lionel",
+    ctaBtn: "Discuss your report",
     warning: "Warning: Do not book unless you are ready to change the score.",
     close: "Close",
   },
