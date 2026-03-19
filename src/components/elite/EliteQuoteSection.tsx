@@ -11,7 +11,7 @@ export const EliteQuoteSection = () => {
         <blockquote className="text-xl md:text-2xl lg:text-3xl font-light text-white leading-relaxed italic">
           "{t("elite.quote1")}"
         </blockquote>
-        <p className="mt-6 text-2xl text-[hsl(var(--lioner-gold))] font-semibold font-serif md:text-4xl">- Lionel -</p>
+        <p className="mt-6 text-2xl text-[hsl(var(--lioner-gold))] font-semibold font-serif md:text-3xl">- Lionel -</p>
       </div>
     </section>);
 
