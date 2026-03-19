@@ -11,9 +11,9 @@ function sanitizeString(input: unknown, maxLength = 100): string {
   return input.trim().slice(0, maxLength).replace(/[\n\r]/g, " ").replace(/[<>"']/g, "").replace(/\s+/g, " ");
 }
 
-function validateBinaryAnswer(val: unknown): number {
+function validateAnswer(val: unknown): number {
   const num = Number(val);
-  if (num !== 0 && num !== 10) throw new Error("Invalid answer value");
+  if (!Number.isInteger(num) || num < 1 || num > 4) throw new Error("Invalid answer value");
   return num;
 }
 
@@ -29,13 +29,13 @@ serve(async (req) => {
     const safeName = sanitizeString(firstName, 50);
     const isNL = language === "nl";
     const safeScore = Math.max(0, Math.min(100, Math.round(Number(score) || 0)));
-    const validTiers = ["Nursery", "Drift", "Vanguard"];
+    const validTiers = ["THE NURSERY", "THE DRIFT", "THE VANGUARD", "Nursery", "Drift", "Vanguard"];
     const safeTier = validTiers.includes(tier) ? tier : "unknown";
     
     // Validate answers
     const validatedAnswers: Record<string, number> = {};
     for (const key of ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7']) {
-      validatedAnswers[key] = validateBinaryAnswer(answers?.[key]);
+      validatedAnswers[key] = validateAnswer(answers?.[key]);
     }
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
@@ -54,8 +54,9 @@ serve(async (req) => {
       q7: "The Mirror (would re-hire team)",
     };
 
+    const strengthLabels = ["WEAK", "INCONSISTENT", "FUNCTIONAL", "HIGH"];
     const answerSummary = Object.entries(validatedAnswers)
-      .map(([key, val]) => `${questionLabels[key] || key}: ${val === 10 ? "STRONG" : "WEAK"}`)
+      .map(([key, val]) => `${questionLabels[key] || key}: ${strengthLabels[val - 1]}`)
       .join("\n");
 
     const languageInstruction = isNL
