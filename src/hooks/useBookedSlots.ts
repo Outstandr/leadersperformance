@@ -6,7 +6,7 @@ interface BookedSlotsResult {
   isLoading: boolean;
 }
 
-export function useBookedSlots(date: Date | null | undefined): BookedSlotsResult {
+export function useBookedSlots(date: Date | null | undefined, calendarId?: string): BookedSlotsResult {
   const [bookedSlots12h, setBookedSlots12h] = useState<Set<string>>(new Set());
   const [bookedSlots24h, setBookedSlots24h] = useState<Set<string>>(new Set());
   const [isLoading, setIsLoading] = useState(false);
