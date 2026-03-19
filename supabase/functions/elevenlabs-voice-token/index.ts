@@ -49,10 +49,26 @@ type PressureScanContext = {
   primaryBottleneck?: { dimensionLabel: string; impact: string };
 };
 
+type CorporateAuditContext = {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  disciplineScore?: number;
+  rawScore?: number;
+  tier?: string;
+  overallColor?: string;
+  diagnosticNarrative?: string;
+  recommendedNextStep?: string;
+  primaryBottleneck?: { dimensionLabel: string; impact: string };
+  dimensions?: { label: string; score: number; color: string }[];
+};
+
 type SessionRequest = {
-  mode?: 'capital_protection' | 'pressure_scan';
+  mode?: 'capital_protection' | 'pressure_scan' | 'corporate_audit';
   context?: CapitalProtectionContext;
   scanContext?: PressureScanContext;
+  auditContext?: CorporateAuditContext;
 };
 
 const baseDaisySystemPrompt = `You are Daisy, the digital founder advisor for Leaders Performance.
