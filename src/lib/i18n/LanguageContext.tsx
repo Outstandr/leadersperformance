@@ -796,7 +796,7 @@ const nl: Record<string, string> = {
   // Business – Services (NL)
   "business.services.eyebrow": "Het protocol",
   "business.services.heading": "Wij motiveren geen teams.\nWij installeren leiderschapsstructuur.",
-  "business.services.subheading": "Motivatie vervaagt.\nStructuur bepaalt gedrag.\n\nDe Business Reset Blueprint is geen workshop.\nHet is een organisatorische interventie.\n\nWe analyseren waar afhankelijkheid is ontstaan. Waar normen vervaagd zijn. Waar verantwoordelijkheid niet helder is.\n\nVervolgens brengen we structuur aan:\n• Heldere rollen\n• Duidelijke beslisregels\n• Meetbare standaarden\n• Consequenties die kloppen\n\nGeen extra druk. Wel duidelijke kaders.\n\nPrestaties worden geen toeval. Ze worden het resultaat van het systeem.",
+  "business.services.subheading": "Motivatie vervaagt.\nStructuur bepaalt gedrag.\n\nDe Business Reset Blueprint is geen workshop.\nHet is een organisatorische interventie.\n\nWe analyseren waar afhankelijkheid is ontstaan. Waar normen vervaagd zijn. Waar verantwoordelijkheid niet helder is.\n\nVervolgens brengen we structuur aan:\nHeldere rollen\nDuidelijke beslisregels\nMeetbare standaarden\nConsequenties die kloppen\n\nGeen extra druk. Wel duidelijke kaders.\n\nPrestaties worden geen toeval. Ze worden het resultaat van het systeem.",
   "business.services.installHeading": "Wat wij installeren",
   "business.services.item1.title": "Leiderschapscapaciteit",
   "business.services.item1.desc": "Zonder mentale en fysieke capaciteit stort strategisch leiderschap in.",
