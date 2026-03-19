@@ -6,7 +6,6 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const BusinessBookingSection = () => {
   const { t } = useLanguage();
-  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [isAuditOpen, setIsAuditOpen] = useState(false);
 
   return (
