@@ -334,11 +334,9 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
 
   if (!isOpen) return null;
 
-  const idleTitle = isPressureScan
-    ? "Speak with Daisy, your AI founder advisor"
-    : isCapitalProtection
-    ? "Speak with Daisy, your AI capital protection advisor"
-    : "Speak with Daisy, our AI advisor";
+  const idleTitle = language === "nl"
+    ? "Ontdek hier de mogelijkheden"
+    : "Discover the possibilities here";
   const idleSubtitle = isPressureScan
     ? "Tap Start Conversation to enable microphone access. Daisy will walk you through your pressure scan findings and the right next step."
     : isCapitalProtection
