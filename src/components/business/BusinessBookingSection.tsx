@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { CorporateAuditDialog } from "@/components/corporate-audit/CorporateAuditDialog";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-export const BusinessBookingSection = () => {
+export const BusinessBookingSection = () => { 
   const { t } = useLanguage();
   const [isAuditOpen, setIsAuditOpen] = useState(false);
 
