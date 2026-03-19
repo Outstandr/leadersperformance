@@ -197,15 +197,55 @@ PRIMARY BOTTLENECK
 - Impact: ${ctx.primaryBottleneck?.impact ?? 'n/a'}`;
 }
 
+function formatCorporateAuditSnapshot(ctx: CorporateAuditContext) {
+  const dimensions = (ctx.dimensions ?? [])
+    .map((d) => `- ${d.label}: ${d.score}% (${d.color})`)
+    .join('\n');
+
+  return `LIVE CORPORATE DISCIPLINE AUDIT SESSION
+- The visitor has just completed the Corporate Discipline Audit and is looking at their report on screen.
+- This is not a discovery conversation. Continue from the audit results.
+- Open by asking whether they are happy with the results or what surprised them most.
+- Do not ask broad routing questions. The primary recommendation is a Business Reset Intervention Session with Lionel.
+
+VISITOR PROFILE
+- Name: ${ctx.firstName ?? 'Unknown'} ${ctx.lastName ?? ''}
+- Email: ${ctx.email ?? 'Unknown'}
+- Phone: ${ctx.phone ?? 'Unknown'}
+
+AUDIT RESULTS
+- Discipline Score: ${ctx.disciplineScore ?? 'n/a'}%
+- Raw Score: ${ctx.rawScore ?? 'n/a'}
+- Tier: ${ctx.tier ?? 'n/a'}
+- Overall Color: ${ctx.overallColor ?? 'n/a'}
+
+DIMENSION SCORES
+${dimensions || '- No dimension scores provided'}
+
+PRIMARY BOTTLENECK
+- Dimension: ${ctx.primaryBottleneck?.dimensionLabel ?? 'n/a'}
+- Impact: ${ctx.primaryBottleneck?.impact ?? 'n/a'}
+
+STRATEGIC INTERPRETATION
+${ctx.diagnosticNarrative ?? 'n/a'}
+
+RECOMMENDED NEXT STEP
+${ctx.recommendedNextStep ?? 'n/a'}`;
+}
+
 function buildAgentConfig(requestData: SessionRequest) {
   const context = requestData.context;
   const scanCtx = requestData.scanContext;
+  const auditCtx = requestData.auditContext;
   const isCapitalProtection = requestData.mode === 'capital_protection' && context;
   const isPressureScan = requestData.mode === 'pressure_scan' && scanCtx;
+  const isCorporateAudit = requestData.mode === 'corporate_audit' && auditCtx;
   const firstName = isCapitalProtection
     ? context?.firstName?.trim().split(/\s+/)[0]
     : isPressureScan
     ? scanCtx?.fullName?.trim().split(/\s+/)[0]
+    : isCorporateAudit
+    ? auditCtx?.firstName?.trim()
     : undefined;
 
   let prompt = baseDaisySystemPrompt;
@@ -213,10 +253,12 @@ function buildAgentConfig(requestData: SessionRequest) {
     prompt = `${baseDaisySystemPrompt}\n\n${formatCapitalProtectionSnapshot(context)}`;
   } else if (isPressureScan) {
     prompt = `${baseDaisySystemPrompt}\n\n${formatPressureScanSnapshot(scanCtx)}`;
+  } else if (isCorporateAudit) {
+    prompt = `${baseDaisySystemPrompt}\n\n${formatCorporateAuditSnapshot(auditCtx)}`;
   }
 
   let firstMessage: string;
-  if (isCapitalProtection || isPressureScan) {
+  if (isCapitalProtection || isPressureScan || isCorporateAudit) {
     firstMessage = `Hi, this is Daisy from Leaders Performance.${firstName ? ` ${firstName},` : ''} are you happy with your results?`;
   } else {
     firstMessage = "Hi, this is Daisy from Leaders Performance. I'm here to help you make sense of your next move. What feels most pressing for you right now?";
