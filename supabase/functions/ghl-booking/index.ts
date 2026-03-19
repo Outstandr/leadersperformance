@@ -157,9 +157,9 @@ async function bookAppointment(body: {
   }
 
   // 2. Re-check availability right before booking to prevent race conditions
-  const dateOnly = dateTime.split('T')[0]; // "2026-02-26"
-  const slotTime = dateTime.split('T')[1]?.substring(0, 5); // "10:00"
-  const { blocked24h } = await getFreeSlots(dateOnly);
+  const dateOnly = dateTime.split('T')[0];
+  const slotTime = dateTime.split('T')[1]?.substring(0, 5);
+  const { blocked24h } = await getFreeSlots(dateOnly, calOverride);
   if (blocked24h.includes(slotTime)) {
     throw new Error(`This time slot (${slotTime}) is no longer available. Please choose another.`);
   }
