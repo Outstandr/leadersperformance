@@ -27,6 +27,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
 
   const isPressureScan = contextData.mode === "pressure_scan";
   const isCapitalProtection = contextData.mode === "capital_protection";
+  const isCorporateAudit = contextData.mode === "corporate_audit";
 
   const conversation = useConversation({
     onConnect: () => {
