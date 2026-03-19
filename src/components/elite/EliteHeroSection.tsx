@@ -54,7 +54,7 @@ export const EliteHeroSection = () => {
                   poster={eliteThumbnail}
                 >
                   <source
-                    src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/vsl//High ticket Choice 02.mov"
+                    src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/vsl//Unmasked intervention website.mp4"
                     type="video/mp4"
                   />
                   Your browser does not support the video tag.
