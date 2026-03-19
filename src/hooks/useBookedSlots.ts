@@ -6,7 +6,7 @@ interface BookedSlotsResult {
   isLoading: boolean;
 }
 
-export function useBookedSlots(date: Date | null | undefined): BookedSlotsResult {
+export function useBookedSlots(date: Date | null | undefined, calendarId?: string): BookedSlotsResult {
   const [bookedSlots12h, setBookedSlots12h] = useState<Set<string>>(new Set());
   const [bookedSlots24h, setBookedSlots24h] = useState<Set<string>>(new Set());
   const [isLoading, setIsLoading] = useState(false);
@@ -40,8 +40,9 @@ export function useBookedSlots(date: Date | null | undefined): BookedSlotsResult
         const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
         // Use ghl-booking for availability (GHL calendar is source of truth)
+        const calParam = calendarId ? `&calendarId=${calendarId}` : "";
         const res = await fetch(
-          `https://${projectId}.supabase.co/functions/v1/ghl-booking?date=${dateStr}`,
+          `https://${projectId}.supabase.co/functions/v1/ghl-booking?date=${dateStr}${calParam}`,
           {
             headers: {
               Authorization: `Bearer ${anonKey}`,
@@ -74,7 +75,7 @@ export function useBookedSlots(date: Date | null | undefined): BookedSlotsResult
       clearTimeout(timer);
       controller.abort();
     };
-  }, [date?.getFullYear(), date?.getMonth(), date?.getDate()]);
+  }, [date?.getFullYear(), date?.getMonth(), date?.getDate(), calendarId]);
 
   return { bookedSlots12h, bookedSlots24h, isLoading };
 }

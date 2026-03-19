@@ -6,7 +6,7 @@ const TIME_SLOTS_24H = ["10:00", "11:00", "12:00", "15:00", "16:00", "17:00"];
  * Fetches availability for each weekday of the given month and returns a Set
  * of date-strings (YYYY-MM-DD) that are fully booked (all time slots taken).
  */
-export function useFullyBookedDates(visibleMonth: Date | undefined): {
+export function useFullyBookedDates(visibleMonth: Date | undefined, calendarId?: string): {
   fullyBookedDates: Set<string>;
   isLoading: boolean;
 } {
@@ -60,8 +60,9 @@ export function useFullyBookedDates(visibleMonth: Date | undefined): {
         const batch = datesToCheck.slice(i, i + batchSize);
         const results = await Promise.allSettled(
           batch.map(async (dateStr) => {
+            const calParam = calendarId ? `&calendarId=${calendarId}` : "";
             const res = await fetch(
-              `https://${projectId}.supabase.co/functions/v1/ghl-booking?date=${dateStr}`,
+              `https://${projectId}.supabase.co/functions/v1/ghl-booking?date=${dateStr}${calParam}`,
               {
                 headers: {
                   Authorization: `Bearer ${anonKey}`,
@@ -90,7 +91,7 @@ export function useFullyBookedDates(visibleMonth: Date | undefined): {
     return () => {
       controller.abort();
     };
-  }, [year, month]);
+  }, [year, month, calendarId]);
 
   return { fullyBookedDates, isLoading };
 }

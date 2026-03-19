@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mic } from "lucide-react";
 import { PressureScores } from "@/lib/founderPressureScoring";
 import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
 import { ScanUserInfo } from "./ScanGateStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
+import { ScanVoiceWidget } from "@/components/shared/ScanVoiceWidget";
 
 interface ScanResultsStepProps {
   userInfo: ScanUserInfo;
@@ -84,12 +83,32 @@ const ui = {
 
 export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepProps) {
   const { language } = useLanguage();
-  const { openVoiceAgent } = useVoiceAgent();
   const t = ui[language] ?? ui.en;
   const c = colorConfig[scores.overallColor];
-  const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j";
 
   const firstName = userInfo.fullName.split(" ")[0];
+
+  const voiceContext = {
+    fullName: userInfo.fullName,
+    company: userInfo.company,
+    phone: userInfo.phone,
+    email: userInfo.email,
+    overall: scores.overall,
+    overallColor: scores.overallColor,
+    title: scores.title,
+    diagnosis: scores.diagnosis,
+    recommendation: scores.recommendation,
+    sections: scores.sections.map(s => ({
+      section: s.section,
+      sectionLabel: s.sectionLabel,
+      score: s.score,
+      color: s.color,
+    })),
+    primaryBottleneck: {
+      dimensionLabel: scores.primaryBottleneck.dimensionLabel[language],
+      impact: scores.primaryBottleneck.impact[language],
+    },
+  };
 
   return (
     <div className="p-6 md:p-10 space-y-8">
@@ -137,27 +156,13 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
         <p className="text-foreground/80 leading-relaxed">{scores.recommendation}</p>
       </div>
 
-      {/* CTA */}
-      <div className="text-center space-y-3 pt-4">
-        <Button
-          onClick={() => {
-            onClose();
-            setTimeout(() => {
-              openVoiceAgent({
-                mode: "pressure_scan",
-                scanScores: scores,
-                scanUserInfo: userInfo,
-              });
-            }, 300);
-          }}
-          className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
-        >
-          <Mic className="w-5 h-5 mr-3" />
-          {language === "nl" ? "Bespreek uw rapport" : "Discuss your report"}
-        </Button>
-
-        <p className="text-xs text-foreground/40 italic">{t.disclaimer}</p>
-      </div>
+      {/* Embedded Daisy Voice Widget */}
+      <ScanVoiceWidget
+        mode="pressure_scan"
+        userInfo={{ fullName: userInfo.fullName, email: userInfo.email, phone: userInfo.phone }}
+        contextPayload={voiceContext}
+        bookingType="Founder Strategy Intervention"
+      />
 
       {/* Close */}
       <div className="text-center">

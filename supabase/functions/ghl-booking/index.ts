@@ -16,8 +16,8 @@ function ghlHeaders() {
 }
 
 // GET /ghl-booking?date=2026-02-26 → returns free slots
-async function getFreeSlots(date: string) {
-  const calendarId = Deno.env.get('GHL_CALENDAR_ID');
+async function getFreeSlots(date: string, overrideCalendarId?: string) {
+  const calendarId = overrideCalendarId || Deno.env.get('GHL_CALENDAR_ID');
   if (!calendarId) throw new Error('GHL_CALENDAR_ID not configured');
 
   // GHL free-slots API expects epoch ms
@@ -116,7 +116,8 @@ async function bookAppointment(body: {
   dateTime: string;
   timeSlot: string;
 }) {
-  const calendarId = Deno.env.get('GHL_CALENDAR_ID');
+  const calOverride = body.calendarId;
+  const calendarId = calOverride || Deno.env.get('GHL_CALENDAR_ID');
   const locationId = Deno.env.get('GHL_LOCATION_ID');
   if (!calendarId || !locationId) throw new Error('GHL_CALENDAR_ID or GHL_LOCATION_ID not configured');
 
@@ -156,9 +157,9 @@ async function bookAppointment(body: {
   }
 
   // 2. Re-check availability right before booking to prevent race conditions
-  const dateOnly = dateTime.split('T')[0]; // "2026-02-26"
-  const slotTime = dateTime.split('T')[1]?.substring(0, 5); // "10:00"
-  const { blocked24h } = await getFreeSlots(dateOnly);
+  const dateOnly = dateTime.split('T')[0];
+  const slotTime = dateTime.split('T')[1]?.substring(0, 5);
+  const { blocked24h } = await getFreeSlots(dateOnly, calOverride);
   if (blocked24h.includes(slotTime)) {
     throw new Error(`This time slot (${slotTime}) is no longer available. Please choose another.`);
   }
@@ -209,13 +210,14 @@ Deno.serve(async (req) => {
       // Check availability
       const url = new URL(req.url);
       const date = url.searchParams.get('date');
+      const calendarId = url.searchParams.get('calendarId') || undefined;
       if (!date) {
         return new Response(JSON.stringify({ error: 'date parameter required' }), {
           status: 400,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
       }
-      const result = await getFreeSlots(date);
+      const result = await getFreeSlots(date, calendarId);
       return new Response(JSON.stringify(result), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
