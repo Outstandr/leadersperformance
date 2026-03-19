@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { Mic } from "lucide-react";
 import { AuditUserInfo, AuditInsights } from "./CorporateAuditDialog";
 import { AuditScores } from "@/lib/corporateAuditScoring";
 import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
 interface AuditResultsStepProps {
   userInfo: AuditUserInfo;
