@@ -194,7 +194,13 @@ ${sections || '- No dimension scores provided'}
 
 PRIMARY BOTTLENECK
 - Dimension: ${ctx.primaryBottleneck?.dimensionLabel ?? 'n/a'}
-- Impact: ${ctx.primaryBottleneck?.impact ?? 'n/a'}`;
+- Impact: ${ctx.primaryBottleneck?.impact ?? 'n/a'}
+
+BOOKING
+- You have a tool called show_calendar. When the visitor wants to book a Founder Strategy Intervention with Lionel, call show_calendar.
+- After calling show_calendar, tell the visitor the calendar is now on their screen and ask them to pick a date and time.
+- Do not ask for contact details for booking — they are already captured.
+- Once the booking is confirmed, congratulate them and let them know the team will follow up.`;
 }
 
 function formatCorporateAuditSnapshot(ctx: CorporateAuditContext) {
