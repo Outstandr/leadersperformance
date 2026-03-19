@@ -60,8 +60,9 @@ export function useFullyBookedDates(visibleMonth: Date | undefined, calendarId?:
         const batch = datesToCheck.slice(i, i + batchSize);
         const results = await Promise.allSettled(
           batch.map(async (dateStr) => {
+            const calParam = calendarId ? `&calendarId=${calendarId}` : "";
             const res = await fetch(
-              `https://${projectId}.supabase.co/functions/v1/ghl-booking?date=${dateStr}`,
+              `https://${projectId}.supabase.co/functions/v1/ghl-booking?date=${dateStr}${calParam}`,
               {
                 headers: {
                   Authorization: `Bearer ${anonKey}`,
