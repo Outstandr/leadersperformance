@@ -79,8 +79,36 @@ export function CPVoiceWidget({ userInfo, result, aiReport }: CPVoiceWidgetProps
     }
   }, [transcript]);
 
+  const buildSessionContext = () => ({
+    firstName: userInfo.fullName.trim().split(/\s+/)[0],
+    fullName: userInfo.fullName,
+    company: userInfo.company,
+    role: userInfo.role,
+    country: userInfo.country,
+    overallScore: result.overallScore,
+    overallColor: result.overallColor,
+    recoveryPotential: result.recoveryPotential,
+    headline: result.headline.en,
+    summary: result.body.en,
+    nextStep: result.nextStep.en,
+    sections: result.sections.map((section) => ({
+      label: section.label.en,
+      score: section.score,
+      color: section.color,
+    })),
+    aiReport: aiReport
+      ? {
+          situation_summary: aiReport.situation_summary,
+          risk_level: aiReport.risk_level,
+          risk_indicators: aiReport.risk_indicators,
+          strategic_paths: aiReport.strategic_paths,
+          recommended_next_step: aiReport.recommended_next_step,
+          recovery_potential: aiReport.recovery_potential,
+        }
+      : null,
+  });
+
   const buildContextMessage = () => {
-    const firstName = userInfo.fullName.trim().split(/\s+/)[0];
     const sections = result.sections.map(s => `${s.label.en}: ${s.score}% (${s.color})`).join("\n  ");
     const aiSection = aiReport ? `
 AI STRATEGIC REPORT:
@@ -93,7 +121,7 @@ AI STRATEGIC REPORT:
 
     return `CAPITAL PROTECTION ASSESSMENT — FULL CONTEXT
 
-IMPORTANT: Your first message to this user must be exactly: "Hi, this is Daisy from Leaders Performance." Then address them by their first name (${firstName}), and ask if they are happy with their results. Do NOT use a generic opener.
+The user has already completed the Capital Protection Assessment and has already been greeted. They are viewing their report on screen right now. Continue from the report and the capital protection consultation path rather than restarting discovery.
 
 CLIENT PROFILE:
   Name: ${userInfo.fullName}
@@ -129,6 +157,7 @@ IMPORTANT INSTRUCTIONS:
   - If a dimension scores red (<40%), highlight it as a priority area.
   - If a dimension scores green (70%+), acknowledge it as a strength.
   - Explain what their scores mean practically for their recovery prospects.
+  - The active route is Capital Protection case review with Lionel unless the user clearly says otherwise.
   - You can call show_calendar when they want to book a case review with Lionel.
   - Do not ask for contact details — they are already captured.`;
   };
@@ -150,6 +179,10 @@ IMPORTANT INSTRUCTIONS:
             apikey: anonKey,
             "Content-Type": "application/json",
           },
+          body: JSON.stringify({
+            mode: "capital_protection",
+            context: buildSessionContext(),
+          }),
         }
       );
 
@@ -173,7 +206,7 @@ IMPORTANT INSTRUCTIONS:
       console.error("Failed to start Daisy:", err);
       setIsConnecting(false);
     }
-  }, [conversation]);
+  }, [aiReport, conversation, result, userInfo]);
 
   const handleBookingComplete = useCallback(() => {
     setBookingConfirmed(true);
