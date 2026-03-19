@@ -153,19 +153,9 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
           className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
         >
           <Mic className="w-5 h-5 mr-3" />
-          {language === "nl" ? "Bespreek met Daisy" : "Discuss with Daisy"}
+          {language === "nl" ? "Bespreek uw rapport" : "Discuss your report"}
         </Button>
 
-        <Button
-          asChild
-          variant="outline"
-          className="w-full border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
-        >
-          <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-            {t.ctaBtn}
-            <ArrowRight className="w-5 h-5 ml-3" />
-          </a>
-        </Button>
         <p className="text-xs text-foreground/40 italic">{t.disclaimer}</p>
       </div>
 
