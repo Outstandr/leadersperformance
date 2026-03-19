@@ -83,12 +83,32 @@ const ui = {
 
 export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepProps) {
   const { language } = useLanguage();
-  const { openVoiceAgent } = useVoiceAgent();
   const t = ui[language] ?? ui.en;
   const c = colorConfig[scores.overallColor];
-  const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j";
 
   const firstName = userInfo.fullName.split(" ")[0];
+
+  const voiceContext = {
+    fullName: userInfo.fullName,
+    company: userInfo.company,
+    phone: userInfo.phone,
+    email: userInfo.email,
+    overall: scores.overall,
+    overallColor: scores.overallColor,
+    title: scores.title,
+    diagnosis: scores.diagnosis,
+    recommendation: scores.recommendation,
+    sections: scores.sections.map(s => ({
+      section: s.section,
+      sectionLabel: s.sectionLabel,
+      score: s.score,
+      color: s.color,
+    })),
+    primaryBottleneck: {
+      dimensionLabel: scores.primaryBottleneck.dimensionLabel[language],
+      impact: scores.primaryBottleneck.impact[language],
+    },
+  };
 
   return (
     <div className="p-6 md:p-10 space-y-8">
