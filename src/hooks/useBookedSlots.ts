@@ -40,8 +40,9 @@ export function useBookedSlots(date: Date | null | undefined, calendarId?: strin
         const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
         // Use ghl-booking for availability (GHL calendar is source of truth)
+        const calParam = calendarId ? `&calendarId=${calendarId}` : "";
         const res = await fetch(
-          `https://${projectId}.supabase.co/functions/v1/ghl-booking?date=${dateStr}`,
+          `https://${projectId}.supabase.co/functions/v1/ghl-booking?date=${dateStr}${calParam}`,
           {
             headers: {
               Authorization: `Bearer ${anonKey}`,
