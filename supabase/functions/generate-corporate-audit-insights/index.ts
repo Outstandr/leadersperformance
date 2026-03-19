@@ -35,7 +35,7 @@ serve(async (req) => {
     // Validate answers
     const validatedAnswers: Record<string, number> = {};
     for (const key of ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7']) {
-      validatedAnswers[key] = validateBinaryAnswer(answers?.[key]);
+      validatedAnswers[key] = validateAnswer(answers?.[key]);
     }
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
