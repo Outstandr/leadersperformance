@@ -37,8 +37,9 @@ const formSchema = z.object({
 
 const ui = {
   en: {
-    title: "Book Your Elite Strategy Call",
-    subtitle: "Private 1-on-1 strategy session with Lionel",
+    badge: "Founder Strategic Advisory",
+    title: "Book Your Strategic Advisory Call",
+    subtitle: "Private 1-on-1 strategic session with Lionel Eersteling",
     step1: "Your Details",
     step2: "Select Date & Time",
     firstName: "First Name",
@@ -57,13 +58,14 @@ const ui = {
     confirm: "Confirm Booking",
     confirming: "Confirming...",
     successTitle: "You're booked in.",
-    successBody: "We'll reach out within 24 hours to confirm your Elite strategy call and share preparation details.",
+    successBody: "We'll reach out within 24 hours to confirm your strategic advisory call and share preparation details.",
     successCta: "Close",
     notice: "Application subject to availability. We'll confirm within 24 hours.",
   },
   nl: {
-    title: "Boek je Elite Strategiegesprek",
-    subtitle: "Privé 1-op-1 strategiesessie met Lionel",
+    badge: "Founder Strategic Advisory",
+    title: "Boek je Strategisch Adviesgesprek",
+    subtitle: "Privé 1-op-1 strategische sessie met Lionel Eersteling",
     step1: "Jouw gegevens",
     step2: "Selecteer datum & tijd",
     firstName: "Voornaam",
@@ -82,7 +84,7 @@ const ui = {
     confirm: "Bevestig boeking",
     confirming: "Bevestigen...",
     successTitle: "Je bent ingepland.",
-    successBody: "We nemen binnen 24 uur contact op om je Elite strategiegesprek te bevestigen.",
+    successBody: "We nemen binnen 24 uur contact op om je strategisch adviesgesprek te bevestigen.",
     successCta: "Sluiten",
     notice: "Onder voorbehoud van beschikbaarheid. We bevestigen binnen 24 uur.",
   },
@@ -166,7 +168,7 @@ export function EliteBookingDialog({ open, onOpenChange }: EliteBookingDialogPro
         {/* Header */}
         <div className="bg-foreground text-background px-8 py-7">
           <div className="text-xs uppercase tracking-[0.2em] text-lioner-gold font-semibold mb-2">
-            ELITE · High Performance Mentorship
+            {t.badge}
           </div>
           <h2 className="text-2xl font-bold leading-tight">{t.title}</h2>
           <p className="mt-1 text-background/60 text-sm">{t.subtitle}</p>
