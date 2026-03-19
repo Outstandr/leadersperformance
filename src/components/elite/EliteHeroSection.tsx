@@ -4,6 +4,7 @@ import { ArrowRight, Crown } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import eliteThumbnail from "@/assets/lionelone.png";
 import { AssessmentDialog } from "@/components/assessment/AssessmentDialog";
+import { FounderPressureScanDialog } from "@/components/founder-scan/FounderPressureScanDialog";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
