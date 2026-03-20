@@ -56,7 +56,7 @@ export const HomePillarsSection = () => {
   };
 
   return (
-    <section ref={containerRef} className="relative bg-background" style={{ height: `${steps.length * 100}vh` }}>
+    <section id="pillars" ref={containerRef} className="relative bg-background" style={{ height: `${steps.length * 100}vh` }}>
       {/* Decorative gold swirling lines */}
       <div className="sticky top-0 h-screen pointer-events-none z-0 overflow-hidden">
         <svg
