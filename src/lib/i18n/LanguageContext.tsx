@@ -353,7 +353,7 @@ const en: Record<string, string> = {
 
   // Business Hero
   "business.hero.badge": "For teams of 5-50 persons",
-  "business.hero.headline": "Your company doesn't have a people problem.\nIt has a leadership structure problem.",
+  "business.hero.headline": "Most founders think their biggest problem is sales.\n\nIn reality, most companies lose money because their structure cannot support growth.",
   "business.hero.description": "Every organization reflects the standards its founder tolerates. If mediocrity persists, that's a choice.\n\nThe Business Reset Blueprint restructures your organisation so that accountability is in the right place and performance is no longer dependent on you alone.",
   "business.hero.belowVideo": "Within 30 days, the structure is installed that restores ownership, accountability and performance.",
   "business.hero.ctaPrimary": "Book a Consult",
