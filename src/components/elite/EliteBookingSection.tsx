@@ -31,9 +31,9 @@ export const EliteBookingSection = () => {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mb-6">
                 {t("elite.booking.heading")}
               </h2>
-              <p className="text-lg leading-relaxed mb-8 text-white/90">
+              <div className="text-lg leading-relaxed mb-8 text-white/90 whitespace-pre-line">
                 {t("elite.booking.subheading")}
-              </p>
+              </div>
               
               <Button 
                 size="lg" 

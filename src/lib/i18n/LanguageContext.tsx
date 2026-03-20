@@ -256,7 +256,7 @@ const en: Record<string, string> = {
   // Elite Hero
 
   "elite.hero.badge": "Founder Strategic Advisory",
-  "elite.hero.headline": "Strategic Advisory for Founders Under Pressure",
+  "elite.hero.headline": "I help founders see where their company is leaking money and fix the structure behind it.",
   "elite.hero.description": "Work directly with Lionel Eersteling as a strategic advisor for founders who operate under constant pressure, complex decisions, and high expectations.\n\nThis private advisory engagement helps founders restore clarity, strengthen leadership discipline and execute with precision.",
   "elite.hero.stat1Value": "",
   "elite.hero.stat1Label": "Founder Advisory",
@@ -330,7 +330,7 @@ const en: Record<string, string> = {
   // Elite – Booking
   "elite.booking.badge": "Limited Availability",
   "elite.booking.heading": "Work Directly With Lionel Eersteling",
-  "elite.booking.subheading": "This private advisory engagement is designed for founders and executives who operate under pressure and want sharper thinking, stronger leadership discipline and better execution.",
+  "elite.booking.subheading": "When founders call me:\n\n• Revenue grows but profit does not\n• The company becomes dependent on the founder\n• The team works hard but execution slows down\n• Opportunities appear but the organisation cannot move fast enough",
   "elite.booking.cta": "Apply for Founder Advisory",
   "elite.booking.spotsLeft": "Only 5 spots available per month",
   "elite.booking.includedTitle": "What's Included",
@@ -453,7 +453,7 @@ const en: Record<string, string> = {
   "assessmentCTA.disclaimer": "Complete in 10 minutes • Free personalized report",
 
   // Elite Pressure Scan CTA
-  "elite.pressureCTA.headline": "Founder Pressure builds long before it becomes visible.",
+  "elite.pressureCTA.headline": "Most founders don't realise how much money their company is quietly losing.",
   "elite.pressureCTA.cta": "Take the Founder Pressure Scan",
   "elite.pressureCTA.duration": "Duration: 3 minutes",
 };
@@ -707,7 +707,7 @@ const nl: Record<string, string> = {
   // Elite Hero
 
   "elite.hero.badge": "Founder Strategisch Advies",
-  "elite.hero.headline": "Strategisch Advies voor Founders Onder Druk",
+  "elite.hero.headline": "Ik help founders zien waar hun bedrijf geld lekt en de structuur erachter te herstellen.",
   "elite.hero.description": "Werk direct met Lionel Eersteling als strategisch adviseur voor founders die opereren onder constante druk, complexe beslissingen en hoge verwachtingen.\n\nDit privé adviestraject helpt founders helderheid te herstellen, leiderschapsdiscipline te versterken en met precisie uit te voeren.",
   "elite.hero.stat1Value": "",
   "elite.hero.stat1Label": "Founder Advies",
@@ -781,7 +781,7 @@ const nl: Record<string, string> = {
   // Elite – Booking (NL)
   "elite.booking.badge": "Beperkt aantal plaatsen beschikbaar",
   "elite.booking.heading": "Werk Direct Met Lionel Eersteling",
-  "elite.booking.subheading": "Dit privé adviestraject is ontworpen voor founders en executives die onder druk opereren en scherper denken, sterkere leiderschapsdiscipline en betere uitvoering willen.",
+  "elite.booking.subheading": "Wanneer founders mij bellen:\n\n• Omzet groeit maar winst niet\n• Het bedrijf wordt afhankelijk van de founder\n• Het team werkt hard maar de uitvoering vertraagt\n• Kansen verschijnen maar de organisatie kan niet snel genoeg bewegen",
   "elite.booking.cta": "Aanmelden voor Founder Advies",
   "elite.booking.spotsLeft": "Slechts 5 plekken per maand beschikbaar",
   "elite.booking.includedTitle": "Wat is inbegrepen",
@@ -893,7 +893,7 @@ const nl: Record<string, string> = {
   "assessmentCTA.disclaimer": "De test duurt slechts 10 minuten en je ontvangt je resultaat direct.",
 
   // Elite Pressure Scan CTA (NL)
-  "elite.pressureCTA.headline": "Founderdruk bouwt op lang voordat het zichtbaar wordt.",
+  "elite.pressureCTA.headline": "De meeste founders beseffen niet hoeveel geld hun bedrijf stilletjes verliest.",
   "elite.pressureCTA.cta": "Doe de Founder Pressure Scan",
   "elite.pressureCTA.duration": "Duur: 3 minuten",
 };
