@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from "react";
-import { Play, Pause, RotateCcw, ChevronDown } from "lucide-react";
+import { Play, Pause, RotateCcw } from "lucide-react";
 import lionelMission from "@/assets/lionel-mission.png";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
@@ -64,10 +64,6 @@ export const HomeMissionSection = () => {
               <><Play className="w-4 h-4" />{t("home.mission.read")}</>
             )}
           </button>
-          <div className="flex flex-col items-start mt-4 animate-bounce">
-            <ChevronDown className="w-10 h-10 text-foreground/70" />
-            <ChevronDown className="w-10 h-10 text-foreground/40 -mt-5" />
-          </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
@@ -157,11 +153,6 @@ export const HomeMissionSection = () => {
             <img src={lionelMission} alt="Lionel Eersteling" className="w-full h-full object-cover" width={600} height={800} loading="lazy" />
           </div>
         </div>
-      </div>
-      {/* Scroll down indicator */}
-      <div className="flex flex-col items-center mt-12 animate-bounce">
-        <ChevronDown className="w-10 h-10 text-foreground/70" />
-        <ChevronDown className="w-10 h-10 text-foreground/40 -mt-5" />
       </div>
     </section>
   );
