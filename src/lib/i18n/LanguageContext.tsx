@@ -256,7 +256,7 @@ const en: Record<string, string> = {
   // Elite Hero
 
   "elite.hero.badge": "Founder Strategic Advisory",
-  "elite.hero.headline": "Strategic Advisory for Founders Under Pressure",
+  "elite.hero.headline": "I help founders see where their company is leaking money and fix the structure behind it.",
   "elite.hero.description": "Work directly with Lionel Eersteling as a strategic advisor for founders who operate under constant pressure, complex decisions, and high expectations.\n\nThis private advisory engagement helps founders restore clarity, strengthen leadership discipline and execute with precision.",
   "elite.hero.stat1Value": "",
   "elite.hero.stat1Label": "Founder Advisory",
