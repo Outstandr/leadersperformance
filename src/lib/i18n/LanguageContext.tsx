@@ -330,7 +330,7 @@ const en: Record<string, string> = {
   // Elite – Booking
   "elite.booking.badge": "Limited Availability",
   "elite.booking.heading": "Work Directly With Lionel Eersteling",
-  "elite.booking.subheading": "This private advisory engagement is designed for founders and executives who operate under pressure and want sharper thinking, stronger leadership discipline and better execution.",
+  "elite.booking.subheading": "When founders call me:\n\n• Revenue grows but profit does not\n• The company becomes dependent on the founder\n• The team works hard but execution slows down\n• Opportunities appear but the organisation cannot move fast enough",
   "elite.booking.cta": "Apply for Founder Advisory",
   "elite.booking.spotsLeft": "Only 5 spots available per month",
   "elite.booking.includedTitle": "What's Included",
