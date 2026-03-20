@@ -114,7 +114,7 @@ const en: Record<string, string> = {
   "home.pillars.title1": "Situation Assessment",
   "home.pillars.desc1": "A private conversation to understand the real pressure points inside the business and leadership structure.\n\nWe assess:\n• leadership dynamics\n• operational clarity\n• decision pressure\n• structural risks",
   "home.pillars.title2": "Strategic Diagnosis",
-  "home.pillars.desc2": "We identify the underlying problem behind the visible symptoms.\n\nIn many cases the issue is not growth, revenue or market — but structure, leadership alignment or decision quality.",
+  "home.pillars.desc2": "We identify the underlying problem behind the visible symptoms.\n\nIn many cases the issue is not growth, revenue or market, but structure, leadership alignment or decision quality.",
   "home.pillars.title3": "Intervention Environment",
   "home.pillars.desc3": "Depending on the situation, the next step may include:\n• UNMASKED intervention\n• Founder Strategic Advisory\n• Leadership alignment sessions\n• Special situations coordination\n\nThe goal is to create a controlled environment where real decisions can be made.",
   "home.pillars.title4": "Structural Reset",

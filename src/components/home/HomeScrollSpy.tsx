@@ -1,59 +1,58 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-const sections = [
-  { id: "home", labelEn: "HOME", labelNl: "HOME" },
-  { id: "features", labelEn: "WHAT WE DO", labelNl: "WAT WE DOEN" },
-  { id: "about", labelEn: "ABOUT ME", labelNl: "OVER MIJ" },
-  { id: "mission", labelEn: "OUR PURPOSE", labelNl: "ONS DOEL" },
-  { id: "pillars", labelEn: "OUR PROCESS", labelNl: "ONS PROCES" },
-  { id: "articles", labelEn: "ARTICLES", labelNl: "ARTIKELEN" },
-  { id: "faq", labelEn: "FAQ", labelNl: "FAQ" },
+const processSteps = [
+  { index: 0, labelEn: "SITUATION ASSESSMENT", labelNl: "SITUATIEBEOORDELING" },
+  { index: 1, labelEn: "STRATEGIC DIAGNOSIS", labelNl: "STRATEGISCHE DIAGNOSE" },
+  { index: 2, labelEn: "INTERVENTION ENVIRONMENT", labelNl: "INTERVENTIEOMGEVING" },
+  { index: 3, labelEn: "STRUCTURAL RESET", labelNl: "STRUCTURELE RESET" },
+  { index: 4, labelEn: "STRATEGIC CONTINUATION", labelNl: "STRATEGISCHE CONTINUÏTEIT" },
 ];
 
 export const HomeScrollSpy = () => {
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeStep, setActiveStep] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
   const { language } = useLanguage();
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length > 0) {
-          // Pick the one with highest intersection ratio
-          const best = visible.reduce((a, b) =>
-            a.intersectionRatio > b.intersectionRatio ? a : b
-          );
-          setActiveSection(best.target.id);
-        }
-      },
-      { threshold: 0.3 }
-    );
+    const handleScroll = () => {
+      const pillarsEl = document.getElementById("pillars");
+      if (!pillarsEl) return;
 
-    sections.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+      const rect = pillarsEl.getBoundingClientRect();
+      const sectionHeight = pillarsEl.offsetHeight;
+      const windowHeight = window.innerHeight;
 
-    return () => observer.disconnect();
+      // Show only when pillars section is in view
+      const inView = rect.top < windowHeight * 0.5 && rect.bottom > windowHeight * 0.5;
+      setIsVisible(inView);
+
+      if (inView) {
+        const scrolled = -rect.top;
+        const scrollableHeight = sectionHeight - windowHeight;
+        const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
+        const idx = Math.min(Math.floor(progress * processSteps.length), processSteps.length - 1);
+        setActiveStep(idx);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+  if (!isVisible) return null;
 
   return (
     <nav className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-end gap-3">
-      {sections.map(({ id, labelEn, labelNl }) => {
-        const isActive = activeSection === id;
+      {processSteps.map(({ index, labelEn, labelNl }) => {
+        const isActive = activeStep === index;
         const label = language === "nl" ? labelNl : labelEn;
         return (
           <button
-            key={id}
-            onClick={() => scrollTo(id)}
-            className="group flex items-center gap-3 cursor-pointer"
-            aria-label={`Scroll to ${label}`}
+            key={index}
+            className="group flex items-center gap-3 cursor-default"
+            aria-label={label}
           >
             <span
               className={`text-xs font-medium tracking-[0.15em] uppercase transition-all duration-300 ${
