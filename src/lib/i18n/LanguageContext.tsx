@@ -814,7 +814,7 @@ const nl: Record<string, string> = {
   "business.whyUs.eyebrow": "Het probleem",
   "business.whyUs.heading": "Ik werk met founders die al iets echts hebben gebouwd maar weten dat hun bedrijf beter kan presteren.",
   "business.whyUs.statementLine1": "Prestatie is geen toeval. Het wordt het resultaat van het systeem.",
-  "business.whyUs.statementLine2": "Ik werk niet met theorieën.\n\nIk werk met bedrijven.",
+  "business.whyUs.statementLine2": "Ik werk niet met theorieën. Ik werk met bedrijven.",
   "business.whyUs.body1": "Je neemt capabele mensen aan, maar jij blijft degene die corrigeert, uitlegt en problemen oplost. Elke herhaalde instructie kost tijd. Elke gemiste deadline zonder consequentie verlaagt de standaard.",
   "business.whyUs.body2": "Dit is geen capaciteitsprobleem.\nDit is een leiderschapsstructuurprobleem.\n\nAls jij fouten opvangt, neemt niemand eigenaarschap. Als jij blijft bijsturen, wordt afhankelijkheid de cultuur.\n\nHet bedrijf gaat vooruit, maar alleen door jouw constante interventie. En dat is geen schaalbaar systeem.",
   "business.whyUs.symptomsHeading": "De symptomen",
