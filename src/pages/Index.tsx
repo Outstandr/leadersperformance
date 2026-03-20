@@ -37,10 +37,10 @@ const Index = () => {
           <HomeMissionSection />
           <section className="py-12 bg-[hsl(var(--lioner-charcoal))]">
             <div className="container mx-auto px-4 max-w-4xl text-center">
-              <blockquote className="text-xl md:text-2xl lg:text-3xl font-light text-white leading-relaxed italic">
-                "I help founders see where their company is leaking money and fix the structure behind it."
+              <blockquote className="text-xl md:text-2xl lg:text-3xl font-light text-white leading-relaxed italic font-serif">
+                ​“money leaking inside the structure”
               </blockquote>
-              <p className="mt-6 text-2xl md:text-3xl text-[hsl(var(--lioner-gold))] font-semibold font-serif">Lionel</p>
+              <p className="mt-6 text-2xl md:text-3xl text-[hsl(var(--lioner-gold))] font-semibold font-serif">- Lionel -</p>
             </div>
           </section>
           <HomePillarsSection />
@@ -51,8 +51,8 @@ const Index = () => {
       <div className="relative z-10 bg-background">
         <HomeFooter />
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Index;
