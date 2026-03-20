@@ -781,7 +781,7 @@ const nl: Record<string, string> = {
   // Elite – Booking (NL)
   "elite.booking.badge": "Beperkt aantal plaatsen beschikbaar",
   "elite.booking.heading": "Werk Direct Met Lionel Eersteling",
-  "elite.booking.subheading": "Dit privé adviestraject is ontworpen voor founders en executives die onder druk opereren en scherper denken, sterkere leiderschapsdiscipline en betere uitvoering willen.",
+  "elite.booking.subheading": "Wanneer founders mij bellen:\n\n• Omzet groeit maar winst niet\n• Het bedrijf wordt afhankelijk van de founder\n• Het team werkt hard maar de uitvoering vertraagt\n• Kansen verschijnen maar de organisatie kan niet snel genoeg bewegen",
   "elite.booking.cta": "Aanmelden voor Founder Advies",
   "elite.booking.spotsLeft": "Slechts 5 plekken per maand beschikbaar",
   "elite.booking.includedTitle": "Wat is inbegrepen",
