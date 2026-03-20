@@ -804,7 +804,7 @@ const nl: Record<string, string> = {
   "elite.footer.legal": "Juridisch",
   "elite.footer.copyright": "© {year} Leaders Performance Institute. Alle rechten voorbehouden.",
   "business.hero.badge": "Voor teams van 5-50 personen",
-  "business.hero.headline": "Je bedrijf heeft geen mensenprobleem.\nHet heeft een leiderschapsstructuurprobleem.",
+  "business.hero.headline": "De meeste founders denken dat hun grootste probleem sales is.\n\nIn werkelijkheid verliezen de meeste bedrijven geld omdat hun structuur groei niet aankan.",
   "business.hero.description": "Elke organisatie weerspiegelt de standaard die de oprichter tolereert. Als middelmatigheid blijft bestaan, is dat een keuze.\n\nDe Business Reset Blueprint herstructureert je organisatie zodat verantwoordelijkheid weer op de juiste plek ligt en prestaties niet afhankelijk zijn van jou alleen.",
   "business.hero.belowVideo": "Binnen 30 dagen is de structuur geïnstalleerd die eigenaarschap, verantwoordelijkheid en prestaties herstelt.",
   "business.hero.ctaPrimary": "Boek een consult",
