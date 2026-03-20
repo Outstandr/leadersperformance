@@ -14,6 +14,7 @@ import { HomeScrollSpy } from "@/components/home/HomeScrollSpy";
 const Index = () => {
   return (
     <div>
+      <HomeScrollSpy />
       <HomeNavigation />
       <main>
         <HomeHeroSection />
