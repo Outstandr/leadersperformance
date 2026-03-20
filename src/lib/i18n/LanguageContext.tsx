@@ -893,7 +893,7 @@ const nl: Record<string, string> = {
   "assessmentCTA.disclaimer": "De test duurt slechts 10 minuten en je ontvangt je resultaat direct.",
 
   // Elite Pressure Scan CTA (NL)
-  "elite.pressureCTA.headline": "Founderdruk bouwt op lang voordat het zichtbaar wordt.",
+  "elite.pressureCTA.headline": "De meeste founders beseffen niet hoeveel geld hun bedrijf stilletjes verliest.",
   "elite.pressureCTA.cta": "Doe de Founder Pressure Scan",
   "elite.pressureCTA.duration": "Duur: 3 minuten",
 };
