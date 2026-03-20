@@ -556,7 +556,7 @@ const nl: Record<string, string> = {
   "home.pillars.title1": "Situatiebeoordeling",
   "home.pillars.desc1": "Een privégesprek om de werkelijke drukpunten binnen de business en leiderschapsstructuur te begrijpen.\n\nWe beoordelen:\n• leiderschapsdynamiek\n• operationele helderheid\n• beslissingsdruk\n• structurele risico's",
   "home.pillars.title2": "Strategische Diagnose",
-  "home.pillars.desc2": "We identificeren het onderliggende probleem achter de zichtbare symptomen.\n\nIn veel gevallen is het probleem niet groei, omzet of markt — maar structuur, leiderschapsafstemming of besluitkwaliteit.",
+  "home.pillars.desc2": "We identificeren het onderliggende probleem achter de zichtbare symptomen.\n\nIn veel gevallen is het probleem niet groei, omzet of markt, maar structuur, leiderschapsafstemming of besluitkwaliteit.",
   "home.pillars.title3": "Interventieomgeving",
   "home.pillars.desc3": "Afhankelijk van de situatie kan de volgende stap omvatten:\n• UNMASKED interventie\n• Founder Strategic Advisory\n• Leiderschapsafstemming sessies\n• Special situations coördinatie\n\nHet doel is een gecontroleerde omgeving te creëren waar echte beslissingen genomen kunnen worden.",
   "home.pillars.title4": "Structurele Reset",
