@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from "react";
-import { Play, Pause, RotateCcw, ChevronDown } from "lucide-react";
+import { Play, Pause, RotateCcw } from "lucide-react";
 import lionelMission from "@/assets/lionel-mission.png";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
