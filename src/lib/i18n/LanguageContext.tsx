@@ -453,7 +453,7 @@ const en: Record<string, string> = {
   "assessmentCTA.disclaimer": "Complete in 10 minutes • Free personalized report",
 
   // Elite Pressure Scan CTA
-  "elite.pressureCTA.headline": "Founder Pressure builds long before it becomes visible.",
+  "elite.pressureCTA.headline": "Most founders don't realise how much money their company is quietly losing.",
   "elite.pressureCTA.cta": "Take the Founder Pressure Scan",
   "elite.pressureCTA.duration": "Duration: 3 minutes",
 };
