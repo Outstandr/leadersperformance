@@ -154,11 +154,6 @@ export const HomeMissionSection = () => {
           </div>
         </div>
       </div>
-      {/* Scroll down indicator */}
-      <div className="flex flex-col items-center mt-12 animate-bounce">
-        <ChevronDown className="w-10 h-10 text-foreground/70" />
-        <ChevronDown className="w-10 h-10 text-foreground/40 -mt-5" />
-      </div>
     </section>
   );
 };
