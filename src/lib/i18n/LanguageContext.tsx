@@ -353,7 +353,7 @@ const en: Record<string, string> = {
 
   // Business Hero
   "business.hero.badge": "For teams of 5-50 persons",
-  "business.hero.headline": "Your company doesn't have a people problem.\nIt has a leadership structure problem.",
+  "business.hero.headline": "Most founders think their biggest problem is sales.\n\nIn reality, most companies lose money because their structure cannot support growth.",
   "business.hero.description": "Every organization reflects the standards its founder tolerates. If mediocrity persists, that's a choice.\n\nThe Business Reset Blueprint restructures your organisation so that accountability is in the right place and performance is no longer dependent on you alone.",
   "business.hero.belowVideo": "Within 30 days, the structure is installed that restores ownership, accountability and performance.",
   "business.hero.ctaPrimary": "Book a Consult",
@@ -361,7 +361,9 @@ const en: Record<string, string> = {
 
   // Business – Why Us
   "business.whyUs.eyebrow": "The Problem",
-  "business.whyUs.heading": "The leadership standard has become unclear.",
+  "business.whyUs.heading": "I work with founders who already built something real but know their company could perform better.",
+  "business.whyUs.statementLine1": "Performance isn't a coincidence. It becomes the result of the system.",
+  "business.whyUs.statementLine2": "I don't work with theories.\n\nI work with companies.",
   "business.whyUs.body1": "You hire capable people, yet you remain the one correcting, explaining and fixing problems. Every repeated instruction takes time. Every missed deadline without consequence lowers the standard.",
   "business.whyUs.body2": "This is not a capacity issue.\nThis is a leadership structure issue.\n\nIf you catch mistakes, no one takes ownership. If you keep adjusting, dependency becomes the culture.\n\nThe company moves forward, but only through your constant intervention. And that's not a scalable system.",
   "business.whyUs.symptomsHeading": "The Symptoms",
@@ -802,7 +804,7 @@ const nl: Record<string, string> = {
   "elite.footer.legal": "Juridisch",
   "elite.footer.copyright": "© {year} Leaders Performance Institute. Alle rechten voorbehouden.",
   "business.hero.badge": "Voor teams van 5-50 personen",
-  "business.hero.headline": "Je bedrijf heeft geen mensenprobleem.\nHet heeft een leiderschapsstructuurprobleem.",
+  "business.hero.headline": "De meeste founders denken dat hun grootste probleem sales is.\n\nIn werkelijkheid verliezen de meeste bedrijven geld omdat hun structuur groei niet aankan.",
   "business.hero.description": "Elke organisatie weerspiegelt de standaard die de oprichter tolereert. Als middelmatigheid blijft bestaan, is dat een keuze.\n\nDe Business Reset Blueprint herstructureert je organisatie zodat verantwoordelijkheid weer op de juiste plek ligt en prestaties niet afhankelijk zijn van jou alleen.",
   "business.hero.belowVideo": "Binnen 30 dagen is de structuur geïnstalleerd die eigenaarschap, verantwoordelijkheid en prestaties herstelt.",
   "business.hero.ctaPrimary": "Boek een consult",
@@ -810,7 +812,9 @@ const nl: Record<string, string> = {
 
   // Business – Why Us (NL)
   "business.whyUs.eyebrow": "Het probleem",
-  "business.whyUs.heading": "De leiderschapsstandaard is onduidelijk geworden.",
+  "business.whyUs.heading": "Ik werk met founders die al iets echts hebben gebouwd maar weten dat hun bedrijf beter kan presteren.",
+  "business.whyUs.statementLine1": "Prestatie is geen toeval. Het wordt het resultaat van het systeem.",
+  "business.whyUs.statementLine2": "Ik werk niet met theorieën.\n\nIk werk met bedrijven.",
   "business.whyUs.body1": "Je neemt capabele mensen aan, maar jij blijft degene die corrigeert, uitlegt en problemen oplost. Elke herhaalde instructie kost tijd. Elke gemiste deadline zonder consequentie verlaagt de standaard.",
   "business.whyUs.body2": "Dit is geen capaciteitsprobleem.\nDit is een leiderschapsstructuurprobleem.\n\nAls jij fouten opvangt, neemt niemand eigenaarschap. Als jij blijft bijsturen, wordt afhankelijkheid de cultuur.\n\nHet bedrijf gaat vooruit, maar alleen door jouw constante interventie. En dat is geen schaalbaar systeem.",
   "business.whyUs.symptomsHeading": "De symptomen",
