@@ -36,9 +36,6 @@ export const BusinessWhyUsSection = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-lioner-gold mb-6 whitespace-pre-line">
             {t("business.whyUs.statementLine1")}
           </h2>
-          <h2 className="text-2xl md:text-3xl font-bold text-lioner-gold whitespace-pre-line">
-            {t("business.whyUs.statementLine2")}
-          </h2>
         </div>
 
         <div className="max-w-3xl mx-auto text-center mb-12">
@@ -48,6 +45,12 @@ export const BusinessWhyUsSection = () => {
           <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
             {t("business.whyUs.body2")}
           </p>
+        </div>
+
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-lioner-gold whitespace-pre-line">
+            {t("business.whyUs.statementLine2")}
+          </h2>
         </div>
 
         <div className="text-center mb-8">
