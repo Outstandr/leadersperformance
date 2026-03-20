@@ -1,4 +1,4 @@
-import { AlertTriangle, UserX, Ghost, ChevronDown } from "lucide-react";
+import { AlertTriangle, UserX, Ghost } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const BusinessWhyUsSection = () => {
@@ -32,6 +32,15 @@ export const BusinessWhyUsSection = () => {
           </h2>
         </div>
 
+        <div className="max-w-3xl mx-auto text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-lioner-gold mb-6 whitespace-pre-line">
+            {t("business.whyUs.statementLine1")}
+          </h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-lioner-gold whitespace-pre-line">
+            {t("business.whyUs.statementLine2")}
+          </h2>
+        </div>
+
         <div className="max-w-3xl mx-auto text-center mb-12">
           <p className="text-lg text-muted-foreground leading-relaxed mb-4">
             {t("business.whyUs.body1")}
@@ -58,12 +67,6 @@ export const BusinessWhyUsSection = () => {
               <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{symptom.quote}</p>
             </div>
           ))}
-        </div>
-
-        {/* Scroll down indicator */}
-        <div className="flex flex-col items-center mt-12 animate-bounce">
-          <ChevronDown className="w-10 h-10 text-foreground/70" />
-          <ChevronDown className="w-10 h-10 text-foreground/40 -mt-5" />
         </div>
       </div>
     </section>
