@@ -64,10 +64,6 @@ export const HomeMissionSection = () => {
               <><Play className="w-4 h-4" />{t("home.mission.read")}</>
             )}
           </button>
-          <div className="flex flex-col items-start mt-4 animate-bounce">
-            <ChevronDown className="w-10 h-10 text-foreground/70" />
-            <ChevronDown className="w-10 h-10 text-foreground/40 -mt-5" />
-          </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
