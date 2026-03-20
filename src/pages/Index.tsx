@@ -9,10 +9,12 @@ import { HomeFooter } from "@/components/home/HomeFooter";
 import { HomeFAQSection } from "@/components/home/HomeFAQSection";
 import { HomeGoldLines } from "@/components/home/HomeGoldLines";
 import { HomeArticlesSection } from "@/components/home/HomeArticlesSection";
+import { HomeScrollSpy } from "@/components/home/HomeScrollSpy";
 
 const Index = () => {
   return (
     <div>
+      <HomeScrollSpy />
       <HomeNavigation />
       <main>
         <HomeHeroSection />
