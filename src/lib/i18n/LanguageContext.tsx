@@ -707,7 +707,7 @@ const nl: Record<string, string> = {
   // Elite Hero
 
   "elite.hero.badge": "Founder Strategisch Advies",
-  "elite.hero.headline": "Strategisch Advies voor Founders Onder Druk",
+  "elite.hero.headline": "Ik help founders zien waar hun bedrijf geld lekt en de structuur erachter te herstellen.",
   "elite.hero.description": "Werk direct met Lionel Eersteling als strategisch adviseur voor founders die opereren onder constante druk, complexe beslissingen en hoge verwachtingen.\n\nDit privé adviestraject helpt founders helderheid te herstellen, leiderschapsdiscipline te versterken en met precisie uit te voeren.",
   "elite.hero.stat1Value": "",
   "elite.hero.stat1Label": "Founder Advies",
