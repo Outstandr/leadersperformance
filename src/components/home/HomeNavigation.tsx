@@ -159,7 +159,20 @@ export const HomeNavigation = () => {
           <div className={`lg:hidden py-4 border-t ${isDark ? "border-background/10" : "border-border/50"}`}>
             <div className="flex flex-col gap-1">
               {navItems.map((item) =>
-                item.href.startsWith("/") ? (
+                item.href.startsWith("http") ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+                      isDark ? "text-background hover:bg-background/10" : "text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                ) : item.href.startsWith("/") ? (
                   <Link
                     key={item.label}
                     to={item.href}
