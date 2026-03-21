@@ -642,7 +642,7 @@ const nl: Record<string, string> = {
   "home.articles.title1": "De kracht van mentale soevereiniteit",
   "home.articles.desc1": "Ontdek hoe het herwinnen van controle over je gedachten en emoties je leiderschapsaanwezigheid en besluitvorming onder druk kan transformeren.",
   "home.articles.title2": "Waarom discipline motivatie verslaat",
-  "home.articles.desc2": "Motivatie vervaagt. Discipline blijft. Leer waarom de meest effectieve leiders vertrouwen op systemen en structuur — niet op vluchtige inspiratie.",
+  "home.articles.desc2": "Motivatie vervaagt. Discipline blijft. Leer waarom de meest effectieve leiders vertrouwen op systemen en structuur, niet op vluchtige inspiratie.",
   "home.articles.title3": "Leiden door onzekerheid",
   "home.articles.desc3": "In tijden van crisis kijkt jouw team naar jou. Bouw de veerkracht en kalmte om met helderheid te leiden wanneer het er het meest toe doet.",
   "home.articles.title4": "De Reset Methode uitgelegd",
