@@ -45,9 +45,9 @@ export const BusinessWhyUsSection = () => {
           <p className="text-lg text-muted-foreground leading-relaxed whitespace-pre-line mb-6">
             {t("business.whyUs.body2")}
           </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-lioner-gold">
-            {t("business.whyUs.statementLine2")}
-          </h2>
+          
+
+          
         </div>
 
         <div className="text-center mb-8">
