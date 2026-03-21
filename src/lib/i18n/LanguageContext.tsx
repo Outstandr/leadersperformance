@@ -273,7 +273,7 @@ const en: Record<string, string> = {
 
   // Elite – Quote
   "elite.quote1": "Most founders are not lacking ambition.\nThey are lacking a structure that challenges their thinking.",
-  "elite.quote2": "If you keep starting over, you don't need a new plan — you need a stronger frame.",
+  "elite.quote2": "If you keep starting over, you don't need a new plan. You need a stronger frame.",
 
   // Elite – Program
   "elite.program.eyebrow": "The Framework",
