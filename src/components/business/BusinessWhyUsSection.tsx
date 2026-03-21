@@ -69,11 +69,6 @@ export const BusinessWhyUsSection = () => {
           ))}
         </div>
 
-        <div className="max-w-3xl mx-auto text-center mt-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-lioner-gold">
-            {t("business.whyUs.statementLine2")}
-          </h2>
-        </div>
       </div>
     </section>
   );
