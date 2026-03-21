@@ -9,13 +9,13 @@ export const EliteBookingSection = () => {
   const [scanOpen, setScanOpen] = useState(false);
 
   const includes = [
-    t("elite.booking.include1"),
-    t("elite.booking.include2"),
-    t("elite.booking.include3"),
-    t("elite.booking.include4"),
-    t("elite.booking.include5"),
-    t("elite.booking.include6"),
-  ].filter(Boolean);
+  t("elite.booking.include1"),
+  t("elite.booking.include2"),
+  t("elite.booking.include3"),
+  t("elite.booking.include4"),
+  t("elite.booking.include5"),
+  t("elite.booking.include6")].
+  filter(Boolean);
 
   return (
     <section id="apply" className="py-8 lg:py-12 bg-white">
@@ -31,15 +31,15 @@ export const EliteBookingSection = () => {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold font-sans mb-6">
                 {t("elite.booking.heading")}
               </h2>
-              <div className="text-lg leading-relaxed mb-8 text-white/90 whitespace-pre-line">
+              <div className="text-lg leading-relaxed mb-8 text-white/90 whitespace-pre-line font-semibold">
                 {t("elite.booking.subheading")}
               </div>
               
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 onClick={() => setScanOpen(true)}
-                className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-white/90 font-medium rounded-none px-8 py-4 h-auto group"
-              >
+                className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-white/90 font-medium rounded-none px-8 py-4 h-auto group">
+                
                 {t("elite.booking.cta")}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -53,14 +53,14 @@ export const EliteBookingSection = () => {
             <div className="bg-white/10 backdrop-blur-sm p-8 border border-white/20 text-white">
               <h3 className="text-2xl font-semibold mb-6">{t("elite.booking.includedTitle")}</h3>
               <ul className="space-y-4">
-                {includes.map((item, index) => (
-                  <li key={index} className="flex items-start gap-3">
+                {includes.map((item, index) =>
+                <li key={index} className="flex items-start gap-3">
                     <div className="bg-white/20 w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check className="w-4 h-4" />
                     </div>
                     <span>{item}</span>
                   </li>
-                ))}
+                )}
               </ul>
             </div>
           </div>
@@ -68,6 +68,6 @@ export const EliteBookingSection = () => {
       </div>
 
       <FounderPressureScanDialog open={scanOpen} onOpenChange={setScanOpen} />
-    </section>
-  );
+    </section>);
+
 };
