@@ -129,7 +129,7 @@ const en: Record<string, string> = {
   "home.testimonials.subheading": "Hear directly from founders and executives who have experienced clarity through our programs.",
   "home.testimonials.q1": "The UNMASKED experience forced me to confront decisions I'd been avoiding for months. Within two weeks of returning, I restructured my entire leadership team.",
   "home.testimonials.q2": "Lionel's advisory gave me the accountability framework I was missing. My execution discipline has completely transformed since we started working together.",
-  "home.testimonials.q3": "I went in skeptical and came out with absolute clarity. The desert environment strips everything away — you're left with only what matters.",
+  "home.testimonials.q3": "I went in skeptical and came out with absolute clarity. The desert environment strips everything away. You're left with only what matters.",
   "home.testimonials.q4": "The structured approach to decision-making has been invaluable. I no longer feel paralyzed by the complexity of scaling my business.",
 
   // Showcase
