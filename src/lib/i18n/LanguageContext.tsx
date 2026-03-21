@@ -573,7 +573,7 @@ const nl: Record<string, string> = {
   "home.testimonials.subheading": "Hoor direct van ondernemers en leidinggevenden die helderheid hebben ervaren via onze programma's.",
   "home.testimonials.q1": "De UNMASKED-ervaring dwong me beslissingen onder ogen te zien die ik al maanden uitstelde. Binnen twee weken na terugkomst heb ik mijn gehele leiderschapsteam geherstructureerd.",
   "home.testimonials.q2": "Lionel's advies gaf me het verantwoordelijkheidsraamwerk dat ik miste. Mijn uitvoeringsdiscipline is volledig getransformeerd sinds we samenwerken.",
-  "home.testimonials.q3": "Ik ging er sceptisch in en kwam eruit met absolute helderheid. De woestijnomgeving stript alles weg — je houdt alleen over wat echt belangrijk is.",
+  "home.testimonials.q3": "Ik ging er sceptisch in en kwam eruit met absolute helderheid. De woestijnomgeving stript alles weg. Je houdt alleen over wat echt belangrijk is.",
   "home.testimonials.q4": "De gestructureerde aanpak van besluitvorming is van onschatbare waarde geweest. Ik voel me niet langer verlamd door de complexiteit van het opschalen van mijn bedrijf.",
 
   // Showcase
