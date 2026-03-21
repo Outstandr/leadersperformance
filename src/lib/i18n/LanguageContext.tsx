@@ -198,7 +198,7 @@ const en: Record<string, string> = {
   "home.articles.title1": "The Power of Mental Sovereignty",
   "home.articles.desc1": "Discover how reclaiming control over your thoughts and emotions can transform your leadership presence and decision-making under pressure.",
   "home.articles.title2": "Why Discipline Beats Motivation",
-  "home.articles.desc2": "Motivation fades. Discipline endures. Learn why the most effective leaders rely on systems and structure — not fleeting inspiration.",
+  "home.articles.desc2": "Motivation fades. Discipline endures. Learn why the most effective leaders rely on systems and structure, not fleeting inspiration.",
   "home.articles.title3": "Leading Through Uncertainty",
   "home.articles.desc3": "In times of crisis, your team looks to you. Build the resilience and composure needed to lead with clarity when it matters most.",
   "home.articles.title4": "The Reset Method Explained",
