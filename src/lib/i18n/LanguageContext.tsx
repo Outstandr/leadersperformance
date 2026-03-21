@@ -59,7 +59,7 @@ const en: Record<string, string> = {
   // Offerings
   "home.offerings.eyebrow1": "Private Reset",
   "home.offerings.title1": "UNMASKED",
-  "home.offerings.body1": "I lead UNMASKED personally.\n\nThis is not a seminar. It's a controlled reset.\n\nWe strip away what no longer serves you and rebuild from structure.\n\nBody. Clarity. Command. Execution.\n\nVitality — Recalibrate your biological baseline so your energy matches your ambition.\nMindset — Expose the patterns driving your decisions under pressure.\nLeadership — Reset your command presence from the inside out.\nBusiness — Build a precise 90-day execution map grounded in reality.\n\nMy name is Lionel Eersteling.\nFormer professional athlete.\nMulti-entrepreneur.\nInvestor.\nFounder of the Leaders Performance Group.\n\nI don't sell motivation.\nI build operating systems for leaders who refuse to drift.",
+  "home.offerings.body1": "I lead UNMASKED personally.\n\nThis is not a seminar. It's a controlled reset.\n\nWe strip away what no longer serves you and rebuild from structure.\n\nBody. Clarity. Command. Execution.\n\nVitality. Recalibrate your biological baseline so your energy matches your ambition.\nMindset. Expose the patterns driving your decisions under pressure.\nLeadership. Reset your command presence from the inside out.\nBusiness. Build a precise 90-day execution map grounded in reality.\n\nMy name is Lionel Eersteling.\nFormer professional athlete.\nMulti-entrepreneur.\nInvestor.\nFounder of the Leaders Performance Group.\n\nI don't sell motivation.\nI build operating systems for leaders who refuse to drift.",
   "home.offerings.specs1": "Limited to 2–4 participants per edition.",
   "home.offerings.link1": "View Experience details",
   "home.offerings.eyebrow2": "Ongoing Strategy",
@@ -129,7 +129,7 @@ const en: Record<string, string> = {
   "home.testimonials.subheading": "Hear directly from founders and executives who have experienced clarity through our programs.",
   "home.testimonials.q1": "The UNMASKED experience forced me to confront decisions I'd been avoiding for months. Within two weeks of returning, I restructured my entire leadership team.",
   "home.testimonials.q2": "Lionel's advisory gave me the accountability framework I was missing. My execution discipline has completely transformed since we started working together.",
-  "home.testimonials.q3": "I went in skeptical and came out with absolute clarity. The desert environment strips everything away — you're left with only what matters.",
+  "home.testimonials.q3": "I went in skeptical and came out with absolute clarity. The desert environment strips everything away. You're left with only what matters.",
   "home.testimonials.q4": "The structured approach to decision-making has been invaluable. I no longer feel paralyzed by the complexity of scaling my business.",
 
   // Showcase
@@ -198,7 +198,7 @@ const en: Record<string, string> = {
   "home.articles.title1": "The Power of Mental Sovereignty",
   "home.articles.desc1": "Discover how reclaiming control over your thoughts and emotions can transform your leadership presence and decision-making under pressure.",
   "home.articles.title2": "Why Discipline Beats Motivation",
-  "home.articles.desc2": "Motivation fades. Discipline endures. Learn why the most effective leaders rely on systems and structure — not fleeting inspiration.",
+  "home.articles.desc2": "Motivation fades. Discipline endures. Learn why the most effective leaders rely on systems and structure, not fleeting inspiration.",
   "home.articles.title3": "Leading Through Uncertainty",
   "home.articles.desc3": "In times of crisis, your team looks to you. Build the resilience and composure needed to lead with clarity when it matters most.",
   "home.articles.title4": "The Reset Method Explained",
@@ -273,7 +273,7 @@ const en: Record<string, string> = {
 
   // Elite – Quote
   "elite.quote1": "Most founders are not lacking ambition.\nThey are lacking a structure that challenges their thinking.",
-  "elite.quote2": "If you keep starting over, you don't need a new plan — you need a stronger frame.",
+  "elite.quote2": "If you keep starting over, you don't need a new plan. You need a stronger frame.",
 
   // Elite – Program
   "elite.program.eyebrow": "The Framework",
@@ -500,7 +500,7 @@ const nl: Record<string, string> = {
   // Offerings
   "home.offerings.eyebrow1": "Privé reset",
   "home.offerings.title1": "UNMASKED",
-  "home.offerings.body1": "Ik leid UNMASKED persoonlijk.\n\nDit is geen seminar.\n\nDit is een gerichte reset.\n\nWe verwijderen wat je niet langer dient\nen bouwen opnieuw op vanuit structuur.\n\nLichaam.\nHelderheid.\nLeiderschap.\nUitvoering.\n\nVitaliteit — Herkalibreer je fysieke basis zodat je energie je ambitie ondersteunt.\nMindset — Maak zichtbaar welke patronen jouw beslissingen onder druk sturen.\nLeiderschap — Versterk je gezag van binnenuit.\nBusiness — Ontwikkel een scherp en realistisch 90-dagen uitvoeringsplan.\n\nMijn naam is Lionel Eersteling.\nVoormalig professioneel topsporter.\nMulti-ondernemer.\nInvesteerder.\nOprichter van de Leaders Performance Group.\n\nIk verkoop geen motivatie.\nIk ontwikkel besturingssystemen voor leiders die weigeren te blijven draaien op wilskracht alleen.",
+  "home.offerings.body1": "Ik leid UNMASKED persoonlijk.\n\nDit is geen seminar.\n\nDit is een gerichte reset.\n\nWe verwijderen wat je niet langer dient\nen bouwen opnieuw op vanuit structuur.\n\nLichaam.\nHelderheid.\nLeiderschap.\nUitvoering.\n\nVitaliteit. Herkalibreer je fysieke basis zodat je energie je ambitie ondersteunt.\nMindset. Maak zichtbaar welke patronen jouw beslissingen onder druk sturen.\nLeiderschap. Versterk je gezag van binnenuit.\nBusiness. Ontwikkel een scherp en realistisch 90-dagen uitvoeringsplan.\n\nMijn naam is Lionel Eersteling.\nVoormalig professioneel topsporter.\nMulti-ondernemer.\nInvesteerder.\nOprichter van de Leaders Performance Group.\n\nIk verkoop geen motivatie.\nIk ontwikkel besturingssystemen voor leiders die weigeren te blijven draaien op wilskracht alleen.",
   "home.offerings.specs1": "Beperkt tot 2–4 deelnemers per editie.",
   "home.offerings.link1": "Bekijk ervaringsdetails",
   "home.offerings.eyebrow2": "Doorlopende strategie",
@@ -573,7 +573,7 @@ const nl: Record<string, string> = {
   "home.testimonials.subheading": "Hoor direct van ondernemers en leidinggevenden die helderheid hebben ervaren via onze programma's.",
   "home.testimonials.q1": "De UNMASKED-ervaring dwong me beslissingen onder ogen te zien die ik al maanden uitstelde. Binnen twee weken na terugkomst heb ik mijn gehele leiderschapsteam geherstructureerd.",
   "home.testimonials.q2": "Lionel's advies gaf me het verantwoordelijkheidsraamwerk dat ik miste. Mijn uitvoeringsdiscipline is volledig getransformeerd sinds we samenwerken.",
-  "home.testimonials.q3": "Ik ging er sceptisch in en kwam eruit met absolute helderheid. De woestijnomgeving stript alles weg — je houdt alleen over wat echt belangrijk is.",
+  "home.testimonials.q3": "Ik ging er sceptisch in en kwam eruit met absolute helderheid. De woestijnomgeving stript alles weg. Je houdt alleen over wat echt belangrijk is.",
   "home.testimonials.q4": "De gestructureerde aanpak van besluitvorming is van onschatbare waarde geweest. Ik voel me niet langer verlamd door de complexiteit van het opschalen van mijn bedrijf.",
 
   // Showcase
@@ -642,7 +642,7 @@ const nl: Record<string, string> = {
   "home.articles.title1": "De kracht van mentale soevereiniteit",
   "home.articles.desc1": "Ontdek hoe het herwinnen van controle over je gedachten en emoties je leiderschapsaanwezigheid en besluitvorming onder druk kan transformeren.",
   "home.articles.title2": "Waarom discipline motivatie verslaat",
-  "home.articles.desc2": "Motivatie vervaagt. Discipline blijft. Leer waarom de meest effectieve leiders vertrouwen op systemen en structuur — niet op vluchtige inspiratie.",
+  "home.articles.desc2": "Motivatie vervaagt. Discipline blijft. Leer waarom de meest effectieve leiders vertrouwen op systemen en structuur, niet op vluchtige inspiratie.",
   "home.articles.title3": "Leiden door onzekerheid",
   "home.articles.desc3": "In tijden van crisis kijkt jouw team naar jou. Bouw de veerkracht en kalmte om met helderheid te leiden wanneer het er het meest toe doet.",
   "home.articles.title4": "De Reset Methode uitgelegd",
@@ -726,7 +726,7 @@ const nl: Record<string, string> = {
 
   // Elite – Quote (NL)
   "elite.quote1": "De meeste founders missen geen ambitie.\nZe missen een structuur die hun denken uitdaagt.",
-  "elite.quote2": "Als je steeds opnieuw begint, heb je geen nieuw plan nodig — je hebt een sterker fundament nodig.",
+  "elite.quote2": "Als je steeds opnieuw begint, heb je geen nieuw plan nodig. Je hebt een sterker fundament nodig.",
 
   // Elite – Program (NL)
   "elite.program.eyebrow": "Het raamwerk",
