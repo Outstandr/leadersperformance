@@ -42,6 +42,9 @@ export const BusinessServicesSection = () => {
           <p className="text-lg max-w-3xl mx-auto text-muted-foreground whitespace-pre-line text-center">
             {t("business.services.subheading")}
           </p>
+          <h2 className="text-2xl md:text-3xl font-bold text-lioner-gold mt-6 max-w-3xl mx-auto text-center">
+            {t("business.whyUs.statementLine2")}
+          </h2>
         </div>
 
         <div className="text-center mb-8">
