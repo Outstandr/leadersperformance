@@ -31,8 +31,8 @@ export const HomeNavigation = () => {
 
   const navItems = [
     { label: t("nav.about"), href: "#about" },
-    { label: "FOUNDER ADVISORY", href: "/business" },
-    { label: "UNMASKED", href: "/elite" },
+    { label: "FOUNDER ADVISORY", href: "/elite" },
+    { label: "UNMASKED", href: "https://unmasked.leadersperformance.ae/business" },
     { label: "ACADEMY", href: "#articles" },
     { label: "ARTICLES", href: "#articles" },
   ];
@@ -67,7 +67,21 @@ export const HomeNavigation = () => {
 
           <div className="hidden lg:flex items-center gap-4 xl:gap-6">
             {navItems.map((item) =>
-              item.href.startsWith("/") ? (
+              item.href.startsWith("http") ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`whitespace-nowrap text-[11px] xl:text-[13px] font-medium tracking-widest uppercase transition-colors ${
+                    isDark
+                      ? "text-background/70 hover:text-background"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ) : item.href.startsWith("/") ? (
                 <Link
                   key={item.label}
                   to={item.href}
@@ -145,7 +159,20 @@ export const HomeNavigation = () => {
           <div className={`lg:hidden py-4 border-t ${isDark ? "border-background/10" : "border-border/50"}`}>
             <div className="flex flex-col gap-1">
               {navItems.map((item) =>
-                item.href.startsWith("/") ? (
+                item.href.startsWith("http") ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+                      isDark ? "text-background hover:bg-background/10" : "text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                ) : item.href.startsWith("/") ? (
                   <Link
                     key={item.label}
                     to={item.href}
