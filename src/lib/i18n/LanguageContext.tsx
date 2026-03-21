@@ -726,7 +726,7 @@ const nl: Record<string, string> = {
 
   // Elite – Quote (NL)
   "elite.quote1": "De meeste founders missen geen ambitie.\nZe missen een structuur die hun denken uitdaagt.",
-  "elite.quote2": "Als je steeds opnieuw begint, heb je geen nieuw plan nodig — je hebt een sterker fundament nodig.",
+  "elite.quote2": "Als je steeds opnieuw begint, heb je geen nieuw plan nodig. Je hebt een sterker fundament nodig.",
 
   // Elite – Program (NL)
   "elite.program.eyebrow": "Het raamwerk",
