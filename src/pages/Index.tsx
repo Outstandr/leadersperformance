@@ -37,9 +37,12 @@ const Index = () => {
           <HomeMissionSection />
           <section className="py-12">
             <div className="container mx-auto px-4 max-w-4xl text-center">
-              <blockquote className="text-xl md:text-2xl lg:text-3xl font-light text-lioner-gold leading-relaxed italic font-serif">
-                "money leaking inside the structure"
-              </blockquote>
+              <p className="text-xl md:text-2xl lg:text-3xl font-light text-lioner-gold leading-relaxed italic font-serif">
+                Most founders think their biggest problem is sales.
+              </p>
+              <p className="text-xl md:text-2xl lg:text-3xl font-light text-lioner-gold leading-relaxed italic font-serif mt-4">
+                In reality, most companies lose money because their structure cannot support growth.
+              </p>
             </div>
           </section>
           <HomePillarsSection />
