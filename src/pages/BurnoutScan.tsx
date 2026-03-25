@@ -227,6 +227,23 @@ const BurnoutScan = () => {
     window.location.href = "/";
   };
 
+  // Show free results outside dialog
+  if (step === "free_results" && freeResult && userInfo) {
+    return (
+      <div className="min-h-screen bg-background">
+        <div className="max-w-2xl mx-auto py-8">
+          <BurnoutFreeResultsStep
+            result={freeResult}
+            onUnlockFull={handleUnlockFull}
+            isProcessing={isPaymentProcessing}
+            userInfo={userInfo}
+            showOutsideDialog
+          />
+        </div>
+      </div>
+    );
+  }
+
   // Show full results outside dialog
   if (step === "full_results" && fullResult && userInfo) {
     return (
@@ -248,13 +265,6 @@ const BurnoutScan = () => {
           )}
           {step === "free_gate" && (
             <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} />
-          )}
-          {step === "free_results" && freeResult && (
-            <BurnoutFreeResultsStep
-              result={freeResult}
-              onUnlockFull={handleUnlockFull}
-              isProcessing={isPaymentProcessing}
-            />
           )}
           {step === "full_questions" && (
             <BurnoutFullQuestionStep currentIndex={fullQIndex} onAnswer={handleFullAnswer} />
