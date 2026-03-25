@@ -255,7 +255,7 @@ const BurnoutScan = () => {
     return (
       <div className="min-h-screen bg-background">
         <div className="max-w-2xl mx-auto py-8">
-          <BurnoutFullResultsStep result={fullResult} userInfo={userInfo} onClose={handleClose} />
+          <BurnoutFullResultsStep result={fullResult} userInfo={userInfo} onClose={handleClose} fullResponses={fullResponses} />
         </div>
       </div>
     );
