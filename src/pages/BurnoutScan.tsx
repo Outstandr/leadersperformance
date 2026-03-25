@@ -46,6 +46,7 @@ const BurnoutScan = () => {
       setStep("full_questions");
     } else if (testMode === "true") {
       // Test mode: skip free scan and payment, go directly to full diagnostic
+      setUserInfo({ fullName: "Test User", email: "test@test.com", company: "Test Co", phone: "+1234567890" });
       setDialogOpen(true);
       setStep("full_questions");
     }
