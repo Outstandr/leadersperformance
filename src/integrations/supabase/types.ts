@@ -422,6 +422,213 @@ export type Database = {
         }
         Relationships: []
       }
+      founder_burnout_scans: {
+        Row: {
+          company: string
+          created_at: string
+          dq1: number | null
+          dq10: number | null
+          dq11: number | null
+          dq12: number | null
+          dq13: number | null
+          dq14: number | null
+          dq15: number | null
+          dq16: number | null
+          dq17: number | null
+          dq18: number | null
+          dq19: number | null
+          dq2: number | null
+          dq20: number | null
+          dq21: number | null
+          dq22: number | null
+          dq23: number | null
+          dq24: number | null
+          dq25: number | null
+          dq26: number | null
+          dq27: number | null
+          dq28: number | null
+          dq29: number | null
+          dq3: number | null
+          dq30: number | null
+          dq31: number | null
+          dq32: number | null
+          dq4: number | null
+          dq5: number | null
+          dq6: number | null
+          dq7: number | null
+          dq8: number | null
+          dq9: number | null
+          email: string
+          fq1: number
+          fq10: number
+          fq2: number
+          fq3: number
+          fq4: number
+          fq5: number
+          fq6: number
+          fq7: number
+          fq8: number
+          fq9: number
+          free_decision_pressure: number
+          free_fbr_color: string
+          free_fbr_score: number
+          free_mental_fatigue: number
+          free_sleep_quality: number
+          free_stress_tolerance: number
+          free_workload_intensity: number
+          full_burnout_phase: string | null
+          full_business_dependency: number | null
+          full_fbr_color: string | null
+          full_fbr_score: number | null
+          full_name: string
+          full_nervous_system: number | null
+          full_pressure_load: number | null
+          full_recovery_capacity: number | null
+          full_recovery_estimate: string | null
+          id: string
+          language: string
+          paid: boolean
+          phone: string
+          stripe_session_id: string | null
+        }
+        Insert: {
+          company: string
+          created_at?: string
+          dq1?: number | null
+          dq10?: number | null
+          dq11?: number | null
+          dq12?: number | null
+          dq13?: number | null
+          dq14?: number | null
+          dq15?: number | null
+          dq16?: number | null
+          dq17?: number | null
+          dq18?: number | null
+          dq19?: number | null
+          dq2?: number | null
+          dq20?: number | null
+          dq21?: number | null
+          dq22?: number | null
+          dq23?: number | null
+          dq24?: number | null
+          dq25?: number | null
+          dq26?: number | null
+          dq27?: number | null
+          dq28?: number | null
+          dq29?: number | null
+          dq3?: number | null
+          dq30?: number | null
+          dq31?: number | null
+          dq32?: number | null
+          dq4?: number | null
+          dq5?: number | null
+          dq6?: number | null
+          dq7?: number | null
+          dq8?: number | null
+          dq9?: number | null
+          email: string
+          fq1?: number
+          fq10?: number
+          fq2?: number
+          fq3?: number
+          fq4?: number
+          fq5?: number
+          fq6?: number
+          fq7?: number
+          fq8?: number
+          fq9?: number
+          free_decision_pressure?: number
+          free_fbr_color?: string
+          free_fbr_score?: number
+          free_mental_fatigue?: number
+          free_sleep_quality?: number
+          free_stress_tolerance?: number
+          free_workload_intensity?: number
+          full_burnout_phase?: string | null
+          full_business_dependency?: number | null
+          full_fbr_color?: string | null
+          full_fbr_score?: number | null
+          full_name: string
+          full_nervous_system?: number | null
+          full_pressure_load?: number | null
+          full_recovery_capacity?: number | null
+          full_recovery_estimate?: string | null
+          id?: string
+          language?: string
+          paid?: boolean
+          phone: string
+          stripe_session_id?: string | null
+        }
+        Update: {
+          company?: string
+          created_at?: string
+          dq1?: number | null
+          dq10?: number | null
+          dq11?: number | null
+          dq12?: number | null
+          dq13?: number | null
+          dq14?: number | null
+          dq15?: number | null
+          dq16?: number | null
+          dq17?: number | null
+          dq18?: number | null
+          dq19?: number | null
+          dq2?: number | null
+          dq20?: number | null
+          dq21?: number | null
+          dq22?: number | null
+          dq23?: number | null
+          dq24?: number | null
+          dq25?: number | null
+          dq26?: number | null
+          dq27?: number | null
+          dq28?: number | null
+          dq29?: number | null
+          dq3?: number | null
+          dq30?: number | null
+          dq31?: number | null
+          dq32?: number | null
+          dq4?: number | null
+          dq5?: number | null
+          dq6?: number | null
+          dq7?: number | null
+          dq8?: number | null
+          dq9?: number | null
+          email?: string
+          fq1?: number
+          fq10?: number
+          fq2?: number
+          fq3?: number
+          fq4?: number
+          fq5?: number
+          fq6?: number
+          fq7?: number
+          fq8?: number
+          fq9?: number
+          free_decision_pressure?: number
+          free_fbr_color?: string
+          free_fbr_score?: number
+          free_mental_fatigue?: number
+          free_sleep_quality?: number
+          free_stress_tolerance?: number
+          free_workload_intensity?: number
+          full_burnout_phase?: string | null
+          full_business_dependency?: number | null
+          full_fbr_color?: string | null
+          full_fbr_score?: number | null
+          full_name?: string
+          full_nervous_system?: number | null
+          full_pressure_load?: number | null
+          full_recovery_capacity?: number | null
+          full_recovery_estimate?: string | null
+          id?: string
+          language?: string
+          paid?: boolean
+          phone?: string
+          stripe_session_id?: string | null
+        }
+        Relationships: []
+      }
       founders_pressure_scans: {
         Row: {
           company: string
