@@ -46,6 +46,7 @@ const BurnoutScan = () => {
       setStep("full_questions");
     } else if (testMode === "true") {
       // Test mode: skip free scan and payment, go directly to full diagnostic
+      setUserInfo({ fullName: "Test User", email: "test@test.com", company: "Test Co", phone: "+1234567890" });
       setDialogOpen(true);
       setStep("full_questions");
     }
@@ -254,7 +255,7 @@ const BurnoutScan = () => {
     return (
       <div className="min-h-screen bg-background">
         <div className="max-w-2xl mx-auto py-8">
-          <BurnoutFullResultsStep result={fullResult} userInfo={userInfo} onClose={handleClose} />
+          <BurnoutFullResultsStep result={fullResult} userInfo={userInfo} onClose={handleClose} fullResponses={fullResponses} />
         </div>
       </div>
     );
