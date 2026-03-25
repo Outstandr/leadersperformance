@@ -263,19 +263,77 @@ BOOKING
 - Once the booking is confirmed, congratulate them and let them know the team will follow up.`;
 }
 
+function formatBurnoutScanSnapshot(ctx: BurnoutScanContext) {
+  const domains = (ctx.domainScores ?? [])
+    .map((d) => `- ${d.label}: ${d.score}% (${d.color})`)
+    .join('\n');
+
+  return `LIVE FOUNDER BURNOUT DIAGNOSTIC SESSION
+- The visitor has just completed the Full Founder Burnout Diagnostic and is looking at their report on screen.
+- This is a paid diagnostic. Treat the results with the seriousness they deserve.
+- Your role here is diagnostic triage. You do NOT give solutions. You gather context, ask intelligent questions, and refer serious cases to Lionel.
+- Open by asking about their reaction to their Founder Burnout Risk Score.
+
+VISITOR PROFILE
+- Name: ${ctx.fullName ?? 'Unknown'}
+- Company: ${ctx.company ?? 'Unknown'}
+
+DIAGNOSTIC RESULTS
+- Founder Burnout Risk Score: ${ctx.fbrScore ?? 'n/a'} / 100
+- FBR Color: ${ctx.fbrColor ?? 'n/a'}
+- Burnout Phase: ${ctx.phase ?? 'n/a'} (Phase ${ctx.phaseNumber ?? 'n/a'} of 5)
+- Recovery Without Intervention: ${ctx.recoveryWithout ?? 'n/a'}
+- Recovery With Structured Intervention: ${ctx.recoveryWith ?? 'n/a'}
+
+DOMAIN SCORES
+${domains || '- No domain scores provided'}
+
+PRIMARY RISK DOMAIN
+- Domain: ${ctx.primaryRiskDomain?.label ?? 'n/a'}
+- Impact: ${ctx.primaryRiskDomain?.impact ?? 'n/a'}
+
+STRATEGIC INTERPRETATION
+${ctx.diagnosis ?? 'n/a'}
+
+RECOMMENDED NEXT STEP
+${ctx.recommendation ?? 'n/a'}
+
+DAISY TRIAGE QUESTIONS (ask 4-6 of these naturally):
+1. What is your reaction to your Founder Burnout Risk Score?
+2. Which part of the result surprised you the most?
+3. How long have you been experiencing this level of pressure?
+4. What is currently creating the most pressure in your company?
+5. How dependent is your company on you personally?
+6. Have you tried to address this before? What happened?
+
+TRIAGE RESPONSE:
+- If answers indicate a relevant case, respond: "Your results suggest that your situation would benefit from a deeper review. Lionel Eersteling works with a limited number of founders each year to intervene in high-pressure founder environments."
+- Then offer to book a Founder Intervention Call.
+
+BOOKING
+- You have a tool called show_calendar. When the visitor wants to book a Founder Intervention Call with Lionel, call show_calendar.
+- After calling show_calendar, tell the visitor the calendar is now on their screen and ask them to pick a date and time.
+- Do not ask for contact details for booking — they are already captured.
+- Once the booking is confirmed, congratulate them and let them know the team will follow up.`;
+}
+
 function buildAgentConfig(requestData: SessionRequest) {
   const context = requestData.context;
   const scanCtx = requestData.scanContext;
   const auditCtx = requestData.auditContext;
+  const burnoutCtx = requestData.burnoutContext;
   const isCapitalProtection = requestData.mode === 'capital_protection' && context;
   const isPressureScan = requestData.mode === 'pressure_scan' && scanCtx;
   const isCorporateAudit = requestData.mode === 'corporate_audit' && auditCtx;
+  const isBurnoutScan = requestData.mode === 'burnout_scan' && burnoutCtx;
   const firstName = isCapitalProtection
     ? context?.firstName?.trim().split(/\s+/)[0]
     : isPressureScan
     ? scanCtx?.fullName?.trim().split(/\s+/)[0]
     : isCorporateAudit
     ? auditCtx?.firstName?.trim()
+    : isBurnoutScan
+    ? burnoutCtx?.fullName?.trim().split(/\s+/)[0]
     : undefined;
 
   let prompt = baseDaisySystemPrompt;
@@ -285,10 +343,12 @@ function buildAgentConfig(requestData: SessionRequest) {
     prompt = `${baseDaisySystemPrompt}\n\n${formatPressureScanSnapshot(scanCtx)}`;
   } else if (isCorporateAudit) {
     prompt = `${baseDaisySystemPrompt}\n\n${formatCorporateAuditSnapshot(auditCtx)}`;
+  } else if (isBurnoutScan) {
+    prompt = `${baseDaisySystemPrompt}\n\n${formatBurnoutScanSnapshot(burnoutCtx)}`;
   }
 
   let firstMessage: string;
-  if (isCapitalProtection || isPressureScan || isCorporateAudit) {
+  if (isCapitalProtection || isPressureScan || isCorporateAudit || isBurnoutScan) {
     firstMessage = `Hi, this is Daisy from Leaders Performance.${firstName ? ` ${firstName},` : ''} are you happy with your results?`;
   } else {
     firstMessage = "Hi, this is Daisy from Leaders Performance. I'm here to help you make sense of your next move. What feels most pressing for you right now?";
