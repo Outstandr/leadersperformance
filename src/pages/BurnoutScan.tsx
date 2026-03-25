@@ -34,13 +34,18 @@ const BurnoutScan = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
 
-  // Handle return from Stripe payment
+  // Handle return from Stripe payment or test mode bypass
   useEffect(() => {
     const paymentStatus = searchParams.get("payment");
     const returnedScanId = searchParams.get("scan_id");
+    const testMode = searchParams.get("test");
 
     if (paymentStatus === "success" && returnedScanId) {
       setScanId(returnedScanId);
+      setDialogOpen(true);
+      setStep("full_questions");
+    } else if (testMode === "true") {
+      // Test mode: skip free scan and payment, go directly to full diagnostic
       setDialogOpen(true);
       setStep("full_questions");
     }
