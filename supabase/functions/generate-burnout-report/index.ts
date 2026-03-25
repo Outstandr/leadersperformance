@@ -81,7 +81,7 @@ FORMAT: Return valid JSON with this structure:
 
 Be brutally honest. This is a $195 diagnostic — deliver accordingly.`;
 
-    const response = await fetch("https://api.lovable.dev/v1/chat/completions", {
+    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${LOVABLE_API_KEY}`,
