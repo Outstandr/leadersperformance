@@ -66,7 +66,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
       const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-      const bodyKey = mode === "pressure_scan" ? "scanContext" : "auditContext";
+      const bodyKey = mode === "pressure_scan" ? "scanContext" : mode === "burnout_scan" ? "burnoutContext" : "auditContext";
 
       const res = await fetch(
         `https://${projectId}.supabase.co/functions/v1/elevenlabs-voice-token`,
