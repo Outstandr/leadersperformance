@@ -170,12 +170,15 @@ const BurnoutScan = () => {
   };
 
   const handleFullAnswer = (questionId: string, value: number) => {
-    setFullResponses((prev) => ({ ...prev, [questionId]: value }));
+    const updatedResponses = { ...fullResponses, [questionId]: value };
+    setFullResponses(updatedResponses);
     if (fullQIndex < burnoutFullQuestions.length - 1) {
       setFullQIndex((prev) => prev + 1);
     } else {
-      // Calculate full results
-      const result = calculateFullBurnoutScore(fullResponses, language);
+      // Calculate full results with ALL answers including the last one
+      console.log("Full responses collected:", Object.keys(updatedResponses).length, "answers");
+      const result = calculateFullBurnoutScore(updatedResponses, language);
+      console.log("Full result calculated:", result.fbrScore, result.fbrColor);
       setFullResult(result);
 
       // Update DB with full results
@@ -192,7 +195,7 @@ const BurnoutScan = () => {
             full_fbr_color: result.fbrColor,
             full_burnout_phase: result.phase,
             full_recovery_estimate: result.recoveryWith.en,
-            ...Object.fromEntries(Object.entries(fullResponses).map(([k, v]) => [k, v])),
+            ...Object.fromEntries(Object.entries(updatedResponses).map(([k, v]) => [k, v])),
           } as any)
           .eq("id", scanId)
           .then(({ error }) => { if (error) console.error("DB update error:", error); });
