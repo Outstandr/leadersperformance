@@ -7,7 +7,7 @@ import { ScanBookingCalendar, ScanBookingUserInfo } from "./ScanBookingCalendar"
 const SCAN_CALENDAR_ID = "Se3SwkYLXfuW52O0F4GX";
 
 interface ScanVoiceWidgetProps {
-  mode: "pressure_scan" | "corporate_audit";
+  mode: "pressure_scan" | "corporate_audit" | "burnout_scan";
   userInfo: ScanBookingUserInfo;
   contextPayload: Record<string, unknown>;
   bookingType: string;
