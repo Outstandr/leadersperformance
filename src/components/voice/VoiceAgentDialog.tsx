@@ -133,6 +133,8 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       setEmailInput("");
       setShowEmailInput(false);
       setEmailConfirmed(false);
+      setTextInput("");
+      setIsTextMode(false);
       autoConnectTriggered.current = false;
     }
   }, [isOpen]);
