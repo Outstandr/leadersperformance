@@ -161,12 +161,15 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
     setShowEmailInput(false);
   }, [conversation, emailInput]);
 
-  const startConversation = useCallback(async () => {
+  const startConversation = useCallback(async (textOnly = false) => {
     setStatus("connecting");
     setError(null);
+    setIsTextMode(textOnly);
 
     try {
-      await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (!textOnly) {
+        await navigator.mediaDevices.getUserMedia({ audio: true });
+      }
 
       // Build request body with context for the edge function
       let fetchOptions: RequestInit = {
@@ -281,6 +284,10 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
         sessionOptions.signedUrl = signed_url;
       } else {
         sessionOptions.conversationToken = token;
+      }
+
+      if (textOnly) {
+        sessionOptions.textOnly = true;
       }
 
       const session = await conversation.startSession(sessionOptions);
