@@ -442,12 +442,22 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
                   {error}
                 </p>
               )}
-              <button
-                onClick={startConversation}
-                className="w-full py-3.5 rounded-xl bg-[#b39758] text-black font-semibold text-sm tracking-wide hover:bg-[#c9aa6a] transition-all"
-              >
-                Start Conversation
-              </button>
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={() => startConversation(false)}
+                  className="w-full py-3.5 rounded-xl bg-[#b39758] text-black font-semibold text-sm tracking-wide hover:bg-[#c9aa6a] transition-all flex items-center justify-center gap-2"
+                >
+                  <Mic className="w-4 h-4" />
+                  {language === "nl" ? "Spreek met Daisy" : "Speak with Daisy"}
+                </button>
+                <button
+                  onClick={() => startConversation(true)}
+                  className="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white/70 font-semibold text-sm tracking-wide hover:bg-white/10 transition-all flex items-center justify-center gap-2"
+                >
+                  <Send className="w-4 h-4" />
+                  {language === "nl" ? "Chat met Daisy" : "Chat with Daisy"}
+                </button>
+              </div>
             </div>
           )}
 
