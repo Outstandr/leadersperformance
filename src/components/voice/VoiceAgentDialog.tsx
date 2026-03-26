@@ -23,6 +23,8 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
   const [emailInput, setEmailInput] = useState("");
   const [showEmailInput, setShowEmailInput] = useState(false);
   const [emailConfirmed, setEmailConfirmed] = useState(false);
+  const [textInput, setTextInput] = useState("");
+  const [isTextMode, setIsTextMode] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
 
   const isPressureScan = contextData.mode === "pressure_scan";
