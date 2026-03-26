@@ -378,6 +378,14 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
     setIsMuted(!isMuted);
   }, [conversation, isMuted]);
 
+  const handleSendText = useCallback(() => {
+    const msg = textInput.trim();
+    if (!msg || status !== "connected") return;
+    conversation.sendUserMessage(msg);
+    setTranscript(prev => [...prev, { role: "user", text: msg }]);
+    setTextInput("");
+  }, [conversation, textInput, status]);
+
   if (!isOpen) return null;
 
   const idleTitle = language === "nl"
