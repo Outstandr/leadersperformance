@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
-import { Mic, MicOff, Volume2, Loader2 } from "lucide-react";
+import { Mic, Volume2, Loader2, Send, MessageSquare, X } from "lucide-react";
 import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { CPBookingCalendar } from "./CPBookingCalendar";
@@ -29,6 +29,8 @@ export function CPVoiceWidget({ userInfo, result, aiReport }: CPVoiceWidgetProps
   const [showCalendar, setShowCalendar] = useState(false);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [transcript, setTranscript] = useState<Array<{ role: "user" | "agent"; text: string }>>([]);
+  const [textInput, setTextInput] = useState("");
+  const [isTextMode, setIsTextMode] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
 
   const conversation = useConversation({
@@ -41,7 +43,6 @@ export function CPVoiceWidget({ userInfo, result, aiReport }: CPVoiceWidgetProps
     onConnect: () => {
       console.log("Daisy connected");
       setIsConnecting(false);
-      // Send contextual update with assessment data immediately after connect
       const contextMsg = buildContextMessage();
       if (contextMsg) {
         conversation.sendContextualUpdate(contextMsg);
@@ -65,12 +66,10 @@ export function CPVoiceWidget({ userInfo, result, aiReport }: CPVoiceWidgetProps
     },
   });
 
-  // Sync isSpeaking
   useEffect(() => {
     setIsSpeaking(conversation.isSpeaking);
   }, [conversation.isSpeaking, setIsSpeaking]);
 
-  // Auto-scroll transcript
   useEffect(() => {
     if (transcriptRef.current) {
       transcriptRef.current.scrollTop = transcriptRef.current.scrollHeight;
@@ -94,16 +93,14 @@ export function CPVoiceWidget({ userInfo, result, aiReport }: CPVoiceWidgetProps
       score: section.score,
       color: section.color,
     })),
-    aiReport: aiReport
-      ? {
-          situation_summary: aiReport.situation_summary,
-          risk_level: aiReport.risk_level,
-          risk_indicators: aiReport.risk_indicators,
-          strategic_paths: aiReport.strategic_paths,
-          recommended_next_step: aiReport.recommended_next_step,
-          recovery_potential: aiReport.recovery_potential,
-        }
-      : null,
+    aiReport: aiReport ? {
+      situation_summary: aiReport.situation_summary,
+      risk_level: aiReport.risk_level,
+      risk_indicators: aiReport.risk_indicators,
+      strategic_paths: aiReport.strategic_paths,
+      recommended_next_step: aiReport.recommended_next_step,
+      recovery_potential: aiReport.recovery_potential,
+    } : null,
   });
 
   const buildContextMessage = () => {
@@ -137,16 +134,6 @@ OVERALL ASSESSMENT:
 
 DIMENSION SCORES:
   ${sections}
-
-SCORING METHODOLOGY:
-  The assessment evaluates 5 dimensions with specific weights:
-  - Evidence Strength (25%): Based on types of documentation the client has (contracts, transaction records, crypto wallets, emails, legal docs, bank records). More evidence types = higher score.
-  - Timeline Advantage (20%): How recently the situation started. Under 3 months = 100%, 3-12 months = 70%, 1-3 years = 40%, 3+ years = 25%. Earlier action = better recovery odds.
-  - Jurisdictional Simplicity (15%): Fewer jurisdictions involved = simpler case. 1 country = 100%, 2 = 65%, 3+ = 30%.
-  - Legal Positioning (20%): Legal case filed = 100%, lawyer consulted = 60%, no action = 20%.
-  - Capital Exposure (20%): Higher exposure = higher strategic value. €20M+ = 100%, €5-20M = 80%, €1-5M = 60%, €500K-1M = 40%, €100-500K = 20%.
-  
-  Overall score tiers: High (65%+), Moderate (40-64%), Limited (<40%). Consent to strategic review adds 5% bonus.
 ${aiSection}
 
 IMPORTANT INSTRUCTIONS:
@@ -154,16 +141,18 @@ IMPORTANT INSTRUCTIONS:
   - Reference their specific scores, strengths, and weaknesses naturally.
   - If a dimension scores red (<40%), highlight it as a priority area.
   - If a dimension scores green (70%+), acknowledge it as a strength.
-  - Explain what their scores mean practically for their recovery prospects.
   - The active route is Capital Protection case review with Lionel unless the user clearly says otherwise.
   - You can call show_calendar when they want to book a case review with Lionel.
   - Do not ask for contact details — they are already captured.`;
   };
 
-  const handleStart = useCallback(async () => {
+  const handleStart = useCallback(async (textOnly = false) => {
     setIsConnecting(true);
+    setIsTextMode(textOnly);
     try {
-      await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (!textOnly) {
+        await navigator.mediaDevices.getUserMedia({ audio: true });
+      }
 
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
       const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
@@ -187,29 +176,39 @@ IMPORTANT INSTRUCTIONS:
       if (!res.ok) throw new Error("Failed to get voice credentials");
 
       const data = await res.json();
+      const sessionOpts: any = {};
 
       if (data.signed_url) {
-        await conversation.startSession({
-          signedUrl: data.signed_url,
-        });
+        sessionOpts.signedUrl = data.signed_url;
       } else if (data.token) {
-        await conversation.startSession({
-          conversationToken: data.token,
-          connectionType: "webrtc",
-        });
+        sessionOpts.conversationToken = data.token;
+        sessionOpts.connectionType = "webrtc";
       } else {
         throw new Error("No credentials received");
       }
+
+      if (textOnly) {
+        sessionOpts.textOnly = true;
+      }
+
+      await conversation.startSession(sessionOpts);
     } catch (err) {
       console.error("Failed to start Daisy:", err);
       setIsConnecting(false);
     }
   }, [aiReport, conversation, result, userInfo]);
 
+  const handleSendText = useCallback(() => {
+    const msg = textInput.trim();
+    if (!msg || conversation.status !== "connected") return;
+    conversation.sendUserMessage(msg);
+    setTranscript(prev => [...prev, { role: "user", text: msg }]);
+    setTextInput("");
+  }, [conversation, textInput]);
+
   const handleBookingComplete = useCallback(() => {
     setBookingConfirmed(true);
     setShowCalendar(false);
-    // Notify Daisy and end session after a brief farewell
     if (conversation.status === "connected") {
       conversation.sendContextualUpdate(
         "The user has just successfully booked a case review appointment with Lionel. The conversation is now ending."
@@ -222,28 +221,43 @@ IMPORTANT INSTRUCTIONS:
 
   return (
     <div className="border-t border-foreground/10 bg-background">
-      {/* Main widget area */}
       <div className="max-w-2xl mx-auto px-4 py-4 space-y-3">
-        {/* Connection / speaking state */}
+        {/* Mode selection */}
         {!isConnected && !isConnecting && (
-          <button
-            onClick={handleStart}
-            className="w-full flex items-center justify-center gap-3 py-4 px-6 bg-lioner-gold/10 border border-lioner-gold/30 hover:bg-lioner-gold/20 transition-colors rounded-lg"
-          >
-            <div className="w-10 h-10 rounded-full bg-lioner-gold/20 flex items-center justify-center">
-              <Mic className="w-5 h-5 text-lioner-gold" />
-            </div>
-            <div className="text-left">
-              <p className="text-sm font-semibold text-foreground">
-                {language === "nl" ? "Tik om met Daisy te spreken" : "Tap to speak with Daisy"}
-              </p>
-              <p className="text-xs text-foreground/50">
-                {language === "nl"
-                  ? "Bespreek uw resultaten met onze AI adviseur"
-                  : "Discuss your results with our AI advisor"}
-              </p>
-            </div>
-          </button>
+          <div className="space-y-2">
+            <button
+              onClick={() => handleStart(false)}
+              className="w-full flex items-center justify-center gap-3 py-4 px-6 bg-lioner-gold/10 border border-lioner-gold/30 hover:bg-lioner-gold/20 transition-colors rounded-lg"
+            >
+              <div className="w-10 h-10 rounded-full bg-lioner-gold/20 flex items-center justify-center">
+                <Mic className="w-5 h-5 text-lioner-gold" />
+              </div>
+              <div className="text-left">
+                <p className="text-sm font-semibold text-foreground">
+                  {language === "nl" ? "Spreek met Daisy" : "Speak with Daisy"}
+                </p>
+                <p className="text-xs text-foreground/50">
+                  {language === "nl" ? "Gebruik uw microfoon" : "Use your microphone"}
+                </p>
+              </div>
+            </button>
+            <button
+              onClick={() => handleStart(true)}
+              className="w-full flex items-center justify-center gap-3 py-4 px-6 bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-colors rounded-lg"
+            >
+              <div className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center">
+                <MessageSquare className="w-5 h-5 text-lioner-gold" />
+              </div>
+              <div className="text-left">
+                <p className="text-sm font-semibold text-foreground">
+                  {language === "nl" ? "Chat met Daisy" : "Chat with Daisy"}
+                </p>
+                <p className="text-xs text-foreground/50">
+                  {language === "nl" ? "Typ uw berichten" : "Type your messages"}
+                </p>
+              </div>
+            </button>
+          </div>
         )}
 
         {isConnecting && (
@@ -257,27 +271,24 @@ IMPORTANT INSTRUCTIONS:
 
         {isConnected && (
           <>
-            {/* Status bar */}
             <div className="flex items-center gap-3 py-2">
               <button
                 onClick={() => conversation.endSession()}
-                className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-all bg-lioner-gold/20 hover:bg-red-500/20"
+                className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all bg-red-500/10 hover:bg-red-500/20 border border-red-500/20"
                 title={language === "nl" ? "Stop gesprek" : "End conversation"}
               >
-                {conversation.isSpeaking ? (
-                  <Volume2 className="w-5 h-5 text-lioner-gold animate-pulse" />
-                ) : (
-                  <MicOff className="w-5 h-5 text-foreground/60" />
-                )}
+                <X className="w-4 h-4 text-red-400" />
               </button>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-foreground">
-                  {conversation.isSpeaking
-                    ? language === "nl" ? "Daisy spreekt…" : "Daisy is speaking…"
-                    : language === "nl" ? "Daisy luistert…" : "Daisy is listening…"}
+                  {isTextMode
+                    ? language === "nl" ? "Chat met Daisy" : "Chat with Daisy"
+                    : conversation.isSpeaking
+                      ? language === "nl" ? "Daisy spreekt…" : "Daisy is speaking…"
+                      : language === "nl" ? "Daisy luistert…" : "Daisy is listening…"}
                 </p>
               </div>
-              {conversation.isSpeaking && (
+              {!isTextMode && conversation.isSpeaking && (
                 <div className="flex items-center gap-0.5 shrink-0">
                   {[1, 2, 3, 4].map((i) => (
                     <div
@@ -290,24 +301,37 @@ IMPORTANT INSTRUCTIONS:
               )}
             </div>
 
-            {/* Transcript */}
             {transcript.length > 0 && (
-              <div
-                ref={transcriptRef}
-                className="max-h-32 overflow-y-auto space-y-2 px-1 scrollbar-thin"
-              >
+              <div ref={transcriptRef} className="max-h-48 overflow-y-auto space-y-2 px-1 scrollbar-thin">
                 {transcript.map((msg, i) => (
                   <div key={i} className={`text-xs ${msg.role === "agent" ? "text-foreground/70" : "text-foreground/50 italic"}`}>
-                    <span className="font-semibold">{msg.role === "agent" ? "Daisy" : "You"}:</span>{" "}
-                    {msg.text}
+                    <span className="font-semibold">{msg.role === "agent" ? "Daisy" : "You"}:</span> {msg.text}
                   </div>
                 ))}
               </div>
             )}
+
+            {/* Text input */}
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={textInput}
+                onChange={(e) => setTextInput(e.target.value)}
+                onKeyDown={(e) => { if (e.key === "Enter") handleSendText(); }}
+                placeholder={language === "nl" ? "Typ een bericht..." : "Type a message..."}
+                className="flex-1 px-4 py-2.5 rounded-lg bg-foreground/5 border border-foreground/10 text-foreground text-sm placeholder:text-foreground/30 focus:outline-none focus:border-lioner-gold/50"
+              />
+              <button
+                onClick={handleSendText}
+                disabled={!textInput.trim()}
+                className="px-3 py-2.5 rounded-lg bg-lioner-gold/20 border border-lioner-gold/30 text-lioner-gold hover:bg-lioner-gold/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
           </>
         )}
 
-        {/* Inline booking calendar */}
         {showCalendar && !bookingConfirmed && (
           <CPBookingCalendar
             userInfo={userInfo}

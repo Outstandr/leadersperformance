@@ -23,6 +23,8 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
   const [emailInput, setEmailInput] = useState("");
   const [showEmailInput, setShowEmailInput] = useState(false);
   const [emailConfirmed, setEmailConfirmed] = useState(false);
+  const [textInput, setTextInput] = useState("");
+  const [isTextMode, setIsTextMode] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
 
   const isPressureScan = contextData.mode === "pressure_scan";
@@ -131,6 +133,8 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       setEmailInput("");
       setShowEmailInput(false);
       setEmailConfirmed(false);
+      setTextInput("");
+      setIsTextMode(false);
       autoConnectTriggered.current = false;
     }
   }, [isOpen]);
@@ -157,12 +161,15 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
     setShowEmailInput(false);
   }, [conversation, emailInput]);
 
-  const startConversation = useCallback(async () => {
+  const startConversation = useCallback(async (textOnly = false) => {
     setStatus("connecting");
     setError(null);
+    setIsTextMode(textOnly);
 
     try {
-      await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (!textOnly) {
+        await navigator.mediaDevices.getUserMedia({ audio: true });
+      }
 
       // Build request body with context for the edge function
       let fetchOptions: RequestInit = {
@@ -279,6 +286,10 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
         sessionOptions.conversationToken = token;
       }
 
+      if (textOnly) {
+        sessionOptions.textOnly = true;
+      }
+
       const session = await conversation.startSession(sessionOptions);
       console.log("[Daisy] startSession returned:", session);
     } catch (err: any) {
@@ -367,6 +378,14 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
     setIsMuted(!isMuted);
   }, [conversation, isMuted]);
 
+  const handleSendText = useCallback(() => {
+    const msg = textInput.trim();
+    if (!msg || status !== "connected") return;
+    conversation.sendUserMessage(msg);
+    setTranscript(prev => [...prev, { role: "user", text: msg }]);
+    setTextInput("");
+  }, [conversation, textInput, status]);
+
   if (!isOpen) return null;
 
   const idleTitle = language === "nl"
@@ -431,12 +450,22 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
                   {error}
                 </p>
               )}
-              <button
-                onClick={startConversation}
-                className="w-full py-3.5 rounded-xl bg-[#b39758] text-black font-semibold text-sm tracking-wide hover:bg-[#c9aa6a] transition-all"
-              >
-                Start Conversation
-              </button>
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={() => startConversation(false)}
+                  className="w-full py-3.5 rounded-xl bg-[#b39758] text-black font-semibold text-sm tracking-wide hover:bg-[#c9aa6a] transition-all flex items-center justify-center gap-2"
+                >
+                  <Mic className="w-4 h-4" />
+                  {language === "nl" ? "Spreek met Daisy" : "Speak with Daisy"}
+                </button>
+                <button
+                  onClick={() => startConversation(true)}
+                  className="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white/70 font-semibold text-sm tracking-wide hover:bg-white/10 transition-all flex items-center justify-center gap-2"
+                >
+                  <Send className="w-4 h-4" />
+                  {language === "nl" ? "Chat met Daisy" : "Chat with Daisy"}
+                </button>
+              </div>
             </div>
           )}
 
@@ -457,36 +486,70 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
           {/* Connected state */}
           {status === "connected" && (
             <div>
-              {/* Voice visualizer */}
-              <div className="flex items-center justify-center gap-1.5 h-16 mb-4">
-                {Array.from({ length: 12 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className={`w-1 rounded-full transition-all duration-150 ${
-                      conversation.isSpeaking
-                        ? "bg-[#b39758]"
-                        : "bg-[#b39758]/30"
-                    }`}
-                    style={{
-                      height: conversation.isSpeaking
-                        ? `${Math.random() * 32 + 8}px`
-                        : "6px",
-                      animationDelay: `${i * 50}ms`,
-                    }}
-                  />
-                ))}
-              </div>
+              {/* Voice visualizer (only in voice mode) */}
+              {!isTextMode && (
+                <div className="flex items-center justify-center gap-1.5 h-16 mb-4">
+                  {Array.from({ length: 12 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className={`w-1 rounded-full transition-all duration-150 ${
+                        conversation.isSpeaking
+                          ? "bg-[#b39758]"
+                          : "bg-[#b39758]/30"
+                      }`}
+                      style={{
+                        height: conversation.isSpeaking
+                          ? `${Math.random() * 32 + 8}px`
+                          : "6px",
+                        animationDelay: `${i * 50}ms`,
+                      }}
+                    />
+                  ))}
+                </div>
+              )}
 
               <div className="text-center mb-4">
                 <p className="text-white/50 text-xs">
-                  {conversation.isSpeaking ? "Daisy is speaking…" : "Listening…"}
+                  {isTextMode
+                    ? language === "nl" ? "Chat met Daisy" : "Chat with Daisy"
+                    : conversation.isSpeaking ? "Daisy is speaking…" : "Listening…"}
                 </p>
+              </div>
+
+              {/* Transcript */}
+              {transcript.length > 0 && (
+                <div ref={transcriptRef} className="max-h-40 overflow-y-auto space-y-2 mb-4 px-1 scrollbar-thin">
+                  {transcript.map((msg, i) => (
+                    <div key={i} className={`text-xs ${msg.role === "agent" ? "text-white/70" : "text-white/50 italic"}`}>
+                      <span className="font-semibold">{msg.role === "agent" ? "Daisy" : "You"}:</span> {msg.text}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Text input (always visible when connected) */}
+              <div className="flex gap-2 mb-4">
+                <input
+                  type="text"
+                  value={textInput}
+                  onChange={(e) => setTextInput(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === "Enter") handleSendText(); }}
+                  placeholder={language === "nl" ? "Typ een bericht..." : "Type a message..."}
+                  className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#b39758]/50"
+                />
+                <button
+                  onClick={handleSendText}
+                  disabled={!textInput.trim()}
+                  className="px-3 rounded-xl bg-[#b39758]/20 border border-[#b39758]/30 text-[#b39758] hover:bg-[#b39758]/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
               </div>
 
               {/* Email input */}
               {showEmailInput && !emailConfirmed && (
                 <div className="mb-4">
-                  <p className="text-[#b39758] text-xs mb-2 font-medium">Type your email below — Daisy will read it back to confirm:</p>
+                  <p className="text-[#b39758] text-xs mb-2 font-medium">Type your email below:</p>
                   <div className="flex gap-2">
                     <input
                       type="email"
@@ -513,7 +576,6 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
                 </div>
               )}
 
-              {/* Email confirmed indicator */}
               {emailConfirmed && (
                 <div className="flex items-center gap-2 mb-4 px-3 py-2 rounded-xl bg-green-500/10 border border-green-500/20">
                   <Check className="w-4 h-4 text-green-400" />
@@ -523,24 +585,17 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
 
               {/* Controls */}
               <div className="flex gap-3">
-                <button
-                  onClick={toggleMute}
-                  className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all border ${
-                    isMuted
-                      ? "bg-red-500/10 border-red-500/30 text-red-400"
-                      : "bg-white/5 border-white/10 text-white/70 hover:bg-white/10"
-                  }`}
-                >
-                  {isMuted ? <MicOff className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-                  {isMuted ? "Unmute" : "Mute"}
-                </button>
-                {!showEmailInput && !emailConfirmed && (
+                {!isTextMode && (
                   <button
-                    onClick={() => setShowEmailInput(true)}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium bg-[#b39758]/10 border border-[#b39758]/30 text-[#b39758] hover:bg-[#b39758]/20 transition-all"
+                    onClick={toggleMute}
+                    className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all border ${
+                      isMuted
+                        ? "bg-red-500/10 border-red-500/30 text-red-400"
+                        : "bg-white/5 border-white/10 text-white/70 hover:bg-white/10"
+                    }`}
                   >
-                    <Send className="w-4 h-4" />
-                    Email
+                    {isMuted ? <MicOff className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                    {isMuted ? "Unmute" : "Mute"}
                   </button>
                 )}
                 <button
@@ -548,7 +603,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
                   className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 transition-all"
                 >
                   <PhoneOff className="w-4 h-4" />
-                  End Call
+                  {language === "nl" ? "Stop" : "End"}
                 </button>
               </div>
             </div>
@@ -566,7 +621,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
               </p>
               <div className="flex flex-col gap-2">
                 <button
-                  onClick={startConversation}
+                  onClick={() => startConversation(false)}
                   className="w-full py-3 rounded-xl bg-[#b39758]/10 border border-[#b39758]/30 text-[#b39758] text-sm font-medium hover:bg-[#b39758]/20 transition-all"
                 >
                   Start New Conversation
