@@ -207,7 +207,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-foreground">
                   {isTextMode
-                    ? language === "nl" ? "Chat met Daisy" : "Chat with Daisy"
+                    ? language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"
                     : conversation.isSpeaking
                       ? language === "nl" ? "Daisy spreekt…" : "Daisy is speaking…"
                       : language === "nl" ? "Daisy luistert…" : "Daisy is listening…"}
