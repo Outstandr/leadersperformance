@@ -142,6 +142,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
   }, [conversation]);
 
   const isConnected = conversation.status === "connected";
+  const isWaitingForAgent = isConnected && isTextMode && transcript.length === 0;
 
   return (
     <div className="border-t border-foreground/10 bg-background">
@@ -185,77 +186,112 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
         )}
 
         {isConnecting && (
-          <div className="flex items-center justify-center gap-3 py-4">
+          <div className="flex items-center justify-center gap-3 py-6">
             <Loader2 className="w-5 h-5 text-lioner-gold animate-spin" />
             <span className="text-sm text-foreground/60">
-              {language === "nl" ? "Verbinden met Daisy..." : "Connecting to Daisy..."}
+              {language === "nl" ? "Verbinden..." : "Connecting..."}
             </span>
           </div>
         )}
 
         {isConnected && (
-          <>
-            {/* Status bar */}
-            <div className="flex items-center gap-3 py-2">
-              <button
-                onClick={() => conversation.endSession()}
-                className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all bg-red-500/10 hover:bg-red-500/20 border border-red-500/20"
-                title={language === "nl" ? "Stop gesprek" : "End conversation"}
-              >
-                <X className="w-4 h-4 text-red-400" />
-              </button>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-foreground">
-                  {isTextMode
-                    ? language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"
-                    : conversation.isSpeaking
-                      ? language === "nl" ? "Daisy spreekt…" : "Daisy is speaking…"
-                      : language === "nl" ? "Daisy luistert…" : "Daisy is listening…"}
-                </p>
-              </div>
-              {!isTextMode && conversation.isSpeaking && (
-                <div className="flex items-center gap-0.5 shrink-0">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="w-1 bg-lioner-gold rounded-full animate-pulse"
-                      style={{ height: `${8 + Math.random() * 12}px`, animationDelay: `${i * 100}ms` }}
-                    />
-                  ))}
+          <div className="flex flex-col rounded-xl border border-foreground/10 overflow-hidden bg-foreground/[0.02]">
+            {/* Chat header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-foreground/10 bg-foreground/5">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-lioner-gold/20 flex items-center justify-center">
+                  <MessageSquare className="w-4 h-4 text-lioner-gold" />
                 </div>
-              )}
+                <div>
+                  <p className="text-sm font-semibold text-foreground">Daisy</p>
+                  <p className="text-[10px] text-foreground/40">
+                    {isTextMode
+                      ? language === "nl" ? "Founder Advisor • Chat" : "Founder Advisor • Chat"
+                      : conversation.isSpeaking
+                        ? language === "nl" ? "Spreekt…" : "Speaking…"
+                        : language === "nl" ? "Luistert…" : "Listening…"}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                {!isTextMode && conversation.isSpeaking && (
+                  <div className="flex items-center gap-0.5">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div
+                        key={i}
+                        className="w-1 bg-lioner-gold rounded-full animate-pulse"
+                        style={{ height: `${8 + Math.random() * 12}px`, animationDelay: `${i * 100}ms` }}
+                      />
+                    ))}
+                  </div>
+                )}
+                <button
+                  onClick={() => conversation.endSession()}
+                  className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all bg-red-500/10 hover:bg-red-500/20 border border-red-500/20"
+                  title={language === "nl" ? "Stop gesprek" : "End conversation"}
+                >
+                  <X className="w-3.5 h-3.5 text-red-400" />
+                </button>
+              </div>
             </div>
 
-            {/* Transcript */}
-            {transcript.length > 0 && (
-              <div ref={transcriptRef} className="max-h-48 overflow-y-auto space-y-2 px-1 scrollbar-thin">
-                {transcript.map((msg, i) => (
-                  <div key={i} className={`text-xs ${msg.role === "agent" ? "text-foreground/70" : "text-foreground/50 italic"}`}>
-                    <span className="font-semibold">{msg.role === "agent" ? "Daisy" : "You"}:</span> {msg.text}
+            {/* Chat messages area */}
+            <div ref={transcriptRef} className="h-72 overflow-y-auto px-4 py-3 space-y-3 scrollbar-thin">
+              {/* Waiting for Daisy's first message */}
+              {isWaitingForAgent && (
+                <div className="flex items-start gap-2">
+                  <div className="w-6 h-6 rounded-full bg-lioner-gold/20 flex items-center justify-center shrink-0 mt-0.5">
+                    <MessageSquare className="w-3 h-3 text-lioner-gold" />
                   </div>
-                ))}
-              </div>
-            )}
+                  <div className="bg-foreground/5 border border-foreground/10 rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%]">
+                    <div className="flex items-center gap-1">
+                      <div className="w-1.5 h-1.5 bg-lioner-gold/60 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                      <div className="w-1.5 h-1.5 bg-lioner-gold/60 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                      <div className="w-1.5 h-1.5 bg-lioner-gold/60 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                    </div>
+                  </div>
+                </div>
+              )}
 
-            {/* Text input (always visible when connected) */}
-            <div className="flex gap-2">
+              {transcript.map((msg, i) => (
+                <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                  {msg.role === "agent" && (
+                    <div className="w-6 h-6 rounded-full bg-lioner-gold/20 flex items-center justify-center shrink-0 mt-0.5 mr-2">
+                      <MessageSquare className="w-3 h-3 text-lioner-gold" />
+                    </div>
+                  )}
+                  <div
+                    className={`px-3 py-2 rounded-2xl max-w-[85%] text-sm leading-relaxed ${
+                      msg.role === "user"
+                        ? "bg-lioner-gold/15 border border-lioner-gold/20 text-foreground rounded-tr-sm"
+                        : "bg-foreground/5 border border-foreground/10 text-foreground/80 rounded-tl-sm"
+                    }`}
+                  >
+                    {msg.text}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Text input */}
+            <div className="flex gap-2 px-3 py-3 border-t border-foreground/10 bg-foreground/[0.03]">
               <input
                 type="text"
                 value={textInput}
                 onChange={(e) => setTextInput(e.target.value)}
                 onKeyDown={(e) => { if (e.key === "Enter") handleSendText(); }}
                 placeholder={language === "nl" ? "Typ een bericht..." : "Type a message..."}
-                className="flex-1 px-4 py-2.5 rounded-lg bg-foreground/5 border border-foreground/10 text-foreground text-sm placeholder:text-foreground/30 focus:outline-none focus:border-lioner-gold/50"
+                className="flex-1 px-4 py-2.5 rounded-full bg-foreground/5 border border-foreground/10 text-foreground text-sm placeholder:text-foreground/30 focus:outline-none focus:border-lioner-gold/50"
               />
               <button
                 onClick={handleSendText}
                 disabled={!textInput.trim()}
-                className="px-3 py-2.5 rounded-lg bg-lioner-gold/20 border border-lioner-gold/30 text-lioner-gold hover:bg-lioner-gold/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                className="w-10 h-10 rounded-full bg-lioner-gold/20 border border-lioner-gold/30 text-lioner-gold hover:bg-lioner-gold/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
               >
                 <Send className="w-4 h-4" />
               </button>
             </div>
-          </>
+          </div>
         )}
 
         {/* Inline booking calendar */}
