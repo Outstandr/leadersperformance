@@ -9,14 +9,14 @@ interface BurnoutIntroStepProps {
 const ui = {
   en: {
     eyebrow: "Founder Risk Intelligence",
-    heading: "The Founder Risk Assessment",
+    heading: "The Founder Pressure Scan",
     description: "Discover your Founder Risk Score. Identify whether you are approaching burnout or already operating in a burnout phase.",
     bullets: [
       "10 targeted questions across 5 pressure indicators",
       "Instant FBR Score with risk classification",
       "Unlock the Full Diagnostic for your complete burnout phase analysis",
     ],
-    cta: "Take the Founder Pressure Test",
+    cta: "Start the Founder Pressure Scan",
     time: "Takes approximately 90 seconds",
   },
   nl: {
