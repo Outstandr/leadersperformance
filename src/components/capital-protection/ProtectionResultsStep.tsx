@@ -213,7 +213,7 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
           className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
         >
           <Mic className="w-5 h-5 mr-3" />
-          {language === "nl" ? "Bespreek uw rapport" : "Discuss your report"}
+          {language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"}
         </Button>
 
         <Button
