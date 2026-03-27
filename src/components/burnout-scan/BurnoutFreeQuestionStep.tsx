@@ -22,8 +22,9 @@ export function BurnoutFreeQuestionStep({ currentIndex, onAnswer }: BurnoutFreeQ
 
   return (
     <div ref={containerRef} className="p-6 md:p-10">
-      <div className="mb-8">
-        <div className="flex justify-between items-center mb-3">
+      {/* Sticky progress bar for mobile clarity */}
+      <div className="sticky top-0 z-10 bg-white pb-4 -mx-6 px-6 md:-mx-10 md:px-10 pt-1">
+        <div className="flex justify-between items-center mb-2">
           <span className="text-xs uppercase tracking-widest text-red-500 font-semibold">
             {language === "nl" ? "Vraag" : "Question"} {currentIndex + 1} {language === "nl" ? "van" : "of"} {total}
           </span>
@@ -31,16 +32,31 @@ export function BurnoutFreeQuestionStep({ currentIndex, onAnswer }: BurnoutFreeQ
             {Math.round(progress)}%
           </span>
         </div>
-        <Progress value={progress} className="h-1 bg-foreground/10" />
+        <Progress value={progress} className="h-2 bg-foreground/10" />
+        {/* Step dots for visual clarity */}
+        <div className="flex gap-1 mt-2 justify-center">
+          {Array.from({ length: total }).map((_, i) => (
+            <div
+              key={i}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i < currentIndex
+                  ? "w-3 bg-red-500"
+                  : i === currentIndex
+                  ? "w-6 bg-red-500"
+                  : "w-3 bg-foreground/15"
+              }`}
+            />
+          ))}
+        </div>
       </div>
 
-      {/* Animated question container - key forces re-mount for transition */}
+      {/* Animated question container */}
       <div
         key={currentIndex}
         className="animate-fade-in"
         style={{ animation: "fadeSlideIn 0.35s ease-out" }}
       >
-        <div className="mb-2">
+        <div className="mb-2 mt-4">
           <span className="text-xs uppercase tracking-[0.2em] text-red-500/70 font-semibold">
             {question.sectionLabel[language]}
           </span>
