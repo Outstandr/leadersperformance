@@ -511,7 +511,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
               <div className="text-center mb-4">
                 <p className="text-white/50 text-xs">
                   {isTextMode
-                    ? language === "nl" ? "Chat met Daisy" : "Chat with Daisy"
+                    ? language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"
                     : conversation.isSpeaking ? "Daisy is speaking…" : "Listening…"}
                 </p>
               </div>
