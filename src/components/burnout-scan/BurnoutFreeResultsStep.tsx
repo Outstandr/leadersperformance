@@ -158,7 +158,7 @@ function getOverallLevel(score: number): string {
 
 const ui = {
   en: {
-    title: "Your Founder Burnout Risk Score",
+    title: "The Founder Risk Score",
     preliminary: "(Preliminary Assessment)",
     howCalculated: "How This Score Was Calculated",
     howExplanation: "Your FBR Score is derived from 10 diagnostic questions across 5 pressure domains. Each domain is scored 0-100 based on your responses, and weighted equally to produce your overall risk score.",
@@ -178,7 +178,7 @@ const ui = {
     processing: "Redirecting to payment...",
   },
   nl: {
-    title: "Uw Founder Burnout Risk Score",
+    title: "The Founder Risk Score",
     preliminary: "(Voorlopige Beoordeling)",
     howCalculated: "Hoe Deze Score Is Berekend",
     howExplanation: "Uw FBR-score is afgeleid van 10 diagnostische vragen over 5 drukdomeinen. Elk domein wordt gescoord van 0-100 op basis van uw antwoorden en gelijk gewogen om uw algehele risicoscore te produceren.",
