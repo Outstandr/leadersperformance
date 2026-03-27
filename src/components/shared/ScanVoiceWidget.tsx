@@ -142,8 +142,6 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
   }, [conversation]);
 
   const isConnected = conversation.status === "connected";
-
-  const isConnected = conversation.status === "connected";
   const isWaitingForAgent = isConnected && isTextMode && transcript.length === 0;
 
   return (
