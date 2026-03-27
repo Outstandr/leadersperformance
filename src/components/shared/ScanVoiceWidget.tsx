@@ -158,7 +158,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
               </div>
               <div className="text-left">
                 <p className="text-sm font-semibold text-foreground">
-                  {language === "nl" ? "Spreek met Daisy" : "Speak with Daisy"}
+                  {language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"}
                 </p>
                 <p className="text-xs text-foreground/50">
                   {language === "nl" ? "Gebruik uw microfoon" : "Use your microphone"}
@@ -174,7 +174,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
               </div>
               <div className="text-left">
                 <p className="text-sm font-semibold text-foreground">
-                  {language === "nl" ? "Chat met Daisy" : "Chat with Daisy"}
+                  {language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"}
                 </p>
                 <p className="text-xs text-foreground/50">
                   {language === "nl" ? "Typ uw berichten" : "Type your messages"}
