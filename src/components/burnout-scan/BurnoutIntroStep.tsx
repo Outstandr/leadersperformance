@@ -9,8 +9,8 @@ interface BurnoutIntroStepProps {
 const ui = {
   en: {
     eyebrow: "Founder Risk Intelligence",
-    heading: "Founder Burnout Risk Assessment",
-    description: "Discover your Founder Burnout Risk Score. Identify whether you are approaching burnout or already operating in a burnout phase.",
+    heading: "The Founder Risk Assessment",
+    description: "Discover your Founder Risk Score. Identify whether you are approaching burnout or already operating in a burnout phase.",
     bullets: [
       "10 targeted questions across 5 pressure indicators",
       "Instant FBR Score with risk classification",
@@ -21,8 +21,8 @@ const ui = {
   },
   nl: {
     eyebrow: "Founder Risico Intelligentie",
-    heading: "Founder Burnout Risico Assessment",
-    description: "Ontdek uw Founder Burnout Risk Score. Identificeer of u burnout nadert of al in een burnout-fase opereert.",
+    heading: "The Founder Risk Assessment",
+    description: "Ontdek uw Founder Risk Score. Identificeer of u burnout nadert of al in een burnout-fase opereert.",
     bullets: [
       "10 gerichte vragen over 5 drukindicatoren",
       "Directe FBR Score met risicoclassificatie",
