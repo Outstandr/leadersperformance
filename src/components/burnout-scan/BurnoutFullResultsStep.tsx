@@ -83,7 +83,7 @@ function ReportSection({ icon: Icon, title, content, variant = "default" }: { ic
 const ui = {
   en: {
     title: "Founder Burnout Diagnostic Report",
-    overallScore: "Founder Burnout Risk Score",
+    overallScore: "The Founder Risk Score",
     burnoutPhase: "Burnout Phase",
     recoveryTimeline: "Estimated Recovery Time",
     without: "Without intervention",
@@ -105,7 +105,7 @@ const ui = {
   },
   nl: {
     title: "Founder Burnout Diagnostisch Rapport",
-    overallScore: "Founder Burnout Risk Score",
+    overallScore: "The Founder Risk Score",
     burnoutPhase: "Burnout Fase",
     recoveryTimeline: "Geschatte Hersteltijd",
     without: "Zonder interventie",
