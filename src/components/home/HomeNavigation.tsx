@@ -31,7 +31,8 @@ export const HomeNavigation = () => {
 
   const navItems = [
     { label: t("nav.about"), href: "#about" },
-    { label: "FOUNDER ADVISORY", href: "/elite" },
+    { label: "FOUNDERS ADVISORY", href: "/elite" },
+    { label: "BUSINESS", href: "/business" },
     { label: "UNMASKED", href: "https://unmasked.leadersperformance.ae/business" },
     { label: "ACADEMY", href: "#articles" },
     { label: "ARTICLES", href: "#articles" },

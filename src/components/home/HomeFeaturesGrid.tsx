@@ -364,38 +364,75 @@ export const HomeFeaturesGrid = () => {
                       <p className="text-center text-xs text-muted-foreground">
                         {(services[selected].details as any).disclaimer}
                       </p>
-                      {/* UNMASKED: open internal booking dialog */}
-                      {isUnmasked && (
-                        <button
-                          onClick={() => { setSelected(null); setTimeout(() => setBookingOpen(true), 200); }}
-                          className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+
+                      {/* UNMASKED (index 0): booking + external link */}
+                      {selected === 0 && (
+                        <div className="flex flex-col gap-2">
+                          <button
+                            onClick={() => { setSelected(null); setTimeout(() => setBookingOpen(true), 200); }}
+                            className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                          >
+                            {(services[selected].details as any).cta}
+                          </button>
+                          <a
+                            href="https://unmasked.leadersperformance.ae/business"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full block text-center border-2 border-lioner-gold/40 text-foreground py-3 text-sm font-semibold uppercase tracking-widest hover:bg-lioner-gold/10 transition-colors"
+                          >
+                            {language === "nl" ? "Bekijk UNMASKED" : "View UNMASKED"}
+                          </a>
+                        </div>
+                      )}
+
+                      {/* Founder Strategic Advisory (index 1): scan + view page */}
+                      {selected === 1 && (
+                        <div className="flex flex-col gap-2">
+                          <button
+                            onClick={() => { setSelected(null); navigate("/burnout-scan"); }}
+                            className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                          >
+                            {(services[selected].details as any).cta}
+                          </button>
+                          <button
+                            onClick={() => { setSelected(null); navigate("/elite"); }}
+                            className="w-full border-2 border-lioner-gold/40 text-foreground py-3 text-sm font-semibold uppercase tracking-widest hover:bg-lioner-gold/10 transition-colors"
+                          >
+                            {language === "nl" ? "Bekijk Founders Advisory" : "View Founders Advisory"}
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Capital Protection (index 2): scan + view page */}
+                      {selected === 2 && (
+                        <div className="flex flex-col gap-2">
+                          <button
+                            onClick={() => { setSelected(null); navigate("/capital-protection"); }}
+                            className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                          >
+                            {(services[selected].details as any).cta}
+                          </button>
+                          <button
+                            onClick={() => { setSelected(null); navigate("/capital-protection"); }}
+                            className="w-full border-2 border-lioner-gold/40 text-foreground py-3 text-sm font-semibold uppercase tracking-widest hover:bg-lioner-gold/10 transition-colors"
+                          >
+                            {language === "nl" ? "Bekijk Kapitaalbescherming" : "View Capital Protection"}
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Academy (index 3): external link */}
+                      {selected === 3 && (
+                        <a
+                          href="https://testgroup.leadersperformance.ae/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors text-center"
                         >
                           {(services[selected].details as any).cta}
-                        </button>
+                        </a>
                       )}
                     </div>
-                  )}
-
-                  {/* Capital Protection (index 2) */}
-                  {selected === 2 && (
-                    <button
-                      onClick={() => { setSelected(null); navigate("/capital-protection"); }}
-                      className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
-                    >
-                      {(services[selected].details as any).cta}
-                    </button>
-                  )}
-
-                  {/* Leaders Performance Academy CTA (index 3) */}
-                  {selected === 3 && (
-                    <a
-                      href="https://testgroup.leadersperformance.ae/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors text-center"
-                    >
-                      {(services[selected].details as any).cta}
-                    </a>
                   )}
                 </div>
               </div>
