@@ -159,7 +159,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
               </div>
               <div className="text-left">
                 <p className="text-sm font-semibold text-foreground">
-                  {language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"}
+                   {language === "nl" ? "Spreek met een adviseur" : "Speak to an advisor"}
                 </p>
                 <p className="text-xs text-foreground/50">
                   {language === "nl" ? "Gebruik uw microfoon" : "Use your microphone"}
@@ -175,7 +175,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
               </div>
               <div className="text-left">
                 <p className="text-sm font-semibold text-foreground">
-                  {language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"}
+                  {language === "nl" ? "Spreek met een adviseur" : "Speak to an advisor"}
                 </p>
                 <p className="text-xs text-foreground/50">
                   {language === "nl" ? "Typ uw berichten" : "Type your messages"}
@@ -225,8 +225,10 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
                     ))}
                   </div>
                 )}
-                <button
-                  onClick={() => conversation.endSession()}
+              <button
+                  onClick={async () => {
+                    try { await conversation.endSession(); } catch (e) { console.error(e); }
+                  }}
                   className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all bg-red-500/10 hover:bg-red-500/20 border border-red-500/20"
                   title={language === "nl" ? "Stop gesprek" : "End conversation"}
                 >

@@ -422,9 +422,12 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
           </div>
           <button
             onClick={async () => {
-              if (status === "connected") await endConversation();
+              if (status === "connected") {
+                try { await conversation.endSession(); } catch (e) { console.error(e); }
+              }
+              setStatus("idle");
               onClose();
-            }}
+            }
             className="p-2 rounded-full text-white/40 hover:text-white hover:bg-white/10 transition-all"
           >
             <X className="w-5 h-5" />
@@ -456,14 +459,14 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
                   className="w-full py-3.5 rounded-xl bg-[#b39758] text-black font-semibold text-sm tracking-wide hover:bg-[#c9aa6a] transition-all flex items-center justify-center gap-2"
                 >
                   <Mic className="w-4 h-4" />
-                  {language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"}
+                   {language === "nl" ? "Spreek met een adviseur" : "Speak to an advisor"}
                 </button>
                 <button
                   onClick={() => startConversation(true)}
                   className="w-full py-3.5 rounded-xl bg-white/5 border border-white/10 text-white/70 font-semibold text-sm tracking-wide hover:bg-white/10 transition-all flex items-center justify-center gap-2"
                 >
                   <Send className="w-4 h-4" />
-                  {language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"}
+                  {language === "nl" ? "Spreek met een adviseur" : "Speak to an advisor"}
                 </button>
               </div>
             </div>
@@ -511,7 +514,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
               <div className="text-center mb-4">
                 <p className="text-white/50 text-xs">
                   {isTextMode
-                    ? language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"
+                    ? language === "nl" ? "Spreek met een adviseur" : "Speak to an advisor"
                     : conversation.isSpeaking ? "Daisy is speaking…" : "Listening…"}
                 </p>
               </div>
