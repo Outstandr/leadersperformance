@@ -427,7 +427,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
               }
               setStatus("idle");
               onClose();
-            }
+            }}
             className="p-2 rounded-full text-white/40 hover:text-white hover:bg-white/10 transition-all"
           >
             <X className="w-5 h-5" />
