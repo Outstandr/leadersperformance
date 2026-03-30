@@ -6,9 +6,8 @@ import { BusinessWhyUsSection } from "@/components/business/BusinessWhyUsSection
 import { BusinessServicesSection } from "@/components/business/BusinessServicesSection";
 import { BusinessProcessSection } from "@/components/business/BusinessProcessSection";
 import { BusinessResultsSection } from "@/components/business/BusinessResultsSection";
-import { CorporateAuditCTASection } from "@/components/corporate-audit/CorporateAuditCTASection";
+import { ProfitLeakCTASection } from "@/components/profit-leak/ProfitLeakCTASection";
 import { CapitalProtectionCTASection } from "@/components/capital-protection/CapitalProtectionCTASection";
-import { CapitalAssessmentCTASection } from "@/components/capital-assessment/CapitalAssessmentCTASection";
 import { BusinessBookingSection } from "@/components/business/BusinessBookingSection";
 import { HomeFooter } from "@/components/home/HomeFooter";
 
