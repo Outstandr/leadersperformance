@@ -10,6 +10,8 @@ import serviceUnmasked from "@/assets/card-unmasked.png";
 import serviceCoaching from "@/assets/card-coaching.png";
 import serviceAcademy from "@/assets/card-masterclass.png";
 import serviceBusiness from "@/assets/card-business.png";
+import serviceBusinessConsulting from "@/assets/card-business-consulting.jpg";
+import serviceRoundTable from "@/assets/card-roundtable.jpg";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 
@@ -96,8 +98,46 @@ const cards = {
         disclaimer: "RESET Blueprint® Ecosystem",
       },
     },
-  ],
-  nl: [
+    {
+      title: "Business\nConsulting",
+      description: "Strategic consulting for companies looking to strengthen their internal structure, leadership and execution to scale sustainably.",
+      details: {
+        headline: "Business Consulting",
+        tag: "For Companies · Strategic Growth",
+        body: "Leaders Performance works with companies that need to strengthen their internal structure, sharpen leadership and improve execution across the organisation.\n\nThis is not generic consulting.\n\nIt is a hands-on strategic engagement designed to identify where the company is losing money, where leadership gaps exist and how to build a structure that supports sustainable growth.",
+        bullets: [
+          "Corporate discipline audits",
+          "Capital protection assessments",
+          "Leadership structure reviews",
+          "Execution gap analysis",
+          "Strategic growth planning",
+        ],
+        closing: "For companies serious about fixing what's broken and building what lasts.",
+        cta: "View Business",
+        disclaimer: "Strategic engagements by consultation",
+        showCalendar: false,
+      },
+    },
+    {
+      title: "The Round Table",
+      description: "An exclusive, invite-only series of breakfasts, lunches and dinners for founders and entrepreneurs. No pitches. No panels. Just real conversation at the highest level.",
+      details: {
+        headline: "The Round Table",
+        tag: "Strict Invite Only · Founders & Entrepreneurs",
+        body: "The Round Table is an exclusive, invite-only series of private breakfasts, lunches and dinners designed for founders and entrepreneurs operating at the highest level.\n\nThis is not a networking event.\n\nIt is a curated gathering where founders share openly, challenge each other and build relationships that compound over time.\n\nNo pitches. No panels. No sponsors.\n\nJust real conversation between people who build real companies.",
+        bullets: [
+          "Private breakfast, lunch and dinner formats",
+          "Curated founder-only guest lists",
+          "Confidential and off-the-record",
+          "Hosted in premium private venues",
+          "Limited to 12 seats per event",
+        ],
+        closing: "If you're building something real, this is where you belong.",
+        cta: "Request an Invitation",
+        disclaimer: "By invitation only · Limited seats",
+        showCalendar: false,
+      },
+    },
     {
       title: "UNMASKED\nInterventie",
       description: "Een privé interventieomgeving ontworpen voor founders en leiderschapsteams die helderheid, structurele reset en besluitvaardige uitvoering nodig hebben.",
@@ -177,10 +217,50 @@ const cards = {
         disclaimer: "RESET Blueprint® Ecosysteem",
       },
     },
+    {
+      title: "Zakelijk\nAdvies",
+      description: "Strategisch advies voor bedrijven die hun interne structuur, leiderschap en uitvoering willen versterken om duurzaam te groeien.",
+      details: {
+        headline: "Zakelijk Advies",
+        tag: "Voor Bedrijven · Strategische Groei",
+        body: "Leaders Performance werkt met bedrijven die hun interne structuur moeten versterken, leiderschap moeten aanscherpen en uitvoering in de hele organisatie moeten verbeteren.\n\nDit is geen generiek advies.\n\nHet is een hands-on strategisch traject ontworpen om te identificeren waar het bedrijf geld verliest, waar leiderschapslacunes bestaan en hoe een structuur te bouwen die duurzame groei ondersteunt.",
+        bullets: [
+          "Corporate discipline audits",
+          "Kapitaalbeschermingsbeoordelingen",
+          "Leiderschapsstructuur reviews",
+          "Uitvoeringsgap analyse",
+          "Strategische groeiplannen",
+        ],
+        closing: "Voor bedrijven die serieus zijn over het repareren van wat kapot is en het bouwen van wat blijft.",
+        cta: "Bekijk Business",
+        disclaimer: "Strategische trajecten op consultatie",
+        showCalendar: false,
+      },
+    },
+    {
+      title: "The Round Table",
+      description: "Een exclusieve serie ontbijten, lunches en diners voor founders en ondernemers. Uitsluitend op uitnodiging. Geen pitches. Geen panels. Alleen echte gesprekken op het hoogste niveau.",
+      details: {
+        headline: "The Round Table",
+        tag: "Uitsluitend op Uitnodiging · Founders & Ondernemers",
+        body: "The Round Table is een exclusieve serie privé-ontbijten, lunches en diners ontworpen voor founders en ondernemers die op het hoogste niveau opereren.\n\nDit is geen netwerkevenement.\n\nHet is een samengestelde bijeenkomst waar founders openlijk delen, elkaar uitdagen en relaties opbouwen die zich vermenigvuldigen over tijd.\n\nGeen pitches. Geen panels. Geen sponsors.\n\nAlleen echte gesprekken tussen mensen die echte bedrijven bouwen.",
+        bullets: [
+          "Privé ontbijt-, lunch- en dinerformaten",
+          "Samengestelde founder-only gastenlijsten",
+          "Vertrouwelijk en off-the-record",
+          "Gehost in premium privélocaties",
+          "Beperkt tot 12 plaatsen per evenement",
+        ],
+        closing: "Als je iets echts bouwt, is dit waar je thuishoort.",
+        cta: "Vraag een Uitnodiging Aan",
+        disclaimer: "Uitsluitend op uitnodiging · Beperkte plaatsen",
+        showCalendar: false,
+      },
+    },
   ],
 };
 
-const images = [serviceUnmasked, serviceCoaching, serviceBusiness, serviceAcademy];
+const images = [serviceUnmasked, serviceCoaching, serviceBusiness, serviceAcademy, serviceBusinessConsulting, serviceRoundTable];
 
 // ─── Sub-components ────────────────────────────────────────────────────────
 
@@ -280,7 +360,7 @@ export const HomeFeaturesGrid = () => {
     <>
       <section id="features" className="relative z-10 pt-32 pb-20 md:pt-40 md:pb-28 bg-background">
         <div className="container mx-auto px-6 max-w-7xl" ref={ref}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
             {services.map((service, i) => (
               <ParallaxCard
                 key={i}
@@ -431,6 +511,26 @@ export const HomeFeaturesGrid = () => {
                         >
                           {(services[selected].details as any).cta}
                         </a>
+                        )}
+
+                      {/* Business Consulting (index 4): view page */}
+                      {selected === 4 && (
+                        <button
+                          onClick={() => { setSelected(null); navigate("/business"); }}
+                          className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                        >
+                          {(services[selected].details as any).cta}
+                        </button>
+                      )}
+
+                      {/* The Round Table (index 5): request invitation */}
+                      {selected === 5 && (
+                        <button
+                          onClick={() => { setSelected(null); navigate("/business"); }}
+                          className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                        >
+                          {(services[selected].details as any).cta}
+                        </button>
                       )}
                     </div>
                   )}
