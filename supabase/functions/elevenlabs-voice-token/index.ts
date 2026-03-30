@@ -333,15 +333,56 @@ BOOKING
 - Once the booking is confirmed, congratulate them and let them know the team will follow up.`;
 }
 
+function formatProfitLeakSnapshot(ctx: ProfitLeakContext) {
+  const sections = (ctx.sectionScores ?? [])
+    .map((s) => `- ${s.label}: ${s.score}% (${s.color})`)
+    .join('\n');
+
+  return `LIVE PROFIT LEAK SCAN SESSION
+- The visitor has just completed the Profit Leak Scan and is looking at their Growth Barrier Diagnosis on screen.
+- This is not a discovery conversation. Continue from the assessment.
+- Open by asking whether they are happy with the results or what surprised them most.
+- Do not ask broad routing questions. The primary recommendation is a Founder Intervention Call with Lionel.
+
+VISITOR PROFILE
+- Name: ${ctx.fullName ?? 'Unknown'}
+- Company: ${ctx.company ?? 'Unknown'}
+
+SCAN RESULTS
+- Overall Score: ${ctx.overallScore ?? 'n/a'}%
+- Overall Color: ${ctx.overallColor ?? 'n/a'}
+- Growth Phase: ${ctx.growthPhase ?? 'n/a'}
+- Primary Bottleneck: ${ctx.primaryBottleneck ?? 'n/a'}
+- Revenue Tier: ${ctx.revenue ?? 'n/a'}
+- Estimated Annual Leakage: ${ctx.estimatedLeakageLow ?? 'n/a'} – ${ctx.estimatedLeakageHigh ?? 'n/a'}
+
+DIMENSION SCORES
+${sections || '- No dimension scores provided'}
+
+DAISY TRIAGE APPROACH:
+- Reference the estimated profit leakage naturally. Ask which bottleneck resonated most.
+- Explore whether the founder was aware of the structural gap.
+- If answers indicate a relevant case, explain that Lionel works with founders to diagnose growth barriers and remove structural bottlenecks.
+- Then offer to book a Founder Intervention Call.
+
+BOOKING
+- You have a tool called show_calendar. When the visitor wants to book a Founder Intervention Call with Lionel, call show_calendar.
+- After calling show_calendar, tell the visitor the calendar is now on their screen and ask them to pick a date and time.
+- Do not ask for contact details for booking — they are already captured.
+- Once the booking is confirmed, congratulate them and ask if there is anything else you can help with.`;
+}
+
 function buildAgentConfig(requestData: SessionRequest) {
   const context = requestData.context;
   const scanCtx = requestData.scanContext;
   const auditCtx = requestData.auditContext;
   const burnoutCtx = requestData.burnoutContext;
+  const profitLeakCtx = requestData.profitLeakContext;
   const isCapitalProtection = requestData.mode === 'capital_protection' && context;
   const isPressureScan = requestData.mode === 'pressure_scan' && scanCtx;
   const isCorporateAudit = requestData.mode === 'corporate_audit' && auditCtx;
   const isBurnoutScan = requestData.mode === 'burnout_scan' && burnoutCtx;
+  const isProfitLeak = requestData.mode === 'profit_leak' && profitLeakCtx;
   const firstName = isCapitalProtection
     ? context?.firstName?.trim().split(/\s+/)[0]
     : isPressureScan
@@ -350,6 +391,8 @@ function buildAgentConfig(requestData: SessionRequest) {
     ? auditCtx?.firstName?.trim()
     : isBurnoutScan
     ? burnoutCtx?.fullName?.trim().split(/\s+/)[0]
+    : isProfitLeak
+    ? profitLeakCtx?.fullName?.trim().split(/\s+/)[0]
     : undefined;
 
   let prompt = baseDaisySystemPrompt;
@@ -361,10 +404,12 @@ function buildAgentConfig(requestData: SessionRequest) {
     prompt = `${baseDaisySystemPrompt}\n\n${formatCorporateAuditSnapshot(auditCtx)}`;
   } else if (isBurnoutScan) {
     prompt = `${baseDaisySystemPrompt}\n\n${formatBurnoutScanSnapshot(burnoutCtx)}`;
+  } else if (isProfitLeak) {
+    prompt = `${baseDaisySystemPrompt}\n\n${formatProfitLeakSnapshot(profitLeakCtx)}`;
   }
 
   let firstMessage: string;
-  if (isCapitalProtection || isPressureScan || isCorporateAudit || isBurnoutScan) {
+  if (isCapitalProtection || isPressureScan || isCorporateAudit || isBurnoutScan || isProfitLeak) {
     firstMessage = `Hi, this is Daisy from Leaders Performance.${firstName ? ` ${firstName},` : ''} are you happy with your results?`;
   } else {
     firstMessage = "Hi, this is Daisy from Leaders Performance. I'm here to help you make sense of your next move. What feels most pressing for you right now?";
