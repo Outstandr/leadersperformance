@@ -98,8 +98,46 @@ const cards = {
         disclaimer: "RESET Blueprint® Ecosystem",
       },
     },
-  ],
-  nl: [
+    {
+      title: "Business\nConsulting",
+      description: "Strategic consulting for companies looking to strengthen their internal structure, leadership and execution to scale sustainably.",
+      details: {
+        headline: "Business Consulting",
+        tag: "For Companies · Strategic Growth",
+        body: "Leaders Performance works with companies that need to strengthen their internal structure, sharpen leadership and improve execution across the organisation.\n\nThis is not generic consulting.\n\nIt is a hands-on strategic engagement designed to identify where the company is losing money, where leadership gaps exist and how to build a structure that supports sustainable growth.",
+        bullets: [
+          "Corporate discipline audits",
+          "Capital protection assessments",
+          "Leadership structure reviews",
+          "Execution gap analysis",
+          "Strategic growth planning",
+        ],
+        closing: "For companies serious about fixing what's broken and building what lasts.",
+        cta: "View Business",
+        disclaimer: "Strategic engagements by consultation",
+        showCalendar: false,
+      },
+    },
+    {
+      title: "The Round Table",
+      description: "An exclusive, invite-only series of breakfasts, lunches and dinners for founders and entrepreneurs. No pitches. No panels. Just real conversation at the highest level.",
+      details: {
+        headline: "The Round Table",
+        tag: "Strict Invite Only · Founders & Entrepreneurs",
+        body: "The Round Table is an exclusive, invite-only series of private breakfasts, lunches and dinners designed for founders and entrepreneurs operating at the highest level.\n\nThis is not a networking event.\n\nIt is a curated gathering where founders share openly, challenge each other and build relationships that compound over time.\n\nNo pitches. No panels. No sponsors.\n\nJust real conversation between people who build real companies.",
+        bullets: [
+          "Private breakfast, lunch and dinner formats",
+          "Curated founder-only guest lists",
+          "Confidential and off-the-record",
+          "Hosted in premium private venues",
+          "Limited to 12 seats per event",
+        ],
+        closing: "If you're building something real, this is where you belong.",
+        cta: "Request an Invitation",
+        disclaimer: "By invitation only · Limited seats",
+        showCalendar: false,
+      },
+    },
     {
       title: "UNMASKED\nInterventie",
       description: "Een privé interventieomgeving ontworpen voor founders en leiderschapsteams die helderheid, structurele reset en besluitvaardige uitvoering nodig hebben.",
