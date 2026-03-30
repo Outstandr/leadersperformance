@@ -10,11 +10,11 @@ const ui = {
   en: {
     eyebrow: "Founder Risk Intelligence",
     heading: "The Founder Pressure Scan",
-    description: "Discover your Founder Risk Score. Identify whether you are approaching burnout or already operating in a burnout phase.",
+    description: "Discover your Founder Risk Score. Identify early signals of overload before they start impacting your performance, decisions, and results.",
     bullets: [
       "10 targeted questions across 5 pressure indicators",
       "Instant FBR Score with risk classification",
-      "Unlock the Full Diagnostic for your complete burnout phase analysis",
+      "Unlock the Full Diagnostic for your complete pressure phase analysis",
     ],
     cta: "Start the Founder Pressure Scan",
     time: "Takes approximately 90 seconds",
