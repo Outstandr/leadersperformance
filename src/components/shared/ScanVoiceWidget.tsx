@@ -136,9 +136,8 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
     setShowCalendar(false);
     if (conversation.status === "connected") {
       conversation.sendContextualUpdate(
-        "The user has just successfully booked an intervention session with Lionel. Congratulate them and end the conversation."
+        "The user has just successfully booked a session with Lionel. Congratulate them warmly, then ask if there is anything else you can help them with. Do NOT end the conversation — let the user decide when they are done."
       );
-      setTimeout(() => conversation.endSession(), 5000);
     }
   }, [conversation]);
 
