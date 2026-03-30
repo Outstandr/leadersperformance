@@ -511,6 +511,26 @@ export const HomeFeaturesGrid = () => {
                         >
                           {(services[selected].details as any).cta}
                         </a>
+                        )}
+
+                      {/* Business Consulting (index 4): view page */}
+                      {selected === 4 && (
+                        <button
+                          onClick={() => { setSelected(null); navigate("/business"); }}
+                          className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                        >
+                          {(services[selected].details as any).cta}
+                        </button>
+                      )}
+
+                      {/* The Round Table (index 5): request invitation */}
+                      {selected === 5 && (
+                        <button
+                          onClick={() => { setSelected(null); navigate("/business"); }}
+                          className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                        >
+                          {(services[selected].details as any).cta}
+                        </button>
                       )}
                     </div>
                   )}
