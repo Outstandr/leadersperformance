@@ -25,7 +25,9 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
   const [emailConfirmed, setEmailConfirmed] = useState(false);
   const [textInput, setTextInput] = useState("");
   const [isTextMode, setIsTextMode] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
+  const conversationRef = useRef<any>(null);
 
   const isPressureScan = contextData.mode === "pressure_scan";
   const isCapitalProtection = contextData.mode === "capital_protection";
