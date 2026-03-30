@@ -144,9 +144,24 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       setEmailConfirmed(false);
       setTextInput("");
       setIsTextMode(false);
+      setShowCalendar(false);
       autoConnectTriggered.current = false;
     }
   }, [isOpen]);
+
+  // Keep conversation ref updated for cleanup
+  useEffect(() => {
+    conversationRef.current = conversation;
+  }, [conversation]);
+
+  // Force cleanup on unmount or close
+  useEffect(() => {
+    return () => {
+      if (conversationRef.current) {
+        try { conversationRef.current.endSession(); } catch (e) { /* ignore */ }
+      }
+    };
+  }, []);
 
   // Sync isSpeaking to context
   useEffect(() => {
