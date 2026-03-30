@@ -66,7 +66,7 @@ export const HomeNavigation = () => {
             />
           </Link>
 
-          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
+          <div className="hidden lg:flex items-center gap-3 xl:gap-5">
             {navItems.map((item) =>
               item.href.startsWith("http") ? (
                 <a
