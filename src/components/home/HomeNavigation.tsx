@@ -74,7 +74,7 @@ export const HomeNavigation = () => {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`whitespace-nowrap text-[11px] xl:text-[13px] font-medium tracking-widest uppercase transition-colors ${
+                  className={`whitespace-nowrap text-[10px] xl:text-[12px] font-bold tracking-widest uppercase transition-colors ${
                     isDark
                       ? "text-background/70 hover:text-background"
                       : "text-muted-foreground hover:text-foreground"
