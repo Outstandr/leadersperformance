@@ -212,9 +212,8 @@ IMPORTANT INSTRUCTIONS:
     setShowCalendar(false);
     if (conversation.status === "connected") {
       conversation.sendContextualUpdate(
-        "The user has just successfully booked a case review appointment with Lionel. The conversation is now ending."
+        "The user has just successfully booked a case review appointment with Lionel. Congratulate them warmly, then ask if there is anything else you can help them with. Do NOT end the conversation — let the user decide when they are done."
       );
-      conversation.endSession();
     }
   }, [conversation]);
 
