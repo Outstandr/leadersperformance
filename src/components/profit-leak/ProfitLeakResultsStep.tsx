@@ -249,17 +249,21 @@ export function ProfitLeakResultsStep({ result, userInfo, onClose, responses }: 
         </p>
 
         <ScanVoiceWidget
-          mode="burnout_scan"
+          mode="profit_leak"
           userInfo={{ fullName: userInfo.fullName, email: userInfo.email, phone: userInfo.phone }}
           contextPayload={{
-            scan_type: "profit_leak_scan",
-            overall_score: result.overallScore,
-            overall_color: result.overallColor,
-            primary_bottleneck: result.primaryBottleneck[lang],
-            growth_phase: result.growthPhase[lang],
+            fullName: userInfo.fullName,
+            company: userInfo.company,
+            phone: userInfo.phone,
+            email: userInfo.email,
+            overallScore: result.overallScore,
+            overallColor: result.overallColor,
+            primaryBottleneck: result.primaryBottleneck[lang],
+            growthPhase: result.growthPhase[lang],
             revenue: result.revenue,
-            estimated_leakage_low: `€${(leakLow / 1000).toFixed(0)}K`,
-            estimated_leakage_high: `€${(leakHigh / 1000).toFixed(0)}K`,
+            estimatedLeakageLow: `€${(leakLow / 1000).toFixed(0)}K`,
+            estimatedLeakageHigh: `€${(leakHigh / 1000).toFixed(0)}K`,
+            sectionScores: result.sectionScores.map(s => ({ label: s.label, score: s.score, color: s.color })),
           }}
           bookingType="Founder Intervention Call"
         />

@@ -7,7 +7,7 @@ import { ScanBookingCalendar, ScanBookingUserInfo } from "./ScanBookingCalendar"
 const SCAN_CALENDAR_ID = "Se3SwkYLXfuW52O0F4GX";
 
 interface ScanVoiceWidgetProps {
-  mode: "pressure_scan" | "corporate_audit" | "burnout_scan";
+  mode: "pressure_scan" | "corporate_audit" | "burnout_scan" | "profit_leak";
   userInfo: ScanBookingUserInfo;
   contextPayload: Record<string, unknown>;
   bookingType: string;
@@ -72,7 +72,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
       const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-      const bodyKey = mode === "pressure_scan" ? "scanContext" : mode === "burnout_scan" ? "burnoutContext" : "auditContext";
+      const bodyKey = mode === "pressure_scan" ? "scanContext" : mode === "burnout_scan" ? "burnoutContext" : mode === "profit_leak" ? "profitLeakContext" : "auditContext";
 
       const res = await fetch(
         `https://${projectId}.supabase.co/functions/v1/elevenlabs-voice-token`,
