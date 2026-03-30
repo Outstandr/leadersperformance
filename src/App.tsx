@@ -24,6 +24,7 @@ const Articles = lazy(() => import("./pages/Articles"));
 const ArticleDetail = lazy(() => import("./pages/ArticleDetail"));
 const CapitalProtection = lazy(() => import("./pages/CapitalProtection"));
 const BurnoutScan = lazy(() => import("./pages/BurnoutScan"));
+const ProfitLeakScan = lazy(() => import("./pages/ProfitLeakScan"));
 
 const queryClient = new QueryClient();
 
