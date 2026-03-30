@@ -365,7 +365,7 @@ export const HomeFeaturesGrid = () => {
                         {(services[selected].details as any).disclaimer}
                       </p>
 
-                      {/* UNMASKED (index 0): booking + external link */}
+                      {/* UNMASKED (index 0): scan + external link */}
                       {selected === 0 && (
                         <div className="flex flex-col gap-2">
                           <button
@@ -373,12 +373,6 @@ export const HomeFeaturesGrid = () => {
                             className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
                           >
                             {language === "nl" ? "Start de Founder Pressure Scan" : "Take the Founder Pressure Scan"}
-                          </button>
-                          <button
-                            onClick={() => { setSelected(null); setTimeout(() => setBookingOpen(true), 200); }}
-                            className="w-full border-2 border-lioner-gold/40 text-foreground py-3 text-sm font-semibold uppercase tracking-widest hover:bg-lioner-gold/10 transition-colors"
-                          >
-                            {(services[selected].details as any).cta}
                           </button>
                           <a
                             href="https://unmasked.leadersperformance.ae/business"
