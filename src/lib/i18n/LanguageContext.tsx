@@ -357,7 +357,7 @@ const en: Record<string, string> = {
   "business.hero.description": "Every organization reflects the standards its founder tolerates. If mediocrity persists, that's a choice.\n\nThe Business Reset Blueprint restructures your organisation so that accountability is in the right place and performance is no longer dependent on you alone.",
   "business.hero.belowVideo": "Within 30 days, the structure is installed that restores ownership, accountability and performance.",
   "business.hero.ctaPrimary": "Book a Consult",
-  "business.hero.ctaSecondary": "Audit My Team First",
+  "business.hero.ctaSecondary": "Start Profit Leak Scan",
 
   // Business – Why Us
   "business.whyUs.eyebrow": "The Problem",
@@ -808,7 +808,7 @@ const nl: Record<string, string> = {
   "business.hero.description": "Elke organisatie weerspiegelt de standaard die de oprichter tolereert. Als middelmatigheid blijft bestaan, is dat een keuze.\n\nDe Business Reset Blueprint herstructureert je organisatie zodat verantwoordelijkheid weer op de juiste plek ligt en prestaties niet afhankelijk zijn van jou alleen.",
   "business.hero.belowVideo": "Binnen 30 dagen is de structuur geïnstalleerd die eigenaarschap, verantwoordelijkheid en prestaties herstelt.",
   "business.hero.ctaPrimary": "Boek een consult",
-  "business.hero.ctaSecondary": "Team audit uitvoeren",
+  "business.hero.ctaSecondary": "Start Profit Leak Scan",
 
   // Business – Why Us (NL)
   "business.whyUs.eyebrow": "Het probleem",
