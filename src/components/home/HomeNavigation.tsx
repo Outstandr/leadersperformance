@@ -33,9 +33,9 @@ export const HomeNavigation = () => {
     { label: t("nav.about"), href: "#about" },
     { label: "FOUNDERS ADVISORY", href: "/elite" },
     { label: "BUSINESS", href: "/business" },
-    { label: "UNMASKED", href: "https://unmasked.leadersperformance.ae/business" },
-    { label: "ACADEMY", href: "#articles" },
-    { label: "ARTICLES", href: "#articles" },
+    { label: "UNMASKED", href: "https://unmasked.leadersperformance.ae/" },
+    { label: "ACADEMY", href: "https://testgroup.leadersperformance.ae" },
+    { label: "ARTICLES", href: "/articles" },
   ];
 
   const handleNav = (href: string) => {
@@ -66,7 +66,7 @@ export const HomeNavigation = () => {
             />
           </Link>
 
-          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
+          <div className="hidden lg:flex items-center gap-3 xl:gap-5">
             {navItems.map((item) =>
               item.href.startsWith("http") ? (
                 <a
@@ -74,7 +74,7 @@ export const HomeNavigation = () => {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`whitespace-nowrap text-[11px] xl:text-[13px] font-medium tracking-widest uppercase transition-colors ${
+                  className={`whitespace-nowrap text-[10px] xl:text-[12px] font-bold tracking-widest uppercase transition-colors ${
                     isDark
                       ? "text-background/70 hover:text-background"
                       : "text-muted-foreground hover:text-foreground"
@@ -86,7 +86,7 @@ export const HomeNavigation = () => {
                 <Link
                   key={item.label}
                   to={item.href}
-                  className={`whitespace-nowrap text-[11px] xl:text-[13px] font-medium tracking-widest uppercase transition-colors ${
+                  className={`whitespace-nowrap text-[10px] xl:text-[12px] font-bold tracking-widest uppercase transition-colors ${
                     isDark
                       ? "text-background/70 hover:text-background"
                       : "text-muted-foreground hover:text-foreground"
@@ -102,7 +102,7 @@ export const HomeNavigation = () => {
                     e.preventDefault();
                     handleNav(item.href);
                   }}
-                  className={`whitespace-nowrap text-[11px] xl:text-[13px] font-medium tracking-widest uppercase transition-colors ${
+                  className={`whitespace-nowrap text-[10px] xl:text-[12px] font-bold tracking-widest uppercase transition-colors ${
                     isDark
                       ? "text-background/70 hover:text-background"
                       : "text-muted-foreground hover:text-foreground"
@@ -115,7 +115,7 @@ export const HomeNavigation = () => {
             {/* Voice Agent Button */}
             <button
               onClick={() => openVoiceAgent()}
-              className={`flex items-center gap-2 whitespace-nowrap text-[11px] xl:text-[13px] font-medium tracking-wide px-3 xl:px-4 py-2 rounded-full transition-all border ${
+              className={`flex items-center gap-2 whitespace-nowrap text-[10px] xl:text-[12px] font-bold tracking-wide px-3 xl:px-4 py-2 rounded-full transition-all border ${
                 isDark
                   ? "border-lioner-gold/50 text-lioner-gold hover:bg-lioner-gold/10"
                   : "border-lioner-gold/50 text-lioner-gold hover:bg-lioner-gold/10"
@@ -128,7 +128,7 @@ export const HomeNavigation = () => {
               href={bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`whitespace-nowrap text-[11px] xl:text-[13px] font-medium tracking-wide px-4 xl:px-6 py-2.5 transition-all ${
+              className={`whitespace-nowrap text-[10px] xl:text-[12px] font-bold tracking-wide px-3 xl:px-5 py-2.5 transition-all ${
                 isDark
                   ? "bg-lioner-gold text-white hover:bg-lioner-gold/90"
                   : "bg-foreground text-background hover:bg-foreground/90"
