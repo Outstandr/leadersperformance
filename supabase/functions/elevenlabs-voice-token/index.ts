@@ -81,12 +81,28 @@ type BurnoutScanContext = {
   recommendation?: string;
 };
 
+type ProfitLeakContext = {
+  fullName?: string;
+  company?: string;
+  phone?: string;
+  email?: string;
+  overallScore?: number;
+  overallColor?: string;
+  primaryBottleneck?: string;
+  growthPhase?: string;
+  revenue?: string;
+  estimatedLeakageLow?: string;
+  estimatedLeakageHigh?: string;
+  sectionScores?: { label: string; score: number; color: string }[];
+};
+
 type SessionRequest = {
-  mode?: 'capital_protection' | 'pressure_scan' | 'corporate_audit' | 'burnout_scan';
+  mode?: 'capital_protection' | 'pressure_scan' | 'corporate_audit' | 'burnout_scan' | 'profit_leak';
   context?: CapitalProtectionContext;
   scanContext?: PressureScanContext;
   auditContext?: CorporateAuditContext;
   burnoutContext?: BurnoutScanContext;
+  profitLeakContext?: ProfitLeakContext;
 };
 
 const baseDaisySystemPrompt = `You are Daisy, the digital founder advisor for Leaders Performance.
