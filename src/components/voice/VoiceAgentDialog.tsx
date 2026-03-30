@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
-import { X, Mic, MicOff, PhoneOff, Volume2, Send, Check } from "lucide-react";
+import { X, Mic, MicOff, PhoneOff, Volume2, Send, Check, CalendarDays } from "lucide-react";
 import { VoiceAgentContextData, useVoiceAgent } from "./VoiceAgentContext";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
@@ -25,13 +25,22 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
   const [emailConfirmed, setEmailConfirmed] = useState(false);
   const [textInput, setTextInput] = useState("");
   const [isTextMode, setIsTextMode] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
+  const conversationRef = useRef<any>(null);
 
   const isPressureScan = contextData.mode === "pressure_scan";
   const isCapitalProtection = contextData.mode === "capital_protection";
   const isCorporateAudit = contextData.mode === "corporate_audit";
 
   const conversation = useConversation({
+    clientTools: {
+      show_calendar: async (params: any) => {
+        console.log("[Daisy] show_calendar tool called", params);
+        setShowCalendar(true);
+        return "Calendar is now displayed to the user. Ask them to pick a date and time.";
+      },
+    },
     onConnect: () => {
       console.log("[Daisy] Connected successfully");
       setStatus("connected");
@@ -135,9 +144,24 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       setEmailConfirmed(false);
       setTextInput("");
       setIsTextMode(false);
+      setShowCalendar(false);
       autoConnectTriggered.current = false;
     }
   }, [isOpen]);
+
+  // Keep conversation ref updated for cleanup
+  useEffect(() => {
+    conversationRef.current = conversation;
+  }, [conversation]);
+
+  // Force cleanup on unmount or close
+  useEffect(() => {
+    return () => {
+      if (conversationRef.current) {
+        try { conversationRef.current.endSession(); } catch (e) { /* ignore */ }
+      }
+    };
+  }, []);
 
   // Sync isSpeaking to context
   useEffect(() => {
@@ -422,10 +446,9 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
           </div>
           <button
             onClick={async () => {
-              if (status === "connected") {
-                try { await conversation.endSession(); } catch (e) { console.error(e); }
-              }
+              try { await conversation.endSession(); } catch (e) { /* ignore */ }
               setStatus("idle");
+              setIsSpeaking(false);
               onClose();
             }}
             className="p-2 rounded-full text-white/40 hover:text-white hover:bg-white/10 transition-all"
@@ -583,6 +606,25 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
                 <div className="flex items-center gap-2 mb-4 px-3 py-2 rounded-xl bg-green-500/10 border border-green-500/20">
                   <Check className="w-4 h-4 text-green-400" />
                   <span className="text-green-400 text-xs">Email sent to Daisy for confirmation</span>
+                </div>
+              )}
+
+              {showCalendar && (
+                <div className="mb-4 p-3 rounded-xl bg-white/5 border border-[#b39758]/30">
+                  <div className="flex items-center gap-2 mb-2">
+                    <CalendarDays className="w-4 h-4 text-[#b39758]" />
+                    <span className="text-white/80 text-xs font-medium">
+                      {language === "nl" ? "Plan een gesprek" : "Schedule a session"}
+                    </span>
+                  </div>
+                  <a
+                    href="https://api.leadconnectorhq.com/widget/booking/Se3SwkYLXfuW52O0F4GX"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full py-2.5 rounded-lg bg-[#b39758] text-black text-xs font-semibold text-center hover:bg-[#c9aa6a] transition-all"
+                  >
+                    {language === "nl" ? "Open agenda" : "Open Calendar"}
+                  </a>
                 </div>
               )}
 
