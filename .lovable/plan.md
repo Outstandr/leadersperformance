@@ -1,41 +1,26 @@
 
 
-# Generate PDF: All Scans & Assessments with Questions
+## Generate 3 Rewritten HTML Email Templates for the Founder Pressure Scan
 
-## What will be created
+These are GHL (CRM) nurture emails. I will generate 3 HTML files to `/mnt/documents/` with the following updates applied to the originals:
 
-A comprehensive PDF document listing all 7 active scans/assessments on the Leaders Performance website, with every question included. The document will be professionally formatted with the brand's dark/gold aesthetic.
+### Changes across all 3 emails
+- **Header**: Replace "UNMASKED / Founder Intervention" with "LEADERS PERFORMANCE / Founder Pressure Scan"
+- **Footer**: Replace "UNMASKED Business Edition — Dubai Desert Retreat" with "Leaders Performance — Founder Pressure Scan"
+- **Score reference**: Update from `/48` to match the current scoring system (the Founder Pressure Scan uses a 0-100 FBR score with 5 color tiers)
+- **Scan name**: Ensure all references say "Founder Pressure Scan" consistently
+- **CTA**: Update "Founder Pressure Conversation" references to align with current booking flow
+- Keep the same elegant tone, structure, styling, and GHL merge fields (`{{contact.first_name}}`, `{{contact.overall_score}}`, `{{unsubscribe_url}}`)
+- Keep the same color palette (cream background #F5F0EB, white card, gold accent #8B7355)
 
-## Contents
+### Output
+3 HTML files delivered to `/mnt/documents/`:
+1. `email-1-decision-point.html` — Day 0: Score delivery + decision framing
+2. `email-2-will-you-act.html` — Day 2: Program overview + urgency
+3. `email-3-delay-is-a-decision.html` — Day 5: Cost of inaction + final push
 
-### 1. Discipline Assessment (10 questions)
-- Domains: Self-Discipline, Impulse Control, Consistency
-- Rating scale: 1-5
-
-### 2. Founders Pressure Scan (12 questions)
-- Sections: Decision Pressure, Founder Dependency, Leadership Alignment, Execution Momentum
-- Scale: Strongly Disagree to Strongly Agree
-
-### 3. Founder Burnout Risk Scan — Free Test (10 questions)
-- Sections: Workload Intensity, Sleep Quality, Mental Fatigue, Decision Pressure, Stress Tolerance
-
-### 4. Founder Burnout Risk Scan — Full Diagnostic (32 questions, paid $195)
-- Domains: Founder Pressure Load (8), Nervous System Depletion (8), Business Dependency (8), Recovery Capacity (8)
-
-### 5. Capital Protection Assessment (9 sections)
-- Sections: Situation Type, Capital Exposure, Timeline, Evidence, Jurisdictions, Legal Status, Objective, Situation Summary, Consent
-- Mix of single-choice, multi-choice, text, and boolean questions
-
-### 6. Capital Assessment (9 questions)
-- Weighted scoring across situation type, capital exposure, timeline, evidence, jurisdictions, legal status, objective, summary, consent
-
-### 7. Corporate Discipline Audit (7 questions)
-- Each question has a title (e.g., "THE MORNING STANDARD") and 4 options with point values
-
-## Technical approach
-
-- Generate PDF using ReportLab (Python) with dark background (#1a1a2a), gold accents (#d4af37), and white text
-- Each scan gets its own section with a header, description, and numbered questions with answer options
-- Output to `/mnt/documents/Leaders_Performance_All_Scans.pdf`
-- Visual QA via pdftoppm before delivery
+### Technical Details
+- Files generated via script to `/mnt/documents/`
+- No changes to the codebase — these are external CRM templates
+- Preserves all Outlook compatibility fixes from originals
 
