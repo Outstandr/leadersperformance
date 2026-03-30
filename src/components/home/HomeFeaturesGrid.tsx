@@ -360,7 +360,7 @@ export const HomeFeaturesGrid = () => {
     <>
       <section id="features" className="relative z-10 pt-32 pb-20 md:pt-40 md:pb-28 bg-background">
         <div className="container mx-auto px-6 max-w-7xl" ref={ref}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
             {services.map((service, i) => (
               <ParallaxCard
                 key={i}
