@@ -31,6 +31,7 @@ export function CPVoiceWidget({ userInfo, result, aiReport }: CPVoiceWidgetProps
   const [transcript, setTranscript] = useState<Array<{ role: "user" | "agent"; text: string }>>([]);
   const [textInput, setTextInput] = useState("");
   const [isTextMode, setIsTextMode] = useState(false);
+  const [showModeChoice, setShowModeChoice] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
 
   const conversation = useConversation({
@@ -222,40 +223,40 @@ IMPORTANT INSTRUCTIONS:
   return (
     <div className="border-t border-foreground/10 bg-background">
       <div className="max-w-2xl mx-auto px-4 py-4 space-y-3">
-        {/* Mode selection */}
-        {!isConnected && !isConnecting && (
+        {/* Single CTA button */}
+        {!isConnected && !isConnecting && !showModeChoice && (
+          <button
+            onClick={() => setShowModeChoice(true)}
+            className="w-full flex items-center justify-center gap-3 py-4 px-6 bg-lioner-gold/10 border border-lioner-gold/30 hover:bg-lioner-gold/20 transition-colors rounded-lg"
+          >
+            <div className="w-10 h-10 rounded-full bg-lioner-gold/20 flex items-center justify-center">
+              <MessageSquare className="w-5 h-5 text-lioner-gold" />
+            </div>
+            <p className="text-sm font-semibold text-foreground">
+              {language === "nl" ? "Spreek met een adviseur" : "Speak to an advisor"}
+            </p>
+          </button>
+        )}
+
+        {!isConnected && !isConnecting && showModeChoice && (
           <div className="space-y-2">
             <button
-              onClick={() => handleStart(false)}
-              className="w-full flex items-center justify-center gap-3 py-4 px-6 bg-lioner-gold/10 border border-lioner-gold/30 hover:bg-lioner-gold/20 transition-colors rounded-lg"
+              onClick={() => { setShowModeChoice(false); handleStart(false); }}
+              className="w-full flex items-center justify-center gap-3 py-3 px-6 bg-lioner-gold/10 border border-lioner-gold/30 hover:bg-lioner-gold/20 transition-colors rounded-lg"
             >
-              <div className="w-10 h-10 rounded-full bg-lioner-gold/20 flex items-center justify-center">
-                <Mic className="w-5 h-5 text-lioner-gold" />
-              </div>
-              <div className="text-left">
-                <p className="text-sm font-semibold text-foreground">
-                  {language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"}
-                </p>
-                <p className="text-xs text-foreground/50">
-                  {language === "nl" ? "Gebruik uw microfoon" : "Use your microphone"}
-                </p>
-              </div>
+              <Mic className="w-4 h-4 text-lioner-gold" />
+              <p className="text-sm font-medium text-foreground">
+                {language === "nl" ? "Gebruik uw microfoon" : "Use your microphone"}
+              </p>
             </button>
             <button
-              onClick={() => handleStart(true)}
-              className="w-full flex items-center justify-center gap-3 py-4 px-6 bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-colors rounded-lg"
+              onClick={() => { setShowModeChoice(false); handleStart(true); }}
+              className="w-full flex items-center justify-center gap-3 py-3 px-6 bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-colors rounded-lg"
             >
-              <div className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center">
-                <MessageSquare className="w-5 h-5 text-lioner-gold" />
-              </div>
-              <div className="text-left">
-                <p className="text-sm font-semibold text-foreground">
-                  {language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"}
-                </p>
-                <p className="text-xs text-foreground/50">
-                  {language === "nl" ? "Typ uw berichten" : "Type your messages"}
-                </p>
-              </div>
+              <MessageSquare className="w-4 h-4 text-lioner-gold" />
+              <p className="text-sm font-medium text-foreground">
+                {language === "nl" ? "Typ uw berichten" : "Type your messages"}
+              </p>
             </button>
           </div>
         )}
