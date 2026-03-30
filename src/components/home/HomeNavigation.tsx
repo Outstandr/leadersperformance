@@ -128,7 +128,7 @@ export const HomeNavigation = () => {
               href={bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`whitespace-nowrap text-[11px] xl:text-[13px] font-medium tracking-wide px-4 xl:px-6 py-2.5 transition-all ${
+              className={`whitespace-nowrap text-[10px] xl:text-[12px] font-bold tracking-wide px-3 xl:px-5 py-2.5 transition-all ${
                 isDark
                   ? "bg-lioner-gold text-white hover:bg-lioner-gold/90"
                   : "bg-foreground text-background hover:bg-foreground/90"
