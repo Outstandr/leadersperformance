@@ -418,12 +418,20 @@ function buildAgentConfig(requestData: SessionRequest) {
   return {
     name: 'Daisy — Founder Advisor',
     conversation_config: {
+      turn: {
+        turn_eagerness: 'patient',
+        speculative_turn: false,
+      },
+      conversation: {
+        client_events: ['audio', 'agent_response', 'user_transcript', 'agent_response_correction', 'agent_tool_response'],
+      },
       agent: {
         prompt: {
           prompt,
         },
         first_message: firstMessage,
         language: 'en',
+        disable_first_message_interruptions: true,
       },
     },
   };
