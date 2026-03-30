@@ -1,14 +1,13 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Building2 } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import videoThumbnail from "@/assets/lioneltwo.png";
-import { CorporateAuditDialog } from "@/components/corporate-audit/CorporateAuditDialog";
+import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const BusinessHeroSection = () => {
   const { t } = useLanguage();
-  const [isAuditOpen, setIsAuditOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <section id="hero" className="pt-32 pb-20 bg-white">
@@ -54,7 +53,7 @@ export const BusinessHeroSection = () => {
               <div className="flex flex-col sm:flex-row gap-3 mt-4">
                 <Button
                   size="lg"
-                  onClick={() => setIsAuditOpen(true)}
+                  onClick={() => navigate("/profit-leak-scan")}
                   className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group transition-all border-2 border-transparent shadow-lg shadow-black/10"
                 >
                   {t("business.hero.ctaSecondary")}
@@ -66,7 +65,6 @@ export const BusinessHeroSection = () => {
         </div>
       </div>
 
-      <CorporateAuditDialog open={isAuditOpen} onOpenChange={setIsAuditOpen} />
     </section>
   );
 };

@@ -21,7 +21,6 @@ const Business = () => {
         <BusinessServicesSection />
         <BusinessProcessSection />
         <BusinessResultsSection />
-        <ProfitLeakCTASection />
         <CapitalProtectionCTASection />
         <BusinessBookingSection />
         <BusinessQuoteSection />
