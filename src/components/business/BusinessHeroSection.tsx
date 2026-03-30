@@ -53,7 +53,7 @@ export const BusinessHeroSection = () => {
               <div className="flex flex-col sm:flex-row gap-3 mt-4">
                 <Button
                   size="lg"
-                  onClick={() => setIsAuditOpen(true)}
+                  onClick={() => navigate("/profit-leak-scan")}
                   className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group transition-all border-2 border-transparent shadow-lg shadow-black/10"
                 >
                   {t("business.hero.ctaSecondary")}
