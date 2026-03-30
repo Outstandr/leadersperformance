@@ -23,6 +23,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
   const [isTextMode, setIsTextMode] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
   const hasAutoStarted = useRef(false);
+  const [showModeChoice, setShowModeChoice] = useState(false);
 
   const conversation = useConversation({
     clientTools: {

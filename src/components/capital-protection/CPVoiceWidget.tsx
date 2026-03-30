@@ -31,6 +31,7 @@ export function CPVoiceWidget({ userInfo, result, aiReport }: CPVoiceWidgetProps
   const [transcript, setTranscript] = useState<Array<{ role: "user" | "agent"; text: string }>>([]);
   const [textInput, setTextInput] = useState("");
   const [isTextMode, setIsTextMode] = useState(false);
+  const [showModeChoice, setShowModeChoice] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
 
   const conversation = useConversation({
