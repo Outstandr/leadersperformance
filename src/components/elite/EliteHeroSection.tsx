@@ -1,18 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Crown } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import eliteThumbnail from "@/assets/lionelone.png";
 import { AssessmentDialog } from "@/components/assessment/AssessmentDialog";
-import { FounderPressureScanDialog } from "@/components/founder-scan/FounderPressureScanDialog";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/q8RommFFkbptaoyv1MRY";
 
 export const EliteHeroSection = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
-  const [isPressureScanOpen, setIsPressureScanOpen] = useState(false);
 
   return (
     <section id="hero" className="pt-32 pb-20 bg-white">
@@ -69,7 +69,7 @@ export const EliteHeroSection = () => {
               </p>
               <Button
                 size="lg"
-                onClick={() => setIsPressureScanOpen(true)}
+                onClick={() => navigate("/burnout-scan")}
                 className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group transition-all border-2 border-transparent shadow-lg shadow-black/10"
               >
                 {t("elite.hero.pressureCTA")}
@@ -82,7 +82,6 @@ export const EliteHeroSection = () => {
       </div>
 
       <AssessmentDialog open={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} source="elite" />
-      <FounderPressureScanDialog open={isPressureScanOpen} onOpenChange={setIsPressureScanOpen} />
     </section>
   );
 };

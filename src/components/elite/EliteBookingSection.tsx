@@ -1,12 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Crown, Check, Users } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { FounderPressureScanDialog } from "@/components/founder-scan/FounderPressureScanDialog";
 
 export const EliteBookingSection = () => {
   const { t } = useLanguage();
-  const [scanOpen, setScanOpen] = useState(false);
+  const navigate = useNavigate();
 
   const includes = [
   t("elite.booking.include1"),
@@ -37,7 +37,7 @@ export const EliteBookingSection = () => {
               
               <Button
                 size="lg"
-                onClick={() => setScanOpen(true)}
+                onClick={() => navigate("/burnout-scan")}
                 className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-white/90 font-medium rounded-none px-8 py-4 h-auto group">
                 
                 {t("elite.booking.cta")}
@@ -66,8 +66,5 @@ export const EliteBookingSection = () => {
           </div>
         </div>
       </div>
-
-      <FounderPressureScanDialog open={scanOpen} onOpenChange={setScanOpen} />
     </section>);
-
 };
