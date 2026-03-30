@@ -513,14 +513,22 @@ export const HomeFeaturesGrid = () => {
                         </a>
                         )}
 
-                      {/* Business Consulting (index 4): view page */}
+                      {/* Business Consulting (index 4): scan + view page */}
                       {selected === 4 && (
-                        <button
-                          onClick={() => { setSelected(null); navigate("/business"); }}
-                          className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
-                        >
-                          {(services[selected].details as any).cta}
-                        </button>
+                        <div className="flex flex-col gap-2">
+                          <button
+                            onClick={() => { setSelected(null); navigate("/profit-leak-scan"); }}
+                            className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                          >
+                            {language === "nl" ? "Start de Profit Leak Scan" : "Take the Profit Leak Scan"}
+                          </button>
+                          <button
+                            onClick={() => { setSelected(null); navigate("/business"); }}
+                            className="w-full border-2 border-lioner-gold/40 text-foreground py-3 text-sm font-semibold uppercase tracking-widest hover:bg-lioner-gold/10 transition-colors"
+                          >
+                            {language === "nl" ? "Bekijk Business" : "View Business"}
+                          </button>
+                        </div>
                       )}
 
                       {/* The Round Table (index 5): request invitation */}

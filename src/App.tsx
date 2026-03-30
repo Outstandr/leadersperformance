@@ -24,6 +24,7 @@ const Articles = lazy(() => import("./pages/Articles"));
 const ArticleDetail = lazy(() => import("./pages/ArticleDetail"));
 const CapitalProtection = lazy(() => import("./pages/CapitalProtection"));
 const BurnoutScan = lazy(() => import("./pages/BurnoutScan"));
+const ProfitLeakScan = lazy(() => import("./pages/ProfitLeakScan"));
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const AppRoutes = () => {
           <Route path="/articles" element={<Articles />} />
           <Route path="/capital-protection" element={<CapitalProtection />} />
           <Route path="/burnout-scan" element={<BurnoutScan />} />
+          <Route path="/profit-leak-scan" element={<ProfitLeakScan />} />
           <Route path="/articles/:slug" element={<ArticleDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

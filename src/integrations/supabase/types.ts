@@ -713,6 +713,114 @@ export type Database = {
         }
         Relationships: []
       }
+      profit_leak_scans: {
+        Row: {
+          ai_report: Json | null
+          company: string
+          created_at: string
+          decision_speed_score: number
+          email: string
+          founder_dependency_score: number
+          full_name: string
+          growth_phase: string
+          id: string
+          language: string
+          overall_color: string
+          overall_score: number
+          phone: string
+          pl1: number | null
+          pl10: number | null
+          pl11: number | null
+          pl12: number | null
+          pl13: number | null
+          pl14: number | null
+          pl15: number | null
+          pl2: number | null
+          pl3: number | null
+          pl4: number | null
+          pl5: number | null
+          pl6: number | null
+          pl7: number | null
+          pl8: number | null
+          pl9: number | null
+          primary_bottleneck: string
+          profitability_score: number
+          revenue_tier: string
+          scalability_score: number
+          structure_leadership_score: number
+        }
+        Insert: {
+          ai_report?: Json | null
+          company: string
+          created_at?: string
+          decision_speed_score?: number
+          email: string
+          founder_dependency_score?: number
+          full_name: string
+          growth_phase?: string
+          id?: string
+          language?: string
+          overall_color?: string
+          overall_score?: number
+          phone?: string
+          pl1?: number | null
+          pl10?: number | null
+          pl11?: number | null
+          pl12?: number | null
+          pl13?: number | null
+          pl14?: number | null
+          pl15?: number | null
+          pl2?: number | null
+          pl3?: number | null
+          pl4?: number | null
+          pl5?: number | null
+          pl6?: number | null
+          pl7?: number | null
+          pl8?: number | null
+          pl9?: number | null
+          primary_bottleneck?: string
+          profitability_score?: number
+          revenue_tier?: string
+          scalability_score?: number
+          structure_leadership_score?: number
+        }
+        Update: {
+          ai_report?: Json | null
+          company?: string
+          created_at?: string
+          decision_speed_score?: number
+          email?: string
+          founder_dependency_score?: number
+          full_name?: string
+          growth_phase?: string
+          id?: string
+          language?: string
+          overall_color?: string
+          overall_score?: number
+          phone?: string
+          pl1?: number | null
+          pl10?: number | null
+          pl11?: number | null
+          pl12?: number | null
+          pl13?: number | null
+          pl14?: number | null
+          pl15?: number | null
+          pl2?: number | null
+          pl3?: number | null
+          pl4?: number | null
+          pl5?: number | null
+          pl6?: number | null
+          pl7?: number | null
+          pl8?: number | null
+          pl9?: number | null
+          primary_bottleneck?: string
+          profitability_score?: number
+          revenue_tier?: string
+          scalability_score?: number
+          structure_leadership_score?: number
+        }
+        Relationships: []
+      }
       voice_leads: {
         Row: {
           conversation_summary: string | null
