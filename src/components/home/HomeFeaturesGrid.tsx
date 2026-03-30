@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { UnmaskedBookingDialog } from "./UnmaskedBookingDialog";
 import { MentorshipApplicationDialog } from "./MentorshipApplicationDialog";
 import { BusinessConsultationDialog } from "./BusinessConsultationDialog";
+import { RoundTableApplicationDialog } from "./RoundTableApplicationDialog";
 
 import serviceUnmasked from "@/assets/card-unmasked.png";
 import serviceCoaching from "@/assets/card-coaching.png";
@@ -338,6 +339,7 @@ export const HomeFeaturesGrid = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [mentorshipOpen, setMentorshipOpen] = useState(false);
   const [businessConsultOpen, setBusinessConsultOpen] = useState(false);
+  const [roundTableOpen, setRoundTableOpen] = useState(false);
   
   const navigate = useNavigate();
   const selectedService = selected !== null ? services[selected] : null;
@@ -552,7 +554,7 @@ export const HomeFeaturesGrid = () => {
                       {/* The Round Table (index 5): request invitation */}
                       {selected === 5 && (
                         <button
-                          onClick={() => { setSelected(null); navigate("/business"); }}
+                          onClick={() => { setSelected(null); setRoundTableOpen(true); }}
                           className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
                         >
                           {(services[selected].details as any).cta}
@@ -570,7 +572,7 @@ export const HomeFeaturesGrid = () => {
       <UnmaskedBookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
       <MentorshipApplicationDialog open={mentorshipOpen} onOpenChange={setMentorshipOpen} />
       <BusinessConsultationDialog open={businessConsultOpen} onOpenChange={setBusinessConsultOpen} />
-      
+      <RoundTableApplicationDialog open={roundTableOpen} onOpenChange={setRoundTableOpen} />
       
     </>
   );
