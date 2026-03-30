@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { UnmaskedBookingDialog } from "./UnmaskedBookingDialog";
 import { MentorshipApplicationDialog } from "./MentorshipApplicationDialog";
 import { BusinessConsultationDialog } from "./BusinessConsultationDialog";
-import { FounderPressureScanDialog } from "@/components/founder-scan/FounderPressureScanDialog";
+
 import serviceUnmasked from "@/assets/card-unmasked.png";
 import serviceCoaching from "@/assets/card-coaching.png";
 import serviceAcademy from "@/assets/card-masterclass.png";
@@ -51,7 +51,7 @@ const cards = {
           "Strengthening long-term value creation",
         ],
         closing: "Engagement is limited and by application only.",
-        cta: "Take the Founders Pressure Scan",
+        cta: "Take the Founder Pressure Scan",
         disclaimer: "All engagements by application",
         showCalendar: false,
       },
@@ -132,7 +132,7 @@ const cards = {
           "Versterken van langetermijn waardecreatie",
         ],
         closing: "Het traject is beperkt en uitsluitend op aanvraag.",
-        cta: "Start de Founders Drukscan",
+        cta: "Start de Founder Pressure Scan",
         disclaimer: "Alle trajecten op aanvraag",
         showCalendar: false,
       },
@@ -256,7 +256,7 @@ export const HomeFeaturesGrid = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [mentorshipOpen, setMentorshipOpen] = useState(false);
   const [businessConsultOpen, setBusinessConsultOpen] = useState(false);
-  const [pressureScanOpen, setPressureScanOpen] = useState(false);
+  
   const navigate = useNavigate();
   const selectedService = selected !== null ? services[selected] : null;
   const showCalendar = selectedService && (selectedService.details as any).showCalendar;
@@ -369,8 +369,14 @@ export const HomeFeaturesGrid = () => {
                       {selected === 0 && (
                         <div className="flex flex-col gap-2">
                           <button
-                            onClick={() => { setSelected(null); setTimeout(() => setBookingOpen(true), 200); }}
+                            onClick={() => { setSelected(null); navigate("/burnout-scan"); }}
                             className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                          >
+                            {language === "nl" ? "Start de Founder Pressure Scan" : "Take the Founder Pressure Scan"}
+                          </button>
+                          <button
+                            onClick={() => { setSelected(null); setTimeout(() => setBookingOpen(true), 200); }}
+                            className="w-full border-2 border-lioner-gold/40 text-foreground py-3 text-sm font-semibold uppercase tracking-widest hover:bg-lioner-gold/10 transition-colors"
                           >
                             {(services[selected].details as any).cta}
                           </button>
@@ -444,7 +450,7 @@ export const HomeFeaturesGrid = () => {
       <UnmaskedBookingDialog open={bookingOpen} onOpenChange={setBookingOpen} />
       <MentorshipApplicationDialog open={mentorshipOpen} onOpenChange={setMentorshipOpen} />
       <BusinessConsultationDialog open={businessConsultOpen} onOpenChange={setBusinessConsultOpen} />
-      <FounderPressureScanDialog open={pressureScanOpen} onOpenChange={setPressureScanOpen} />
+      
       
     </>
   );
