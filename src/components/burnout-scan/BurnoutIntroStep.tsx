@@ -22,11 +22,11 @@ const ui = {
   nl: {
     eyebrow: "Founder Risico Intelligentie",
     heading: "The Founder Pressure Scan",
-    description: "Ontdek uw Founder Risk Score. Identificeer of u burnout nadert of al in een burnout-fase opereert.",
+    description: "Ontdek uw Founder Risk Score. Identificeer vroege signalen van overbelasting voordat ze uw prestaties, beslissingen en resultaten beïnvloeden.",
     bullets: [
       "10 gerichte vragen over 5 drukindicatoren",
       "Directe FBR Score met risicoclassificatie",
-      "Ontgrendel de Volledige Diagnostiek voor uw complete burnout-faseanalyse",
+      "Ontgrendel de Volledige Diagnostiek voor uw complete drukfaseanalyse",
     ],
     cta: "Start de Founder Pressure Scan",
     time: "Duurt ongeveer 90 seconden",
