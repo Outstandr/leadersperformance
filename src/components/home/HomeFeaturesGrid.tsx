@@ -457,12 +457,28 @@ export const HomeFeaturesGrid = () => {
                             {language === "nl" ? "Start de Founder Pressure Scan" : "Take the Founder Pressure Scan"}
                           </button>
                           <a
+                            href="https://unmasked.leadersperformance.ae/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full block text-center border-2 border-lioner-gold/40 text-foreground py-3 text-sm font-semibold uppercase tracking-widest hover:bg-lioner-gold/10 transition-colors"
+                          >
+                            {language === "nl" ? "UNMASKED Mannen" : "UNMASKED Men"}
+                          </a>
+                          <a
+                            href="https://unmasked.leadersperformance.ae/women"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full block text-center border-2 border-lioner-gold/40 text-foreground py-3 text-sm font-semibold uppercase tracking-widest hover:bg-lioner-gold/10 transition-colors"
+                          >
+                            {language === "nl" ? "UNMASKED Vrouwen" : "UNMASKED Women"}
+                          </a>
+                          <a
                             href="https://unmasked.leadersperformance.ae/business"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-full block text-center border-2 border-lioner-gold/40 text-foreground py-3 text-sm font-semibold uppercase tracking-widest hover:bg-lioner-gold/10 transition-colors"
                           >
-                            {language === "nl" ? "Bekijk UNMASKED" : "View UNMASKED"}
+                            {language === "nl" ? "UNMASKED Business" : "UNMASKED Business"}
                           </a>
                         </div>
                       )}
