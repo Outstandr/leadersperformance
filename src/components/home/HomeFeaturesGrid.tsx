@@ -138,6 +138,8 @@ const cards = {
         showCalendar: false,
       },
     },
+  ],
+  nl: [
     {
       title: "UNMASKED\nInterventie",
       description: "Een privé interventieomgeving ontworpen voor founders en leiderschapsteams die helderheid, structurele reset en besluitvaardige uitvoering nodig hebben.",
