@@ -34,6 +34,13 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
   const isCorporateAudit = contextData.mode === "corporate_audit";
 
   const conversation = useConversation({
+    clientTools: {
+      show_calendar: async (params: any) => {
+        console.log("[Daisy] show_calendar tool called", params);
+        setShowCalendar(true);
+        return "Calendar is now displayed to the user. Ask them to pick a date and time.";
+      },
+    },
     onConnect: () => {
       console.log("[Daisy] Connected successfully");
       setStatus("connected");
