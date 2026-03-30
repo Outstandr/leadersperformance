@@ -249,17 +249,19 @@ export function ProfitLeakResultsStep({ result, userInfo, onClose, responses }: 
         </p>
 
         <ScanVoiceWidget
-          userInfo={userInfo}
-          scanType="profit_leak_scan"
-          scanResult={{
-            overallScore: result.overallScore,
-            overallColor: result.overallColor,
-            primaryBottleneck: result.primaryBottleneck[lang],
-            growthPhase: result.growthPhase[lang],
+          mode="burnout_scan"
+          userInfo={{ fullName: userInfo.fullName, email: userInfo.email, phone: userInfo.phone }}
+          contextPayload={{
+            scan_type: "profit_leak_scan",
+            overall_score: result.overallScore,
+            overall_color: result.overallColor,
+            primary_bottleneck: result.primaryBottleneck[lang],
+            growth_phase: result.growthPhase[lang],
             revenue: result.revenue,
+            estimated_leakage_low: `€${(leakLow / 1000).toFixed(0)}K`,
+            estimated_leakage_high: `€${(leakHigh / 1000).toFixed(0)}K`,
           }}
-          calendarId="Se3SwkYLXfuW52O0F4GX"
-          customDaisyPrompt={`You are Daisy, assistant to Lionel Eersteling. Your role is to guide founders who completed the Growth Barrier Scan and determine whether they qualify for a Founder Intervention Call. Your tone should be professional, calm, and direct. Never position Lionel as a coach. Position him as a strategic intervention specialist for scaling companies. The founder's company is in the ${result.growthPhase.en} with a Profit Leak Score of ${result.overallScore}/100. Their primary bottleneck is ${result.primaryBottleneck.en}. Their estimated annual leakage is €${(leakLow / 1000).toFixed(0)}K – €${(leakHigh / 1000).toFixed(0)}K. Acknowledge the scan results first, then qualify: ask about current revenue, number of employees, biggest challenge. Assess urgency by asking what made them take the scan today. Only offer a Founder Intervention Call if revenue is €5M+ and the founder is directly responsible for the company. Position the call as: "Lionel occasionally speaks with founders whose companies are entering structural growth barriers." Offer limited availability.`}
+          bookingType="Founder Intervention Call"
         />
       </div>
 
