@@ -217,10 +217,50 @@ const cards = {
         disclaimer: "RESET Blueprint® Ecosysteem",
       },
     },
+    {
+      title: "Zakelijk\nAdvies",
+      description: "Strategisch advies voor bedrijven die hun interne structuur, leiderschap en uitvoering willen versterken om duurzaam te groeien.",
+      details: {
+        headline: "Zakelijk Advies",
+        tag: "Voor Bedrijven · Strategische Groei",
+        body: "Leaders Performance werkt met bedrijven die hun interne structuur moeten versterken, leiderschap moeten aanscherpen en uitvoering in de hele organisatie moeten verbeteren.\n\nDit is geen generiek advies.\n\nHet is een hands-on strategisch traject ontworpen om te identificeren waar het bedrijf geld verliest, waar leiderschapslacunes bestaan en hoe een structuur te bouwen die duurzame groei ondersteunt.",
+        bullets: [
+          "Corporate discipline audits",
+          "Kapitaalbeschermingsbeoordelingen",
+          "Leiderschapsstructuur reviews",
+          "Uitvoeringsgap analyse",
+          "Strategische groeiplannen",
+        ],
+        closing: "Voor bedrijven die serieus zijn over het repareren van wat kapot is en het bouwen van wat blijft.",
+        cta: "Bekijk Business",
+        disclaimer: "Strategische trajecten op consultatie",
+        showCalendar: false,
+      },
+    },
+    {
+      title: "The Round Table",
+      description: "Een exclusieve serie ontbijten, lunches en diners voor founders en ondernemers. Uitsluitend op uitnodiging. Geen pitches. Geen panels. Alleen echte gesprekken op het hoogste niveau.",
+      details: {
+        headline: "The Round Table",
+        tag: "Uitsluitend op Uitnodiging · Founders & Ondernemers",
+        body: "The Round Table is een exclusieve serie privé-ontbijten, lunches en diners ontworpen voor founders en ondernemers die op het hoogste niveau opereren.\n\nDit is geen netwerkevenement.\n\nHet is een samengestelde bijeenkomst waar founders openlijk delen, elkaar uitdagen en relaties opbouwen die zich vermenigvuldigen over tijd.\n\nGeen pitches. Geen panels. Geen sponsors.\n\nAlleen echte gesprekken tussen mensen die echte bedrijven bouwen.",
+        bullets: [
+          "Privé ontbijt-, lunch- en dinerformaten",
+          "Samengestelde founder-only gastenlijsten",
+          "Vertrouwelijk en off-the-record",
+          "Gehost in premium privélocaties",
+          "Beperkt tot 12 plaatsen per evenement",
+        ],
+        closing: "Als je iets echts bouwt, is dit waar je thuishoort.",
+        cta: "Vraag een Uitnodiging Aan",
+        disclaimer: "Uitsluitend op uitnodiging · Beperkte plaatsen",
+        showCalendar: false,
+      },
+    },
   ],
 };
 
-const images = [serviceUnmasked, serviceCoaching, serviceBusiness, serviceAcademy];
+const images = [serviceUnmasked, serviceCoaching, serviceBusiness, serviceAcademy, serviceBusinessConsulting, serviceRoundTable];
 
 // ─── Sub-components ────────────────────────────────────────────────────────
 
