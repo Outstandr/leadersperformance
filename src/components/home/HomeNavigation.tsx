@@ -115,7 +115,7 @@ export const HomeNavigation = () => {
             {/* Voice Agent Button */}
             <button
               onClick={() => openVoiceAgent()}
-              className={`flex items-center gap-2 whitespace-nowrap text-[11px] xl:text-[13px] font-medium tracking-wide px-3 xl:px-4 py-2 rounded-full transition-all border ${
+              className={`flex items-center gap-2 whitespace-nowrap text-[10px] xl:text-[12px] font-bold tracking-wide px-3 xl:px-4 py-2 rounded-full transition-all border ${
                 isDark
                   ? "border-lioner-gold/50 text-lioner-gold hover:bg-lioner-gold/10"
                   : "border-lioner-gold/50 text-lioner-gold hover:bg-lioner-gold/10"
