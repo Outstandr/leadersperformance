@@ -65,7 +65,7 @@ export const BusinessHeroSection = () => {
         </div>
       </div>
 
-      <CorporateAuditDialog open={isAuditOpen} onOpenChange={setIsAuditOpen} />
     </section>
+  );
   );
 };
