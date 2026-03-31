@@ -228,7 +228,7 @@ const BurnoutScan = () => {
       }
 
       setDialogOpen(false);
-      setStep("full_results");
+      setStep("full_analyzing");
       window.scrollTo({ top: 0, behavior: "instant" });
     }
   };
