@@ -30,7 +30,7 @@ export interface AuditInsights {
   closing: string;
 }
 
-type Step = "questions" | "gate" | "results";
+type Step = "questions" | "gate" | "analyzing" | "results";
 
 export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialogProps) {
   const { t } = useLanguage();
