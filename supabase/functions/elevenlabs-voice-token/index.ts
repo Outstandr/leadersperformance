@@ -412,7 +412,7 @@ function buildAgentConfig(requestData: SessionRequest) {
 
   let firstMessage: string;
   if (isCapitalProtection || isPressureScan || isCorporateAudit || isBurnoutScan || isProfitLeak) {
-    firstMessage = `Hi, this is Daisy from Leaders Performance.${firstName ? ` ${firstName},` : ''} are you happy with your results?`;
+    firstMessage = `Hi${firstName ? ` ${firstName}` : ''}, this is Daisy. I've analyzed your results — let me walk you through what this means for your company.`;
   } else {
     firstMessage = "Hi, this is Daisy from Leaders Performance. I'm here to help you make sense of your next move. What feels most pressing for you right now?";
   }
