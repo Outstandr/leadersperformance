@@ -3,6 +3,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { AuditQuestionStep } from "./AuditQuestionStep";
 import { AuditGateStep } from "./AuditGateStep";
 import { AuditResultsStep } from "./AuditResultsStep";
+import { AnalyzingTransition } from "@/components/shared/AnalyzingTransition";
 import { auditQuestions } from "@/lib/corporateAuditQuestions";
 import { calculateAuditScore, AuditScores } from "@/lib/corporateAuditScoring";
 import { supabase } from "@/integrations/supabase/client";
