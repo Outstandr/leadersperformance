@@ -105,7 +105,7 @@ export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressur
           if (error) console.error("GHL webhook error:", error);
         });
 
-      setStep("results");
+      setStep("analyzing");
     } catch (error) {
       console.error("Scan submission error:", error);
       toast({
