@@ -213,6 +213,7 @@ export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, on
   };
 
   const showResults = !externalResults && step === "results";
+  const showAnalyzing = step === "analyzing";
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange} modal={!showResults}>
@@ -229,6 +230,9 @@ export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, on
             onAnswer={handleAnswer}
             onBack={handleBack}
           />
+        )}
+        {showAnalyzing && (
+          <AnalyzingTransition scanType="capital" onComplete={() => setStep("results")} />
         )}
         {showResults && result && userInfo && (
           <CPResultsStep
