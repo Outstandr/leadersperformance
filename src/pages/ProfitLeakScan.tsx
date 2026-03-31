@@ -5,6 +5,7 @@ import { ProfitLeakRevenueStep } from "@/components/profit-leak/ProfitLeakRevenu
 import { ProfitLeakQuestionStep } from "@/components/profit-leak/ProfitLeakQuestionStep";
 import { ProfitLeakResultsStep } from "@/components/profit-leak/ProfitLeakResultsStep";
 import { ScanGateStep, ScanUserInfo } from "@/components/founder-scan/ScanGateStep";
+import { AnalyzingTransition } from "@/components/shared/AnalyzingTransition";
 import { profitLeakQuestions } from "@/lib/profitLeakQuestions";
 import { calculateProfitLeakScore, ProfitLeakResult } from "@/lib/profitLeakScoring";
 import { supabase } from "@/integrations/supabase/client";
