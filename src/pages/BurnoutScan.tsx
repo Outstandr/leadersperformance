@@ -7,6 +7,7 @@ import { BurnoutFreeResultsStep } from "@/components/burnout-scan/BurnoutFreeRes
 import { BurnoutFullQuestionStep } from "@/components/burnout-scan/BurnoutFullQuestionStep";
 import { BurnoutFullResultsStep } from "@/components/burnout-scan/BurnoutFullResultsStep";
 import { ScanGateStep, ScanUserInfo } from "@/components/founder-scan/ScanGateStep";
+import { AnalyzingTransition } from "@/components/shared/AnalyzingTransition";
 import { burnoutFreeQuestions } from "@/lib/burnoutFreeQuestions";
 import { burnoutFullQuestions } from "@/lib/burnoutFullQuestions";
 import { calculateFreeBurnoutScore, calculateFullBurnoutScore, BurnoutFreeResult, BurnoutFullResult } from "@/lib/burnoutScoring";
