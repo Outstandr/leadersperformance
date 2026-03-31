@@ -106,6 +106,15 @@ const ProfitLeakScan = () => {
     window.location.href = "/";
   };
 
+  // Analyzing transition
+  if (step === "analyzing") {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <AnalyzingTransition scanType="profit_leak" onComplete={() => setStep("results")} />
+      </div>
+    );
+  }
+
   // Results page (outside dialog)
   if (step === "results" && result && userInfo) {
     return (
