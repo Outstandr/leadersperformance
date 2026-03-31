@@ -190,6 +190,9 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
             isSubmitting={isSubmitting}
           />
         )}
+        {step === "analyzing" && (
+          <AnalyzingTransition scanType="audit" onComplete={() => setStep("results")} />
+        )}
         {step === "results" && scores && (
           <AuditResultsStep
             userInfo={userInfo}
