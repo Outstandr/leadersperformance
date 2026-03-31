@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ScanIntroStep } from "./ScanIntroStep";
 import { ScanQuestionStep } from "./ScanQuestionStep";
 import { ScanGateStep, ScanUserInfo } from "./ScanGateStep";
 import { ScanResultsStep } from "./ScanResultsStep";
+import { AnalyzingTransition } from "@/components/shared/AnalyzingTransition";
 import { pressureQuestions } from "@/lib/founderPressureQuestions";
 import { calculatePressureScores, PressureScores } from "@/lib/founderPressureScoring";
 import { supabase } from "@/integrations/supabase/client";
