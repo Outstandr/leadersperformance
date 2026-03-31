@@ -34,7 +34,7 @@ interface CapitalProtectionDialogProps {
   onLoadingComplete?: () => void;
 }
 
-type Step = "intro" | "userInfo" | "questions" | "results";
+type Step = "intro" | "userInfo" | "questions" | "analyzing" | "results";
 
 export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, onAIReportUpdate, onLoadingComplete }: CapitalProtectionDialogProps) {
   const { language } = useLanguage();
