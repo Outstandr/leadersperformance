@@ -7,6 +7,7 @@ import { BurnoutFreeResultsStep } from "@/components/burnout-scan/BurnoutFreeRes
 import { BurnoutFullQuestionStep } from "@/components/burnout-scan/BurnoutFullQuestionStep";
 import { BurnoutFullResultsStep } from "@/components/burnout-scan/BurnoutFullResultsStep";
 import { ScanGateStep, ScanUserInfo } from "@/components/founder-scan/ScanGateStep";
+import { AnalyzingTransition } from "@/components/shared/AnalyzingTransition";
 import { burnoutFreeQuestions } from "@/lib/burnoutFreeQuestions";
 import { burnoutFullQuestions } from "@/lib/burnoutFullQuestions";
 import { calculateFreeBurnoutScore, calculateFullBurnoutScore, BurnoutFreeResult, BurnoutFullResult } from "@/lib/burnoutScoring";
@@ -14,7 +15,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-type Step = "intro" | "free_questions" | "free_gate" | "free_results" | "full_questions" | "full_results";
+type Step = "intro" | "free_questions" | "free_gate" | "free_analyzing" | "free_results" | "full_questions" | "full_analyzing" | "full_results";
 
 const BurnoutScan = () => {
   const { language } = useLanguage();
@@ -124,7 +125,7 @@ const BurnoutScan = () => {
       });
 
       setDialogOpen(false);
-      setStep("free_results");
+      setStep("free_analyzing");
       window.scrollTo({ top: 0, behavior: "instant" });
     } catch (error) {
       console.error("Submission error:", error);
@@ -227,7 +228,7 @@ const BurnoutScan = () => {
       }
 
       setDialogOpen(false);
-      setStep("full_results");
+      setStep("full_analyzing");
       window.scrollTo({ top: 0, behavior: "instant" });
     }
   };
@@ -235,6 +236,15 @@ const BurnoutScan = () => {
   const handleClose = () => {
     window.location.href = "/";
   };
+
+  // Show analyzing transition for free scan
+  if (step === "free_analyzing") {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <AnalyzingTransition scanType="burnout" onComplete={() => setStep("free_results")} />
+      </div>
+    );
+  }
 
   // Show free results outside dialog
   if (step === "free_results" && freeResult && userInfo) {
@@ -249,6 +259,15 @@ const BurnoutScan = () => {
             showOutsideDialog
           />
         </div>
+      </div>
+    );
+  }
+
+  // Show analyzing transition for full scan
+  if (step === "full_analyzing") {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <AnalyzingTransition scanType="burnout" onComplete={() => setStep("full_results")} />
       </div>
     );
   }

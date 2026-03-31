@@ -3,6 +3,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { AuditQuestionStep } from "./AuditQuestionStep";
 import { AuditGateStep } from "./AuditGateStep";
 import { AuditResultsStep } from "./AuditResultsStep";
+import { AnalyzingTransition } from "@/components/shared/AnalyzingTransition";
 import { auditQuestions } from "@/lib/corporateAuditQuestions";
 import { calculateAuditScore, AuditScores } from "@/lib/corporateAuditScoring";
 import { supabase } from "@/integrations/supabase/client";
@@ -29,7 +30,7 @@ export interface AuditInsights {
   closing: string;
 }
 
-type Step = "questions" | "gate" | "results";
+type Step = "questions" | "gate" | "analyzing" | "results";
 
 export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialogProps) {
   const { t } = useLanguage();
@@ -140,7 +141,7 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
         setInsights(aiData.insights);
       }
 
-      setStep("results");
+      setStep("analyzing");
     } catch (error) {
       console.error("Audit submission error:", error);
       toast({
@@ -188,6 +189,9 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
             onSubmit={handleGateSubmit}
             isSubmitting={isSubmitting}
           />
+        )}
+        {step === "analyzing" && (
+          <AnalyzingTransition scanType="audit" onComplete={() => setStep("results")} />
         )}
         {step === "results" && scores && (
           <AuditResultsStep

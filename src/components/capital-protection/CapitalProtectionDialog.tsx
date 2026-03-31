@@ -5,6 +5,7 @@ import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 import { CPUserInfoStep, CPUserInfo } from "./CPUserInfoStep";
 import { CPQuestionStep } from "./CPQuestionStep";
 import { CPResultsStep } from "./CPResultsStep";
+import { AnalyzingTransition } from "@/components/shared/AnalyzingTransition";
 import { cpSections } from "@/lib/capitalProtectionQuestions";
 import { calculateCPResult, CPResult, CPAssessmentData } from "@/lib/capitalProtectionScoring";
 import { supabase } from "@/integrations/supabase/client";
@@ -33,7 +34,7 @@ interface CapitalProtectionDialogProps {
   onLoadingComplete?: () => void;
 }
 
-type Step = "intro" | "userInfo" | "questions" | "results";
+type Step = "intro" | "userInfo" | "questions" | "analyzing" | "results";
 
 export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, onAIReportUpdate, onLoadingComplete }: CapitalProtectionDialogProps) {
   const { language } = useLanguage();
@@ -99,9 +100,9 @@ export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, on
         isLoadingAI: true,
       });
     } else {
-      // Render results inside the dialog
+      // Render results inside the dialog (with analyzing transition)
       setResult(cpResult);
-      setStep("results");
+      setStep("analyzing");
       setIsLoadingAI(true);
     }
 
@@ -212,6 +213,7 @@ export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, on
   };
 
   const showResults = !externalResults && step === "results";
+  const showAnalyzing = step === "analyzing";
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange} modal={!showResults}>
@@ -228,6 +230,9 @@ export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, on
             onAnswer={handleAnswer}
             onBack={handleBack}
           />
+        )}
+        {showAnalyzing && (
+          <AnalyzingTransition scanType="capital" onComplete={() => setStep("results")} />
         )}
         {showResults && result && userInfo && (
           <CPResultsStep

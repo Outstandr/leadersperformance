@@ -5,13 +5,14 @@ import { ProfitLeakRevenueStep } from "@/components/profit-leak/ProfitLeakRevenu
 import { ProfitLeakQuestionStep } from "@/components/profit-leak/ProfitLeakQuestionStep";
 import { ProfitLeakResultsStep } from "@/components/profit-leak/ProfitLeakResultsStep";
 import { ScanGateStep, ScanUserInfo } from "@/components/founder-scan/ScanGateStep";
+import { AnalyzingTransition } from "@/components/shared/AnalyzingTransition";
 import { profitLeakQuestions } from "@/lib/profitLeakQuestions";
 import { calculateProfitLeakScore, ProfitLeakResult } from "@/lib/profitLeakScoring";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-type Step = "intro" | "revenue" | "questions" | "gate" | "results";
+type Step = "intro" | "revenue" | "questions" | "gate" | "analyzing" | "results";
 
 const ProfitLeakScan = () => {
   const { language } = useLanguage();
@@ -91,7 +92,7 @@ const ProfitLeakScan = () => {
       });
 
       setDialogOpen(false);
-      setStep("results");
+      setStep("analyzing");
       window.scrollTo({ top: 0, behavior: "instant" });
     } catch (error) {
       console.error("Submission error:", error);
@@ -104,6 +105,15 @@ const ProfitLeakScan = () => {
   const handleClose = () => {
     window.location.href = "/";
   };
+
+  // Analyzing transition
+  if (step === "analyzing") {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <AnalyzingTransition scanType="profit_leak" onComplete={() => setStep("results")} />
+      </div>
+    );
+  }
 
   // Results page (outside dialog)
   if (step === "results" && result && userInfo) {

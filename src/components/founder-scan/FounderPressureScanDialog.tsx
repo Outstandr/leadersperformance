@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ScanIntroStep } from "./ScanIntroStep";
 import { ScanQuestionStep } from "./ScanQuestionStep";
 import { ScanGateStep, ScanUserInfo } from "./ScanGateStep";
 import { ScanResultsStep } from "./ScanResultsStep";
+import { AnalyzingTransition } from "@/components/shared/AnalyzingTransition";
 import { pressureQuestions } from "@/lib/founderPressureQuestions";
 import { calculatePressureScores, PressureScores } from "@/lib/founderPressureScoring";
 import { supabase } from "@/integrations/supabase/client";
@@ -15,7 +16,7 @@ interface FounderPressureScanDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
-type Step = "intro" | "questions" | "gate" | "results";
+type Step = "intro" | "questions" | "gate" | "analyzing" | "results";
 
 export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressureScanDialogProps) {
   const { language } = useLanguage();
@@ -104,7 +105,7 @@ export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressur
           if (error) console.error("GHL webhook error:", error);
         });
 
-      setStep("results");
+      setStep("analyzing");
     } catch (error) {
       console.error("Scan submission error:", error);
       toast({
@@ -135,6 +136,9 @@ export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressur
         )}
         {step === "gate" && (
           <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} />
+        )}
+        {step === "analyzing" && (
+          <AnalyzingTransition scanType="pressure" onComplete={() => setStep("results")} />
         )}
         {step === "results" && scores && userInfo && (
           <ScanResultsStep userInfo={userInfo} scores={scores} onClose={resetScan} />
