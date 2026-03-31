@@ -16,7 +16,7 @@ interface FounderPressureScanDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
-type Step = "intro" | "questions" | "gate" | "results";
+type Step = "intro" | "questions" | "gate" | "analyzing" | "results";
 
 export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressureScanDialogProps) {
   const { language } = useLanguage();
