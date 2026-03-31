@@ -100,9 +100,9 @@ export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, on
         isLoadingAI: true,
       });
     } else {
-      // Render results inside the dialog
+      // Render results inside the dialog (with analyzing transition)
       setResult(cpResult);
-      setStep("results");
+      setStep("analyzing");
       setIsLoadingAI(true);
     }
 
