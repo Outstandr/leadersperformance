@@ -92,7 +92,7 @@ const ProfitLeakScan = () => {
       });
 
       setDialogOpen(false);
-      setStep("results");
+      setStep("analyzing");
       window.scrollTo({ top: 0, behavior: "instant" });
     } catch (error) {
       console.error("Submission error:", error);
