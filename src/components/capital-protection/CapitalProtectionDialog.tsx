@@ -5,6 +5,7 @@ import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 import { CPUserInfoStep, CPUserInfo } from "./CPUserInfoStep";
 import { CPQuestionStep } from "./CPQuestionStep";
 import { CPResultsStep } from "./CPResultsStep";
+import { AnalyzingTransition } from "@/components/shared/AnalyzingTransition";
 import { cpSections } from "@/lib/capitalProtectionQuestions";
 import { calculateCPResult, CPResult, CPAssessmentData } from "@/lib/capitalProtectionScoring";
 import { supabase } from "@/integrations/supabase/client";
