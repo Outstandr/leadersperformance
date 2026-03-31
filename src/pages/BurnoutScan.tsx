@@ -125,7 +125,7 @@ const BurnoutScan = () => {
       });
 
       setDialogOpen(false);
-      setStep("free_results");
+      setStep("free_analyzing");
       window.scrollTo({ top: 0, behavior: "instant" });
     } catch (error) {
       console.error("Submission error:", error);
