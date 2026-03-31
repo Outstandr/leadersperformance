@@ -263,6 +263,15 @@ const BurnoutScan = () => {
     );
   }
 
+  // Show analyzing transition for full scan
+  if (step === "full_analyzing") {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <AnalyzingTransition scanType="burnout" onComplete={() => setStep("full_results")} />
+      </div>
+    );
+  }
+
   // Show full results outside dialog
   if (step === "full_results" && fullResult && userInfo) {
     return (
