@@ -137,6 +137,9 @@ export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressur
         {step === "gate" && (
           <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} />
         )}
+        {step === "analyzing" && (
+          <AnalyzingTransition scanType="pressure" onComplete={() => setStep("results")} />
+        )}
         {step === "results" && scores && userInfo && (
           <ScanResultsStep userInfo={userInfo} scores={scores} onClose={resetScan} />
         )}
