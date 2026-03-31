@@ -15,7 +15,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-type Step = "intro" | "free_questions" | "free_gate" | "free_results" | "full_questions" | "full_results";
+type Step = "intro" | "free_questions" | "free_gate" | "free_analyzing" | "free_results" | "full_questions" | "full_analyzing" | "full_results";
 
 const BurnoutScan = () => {
   const { language } = useLanguage();
