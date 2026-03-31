@@ -141,7 +141,7 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
         setInsights(aiData.insights);
       }
 
-      setStep("results");
+      setStep("analyzing");
     } catch (error) {
       console.error("Audit submission error:", error);
       toast({
