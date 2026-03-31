@@ -237,6 +237,15 @@ const BurnoutScan = () => {
     window.location.href = "/";
   };
 
+  // Show analyzing transition for free scan
+  if (step === "free_analyzing") {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <AnalyzingTransition scanType="burnout" onComplete={() => setStep("free_results")} />
+      </div>
+    );
+  }
+
   // Show free results outside dialog
   if (step === "free_results" && freeResult && userInfo) {
     return (
