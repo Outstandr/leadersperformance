@@ -12,7 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-type Step = "intro" | "revenue" | "questions" | "gate" | "results";
+type Step = "intro" | "revenue" | "questions" | "gate" | "analyzing" | "results";
 
 const ProfitLeakScan = () => {
   const { language } = useLanguage();
