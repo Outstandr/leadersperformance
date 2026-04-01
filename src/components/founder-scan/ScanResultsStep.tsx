@@ -149,6 +149,7 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
           userInfo={{ fullName: userInfo.fullName, email: userInfo.email, phone: userInfo.phone }}
           contextPayload={voiceContext}
           bookingType="Founder Strategy Intervention"
+          webhookPayload={webhookPayload}
         />
 
         {/* Scroll indicator */}
