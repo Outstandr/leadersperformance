@@ -103,7 +103,7 @@ type SessionRequest = {
   context?: CapitalProtectionContext;
   scanContext?: PressureScanContext;
   auditContext?: CorporateAuditContext;
-  burnoutContext?: BurnoutScanContext;
+  burnoutContext?: PressureDiagnosticContext;
   profitLeakContext?: ProfitLeakContext;
 };
 
