@@ -99,7 +99,6 @@ const ui = {
 
 export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }: ProtectionResultsStepProps) {
   const { language } = useLanguage();
-  const { openVoiceAgent } = useVoiceAgent();
   const t = ui[language] ?? ui.en;
   const c = colorConfig[scores.overallColor];
   const bookingUrl = "https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j";
