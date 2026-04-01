@@ -13,6 +13,11 @@ export interface ScanBookingUserInfo {
   phone: string;
 }
 
+export interface BookingDetails {
+  date: string; // YYYY-MM-DD
+  time: string; // HH:MM
+}
+
 interface ScanBookingCalendarProps {
   userInfo: ScanBookingUserInfo;
   bookingType: string;
