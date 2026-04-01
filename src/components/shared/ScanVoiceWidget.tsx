@@ -2,28 +2,76 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
 import { Mic, Volume2, Loader2, Send, MessageSquare, X } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { ScanBookingCalendar, ScanBookingUserInfo } from "./ScanBookingCalendar";
+import { ScanBookingCalendar, ScanBookingUserInfo, BookingDetails } from "./ScanBookingCalendar";
+import { supabase } from "@/integrations/supabase/client";
 
 const SCAN_CALENDAR_ID = "Se3SwkYLXfuW52O0F4GX";
+const WEBHOOK_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
 
 interface ScanVoiceWidgetProps {
   mode: "pressure_scan" | "corporate_audit" | "burnout_scan" | "profit_leak";
   userInfo: ScanBookingUserInfo;
   contextPayload: Record<string, unknown>;
   bookingType: string;
+  /** GHL webhook payload to send after Daisy ends or timeout */
+  webhookPayload?: Record<string, unknown>;
 }
 
-export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }: ScanVoiceWidgetProps) {
+export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, webhookPayload }: ScanVoiceWidgetProps) {
   const { language } = useLanguage();
   const [isConnecting, setIsConnecting] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
+  const [bookingDetails, setBookingDetails] = useState<BookingDetails | null>(null);
   const [transcript, setTranscript] = useState<Array<{ role: "user" | "agent"; text: string }>>([]);
   const [textInput, setTextInput] = useState("");
   const [isTextMode, setIsTextMode] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
   const hasAutoStarted = useRef(false);
   const [showModeChoice, setShowModeChoice] = useState(false);
+  const webhookFired = useRef(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const daisyEverConnected = useRef(false);
+
+  // Fire the GHL webhook with optional booking details
+  const fireWebhook = useCallback(() => {
+    if (webhookFired.current || !webhookPayload) return;
+    webhookFired.current = true;
+
+    const payload: Record<string, unknown> = { ...webhookPayload };
+
+    if (bookingDetails) {
+      payload.booking_date = bookingDetails.date;
+      payload.booking_time = bookingDetails.time;
+      payload.booked = true;
+    } else {
+      payload.booked = false;
+    }
+
+    console.log("Firing GHL webhook (delayed)", payload.audit_type, bookingDetails ? "with booking" : "no booking");
+
+    supabase.functions
+      .invoke("send-to-ghl", { body: payload })
+      .then(({ error }) => {
+        if (error) console.error("GHL webhook error:", error);
+      });
+  }, [webhookPayload, bookingDetails]);
+
+  // Start 10-min timeout on mount
+  useEffect(() => {
+    if (!webhookPayload) return;
+
+    timeoutRef.current = setTimeout(() => {
+      if (!webhookFired.current) {
+        console.log("10-min timeout — firing webhook without Daisy interaction");
+        fireWebhook();
+      }
+    }, WEBHOOK_TIMEOUT_MS);
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [webhookPayload, fireWebhook]);
 
   const conversation = useConversation({
     clientTools: {
@@ -35,9 +83,15 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
     onConnect: () => {
       console.log("Daisy connected (scan widget)");
       setIsConnecting(false);
+      daisyEverConnected.current = true;
     },
     onDisconnect: () => {
       console.log("Daisy disconnected (scan widget)");
+      // Fire webhook when Daisy call ends
+      if (daisyEverConnected.current) {
+        // Small delay to allow booking state to settle
+        setTimeout(() => fireWebhook(), 500);
+      }
     },
     onMessage: (message: any) => {
       if (message.type === "user_transcript" && message.user_transcription_event?.user_transcript) {
@@ -105,7 +159,9 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
       }
 
       if (textOnly) {
-        sessionOpts.textOnly = true;
+        sessionOpts.overrides = {
+          conversation: { textOnly: true },
+        };
       }
 
       await conversation.startSession(sessionOpts);
@@ -115,14 +171,6 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
     }
   }, [conversation, mode, contextPayload, isConnecting]);
 
-  // Auto-start on mount (voice mode)
-  useEffect(() => {
-    if (!hasAutoStarted.current) {
-      hasAutoStarted.current = true;
-      // Don't auto-start, let user choose mode
-    }
-  }, []);
-
   const handleSendText = useCallback(() => {
     const msg = textInput.trim();
     if (!msg || conversation.status !== "connected") return;
@@ -131,7 +179,8 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType }:
     setTextInput("");
   }, [conversation, textInput]);
 
-  const handleBookingComplete = useCallback(() => {
+  const handleBookingComplete = useCallback((details: BookingDetails) => {
+    setBookingDetails(details);
     setBookingConfirmed(true);
     setShowCalendar(false);
     if (conversation.status === "connected") {
