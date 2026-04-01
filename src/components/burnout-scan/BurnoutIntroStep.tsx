@@ -13,7 +13,7 @@ const ui = {
     description: "Discover your Founder Risk Score. Identify early signals of overload before they start impacting your performance, decisions, and results.",
     bullets: [
       "10 targeted questions across 5 pressure indicators",
-      "Instant FBR Score with risk classification",
+      "Instant Founder Pressure Score with risk classification",
       "Unlock the Full Diagnostic for your complete pressure phase analysis",
     ],
     cta: "Start the Founder Pressure Scan",
@@ -25,7 +25,7 @@ const ui = {
     description: "Ontdek uw Founder Risk Score. Identificeer vroege signalen van overbelasting voordat ze uw prestaties, beslissingen en resultaten beïnvloeden.",
     bullets: [
       "10 gerichte vragen over 5 drukindicatoren",
-      "Directe FBR Score met risicoclassificatie",
+      "Directe Founder Pressure Score met risicoclassificatie",
       "Ontgrendel de Volledige Diagnostiek voor uw complete drukfaseanalyse",
     ],
     cta: "Start de Founder Pressure Scan",

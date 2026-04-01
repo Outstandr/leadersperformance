@@ -41,7 +41,10 @@ Deno.serve(async (req) => {
     let webhookUrl: string;
     if (sanitizedPayload.audit_type === 'founder_pressure_scan') {
       webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/c696e7af-8922-49a0-b00a-0fec42edf9b8';
+    } else if (sanitizedPayload.audit_type === 'founder_pressure_diagnostic' || sanitizedPayload.audit_type === 'founder_pressure_full') {
+      webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/c696e7af-8922-49a0-b00a-0fec42edf9b8';
     } else if (sanitizedPayload.audit_type === 'founder_burnout_scan' || sanitizedPayload.audit_type === 'founder_burnout_full') {
+      // Backward compatibility
       webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/c696e7af-8922-49a0-b00a-0fec42edf9b8';
     } else if (sanitizedPayload.audit_type === 'capital_protection_voice' || sanitizedPayload.audit_type === 'capital_protection') {
       webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/b8563060-6153-489a-8b2a-4eeef35e81c4';

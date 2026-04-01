@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { BurnoutFreeResult } from "@/lib/burnoutScoring";
+import { PressureFreeResult } from "@/lib/burnoutScoring";
 import { colorConfig } from "@/lib/unifiedScoring";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ScanVoiceWidget } from "@/components/shared/ScanVoiceWidget";
 import { Lock, ArrowRight, ChevronDown } from "lucide-react";
 
 interface BurnoutFreeResultsStepProps {
-  result: BurnoutFreeResult;
+  result: PressureFreeResult;
   onUnlockFull: () => void;
   isProcessing: boolean;
   userInfo?: { fullName: string; email: string; phone: string; company: string };
@@ -30,13 +30,13 @@ const overallInterpretations = {
   en: {
     low: "Your preliminary assessment shows manageable pressure levels.",
     moderate: "You are showing early-to-moderate signs of founder pressure accumulation.",
-    high: "Your preliminary score indicates significant burnout risk across multiple domains.",
+    high: "Your preliminary score indicates significant pressure risk across multiple domains.",
     critical: "Your preliminary results show critical founder pressure. Multiple systems are under severe strain.",
   },
   nl: {
     low: "Uw voorlopige beoordeling toont beheersbare drukniveaus.",
     moderate: "U toont vroege tot matige tekenen van founder-drukopstapeling.",
-    high: "Uw voorlopige score wijst op significant burnout-risico over meerdere domeinen.",
+    high: "Uw voorlopige score wijst op significant drukrisico over meerdere domeinen.",
     critical: "Uw voorlopige resultaten tonen kritieke founder-druk. Meerdere systemen staan onder zware spanning.",
   },
 };
@@ -84,8 +84,8 @@ export function BurnoutFreeResultsStep({ result, onUnlockFull, isProcessing, use
 
   const sortedSections = [...result.sectionScores].sort((a, b) => b.score - a.score);
   const highestRisk = sortedSections[0];
-  const overallLevel = getOverallLevel(result.fbrScore);
-  const c = colorConfig[result.fbrColor as keyof typeof colorConfig] || colorConfig.green;
+  const overallLevel = getOverallLevel(result.fpsScore);
+  const c = colorConfig[result.fpsColor as keyof typeof colorConfig] || colorConfig.green;
 
   const firstName = userInfo?.fullName?.split(" ")[0] ?? "";
 
@@ -94,9 +94,9 @@ export function BurnoutFreeResultsStep({ result, onUnlockFull, isProcessing, use
     company: userInfo.company,
     phone: userInfo.phone,
     email: userInfo.email,
-    fbrScore: result.fbrScore,
-    fbrColor: result.fbrColor,
-    fbrLabel: result.fbrLabel[language],
+    fpsScore: result.fpsScore,
+    fpsColor: result.fpsColor,
+    fpsLabel: result.fpsLabel[language],
     sectionScores: result.sectionScores.map(s => ({
       domain: s.label,
       score: s.score,
@@ -115,9 +115,9 @@ export function BurnoutFreeResultsStep({ result, onUnlockFull, isProcessing, use
           <p className="text-xs text-foreground/40 uppercase tracking-widest">
             {firstName ? `${firstName}, ` : ""}{language === "nl" ? "jouw risicoscore" : "your risk score"}
           </p>
-          <span className={`text-7xl md:text-8xl font-black ${c.text} leading-none block`}>{result.fbrScore}</span>
+          <span className={`text-7xl md:text-8xl font-black ${c.text} leading-none block`}>{result.fpsScore}</span>
           <div className={`inline-block px-4 py-1.5 ${c.bg} border ${c.border} ${c.text} text-xs font-bold uppercase tracking-widest`}>
-            {result.fbrLabel[language]}
+            {result.fpsLabel[language]}
           </div>
           <p className="text-sm text-foreground/60 max-w-sm mx-auto">{t.subline}</p>
         </div>
@@ -138,7 +138,7 @@ export function BurnoutFreeResultsStep({ result, onUnlockFull, isProcessing, use
             mode="burnout_scan"
             userInfo={{ fullName: userInfo.fullName, email: userInfo.email, phone: userInfo.phone }}
             contextPayload={voiceContext}
-            bookingType="Founder Burnout Intervention"
+            bookingType="Founder Pressure Intervention"
           />
         )}
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { BurnoutFullResult } from "@/lib/burnoutScoring";
+import { PressureFullResult } from "@/lib/burnoutScoring";
 import { colorConfig, ColorTier } from "@/lib/unifiedScoring";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ScanVoiceWidget } from "@/components/shared/ScanVoiceWidget";
@@ -9,7 +9,7 @@ import { AlertTriangle, Clock, Brain, Shield, Activity, Target, TrendingDown, Za
 import { supabase } from "@/integrations/supabase/client";
 
 interface BurnoutFullResultsStepProps {
-  result: BurnoutFullResult;
+  result: PressureFullResult;
   userInfo: ScanUserInfo;
   onClose: () => void;
   fullResponses?: Record<string, number>;
@@ -45,8 +45,8 @@ function ReportSection({ icon: Icon, title, content, variant = "default" }: { ic
 
 const ui = {
   en: {
-    subline: "This indicates your current burnout risk level.",
-    burnoutPhase: "Burnout Phase",
+    subline: "This indicates your current pressure risk level.",
+    pressurePhase: "Pressure Phase",
     recovery: "Recovery Timeline",
     without: "Without intervention",
     with: "With structured intervention",
@@ -67,8 +67,8 @@ const ui = {
     close: "Close",
   },
   nl: {
-    subline: "Dit toont uw huidige burnout-risiconiveau.",
-    burnoutPhase: "Burnout Fase",
+    subline: "Dit toont uw huidige drukniveau.",
+    pressurePhase: "Drukfase",
     recovery: "Hersteltijdlijn",
     without: "Zonder interventie",
     with: "Met gestructureerde interventie",
@@ -93,7 +93,7 @@ const ui = {
 export function BurnoutFullResultsStep({ result, userInfo, onClose, fullResponses }: BurnoutFullResultsStepProps) {
   const { language } = useLanguage();
   const t = ui[language] ?? ui.en;
-  const c = colorConfig[result.fbrColor];
+  const c = colorConfig[result.fpsColor];
   const firstName = userInfo.fullName.split(" ")[0];
   const [deepReport, setDeepReport] = useState<DeepReport | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -111,8 +111,8 @@ export function BurnoutFullResultsStep({ result, userInfo, onClose, fullResponse
     try {
       const { data, error } = await supabase.functions.invoke("generate-burnout-report", {
         body: {
-          fbrScore: result.fbrScore,
-          fbrColor: result.fbrColor,
+          fpsScore: result.fpsScore,
+          fpsColor: result.fpsColor,
           phase: result.phase,
           phaseNumber: result.phaseNumber,
           phaseLabel: result.phaseLabel[language],
@@ -142,8 +142,8 @@ export function BurnoutFullResultsStep({ result, userInfo, onClose, fullResponse
     company: userInfo.company,
     phone: userInfo.phone,
     email: userInfo.email,
-    fbrScore: result.fbrScore,
-    fbrColor: result.fbrColor,
+    fpsScore: result.fpsScore,
+    fpsColor: result.fpsColor,
     phase: result.phaseLabel[language],
     phaseNumber: result.phaseNumber,
     recoveryWithout: result.recoveryWithout[language],
@@ -161,16 +161,16 @@ export function BurnoutFullResultsStep({ result, userInfo, onClose, fullResponse
         {/* 1. SCORE BLOCK */}
         <div className="text-center space-y-3 pt-2">
           <p className="text-xs text-foreground/40 uppercase tracking-widest">{firstName}, {language === "nl" ? "jouw volledige diagnose" : "your full diagnosis"}</p>
-          <span className={`text-7xl md:text-8xl font-black ${c.text} leading-none block`}>{result.fbrScore}</span>
+          <span className={`text-7xl md:text-8xl font-black ${c.text} leading-none block`}>{result.fpsScore}</span>
           <div className={`inline-block px-4 py-1.5 ${c.bg} border ${c.border} ${c.text} text-xs font-bold uppercase tracking-widest`}>
-            {result.fbrLabel[language]}
+            {result.fpsLabel[language]}
           </div>
           <p className="text-sm text-foreground/60 max-w-sm mx-auto">{t.subline}</p>
         </div>
 
-        {/* 2. BURNOUT PHASE — dominant block */}
+        {/* 2. PRESSURE PHASE — dominant block */}
         <div className="p-6 bg-red-950 text-white space-y-3">
-          <p className="text-[10px] uppercase tracking-[0.2em] text-red-300 font-semibold">{t.burnoutPhase}</p>
+          <p className="text-[10px] uppercase tracking-[0.2em] text-red-300 font-semibold">{t.pressurePhase}</p>
           <p className="text-xl md:text-2xl font-black leading-tight">{result.phaseLabel[language]}</p>
           <div className="flex gap-1">
             {[1, 2, 3, 4, 5].map((n) => (
@@ -196,7 +196,7 @@ export function BurnoutFullResultsStep({ result, userInfo, onClose, fullResponse
           mode="burnout_scan"
           userInfo={{ fullName: userInfo.fullName, email: userInfo.email, phone: userInfo.phone }}
           contextPayload={voiceContext}
-          bookingType="Founder Burnout Intervention"
+          bookingType="Founder Pressure Intervention"
         />
 
         <div className="text-center pt-2">
