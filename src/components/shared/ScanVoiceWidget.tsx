@@ -25,6 +25,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   const [showCalendar, setShowCalendar] = useState(false);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [bookingDetails, setBookingDetails] = useState<BookingDetails | null>(null);
+  const bookingDetailsRef = useRef<BookingDetails | null>(null);
   const [transcript, setTranscript] = useState<Array<{ role: "user" | "agent"; text: string }>>([]);
   const [textInput, setTextInput] = useState("");
   const [isTextMode, setIsTextMode] = useState(false);
