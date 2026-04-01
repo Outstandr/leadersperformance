@@ -176,6 +176,7 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
             scores={scores}
             insights={insights}
             onClose={resetAudit}
+            responses={responses}
           />
         )}
       </DialogContent>
