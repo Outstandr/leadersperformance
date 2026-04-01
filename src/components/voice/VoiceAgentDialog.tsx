@@ -158,6 +158,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       setTextInput("");
       setIsTextMode(false);
       setShowCalendar(false);
+      setSuggestedScan(null);
       autoConnectTriggered.current = false;
     }
   }, [isOpen]);
