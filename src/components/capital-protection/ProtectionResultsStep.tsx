@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mic, Shield, AlertTriangle } from "lucide-react";
+import { ArrowRight, Shield, AlertTriangle } from "lucide-react";
 import { CPResult } from "@/lib/capitalProtectionScoring";
 import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
 import { ScanUserInfo } from "@/components/founder-scan/ScanGateStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
+import { ScanVoiceWidget } from "@/components/shared/ScanVoiceWidget";
 
 interface ProtectionResultsStepProps {
   userInfo: ScanUserInfo;
