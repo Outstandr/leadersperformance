@@ -108,13 +108,13 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose, response
             tier: scores.tier,
             audit_type: "corporate",
             language,
-            audit_q1: 0,
-            audit_q2: 0,
-            audit_q3: 0,
-            audit_q4: 0,
-            audit_q5: 0,
-            audit_q6: 0,
-            audit_q7: 0,
+            audit_q1: responses.q1 ?? 0,
+            audit_q2: responses.q2 ?? 0,
+            audit_q3: responses.q3 ?? 0,
+            audit_q4: responses.q4 ?? 0,
+            audit_q5: responses.q5 ?? 0,
+            audit_q6: responses.q6 ?? 0,
+            audit_q7: responses.q7 ?? 0,
           }}
         />
 
