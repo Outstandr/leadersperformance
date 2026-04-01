@@ -74,6 +74,8 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
   const t = ui[language] ?? ui.en;
 
   const firstName = userInfo.fullName.split(" ")[0];
+  const nameParts = userInfo.fullName.trim().split(/\s+/);
+  const lastName = nameParts.slice(1).join(" ") || "";
   const primarySection = scores.sections.reduce((a, b) => a.score > b.score ? a : b);
 
   const voiceContext = {
@@ -96,6 +98,25 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
       dimensionLabel: scores.primaryBottleneck.dimensionLabel[language],
       impact: scores.primaryBottleneck.impact[language],
     },
+  };
+
+  // GHL webhook payload — fired by ScanVoiceWidget after Daisy ends or 10min timeout
+  const webhookPayload = {
+    first_name: firstName,
+    last_name: lastName,
+    email: userInfo.email,
+    phone: userInfo.phone,
+    company: userInfo.company,
+    discipline_score: scores.overall,
+    tier: scores.title,
+    audit_type: "founder_pressure_scan",
+    language,
+    decision_pressure_score: scores.sections[0]?.score,
+    founder_dependency_score: scores.sections[1]?.score,
+    leadership_alignment_score: scores.sections[2]?.score,
+    execution_momentum_score: scores.sections[3]?.score,
+    diagnosis: scores.diagnosis,
+    recommendation: scores.recommendation,
   };
 
   return (
@@ -128,6 +149,7 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
           userInfo={{ fullName: userInfo.fullName, email: userInfo.email, phone: userInfo.phone }}
           contextPayload={voiceContext}
           bookingType="Founder Strategy Intervention"
+          webhookPayload={webhookPayload}
         />
 
         {/* Scroll indicator */}
