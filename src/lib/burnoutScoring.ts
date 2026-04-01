@@ -2,12 +2,15 @@ import { normalizeScore, getColorTier, ColorTier } from "./unifiedScoring";
 
 // ========== FREE TEST SCORING ==========
 
-export interface BurnoutFreeResult {
-  fbrScore: number;
-  fbrColor: ColorTier;
-  fbrLabel: { en: string; nl: string };
+export interface PressureFreeResult {
+  fpsScore: number;
+  fpsColor: ColorTier;
+  fpsLabel: { en: string; nl: string };
   sectionScores: { key: string; label: string; score: number; color: ColorTier }[];
 }
+
+// Keep old name as alias for backward compat
+export type BurnoutFreeResult = PressureFreeResult;
 
 const FREE_SECTIONS = [
   { key: "workload_intensity", label: { en: "Workload Intensity", nl: "Werkdruk Intensiteit" }, ids: ["fq1", "fq2"] },
@@ -17,24 +20,24 @@ const FREE_SECTIONS = [
   { key: "stress_tolerance", label: { en: "Stress Tolerance", nl: "Stresstolerantie" }, ids: ["fq9", "fq10"] },
 ];
 
-const FBR_LABELS: Record<string, { en: string; nl: string }> = {
+const FPS_LABELS: Record<string, { en: string; nl: string }> = {
   low: { en: "Low Risk", nl: "Laag Risico" },
   moderate: { en: "Moderate Pressure", nl: "Matige Druk" },
-  high: { en: "High Burnout Risk", nl: "Hoog Burnout Risico" },
+  high: { en: "High Pressure Risk", nl: "Hoog Drukrisico" },
   critical: { en: "Critical Founder Collapse Risk", nl: "Kritiek Founder Instortingsrisico" },
 };
 
-function getFBRCategory(score: number): string {
+function getFPSCategory(score: number): string {
   if (score <= 25) return "low";
   if (score <= 50) return "moderate";
   if (score <= 75) return "high";
   return "critical";
 }
 
-export function calculateFreeBurnoutScore(
+export function calculateFreePressureScore(
   responses: Record<string, number>,
   language: "en" | "nl"
-): BurnoutFreeResult {
+): PressureFreeResult {
   const sectionScores = FREE_SECTIONS.map((s) => {
     const sum = s.ids.reduce((acc, id) => acc + (responses[id] || 1), 0);
     const score = normalizeScore(sum, s.ids.length, s.ids.length * 4);
@@ -42,26 +45,30 @@ export function calculateFreeBurnoutScore(
   });
 
   const totalSum = Object.values(responses).reduce((a, b) => a + b, 0);
-  const fbrScore = normalizeScore(totalSum, 10, 40);
-  const category = getFBRCategory(fbrScore);
+  const fpsScore = normalizeScore(totalSum, 10, 40);
+  const category = getFPSCategory(fpsScore);
 
   return {
-    fbrScore,
-    fbrColor: getColorTier(fbrScore),
-    fbrLabel: FBR_LABELS[category],
+    fpsScore,
+    fpsColor: getColorTier(fpsScore),
+    fpsLabel: FPS_LABELS[category],
     sectionScores,
   };
 }
 
+// Keep old name as alias
+export const calculateFreeBurnoutScore = calculateFreePressureScore;
+
 // ========== FULL DIAGNOSTIC SCORING ==========
 
-export type BurnoutPhase = "performance_strain" | "cumulative_overload" | "functional_burnout" | "system_collapse" | "shutdown";
+export type PressurePhase = "performance_strain" | "cumulative_overload" | "functional_overload" | "system_collapse" | "shutdown";
+export type BurnoutPhase = PressurePhase;
 
-export interface BurnoutFullResult {
-  fbrScore: number;
-  fbrColor: ColorTier;
-  fbrLabel: { en: string; nl: string };
-  phase: BurnoutPhase;
+export interface PressureFullResult {
+  fpsScore: number;
+  fpsColor: ColorTier;
+  fpsLabel: { en: string; nl: string };
+  phase: PressurePhase;
   phaseLabel: { en: string; nl: string };
   phaseNumber: number;
   recoveryWithout: { en: string; nl: string };
@@ -72,6 +79,8 @@ export interface BurnoutFullResult {
   recommendation: string;
 }
 
+export type BurnoutFullResult = PressureFullResult;
+
 const FULL_DOMAINS = [
   { key: "pressure_load", label: { en: "Founder Pressure Load", nl: "Founder Drukbelasting" }, ids: ["dq1","dq2","dq3","dq4","dq5","dq6","dq7","dq8"], weight: 0.30 },
   { key: "nervous_system", label: { en: "Nervous System Depletion", nl: "Zenuwstelsel Uitputting" }, ids: ["dq9","dq10","dq11","dq12","dq13","dq14","dq15","dq16"], weight: 0.25 },
@@ -81,16 +90,16 @@ const FULL_DOMAINS = [
 
 const DOMAIN_IMPACT: Record<string, { en: string; nl: string }> = {
   pressure_load: {
-    en: "Your operational and decision-making load is unsustainable. The volume of responsibility concentrated on you is the primary driver of burnout risk.",
-    nl: "Uw operationele en besluitvormingsbelasting is onhoudbaar. Het volume aan verantwoordelijkheid dat bij u geconcentreerd is, is de primaire driver van burnout-risico.",
+    en: "Your operational and decision-making load is unsustainable. The volume of responsibility concentrated on you is the primary driver of pressure risk.",
+    nl: "Uw operationele en besluitvormingsbelasting is onhoudbaar. Het volume aan verantwoordelijkheid dat bij u geconcentreerd is, is de primaire driver van drukrisico.",
   },
   nervous_system: {
     en: "Your nervous system shows signs of chronic depletion. Sleep disruption, physical symptoms, and emotional exhaustion indicate your body is signaling overload.",
     nl: "Uw zenuwstelsel toont tekenen van chronische uitputting. Slaapverstoring, fysieke symptomen en emotionele uitputting geven aan dat uw lichaam overbelasting signaleert.",
   },
   business_dependency: {
-    en: "Your company is critically dependent on your personal involvement. This structural vulnerability accelerates burnout by preventing recovery.",
-    nl: "Uw bedrijf is kritiek afhankelijk van uw persoonlijke betrokkenheid. Deze structurele kwetsbaarheid versnelt burnout door herstel te voorkomen.",
+    en: "Your company is critically dependent on your personal involvement. This structural vulnerability accelerates pressure overload by preventing recovery.",
+    nl: "Uw bedrijf is kritiek afhankelijk van uw persoonlijke betrokkenheid. Deze structurele kwetsbaarheid versnelt drukoverbelasting door herstel te voorkomen.",
   },
   recovery_capacity: {
     en: "Your recovery systems are insufficient. Without adequate physical, emotional, and social recovery mechanisms, pressure compounds faster than you can process it.",
@@ -98,13 +107,12 @@ const DOMAIN_IMPACT: Record<string, { en: string; nl: string }> = {
   },
 };
 
-// Recovery Capacity questions are REVERSE scored (agree = good = low risk)
 const REVERSE_SCORED_IDS = new Set(["dq25","dq26","dq27","dq28","dq29","dq30","dq31","dq32"]);
 
-function getPhase(score: number): { phase: BurnoutPhase; number: number; label: { en: string; nl: string } } {
+function getPhase(score: number): { phase: PressurePhase; number: number; label: { en: string; nl: string } } {
   if (score <= 20) return { phase: "performance_strain", number: 1, label: { en: "Phase 1: Performance Strain", nl: "Fase 1: Prestatiespanning" } };
   if (score <= 40) return { phase: "cumulative_overload", number: 2, label: { en: "Phase 2: Cumulative Overload", nl: "Fase 2: Cumulatieve Overbelasting" } };
-  if (score <= 60) return { phase: "functional_burnout", number: 3, label: { en: "Phase 3: Functional Burnout", nl: "Fase 3: Functionele Burnout" } };
+  if (score <= 60) return { phase: "functional_overload", number: 3, label: { en: "Phase 3: Functional Overload", nl: "Fase 3: Functionele Overbelasting" } };
   if (score <= 80) return { phase: "system_collapse", number: 4, label: { en: "Phase 4: System Collapse", nl: "Fase 4: Systeeminstorting" } };
   return { phase: "shutdown", number: 5, label: { en: "Phase 5: Shutdown", nl: "Fase 5: Shutdown" } };
 }
@@ -128,14 +136,13 @@ function getRecoveryEstimate(score: number): { without: { en: string; nl: string
   };
 }
 
-export function calculateFullBurnoutScore(
+export function calculateFullPressureScore(
   responses: Record<string, number>,
   language: "en" | "nl"
-): BurnoutFullResult {
+): PressureFullResult {
   const domainScores = FULL_DOMAINS.map((d) => {
     const sum = d.ids.reduce((acc, id) => {
       const raw = responses[id] || 1;
-      // Reverse score for recovery capacity: 4->1, 3->2, 2->3, 1->4
       const adjusted = REVERSE_SCORED_IDS.has(id) ? (5 - raw) : raw;
       return acc + adjusted;
     }, 0);
@@ -143,25 +150,22 @@ export function calculateFullBurnoutScore(
     return { key: d.key, label: d.label[language], score, color: getColorTier(score), weight: d.weight };
   });
 
-  // Weighted overall
-  const fbrScore = Math.round(domainScores.reduce((sum, d) => sum + d.score * d.weight, 0));
-  const fbrColor = getColorTier(fbrScore);
-  const category = getFBRCategory(fbrScore);
-  const phaseInfo = getPhase(fbrScore);
-  const recovery = getRecoveryEstimate(fbrScore);
+  const fpsScore = Math.round(domainScores.reduce((sum, d) => sum + d.score * d.weight, 0));
+  const fpsColor = getColorTier(fpsScore);
+  const category = getFPSCategory(fpsScore);
+  const phaseInfo = getPhase(fpsScore);
+  const recovery = getRecoveryEstimate(fpsScore);
 
-  // Primary risk domain
   const worst = [...domainScores].sort((a, b) => b.score - a.score)[0];
   const impact = DOMAIN_IMPACT[worst.key];
 
-  // Generate narrative
-  const diagnosis = generateDiagnosis(fbrScore, fbrColor, worst.label, language);
-  const recommendation = generateRecommendation(fbrScore, fbrColor, language);
+  const diagnosis = generateDiagnosis(fpsScore, fpsColor, worst.label, language);
+  const recommendation = generateRecommendation(fpsScore, fpsColor, language);
 
   return {
-    fbrScore,
-    fbrColor,
-    fbrLabel: FBR_LABELS[category],
+    fpsScore,
+    fpsColor,
+    fpsLabel: FPS_LABELS[category],
     phase: phaseInfo.phase,
     phaseLabel: phaseInfo.label,
     phaseNumber: phaseInfo.number,
@@ -174,11 +178,14 @@ export function calculateFullBurnoutScore(
   };
 }
 
+// Keep old name as alias
+export const calculateFullBurnoutScore = calculateFullPressureScore;
+
 function generateDiagnosis(score: number, color: ColorTier, worstLabel: string, lang: "en" | "nl"): string {
   if (color === "green") {
     return lang === "en"
-      ? `Low burnout risk detected. Your founder pressure is manageable. Monitor ${worstLabel} to maintain this position.`
-      : `Laag burnout-risico gedetecteerd. Uw founder-druk is beheersbaar. Monitor ${worstLabel} om deze positie te behouden.`;
+      ? `Low pressure risk detected. Your founder pressure is manageable. Monitor ${worstLabel} to maintain this position.`
+      : `Laag drukrisico gedetecteerd. Uw founder-druk is beheersbaar. Monitor ${worstLabel} om deze positie te behouden.`;
   }
   if (color === "yellow") {
     return lang === "en"
@@ -187,8 +194,8 @@ function generateDiagnosis(score: number, color: ColorTier, worstLabel: string, 
   }
   if (color === "orange") {
     return lang === "en"
-      ? `High founder pressure detected. Your system is under significant strain, driven primarily by ${worstLabel}. Without intervention, this trajectory leads to functional burnout.`
-      : `Hoge founder-druk gedetecteerd. Uw systeem staat onder aanzienlijke spanning, voornamelijk gedreven door ${worstLabel}. Zonder interventie leidt dit traject tot functionele burnout.`;
+      ? `High founder pressure detected. Your system is under significant strain, driven primarily by ${worstLabel}. Without intervention, this trajectory leads to functional overload.`
+      : `Hoge founder-druk gedetecteerd. Uw systeem staat onder aanzienlijke spanning, voornamelijk gedreven door ${worstLabel}. Zonder interventie leidt dit traject tot functionele overbelasting.`;
   }
   return lang === "en"
     ? `Critical founder collapse risk. Your pressure load, nervous system depletion, and business dependency have converged into a high-risk pattern. ${worstLabel} is the most critical area requiring immediate intervention.`

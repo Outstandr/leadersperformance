@@ -25,7 +25,7 @@ const ui = {
     description: "Ontdek uw Founder Risk Score. Identificeer vroege signalen van overbelasting voordat ze uw prestaties, beslissingen en resultaten beïnvloeden.",
     bullets: [
       "10 gerichte vragen over 5 drukindicatoren",
-      "Directe FBR Score met risicoclassificatie",
+      "Directe Founder Pressure Score met risicoclassificatie",
       "Ontgrendel de Volledige Diagnostiek voor uw complete drukfaseanalyse",
     ],
     cta: "Start de Founder Pressure Scan",

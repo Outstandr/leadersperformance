@@ -10,7 +10,7 @@ import { ScanGateStep, ScanUserInfo } from "@/components/founder-scan/ScanGateSt
 import { AnalyzingTransition } from "@/components/shared/AnalyzingTransition";
 import { burnoutFreeQuestions } from "@/lib/burnoutFreeQuestions";
 import { burnoutFullQuestions } from "@/lib/burnoutFullQuestions";
-import { calculateFreeBurnoutScore, calculateFullBurnoutScore, BurnoutFreeResult, BurnoutFullResult } from "@/lib/burnoutScoring";
+import { calculateFreePressureScore, calculateFullPressureScore, PressureFreeResult, PressureFullResult } from "@/lib/burnoutScoring";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -29,8 +29,8 @@ const BurnoutScan = () => {
   const [freeResponses, setFreeResponses] = useState<Record<string, number>>({});
   const [fullResponses, setFullResponses] = useState<Record<string, number>>({});
   const [userInfo, setUserInfo] = useState<ScanUserInfo | null>(null);
-  const [freeResult, setFreeResult] = useState<BurnoutFreeResult | null>(null);
-  const [fullResult, setFullResult] = useState<BurnoutFullResult | null>(null);
+  const [freeResult, setFreeResult] = useState<PressureFreeResult | null>(null);
+  const [fullResult, setFullResult] = useState<PressureFullResult | null>(null);
   const [scanId, setScanId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
@@ -46,7 +46,6 @@ const BurnoutScan = () => {
       setDialogOpen(true);
       setStep("full_questions");
     } else if (testMode === "true") {
-      // Test mode: skip free scan and payment, go directly to full diagnostic
       setUserInfo({ fullName: "Test User", email: "test@test.com", company: "Test Co", phone: "+1234567890" });
       setDialogOpen(true);
       setStep("full_questions");
@@ -66,10 +65,9 @@ const BurnoutScan = () => {
     setUserInfo(info);
     setIsSubmitting(true);
     try {
-      const result = calculateFreeBurnoutScore(freeResponses, language);
+      const result = calculateFreePressureScore(freeResponses, language);
       setFreeResult(result);
 
-      // Save to DB
       const nameParts = info.fullName.trim().split(/\s+/);
       const firstName = nameParts[0] || "";
       const lastName = nameParts.slice(1).join(" ") || "";
@@ -87,8 +85,8 @@ const BurnoutScan = () => {
           free_mental_fatigue: result.sectionScores.find(s => s.key === "mental_fatigue")?.score || 0,
           free_decision_pressure: result.sectionScores.find(s => s.key === "decision_pressure")?.score || 0,
           free_stress_tolerance: result.sectionScores.find(s => s.key === "stress_tolerance")?.score || 0,
-          free_fbr_score: result.fbrScore,
-          free_fbr_color: result.fbrColor,
+          free_fbr_score: result.fpsScore,
+          free_fbr_color: result.fpsColor,
           fq1: freeResponses.fq1 ?? 1,
           fq2: freeResponses.fq2 ?? 1,
           fq3: freeResponses.fq3 ?? 1,
@@ -107,7 +105,7 @@ const BurnoutScan = () => {
         setScanId((insertData as any).id);
       }
 
-      // Send to GHL
+      // Send to GHL with updated variable names
       supabase.functions.invoke("send-to-ghl", {
         body: {
           first_name: firstName,
@@ -115,12 +113,12 @@ const BurnoutScan = () => {
           email: info.email,
           phone: info.phone,
           company: info.company,
-          discipline_score: result.fbrScore,
-          tier: result.fbrLabel.en,
-          audit_type: "founder_burnout_scan",
+          discipline_score: result.fpsScore,
+          tier: result.fpsLabel.en,
+          audit_type: "founder_pressure_diagnostic",
           language,
-          free_fbr_score: result.fbrScore,
-          free_fbr_color: result.fbrColor,
+          fps_score: result.fpsScore,
+          fps_color: result.fpsColor,
         },
       });
 
@@ -161,7 +159,6 @@ const BurnoutScan = () => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Payment setup failed");
 
-      // Redirect to Stripe
       window.location.href = data.url;
     } catch (error: any) {
       console.error("Payment error:", error);
@@ -176,13 +173,12 @@ const BurnoutScan = () => {
     if (fullQIndex < burnoutFullQuestions.length - 1) {
       setFullQIndex((prev) => prev + 1);
     } else {
-      // Calculate full results with ALL answers including the last one
       console.log("Full responses collected:", Object.keys(updatedResponses).length, "answers");
-      const result = calculateFullBurnoutScore(updatedResponses, language);
-      console.log("Full result calculated:", result.fbrScore, result.fbrColor);
+      const result = calculateFullPressureScore(updatedResponses, language);
+      console.log("Full result calculated:", result.fpsScore, result.fpsColor);
       setFullResult(result);
 
-      // Update DB with full results
+      // Update DB with full results (DB column names stay as-is)
       if (scanId) {
         supabase
           .from("founder_burnout_scans" as any)
@@ -192,8 +188,8 @@ const BurnoutScan = () => {
             full_nervous_system: result.domainScores.find(d => d.key === "nervous_system")?.score || 0,
             full_business_dependency: result.domainScores.find(d => d.key === "business_dependency")?.score || 0,
             full_recovery_capacity: result.domainScores.find(d => d.key === "recovery_capacity")?.score || 0,
-            full_fbr_score: result.fbrScore,
-            full_fbr_color: result.fbrColor,
+            full_fbr_score: result.fpsScore,
+            full_fbr_color: result.fpsColor,
             full_burnout_phase: result.phase,
             full_recovery_estimate: result.recoveryWith.en,
             ...Object.fromEntries(Object.entries(updatedResponses).map(([k, v]) => [k, v])),
@@ -201,7 +197,7 @@ const BurnoutScan = () => {
           .eq("id", scanId)
           .then(({ error }) => { if (error) console.error("DB update error:", error); });
 
-        // Send full results to GHL
+        // Send full results to GHL with updated variable names
         if (userInfo) {
           const nameParts = userInfo.fullName.trim().split(/\s+/);
           supabase.functions.invoke("send-to-ghl", {
@@ -211,11 +207,11 @@ const BurnoutScan = () => {
               email: userInfo.email,
               phone: userInfo.phone,
               company: userInfo.company,
-              audit_type: "founder_burnout_full",
+              audit_type: "founder_pressure_full",
               language,
-              fbr_score: result.fbrScore,
-              fbr_color: result.fbrColor,
-              burnout_phase: result.phaseLabel.en,
+              fps_score: result.fpsScore,
+              fps_color: result.fpsColor,
+              pressure_phase: result.phaseLabel.en,
               phase_number: result.phaseNumber,
               recovery_without: result.recoveryWithout.en,
               recovery_with: result.recoveryWith.en,
@@ -237,7 +233,6 @@ const BurnoutScan = () => {
     window.location.href = "/";
   };
 
-  // Show analyzing transition for free scan
   if (step === "free_analyzing") {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -246,7 +241,6 @@ const BurnoutScan = () => {
     );
   }
 
-  // Show free results outside dialog
   if (step === "free_results" && freeResult && userInfo) {
     return (
       <div className="min-h-screen bg-background">
@@ -263,7 +257,6 @@ const BurnoutScan = () => {
     );
   }
 
-  // Show analyzing transition for full scan
   if (step === "full_analyzing") {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -272,7 +265,6 @@ const BurnoutScan = () => {
     );
   }
 
-  // Show full results outside dialog
   if (step === "full_results" && fullResult && userInfo) {
     return (
       <div className="min-h-screen bg-background">
