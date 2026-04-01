@@ -64,7 +64,7 @@ Deno.serve(async (req) => {
       webhookUrl = envUrl;
     }
 
-    console.log('Sending to GHL');
+    console.log('Sending to GHL — booked:', sanitizedPayload.booked, 'booking_date:', sanitizedPayload.booking_date, 'booking_time:', sanitizedPayload.booking_time, 'audit_type:', sanitizedPayload.audit_type);
 
     const ghlResponse = await fetch(webhookUrl, {
       method: 'POST',
