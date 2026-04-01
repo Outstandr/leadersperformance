@@ -11,6 +11,7 @@ interface AuditResultsStepProps {
   scores: AuditScores;
   insights: AuditInsights | null;
   onClose: () => void;
+  responses: Record<string, number>;
 }
 
 const tierTranslations: Record<string, Record<string, string>> = {
