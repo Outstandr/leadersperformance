@@ -19,7 +19,7 @@ interface ScanVoiceWidgetProps {
   calendarId?: string;
 }
 
-export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, webhookPayload }: ScanVoiceWidgetProps) {
+export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, webhookPayload, calendarId = DEFAULT_CALENDAR_ID }: ScanVoiceWidgetProps) {
   const { language } = useLanguage();
   const [isConnecting, setIsConnecting] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
