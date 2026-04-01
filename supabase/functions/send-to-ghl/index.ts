@@ -39,9 +39,9 @@ Deno.serve(async (req) => {
 
     // Route to dedicated webhooks based on payload type
     let webhookUrl: string;
-    if (sanitizedPayload.audit_type === 'founder_pressure_scan') {
-      webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/c696e7af-8922-49a0-b00a-0fec42edf9b8';
-    } else if (sanitizedPayload.audit_type === 'founder_pressure_diagnostic' || sanitizedPayload.audit_type === 'founder_pressure_full') {
+    if (sanitizedPayload.audit_type === 'founder_pressure_scan' || sanitizedPayload.audit_type === 'founder_pressure_diagnostic') {
+      webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/3695170e-333d-4cfe-8ddb-402cf8675596';
+    } else if (sanitizedPayload.audit_type === 'founder_pressure_full') {
       webhookUrl = 'https://services.leadconnectorhq.com/hooks/pP8zZxtNvTuN3UqadKCp/webhook-trigger/c696e7af-8922-49a0-b00a-0fec42edf9b8';
     } else if (sanitizedPayload.audit_type === 'founder_burnout_scan' || sanitizedPayload.audit_type === 'founder_burnout_full') {
       // Backward compatibility
