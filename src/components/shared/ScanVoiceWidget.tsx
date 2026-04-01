@@ -356,7 +356,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
           <ScanBookingCalendar
             userInfo={userInfo}
             bookingType={bookingType}
-            calendarId={SCAN_CALENDAR_ID}
+            calendarId={calendarId}
             onBookingComplete={handleBookingComplete}
             onCancel={() => setShowCalendar(false)}
           />
