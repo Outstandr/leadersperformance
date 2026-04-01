@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
-import { X, Mic, MicOff, PhoneOff, Volume2, Send, Check, CalendarDays } from "lucide-react";
+import { X, Mic, MicOff, PhoneOff, Volume2, Send, Check, CalendarDays, ArrowRight } from "lucide-react";
 import { VoiceAgentContextData, useVoiceAgent } from "./VoiceAgentContext";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
@@ -26,6 +26,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
   const [textInput, setTextInput] = useState("");
   const [isTextMode, setIsTextMode] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
+  const [suggestedScan, setSuggestedScan] = useState<{ label: string; path: string } | null>(null);
   const transcriptRef = useRef<HTMLDivElement>(null);
   const conversationRef = useRef<any>(null);
 
@@ -39,6 +40,18 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
         console.log("[Daisy] show_calendar tool called", params);
         setShowCalendar(true);
         return "Calendar is now displayed to the user. Ask them to pick a date and time.";
+      },
+      suggest_scan: async (params: any) => {
+        console.log("[Daisy] suggest_scan tool called", params);
+        const scanType = params?.scan_type || "founder_pressure";
+        const scanMap: Record<string, { label: string; path: string }> = {
+          founder_pressure: { label: "Founder Pressure Scan", path: "/burnout-scan" },
+          profit_leak: { label: "Profit Leak Scan", path: "/profit-leak-scan" },
+          capital_protection: { label: "Capital Protection Assessment", path: "/capital-protection" },
+        };
+        const scan = scanMap[scanType] || scanMap.founder_pressure;
+        setSuggestedScan(scan);
+        return `The ${scan.label} link is now visible on the user's screen. Tell them to click it when they are ready.`;
       },
     },
     onConnect: () => {
@@ -145,6 +158,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       setTextInput("");
       setIsTextMode(false);
       setShowCalendar(false);
+      setSuggestedScan(null);
       autoConnectTriggered.current = false;
     }
   }, [isOpen]);
@@ -311,7 +325,9 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       }
 
       if (textOnly) {
-        sessionOptions.textOnly = true;
+        sessionOptions.overrides = {
+          conversation: { textOnly: true },
+        };
       }
 
       const session = await conversation.startSession(sessionOptions);
@@ -624,6 +640,24 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
                     className="block w-full py-2.5 rounded-lg bg-[#b39758] text-black text-xs font-semibold text-center hover:bg-[#c9aa6a] transition-all"
                   >
                     {language === "nl" ? "Open agenda" : "Open Calendar"}
+                  </a>
+                </div>
+              )}
+
+              {suggestedScan && (
+                <div className="mb-4 p-3 rounded-xl bg-white/5 border border-[#b39758]/30">
+                  <div className="flex items-center gap-2 mb-2">
+                    <ArrowRight className="w-4 h-4 text-[#b39758]" />
+                    <span className="text-white/80 text-xs font-medium">
+                      {language === "nl" ? "Aanbevolen scan" : "Recommended Scan"}
+                    </span>
+                  </div>
+                  <a
+                    href={suggestedScan.path}
+                    onClick={(e) => { e.preventDefault(); onClose(); window.location.href = suggestedScan.path; }}
+                    className="block w-full py-2.5 rounded-lg bg-[#b39758] text-black text-xs font-semibold text-center hover:bg-[#c9aa6a] transition-all"
+                  >
+                    {suggestedScan.label}
                   </a>
                 </div>
               )}

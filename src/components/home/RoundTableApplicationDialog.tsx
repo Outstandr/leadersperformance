@@ -471,7 +471,7 @@ export function RoundTableApplicationDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg w-[95vw] p-0 bg-card border-border/30 rounded-2xl overflow-hidden max-h-[90vh]">
+      <DialogContent className="max-w-lg w-[95vw] p-0 bg-card border-border/30 rounded-2xl overflow-hidden max-h-[95vh]">
         <DialogTitle className="sr-only">Round Table Application</DialogTitle>
 
         {/* Header */}
@@ -499,7 +499,7 @@ export function RoundTableApplicationDialog({
         </div>
 
         {/* Body */}
-        <div className="px-6 pb-6 overflow-y-auto max-h-[60vh]">
+        <div className="px-6 pb-6 overflow-y-auto max-h-[65vh]">
           {submitted ? (
             renderSubmitted()
           ) : (
