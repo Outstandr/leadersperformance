@@ -35,6 +35,9 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   const webhookFired = useRef(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const daisyEverConnected = useRef(false);
+  const showCalendarRef = useRef(false);
+  const bookingConfirmedRef = useRef(false);
+  const waitingForBookingOutcomeRef = useRef(false);
 
   // Fire the GHL webhook with optional booking details
   const fireWebhook = useCallback(() => {
@@ -61,16 +64,35 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
       });
   }, [webhookPayload]);
 
+  useEffect(() => {
+    showCalendarRef.current = showCalendar;
+  }, [showCalendar]);
+
+  useEffect(() => {
+    bookingConfirmedRef.current = bookingConfirmed;
+  }, [bookingConfirmed]);
+
   // Start 10-min timeout on mount
   useEffect(() => {
     if (!webhookPayload) return;
 
-    timeoutRef.current = setTimeout(() => {
-      if (!webhookFired.current) {
+    const scheduleWebhookCheck = (delay: number) => {
+      timeoutRef.current = setTimeout(() => {
+        if (webhookFired.current) return;
+
+        if (showCalendarRef.current && !bookingConfirmedRef.current) {
+          console.log("Webhook timeout reached while booking is in progress — retrying shortly");
+          waitingForBookingOutcomeRef.current = true;
+          scheduleWebhookCheck(60 * 1000);
+          return;
+        }
+
         console.log("10-min timeout — firing webhook without Daisy interaction");
         fireWebhook();
-      }
-    }, WEBHOOK_TIMEOUT_MS);
+      }, delay);
+    };
+
+    scheduleWebhookCheck(WEBHOOK_TIMEOUT_MS);
 
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -98,7 +120,15 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
       // Fire webhook when Daisy call ends
       if (daisyEverConnected.current) {
         // Small delay to allow booking state to settle
-        setTimeout(() => fireWebhook(), 500);
+        setTimeout(() => {
+          if (showCalendarRef.current && !bookingConfirmedRef.current) {
+            console.log("Daisy disconnected while booking calendar is open — waiting for booking outcome");
+            waitingForBookingOutcomeRef.current = true;
+            return;
+          }
+
+          fireWebhook();
+        }, 500);
       }
     },
     onMessage: (message: any) => {
@@ -191,13 +221,28 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     setBookingDetails(details);
     bookingDetailsRef.current = details;
     setBookingConfirmed(true);
+    bookingConfirmedRef.current = true;
     setShowCalendar(false);
+    showCalendarRef.current = false;
+    waitingForBookingOutcomeRef.current = false;
+    fireWebhook();
+
     if (conversation.status === "connected") {
       conversation.sendContextualUpdate(
         "The user has just successfully booked a session with Lionel. Congratulate them warmly, then ask if there is anything else you can help them with. Do NOT end the conversation — let the user decide when they are done."
       );
     }
-  }, [conversation]);
+  }, [conversation, fireWebhook]);
+
+  const handleCalendarCancel = useCallback(() => {
+    setShowCalendar(false);
+    showCalendarRef.current = false;
+
+    if (waitingForBookingOutcomeRef.current && !webhookFired.current) {
+      waitingForBookingOutcomeRef.current = false;
+      fireWebhook();
+    }
+  }, [fireWebhook]);
 
   const isConnected = conversation.status === "connected";
   const isWaitingForAgent = isConnected && isTextMode && transcript.length === 0;
@@ -361,7 +406,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
             bookingType={bookingType}
             calendarId={calendarId}
             onBookingComplete={handleBookingComplete}
-            onCancel={() => setShowCalendar(false)}
+            onCancel={handleCalendarCancel}
           />
         )}
 
