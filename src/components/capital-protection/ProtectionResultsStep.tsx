@@ -196,29 +196,46 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
         </div>
       )}
 
+      {/* Daisy voice widget — delayed webhook */}
+      <ScanVoiceWidget
+        mode="capital_protection"
+        userInfo={{ fullName: userInfo.fullName, email: userInfo.email, phone: userInfo.phone }}
+        contextPayload={{
+          fullName: userInfo.fullName,
+          email: userInfo.email,
+          phone: userInfo.phone,
+          overallScore: scores.overallScore,
+          overallColor: scores.overallColor,
+          recoveryPotential: scores.recoveryPotential,
+          headline: scores.headline[language] ?? scores.headline.en,
+          sections: scores.sections.map(s => ({ label: s.label[language] ?? s.label.en, score: s.score, color: s.color })),
+        }}
+        bookingType="Capital Protection Session"
+        calendarId="yEeXc4wSr5EOgBt4UEBP"
+        webhookPayload={{
+          first_name: firstName,
+          last_name: userInfo.fullName.trim().split(/\s+/).slice(1).join(" ") || "",
+          email: userInfo.email,
+          phone: userInfo.phone,
+          audit_type: "capital_protection",
+          recovery_potential: scores.recoveryPotential,
+          risk_level: scores.headline.en,
+          overall_score: scores.overallScore,
+          overall_color: scores.overallColor,
+          evidence_strength_score: scores.sections[0]?.score ?? 0,
+          timeline_advantage_score: scores.sections[1]?.score ?? 0,
+          jurisdictional_simplicity_score: scores.sections[2]?.score ?? 0,
+          legal_positioning_score: scores.sections[3]?.score ?? 0,
+          capital_exposure_score: scores.sections[4]?.score ?? 0,
+          language,
+        }}
+      />
+
       {/* CTA */}
       <div className="text-center space-y-3 pt-4">
         <Button
-          onClick={() => {
-            onClose();
-            setTimeout(() => {
-              openVoiceAgent({
-                mode: "capital_protection",
-                cpResult: scores,
-                cpUserInfo: userInfo,
-              });
-            }, 300);
-          }}
-          className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
-        >
-          <Mic className="w-5 h-5 mr-3" />
-          {language === "nl" ? "Bespreek uw resultaten" : "Discuss your results"}
-        </Button>
-
-        <Button
           asChild
-          variant="outline"
-          className="w-full border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
+          className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
         >
           <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
             {t.ctaBtn}

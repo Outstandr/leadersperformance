@@ -73,23 +73,7 @@ const ProfitLeakScan = () => {
         ...Object.fromEntries(Object.entries(responses).map(([k, v]) => [k, v])),
       } as any);
 
-      // Send to GHL
-      supabase.functions.invoke("send-to-ghl", {
-        body: {
-          first_name: firstName,
-          last_name: lastName,
-          email: info.email,
-          phone: info.phone,
-          company: info.company,
-          audit_type: "profit_leak_scan",
-          language,
-          overall_score: scanResult.overallScore,
-          overall_color: scanResult.overallColor,
-          growth_phase: scanResult.growthPhase.en,
-          primary_bottleneck: scanResult.primaryBottleneck.en,
-          revenue_tier: revenue,
-        },
-      });
+      // GHL webhook is now delayed — handled by ScanVoiceWidget
 
       setDialogOpen(false);
       setStep("analyzing");
