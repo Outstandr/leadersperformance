@@ -1,69 +1,68 @@
 
 
-## Remove "Burnout" / "FBR" Terminology — Implementation Plan
+## Delayed Webhook Logic for All Scans
 
-Replace all user-facing and internal references to "burnout" and "FBR" with "Founder Pressure" and "FPS" (Founder Pressure Score) across 8 files.
+Currently only the **Founder Pressure Scan** delays its GHL webhook until Daisy disconnects or a 10-minute timeout. The other three scans fire webhooks immediately on submission. This plan applies the same pattern to all scans.
 
----
-
-### Files & Changes
-
-**1. `src/lib/burnoutScoring.ts`** — Core scoring logic
-- Rename types: `BurnoutFreeResult` → `PressureFreeResult`, `BurnoutFullResult` → `PressureFullResult`, `BurnoutPhase` → `PressurePhase`
-- Rename variables: `fbrScore` → `fpsScore`, `fbrColor` → `fpsColor`, `fbrLabel` → `fpsLabel`
-- Rename constants: `FBR_LABELS` → `FPS_LABELS`, `getFBRCategory` → `getFPSCategory`
-- Rename functions: `calculateFreeBurnoutScore` → `calculateFreePressureScore`, `calculateFullBurnoutScore` → `calculateFullPressureScore`
-- Replace text: "High Burnout Risk" → "High Pressure Risk", "Hoog Burnout Risico" → "Hoog Drukrisico", "burnout risk" → "pressure risk" in all diagnosis/recommendation strings, "Functional Burnout" → "Functional Overload", "burnout-risico" → "drukrisico"
-
-**2. `src/components/burnout-scan/BurnoutIntroStep.tsx`**
-- "Instant FBR Score" → "Instant Founder Pressure Score" (EN)
-- "Directe FBR Score" → "Directe Founder Pressure Score" (NL)
-
-**3. `src/components/burnout-scan/BurnoutFreeResultsStep.tsx`**
-- Update import to `PressureFreeResult`
-- All `fbrScore` → `fpsScore`, `fbrColor` → `fpsColor`, `fbrLabel` → `fpsLabel`
-- "significant burnout risk" → "significant pressure risk" (EN + NL)
-- `mode="burnout_scan"` stays (internal key, matches edge function routing)
-- `bookingType="Founder Burnout Intervention"` → `"Founder Pressure Intervention"`
-
-**4. `src/components/burnout-scan/BurnoutFullResultsStep.tsx`**
-- Update import to `PressureFullResult`
-- All `fbrScore` → `fpsScore`, `fbrColor` → `fpsColor`, `fbrLabel` → `fpsLabel`
-- "burnout risk level" → "pressure risk level", "burnout-risiconiveau" → "drukniveau"
-- "Burnout Phase" → "Pressure Phase", "Burnout Fase" → "Drukfase"
-- `bookingType="Founder Burnout Intervention"` → `"Founder Pressure Intervention"`
-- `mode="burnout_scan"` stays unchanged
-
-**5. `src/pages/BurnoutScan.tsx`**
-- Update imports to new function/type names
-- GHL payload (free): `audit_type: "founder_pressure_diagnostic"`, `fps_score`, `fps_color` (replacing `free_fbr_score`, `free_fbr_color`)
-- GHL payload (full): `audit_type: "founder_pressure_full"`, `fps_score`, `fps_color`, `pressure_phase` (replacing `fbr_score`, `fbr_color`, `burnout_phase`)
-- DB column names stay as-is (`free_fbr_score`, `full_fbr_color`, etc.) — internal, auto-generated types
-
-**6. `supabase/functions/send-to-ghl/index.ts`**
-- Add routing for `founder_pressure_diagnostic` and `founder_pressure_full` → same webhook as existing burnout routes
-- Keep old `founder_burnout_scan` / `founder_burnout_full` as backward-compatible fallbacks
-
-**7. `supabase/functions/elevenlabs-voice-token/index.ts`**
-- Rename type `BurnoutScanContext` → `PressureDiagnosticContext`
-- Update `fbrScore` → `fpsScore`, `fbrColor` → `fpsColor` in the type
-- `formatBurnoutScanSnapshot` → `formatPressureDiagnosticSnapshot`: replace "FOUNDER BURNOUT DIAGNOSTIC" → "FOUNDER PRESSURE DIAGNOSTIC", "Founder Burnout Risk Score" → "Founder Pressure Score", "FBR Color" → "FPS Color", "Burnout Phase" → "Pressure Phase"
-- Navigation mode text: "Founder Burnout Scan" → "Founder Pressure Scan"
-- Update `determineEscalation` call to use `fpsScore`
-- LEVEL 3 description: "burnout signals" → "pressure overload signals"
-
-**8. `supabase/functions/generate-burnout-report/index.ts`**
-- Replace all prompt text: "burnout diagnostician" → "pressure diagnostician", "Burnout Risk Score" → "Founder Pressure Score", "Burnout Phase" → "Pressure Phase", "Founder Burnout Diagnostic Report" → "Founder Pressure Diagnostic Report"
-- Variable names in destructuring: `fbrScore` → `fpsScore`, `fbrColor` → `fpsColor`
+### Logic
+- User completes scan and sees results with Daisy widget
+- If user does NOT interact with Daisy: webhook fires after 10 minutes
+- If user clicks away / closes dialog: webhook fires immediately
+- If user talks to Daisy: webhook fires when call ends (with booking data if applicable)
 
 ---
 
-### What Does NOT Change
-- File names (cosmetic, no functional impact)
-- Database column names (auto-generated types)
-- Internal mode key `burnout_scan` (routing identifier)
-- Webhook URLs
+### Changes by Scan
 
-### GHL Action Required After Deploy
-Update custom fields in GHL: `fbr_score` → `fps_score`, `fbr_color` → `fps_color`, `free_fbr_score` → `fps_score`, `burnout_phase` → `pressure_phase`, and workflow triggers for new `audit_type` values.
+**1. Corporate Discipline Audit** (`CorporateAuditDialog.tsx` + `AuditResultsStep.tsx`)
+- Remove the `send-to-ghl` call from `CorporateAuditDialog.tsx` (handleGateSubmit)
+- Pass `webhookPayload` prop from `AuditResultsStep` to `ScanVoiceWidget` (same pattern as Founder Pressure Scan)
+- Build the payload in `AuditResultsStep` with all audit fields (discipline_score, tier, audit_q1-q7, language)
+
+**2. Profit Leak Scan** (`ProfitLeakScan.tsx` + `ProfitLeakResultsStep.tsx`)
+- Remove the `send-to-ghl` call from `ProfitLeakScan.tsx` (handleGateSubmit)
+- Pass `webhookPayload` prop from `ProfitLeakResultsStep` to `ScanVoiceWidget`
+- Build payload with all profit leak fields (overall_score, growth_phase, primary_bottleneck, revenue_tier, section scores)
+
+**3. Capital Protection** (`CapitalProtectionDialog.tsx` + `ProtectionResultsStep.tsx`)
+- Remove the `send-to-ghl` call from `CapitalProtectionDialog.tsx`
+- Replace the current CTA (which opens VoiceAgentDialog via context) with an inline `ScanVoiceWidget` in `ProtectionResultsStep`
+- Pass `webhookPayload` with all capital protection fields (recovery_potential, risk_level, section scores, situation data)
+- Use the capital protection calendar ID (`yEeXc4wSr5EOgBt4UEBP`) — update `ScanVoiceWidget` to accept a custom `calendarId` prop
+
+**4. ScanVoiceWidget update** (`ScanVoiceWidget.tsx`)
+- Add optional `calendarId` prop (defaults to current `Se3SwkYLXfuW52O0F4GX`)
+- Add `onDialogClose` callback — fires webhook immediately when parent dialog closes without Daisy interaction
+- Expose this via a `useEffect` cleanup or an imperative ref
+
+**5. Dialog close = webhook fire**
+- For all scan dialogs: when the user closes the dialog (clicks X or outside), if the webhook hasn't fired yet, fire it immediately
+- Implement by adding a cleanup effect in `ScanVoiceWidget` that fires the webhook on unmount if not already fired
+
+---
+
+### Technical Detail
+
+The `ScanVoiceWidget` unmount cleanup already has a `clearTimeout` but does NOT fire the webhook. Adding `fireWebhook()` to the cleanup ensures the webhook always fires — either on Daisy disconnect, on timeout, or on dialog close:
+
+```typescript
+useEffect(() => {
+  return () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    // Fire webhook on unmount if not already fired (user closed dialog)
+    if (!webhookFired.current && webhookPayload) {
+      fireWebhook();
+    }
+  };
+}, []);
+```
+
+### Files Modified
+- `src/components/shared/ScanVoiceWidget.tsx` — add calendarId prop, fire on unmount
+- `src/components/corporate-audit/CorporateAuditDialog.tsx` — remove send-to-ghl call
+- `src/components/corporate-audit/AuditResultsStep.tsx` — add webhookPayload to ScanVoiceWidget
+- `src/pages/ProfitLeakScan.tsx` — remove send-to-ghl call
+- `src/components/profit-leak/ProfitLeakResultsStep.tsx` — add webhookPayload to ScanVoiceWidget
+- `src/components/capital-protection/CapitalProtectionDialog.tsx` — remove send-to-ghl call
+- `src/components/capital-protection/ProtectionResultsStep.tsx` — replace voice agent context CTA with inline ScanVoiceWidget + webhookPayload
 
