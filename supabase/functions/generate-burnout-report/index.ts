@@ -11,12 +11,15 @@ serve(async (req) => {
   }
 
   try {
-    const { fbrScore, fbrColor, phase, phaseNumber, phaseLabel, domainScores, primaryRiskDomain, recoveryWith, recoveryWithout, diagnosis, recommendation, fullResponses, language } = await req.json();
+    // Accept both old (fbrScore) and new (fpsScore) field names
+    const body = await req.json();
+    const fpsScore = body.fpsScore ?? body.fbrScore;
+    const fpsColor = body.fpsColor ?? body.fbrColor;
+    const { phase, phaseNumber, phaseLabel, domainScores, primaryRiskDomain, recoveryWith, recoveryWithout, diagnosis, recommendation, fullResponses, language } = body;
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 
-    // Build detailed answer context
     const answerDetails = Object.entries(fullResponses || {})
       .map(([qId, val]) => `${qId}: ${val}/4`)
       .join(", ");
@@ -25,11 +28,11 @@ serve(async (req) => {
       .map((d: any) => `${d.label}: ${d.score}% (${d.color})`)
       .join("\n");
 
-    const prompt = `You are an elite executive burnout diagnostician. Generate a deeply personal, clinical-grade Founder Burnout Diagnostic Report based on the following scan data.
+    const prompt = `You are an elite executive pressure diagnostician. Generate a deeply personal, clinical-grade Founder Pressure Diagnostic Report based on the following scan data.
 
 SCAN DATA:
-- Overall Burnout Risk Score: ${fbrScore}/100 (${fbrColor})
-- Burnout Phase: ${phaseLabel} (Phase ${phaseNumber}/5)
+- Overall Founder Pressure Score: ${fpsScore}/100 (${fpsColor})
+- Pressure Phase: ${phaseLabel} (Phase ${phaseNumber}/5)
 - Recovery Without Intervention: ${recoveryWithout}
 - Recovery With Intervention: ${recoveryWith}
 - Primary Risk Domain: ${primaryRiskDomain?.label}
@@ -118,7 +121,7 @@ Be brutally honest. This is a $195 diagnostic — deliver accordingly.`;
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (error: any) {
-    console.error("Error generating burnout report:", error);
+    console.error("Error generating pressure diagnostic report:", error);
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
