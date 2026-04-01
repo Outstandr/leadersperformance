@@ -118,6 +118,20 @@ export function ProfitLeakResultsStep({ result, userInfo, onClose, responses }: 
             sectionScores: result.sectionScores.map(s => ({ label: s.label, score: s.score, color: s.color })),
           }}
           bookingType="Founder Intervention Call"
+          webhookPayload={{
+            first_name: firstName,
+            last_name: userInfo.fullName.trim().split(/\s+/).slice(1).join(" ") || "",
+            email: userInfo.email,
+            phone: userInfo.phone,
+            company: userInfo.company,
+            audit_type: "profit_leak_scan",
+            language: lang,
+            overall_score: result.overallScore,
+            overall_color: result.overallColor,
+            growth_phase: result.growthPhase.en,
+            primary_bottleneck: result.primaryBottleneck.en,
+            revenue_tier: result.revenue,
+          }}
         />
 
         <div className="text-center pt-2">

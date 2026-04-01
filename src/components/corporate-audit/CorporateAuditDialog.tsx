@@ -91,30 +91,7 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
         console.error("Database error:", dbError);
       }
 
-      // Send to GHL webhook (fire-and-forget)
-      supabase.functions
-        .invoke("send-to-ghl", {
-          body: {
-            first_name: info.firstName,
-            last_name: info.lastName,
-            email: info.email,
-            phone: info.phone,
-            discipline_score: auditScores.disciplineScore,
-            tier: auditScores.tier,
-            audit_type: "corporate",
-            language: t("audit.question") === "Vraag" ? "nl" : "en",
-            audit_q1: responses.q1 ?? 0,
-            audit_q2: responses.q2 ?? 0,
-            audit_q3: responses.q3 ?? 0,
-            audit_q4: responses.q4 ?? 0,
-            audit_q5: responses.q5 ?? 0,
-            audit_q6: responses.q6 ?? 0,
-            audit_q7: responses.q7 ?? 0,
-          },
-        })
-        .then(({ error }) => {
-          if (error) console.error("GHL webhook error:", error);
-        });
+      // GHL webhook is now delayed — handled by ScanVoiceWidget
 
       // Get AI insights
       const { data: aiData, error: aiError } = await supabase.functions.invoke(
@@ -199,6 +176,7 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
             scores={scores}
             insights={insights}
             onClose={resetAudit}
+            responses={responses}
           />
         )}
       </DialogContent>

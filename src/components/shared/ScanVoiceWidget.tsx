@@ -5,19 +5,21 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ScanBookingCalendar, ScanBookingUserInfo, BookingDetails } from "./ScanBookingCalendar";
 import { supabase } from "@/integrations/supabase/client";
 
-const SCAN_CALENDAR_ID = "Se3SwkYLXfuW52O0F4GX";
+const DEFAULT_CALENDAR_ID = "Se3SwkYLXfuW52O0F4GX";
 const WEBHOOK_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
 
 interface ScanVoiceWidgetProps {
-  mode: "pressure_scan" | "corporate_audit" | "burnout_scan" | "profit_leak";
+  mode: "pressure_scan" | "corporate_audit" | "burnout_scan" | "profit_leak" | "capital_protection";
   userInfo: ScanBookingUserInfo;
   contextPayload: Record<string, unknown>;
   bookingType: string;
   /** GHL webhook payload to send after Daisy ends or timeout */
   webhookPayload?: Record<string, unknown>;
+  /** Override calendar ID (defaults to Se3SwkYLXfuW52O0F4GX) */
+  calendarId?: string;
 }
 
-export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, webhookPayload }: ScanVoiceWidgetProps) {
+export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, webhookPayload, calendarId = DEFAULT_CALENDAR_ID }: ScanVoiceWidgetProps) {
   const { language } = useLanguage();
   const [isConnecting, setIsConnecting] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
@@ -70,6 +72,10 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
 
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      // Fire webhook on unmount if not already fired (user closed dialog)
+      if (!webhookFired.current && webhookPayload) {
+        fireWebhook();
+      }
     };
   }, [webhookPayload, fireWebhook]);
 
@@ -126,7 +132,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
       const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-      const bodyKey = mode === "pressure_scan" ? "scanContext" : mode === "burnout_scan" ? "burnoutContext" : mode === "profit_leak" ? "profitLeakContext" : "auditContext";
+      const bodyKey = mode === "pressure_scan" ? "scanContext" : mode === "burnout_scan" ? "burnoutContext" : mode === "profit_leak" ? "profitLeakContext" : mode === "capital_protection" ? "capitalProtectionContext" : "auditContext";
 
       const res = await fetch(
         `https://${projectId}.supabase.co/functions/v1/elevenlabs-voice-token`,
@@ -350,7 +356,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
           <ScanBookingCalendar
             userInfo={userInfo}
             bookingType={bookingType}
-            calendarId={SCAN_CALENDAR_ID}
+            calendarId={calendarId}
             onBookingComplete={handleBookingComplete}
             onCancel={() => setShowCalendar(false)}
           />

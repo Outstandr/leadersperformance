@@ -11,6 +11,7 @@ interface AuditResultsStepProps {
   scores: AuditScores;
   insights: AuditInsights | null;
   onClose: () => void;
+  responses: Record<string, number>;
 }
 
 const tierTranslations: Record<string, Record<string, string>> = {
@@ -41,7 +42,7 @@ const ui = {
   },
 };
 
-export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditResultsStepProps) {
+export function AuditResultsStep({ userInfo, scores, insights, onClose, responses }: AuditResultsStepProps) {
   const { language } = useLanguage();
   const t = ui[language] ?? ui.en;
   const c = colorConfig[scores.overallColor];
@@ -98,6 +99,23 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditR
           userInfo={{ fullName: `${userInfo.firstName} ${userInfo.lastName}`, email: userInfo.email, phone: userInfo.phone }}
           contextPayload={voiceContext}
           bookingType="Business Reset Intervention"
+          webhookPayload={{
+            first_name: userInfo.firstName,
+            last_name: userInfo.lastName,
+            email: userInfo.email,
+            phone: userInfo.phone,
+            discipline_score: scores.disciplineScore,
+            tier: scores.tier,
+            audit_type: "corporate",
+            language,
+            audit_q1: responses.q1 ?? 0,
+            audit_q2: responses.q2 ?? 0,
+            audit_q3: responses.q3 ?? 0,
+            audit_q4: responses.q4 ?? 0,
+            audit_q5: responses.q5 ?? 0,
+            audit_q6: responses.q6 ?? 0,
+            audit_q7: responses.q7 ?? 0,
+          }}
         />
 
         <div className="text-center pt-2">

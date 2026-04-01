@@ -132,40 +132,7 @@ export function CapitalProtectionDialog({ open, onOpenChange, onResultsReady, on
         if (error) console.error("DB save error:", error);
       });
 
-    // Send to GHL
-    const nameParts = userInfo.fullName.trim().split(/\s+/);
-    supabase.functions
-      .invoke("send-to-ghl", {
-        body: {
-          first_name: nameParts[0] || "",
-          last_name: nameParts.slice(1).join(" ") || "",
-          email: userInfo.email,
-          phone: userInfo.phone,
-          company: userInfo.company,
-          country: userInfo.country,
-          role: userInfo.role,
-          audit_type: "capital_protection",
-          recovery_potential: cpResult.recoveryPotential,
-          risk_level: cpResult.headline.en,
-          overall_score: cpResult.overallScore,
-          overall_color: cpResult.overallColor,
-          evidence_strength_score: cpResult.sections[0]?.score ?? 0,
-          timeline_advantage_score: cpResult.sections[1]?.score ?? 0,
-          jurisdictional_simplicity_score: cpResult.sections[2]?.score ?? 0,
-          legal_positioning_score: cpResult.sections[3]?.score ?? 0,
-          capital_exposure_score: cpResult.sections[4]?.score ?? 0,
-          situation_types: assessmentData.situation_types.join(", "),
-          capital_exposure: assessmentData.capital_exposure,
-          timeline: assessmentData.timeline,
-          legal_status: assessmentData.legal_status,
-          objective: assessmentData.objective,
-          situation_summary: assessmentData.situation_summary,
-          language,
-        },
-      })
-      .then(({ error }) => {
-        if (error) console.error("GHL webhook error:", error);
-      });
+    // GHL webhook is now delayed — handled by ScanVoiceWidget in ProtectionResultsStep
 
     // Generate AI report
     try {
