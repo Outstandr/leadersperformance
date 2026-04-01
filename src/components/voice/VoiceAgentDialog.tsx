@@ -26,6 +26,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
   const [textInput, setTextInput] = useState("");
   const [isTextMode, setIsTextMode] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
+  const [suggestedScan, setSuggestedScan] = useState<{ label: string; path: string } | null>(null);
   const transcriptRef = useRef<HTMLDivElement>(null);
   const conversationRef = useRef<any>(null);
 
