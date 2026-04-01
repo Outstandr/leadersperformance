@@ -13,7 +13,7 @@ const ui = {
     description: "Discover your Founder Risk Score. Identify early signals of overload before they start impacting your performance, decisions, and results.",
     bullets: [
       "10 targeted questions across 5 pressure indicators",
-      "Instant FBR Score with risk classification",
+      "Instant Founder Pressure Score with risk classification",
       "Unlock the Full Diagnostic for your complete pressure phase analysis",
     ],
     cta: "Start the Founder Pressure Scan",
