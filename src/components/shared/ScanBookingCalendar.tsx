@@ -22,7 +22,7 @@ interface ScanBookingCalendarProps {
   userInfo: ScanBookingUserInfo;
   bookingType: string;
   calendarId: string;
-  onBookingComplete: () => void;
+  onBookingComplete: (details: BookingDetails) => void;
   onCancel: () => void;
 }
 
