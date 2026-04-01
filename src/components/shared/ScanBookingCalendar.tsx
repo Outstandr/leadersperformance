@@ -93,7 +93,8 @@ export function ScanBookingCalendar({ userInfo, bookingType, calendarId, onBooki
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Booking failed");
 
-      onBookingComplete();
+      const dateStr = `${year}-${month}-${day}`;
+      onBookingComplete({ date: dateStr, time: selectedSlot });
     } catch (err: any) {
       setError(err.message || "Something went wrong");
     } finally {
