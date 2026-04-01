@@ -644,6 +644,23 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
                 </div>
               )}
 
+              {suggestedScan && (
+                <div className="mb-4 p-3 rounded-xl bg-white/5 border border-[#b39758]/30">
+                  <div className="flex items-center gap-2 mb-2">
+                    <ArrowRight className="w-4 h-4 text-[#b39758]" />
+                    <span className="text-white/80 text-xs font-medium">
+                      {language === "nl" ? "Aanbevolen scan" : "Recommended Scan"}
+                    </span>
+                  </div>
+                  <a
+                    href={suggestedScan.path}
+                    onClick={(e) => { e.preventDefault(); onClose(); window.location.href = suggestedScan.path; }}
+                    className="block w-full py-2.5 rounded-lg bg-[#b39758] text-black text-xs font-semibold text-center hover:bg-[#c9aa6a] transition-all"
+                  >
+                    {suggestedScan.label}
+                  </a>
+                </div>
+
               {/* Controls */}
               <div className="flex gap-3">
                 {!isTextMode && (
