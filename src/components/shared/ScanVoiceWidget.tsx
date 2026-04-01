@@ -72,6 +72,10 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
 
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      // Fire webhook on unmount if not already fired (user closed dialog)
+      if (!webhookFired.current && webhookPayload) {
+        fireWebhook();
+      }
     };
   }, [webhookPayload, fireWebhook]);
 
