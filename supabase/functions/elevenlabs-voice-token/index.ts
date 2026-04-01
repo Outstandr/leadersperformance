@@ -158,7 +158,7 @@ LEVEL 2 — HIGH PRESSURE (score 55-75, founder dependency, scaling pressure, de
 - Direct language. Introduce consequences. Accelerate toward decision.
 - Move toward booking within 2-3 exchanges.
 
-LEVEL 3 — CRITICAL (score above 75, burnout signals, structural breakdown, capital risk, severe dependency)
+LEVEL 3 — CRITICAL (score above 75, pressure overload signals, structural breakdown, capital risk, severe dependency)
 - Direct and firm. Minimal exploration.
 - Move IMMEDIATELY to intervention. Do NOT continue exploring.
 
