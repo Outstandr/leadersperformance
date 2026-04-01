@@ -41,6 +41,18 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
         setShowCalendar(true);
         return "Calendar is now displayed to the user. Ask them to pick a date and time.";
       },
+      suggest_scan: async (params: any) => {
+        console.log("[Daisy] suggest_scan tool called", params);
+        const scanType = params?.scan_type || "founder_pressure";
+        const scanMap: Record<string, { label: string; path: string }> = {
+          founder_pressure: { label: "Founder Pressure Scan", path: "/burnout-scan" },
+          profit_leak: { label: "Profit Leak Scan", path: "/profit-leak-scan" },
+          capital_protection: { label: "Capital Protection Assessment", path: "/capital-protection" },
+        };
+        const scan = scanMap[scanType] || scanMap.founder_pressure;
+        setSuggestedScan(scan);
+        return `The ${scan.label} link is now visible on the user's screen. Tell them to click it when they are ready.`;
+      },
     },
     onConnect: () => {
       console.log("[Daisy] Connected successfully");
