@@ -66,13 +66,13 @@ type CorporateAuditContext = {
   dimensions?: { label: string; score: number; color: string }[];
 };
 
-type BurnoutScanContext = {
+type PressureDiagnosticContext = {
   fullName?: string;
   company?: string;
   phone?: string;
   email?: string;
-  fbrScore?: number;
-  fbrColor?: string;
+  fpsScore?: number;
+  fpsColor?: string;
   phase?: string;
   phaseNumber?: number;
   recoveryWithout?: string;
