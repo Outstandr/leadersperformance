@@ -107,6 +107,7 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
     email: userInfo.email,
     phone: userInfo.phone,
     company: userInfo.company,
+    fps_score: scores.overall,
     discipline_score: scores.overall,
     tier: scores.title,
     audit_type: "founder_pressure_scan",
@@ -115,6 +116,7 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
     founder_dependency_score: scores.sections[1]?.score,
     leadership_alignment_score: scores.sections[2]?.score,
     execution_momentum_score: scores.sections[3]?.score,
+    primary_bottleneck: scores.primaryBottleneck.dimensionLabel[language],
     diagnosis: scores.diagnosis,
     recommendation: scores.recommendation,
   };
