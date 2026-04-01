@@ -1,54 +1,69 @@
 
 
-## Generate Email Templates for All Scans
+## Remove "Burnout" / "FBR" Terminology — Implementation Plan
 
-Create 3 nurture emails (Day 0, Day 2, Day 5) for each of the remaining 4 scans, following the exact same HTML structure and design system as the existing Founder Pressure Scan emails. The Founder Pressure Scan emails already exist — this covers the other scans only.
+Replace all user-facing and internal references to "burnout" and "FBR" with "Founder Pressure" and "FPS" (Founder Pressure Score) across 8 files.
 
-### Template Design System (Consistent Across All)
-- Cream background `#F5F0EB`, white card, gold accent `#8B7355`
-- Georgia serif, Outlook compatibility fixes
-- Header: `LEADERS PERFORMANCE` + scan subtitle
-- Footer: `Leaders Performance — [Scan Name]`
-- Merge fields: `{{contact.first_name}}`, `{{contact.overall_score}}`, `{{unsubscribe_url}}`
-- Signed: `— Lionel Eersteling`
+---
 
-### Emails to Generate (12 files)
+### Files & Changes
 
-**Profit Leak Scan (3 emails)**
-- `profit-leak-email-1-the-number.html` — Day 0: Delivers score, frames leakage as structural not operational
-- `profit-leak-email-2-the-structure.html` — Day 2: Shows 5 dimensions (Founder Dependency, Structure & Leadership, Decision Speed, Profitability, Scalability), connects bottleneck to margin compression
-- `profit-leak-email-3-the-cost.html` — Day 5: Calculates cost of inaction using leakage estimate (5-18% of potential profit), final CTA
+**1. `src/lib/burnoutScoring.ts`** — Core scoring logic
+- Rename types: `BurnoutFreeResult` → `PressureFreeResult`, `BurnoutFullResult` → `PressureFullResult`, `BurnoutPhase` → `PressurePhase`
+- Rename variables: `fbrScore` → `fpsScore`, `fbrColor` → `fpsColor`, `fbrLabel` → `fpsLabel`
+- Rename constants: `FBR_LABELS` → `FPS_LABELS`, `getFBRCategory` → `getFPSCategory`
+- Rename functions: `calculateFreeBurnoutScore` → `calculateFreePressureScore`, `calculateFullBurnoutScore` → `calculateFullPressureScore`
+- Replace text: "High Burnout Risk" → "High Pressure Risk", "Hoog Burnout Risico" → "Hoog Drukrisico", "burnout risk" → "pressure risk" in all diagnosis/recommendation strings, "Functional Burnout" → "Functional Overload", "burnout-risico" → "drukrisico"
 
-**Corporate Discipline Audit (3 emails)**
-- `corporate-audit-email-1-the-mirror.html` — Day 0: Delivers discipline score, frames organizational discipline as founder reflection
-- `corporate-audit-email-2-the-7-dimensions.html` — Day 2: Walks through 7 dimensions (Morning Standard, Operational Independence, Deadline Protocol, Team Self-Regulation, Meeting Discipline, Problem Ownership, Team Quality)
-- `corporate-audit-email-3-the-standard.html` — Day 5: Cost of tolerating low standards, final push
+**2. `src/components/burnout-scan/BurnoutIntroStep.tsx`**
+- "Instant FBR Score" → "Instant Founder Pressure Score" (EN)
+- "Directe FBR Score" → "Directe Founder Pressure Score" (NL)
 
-**Capital Protection Assessment (3 emails)**
-- `capital-protection-email-1-the-position.html` — Day 0: Delivers risk score, frames protection as strategic positioning not legal panic
-- `capital-protection-email-2-the-window.html` — Day 2: Outlines the 4 scoring dimensions (Evidence Strength, Timeline Advantage, Jurisdictional Simplicity, Legal Positioning), shows time-sensitivity
-- `capital-protection-email-3-the-clock.html` — Day 5: Emphasizes what deteriorates with delay (evidence, jurisdiction, leverage), final CTA
+**3. `src/components/burnout-scan/BurnoutFreeResultsStep.tsx`**
+- Update import to `PressureFreeResult`
+- All `fbrScore` → `fpsScore`, `fbrColor` → `fpsColor`, `fbrLabel` → `fpsLabel`
+- "significant burnout risk" → "significant pressure risk" (EN + NL)
+- `mode="burnout_scan"` stays (internal key, matches edge function routing)
+- `bookingType="Founder Burnout Intervention"` → `"Founder Pressure Intervention"`
 
-**Founder Pressure Scan — Full Diagnostic (3 emails)**
-- `full-diagnostic-email-1-the-depth.html` — Day 0: Delivers full diagnostic score across 4 domains (Pressure Load, Nervous System Depletion, Recovery Capacity, Business Dependency)
-- `full-diagnostic-email-2-the-pattern.html` — Day 2: Connects domains to show systemic pattern, explains why surface-level fixes fail
-- `full-diagnostic-email-3-the-intervention.html` — Day 5: Cost of operating in pressure phase, 4-day desert intervention overview, final CTA
+**4. `src/components/burnout-scan/BurnoutFullResultsStep.tsx`**
+- Update import to `PressureFullResult`
+- All `fbrScore` → `fpsScore`, `fbrColor` → `fpsColor`, `fbrLabel` → `fpsLabel`
+- "burnout risk level" → "pressure risk level", "burnout-risiconiveau" → "drukniveau"
+- "Burnout Phase" → "Pressure Phase", "Burnout Fase" → "Drukfase"
+- `bookingType="Founder Burnout Intervention"` → `"Founder Pressure Intervention"`
+- `mode="burnout_scan"` stays unchanged
 
-### Narrative Arc per Scan (Same Structure)
-1. **Email 1** — Score delivery + decision framing ("This is not information, it's a mirror")
-2. **Email 2** — Program/dimension overview + urgency ("You already know, will you act?")
-3. **Email 3** — Cost of inaction + final push ("Delay is a decision")
+**5. `src/pages/BurnoutScan.tsx`**
+- Update imports to new function/type names
+- GHL payload (free): `audit_type: "founder_pressure_diagnostic"`, `fps_score`, `fps_color` (replacing `free_fbr_score`, `free_fbr_color`)
+- GHL payload (full): `audit_type: "founder_pressure_full"`, `fps_score`, `fps_color`, `pressure_phase` (replacing `fbr_score`, `fbr_color`, `burnout_phase`)
+- DB column names stay as-is (`free_fbr_score`, `full_fbr_color`, etc.) — internal, auto-generated types
 
-### Output
-15 total HTML files in `/mnt/documents/email-templates/`:
-- 3 existing Founder Pressure Scan emails (already done)
-- 12 new emails across 4 scans
-- All using identical HTML structure, styling, and Outlook fixes
-- Ready for direct GHL import
+**6. `supabase/functions/send-to-ghl/index.ts`**
+- Add routing for `founder_pressure_diagnostic` and `founder_pressure_full` → same webhook as existing burnout routes
+- Keep old `founder_burnout_scan` / `founder_burnout_full` as backward-compatible fallbacks
 
-### Technical Approach
-- Generated via script to `/mnt/documents/email-templates/`
-- Each file is standalone HTML — no dependencies
-- All GHL merge fields preserved
-- Content tailored to each scan's specific dimensions, scoring, and intervention path
+**7. `supabase/functions/elevenlabs-voice-token/index.ts`**
+- Rename type `BurnoutScanContext` → `PressureDiagnosticContext`
+- Update `fbrScore` → `fpsScore`, `fbrColor` → `fpsColor` in the type
+- `formatBurnoutScanSnapshot` → `formatPressureDiagnosticSnapshot`: replace "FOUNDER BURNOUT DIAGNOSTIC" → "FOUNDER PRESSURE DIAGNOSTIC", "Founder Burnout Risk Score" → "Founder Pressure Score", "FBR Color" → "FPS Color", "Burnout Phase" → "Pressure Phase"
+- Navigation mode text: "Founder Burnout Scan" → "Founder Pressure Scan"
+- Update `determineEscalation` call to use `fpsScore`
+- LEVEL 3 description: "burnout signals" → "pressure overload signals"
+
+**8. `supabase/functions/generate-burnout-report/index.ts`**
+- Replace all prompt text: "burnout diagnostician" → "pressure diagnostician", "Burnout Risk Score" → "Founder Pressure Score", "Burnout Phase" → "Pressure Phase", "Founder Burnout Diagnostic Report" → "Founder Pressure Diagnostic Report"
+- Variable names in destructuring: `fbrScore` → `fpsScore`, `fbrColor` → `fpsColor`
+
+---
+
+### What Does NOT Change
+- File names (cosmetic, no functional impact)
+- Database column names (auto-generated types)
+- Internal mode key `burnout_scan` (routing identifier)
+- Webhook URLs
+
+### GHL Action Required After Deploy
+Update custom fields in GHL: `fbr_score` → `fps_score`, `fbr_color` → `fps_color`, `free_fbr_score` → `fps_score`, `burnout_phase` → `pressure_phase`, and workflow triggers for new `audit_type` values.
 
