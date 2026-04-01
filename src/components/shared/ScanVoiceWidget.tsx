@@ -42,23 +42,24 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     webhookFired.current = true;
 
     const payload: Record<string, unknown> = { ...webhookPayload };
+    const currentBooking = bookingDetailsRef.current;
 
-    if (bookingDetails) {
-      payload.booking_date = bookingDetails.date;
-      payload.booking_time = bookingDetails.time;
+    if (currentBooking) {
+      payload.booking_date = currentBooking.date;
+      payload.booking_time = currentBooking.time;
       payload.booked = true;
     } else {
       payload.booked = false;
     }
 
-    console.log("Firing GHL webhook (delayed)", payload.audit_type, bookingDetails ? "with booking" : "no booking");
+    console.log("Firing GHL webhook (delayed)", payload.audit_type, currentBooking ? "with booking" : "no booking");
 
     supabase.functions
       .invoke("send-to-ghl", { body: payload })
       .then(({ error }) => {
         if (error) console.error("GHL webhook error:", error);
       });
-  }, [webhookPayload, bookingDetails]);
+  }, [webhookPayload]);
 
   // Start 10-min timeout on mount
   useEffect(() => {
