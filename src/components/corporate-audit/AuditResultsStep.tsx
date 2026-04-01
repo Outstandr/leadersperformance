@@ -42,7 +42,7 @@ const ui = {
   },
 };
 
-export function AuditResultsStep({ userInfo, scores, insights, onClose }: AuditResultsStepProps) {
+export function AuditResultsStep({ userInfo, scores, insights, onClose, responses }: AuditResultsStepProps) {
   const { language } = useLanguage();
   const t = ui[language] ?? ui.en;
   const c = colorConfig[scores.overallColor];
