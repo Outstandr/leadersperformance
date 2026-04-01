@@ -345,17 +345,17 @@ BOOKING
 - Then WAIT. Do not interrupt.`;
 }
 
-function formatBurnoutScanSnapshot(ctx: BurnoutScanContext) {
+function formatPressureDiagnosticSnapshot(ctx: PressureDiagnosticContext) {
   const domains = (ctx.domainScores ?? [])
     .map((d) => `- ${d.label}: ${d.score}% (${d.color})`)
     .join('\n');
-  const escalation = determineEscalation(ctx.fbrScore);
+  const escalation = determineEscalation(ctx.fpsScore);
 
   return `ACTIVE MODE: INTERVENTION
 ESCALATION: ${escalation}
 
-LIVE FOUNDER BURNOUT DIAGNOSTIC SESSION
-- The visitor has just completed the Founder Burnout Diagnostic.
+LIVE FOUNDER PRESSURE DIAGNOSTIC SESSION
+- The visitor has just completed the Founder Pressure Diagnostic.
 - This is a paid diagnostic. Treat the results with seriousness.
 - Start with interpretation. Do NOT ask what brought them here.
 
@@ -364,9 +364,9 @@ VISITOR PROFILE
 - Company: ${ctx.company ?? 'Unknown'}
 
 DIAGNOSTIC RESULTS
-- Founder Burnout Risk Score: ${ctx.fbrScore ?? 'n/a'} / 100
-- FBR Color: ${ctx.fbrColor ?? 'n/a'}
-- Burnout Phase: ${ctx.phase ?? 'n/a'} (Phase ${ctx.phaseNumber ?? 'n/a'} of 5)
+- Founder Pressure Score: ${ctx.fpsScore ?? 'n/a'} / 100
+- FPS Color: ${ctx.fpsColor ?? 'n/a'}
+- Pressure Phase: ${ctx.phase ?? 'n/a'} (Phase ${ctx.phaseNumber ?? 'n/a'} of 5)
 - Recovery Without Intervention: ${ctx.recoveryWithout ?? 'n/a'}
 - Recovery With Structured Intervention: ${ctx.recoveryWith ?? 'n/a'}
 
