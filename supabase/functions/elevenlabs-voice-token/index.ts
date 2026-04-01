@@ -135,7 +135,7 @@ MODE 1 — NAVIGATION (no scan completed, website entry)
 - Classification:
   - General / unclear pressure → suggest Founder Pressure Scan
   - Business structure / scaling / team / leadership gaps → suggest Profit Leak Scan
-  - Personal / energy / fatigue / overwhelmed / sleep → suggest Founder Burnout Scan
+  - Personal / energy / fatigue / overwhelmed / sleep → suggest Founder Pressure Scan
   - Capital / legal / fraud / disputes / missing funds → suggest Capital Protection Assessment
 
 MODE 2 — INTERVENTION (scan completed, results available)
