@@ -660,6 +660,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
                     {suggestedScan.label}
                   </a>
                 </div>
+              )}
 
               {/* Controls */}
               <div className="flex gap-3">
