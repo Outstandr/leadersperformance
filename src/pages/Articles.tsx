@@ -134,16 +134,16 @@ const Articles = () => {
       <section className="py-16 md:py-24 text-center" style={{ background: "hsl(0 0% 8%)" }}>
         <div className="container mx-auto px-6 max-w-3xl">
           <h2 className="font-serif text-2xl md:text-4xl font-medium text-white mb-4">
-            Ready to <span className="text-lioner-gold italic">reset</span> your standard?
+            Find out where <span className="text-lioner-gold italic">pressure</span> is building.
           </h2>
           <p className="text-white/50 mb-8 max-w-xl mx-auto">
-            Apply for elite coaching and install the discipline system that changes everything.
+            Take the Founder Pressure Scan and identify the structural bottleneck inside your company.
           </p>
           <Link
-            to="/elite"
+            to="/burnout-scan"
             className="inline-flex items-center gap-2 bg-lioner-gold text-white px-8 py-3.5 text-sm font-medium tracking-widest uppercase hover:bg-lioner-gold/90 transition-colors"
           >
-            Apply Now <ArrowRight className="w-4 h-4" />
+            Take the Scan <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </section>

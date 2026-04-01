@@ -311,7 +311,9 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
       }
 
       if (textOnly) {
-        sessionOptions.textOnly = true;
+        sessionOptions.overrides = {
+          conversation: { textOnly: true },
+        };
       }
 
       const session = await conversation.startSession(sessionOptions);

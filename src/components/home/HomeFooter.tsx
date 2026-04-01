@@ -35,7 +35,7 @@ export const HomeFooter = () => {
 
   const navItems = [
     { label: "Business", href: "/business" },
-    { label: "Elite", href: "/elite" },
+    { label: "Founders Advisory", href: "/elite" },
     { label: t("footer.blog"), href: "#articles" },
     { label: t("footer.faq"), href: "#faq" },
   ];

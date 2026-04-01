@@ -503,22 +503,14 @@ export const HomeFeaturesGrid = () => {
                         </div>
                       )}
 
-                      {/* Capital Protection (index 2): scan + view page */}
+                      {/* Capital Protection (index 2): scan only */}
                       {selected === 2 && (
-                        <div className="flex flex-col gap-2">
-                          <button
-                            onClick={() => { setSelected(null); navigate("/capital-protection"); }}
-                            className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
-                          >
-                            {(services[selected].details as any).cta}
-                          </button>
-                          <button
-                            onClick={() => { setSelected(null); navigate("/capital-protection"); }}
-                            className="w-full border-2 border-lioner-gold/40 text-foreground py-3 text-sm font-semibold uppercase tracking-widest hover:bg-lioner-gold/10 transition-colors"
-                          >
-                            {language === "nl" ? "Bekijk Kapitaalbescherming" : "View Capital Protection"}
-                          </button>
-                        </div>
+                        <button
+                          onClick={() => { setSelected(null); navigate("/capital-protection"); }}
+                          className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
+                        >
+                          {(services[selected].details as any).cta}
+                        </button>
                       )}
 
                       {/* Academy (index 3): external link */}

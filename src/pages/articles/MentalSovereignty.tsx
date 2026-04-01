@@ -12,7 +12,7 @@ export default function MentalSovereignty() {
             <img src={logo} alt="Leaders Performance" className="h-8 w-auto" />
           </Link>
           <Link
-            to="/#articles"
+            to="/articles"
             className="flex items-center gap-2 text-sm text-foreground/60 hover:text-foreground transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
