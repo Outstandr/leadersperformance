@@ -457,7 +457,7 @@ function buildAgentConfig(requestData: SessionRequest) {
   } else if (isCorporateAudit) {
     prompt = `${baseDaisySystemPrompt}\n\n${formatCorporateAuditSnapshot(auditCtx)}`;
   } else if (isBurnoutScan) {
-    prompt = `${baseDaisySystemPrompt}\n\n${formatBurnoutScanSnapshot(burnoutCtx)}`;
+    prompt = `${baseDaisySystemPrompt}\n\n${formatPressureDiagnosticSnapshot(burnoutCtx)}`;
   } else if (isProfitLeak) {
     prompt = `${baseDaisySystemPrompt}\n\n${formatProfitLeakSnapshot(profitLeakCtx)}`;
   }
