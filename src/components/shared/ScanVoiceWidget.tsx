@@ -189,6 +189,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
 
   const handleBookingComplete = useCallback((details: BookingDetails) => {
     setBookingDetails(details);
+    bookingDetailsRef.current = details;
     setBookingConfirmed(true);
     setShowCalendar(false);
     if (conversation.status === "connected") {
