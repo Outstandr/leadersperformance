@@ -80,30 +80,7 @@ export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressur
           if (error) console.error("DB save error:", error);
         });
 
-      // Send to GHL webhook (fire-and-forget)
-      supabase.functions
-        .invoke("send-to-ghl", {
-          body: {
-            first_name: firstName,
-            last_name: lastName,
-            email: info.email,
-            phone: info.phone,
-            company: info.company,
-            discipline_score: result.overall,
-            tier: result.title,
-            audit_type: "founder_pressure_scan",
-            language,
-            decision_pressure_score: result.sections[0].score,
-            founder_dependency_score: result.sections[1].score,
-            leadership_alignment_score: result.sections[2].score,
-            execution_momentum_score: result.sections[3].score,
-            diagnosis: result.diagnosis,
-            recommendation: result.recommendation,
-          },
-        })
-        .then(({ error }) => {
-          if (error) console.error("GHL webhook error:", error);
-        });
+      // GHL webhook is now fired from ScanVoiceWidget after Daisy call ends or 10min timeout
 
       setStep("analyzing");
     } catch (error) {
