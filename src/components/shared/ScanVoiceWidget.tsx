@@ -5,16 +5,18 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ScanBookingCalendar, ScanBookingUserInfo, BookingDetails } from "./ScanBookingCalendar";
 import { supabase } from "@/integrations/supabase/client";
 
-const SCAN_CALENDAR_ID = "Se3SwkYLXfuW52O0F4GX";
+const DEFAULT_CALENDAR_ID = "Se3SwkYLXfuW52O0F4GX";
 const WEBHOOK_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
 
 interface ScanVoiceWidgetProps {
-  mode: "pressure_scan" | "corporate_audit" | "burnout_scan" | "profit_leak";
+  mode: "pressure_scan" | "corporate_audit" | "burnout_scan" | "profit_leak" | "capital_protection";
   userInfo: ScanBookingUserInfo;
   contextPayload: Record<string, unknown>;
   bookingType: string;
   /** GHL webhook payload to send after Daisy ends or timeout */
   webhookPayload?: Record<string, unknown>;
+  /** Override calendar ID (defaults to Se3SwkYLXfuW52O0F4GX) */
+  calendarId?: string;
 }
 
 export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, webhookPayload }: ScanVoiceWidgetProps) {
