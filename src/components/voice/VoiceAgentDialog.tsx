@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
-import { X, Mic, MicOff, PhoneOff, Volume2, Send, Check, CalendarDays } from "lucide-react";
+import { X, Mic, MicOff, PhoneOff, Volume2, Send, Check, CalendarDays, ArrowRight } from "lucide-react";
 import { VoiceAgentContextData, useVoiceAgent } from "./VoiceAgentContext";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
