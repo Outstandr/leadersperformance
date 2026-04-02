@@ -263,6 +263,23 @@ const BurnoutScan = () => {
             isProcessing={isPaymentProcessing}
             userInfo={userInfo}
             showOutsideDialog
+            webhookPayload={{
+              first_name: userInfo.fullName.split(" ")[0],
+              last_name: userInfo.fullName.split(" ").slice(1).join(" "),
+              email: userInfo.email,
+              phone: userInfo.phone,
+              company: userInfo.company,
+              audit_type: "founder_pressure_diagnostic",
+              fps_score: freeResult.fpsScore,
+              fps_color: freeResult.fpsColor,
+              overall_score: freeResult.fpsScore,
+              tier: freeResult.fpsLabel.en,
+              decision_pressure_score: freeResult.sectionScores.find(s => s.key === "decision_pressure")?.score || 0,
+              founder_dependency_score: freeResult.sectionScores.find(s => s.key === "workload_intensity")?.score || 0,
+              leadership_alignment_score: freeResult.sectionScores.find(s => s.key === "mental_fatigue")?.score || 0,
+              execution_momentum_score: freeResult.sectionScores.find(s => s.key === "stress_tolerance")?.score || 0,
+              primary_bottleneck: [...freeResult.sectionScores].sort((a, b) => b.score - a.score)[0]?.label || "Not identified",
+            }}
           />
         </div>
       </div>
