@@ -129,6 +129,9 @@ const ArticleDetail = () => {
               <Link2 className="w-4 h-4" />
             </button>
           </div>
+
+          {/* Scan CTAs */}
+          <ScanCTASection />
         </div>
       </article>
 
