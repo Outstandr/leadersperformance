@@ -160,19 +160,55 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
   const auditType = String(payload.audit_type || '');
   const scoreField = SCORE_FIELD_MAP[auditType] || 'overall_score';
   const score = payload[scoreField] ?? payload.fps_score ?? payload.overall_score ?? payload.discipline_score ?? 0;
-  const bottleneck = payload.primary_bottleneck || payload.tier || 'Not identified';
   const sessionName = SESSION_NAMES[auditType] || 'Strategy Session';
   const calendarId = CALENDAR_MAP[auditType] || 'uebxQpVIy9vX7tR5rL9E';
   const bookingLink = `https://api.leadconnectorhq.com/widget/booking/${calendarId}`;
   const firstName = payload.first_name || 'there';
 
-  // Dimension bars for founder pressure
-  const dimensions = [];
-  if (payload.decision_pressure_score !== undefined) {
-    dimensions.push({ label: 'Decision Pressure', score: payload.decision_pressure_score });
-    dimensions.push({ label: 'Founder Dependency', score: payload.founder_dependency_score });
-    dimensions.push({ label: 'Leadership Alignment', score: payload.leadership_alignment_score });
-    dimensions.push({ label: 'Execution Momentum', score: payload.execution_momentum_score });
+  // Build scan-specific dimensions and bottleneck
+  const dimensions: { label: string; score: unknown }[] = [];
+  let bottleneck = 'Not identified';
+  let scanTitle = 'Your Results Are Ready';
+  let introText = 'Your diagnostic scan has been completed. Below is your score and structural analysis.';
+  let bottleneckLabel = 'Primary Bottleneck';
+
+  if (auditType === 'capital_protection') {
+    scanTitle = 'Your Capital Protection Analysis';
+    introText = 'Your capital protection assessment has been completed. Below is your risk analysis and recovery potential.';
+    bottleneckLabel = 'Risk Level';
+    bottleneck = String(payload.risk_level || payload.recovery_potential || 'Under Review');
+    if (payload.evidence_strength_score !== undefined) {
+      dimensions.push({ label: 'Evidence Strength', score: payload.evidence_strength_score });
+      dimensions.push({ label: 'Timeline Advantage', score: payload.timeline_advantage_score });
+      dimensions.push({ label: 'Jurisdictional Simplicity', score: payload.jurisdictional_simplicity_score });
+      dimensions.push({ label: 'Legal Positioning', score: payload.legal_positioning_score });
+      dimensions.push({ label: 'Capital Exposure', score: payload.capital_exposure_score });
+    }
+  } else if (auditType.includes('profit_leak')) {
+    scanTitle = 'Your Revenue Architecture Analysis';
+    introText = 'Your revenue architecture scan has been completed. Below is your score and structural analysis.';
+    bottleneck = String(payload.primary_bottleneck || payload.growth_phase || 'Not identified');
+    if (payload.founder_dependency_score !== undefined) {
+      dimensions.push({ label: 'Founder Dependency', score: payload.founder_dependency_score });
+      dimensions.push({ label: 'Structure & Leadership', score: payload.structure_leadership_score });
+      dimensions.push({ label: 'Decision Speed', score: payload.decision_speed_score });
+      dimensions.push({ label: 'Scalability', score: payload.scalability_score });
+      dimensions.push({ label: 'Profitability', score: payload.profitability_score });
+    }
+  } else if (auditType === 'corporate') {
+    scanTitle = 'Your Team Discipline Analysis';
+    introText = 'Your corporate discipline audit has been completed. Below is your score and structural analysis.';
+    bottleneck = String(payload.tier || 'Not identified');
+    bottleneckLabel = 'Discipline Tier';
+  } else {
+    // Founder pressure (default)
+    bottleneck = String(payload.primary_bottleneck || payload.tier || 'Not identified');
+    if (payload.decision_pressure_score !== undefined) {
+      dimensions.push({ label: 'Decision Pressure', score: payload.decision_pressure_score });
+      dimensions.push({ label: 'Founder Dependency', score: payload.founder_dependency_score });
+      dimensions.push({ label: 'Leadership Alignment', score: payload.leadership_alignment_score });
+      dimensions.push({ label: 'Execution Momentum', score: payload.execution_momentum_score });
+    }
   }
 
   const dimensionBarsHTML = dimensions.map(d => `
@@ -191,23 +227,28 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
     </td></tr>
   `).join('');
 
+  // For capital protection, invert color logic (higher = better recovery)
+  const bottleneckBg = auditType === 'capital_protection' ? '#FFF7ED' : '#FEF2F2';
+  const bottleneckBorder = auditType === 'capital_protection' ? '#D97706' : '#DC2626';
+  const bottleneckColor = auditType === 'capital_protection' ? '#92400E' : '#DC2626';
+
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
 <tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:4px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
-  <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">Your Results Are Ready</p>
+  <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${scanTitle}</p>
 </td></tr>
 <tr><td style="padding:40px;">
   <p style="font-family:Georgia,serif;font-size:16px;color:#333;margin:0 0 20px;">Dear ${firstName},</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 30px;">Your diagnostic scan has been completed. Below is your score and structural analysis.</p>
+  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 30px;">${introText}</p>
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:20px 0;">
     <div style="display:inline-block;background:#1a1a1a;padding:30px 50px;text-align:center;">
-      <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Your Score</p>
+      <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">${auditType === 'capital_protection' ? 'Recovery Potential' : 'Your Score'}</p>
       <p style="margin:8px 0 0;font-size:56px;color:#ffffff;font-family:Georgia,serif;font-weight:900;">${score}</p>
     </div>
   </td></tr></tbody></table>
-  <table width="100%" style="margin:20px 0;background:#FEF2F2;border-left:4px solid #DC2626;" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:16px 20px;">
-    <p style="margin:0;font-size:10px;letter-spacing:2px;color:#DC2626;text-transform:uppercase;font-weight:bold;">Primary Bottleneck</p>
+  <table width="100%" style="margin:20px 0;background:${bottleneckBg};border-left:4px solid ${bottleneckBorder};" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:16px 20px;">
+    <p style="margin:0;font-size:10px;letter-spacing:2px;color:${bottleneckColor};text-transform:uppercase;font-weight:bold;">${bottleneckLabel}</p>
     <p style="margin:6px 0 0;font-size:18px;color:#1a1a1a;font-family:Georgia,serif;font-weight:bold;">${bottleneck}</p>
   </td></tr></tbody></table>
   ${dimensionBarsHTML ? `<table width="100%" style="margin:20px 0;" cellpadding="0" cellspacing="0"><tbody>${dimensionBarsHTML}</tbody></table>` : ''}
@@ -218,7 +259,7 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
 </td></tr>
 <tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
-  <p style="margin:6px 0 0;font-size:11px;color:#666;">This is a structural diagnostic, not crisis advice.</p>
+  <p style="margin:6px 0 0;font-size:11px;color:#666;">${auditType === 'capital_protection' ? 'This is not a crisis tool. This is a structural diagnostic.' : 'This is a structural diagnostic, not crisis advice.'}</p>
 </td></tr>
 </tbody></table></td></tr></tbody></table>`;
 }
