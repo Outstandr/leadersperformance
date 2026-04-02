@@ -97,14 +97,22 @@ export function BurnoutFreeResultsStep({ result, onUnlockFull, isProcessing, use
     email: userInfo.email,
     fpsScore: result.fpsScore,
     fpsColor: result.fpsColor,
-    fpsLabel: result.fpsLabel[language],
-    sectionScores: result.sectionScores.map(s => ({
-      domain: s.label,
+    phase: result.fpsLabel[language],
+    phaseNumber: result.fpsScore <= 25 ? 1 : result.fpsScore <= 50 ? 2 : result.fpsScore <= 75 ? 3 : result.fpsScore <= 90 ? 4 : 5,
+    recoveryWithout: "Continued accumulation without structural change",
+    recoveryWith: "Targeted intervention to address root pressure patterns",
+    domainScores: result.sectionScores.map(s => ({
+      key: s.key,
+      label: s.label,
       score: s.score,
-      level: getInterpretationLevel(s.score),
+      color: s.color,
     })),
-    highestRiskDomain: highestRisk?.label,
-    overallInterpretation: overallInterpretations[language][overallLevel as keyof typeof overallInterpretations["en"]],
+    primaryRiskDomain: highestRisk ? {
+      label: highestRisk.label,
+      impact: `${highestRisk.label} is your highest-risk domain at ${highestRisk.score}%, indicating significant structural pressure.`,
+    } : undefined,
+    diagnosis: overallInterpretations[language][overallLevel as keyof typeof overallInterpretations["en"]],
+    recommendation: "A strategic intervention review is recommended to address the structural pressure patterns identified.",
   } : null;
 
   return (
