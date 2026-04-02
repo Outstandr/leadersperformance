@@ -61,6 +61,10 @@ const BurnoutScan = () => {
     }
   };
 
+  const handleFreeBack = () => {
+    if (freeQIndex > 0) setFreeQIndex((prev) => prev - 1);
+  };
+
   const handleGateSubmit = async (info: ScanUserInfo) => {
     setUserInfo(info);
     setIsSubmitting(true);
