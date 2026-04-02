@@ -3,7 +3,7 @@ import { PressureFreeResult } from "@/lib/burnoutScoring";
 import { colorConfig } from "@/lib/unifiedScoring";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ScanVoiceWidget } from "@/components/shared/ScanVoiceWidget";
-import { Lock, ArrowRight, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 interface BurnoutFreeResultsStepProps {
   result: PressureFreeResult;
@@ -180,34 +180,6 @@ export function BurnoutFreeResultsStep({ result, onUnlockFull, isProcessing, use
           </p>
         </div>
 
-        {/* Unlock CTA */}
-        <div className="p-6 border-2 border-red-500/30 bg-red-500/5 space-y-4">
-          <div className="flex items-center gap-3">
-            <Lock className="w-5 h-5 text-red-500 shrink-0" />
-            <h3 className="text-lg font-bold text-foreground">{t.unlockTitle}</h3>
-          </div>
-          <p className="text-sm text-foreground/70">{t.unlockDesc}</p>
-          <div className="space-y-2">
-            {t.unlockBullets.map((b, i) => (
-              <div key={i} className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2 shrink-0" />
-                <span className="text-xs text-foreground/70">{b}</span>
-              </div>
-            ))}
-          </div>
-          <Button
-            onClick={onUnlockFull}
-            disabled={isProcessing}
-            className="w-full bg-red-600 hover:bg-red-700 text-white rounded-none py-5 text-base font-bold uppercase tracking-wider"
-          >
-            {isProcessing ? t.processing : (
-              <>
-                {t.unlockBtn}
-                <ArrowRight className="w-5 h-5 ml-3" />
-              </>
-            )}
-          </Button>
-        </div>
       </div>
     </div>
   );

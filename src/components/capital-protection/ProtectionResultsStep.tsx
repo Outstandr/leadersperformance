@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, AlertTriangle } from "lucide-react";
+import { Shield, AlertTriangle } from "lucide-react";
 import { CPResult } from "@/lib/capitalProtectionScoring";
 import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
 import { ScanUserInfo } from "@/components/founder-scan/ScanGateStep";
@@ -231,19 +231,6 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
         }}
       />
 
-      {/* CTA */}
-      <div className="text-center space-y-3 pt-4">
-        <Button
-          asChild
-          className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-base"
-        >
-          <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
-            {t.ctaBtn}
-            <ArrowRight className="w-5 h-5 ml-3" />
-          </a>
-        </Button>
-        <p className="text-xs text-foreground/40 italic">{t.disclaimer}</p>
-      </div>
 
       {/* Close */}
       <div className="text-center">

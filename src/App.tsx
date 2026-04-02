@@ -49,6 +49,7 @@ const AppRoutes = () => {
           <Route path="/articles" element={<Articles />} />
           <Route path="/capital-protection" element={<CapitalProtection />} />
           <Route path="/burnout-scan" element={<BurnoutScan />} />
+          <Route path="/pressurescan" element={<BurnoutScan />} />
           <Route path="/profit-leak-scan" element={<ProfitLeakScan />} />
           <Route path="/articles/:slug" element={<ArticleDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
