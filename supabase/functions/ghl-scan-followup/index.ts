@@ -644,7 +644,7 @@ Deno.serve(async (req) => {
         contact_id: contactId,
         contact_email: String(payload.email),
         email_type: 'nurture_day5',
-        subject: getDay5Subject(),
+        subject: getDay5Subject(payload),
         html_body: buildNurtureDay5HTML(payload),
         send_at: day5SendAt.toISOString(),
         scan_type: auditType,
