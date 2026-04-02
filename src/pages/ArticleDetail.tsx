@@ -1,6 +1,6 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { ArrowLeft, Clock, User, Linkedin, Link2, ArrowRight } from "lucide-react";
+import { ArrowLeft, Clock, User, Linkedin, Link2, ArrowRight, Activity, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { useArticleBySlug, useArticles } from "@/hooks/useArticles";
