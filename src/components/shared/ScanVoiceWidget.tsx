@@ -39,23 +39,28 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   const bookingConfirmedRef = useRef(false);
   const waitingForBookingOutcomeRef = useRef(false);
 
-  // Fire the GHL webhook with optional booking details
+  // Fire the GHL webhook for booking updates only
   const fireWebhook = useCallback(() => {
     if (webhookFired.current || !webhookPayload) return;
     webhookFired.current = true;
 
-    const payload: Record<string, unknown> = { ...webhookPayload };
     const currentBooking = bookingDetailsRef.current;
 
-    if (currentBooking) {
-      payload.booking_date = currentBooking.date;
-      payload.booking_time = currentBooking.time;
-      payload.booked = true;
-    } else {
-      payload.booked = false;
+    // Only fire if user actually booked — results email is already sent on scan completion
+    if (!currentBooking) {
+      console.log("No booking — skipping webhook (results email already sent)");
+      return;
     }
 
-    console.log("Firing GHL webhook (delayed)", JSON.stringify({ audit_type: payload.audit_type, booked: payload.booked, booking_date: payload.booking_date, booking_time: payload.booking_time }));
+    const payload: Record<string, unknown> = {
+      ...webhookPayload,
+      booking_date: currentBooking.date,
+      booking_time: currentBooking.time,
+      booked: true,
+      booking_update: true, // tells edge function this is a booking update, not initial results
+    };
+
+    console.log("Firing GHL booking update webhook", JSON.stringify({ audit_type: payload.audit_type, booked: true, booking_date: currentBooking.date, booking_time: currentBooking.time }));
 
     supabase.functions
       .invoke("ghl-scan-followup", { body: payload })

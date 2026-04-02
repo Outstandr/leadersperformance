@@ -136,15 +136,22 @@ async function sendEmail(contactId: string, subject: string, html: string) {
   };
 
   console.log('Sending email:', subject);
-  const res = await fetch(`${GHL_BASE}/conversations/messages`, {
-    method: 'POST',
-    headers: ghlHeaders(),
-    body: JSON.stringify(body),
-  });
-  const data = await res.json();
-  console.log('Email response:', res.status, JSON.stringify(data).slice(0, 200));
-  if (!res.ok) throw new Error(`Email send failed: ${JSON.stringify(data).slice(0, 300)}`);
-  return data;
+  try {
+    const res = await fetch(`${GHL_BASE}/conversations/messages`, {
+      method: 'POST',
+      headers: ghlHeaders(),
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    console.log('Email response:', res.status, JSON.stringify(data).slice(0, 200));
+    if (!res.ok) {
+      console.error(`Email send failed (non-fatal): ${JSON.stringify(data).slice(0, 300)}`);
+    }
+    return data;
+  } catch (err) {
+    console.error('Email send error (non-fatal):', err);
+    return null;
+  }
 }
 
 // ──── Email HTML builders ────
@@ -385,7 +392,7 @@ Deno.serve(async (req) => {
 
   try {
     const payload = await req.json();
-    console.log('ghl-scan-followup received:', JSON.stringify({ audit_type: payload.audit_type, booked: payload.booked, email: payload.email }).slice(0, 300));
+    console.log('ghl-scan-followup received:', JSON.stringify({ audit_type: payload.audit_type, booked: payload.booked, booking_update: payload.booking_update, email: payload.email }).slice(0, 400));
 
     // 1. Upsert contact
     const contactId = await upsertContact(payload);
@@ -399,28 +406,73 @@ Deno.serve(async (req) => {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     const booked = payload.booked === true;
+    const isBookingUpdate = payload.booking_update === true;
     const auditType = String(payload.audit_type || '');
-    const sessionName = SESSION_NAMES[auditType] || 'Strategy Session';
 
-    if (booked) {
-      // Path B: Booking confirmation + reminders
+    if (isBookingUpdate && booked) {
+      // BOOKING UPDATE: User booked via Daisy after initial results email was already sent
+      // 1. Send booking confirmation email
       const confirmSubject = getBookingSubject(payload);
       const confirmHTML = buildBookingConfirmationHTML(payload);
       await sendEmail(contactId, confirmSubject, confirmHTML);
 
-      // Parse booking datetime for reminders
+      // 2. Cancel pending nurture emails for this contact
+      await supabase
+        .from('scheduled_emails')
+        .update({ status: 'cancelled' } as any)
+        .eq('contact_email', String(payload.email))
+        .in('email_type', ['nurture_day2', 'nurture_day5'])
+        .eq('status', 'pending');
+
+      console.log('Cancelled nurture emails for booked contact:', payload.email);
+
+      // 3. Schedule booking reminders
       const bookingDateStr = String(payload.booking_date || '');
       const bookingTimeStr = String(payload.booking_time || '');
       
       if (bookingDateStr && bookingTimeStr) {
-        // Convert booking time to a parseable datetime
         const bookingDateTime = new Date(`${bookingDateStr}T${bookingTimeStr}:00+04:00`);
-        
-        // 24h reminder
         const reminder24h = new Date(bookingDateTime.getTime() - 24 * 60 * 60 * 1000);
-        // 1h reminder
         const reminder1h = new Date(bookingDateTime.getTime() - 60 * 60 * 1000);
+        const now = new Date();
 
+        if (reminder24h > now) {
+          await supabase.from('scheduled_emails').insert({
+            contact_id: contactId,
+            contact_email: String(payload.email),
+            email_type: 'reminder_24h',
+            subject: get24hSubject(payload),
+            html_body: buildReminderHTML(payload, '24h'),
+            send_at: reminder24h.toISOString(),
+            scan_type: auditType,
+          });
+        }
+
+        if (reminder1h > now) {
+          await supabase.from('scheduled_emails').insert({
+            contact_id: contactId,
+            contact_email: String(payload.email),
+            email_type: 'reminder_1h',
+            subject: get1hSubject(),
+            html_body: buildReminderHTML(payload, '1h'),
+            send_at: reminder1h.toISOString(),
+            scan_type: auditType,
+          });
+        }
+      }
+    } else if (booked) {
+      // INITIAL SUBMISSION WITH BOOKING (rare: user booked before initial call)
+      const confirmSubject = getBookingSubject(payload);
+      const confirmHTML = buildBookingConfirmationHTML(payload);
+      await sendEmail(contactId, confirmSubject, confirmHTML);
+
+      const bookingDateStr = String(payload.booking_date || '');
+      const bookingTimeStr = String(payload.booking_time || '');
+      
+      if (bookingDateStr && bookingTimeStr) {
+        const bookingDateTime = new Date(`${bookingDateStr}T${bookingTimeStr}:00+04:00`);
+        const reminder24h = new Date(bookingDateTime.getTime() - 24 * 60 * 60 * 1000);
+        const reminder1h = new Date(bookingDateTime.getTime() - 60 * 60 * 1000);
         const now = new Date();
 
         if (reminder24h > now) {
@@ -448,7 +500,7 @@ Deno.serve(async (req) => {
         }
       }
     } else {
-      // Path A: Results email + nurture sequence
+      // PATH A: Results email + nurture sequence (no booking)
       const resultsSubject = getResultsSubject(payload);
       const resultsHTML = buildResultsEmailHTML(payload);
       await sendEmail(contactId, resultsSubject, resultsHTML);

@@ -3,14 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { cpSections as protectionQuestions } from "@/lib/capitalProtectionQuestions";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 
 interface ProtectionQuestionStepProps {
   currentIndex: number;
   onAnswer: (questionId: string, value: number) => void;
+  onBack?: () => void;
 }
 
-export function ProtectionQuestionStep({ currentIndex, onAnswer }: ProtectionQuestionStepProps) {
+export function ProtectionQuestionStep({ currentIndex, onAnswer, onBack }: ProtectionQuestionStepProps) {
   const { language } = useLanguage();
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const question = protectionQuestions[currentIndex];
@@ -105,9 +106,16 @@ export function ProtectionQuestionStep({ currentIndex, onAnswer }: ProtectionQue
           )}
         </div>
 
-        <p className="text-center text-xs text-foreground/30 mt-8 uppercase tracking-wide">
-          {language === "nl" ? "Kies. Geen weg terug." : "Choose. No going back."}
-        </p>
+        {/* Back button */}
+        {currentIndex > 0 && onBack && (
+          <button
+            onClick={onBack}
+            className="flex items-center gap-2 mt-6 text-sm text-foreground/40 hover:text-foreground/60 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            {language === "nl" ? "Vorige vraag" : "Previous question"}
+          </button>
+        )}
       </div>
     </div>
   );

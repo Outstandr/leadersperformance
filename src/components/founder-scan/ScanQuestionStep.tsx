@@ -2,13 +2,15 @@ import { useEffect, useRef } from "react";
 import { Progress } from "@/components/ui/progress";
 import { pressureQuestions, scaleLabels } from "@/lib/founderPressureQuestions";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { ArrowLeft } from "lucide-react";
 
 interface ScanQuestionStepProps {
   currentIndex: number;
   onAnswer: (questionId: string, value: number) => void;
+  onBack?: () => void;
 }
 
-export function ScanQuestionStep({ currentIndex, onAnswer }: ScanQuestionStepProps) {
+export function ScanQuestionStep({ currentIndex, onAnswer, onBack }: ScanQuestionStepProps) {
   const { language } = useLanguage();
   const question = pressureQuestions[currentIndex];
   const total = pressureQuestions.length;
@@ -86,9 +88,16 @@ export function ScanQuestionStep({ currentIndex, onAnswer }: ScanQuestionStepPro
           ))}
         </div>
 
-        <p className="text-center text-xs text-foreground/30 mt-8 uppercase tracking-wide">
-          {language === "nl" ? "Kies. Geen weg terug." : "Choose. No going back."}
-        </p>
+        {/* Back button */}
+        {currentIndex > 0 && onBack && (
+          <button
+            onClick={onBack}
+            className="flex items-center gap-2 mt-6 text-sm text-foreground/40 hover:text-foreground/60 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            {language === "nl" ? "Vorige vraag" : "Previous question"}
+          </button>
+        )}
       </div>
     </div>
   );

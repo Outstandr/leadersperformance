@@ -2,13 +2,15 @@ import { useEffect, useRef } from "react";
 import { Progress } from "@/components/ui/progress";
 import { profitLeakQuestions } from "@/lib/profitLeakQuestions";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { ArrowLeft } from "lucide-react";
 
 interface ProfitLeakQuestionStepProps {
   currentIndex: number;
   onAnswer: (questionId: string, value: number) => void;
+  onBack?: () => void;
 }
 
-export function ProfitLeakQuestionStep({ currentIndex, onAnswer }: ProfitLeakQuestionStepProps) {
+export function ProfitLeakQuestionStep({ currentIndex, onAnswer, onBack }: ProfitLeakQuestionStepProps) {
   const { language } = useLanguage();
   const question = profitLeakQuestions[currentIndex];
   const total = profitLeakQuestions.length;
@@ -75,6 +77,17 @@ export function ProfitLeakQuestionStep({ currentIndex, onAnswer }: ProfitLeakQue
           </button>
         ))}
       </div>
+
+      {/* Back button */}
+      {currentIndex > 0 && onBack && (
+        <button
+          onClick={onBack}
+          className="flex items-center gap-2 mt-6 text-sm text-foreground/40 hover:text-foreground/60 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          {language === "nl" ? "Vorige vraag" : "Previous question"}
+        </button>
+      )}
     </div>
   );
 }

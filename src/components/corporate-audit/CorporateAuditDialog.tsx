@@ -50,12 +50,16 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
 
   const handleAnswer = (questionId: string, value: number) => {
     setResponses((prev) => ({ ...prev, [questionId]: value }));
-    // Auto-advance, no back button
     if (currentQuestionIndex < auditQuestions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
-      // All questions answered, go to gate
       setStep("gate");
+    }
+  };
+
+  const handleBack = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex((prev) => prev - 1);
     }
   };
 
@@ -91,7 +95,31 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
         console.error("Database error:", dbError);
       }
 
-      // GHL webhook is now delayed — handled by ScanVoiceWidget
+      // GHL webhook — send results email immediately
+      supabase.functions
+        .invoke("ghl-scan-followup", {
+          body: {
+            first_name: info.firstName,
+            last_name: info.lastName,
+            email: info.email,
+            phone: info.phone,
+            discipline_score: auditScores.disciplineScore,
+            tier: auditScores.tier,
+            audit_type: "corporate",
+            language: t("audit.question") === "Vraag" ? "nl" : "en",
+            audit_q1: responses.q1 ?? 0,
+            audit_q2: responses.q2 ?? 0,
+            audit_q3: responses.q3 ?? 0,
+            audit_q4: responses.q4 ?? 0,
+            audit_q5: responses.q5 ?? 0,
+            audit_q6: responses.q6 ?? 0,
+            audit_q7: responses.q7 ?? 0,
+            booked: false,
+          },
+        })
+        .then(({ error }) => {
+          if (error) console.error("GHL followup error:", error);
+        });
 
       // Get AI insights
       const { data: aiData, error: aiError } = await supabase.functions.invoke(
@@ -158,6 +186,7 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
             currentIndex={currentQuestionIndex}
             totalQuestions={auditQuestions.length}
             onAnswer={handleAnswer}
+            onBack={handleBack}
           />
         )}
         {step === "gate" && (

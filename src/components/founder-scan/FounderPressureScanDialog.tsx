@@ -37,6 +37,14 @@ export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressur
     }
   };
 
+  const handleBack = () => {
+    if (currentQ > 0) {
+      setCurrentQ((prev) => prev - 1);
+    } else {
+      setStep("intro");
+    }
+  };
+
   const handleGateSubmit = async (info: ScanUserInfo) => {
     setUserInfo(info);
     setIsSubmitting(true);
@@ -80,7 +88,31 @@ export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressur
           if (error) console.error("DB save error:", error);
         });
 
-      // GHL webhook is now fired from ScanVoiceWidget after Daisy call ends or 10min timeout
+      // Send results email immediately (non-blocking)
+      const webhookPayload = {
+        first_name: firstName,
+        last_name: lastName,
+        email: info.email,
+        phone: info.phone,
+        company: info.company,
+        fps_score: result.overall,
+        discipline_score: result.overall,
+        tier: result.title,
+        audit_type: "founder_pressure_scan",
+        language,
+        decision_pressure_score: result.sections[0]?.score,
+        founder_dependency_score: result.sections[1]?.score,
+        leadership_alignment_score: result.sections[2]?.score,
+        execution_momentum_score: result.sections[3]?.score,
+        primary_bottleneck: result.sections.reduce((a, b) => a.score > b.score ? a : b).sectionLabel,
+        booked: false,
+      };
+
+      supabase.functions
+        .invoke("ghl-scan-followup", { body: webhookPayload })
+        .then(({ error }) => {
+          if (error) console.error("GHL followup error:", error);
+        });
 
       setStep("analyzing");
     } catch (error) {
@@ -109,7 +141,7 @@ export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressur
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white border-lioner-gold/20">
         {step === "intro" && <ScanIntroStep onStart={() => setStep("questions")} />}
         {step === "questions" && (
-          <ScanQuestionStep currentIndex={currentQ} onAnswer={handleAnswer} />
+          <ScanQuestionStep currentIndex={currentQ} onAnswer={handleAnswer} onBack={handleBack} />
         )}
         {step === "gate" && (
           <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} />
