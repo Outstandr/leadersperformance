@@ -60,13 +60,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
       booking_update: true, // tells edge function this is a booking update, not initial results
     };
 
-    console.log("Firing GHL booking update webhook", JSON.stringify({ audit_type: payload.audit_type, booked: true, booking_date: currentBooking.date, booking_time: currentBooking.time }));
-
-    supabase.functions
-      .invoke("ghl-scan-followup", { body: payload })
-      .then(({ error }) => {
-        if (error) console.error("GHL followup error:", error);
-      });
+    console.log("Booking update already handled by ghl-booking", JSON.stringify({ audit_type: payload.audit_type, booked: true, booking_date: currentBooking.date, booking_time: currentBooking.time }));
   }, [webhookPayload]);
 
   useEffect(() => {
@@ -169,7 +163,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
       const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-      const bodyKey = mode === "pressure_scan" ? "scanContext" : mode === "burnout_scan" ? "burnoutContext" : mode === "profit_leak" ? "profitLeakContext" : mode === "capital_protection" ? "capitalProtectionContext" : "auditContext";
+      const bodyKey = mode === "pressure_scan" ? "scanContext" : mode === "burnout_scan" ? "burnoutContext" : mode === "profit_leak" ? "profitLeakContext" : mode === "capital_protection" ? "context" : "auditContext";
 
       const res = await fetch(
         `https://${projectId}.supabase.co/functions/v1/elevenlabs-voice-token`,
@@ -202,9 +196,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
       }
 
       if (textOnly) {
-        sessionOpts.overrides = {
-          conversation: { textOnly: true },
-        };
+        sessionOpts.textOnly = true;
       }
 
       await conversation.startSession(sessionOpts);

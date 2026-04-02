@@ -8,6 +8,13 @@ const GHL_BASE = 'https://services.leadconnectorhq.com';
 const PIPELINE_ID = 'qFBbAlnrhlBtkM5r9VEZ';
 const STAGE_CALL_BOOKED = 'a062e213-fbef-4a54-a11a-18751f0b3db3';
 
+const AUDIT_TYPE_BY_CALENDAR: Record<string, string> = {
+  uebxQpVIy9vX7tR5rL9E: 'founder_pressure_scan',
+  tmX5oPSkDICqFhIxPIo9: 'profit_leak_scan',
+  dxDvJ7TY6uSjcl1loyov: 'capital_protection',
+  '4NM4rNbMCZ024q4rlSTP': 'corporate',
+};
+
 function ghlHeaders() {
   const apiKey = Deno.env.get('GHL_API_KEY');
   if (!apiKey) throw new Error('GHL_API_KEY not configured');
@@ -218,6 +225,43 @@ async function bookAppointment(body: {
     console.log('Pipeline opportunity:', oppRes.status);
   } catch (e) {
     console.warn('Pipeline update failed (non-blocking):', e);
+  }
+
+  try {
+    const supabaseUrl = Deno.env.get('SUPABASE_URL');
+    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+    const auditType = AUDIT_TYPE_BY_CALENDAR[calendarId] || 'founder_pressure_scan';
+    const bookingDate = dateTime.split('T')[0];
+    const bookingTime = dateTime.split('T')[1]?.slice(0, 5) || '';
+
+    if (supabaseUrl && serviceRoleKey) {
+      const followupRes = await fetch(`${supabaseUrl}/functions/v1/ghl-scan-followup`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${serviceRoleKey}`,
+          apikey: serviceRoleKey,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          phone,
+          audit_type: auditType,
+          booking_date: bookingDate,
+          booking_time: bookingTime,
+          booked: true,
+          booking_update: true,
+        }),
+      });
+
+      if (!followupRes.ok) {
+        const followupData = await followupRes.text();
+        console.warn('Booking followup failed (non-blocking):', followupData.slice(0, 300));
+      }
+    }
+  } catch (e) {
+    console.warn('Booking confirmation followup failed (non-blocking):', e);
   }
 
   return { success: true, appointmentId: apptData.id || apptData.event?.id };

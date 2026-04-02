@@ -14,10 +14,10 @@ const ui = {
     bullets: [
       "10 targeted questions across 5 pressure indicators",
       "Instant Founder Pressure Score with risk classification",
-      "Unlock the Full Diagnostic for your complete pressure phase analysis",
+      "Direct next step with Daisy based on your score",
     ],
     cta: "Start the Founder Pressure Scan",
-    time: "Takes approximately 90 seconds",
+    time: "Takes approximately 2 minutes",
   },
   nl: {
     eyebrow: "Founder Risico Intelligentie",
@@ -26,10 +26,10 @@ const ui = {
     bullets: [
       "10 gerichte vragen over 5 drukindicatoren",
       "Directe Founder Pressure Score met risicoclassificatie",
-      "Ontgrendel de Volledige Diagnostiek voor uw complete drukfaseanalyse",
+      "Directe volgende stap met Daisy op basis van uw score",
     ],
     cta: "Start de Founder Pressure Scan",
-    time: "Duurt ongeveer 90 seconden",
+    time: "Duurt ongeveer 2 minuten",
   },
 };
 

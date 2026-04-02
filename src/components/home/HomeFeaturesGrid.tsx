@@ -453,7 +453,7 @@ export const HomeFeaturesGrid = () => {
                       {selected === 0 && (
                         <div className="flex flex-col gap-2">
                           <button
-                            onClick={() => { setSelected(null); navigate("/burnout-scan"); }}
+                            onClick={() => { setSelected(null); navigate("/pressurescan"); }}
                             className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
                           >
                             {language === "nl" ? "Start de Founder Pressure Scan" : "Take the Founder Pressure Scan"}
@@ -489,7 +489,7 @@ export const HomeFeaturesGrid = () => {
                       {selected === 1 && (
                         <div className="flex flex-col gap-2">
                           <button
-                            onClick={() => { setSelected(null); navigate("/burnout-scan"); }}
+                            onClick={() => { setSelected(null); navigate("/pressurescan"); }}
                             className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
                           >
                             {(services[selected].details as any).cta}

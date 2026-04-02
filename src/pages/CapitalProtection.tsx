@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { CapitalProtectionDialog } from "@/components/capital-protection/CapitalProtectionDialog";
 import { CPResultsStep } from "@/components/capital-protection/CPResultsStep";
-import { CPVoiceWidget } from "@/components/capital-protection/CPVoiceWidget";
+import { ScanVoiceWidget } from "@/components/shared/ScanVoiceWidget";
 import { CPResult } from "@/lib/capitalProtectionScoring";
 import { CPUserInfo } from "@/components/capital-protection/CPUserInfoStep";
 import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
@@ -75,10 +75,45 @@ const CapitalProtection = () => {
           {/* Embedded Daisy voice widget — always visible below report */}
           {!resultsData.isLoadingAI && (
             <div className="sticky bottom-0 z-50">
-              <CPVoiceWidget
-                userInfo={resultsData.userInfo}
-                result={resultsData.result}
-                aiReport={resultsData.aiReport}
+              <ScanVoiceWidget
+                mode="capital_protection"
+                userInfo={{
+                  fullName: resultsData.userInfo.fullName,
+                  email: resultsData.userInfo.email,
+                  phone: resultsData.userInfo.phone,
+                }}
+                contextPayload={{
+                  fullName: resultsData.userInfo.fullName,
+                  company: resultsData.userInfo.company,
+                  role: resultsData.userInfo.role,
+                  country: resultsData.userInfo.country,
+                  overallScore: resultsData.result.overallScore,
+                  overallColor: resultsData.result.overallColor,
+                  recoveryPotential: resultsData.result.recoveryPotential,
+                  headline: resultsData.result.headline.en,
+                  summary: resultsData.aiReport?.situation_summary || resultsData.result.body.en,
+                  nextStep: resultsData.aiReport?.recommended_next_step || resultsData.result.nextStep.en,
+                  sections: resultsData.result.sections.map((section) => ({
+                    label: section.label.en,
+                    score: section.score,
+                    color: section.color,
+                  })),
+                  aiReport: resultsData.aiReport,
+                }}
+                bookingType="Capital Protection Session"
+                calendarId="dxDvJ7TY6uSjcl1loyov"
+                webhookPayload={{
+                  first_name: resultsData.userInfo.fullName.trim().split(/\s+/)[0] || "",
+                  last_name: resultsData.userInfo.fullName.trim().split(/\s+/).slice(1).join(" ") || "",
+                  email: resultsData.userInfo.email,
+                  phone: resultsData.userInfo.phone,
+                  company: resultsData.userInfo.company,
+                  audit_type: "capital_protection",
+                  recovery_potential: resultsData.result.recoveryPotential,
+                  risk_level: resultsData.result.headline.en,
+                  overall_score: resultsData.result.overallScore,
+                  overall_color: resultsData.result.overallColor,
+                }}
               />
             </div>
           )}

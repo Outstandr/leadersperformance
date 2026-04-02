@@ -69,7 +69,7 @@ export const EliteHeroSection = () => {
               </p>
               <Button
                 size="lg"
-                onClick={() => navigate("/burnout-scan")}
+                onClick={() => navigate("/pressurescan")}
                 className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))] hover:text-white hover:border-white font-medium rounded-none px-7 py-3.5 h-auto group transition-all border-2 border-transparent shadow-lg shadow-black/10"
               >
                 {t("elite.hero.pressureCTA")}

@@ -37,7 +37,7 @@ export const EliteBookingSection = () => {
               
               <Button
                 size="lg"
-                onClick={() => navigate("/burnout-scan")}
+                onClick={() => navigate("/pressurescan")}
                 className="bg-white text-[hsl(var(--lioner-gold))] hover:bg-white/90 font-medium rounded-none px-8 py-4 h-auto group">
                 
                 {t("elite.booking.cta")}

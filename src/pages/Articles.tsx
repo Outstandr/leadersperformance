@@ -134,17 +134,25 @@ const Articles = () => {
       <section className="py-16 md:py-24 text-center" style={{ background: "hsl(0 0% 8%)" }}>
         <div className="container mx-auto px-6 max-w-3xl">
           <h2 className="font-serif text-2xl md:text-4xl font-medium text-white mb-4">
-            Find out where <span className="text-lioner-gold italic">pressure</span> is building.
+            Choose the scan that matches the pressure.
           </h2>
-          <p className="text-white/50 mb-8 max-w-xl mx-auto">
-            Take the Founder Pressure Scan and identify the structural bottleneck inside your company.
+          <p className="text-white/50 mb-8 max-w-2xl mx-auto">
+            Take the Founder Pressure Scan for founder overload and dependency, or the Profit Leak Scan for structural growth and profitability pressure.
           </p>
-          <Link
-            to="/burnout-scan"
-            className="inline-flex items-center gap-2 bg-lioner-gold text-white px-8 py-3.5 text-sm font-medium tracking-widest uppercase hover:bg-lioner-gold/90 transition-colors"
-          >
-            Take the Scan <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              to="/pressurescan"
+              className="inline-flex items-center gap-2 bg-lioner-gold text-white px-8 py-3.5 text-sm font-medium tracking-widest uppercase hover:bg-lioner-gold/90 transition-colors"
+            >
+              Founder Pressure Scan <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              to="/profit-leak-scan"
+              className="inline-flex items-center gap-2 border border-white/15 text-white px-8 py-3.5 text-sm font-medium tracking-widest uppercase hover:border-lioner-gold hover:text-lioner-gold transition-colors"
+            >
+              Profit Leak Scan <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
