@@ -50,12 +50,16 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
 
   const handleAnswer = (questionId: string, value: number) => {
     setResponses((prev) => ({ ...prev, [questionId]: value }));
-    // Auto-advance, no back button
     if (currentQuestionIndex < auditQuestions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
-      // All questions answered, go to gate
       setStep("gate");
+    }
+  };
+
+  const handleBack = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex((prev) => prev - 1);
     }
   };
 
