@@ -17,7 +17,7 @@ const ui = {
       "Unlock the Full Diagnostic for your complete pressure phase analysis",
     ],
     cta: "Start the Founder Pressure Scan",
-    time: "Takes approximately 90 seconds",
+    time: "Takes approximately 2 minutes",
   },
   nl: {
     eyebrow: "Founder Risico Intelligentie",
