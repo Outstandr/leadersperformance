@@ -263,11 +263,15 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
       const data = await res.json();
       const sessionOpts: any = {};
 
-      if (data.signed_url) {
-        sessionOpts.signedUrl = data.signed_url;
-      } else if (data.token) {
+      if (data.token && !textOnly) {
         sessionOpts.conversationToken = data.token;
         sessionOpts.connectionType = "webrtc";
+      } else if (data.signed_url) {
+        sessionOpts.signedUrl = data.signed_url;
+        sessionOpts.connectionType = textOnly ? "websocket" : "websocket";
+      } else if (data.token) {
+        sessionOpts.conversationToken = data.token;
+        sessionOpts.connectionType = textOnly ? "websocket" : "webrtc";
       } else {
         throw new Error("No credentials received");
       }
