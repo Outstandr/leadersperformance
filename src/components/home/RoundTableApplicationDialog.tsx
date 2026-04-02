@@ -224,27 +224,25 @@ export function RoundTableApplicationDialog({
       const firstName = nameParts[0] || "";
       const lastName = nameParts.slice(1).join(" ") || "";
 
-      // Send to GHL via edge function
-      await supabase.functions.invoke("send-to-ghl", {
+      // Send to Round Table followup edge function
+      await supabase.functions.invoke("roundtable-followup", {
         body: {
-          first_name: firstName,
-          last_name: lastName,
-          email: form.email,
-          phone: form.phone || "",
-          source: "round_table_application",
-          tags: ["round-table-application"],
-          custom_fields: {
-            role_and_company: form.roleAndCompany,
-            strategic_responsibility: form.strategicResponsibility,
-            biggest_pressure: form.biggestPressure,
-            decision_delay: form.decisionDelay,
-            absence_impact: form.absenceImpact,
-            problem_response: form.problemResponse,
-            resistance_response: form.resistanceResponse,
-            energy_level: form.energyLevel,
-            blind_spot: form.blindSpot,
-            why_fit: form.whyFit,
-            unacted_truth: form.unactedTruth,
+          action: "submit",
+          formData: {
+            fullName: form.fullName,
+            email: form.email,
+            phone: form.phone || "",
+            roleAndCompany: form.roleAndCompany,
+            strategicResponsibility: form.strategicResponsibility,
+            biggestPressure: form.biggestPressure,
+            decisionDelay: form.decisionDelay,
+            absenceImpact: form.absenceImpact,
+            problemResponse: form.problemResponse,
+            resistanceResponse: form.resistanceResponse,
+            energyLevel: form.energyLevel,
+            blindSpot: form.blindSpot,
+            whyFit: form.whyFit,
+            unactedTruth: form.unactedTruth,
           },
         },
       });
