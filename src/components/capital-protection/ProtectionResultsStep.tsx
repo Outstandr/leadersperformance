@@ -211,7 +211,7 @@ export function ProtectionResultsStep({ userInfo, scores, aiInsights, onClose }:
           sections: scores.sections.map(s => ({ label: s.label[language] ?? s.label.en, score: s.score, color: s.color })),
         }}
         bookingType="Capital Protection Session"
-        calendarId="yEeXc4wSr5EOgBt4UEBP"
+        calendarId="dxDvJ7TY6uSjcl1loyov"
         webhookPayload={{
           first_name: firstName,
           last_name: userInfo.fullName.trim().split(/\s+/).slice(1).join(" ") || "",
