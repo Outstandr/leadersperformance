@@ -37,6 +37,14 @@ export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressur
     }
   };
 
+  const handleBack = () => {
+    if (currentQ > 0) {
+      setCurrentQ((prev) => prev - 1);
+    } else {
+      setStep("intro");
+    }
+  };
+
   const handleGateSubmit = async (info: ScanUserInfo) => {
     setUserInfo(info);
     setIsSubmitting(true);
