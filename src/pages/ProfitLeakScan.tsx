@@ -42,6 +42,14 @@ const ProfitLeakScan = () => {
     }
   };
 
+  const handleBack = () => {
+    if (qIndex > 0) {
+      setQIndex((prev) => prev - 1);
+    } else {
+      setStep("revenue");
+    }
+  };
+
   const handleGateSubmit = async (info: ScanUserInfo) => {
     setUserInfo(info);
     setIsSubmitting(true);
