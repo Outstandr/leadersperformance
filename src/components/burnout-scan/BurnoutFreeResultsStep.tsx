@@ -79,7 +79,7 @@ const ui = {
   },
 };
 
-export function BurnoutFreeResultsStep({ result, onUnlockFull, isProcessing, userInfo, showOutsideDialog }: BurnoutFreeResultsStepProps) {
+export function BurnoutFreeResultsStep({ result, onUnlockFull, isProcessing, userInfo, showOutsideDialog, webhookPayload }: BurnoutFreeResultsStepProps) {
   const { language } = useLanguage();
   const t = ui[language] ?? ui.en;
 
