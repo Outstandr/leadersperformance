@@ -109,20 +109,28 @@ const BurnoutScan = () => {
         setScanId((insertData as any).id);
       }
 
-      // Send to GHL with updated variable names
-      supabase.functions.invoke("send-to-ghl", {
+      // Send to GHL followup (creates contact, sends results email, schedules nurture)
+      supabase.functions.invoke("ghl-scan-followup", {
         body: {
           first_name: firstName,
           last_name: lastName,
           email: info.email,
           phone: info.phone,
           company: info.company,
-          discipline_score: result.fpsScore,
-          tier: result.fpsLabel.en,
           audit_type: "founder_pressure_diagnostic",
           language,
           fps_score: result.fpsScore,
           fps_color: result.fpsColor,
+          overall_score: result.fpsScore,
+          overall_color: result.fpsColor,
+          tier: result.fpsLabel.en,
+          booked: false,
+          // Section scores for email dimension bars
+          decision_pressure_score: result.sectionScores.find(s => s.key === "decision_pressure")?.score || 0,
+          founder_dependency_score: result.sectionScores.find(s => s.key === "workload_intensity")?.score || 0,
+          leadership_alignment_score: result.sectionScores.find(s => s.key === "mental_fatigue")?.score || 0,
+          execution_momentum_score: result.sectionScores.find(s => s.key === "stress_tolerance")?.score || 0,
+          primary_bottleneck: result.sectionScores.sort((a, b) => b.score - a.score)[0]?.label || "Not identified",
         },
       });
 
