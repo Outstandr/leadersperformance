@@ -60,5 +60,8 @@ verify_jwt = false
 [functions.process-scheduled-emails]
 verify_jwt = false
 
+[functions.roundtable-followup]
+verify_jwt = false
+
 
 
