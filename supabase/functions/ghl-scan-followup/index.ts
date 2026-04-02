@@ -108,7 +108,7 @@ async function createOpportunity(contactId: string, payload: Record<string, unkn
   const body = {
     pipelineId: PIPELINE_ID,
     locationId,
-    stageId,
+    pipelineStageId: stageId,
     contactId,
     name,
     status: 'open',
