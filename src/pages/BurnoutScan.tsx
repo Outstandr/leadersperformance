@@ -316,7 +316,7 @@ const BurnoutScan = () => {
             <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} />
           )}
           {step === "full_questions" && (
-            <BurnoutFullQuestionStep currentIndex={fullQIndex} onAnswer={handleFullAnswer} />
+            <BurnoutFullQuestionStep currentIndex={fullQIndex} onAnswer={handleFullAnswer} onBack={() => { if (fullQIndex > 0) setFullQIndex(prev => prev - 1); }} />
           )}
         </DialogContent>
       </Dialog>
