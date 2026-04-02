@@ -98,7 +98,8 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose, response
           mode="corporate_audit"
           userInfo={{ fullName: `${userInfo.firstName} ${userInfo.lastName}`, email: userInfo.email, phone: userInfo.phone }}
           contextPayload={voiceContext}
-          bookingType="Business Reset Intervention"
+          bookingType="Discipline Architecture Session"
+          calendarId="4NM4rNbMCZ024q4rlSTP"
           webhookPayload={{
             first_name: userInfo.firstName,
             last_name: userInfo.lastName,
