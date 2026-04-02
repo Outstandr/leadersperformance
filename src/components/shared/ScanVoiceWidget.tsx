@@ -186,13 +186,17 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     }
   }, [transcript]);
 
+  const conversationRef = useRef(conversation);
+  conversationRef.current = conversation;
+
   useEffect(() => {
     return () => {
-      void conversation.endSession().catch((error) => {
+      void conversationRef.current.endSession().catch((error) => {
         console.error("Failed to end Daisy session:", error);
       });
     };
-  }, [conversation]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const startConversation = useCallback(async (textOnly = false) => {
     if (isConnecting || conversation.status === "connected") return;
