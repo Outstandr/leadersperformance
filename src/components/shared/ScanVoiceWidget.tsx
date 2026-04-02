@@ -38,6 +38,8 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   const showCalendarRef = useRef(false);
   const bookingConfirmedRef = useRef(false);
   const waitingForBookingOutcomeRef = useRef(false);
+  const voiceConversationRef = useRef<ReturnType<typeof useConversation> | null>(null);
+  const textConversationRef = useRef<ReturnType<typeof useConversation> | null>(null);
 
   // Fire the GHL webhook for booking updates only
   const fireWebhook = useCallback(() => {
@@ -196,6 +198,11 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   const conversation = isTextMode ? textConversation : voiceConversation;
 
   useEffect(() => {
+    voiceConversationRef.current = voiceConversation;
+    textConversationRef.current = textConversation;
+  }, [textConversation, voiceConversation]);
+
+  useEffect(() => {
     if (transcriptRef.current) {
       transcriptRef.current.scrollTop = transcriptRef.current.scrollHeight;
     }
@@ -204,13 +211,13 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   useEffect(() => {
     return () => {
       void Promise.allSettled([
-        voiceConversation.endSession(),
-        textConversation.endSession(),
+        voiceConversationRef.current?.endSession(),
+        textConversationRef.current?.endSession(),
       ]).catch((error) => {
         console.error("Failed to end Daisy session:", error);
       });
     };
-  }, [textConversation, voiceConversation]);
+  }, []);
 
   const startConversation = useCallback(async (textOnly = false) => {
     const selectedConversation = textOnly ? textConversation : voiceConversation;
@@ -451,23 +458,31 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
             </div>
 
             {/* Text input */}
-            <div className="flex gap-2 px-3 py-3 border-t border-foreground/10 bg-foreground/[0.03]">
-              <input
-                type="text"
-                value={textInput}
-                onChange={(e) => setTextInput(e.target.value)}
-                onKeyDown={(e) => { if (e.key === "Enter") handleSendText(); }}
-                placeholder={language === "nl" ? "Typ een bericht..." : "Type a message..."}
-                className="flex-1 px-4 py-2.5 rounded-full bg-foreground/5 border border-foreground/10 text-foreground text-sm placeholder:text-foreground/30 focus:outline-none focus:border-lioner-gold/50"
-              />
-              <button
-                onClick={handleSendText}
-                disabled={!textInput.trim()}
-                className="w-10 h-10 rounded-full bg-lioner-gold/20 border border-lioner-gold/30 text-lioner-gold hover:bg-lioner-gold/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
-              >
-                <Send className="w-4 h-4" />
-              </button>
-            </div>
+            {isTextMode ? (
+              <div className="flex gap-2 px-3 py-3 border-t border-foreground/10 bg-foreground/[0.03]">
+                <input
+                  type="text"
+                  value={textInput}
+                  onChange={(e) => setTextInput(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === "Enter") handleSendText(); }}
+                  placeholder={language === "nl" ? "Typ een bericht..." : "Type a message..."}
+                  className="flex-1 px-4 py-2.5 rounded-full bg-foreground/5 border border-foreground/10 text-foreground text-sm placeholder:text-foreground/30 focus:outline-none focus:border-lioner-gold/50"
+                />
+                <button
+                  onClick={handleSendText}
+                  disabled={!textInput.trim()}
+                  className="w-10 h-10 rounded-full bg-lioner-gold/20 border border-lioner-gold/30 text-lioner-gold hover:bg-lioner-gold/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
+              </div>
+            ) : (
+              <div className="px-4 py-3 border-t border-foreground/10 bg-foreground/[0.03] text-xs text-foreground/50 text-center">
+                {language === "nl"
+                  ? "Microfoonmodus actief. Stop het gesprek om naar chat te wisselen."
+                  : "Microphone mode is active. End the conversation to switch to chat."}
+              </div>
+            )}
           </div>
         )}
 
