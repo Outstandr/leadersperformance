@@ -81,7 +81,29 @@ const ProfitLeakScan = () => {
         ...Object.fromEntries(Object.entries(responses).map(([k, v]) => [k, v])),
       } as any);
 
-      // GHL webhook is now delayed — handled by ScanVoiceWidget
+      // Send results email immediately
+      const nameParts2 = info.fullName.trim().split(/\s+/);
+      supabase.functions
+        .invoke("ghl-scan-followup", {
+          body: {
+            first_name: nameParts2[0] || "",
+            last_name: nameParts2.slice(1).join(" ") || "",
+            email: info.email,
+            phone: info.phone,
+            company: info.company,
+            audit_type: "profit_leak_scan",
+            language,
+            overall_score: scanResult.overallScore,
+            overall_color: scanResult.overallColor,
+            growth_phase: scanResult.growthPhase.en,
+            primary_bottleneck: scanResult.primaryBottleneck.en,
+            revenue_tier: revenue,
+            booked: false,
+          },
+        })
+        .then(({ error }) => {
+          if (error) console.error("GHL followup error:", error);
+        });
 
       setDialogOpen(false);
       setStep("analyzing");
