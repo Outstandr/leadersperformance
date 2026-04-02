@@ -37,6 +37,7 @@ const SCORE_FIELD_MAP: Record<string, string> = {
 function ghlHeaders() {
   const apiKey = Deno.env.get('GHL_API_KEY');
   if (!apiKey) throw new Error('GHL_API_KEY not configured');
+  console.log('GHL_API_KEY length:', apiKey.length, 'last4:', apiKey.slice(-4));
   return {
     Authorization: `Bearer ${apiKey}`,
     'Content-Type': 'application/json',
@@ -82,15 +83,18 @@ async function upsertContact(payload: Record<string, unknown>) {
   };
   if (customFields.length > 0) body.customFields = customFields;
 
-  console.log('Upserting contact:', JSON.stringify({ email: payload.email, tags }).slice(0, 300));
+  const bodyStr = JSON.stringify(body);
+  console.log('Upsert request body:', bodyStr.slice(0, 500));
 
   const res = await fetch(`${GHL_BASE}/contacts/upsert`, {
     method: 'POST',
     headers: ghlHeaders(),
-    body: JSON.stringify(body),
+    body: bodyStr,
   });
-  const data = await res.json();
-  if (!res.ok) throw new Error(`Contact upsert failed: ${JSON.stringify(data).slice(0, 300)}`);
+  const respText = await res.text();
+  console.log('Upsert response:', res.status, respText.slice(0, 500));
+  if (!res.ok) throw new Error(`Contact upsert failed: ${respText.slice(0, 300)}`);
+  const data = JSON.parse(respText);
 
   const contactId = data.contact?.id;
   if (!contactId) throw new Error('No contact ID returned');
