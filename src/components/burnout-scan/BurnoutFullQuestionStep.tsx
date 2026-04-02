@@ -7,9 +7,10 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 interface BurnoutFullQuestionStepProps {
   currentIndex: number;
   onAnswer: (questionId: string, value: number) => void;
+  onBack?: () => void;
 }
 
-export function BurnoutFullQuestionStep({ currentIndex, onAnswer }: BurnoutFullQuestionStepProps) {
+export function BurnoutFullQuestionStep({ currentIndex, onAnswer, onBack }: BurnoutFullQuestionStepProps) {
   const { language } = useLanguage();
   const question = burnoutFullQuestions[currentIndex];
   const total = burnoutFullQuestions.length;

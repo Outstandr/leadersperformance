@@ -87,19 +87,20 @@ export function BurnoutFreeQuestionStep({ currentIndex, onAnswer, onBack }: Burn
           ))}
         </div>
 
-        {currentIndex > 0 && onBack && (
-          <button
-            type="button"
-            onClick={onBack}
-            className="mt-4 text-sm text-foreground/40 hover:text-foreground/70 transition-colors uppercase tracking-widest"
-          >
-            ← {language === "nl" ? "Vorige" : "Back"}
-          </button>
-        )}
-
-        <p className="text-center text-xs text-foreground/30 mt-4 uppercase tracking-wide">
-          {language === "nl" ? "Kies. Geen weg terug." : "Choose. No going back."}
-        </p>
+        <div className="flex items-center justify-between mt-6">
+          {currentIndex > 0 && onBack ? (
+            <button
+              type="button"
+              onClick={onBack}
+              className="text-sm text-foreground/50 hover:text-foreground/80 transition-colors uppercase tracking-widest border border-foreground/20 px-4 py-2 hover:border-foreground/40"
+            >
+              ← {language === "nl" ? "Vorige" : "Back"}
+            </button>
+          ) : <div />}
+          <p className="text-xs text-foreground/30 uppercase tracking-wide">
+            {language === "nl" ? "Neem de tijd. Wees eerlijk." : "Take your time. Be honest."}
+          </p>
+        </div>
       </div>
     </div>
   );
