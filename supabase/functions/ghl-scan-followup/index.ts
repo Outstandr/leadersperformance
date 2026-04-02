@@ -99,6 +99,7 @@ async function upsertContact(payload: Record<string, unknown>) {
 }
 
 async function createOpportunity(contactId: string, payload: Record<string, unknown>) {
+  const locationId = Deno.env.get('GHL_LOCATION_ID');
   const booked = payload.booked === true;
   const stageId = booked ? STAGE_CALL_BOOKED : STAGE_NEW_LEAD;
   const auditType = String(payload.audit_type || 'scan');
@@ -106,6 +107,7 @@ async function createOpportunity(contactId: string, payload: Record<string, unkn
 
   const body = {
     pipelineId: PIPELINE_ID,
+    locationId,
     stageId,
     contactId,
     name,
