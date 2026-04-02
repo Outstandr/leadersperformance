@@ -186,6 +186,7 @@ export function CorporateAuditDialog({ open, onOpenChange }: CorporateAuditDialo
             currentIndex={currentQuestionIndex}
             totalQuestions={auditQuestions.length}
             onAnswer={handleAnswer}
+            onBack={handleBack}
           />
         )}
         {step === "gate" && (
