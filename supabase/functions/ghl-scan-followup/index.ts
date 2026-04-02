@@ -82,18 +82,15 @@ async function upsertContact(payload: Record<string, unknown>) {
   };
   if (customFields.length > 0) body.customFields = customFields;
 
-  const bodyStr = JSON.stringify(body);
-  console.log('Upsert request body:', bodyStr.slice(0, 500));
+  console.log('Upserting contact:', String(payload.email));
 
   const res = await fetch(`${GHL_BASE}/contacts/upsert`, {
     method: 'POST',
     headers: ghlHeaders(),
-    body: bodyStr,
+    body: JSON.stringify(body),
   });
-  const respText = await res.text();
-  console.log('Upsert response:', res.status, respText.slice(0, 500));
-  if (!res.ok) throw new Error(`Contact upsert failed: ${respText.slice(0, 300)}`);
-  const data = JSON.parse(respText);
+  const data = await res.json();
+  if (!res.ok) throw new Error(`Contact upsert failed: ${JSON.stringify(data).slice(0, 300)}`);
 
   const contactId = data.contact?.id;
   if (!contactId) throw new Error('No contact ID returned');
