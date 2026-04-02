@@ -4,6 +4,7 @@ import { CPResult, CPSectionScore } from "@/lib/capitalProtectionScoring";
 import { CPUserInfo } from "./CPUserInfoStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
+import { ScanVoiceWidget } from "@/components/shared/ScanVoiceWidget";
 
 interface AIReport {
   situation_summary: string;
@@ -139,7 +140,52 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
           <p className="text-sm text-red-100/80 leading-relaxed">{result.primaryBottleneck.impact[language]}</p>
         </div>
 
-        {/* NOTE: Daisy is rendered externally via CPVoiceWidget in CapitalProtection.tsx */}
+        <ScanVoiceWidget
+          mode="capital_protection"
+          userInfo={{
+            fullName: userInfo.fullName,
+            email: userInfo.email,
+            phone: userInfo.phone,
+          }}
+          contextPayload={{
+            fullName: userInfo.fullName,
+            company: userInfo.company,
+            email: userInfo.email,
+            phone: userInfo.phone,
+            overallScore: result.overallScore,
+            overallColor: result.overallColor,
+            recoveryPotential: result.recoveryPotential,
+            headline: result.headline[language] ?? result.headline.en,
+            summary: aiReport?.situation_summary,
+            nextStep: aiReport?.recommended_next_step ?? result.nextStep[language],
+            aiReport,
+            sections: result.sections.map((section) => ({
+              label: section.label[language] ?? section.label.en,
+              score: section.score,
+              color: section.color,
+            })),
+          }}
+          bookingType="Capital Protection Session"
+          calendarId="yEeXc4wSr5EOgBt4UEBP"
+          webhookPayload={{
+            first_name: firstName,
+            last_name: userInfo.fullName.trim().split(/\s+/).slice(1).join(" ") || "",
+            email: userInfo.email,
+            phone: userInfo.phone,
+            company: userInfo.company,
+            audit_type: "capital_protection",
+            recovery_potential: result.recoveryPotential,
+            risk_level: result.headline.en,
+            overall_score: result.overallScore,
+            overall_color: result.overallColor,
+            evidence_strength_score: result.sections[0]?.score ?? 0,
+            timeline_advantage_score: result.sections[1]?.score ?? 0,
+            jurisdictional_simplicity_score: result.sections[2]?.score ?? 0,
+            legal_positioning_score: result.sections[3]?.score ?? 0,
+            capital_exposure_score: result.sections[4]?.score ?? 0,
+            language,
+          }}
+        />
 
         <div className="text-center pt-2">
           <ChevronDown className="w-5 h-5 text-foreground/20 mx-auto animate-bounce" />
