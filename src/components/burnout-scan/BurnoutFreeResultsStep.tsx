@@ -11,6 +11,7 @@ interface BurnoutFreeResultsStepProps {
   isProcessing: boolean;
   userInfo?: { fullName: string; email: string; phone: string; company: string };
   showOutsideDialog?: boolean;
+  webhookPayload?: Record<string, unknown>;
 }
 
 function getInterpretationLevel(score: number): string {
@@ -78,7 +79,7 @@ const ui = {
   },
 };
 
-export function BurnoutFreeResultsStep({ result, onUnlockFull, isProcessing, userInfo, showOutsideDialog }: BurnoutFreeResultsStepProps) {
+export function BurnoutFreeResultsStep({ result, onUnlockFull, isProcessing, userInfo, showOutsideDialog, webhookPayload }: BurnoutFreeResultsStepProps) {
   const { language } = useLanguage();
   const t = ui[language] ?? ui.en;
 
@@ -139,6 +140,8 @@ export function BurnoutFreeResultsStep({ result, onUnlockFull, isProcessing, use
             userInfo={{ fullName: userInfo.fullName, email: userInfo.email, phone: userInfo.phone }}
             contextPayload={voiceContext}
             bookingType="Founder Pressure Intervention"
+            calendarId="uebxQpVIy9vX7tR5rL9E"
+            webhookPayload={webhookPayload}
           />
         )}
 

@@ -61,6 +61,10 @@ const BurnoutScan = () => {
     }
   };
 
+  const handleFreeBack = () => {
+    if (freeQIndex > 0) setFreeQIndex((prev) => prev - 1);
+  };
+
   const handleGateSubmit = async (info: ScanUserInfo) => {
     setUserInfo(info);
     setIsSubmitting(true);
@@ -105,20 +109,28 @@ const BurnoutScan = () => {
         setScanId((insertData as any).id);
       }
 
-      // Send to GHL with updated variable names
-      supabase.functions.invoke("send-to-ghl", {
+      // Send to GHL followup (creates contact, sends results email, schedules nurture)
+      supabase.functions.invoke("ghl-scan-followup", {
         body: {
           first_name: firstName,
           last_name: lastName,
           email: info.email,
           phone: info.phone,
           company: info.company,
-          discipline_score: result.fpsScore,
-          tier: result.fpsLabel.en,
           audit_type: "founder_pressure_diagnostic",
           language,
           fps_score: result.fpsScore,
           fps_color: result.fpsColor,
+          overall_score: result.fpsScore,
+          overall_color: result.fpsColor,
+          tier: result.fpsLabel.en,
+          booked: false,
+          // Section scores for email dimension bars
+          decision_pressure_score: result.sectionScores.find(s => s.key === "decision_pressure")?.score || 0,
+          founder_dependency_score: result.sectionScores.find(s => s.key === "workload_intensity")?.score || 0,
+          leadership_alignment_score: result.sectionScores.find(s => s.key === "mental_fatigue")?.score || 0,
+          execution_momentum_score: result.sectionScores.find(s => s.key === "stress_tolerance")?.score || 0,
+          primary_bottleneck: result.sectionScores.sort((a, b) => b.score - a.score)[0]?.label || "Not identified",
         },
       });
 
@@ -251,6 +263,23 @@ const BurnoutScan = () => {
             isProcessing={isPaymentProcessing}
             userInfo={userInfo}
             showOutsideDialog
+            webhookPayload={{
+              first_name: userInfo.fullName.split(" ")[0],
+              last_name: userInfo.fullName.split(" ").slice(1).join(" "),
+              email: userInfo.email,
+              phone: userInfo.phone,
+              company: userInfo.company,
+              audit_type: "founder_pressure_diagnostic",
+              fps_score: freeResult.fpsScore,
+              fps_color: freeResult.fpsColor,
+              overall_score: freeResult.fpsScore,
+              tier: freeResult.fpsLabel.en,
+              decision_pressure_score: freeResult.sectionScores.find(s => s.key === "decision_pressure")?.score || 0,
+              founder_dependency_score: freeResult.sectionScores.find(s => s.key === "workload_intensity")?.score || 0,
+              leadership_alignment_score: freeResult.sectionScores.find(s => s.key === "mental_fatigue")?.score || 0,
+              execution_momentum_score: freeResult.sectionScores.find(s => s.key === "stress_tolerance")?.score || 0,
+              primary_bottleneck: [...freeResult.sectionScores].sort((a, b) => b.score - a.score)[0]?.label || "Not identified",
+            }}
           />
         </div>
       </div>
@@ -281,7 +310,7 @@ const BurnoutScan = () => {
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white border-red-500/20">
           {step === "intro" && <BurnoutIntroStep onStart={() => setStep("free_questions")} />}
           {step === "free_questions" && (
-            <BurnoutFreeQuestionStep currentIndex={freeQIndex} onAnswer={handleFreeAnswer} />
+            <BurnoutFreeQuestionStep currentIndex={freeQIndex} onAnswer={handleFreeAnswer} onBack={handleFreeBack} />
           )}
           {step === "free_gate" && (
             <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} />
