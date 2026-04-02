@@ -186,13 +186,17 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     }
   }, [transcript]);
 
+  const conversationRef = useRef(conversation);
+  conversationRef.current = conversation;
+
   useEffect(() => {
     return () => {
-      void conversation.endSession().catch((error) => {
+      void conversationRef.current.endSession().catch((error) => {
         console.error("Failed to end Daisy session:", error);
       });
     };
-  }, [conversation]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const startConversation = useCallback(async (textOnly = false) => {
     if (isConnecting || conversation.status === "connected") return;
@@ -213,7 +217,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
 
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
       const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-      const bodyKey = mode === "pressure_scan" ? "scanContext" : mode === "burnout_scan" ? "burnoutContext" : mode === "profit_leak" ? "profitLeakContext" : mode === "capital_protection" ? "capitalProtectionContext" : "auditContext";
+      const bodyKey = mode === "pressure_scan" ? "scanContext" : mode === "burnout_scan" ? "burnoutContext" : mode === "profit_leak" ? "profitLeakContext" : mode === "capital_protection" ? "context" : "auditContext";
 
       const res = await fetch(`https://${projectId}.supabase.co/functions/v1/elevenlabs-voice-token`, {
         method: "POST",
