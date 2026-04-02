@@ -11,6 +11,7 @@ interface BurnoutFreeResultsStepProps {
   isProcessing: boolean;
   userInfo?: { fullName: string; email: string; phone: string; company: string };
   showOutsideDialog?: boolean;
+  webhookPayload?: Record<string, unknown>;
 }
 
 function getInterpretationLevel(score: number): string {
