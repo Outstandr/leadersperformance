@@ -141,7 +141,7 @@ export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressur
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white border-lioner-gold/20">
         {step === "intro" && <ScanIntroStep onStart={() => setStep("questions")} />}
         {step === "questions" && (
-          <ScanQuestionStep currentIndex={currentQ} onAnswer={handleAnswer} />
+          <ScanQuestionStep currentIndex={currentQ} onAnswer={handleAnswer} onBack={handleBack} />
         )}
         {step === "gate" && (
           <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} />
