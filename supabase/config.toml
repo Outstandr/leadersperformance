@@ -54,5 +54,11 @@ verify_jwt = false
 [functions.generate-capital-protection-report]
 verify_jwt = false
 
+[functions.ghl-scan-followup]
+verify_jwt = false
+
+[functions.process-scheduled-emails]
+verify_jwt = false
+
 
 

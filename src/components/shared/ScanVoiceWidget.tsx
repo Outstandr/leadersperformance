@@ -58,9 +58,9 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     console.log("Firing GHL webhook (delayed)", JSON.stringify({ audit_type: payload.audit_type, booked: payload.booked, booking_date: payload.booking_date, booking_time: payload.booking_time }));
 
     supabase.functions
-      .invoke("send-to-ghl", { body: payload })
+      .invoke("ghl-scan-followup", { body: payload })
       .then(({ error }) => {
-        if (error) console.error("GHL webhook error:", error);
+        if (error) console.error("GHL followup error:", error);
       });
   }, [webhookPayload]);
 

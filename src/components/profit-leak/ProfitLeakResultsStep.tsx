@@ -117,7 +117,8 @@ export function ProfitLeakResultsStep({ result, userInfo, onClose, responses }: 
             estimatedLeakageHigh: `€${(leakHigh / 1000).toFixed(0)}K`,
             sectionScores: result.sectionScores.map(s => ({ label: s.label, score: s.score, color: s.color })),
           }}
-          bookingType="Founder Intervention Call"
+          bookingType="Revenue Architecture Session"
+          calendarId="tmX5oPSkDICqFhIxPIo9"
           webhookPayload={{
             first_name: firstName,
             last_name: userInfo.fullName.trim().split(/\s+/).slice(1).join(" ") || "",

@@ -821,6 +821,51 @@ export type Database = {
         }
         Relationships: []
       }
+      scheduled_emails: {
+        Row: {
+          contact_email: string
+          contact_id: string
+          created_at: string
+          email_type: string
+          error_message: string | null
+          html_body: string
+          id: string
+          scan_type: string | null
+          send_at: string
+          sent_at: string | null
+          status: string
+          subject: string
+        }
+        Insert: {
+          contact_email: string
+          contact_id: string
+          created_at?: string
+          email_type: string
+          error_message?: string | null
+          html_body: string
+          id?: string
+          scan_type?: string | null
+          send_at: string
+          sent_at?: string | null
+          status?: string
+          subject: string
+        }
+        Update: {
+          contact_email?: string
+          contact_id?: string
+          created_at?: string
+          email_type?: string
+          error_message?: string | null
+          html_body?: string
+          id?: string
+          scan_type?: string | null
+          send_at?: string
+          sent_at?: string | null
+          status?: string
+          subject?: string
+        }
+        Relationships: []
+      }
       voice_leads: {
         Row: {
           conversation_summary: string | null
