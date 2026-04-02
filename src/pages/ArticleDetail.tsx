@@ -10,6 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
 
 const ArticleDetail = () => {
+  const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
   const { data: article, isLoading } = useArticleBySlug(slug || "");
   const { data: allArticles } = useArticles();
