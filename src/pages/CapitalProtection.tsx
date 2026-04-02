@@ -3,7 +3,6 @@ import { CapitalProtectionDialog } from "@/components/capital-protection/Capital
 import { CPResultsStep } from "@/components/capital-protection/CPResultsStep";
 import { CPResult } from "@/lib/capitalProtectionScoring";
 import { CPUserInfo } from "@/components/capital-protection/CPUserInfoStep";
-import { ScanVoiceWidget } from "@/components/shared/ScanVoiceWidget";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface AIReport {
@@ -23,7 +22,6 @@ interface ResultsData {
 }
 
 const CapitalProtection = () => {
-  const { language } = useLanguage();
   const [dialogOpen, setDialogOpen] = useState(true);
   const [resultsData, setResultsData] = useState<ResultsData | null>(null);
 
@@ -43,9 +41,6 @@ const CapitalProtection = () => {
   const handleClose = () => {
     window.location.href = "https://leadersperformance.ae";
   };
-
-  const firstName = resultsData?.userInfo.fullName.split(" ")[0] || "";
-  const lastName = resultsData?.userInfo.fullName.trim().split(/\s+/).slice(1).join(" ") || "";
 
   return (
     <div className="min-h-screen bg-background">
@@ -70,54 +65,6 @@ const CapitalProtection = () => {
               />
             </div>
           </div>
-
-          {/* Daisy voice widget using unified ScanVoiceWidget */}
-          {!resultsData.isLoadingAI && (
-            <div className="max-w-2xl mx-auto px-4 pb-8">
-              <ScanVoiceWidget
-                mode="capital_protection"
-                userInfo={{
-                  fullName: resultsData.userInfo.fullName,
-                  email: resultsData.userInfo.email,
-                  phone: resultsData.userInfo.phone,
-                }}
-                contextPayload={{
-                  fullName: resultsData.userInfo.fullName,
-                  company: resultsData.userInfo.company,
-                  email: resultsData.userInfo.email,
-                  phone: resultsData.userInfo.phone,
-                  overallScore: resultsData.result.overallScore,
-                  overallColor: resultsData.result.overallColor,
-                  recoveryPotential: resultsData.result.recoveryPotential,
-                  headline: resultsData.result.headline[language] ?? resultsData.result.headline.en,
-                  sections: resultsData.result.sections.map(s => ({
-                    label: s.label[language] ?? s.label.en,
-                    score: s.score,
-                    color: s.color,
-                  })),
-                }}
-                bookingType="Capital Protection Session"
-                calendarId="dxDvJ7TY6uSjcl1loyov"
-                webhookPayload={{
-                  first_name: firstName,
-                  last_name: lastName,
-                  email: resultsData.userInfo.email,
-                  phone: resultsData.userInfo.phone,
-                  audit_type: "capital_protection",
-                  recovery_potential: resultsData.result.recoveryPotential,
-                  risk_level: resultsData.result.headline.en,
-                  overall_score: resultsData.result.overallScore,
-                  overall_color: resultsData.result.overallColor,
-                  evidence_strength_score: resultsData.result.sections[0]?.score ?? 0,
-                  timeline_advantage_score: resultsData.result.sections[1]?.score ?? 0,
-                  jurisdictional_simplicity_score: resultsData.result.sections[2]?.score ?? 0,
-                  legal_positioning_score: resultsData.result.sections[3]?.score ?? 0,
-                  capital_exposure_score: resultsData.result.sections[4]?.score ?? 0,
-                  language,
-                }}
-              />
-            </div>
-          )}
         </div>
       )}
 
