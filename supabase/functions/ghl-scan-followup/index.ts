@@ -136,15 +136,22 @@ async function sendEmail(contactId: string, subject: string, html: string) {
   };
 
   console.log('Sending email:', subject);
-  const res = await fetch(`${GHL_BASE}/conversations/messages`, {
-    method: 'POST',
-    headers: ghlHeaders(),
-    body: JSON.stringify(body),
-  });
-  const data = await res.json();
-  console.log('Email response:', res.status, JSON.stringify(data).slice(0, 200));
-  if (!res.ok) throw new Error(`Email send failed: ${JSON.stringify(data).slice(0, 300)}`);
-  return data;
+  try {
+    const res = await fetch(`${GHL_BASE}/conversations/messages`, {
+      method: 'POST',
+      headers: ghlHeaders(),
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    console.log('Email response:', res.status, JSON.stringify(data).slice(0, 200));
+    if (!res.ok) {
+      console.error(`Email send failed (non-fatal): ${JSON.stringify(data).slice(0, 300)}`);
+    }
+    return data;
+  } catch (err) {
+    console.error('Email send error (non-fatal):', err);
+    return null;
+  }
 }
 
 // ──── Email HTML builders ────
