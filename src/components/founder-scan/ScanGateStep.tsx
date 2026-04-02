@@ -16,6 +16,7 @@ export interface ScanUserInfo {
 interface ScanGateStepProps {
   onSubmit: (info: ScanUserInfo) => void;
   isSubmitting: boolean;
+  onBack?: () => void;
 }
 
 const schema = z.object({
@@ -40,6 +41,7 @@ const ui = {
     submitBtn: "Show My Results",
     analyzing: "Analyzing...",
     disclaimer: "Your data is processed securely. We don't share your information.",
+    back: "Back",
   },
   nl: {
     heading: "Jouw scan is voltooid.",
@@ -55,10 +57,11 @@ const ui = {
     submitBtn: "Toon mijn resultaten",
     analyzing: "Analyseren...",
     disclaimer: "Je gegevens worden veilig verwerkt. We delen je informatie niet.",
+    back: "Vorige",
   },
 };
 
-export function ScanGateStep({ onSubmit, isSubmitting }: ScanGateStepProps) {
+export function ScanGateStep({ onSubmit, isSubmitting, onBack }: ScanGateStepProps) {
   const { language } = useLanguage();
   const t = ui[language] ?? ui.en;
   const [formData, setFormData] = useState<ScanUserInfo>({
@@ -152,6 +155,17 @@ export function ScanGateStep({ onSubmit, isSubmitting }: ScanGateStepProps) {
           {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
         </div>
 
+        {onBack && (
+          <Button
+            type="button"
+            variant="outline"
+            onClick={onBack}
+            className="w-full rounded-none py-6 text-base font-bold uppercase tracking-wider border-foreground/20 text-foreground hover:bg-foreground/5"
+          >
+            ← {t.back}
+          </Button>
+        )}
+
         <Button
           type="submit"
           disabled={isSubmitting}
@@ -171,4 +185,3 @@ export function ScanGateStep({ onSubmit, isSubmitting }: ScanGateStepProps) {
       </form>
     </div>
   );
-}

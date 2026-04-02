@@ -7,7 +7,6 @@ import { supabase } from "@/integrations/supabase/client";
 
 const DEFAULT_CALENDAR_ID = "Se3SwkYLXfuW52O0F4GX";
 const WEBHOOK_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
-const AUTO_START_DELAY_MS = 1200;
 
 interface ScanVoiceWidgetProps {
   mode: "pressure_scan" | "corporate_audit" | "burnout_scan" | "profit_leak" | "capital_protection";
@@ -31,7 +30,6 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   const [textInput, setTextInput] = useState("");
   const [isTextMode, setIsTextMode] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
-  const hasAutoStarted = useRef(false);
   const [showModeChoice, setShowModeChoice] = useState(false);
   const webhookFired = useRef(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -58,7 +56,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
       booking_date: currentBooking.date,
       booking_time: currentBooking.time,
       booked: true,
-      booking_update: true, // tells edge function this is a booking update, not initial results
+      booking_update: true,
     };
 
     console.log("Firing GHL booking update webhook", JSON.stringify({ audit_type: payload.audit_type, booked: true, booking_date: currentBooking.date, booking_time: currentBooking.time }));
@@ -78,7 +76,6 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     bookingConfirmedRef.current = bookingConfirmed;
   }, [bookingConfirmed]);
 
-  // Start 10-min timeout on mount
   useEffect(() => {
     if (!webhookPayload) return;
 
@@ -102,7 +99,6 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
 
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      // Fire webhook on unmount if not already fired (user closed dialog)
       if (!webhookFired.current && webhookPayload) {
         fireWebhook();
       }
@@ -119,14 +115,11 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     onConnect: () => {
       console.log("Daisy connected (scan widget)");
       setIsConnecting(false);
-      setShowModeChoice(false);
       daisyEverConnected.current = true;
     },
     onDisconnect: () => {
       console.log("Daisy disconnected (scan widget)");
-      // Fire webhook when Daisy call ends
       if (daisyEverConnected.current) {
-        // Small delay to allow booking state to settle
         setTimeout(() => {
           if (showCalendarRef.current && !bookingConfirmedRef.current) {
             console.log("Daisy disconnected while booking calendar is open — waiting for booking outcome");
@@ -139,11 +132,22 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
       }
     },
     onMessage: (message: any) => {
-      if (message.type === "user_transcript" && message.user_transcription_event?.user_transcript) {
-        setTranscript(prev => [...prev, { role: "user", text: message.user_transcription_event.user_transcript }]);
+      let text: string | null = null;
+      let role: "user" | "agent" | null = null;
+
+      if (message?.message && message?.source) {
+        text = message.message;
+        role = message.source === "user" ? "user" : "agent";
+      } else if (message.type === "user_transcript" && message.user_transcription_event?.user_transcript) {
+        text = message.user_transcription_event.user_transcript;
+        role = "user";
+      } else if (message.type === "agent_response" && message.agent_response_event?.agent_response) {
+        text = message.agent_response_event.agent_response;
+        role = "agent";
       }
-      if (message.type === "agent_response" && message.agent_response_event?.agent_response) {
-        setTranscript(prev => [...prev, { role: "agent", text: message.agent_response_event.agent_response }]);
+
+      if (text && role) {
+        setTranscript((prev) => [...prev, { role, text }]);
       }
     },
     onError: (error: any) => {
@@ -153,20 +157,30 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     },
   });
 
-  // Auto-scroll transcript
   useEffect(() => {
     if (transcriptRef.current) {
       transcriptRef.current.scrollTop = transcriptRef.current.scrollHeight;
     }
   }, [transcript]);
 
-  const startConversation = useCallback(async (textOnly = false, autoTriggered = false) => {
+  useEffect(() => {
+    return () => {
+      try {
+        conversation.endSession();
+      } catch (error) {
+        console.error("Failed to end Daisy session:", error);
+      }
+    };
+  }, [conversation]);
+
+  const startConversation = useCallback(async (textOnly = false) => {
     if (isConnecting || conversation.status === "connected") return;
+
+    daisyEverConnected.current = false;
+    setTranscript([]);
     setIsConnecting(true);
     setIsTextMode(textOnly);
-    if (!textOnly) {
-      setShowModeChoice(false);
-    }
+    setShowModeChoice(false);
 
     try {
       if (!textOnly) {
@@ -175,30 +189,26 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
 
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
       const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-
       const bodyKey = mode === "pressure_scan" ? "scanContext" : mode === "burnout_scan" ? "burnoutContext" : mode === "profit_leak" ? "profitLeakContext" : mode === "capital_protection" ? "capitalProtectionContext" : "auditContext";
 
-      const res = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/elevenlabs-voice-token`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${anonKey}`,
-            apikey: anonKey,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            mode,
-            [bodyKey]: contextPayload,
-          }),
-        }
-      );
+      const res = await fetch(`https://${projectId}.supabase.co/functions/v1/elevenlabs-voice-token`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${anonKey}`,
+          apikey: anonKey,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          mode,
+          [bodyKey]: contextPayload,
+        }),
+      });
 
       if (!res.ok) throw new Error("Failed to get voice credentials");
 
       const data = await res.json();
-
       const sessionOpts: any = {};
+
       if (data.signed_url) {
         sessionOpts.signedUrl = data.signed_url;
       } else if (data.token) {
@@ -218,22 +228,9 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     } catch (err) {
       console.error("Failed to start Daisy:", err);
       setIsConnecting(false);
-      if (autoTriggered || !textOnly) {
-        setShowModeChoice(true);
-      }
+      setShowModeChoice(true);
     }
   }, [conversation, mode, contextPayload, isConnecting]);
-
-  useEffect(() => {
-    if (hasAutoStarted.current || isConnecting || bookingConfirmed || conversation.status === "connected") return;
-
-    const timer = setTimeout(() => {
-      hasAutoStarted.current = true;
-      startConversation(false, true);
-    }, AUTO_START_DELAY_MS);
-
-    return () => clearTimeout(timer);
-  }, [bookingConfirmed, conversation.status, isConnecting, startConversation]);
 
   const handleSendText = useCallback(() => {
     const msg = textInput.trim();
