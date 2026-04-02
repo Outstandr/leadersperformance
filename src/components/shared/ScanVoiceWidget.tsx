@@ -38,8 +38,6 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   const showCalendarRef = useRef(false);
   const bookingConfirmedRef = useRef(false);
   const waitingForBookingOutcomeRef = useRef(false);
-  const voiceConversationRef = useRef<ReturnType<typeof useConversation> | null>(null);
-  const textConversationRef = useRef<ReturnType<typeof useConversation> | null>(null);
 
   // Fire the GHL webhook for booking updates only
   const fireWebhook = useCallback(() => {
@@ -128,6 +126,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
 
   const handleConversationDisconnect = useCallback(() => {
     console.log(`Daisy disconnected (${activeConversationModeRef.current} mode)`);
+    setIsConnecting(false);
 
     if (daisyEverConnected.current) {
       setTimeout(() => {
@@ -168,7 +167,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     setShowModeChoice(true);
   }, []);
 
-  const voiceConversation = useConversation({
+  const conversation = useConversation({
     clientTools: {
       show_calendar: async () => {
         setShowCalendar(true);
@@ -180,27 +179,6 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     onMessage: handleConversationMessage,
     onError: handleConversationError,
   });
-
-  const textConversation = useConversation({
-    textOnly: true,
-    clientTools: {
-      show_calendar: async () => {
-        setShowCalendar(true);
-        return "Calendar is now visible on the user's screen. Ask them to pick a date and time that works for them.";
-      },
-    },
-    onConnect: handleConversationConnect,
-    onDisconnect: handleConversationDisconnect,
-    onMessage: handleConversationMessage,
-    onError: handleConversationError,
-  });
-
-  const conversation = isTextMode ? textConversation : voiceConversation;
-
-  useEffect(() => {
-    voiceConversationRef.current = voiceConversation;
-    textConversationRef.current = textConversation;
-  }, [textConversation, voiceConversation]);
 
   useEffect(() => {
     if (transcriptRef.current) {
@@ -210,19 +188,14 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
 
   useEffect(() => {
     return () => {
-      void Promise.allSettled([
-        voiceConversationRef.current?.endSession(),
-        textConversationRef.current?.endSession(),
-      ]).catch((error) => {
+      void conversation.endSession().catch((error) => {
         console.error("Failed to end Daisy session:", error);
       });
     };
-  }, []);
+  }, [conversation]);
 
   const startConversation = useCallback(async (textOnly = false) => {
-    const selectedConversation = textOnly ? textConversation : voiceConversation;
-
-    if (isConnecting || selectedConversation.status === "connected") return;
+    if (isConnecting || conversation.status === "connected") return;
 
     activeConversationModeRef.current = textOnly ? "text" : "voice";
     daisyEverConnected.current = false;
@@ -232,10 +205,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     setShowModeChoice(false);
 
     try {
-      await Promise.allSettled([
-        voiceConversation.endSession(),
-        textConversation.endSession(),
-      ]);
+      await conversation.endSession().catch(() => undefined);
 
       if (!textOnly) {
         await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -263,42 +233,36 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
       const data = await res.json();
       const sessionOpts: any = {};
 
-      if (data.token && !textOnly) {
-        sessionOpts.conversationToken = data.token;
-        sessionOpts.connectionType = "webrtc";
-      } else if (data.signed_url) {
+      if (data.signed_url) {
         sessionOpts.signedUrl = data.signed_url;
-        sessionOpts.connectionType = textOnly ? "websocket" : "websocket";
       } else if (data.token) {
         sessionOpts.conversationToken = data.token;
-        sessionOpts.connectionType = textOnly ? "websocket" : "webrtc";
       } else {
         throw new Error("No credentials received");
       }
 
       if (textOnly) {
-        sessionOpts.textOnly = true;
         sessionOpts.overrides = {
           conversation: { textOnly: true },
         };
       }
 
-      await selectedConversation.startSession(sessionOpts);
+      await conversation.startSession(sessionOpts);
     } catch (err) {
       console.error("Failed to start Daisy:", err);
       setIsConnecting(false);
       setShowModeChoice(true);
     }
-  }, [contextPayload, isConnecting, mode, textConversation, voiceConversation]);
+  }, [contextPayload, conversation, isConnecting, mode]);
 
   const handleSendText = useCallback(() => {
     const msg = textInput.trim();
-    if (!msg || !isTextMode || textConversation.status !== "connected") return;
+    if (!msg || !isTextMode || conversation.status !== "connected") return;
 
     appendTranscript({ role: "user", text: msg });
-    textConversation.sendUserMessage(msg);
+    conversation.sendUserMessage(msg);
     setTextInput("");
-  }, [appendTranscript, isTextMode, textConversation, textInput]);
+  }, [appendTranscript, conversation, isTextMode, textInput]);
 
   const handleBookingComplete = useCallback((details: BookingDetails) => {
     setBookingDetails(details);
