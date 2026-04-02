@@ -209,18 +209,6 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
           </div>
         )}
 
-        {/* CTA */}
-        <div className="text-center space-y-3">
-          <Button
-            asChild
-            className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-sm"
-          >
-            <a href="https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j" target="_blank" rel="noopener noreferrer">
-              {t.ctaBtn}
-            </a>
-          </Button>
-          <p className="text-xs text-foreground/40 italic">{t.ctaSub}</p>
-        </div>
 
         {/* Confidentiality */}
         <div className="p-3 sm:p-5 border border-foreground/10 bg-foreground/[0.03] space-y-2">

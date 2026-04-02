@@ -29,7 +29,7 @@ const ui = {
       "Ontgrendel de Volledige Diagnostiek voor uw complete drukfaseanalyse",
     ],
     cta: "Start de Founder Pressure Scan",
-    time: "Duurt ongeveer 90 seconden",
+    time: "Duurt ongeveer 2 minuten",
   },
 };
 

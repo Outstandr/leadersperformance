@@ -81,7 +81,7 @@ export function calculateProfitLeakScore(
     const maxPoints = sectionQs.length * 4;
     const rawScore = sectionQs.reduce((sum, q) => sum + (responses[q.id] || 1), 0);
     // Normalize: 1 = best (0%), 4 = worst (100%)
-    const normalized = Math.round(((rawScore - sectionQs.length) / (maxPoints - sectionQs.length)) * 100);
+    const normalized = Math.min(100, Math.max(0, Math.round(((rawScore - sectionQs.length) / (maxPoints - sectionQs.length)) * 100)));
     return {
       key: section,
       label: sectionLabels[section][lang],
