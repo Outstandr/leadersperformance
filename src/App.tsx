@@ -48,6 +48,7 @@ const AppRoutes = () => {
           <Route path="/articles/reset-blueprint" element={<ResetBlueprint />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/capital-protection" element={<CapitalProtection />} />
+          <Route path="/pressurescan" element={<BurnoutScan />} />
           <Route path="/burnout-scan" element={<BurnoutScan />} />
           <Route path="/profit-leak-scan" element={<ProfitLeakScan />} />
           <Route path="/articles/:slug" element={<ArticleDetail />} />

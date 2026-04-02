@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
 import { PressureScores } from "@/lib/founderPressureScoring";
 import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
 import { ScanUserInfo } from "./ScanGateStep";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ScanVoiceWidget } from "@/components/shared/ScanVoiceWidget";
 import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ScanResultsStepProps {
   userInfo: ScanUserInfo;
@@ -185,19 +185,6 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
           <p className="text-lg md:text-xl font-black leading-tight">
             {scores.diagnosis}
           </p>
-        </div>
-
-        {/* 7. CTA */}
-        <div className="text-center space-y-3">
-          <Button
-            asChild
-            className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-sm"
-          >
-            <a href="https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j" target="_blank" rel="noopener noreferrer">
-              {t.ctaBtn}
-            </a>
-          </Button>
-          <p className="text-xs text-foreground/40 italic">{t.ctaSub}</p>
         </div>
 
         {/* Close */}

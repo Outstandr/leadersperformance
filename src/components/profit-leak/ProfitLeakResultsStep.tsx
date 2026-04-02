@@ -213,21 +213,6 @@ export function ProfitLeakResultsStep({ result, userInfo, onClose, responses }: 
           </div>
         ) : null}
 
-        {/* CTA */}
-        <div className="text-center space-y-3">
-          <Button
-            asChild
-            className="w-full bg-foreground hover:bg-foreground/90 text-background rounded-none px-10 py-7 h-auto font-bold uppercase tracking-wider text-sm"
-          >
-            <a href="https://api.leadconnectorhq.com/widget/booking/NE13SD9blCXUJeVghk6j" target="_blank" rel="noopener noreferrer">
-              {lang === "nl" ? "Aanvragen voor Founder Interventie Gesprek" : "Apply for Founder Intervention Call"}
-            </a>
-          </Button>
-          <p className="text-xs text-foreground/40 italic">
-            {lang === "nl" ? "Beperkte beschikbaarheid — cases worden beoordeeld." : "Limited availability — cases are reviewed, not automatically accepted."}
-          </p>
-        </div>
-
         <div className="text-center pb-4">
           <Button variant="ghost" onClick={onClose} className="text-foreground/40 hover:text-foreground/70">
             {lang === "nl" ? "Terug naar startpagina" : "Back to home"}

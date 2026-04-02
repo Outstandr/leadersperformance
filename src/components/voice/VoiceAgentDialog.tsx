@@ -45,7 +45,7 @@ export const VoiceAgentDialog = ({ isOpen, onClose, contextData }: VoiceAgentDia
         console.log("[Daisy] suggest_scan tool called", params);
         const scanType = params?.scan_type || "founder_pressure";
         const scanMap: Record<string, { label: string; path: string }> = {
-          founder_pressure: { label: "Founder Pressure Scan", path: "/burnout-scan" },
+          founder_pressure: { label: "Founder Pressure Scan", path: "/pressurescan" },
           profit_leak: { label: "Profit Leak Scan", path: "/profit-leak-scan" },
           capital_protection: { label: "Capital Protection Assessment", path: "/capital-protection" },
         };

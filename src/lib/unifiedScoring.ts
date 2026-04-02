@@ -110,7 +110,8 @@ export function detectBottleneck(
 /** Normalize a raw sum to 0-100 based on min/max possible */
 export function normalizeScore(rawSum: number, minPossible: number, maxPossible: number): number {
   if (maxPossible === minPossible) return 0;
-  return Math.round(((rawSum - minPossible) / (maxPossible - minPossible)) * 100);
+  const normalized = Math.round(((rawSum - minPossible) / (maxPossible - minPossible)) * 100);
+  return Math.min(100, Math.max(0, normalized));
 }
 
 /** Build a complete DiagnosticOutput */
