@@ -313,7 +313,7 @@ const BurnoutScan = () => {
             <BurnoutFreeQuestionStep currentIndex={freeQIndex} onAnswer={handleFreeAnswer} onBack={handleFreeBack} />
           )}
           {step === "free_gate" && (
-            <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} />
+            <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} onBack={() => setStep("free_questions")} />
           )}
           {step === "full_questions" && (
             <BurnoutFullQuestionStep currentIndex={fullQIndex} onAnswer={handleFullAnswer} onBack={() => { if (fullQIndex > 0) setFullQIndex(prev => prev - 1); }} />
