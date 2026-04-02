@@ -3,7 +3,7 @@ import { PressureFreeResult } from "@/lib/burnoutScoring";
 import { colorConfig } from "@/lib/unifiedScoring";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ScanVoiceWidget } from "@/components/shared/ScanVoiceWidget";
-import { Lock, ArrowRight, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 interface BurnoutFreeResultsStepProps {
   result: PressureFreeResult;

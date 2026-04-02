@@ -33,7 +33,7 @@ const ui = {
     ],
     bulletsHeading: "Beantwoord de vragen hieronder en ontvang een Growth Barrier Report dat toont:",
     cta: "Start de Profit Leak Scan",
-    time: "Benodigde tijd: 4 minuten",
+    time: "Benodigde tijd: 3 minuten",
   },
 };
 
