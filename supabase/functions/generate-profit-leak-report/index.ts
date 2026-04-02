@@ -50,7 +50,7 @@ Generate a JSON response with these fields (all in ${lang === "nl" ? "Dutch" : "
 
 Be direct, strategic, and specific. No generic advice. Reference their actual scores. Write as a seasoned strategist, not a coach.`;
 
-    const aiResponse = await fetch("https://api.lovable.dev/v1/chat/completions", {
+    const aiResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${LOVABLE_API_KEY}`,
