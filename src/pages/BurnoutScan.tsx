@@ -293,7 +293,7 @@ const BurnoutScan = () => {
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-0 bg-white border-red-500/20">
           {step === "intro" && <BurnoutIntroStep onStart={() => setStep("free_questions")} />}
           {step === "free_questions" && (
-            <BurnoutFreeQuestionStep currentIndex={freeQIndex} onAnswer={handleFreeAnswer} />
+            <BurnoutFreeQuestionStep currentIndex={freeQIndex} onAnswer={handleFreeAnswer} onBack={handleFreeBack} />
           )}
           {step === "free_gate" && (
             <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} />
