@@ -150,7 +150,7 @@ const ProfitLeakScan = () => {
             <ProfitLeakQuestionStep currentIndex={qIndex} onAnswer={handleAnswer} onBack={handleBack} />
           )}
           {step === "gate" && (
-            <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} onBack={() => setStep("questions")} />
+            <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} />
           )}
         </DialogContent>
       </Dialog>

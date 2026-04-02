@@ -298,33 +298,7 @@ const BurnoutScan = () => {
     return (
       <div className="min-h-screen bg-background">
         <div className="max-w-2xl mx-auto py-8">
-          <BurnoutFullResultsStep
-            result={fullResult}
-            userInfo={userInfo}
-            onClose={handleClose}
-            fullResponses={fullResponses}
-            webhookPayload={{
-              first_name: userInfo.fullName.split(" ")[0],
-              last_name: userInfo.fullName.split(" ").slice(1).join(" "),
-              email: userInfo.email,
-              phone: userInfo.phone,
-              company: userInfo.company,
-              audit_type: "founder_pressure_diagnostic",
-              language,
-              fps_score: fullResult.fpsScore,
-              fps_color: fullResult.fpsColor,
-              overall_score: fullResult.fpsScore,
-              overall_color: fullResult.fpsColor,
-              tier: fullResult.fpsLabel.en,
-              decision_pressure_score: fullResult.domainScores.find((s) => s.key === "decision_pressure")?.score || 0,
-              founder_dependency_score: fullResult.domainScores.find((s) => s.key === "founder_dependency")?.score || 0,
-              leadership_alignment_score: fullResult.domainScores.find((s) => s.key === "nervous_system")?.score || 0,
-              execution_momentum_score: fullResult.domainScores.find((s) => s.key === "recovery_capacity")?.score || 0,
-              primary_bottleneck: fullResult.primaryRiskDomain.label,
-              diagnosis: fullResult.diagnosis,
-              recommendation: fullResult.recommendation,
-            }}
-          />
+          <BurnoutFullResultsStep result={fullResult} userInfo={userInfo} onClose={handleClose} fullResponses={fullResponses} />
         </div>
       </div>
     );
@@ -339,7 +313,7 @@ const BurnoutScan = () => {
             <BurnoutFreeQuestionStep currentIndex={freeQIndex} onAnswer={handleFreeAnswer} onBack={handleFreeBack} />
           )}
           {step === "free_gate" && (
-            <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} onBack={() => setStep("free_questions")} />
+            <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} />
           )}
           {step === "full_questions" && (
             <BurnoutFullQuestionStep currentIndex={fullQIndex} onAnswer={handleFullAnswer} onBack={() => { if (fullQIndex > 0) setFullQIndex(prev => prev - 1); }} />

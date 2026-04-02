@@ -15,7 +15,7 @@ export const ElitePressureScanCTA = () => {
         </h2>
         <Button
           size="lg"
-          onClick={() => navigate("/pressurescan")}
+          onClick={() => navigate("/burnout-scan")}
           className="bg-[hsl(var(--lioner-gold))] text-white hover:bg-[hsl(var(--lioner-gold))]/90 font-medium rounded-none px-8 py-4 h-auto group transition-all"
         >
           {t("elite.pressureCTA.cta")}

@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
-import { Mic, Loader2, Send, MessageSquare, X } from "lucide-react";
+import { Mic, Volume2, Loader2, Send, MessageSquare, X } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ScanBookingCalendar, ScanBookingUserInfo, BookingDetails } from "./ScanBookingCalendar";
 import { supabase } from "@/integrations/supabase/client";
@@ -30,11 +30,11 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   const [textInput, setTextInput] = useState("");
   const [isTextMode, setIsTextMode] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
+  const hasAutoStarted = useRef(false);
   const [showModeChoice, setShowModeChoice] = useState(false);
   const webhookFired = useRef(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const daisyEverConnected = useRef(false);
-  const activeConversationModeRef = useRef<"voice" | "text">("voice");
   const showCalendarRef = useRef(false);
   const bookingConfirmedRef = useRef(false);
   const waitingForBookingOutcomeRef = useRef(false);
@@ -57,7 +57,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
       booking_date: currentBooking.date,
       booking_time: currentBooking.time,
       booked: true,
-      booking_update: true,
+      booking_update: true, // tells edge function this is a booking update, not initial results
     };
 
     console.log("Firing GHL booking update webhook", JSON.stringify({ audit_type: payload.audit_type, booked: true, booking_date: currentBooking.date, booking_time: currentBooking.time }));
@@ -77,6 +77,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     bookingConfirmedRef.current = bookingConfirmed;
   }, [bookingConfirmed]);
 
+  // Start 10-min timeout on mount
   useEffect(() => {
     if (!webhookPayload) return;
 
@@ -100,72 +101,12 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
 
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      // Fire webhook on unmount if not already fired (user closed dialog)
       if (!webhookFired.current && webhookPayload) {
         fireWebhook();
       }
     };
   }, [webhookPayload, fireWebhook]);
-
-  const appendTranscript = useCallback((entry: { role: "user" | "agent"; text: string }) => {
-    setTranscript((prev) => {
-      const lastMessage = prev[prev.length - 1];
-
-      if (lastMessage?.role === entry.role && lastMessage.text === entry.text) {
-        return prev;
-      }
-
-      return [...prev, entry];
-    });
-  }, []);
-
-  const handleConversationConnect = useCallback(() => {
-    console.log(`Daisy connected (${activeConversationModeRef.current} mode)`);
-    setIsConnecting(false);
-    daisyEverConnected.current = true;
-  }, []);
-
-  const handleConversationDisconnect = useCallback(() => {
-    console.log(`Daisy disconnected (${activeConversationModeRef.current} mode)`);
-    setIsConnecting(false);
-
-    if (daisyEverConnected.current) {
-      setTimeout(() => {
-        if (showCalendarRef.current && !bookingConfirmedRef.current) {
-          console.log("Daisy disconnected while booking calendar is open — waiting for booking outcome");
-          waitingForBookingOutcomeRef.current = true;
-          return;
-        }
-
-        fireWebhook();
-      }, 500);
-    }
-  }, [fireWebhook]);
-
-  const handleConversationMessage = useCallback((message: any) => {
-    let text: string | null = null;
-    let role: "user" | "agent" | null = null;
-
-    if (message?.message && message?.source) {
-      text = message.message;
-      role = message.source === "user" ? "user" : "agent";
-    } else if (message.type === "user_transcript" && message.user_transcription_event?.user_transcript) {
-      text = message.user_transcription_event.user_transcript;
-      role = "user";
-    } else if (message.type === "agent_response" && message.agent_response_event?.agent_response) {
-      text = message.agent_response_event.agent_response;
-      role = "agent";
-    }
-
-    if (text && role) {
-      appendTranscript({ role, text });
-    }
-  }, [appendTranscript]);
-
-  const handleConversationError = useCallback((error: any) => {
-    console.error("Daisy error:", error);
-    setIsConnecting(false);
-    setShowModeChoice(true);
-  }, []);
 
   const conversation = useConversation({
     clientTools: {
@@ -174,73 +115,88 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
         return "Calendar is now visible on the user's screen. Ask them to pick a date and time that works for them.";
       },
     },
-    onConnect: handleConversationConnect,
-    onDisconnect: handleConversationDisconnect,
-    onMessage: handleConversationMessage,
-    onError: handleConversationError,
+    onConnect: () => {
+      console.log("Daisy connected (scan widget)");
+      setIsConnecting(false);
+      daisyEverConnected.current = true;
+    },
+    onDisconnect: () => {
+      console.log("Daisy disconnected (scan widget)");
+      // Fire webhook when Daisy call ends
+      if (daisyEverConnected.current) {
+        // Small delay to allow booking state to settle
+        setTimeout(() => {
+          if (showCalendarRef.current && !bookingConfirmedRef.current) {
+            console.log("Daisy disconnected while booking calendar is open — waiting for booking outcome");
+            waitingForBookingOutcomeRef.current = true;
+            return;
+          }
+
+          fireWebhook();
+        }, 500);
+      }
+    },
+    onMessage: (message: any) => {
+      if (message.type === "user_transcript" && message.user_transcription_event?.user_transcript) {
+        setTranscript(prev => [...prev, { role: "user", text: message.user_transcription_event.user_transcript }]);
+      }
+      if (message.type === "agent_response" && message.agent_response_event?.agent_response) {
+        setTranscript(prev => [...prev, { role: "agent", text: message.agent_response_event.agent_response }]);
+      }
+    },
+    onError: (error: any) => {
+      console.error("Daisy error:", error);
+      setIsConnecting(false);
+    },
   });
 
+  // Auto-scroll transcript
   useEffect(() => {
     if (transcriptRef.current) {
       transcriptRef.current.scrollTop = transcriptRef.current.scrollHeight;
     }
   }, [transcript]);
 
-  const conversationRef = useRef(conversation);
-  conversationRef.current = conversation;
-
-  useEffect(() => {
-    return () => {
-      void conversationRef.current.endSession().catch((error) => {
-        console.error("Failed to end Daisy session:", error);
-      });
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const startConversation = useCallback(async (textOnly = false) => {
     if (isConnecting || conversation.status === "connected") return;
-
-    activeConversationModeRef.current = textOnly ? "text" : "voice";
-    daisyEverConnected.current = false;
-    setTranscript([]);
     setIsConnecting(true);
     setIsTextMode(textOnly);
-    setShowModeChoice(false);
-
     try {
-      await conversation.endSession().catch(() => undefined);
-
       if (!textOnly) {
         await navigator.mediaDevices.getUserMedia({ audio: true });
       }
 
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
       const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-      const bodyKey = mode === "pressure_scan" ? "scanContext" : mode === "burnout_scan" ? "burnoutContext" : mode === "profit_leak" ? "profitLeakContext" : mode === "capital_protection" ? "context" : "auditContext";
 
-      const res = await fetch(`https://${projectId}.supabase.co/functions/v1/elevenlabs-voice-token`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${anonKey}`,
-          apikey: anonKey,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          mode,
-          [bodyKey]: contextPayload,
-        }),
-      });
+      const bodyKey = mode === "pressure_scan" ? "scanContext" : mode === "burnout_scan" ? "burnoutContext" : mode === "profit_leak" ? "profitLeakContext" : mode === "capital_protection" ? "capitalProtectionContext" : "auditContext";
+
+      const res = await fetch(
+        `https://${projectId}.supabase.co/functions/v1/elevenlabs-voice-token`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${anonKey}`,
+            apikey: anonKey,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            mode,
+            [bodyKey]: contextPayload,
+          }),
+        }
+      );
 
       if (!res.ok) throw new Error("Failed to get voice credentials");
 
       const data = await res.json();
-      const sessionOpts: any = {};
 
+      const sessionOpts: any = {};
       if (data.signed_url) {
         sessionOpts.signedUrl = data.signed_url;
       } else if (data.token) {
         sessionOpts.conversationToken = data.token;
+        sessionOpts.connectionType = "webrtc";
       } else {
         throw new Error("No credentials received");
       }
@@ -255,18 +211,16 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     } catch (err) {
       console.error("Failed to start Daisy:", err);
       setIsConnecting(false);
-      setShowModeChoice(true);
     }
-  }, [contextPayload, conversation, isConnecting, mode]);
+  }, [conversation, mode, contextPayload, isConnecting]);
 
   const handleSendText = useCallback(() => {
     const msg = textInput.trim();
-    if (!msg || !isTextMode || conversation.status !== "connected") return;
-
-    appendTranscript({ role: "user", text: msg });
+    if (!msg || conversation.status !== "connected") return;
     conversation.sendUserMessage(msg);
+    setTranscript(prev => [...prev, { role: "user", text: msg }]);
     setTextInput("");
-  }, [appendTranscript, conversation, isTextMode, textInput]);
+  }, [conversation, textInput]);
 
   const handleBookingComplete = useCallback((details: BookingDetails) => {
     setBookingDetails(details);
@@ -430,31 +384,23 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
             </div>
 
             {/* Text input */}
-            {isTextMode ? (
-              <div className="flex gap-2 px-3 py-3 border-t border-foreground/10 bg-foreground/[0.03]">
-                <input
-                  type="text"
-                  value={textInput}
-                  onChange={(e) => setTextInput(e.target.value)}
-                  onKeyDown={(e) => { if (e.key === "Enter") handleSendText(); }}
-                  placeholder={language === "nl" ? "Typ een bericht..." : "Type a message..."}
-                  className="flex-1 px-4 py-2.5 rounded-full bg-foreground/5 border border-foreground/10 text-foreground text-sm placeholder:text-foreground/30 focus:outline-none focus:border-lioner-gold/50"
-                />
-                <button
-                  onClick={handleSendText}
-                  disabled={!textInput.trim()}
-                  className="w-10 h-10 rounded-full bg-lioner-gold/20 border border-lioner-gold/30 text-lioner-gold hover:bg-lioner-gold/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
-                >
-                  <Send className="w-4 h-4" />
-                </button>
-              </div>
-            ) : (
-              <div className="px-4 py-3 border-t border-foreground/10 bg-foreground/[0.03] text-xs text-foreground/50 text-center">
-                {language === "nl"
-                  ? "Microfoonmodus actief. Stop het gesprek om naar chat te wisselen."
-                  : "Microphone mode is active. End the conversation to switch to chat."}
-              </div>
-            )}
+            <div className="flex gap-2 px-3 py-3 border-t border-foreground/10 bg-foreground/[0.03]">
+              <input
+                type="text"
+                value={textInput}
+                onChange={(e) => setTextInput(e.target.value)}
+                onKeyDown={(e) => { if (e.key === "Enter") handleSendText(); }}
+                placeholder={language === "nl" ? "Typ een bericht..." : "Type a message..."}
+                className="flex-1 px-4 py-2.5 rounded-full bg-foreground/5 border border-foreground/10 text-foreground text-sm placeholder:text-foreground/30 focus:outline-none focus:border-lioner-gold/50"
+              />
+              <button
+                onClick={handleSendText}
+                disabled={!textInput.trim()}
+                className="w-10 h-10 rounded-full bg-lioner-gold/20 border border-lioner-gold/30 text-lioner-gold hover:bg-lioner-gold/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         )}
 

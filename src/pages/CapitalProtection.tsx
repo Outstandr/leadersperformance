@@ -1,9 +1,10 @@
 import { useState, useCallback } from "react";
 import { CapitalProtectionDialog } from "@/components/capital-protection/CapitalProtectionDialog";
 import { CPResultsStep } from "@/components/capital-protection/CPResultsStep";
+import { CPVoiceWidget } from "@/components/capital-protection/CPVoiceWidget";
 import { CPResult } from "@/lib/capitalProtectionScoring";
 import { CPUserInfo } from "@/components/capital-protection/CPUserInfoStep";
-import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
 interface AIReport {
   situation_summary: string;
@@ -24,6 +25,7 @@ interface ResultsData {
 const CapitalProtection = () => {
   const [dialogOpen, setDialogOpen] = useState(true);
   const [resultsData, setResultsData] = useState<ResultsData | null>(null);
+  const { isSpeaking } = useVoiceAgent();
 
   const handleResultsReady = useCallback((data: ResultsData) => {
     setResultsData(data);
@@ -53,9 +55,13 @@ const CapitalProtection = () => {
       />
 
       {resultsData && (
-        <div className="min-h-screen">
-          <div className="flex items-start justify-center py-6 sm:py-10 px-4">
-            <div className="w-full max-w-2xl bg-white border border-foreground/10 rounded-lg shadow-xl">
+        <div className="min-h-screen flex flex-col">
+          <div className="flex-1 flex items-start justify-center py-6 sm:py-10 px-4">
+            <div className={`w-full max-w-2xl bg-white border rounded-lg shadow-xl transition-all duration-300 ${
+              isSpeaking
+                ? "border-2 border-lioner-gold/60 animate-border-pulse shadow-[0_0_30px_hsl(var(--lioner-gold)/0.2)]"
+                : "border-foreground/10"
+            }`}>
               <CPResultsStep
                 userInfo={resultsData.userInfo}
                 result={resultsData.result}
@@ -65,6 +71,17 @@ const CapitalProtection = () => {
               />
             </div>
           </div>
+
+          {/* Embedded Daisy voice widget — always visible below report */}
+          {!resultsData.isLoadingAI && (
+            <div className="sticky bottom-0 z-50">
+              <CPVoiceWidget
+                userInfo={resultsData.userInfo}
+                result={resultsData.result}
+                aiReport={resultsData.aiReport}
+              />
+            </div>
+          )}
         </div>
       )}
 

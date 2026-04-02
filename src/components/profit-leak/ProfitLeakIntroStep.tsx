@@ -19,7 +19,7 @@ const ui = {
     ],
     bulletsHeading: "Answer the questions below and receive a Growth Barrier Report showing:",
     cta: "Start the Profit Leak Scan",
-    time: "Time required: 3 minutes",
+    time: "Time required: 4 minutes",
   },
   nl: {
     eyebrow: "Bedrijfsgroei Intelligentie",
@@ -33,7 +33,7 @@ const ui = {
     ],
     bulletsHeading: "Beantwoord de vragen hieronder en ontvang een Growth Barrier Report dat toont:",
     cta: "Start de Profit Leak Scan",
-    time: "Benodigde tijd: 3 minuten",
+    time: "Benodigde tijd: 4 minuten",
   },
 };
 

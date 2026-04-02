@@ -13,7 +13,6 @@ interface BurnoutFullResultsStepProps {
   userInfo: ScanUserInfo;
   onClose: () => void;
   fullResponses?: Record<string, number>;
-  webhookPayload?: Record<string, unknown>;
 }
 
 interface DeepReport {
@@ -91,7 +90,7 @@ const ui = {
   },
 };
 
-export function BurnoutFullResultsStep({ result, userInfo, onClose, fullResponses, webhookPayload }: BurnoutFullResultsStepProps) {
+export function BurnoutFullResultsStep({ result, userInfo, onClose, fullResponses }: BurnoutFullResultsStepProps) {
   const { language } = useLanguage();
   const t = ui[language] ?? ui.en;
   const c = colorConfig[result.fpsColor];
@@ -198,8 +197,6 @@ export function BurnoutFullResultsStep({ result, userInfo, onClose, fullResponse
           userInfo={{ fullName: userInfo.fullName, email: userInfo.email, phone: userInfo.phone }}
           contextPayload={voiceContext}
           bookingType="Founder Pressure Intervention"
-          calendarId="uebxQpVIy9vX7tR5rL9E"
-          webhookPayload={webhookPayload}
         />
 
         <div className="text-center pt-2">
