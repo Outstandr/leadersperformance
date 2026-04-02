@@ -34,6 +34,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   const webhookFired = useRef(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const daisyEverConnected = useRef(false);
+  const activeConversationModeRef = useRef<"voice" | "text">("voice");
   const showCalendarRef = useRef(false);
   const bookingConfirmedRef = useRef(false);
   const waitingForBookingOutcomeRef = useRef(false);
@@ -105,57 +106,94 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     };
   }, [webhookPayload, fireWebhook]);
 
-  const conversation = useConversation({
+  const appendTranscript = useCallback((entry: { role: "user" | "agent"; text: string }) => {
+    setTranscript((prev) => {
+      const lastMessage = prev[prev.length - 1];
+
+      if (lastMessage?.role === entry.role && lastMessage.text === entry.text) {
+        return prev;
+      }
+
+      return [...prev, entry];
+    });
+  }, []);
+
+  const handleConversationConnect = useCallback(() => {
+    console.log(`Daisy connected (${activeConversationModeRef.current} mode)`);
+    setIsConnecting(false);
+    daisyEverConnected.current = true;
+  }, []);
+
+  const handleConversationDisconnect = useCallback(() => {
+    console.log(`Daisy disconnected (${activeConversationModeRef.current} mode)`);
+
+    if (daisyEverConnected.current) {
+      setTimeout(() => {
+        if (showCalendarRef.current && !bookingConfirmedRef.current) {
+          console.log("Daisy disconnected while booking calendar is open — waiting for booking outcome");
+          waitingForBookingOutcomeRef.current = true;
+          return;
+        }
+
+        fireWebhook();
+      }, 500);
+    }
+  }, [fireWebhook]);
+
+  const handleConversationMessage = useCallback((message: any) => {
+    let text: string | null = null;
+    let role: "user" | "agent" | null = null;
+
+    if (message?.message && message?.source) {
+      text = message.message;
+      role = message.source === "user" ? "user" : "agent";
+    } else if (message.type === "user_transcript" && message.user_transcription_event?.user_transcript) {
+      text = message.user_transcription_event.user_transcript;
+      role = "user";
+    } else if (message.type === "agent_response" && message.agent_response_event?.agent_response) {
+      text = message.agent_response_event.agent_response;
+      role = "agent";
+    }
+
+    if (text && role) {
+      appendTranscript({ role, text });
+    }
+  }, [appendTranscript]);
+
+  const handleConversationError = useCallback((error: any) => {
+    console.error("Daisy error:", error);
+    setIsConnecting(false);
+    setShowModeChoice(true);
+  }, []);
+
+  const voiceConversation = useConversation({
     clientTools: {
       show_calendar: async () => {
         setShowCalendar(true);
         return "Calendar is now visible on the user's screen. Ask them to pick a date and time that works for them.";
       },
     },
-    onConnect: () => {
-      console.log("Daisy connected (scan widget)");
-      setIsConnecting(false);
-      daisyEverConnected.current = true;
-    },
-    onDisconnect: () => {
-      console.log("Daisy disconnected (scan widget)");
-      if (daisyEverConnected.current) {
-        setTimeout(() => {
-          if (showCalendarRef.current && !bookingConfirmedRef.current) {
-            console.log("Daisy disconnected while booking calendar is open — waiting for booking outcome");
-            waitingForBookingOutcomeRef.current = true;
-            return;
-          }
-
-          fireWebhook();
-        }, 500);
-      }
-    },
-    onMessage: (message: any) => {
-      let text: string | null = null;
-      let role: "user" | "agent" | null = null;
-
-      if (message?.message && message?.source) {
-        text = message.message;
-        role = message.source === "user" ? "user" : "agent";
-      } else if (message.type === "user_transcript" && message.user_transcription_event?.user_transcript) {
-        text = message.user_transcription_event.user_transcript;
-        role = "user";
-      } else if (message.type === "agent_response" && message.agent_response_event?.agent_response) {
-        text = message.agent_response_event.agent_response;
-        role = "agent";
-      }
-
-      if (text && role) {
-        setTranscript((prev) => [...prev, { role, text }]);
-      }
-    },
-    onError: (error: any) => {
-      console.error("Daisy error:", error);
-      setIsConnecting(false);
-      setShowModeChoice(true);
-    },
+    onConnect: handleConversationConnect,
+    onDisconnect: handleConversationDisconnect,
+    onMessage: handleConversationMessage,
+    onError: handleConversationError,
   });
+
+  const textConversation = useConversation({
+    textOnly: true,
+    clientTools: {
+      show_calendar: async () => {
+        setShowCalendar(true);
+        return "Calendar is now visible on the user's screen. Ask them to pick a date and time that works for them.";
+      },
+    },
+    onConnect: handleConversationConnect,
+    onDisconnect: handleConversationDisconnect,
+    onMessage: handleConversationMessage,
+    onError: handleConversationError,
+  });
+
+  const conversation = isTextMode ? textConversation : voiceConversation;
 
   useEffect(() => {
     if (transcriptRef.current) {
@@ -165,17 +203,21 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
 
   useEffect(() => {
     return () => {
-      try {
-        conversation.endSession();
-      } catch (error) {
+      void Promise.allSettled([
+        voiceConversation.endSession(),
+        textConversation.endSession(),
+      ]).catch((error) => {
         console.error("Failed to end Daisy session:", error);
-      }
+      });
     };
-  }, [conversation]);
+  }, [textConversation, voiceConversation]);
 
   const startConversation = useCallback(async (textOnly = false) => {
-    if (isConnecting || conversation.status === "connected") return;
+    const selectedConversation = textOnly ? textConversation : voiceConversation;
 
+    if (isConnecting || selectedConversation.status === "connected") return;
+
+    activeConversationModeRef.current = textOnly ? "text" : "voice";
     daisyEverConnected.current = false;
     setTranscript([]);
     setIsConnecting(true);
@@ -183,6 +225,11 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     setShowModeChoice(false);
 
     try {
+      await Promise.allSettled([
+        voiceConversation.endSession(),
+        textConversation.endSession(),
+      ]);
+
       if (!textOnly) {
         await navigator.mediaDevices.getUserMedia({ audio: true });
       }
@@ -219,26 +266,28 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
       }
 
       if (textOnly) {
+        sessionOpts.textOnly = true;
         sessionOpts.overrides = {
           conversation: { textOnly: true },
         };
       }
 
-      await conversation.startSession(sessionOpts);
+      await selectedConversation.startSession(sessionOpts);
     } catch (err) {
       console.error("Failed to start Daisy:", err);
       setIsConnecting(false);
       setShowModeChoice(true);
     }
-  }, [conversation, mode, contextPayload, isConnecting]);
+  }, [contextPayload, isConnecting, mode, textConversation, voiceConversation]);
 
   const handleSendText = useCallback(() => {
     const msg = textInput.trim();
-    if (!msg || conversation.status !== "connected") return;
-    conversation.sendUserMessage(msg);
-    setTranscript(prev => [...prev, { role: "user", text: msg }]);
+    if (!msg || !isTextMode || textConversation.status !== "connected") return;
+
+    appendTranscript({ role: "user", text: msg });
+    textConversation.sendUserMessage(msg);
     setTextInput("");
-  }, [conversation, textInput]);
+  }, [appendTranscript, isTextMode, textConversation, textInput]);
 
   const handleBookingComplete = useCallback((details: BookingDetails) => {
     setBookingDetails(details);
