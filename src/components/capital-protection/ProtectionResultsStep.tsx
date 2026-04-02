@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Shield } from "lucide-react";
+import { Shield, AlertTriangle } from "lucide-react";
 import { CPResult } from "@/lib/capitalProtectionScoring";
 import { ColorTier, colorConfig } from "@/lib/unifiedScoring";
 import { ScanUserInfo } from "@/components/founder-scan/ScanGateStep";
