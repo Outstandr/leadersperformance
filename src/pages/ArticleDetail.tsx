@@ -131,8 +131,42 @@ const ArticleDetail = () => {
             </button>
           </div>
 
-          {/* Scan CTAs */}
-          <ScanCTASection />
+          {/* Scan CTAs — Next Steps */}
+          <div className="mt-14 pt-8 border-t border-white/10">
+            <h3 className="font-serif text-xl text-white mb-6">Find out where the pressure is</h3>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <button
+                onClick={() => navigate("/pressurescan")}
+                className="group p-6 text-left transition-all duration-300 hover:border-lioner-gold/40"
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <Activity className="w-5 h-5 text-lioner-gold" />
+                  <span className="text-xs uppercase tracking-widest text-lioner-gold font-semibold">Founder Diagnostic</span>
+                </div>
+                <h4 className="font-serif text-base text-white mb-2 group-hover:text-lioner-gold transition-colors">Founder Pressure Scan</h4>
+                <p className="text-xs text-white/50 mb-3">12 questions across 4 dimensions. Identify decision bottlenecks and founder dependency.</p>
+                <span className="flex items-center gap-1 text-xs text-lioner-gold">
+                  Start Scan <ArrowRight className="w-3 h-3" />
+                </span>
+              </button>
+              <button
+                onClick={() => navigate("/profit-leak-scan")}
+                className="group p-6 text-left transition-all duration-300 hover:border-lioner-gold/40"
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <BarChart3 className="w-5 h-5 text-lioner-gold" />
+                  <span className="text-xs uppercase tracking-widest text-lioner-gold font-semibold">Revenue Intelligence</span>
+                </div>
+                <h4 className="font-serif text-base text-white mb-2 group-hover:text-lioner-gold transition-colors">Profit Leak Scan</h4>
+                <p className="text-xs text-white/50 mb-3">14 questions for companies with €5M+ revenue. Find where your structure is leaking money.</p>
+                <span className="flex items-center gap-1 text-xs text-lioner-gold">
+                  Start Scan <ArrowRight className="w-3 h-3" />
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
