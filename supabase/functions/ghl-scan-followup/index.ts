@@ -481,10 +481,18 @@ function getBookingSubject(payload: Record<string, unknown>): string {
 }
 
 function getDay2Subject(payload: Record<string, unknown>): string {
+  const auditType = String(payload.audit_type || '');
+  if (auditType === 'capital_protection') return `The Window Is Narrowing, ${payload.first_name}`;
+  if (auditType.includes('profit_leak')) return `The Revenue You're Leaving Behind, ${payload.first_name}`;
+  if (auditType === 'corporate') return `The Discipline Gap in Your Team, ${payload.first_name}`;
   return `The Pattern Behind Your Score, ${payload.first_name}`;
 }
 
-function getDay5Subject(): string {
+function getDay5Subject(payload?: Record<string, unknown>): string {
+  const auditType = String(payload?.audit_type || '');
+  if (auditType === 'capital_protection') return 'The Cost of Waiting';
+  if (auditType.includes('profit_leak')) return 'What This Is Actually Costing You';
+  if (auditType === 'corporate') return 'What Weak Discipline Is Costing Your Team';
   return 'What This Is Actually Costing You';
 }
 
