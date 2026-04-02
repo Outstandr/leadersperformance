@@ -6,6 +6,7 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 interface BurnoutFreeQuestionStepProps {
   currentIndex: number;
   onAnswer: (questionId: string, value: number) => void;
+  onBack?: () => void;
 }
 
 export function BurnoutFreeQuestionStep({ currentIndex, onAnswer }: BurnoutFreeQuestionStepProps) {
