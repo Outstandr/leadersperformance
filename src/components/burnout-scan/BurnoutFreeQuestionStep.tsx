@@ -9,7 +9,7 @@ interface BurnoutFreeQuestionStepProps {
   onBack?: () => void;
 }
 
-export function BurnoutFreeQuestionStep({ currentIndex, onAnswer }: BurnoutFreeQuestionStepProps) {
+export function BurnoutFreeQuestionStep({ currentIndex, onAnswer, onBack }: BurnoutFreeQuestionStepProps) {
   const { language } = useLanguage();
   const question = burnoutFreeQuestions[currentIndex];
   const total = burnoutFreeQuestions.length;
