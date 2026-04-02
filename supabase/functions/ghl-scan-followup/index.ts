@@ -160,19 +160,55 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
   const auditType = String(payload.audit_type || '');
   const scoreField = SCORE_FIELD_MAP[auditType] || 'overall_score';
   const score = payload[scoreField] ?? payload.fps_score ?? payload.overall_score ?? payload.discipline_score ?? 0;
-  const bottleneck = payload.primary_bottleneck || payload.tier || 'Not identified';
   const sessionName = SESSION_NAMES[auditType] || 'Strategy Session';
   const calendarId = CALENDAR_MAP[auditType] || 'uebxQpVIy9vX7tR5rL9E';
   const bookingLink = `https://api.leadconnectorhq.com/widget/booking/${calendarId}`;
   const firstName = payload.first_name || 'there';
 
-  // Dimension bars for founder pressure
-  const dimensions = [];
-  if (payload.decision_pressure_score !== undefined) {
-    dimensions.push({ label: 'Decision Pressure', score: payload.decision_pressure_score });
-    dimensions.push({ label: 'Founder Dependency', score: payload.founder_dependency_score });
-    dimensions.push({ label: 'Leadership Alignment', score: payload.leadership_alignment_score });
-    dimensions.push({ label: 'Execution Momentum', score: payload.execution_momentum_score });
+  // Build scan-specific dimensions and bottleneck
+  const dimensions: { label: string; score: unknown }[] = [];
+  let bottleneck = 'Not identified';
+  let scanTitle = 'Your Results Are Ready';
+  let introText = 'Your diagnostic scan has been completed. Below is your score and structural analysis.';
+  let bottleneckLabel = 'Primary Bottleneck';
+
+  if (auditType === 'capital_protection') {
+    scanTitle = 'Your Capital Protection Analysis';
+    introText = 'Your capital protection assessment has been completed. Below is your risk analysis and recovery potential.';
+    bottleneckLabel = 'Risk Level';
+    bottleneck = String(payload.risk_level || payload.recovery_potential || 'Under Review');
+    if (payload.evidence_strength_score !== undefined) {
+      dimensions.push({ label: 'Evidence Strength', score: payload.evidence_strength_score });
+      dimensions.push({ label: 'Timeline Advantage', score: payload.timeline_advantage_score });
+      dimensions.push({ label: 'Jurisdictional Simplicity', score: payload.jurisdictional_simplicity_score });
+      dimensions.push({ label: 'Legal Positioning', score: payload.legal_positioning_score });
+      dimensions.push({ label: 'Capital Exposure', score: payload.capital_exposure_score });
+    }
+  } else if (auditType.includes('profit_leak')) {
+    scanTitle = 'Your Revenue Architecture Analysis';
+    introText = 'Your revenue architecture scan has been completed. Below is your score and structural analysis.';
+    bottleneck = String(payload.primary_bottleneck || payload.growth_phase || 'Not identified');
+    if (payload.founder_dependency_score !== undefined) {
+      dimensions.push({ label: 'Founder Dependency', score: payload.founder_dependency_score });
+      dimensions.push({ label: 'Structure & Leadership', score: payload.structure_leadership_score });
+      dimensions.push({ label: 'Decision Speed', score: payload.decision_speed_score });
+      dimensions.push({ label: 'Scalability', score: payload.scalability_score });
+      dimensions.push({ label: 'Profitability', score: payload.profitability_score });
+    }
+  } else if (auditType === 'corporate') {
+    scanTitle = 'Your Team Discipline Analysis';
+    introText = 'Your corporate discipline audit has been completed. Below is your score and structural analysis.';
+    bottleneck = String(payload.tier || 'Not identified');
+    bottleneckLabel = 'Discipline Tier';
+  } else {
+    // Founder pressure (default)
+    bottleneck = String(payload.primary_bottleneck || payload.tier || 'Not identified');
+    if (payload.decision_pressure_score !== undefined) {
+      dimensions.push({ label: 'Decision Pressure', score: payload.decision_pressure_score });
+      dimensions.push({ label: 'Founder Dependency', score: payload.founder_dependency_score });
+      dimensions.push({ label: 'Leadership Alignment', score: payload.leadership_alignment_score });
+      dimensions.push({ label: 'Execution Momentum', score: payload.execution_momentum_score });
+    }
   }
 
   const dimensionBarsHTML = dimensions.map(d => `
@@ -191,23 +227,28 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
     </td></tr>
   `).join('');
 
+  // For capital protection, invert color logic (higher = better recovery)
+  const bottleneckBg = auditType === 'capital_protection' ? '#FFF7ED' : '#FEF2F2';
+  const bottleneckBorder = auditType === 'capital_protection' ? '#D97706' : '#DC2626';
+  const bottleneckColor = auditType === 'capital_protection' ? '#92400E' : '#DC2626';
+
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
 <tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:4px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
-  <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">Your Results Are Ready</p>
+  <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${scanTitle}</p>
 </td></tr>
 <tr><td style="padding:40px;">
   <p style="font-family:Georgia,serif;font-size:16px;color:#333;margin:0 0 20px;">Dear ${firstName},</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 30px;">Your diagnostic scan has been completed. Below is your score and structural analysis.</p>
+  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 30px;">${introText}</p>
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:20px 0;">
     <div style="display:inline-block;background:#1a1a1a;padding:30px 50px;text-align:center;">
-      <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Your Score</p>
+      <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">${auditType === 'capital_protection' ? 'Recovery Potential' : 'Your Score'}</p>
       <p style="margin:8px 0 0;font-size:56px;color:#ffffff;font-family:Georgia,serif;font-weight:900;">${score}</p>
     </div>
   </td></tr></tbody></table>
-  <table width="100%" style="margin:20px 0;background:#FEF2F2;border-left:4px solid #DC2626;" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:16px 20px;">
-    <p style="margin:0;font-size:10px;letter-spacing:2px;color:#DC2626;text-transform:uppercase;font-weight:bold;">Primary Bottleneck</p>
+  <table width="100%" style="margin:20px 0;background:${bottleneckBg};border-left:4px solid ${bottleneckBorder};" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:16px 20px;">
+    <p style="margin:0;font-size:10px;letter-spacing:2px;color:${bottleneckColor};text-transform:uppercase;font-weight:bold;">${bottleneckLabel}</p>
     <p style="margin:6px 0 0;font-size:18px;color:#1a1a1a;font-family:Georgia,serif;font-weight:bold;">${bottleneck}</p>
   </td></tr></tbody></table>
   ${dimensionBarsHTML ? `<table width="100%" style="margin:20px 0;" cellpadding="0" cellspacing="0"><tbody>${dimensionBarsHTML}</tbody></table>` : ''}
@@ -218,7 +259,7 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
 </td></tr>
 <tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
-  <p style="margin:6px 0 0;font-size:11px;color:#666;">This is a structural diagnostic, not crisis advice.</p>
+  <p style="margin:6px 0 0;font-size:11px;color:#666;">${auditType === 'capital_protection' ? 'This is not a crisis tool. This is a structural diagnostic.' : 'This is a structural diagnostic, not crisis advice.'}</p>
 </td></tr>
 </tbody></table></td></tr></tbody></table>`;
 }
@@ -293,18 +334,47 @@ function buildNurtureDay2HTML(payload: Record<string, unknown>): string {
   const calendarId = CALENDAR_MAP[auditType] || 'uebxQpVIy9vX7tR5rL9E';
   const bookingLink = `https://api.leadconnectorhq.com/widget/booking/${calendarId}`;
 
+  let headline = 'The Pattern Behind Your Score';
+  let bodyParagraphs = '';
+
+  if (auditType === 'capital_protection') {
+    headline = 'The Window Is Narrowing';
+    bodyParagraphs = `
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Two days ago, your Capital Protection Assessment revealed structural exposure that most founders don't address until it's too late — not because they don't see it, but because they assume they have more time.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The reality is this: <strong>every day that passes without a protection strategy in place is a day your capital remains exposed.</strong> Evidence deteriorates. Jurisdictional advantages shift. Counterparties move first.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">This isn't a legal problem you solve reactively. It's a strategic architecture you build proactively.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 24px;">In your Capital Protection Session, we map the exact structural interventions needed to secure your position — based on your specific risk profile, jurisdictional exposure, and evidence landscape.</p>`;
+  } else if (auditType.includes('profit_leak')) {
+    headline = 'The Revenue You\'re Leaving Behind';
+    bodyParagraphs = `
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Two days ago, your Revenue Architecture Scan revealed structural leaks that are silently draining your growth capacity — not because your team isn't working hard, but because the architecture wasn't built to scale.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The pattern is this: <strong>revenue plateaus not because of market conditions, but because your business structure can't convert effort into proportional growth.</strong></p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">This isn't a sales problem. It's an architecture problem.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 24px;">In your Revenue Architecture Session, we identify the exact structural changes needed to plug the leaks and unlock the next phase of sustainable growth.</p>`;
+  } else if (auditType === 'corporate') {
+    headline = 'The Discipline Gap in Your Team';
+    bodyParagraphs = `
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Two days ago, your Team Discipline Audit revealed structural gaps that most leaders normalize — not because they don't notice them, but because they've accepted them as "how it is."</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The pattern is this: <strong>standards erode gradually until mediocre execution becomes the baseline.</strong> Meetings lack accountability. Deadlines become suggestions. And the leader compensates by doing more themselves.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">This isn't a motivation problem. It's a discipline architecture problem.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 24px;">In your Discipline Architecture Session, we install the structural standards that make elite execution the default — not the exception.</p>`;
+  } else {
+    bodyParagraphs = `
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Two days ago, your diagnostic revealed a structural pattern that most founders never address — not because they don't see it, but because they've normalized it.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The pattern is this: <strong>every decision, every escalation, every critical conversation runs through you.</strong> Your business hasn't built the structural capacity to operate without your constant presence.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">This isn't a time-management problem. It's an architecture problem.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 24px;">The intervention we deploy addresses this in 4 days. Not with theory — with structural changes to how decisions flow, how accountability is distributed, and how your leadership team operates without you as the bottleneck.</p>`;
+  }
+
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
 <tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:4px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
-  <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">The Pattern Behind Your Score</p>
+  <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${headline}</p>
 </td></tr>
 <tr><td style="padding:40px;">
   <p style="font-family:Georgia,serif;font-size:16px;color:#333;margin:0 0 20px;">${firstName},</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Two days ago, your diagnostic revealed a structural pattern that most founders never address — not because they don't see it, but because they've normalized it.</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The pattern is this: <strong>every decision, every escalation, every critical conversation runs through you.</strong> Your business hasn't built the structural capacity to operate without your constant presence.</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">This isn't a time-management problem. It's an architecture problem.</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 24px;">The intervention we deploy addresses this in 4 days. Not with theory — with structural changes to how decisions flow, how accountability is distributed, and how your leadership team operates without you as the bottleneck.</p>
+  ${bodyParagraphs}
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:10px 0;">
     <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your ${sessionName}</a>
   </td></tr></tbody></table>
@@ -322,23 +392,66 @@ function buildNurtureDay5HTML(payload: Record<string, unknown>): string {
   const calendarId = CALENDAR_MAP[auditType] || 'uebxQpVIy9vX7tR5rL9E';
   const bookingLink = `https://api.leadconnectorhq.com/widget/booking/${calendarId}`;
 
+  let headline = 'What This Is Actually Costing You';
+  let bodyContent = '';
+
+  if (auditType === 'capital_protection') {
+    headline = 'The Cost of Waiting';
+    bodyContent = `
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Five days ago, your Capital Protection Assessment identified structural exposure in your position. Since then, nothing has changed in how your capital is protected.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The cost of inaction in capital protection is not theoretical. It shows up in:</p>
+      <ul style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:2;padding-left:20px;">
+        <li>Evidence that becomes harder to access or verify over time</li>
+        <li>Jurisdictional windows that close as counterparties restructure</li>
+        <li>Legal positions that weaken as precedents shift</li>
+        <li>Capital that remains exposed to risks you've already identified</li>
+      </ul>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:16px 0 24px;">This is the last email in this sequence. Your assessment data is clear. The question is whether you secure your position now or wait until the window narrows further.</p>`;
+  } else if (auditType.includes('profit_leak')) {
+    bodyContent = `
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Five days ago, your Revenue Architecture Scan exposed structural revenue leaks. Since then, nothing has changed in how your business captures value.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The cost of maintaining the current structure isn't always visible on a P&L. It shows up in:</p>
+      <ul style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:2;padding-left:20px;">
+        <li>Revenue that plateaus despite increased effort and spend</li>
+        <li>Margins that compress because growth isn't structurally efficient</li>
+        <li>Opportunities that pass because your team can't execute without you</li>
+        <li>Competitors who scale while you optimize incrementally</li>
+      </ul>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:16px 0 24px;">This is the last email in this sequence. The diagnostic data is clear. The question is whether you act on it or absorb it.</p>`;
+  } else if (auditType === 'corporate') {
+    headline = 'What Weak Discipline Is Costing Your Team';
+    bodyContent = `
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Five days ago, your Team Discipline Audit exposed gaps in operational standards. Since then, nothing has changed in how your team executes.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The cost of weak discipline isn't dramatic. It's incremental. It shows up in:</p>
+      <ul style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:2;padding-left:20px;">
+        <li>Meetings that end without clear ownership or deadlines</li>
+        <li>Standards that exist on paper but not in execution</li>
+        <li>Your best people who lower their standards to match the team</li>
+        <li>Your own energy spent compensating for structural weakness</li>
+      </ul>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:16px 0 24px;">This is the last email in this sequence. The audit data is clear. The question is whether you install the architecture or continue managing around the gaps.</p>`;
+  } else {
+    bodyContent = `
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Five days ago, your diagnostic scan exposed a structural vulnerability. Since then, nothing has changed in how your business operates.</p>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The cost of maintaining the current structure isn't always visible on a P&L. It shows up in:</p>
+      <ul style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:2;padding-left:20px;">
+        <li>Decisions that wait for you instead of being executed autonomously</li>
+        <li>Revenue that plateaus because growth requires your personal bandwidth</li>
+        <li>Key people who leave because they can't lead without your approval</li>
+        <li>Opportunities that expire while you're managing operations</li>
+      </ul>
+      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:16px 0 24px;">This is the last email in this sequence. The diagnostic data is clear. The question is whether you act on it or absorb it.</p>`;
+  }
+
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
 <tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:4px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
-  <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">What This Is Actually Costing You</p>
+  <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${headline}</p>
 </td></tr>
 <tr><td style="padding:40px;">
   <p style="font-family:Georgia,serif;font-size:16px;color:#333;margin:0 0 20px;">${firstName},</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Five days ago, your diagnostic scan exposed a structural vulnerability. Since then, nothing has changed in how your business operates.</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The cost of maintaining the current structure isn't always visible on a P&L. It shows up in:</p>
-  <ul style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:2;padding-left:20px;">
-    <li>Decisions that wait for you instead of being executed autonomously</li>
-    <li>Revenue that plateaus because growth requires your personal bandwidth</li>
-    <li>Key people who leave because they can't lead without your approval</li>
-    <li>Opportunities that expire while you're managing operations</li>
-  </ul>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:16px 0 24px;">This is the last email in this sequence. The diagnostic data is clear. The question is whether you act on it or absorb it.</p>
+  ${bodyContent}
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:10px 0;">
     <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your ${sessionName}</a>
   </td></tr></tbody></table>
@@ -368,10 +481,18 @@ function getBookingSubject(payload: Record<string, unknown>): string {
 }
 
 function getDay2Subject(payload: Record<string, unknown>): string {
+  const auditType = String(payload.audit_type || '');
+  if (auditType === 'capital_protection') return `The Window Is Narrowing, ${payload.first_name}`;
+  if (auditType.includes('profit_leak')) return `The Revenue You're Leaving Behind, ${payload.first_name}`;
+  if (auditType === 'corporate') return `The Discipline Gap in Your Team, ${payload.first_name}`;
   return `The Pattern Behind Your Score, ${payload.first_name}`;
 }
 
-function getDay5Subject(): string {
+function getDay5Subject(payload?: Record<string, unknown>): string {
+  const auditType = String(payload?.audit_type || '');
+  if (auditType === 'capital_protection') return 'The Cost of Waiting';
+  if (auditType.includes('profit_leak')) return 'What This Is Actually Costing You';
+  if (auditType === 'corporate') return 'What Weak Discipline Is Costing Your Team';
   return 'What This Is Actually Costing You';
 }
 
@@ -523,7 +644,7 @@ Deno.serve(async (req) => {
         contact_id: contactId,
         contact_email: String(payload.email),
         email_type: 'nurture_day5',
-        subject: getDay5Subject(),
+        subject: getDay5Subject(payload),
         html_body: buildNurtureDay5HTML(payload),
         send_at: day5SendAt.toISOString(),
         scan_type: auditType,
