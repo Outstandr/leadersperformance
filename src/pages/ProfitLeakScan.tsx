@@ -147,7 +147,7 @@ const ProfitLeakScan = () => {
           {step === "intro" && <ProfitLeakIntroStep onStart={() => setStep("revenue")} />}
           {step === "revenue" && <ProfitLeakRevenueStep onSelect={handleRevenueSelect} />}
           {step === "questions" && (
-            <ProfitLeakQuestionStep currentIndex={qIndex} onAnswer={handleAnswer} />
+            <ProfitLeakQuestionStep currentIndex={qIndex} onAnswer={handleAnswer} onBack={handleBack} />
           )}
           {step === "gate" && (
             <ScanGateStep onSubmit={handleGateSubmit} isSubmitting={isSubmitting} />
