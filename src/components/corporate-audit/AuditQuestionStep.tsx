@@ -2,12 +2,14 @@ import { useEffect, useRef } from "react";
 import { Progress } from "@/components/ui/progress";
 import { AuditQuestion } from "@/lib/corporateAuditQuestions";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { ArrowLeft } from "lucide-react";
 
 interface AuditQuestionStepProps {
   question: AuditQuestion;
   currentIndex: number;
   totalQuestions: number;
   onAnswer: (questionId: string, value: number) => void;
+  onBack?: () => void;
 }
 
 const optionLetters = ["A", "B", "C", "D"];
@@ -17,6 +19,7 @@ export function AuditQuestionStep({
   currentIndex,
   totalQuestions,
   onAnswer,
+  onBack,
 }: AuditQuestionStepProps) {
   const { t } = useLanguage();
   const progress = ((currentIndex + 1) / totalQuestions) * 100;
@@ -91,9 +94,16 @@ export function AuditQuestionStep({
           ))}
         </div>
 
-        <p className="text-center text-xs text-foreground/30 mt-8 uppercase tracking-wide">
-          {t("audit.chooseNoBack")}
-        </p>
+        {/* Back button */}
+        {currentIndex > 0 && onBack && (
+          <button
+            onClick={onBack}
+            className="flex items-center gap-2 mt-6 text-sm text-foreground/40 hover:text-foreground/60 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            {t("audit.question") === "Vraag" ? "Vorige vraag" : "Previous question"}
+          </button>
+        )}
       </div>
     </div>
   );
