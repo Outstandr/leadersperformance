@@ -37,6 +37,7 @@ const SCORE_FIELD_MAP: Record<string, string> = {
 function ghlHeaders() {
   const apiKey = Deno.env.get('GHL_API_KEY');
   if (!apiKey) throw new Error('GHL_API_KEY not configured');
+  console.log('GHL_API_KEY prefix:', apiKey.substring(0, 10));
   return {
     Authorization: `Bearer ${apiKey}`,
     'Content-Type': 'application/json',
