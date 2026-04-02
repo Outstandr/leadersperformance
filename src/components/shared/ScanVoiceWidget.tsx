@@ -1,12 +1,13 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
-import { Mic, Volume2, Loader2, Send, MessageSquare, X } from "lucide-react";
+import { Mic, Loader2, Send, MessageSquare, X } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ScanBookingCalendar, ScanBookingUserInfo, BookingDetails } from "./ScanBookingCalendar";
 import { supabase } from "@/integrations/supabase/client";
 
 const DEFAULT_CALENDAR_ID = "Se3SwkYLXfuW52O0F4GX";
 const WEBHOOK_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
+const AUTO_START_DELAY_MS = 1200;
 
 interface ScanVoiceWidgetProps {
   mode: "pressure_scan" | "corporate_audit" | "burnout_scan" | "profit_leak" | "capital_protection";
@@ -118,6 +119,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     onConnect: () => {
       console.log("Daisy connected (scan widget)");
       setIsConnecting(false);
+      setShowModeChoice(false);
       daisyEverConnected.current = true;
     },
     onDisconnect: () => {
@@ -147,6 +149,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     onError: (error: any) => {
       console.error("Daisy error:", error);
       setIsConnecting(false);
+      setShowModeChoice(true);
     },
   });
 
@@ -157,10 +160,14 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     }
   }, [transcript]);
 
-  const startConversation = useCallback(async (textOnly = false) => {
+  const startConversation = useCallback(async (textOnly = false, autoTriggered = false) => {
     if (isConnecting || conversation.status === "connected") return;
     setIsConnecting(true);
     setIsTextMode(textOnly);
+    if (!textOnly) {
+      setShowModeChoice(false);
+    }
+
     try {
       if (!textOnly) {
         await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -211,8 +218,22 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     } catch (err) {
       console.error("Failed to start Daisy:", err);
       setIsConnecting(false);
+      if (autoTriggered || !textOnly) {
+        setShowModeChoice(true);
+      }
     }
   }, [conversation, mode, contextPayload, isConnecting]);
+
+  useEffect(() => {
+    if (hasAutoStarted.current || isConnecting || bookingConfirmed || conversation.status === "connected") return;
+
+    const timer = setTimeout(() => {
+      hasAutoStarted.current = true;
+      startConversation(false, true);
+    }, AUTO_START_DELAY_MS);
+
+    return () => clearTimeout(timer);
+  }, [bookingConfirmed, conversation.status, isConnecting, startConversation]);
 
   const handleSendText = useCallback(() => {
     const msg = textInput.trim();
