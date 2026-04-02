@@ -185,3 +185,4 @@ export function ScanGateStep({ onSubmit, isSubmitting, onBack }: ScanGateStepPro
       </form>
     </div>
   );
+}
