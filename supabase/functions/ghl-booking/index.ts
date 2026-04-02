@@ -5,6 +5,9 @@ const corsHeaders = {
 
 const GHL_BASE = 'https://services.leadconnectorhq.com';
 
+const PIPELINE_ID = 'qFBbAlnrhlBtkM5r9VEZ';
+const STAGE_CALL_BOOKED = 'a062e213-fbef-4a54-a11a-18751f0b3db3';
+
 function ghlHeaders() {
   const apiKey = Deno.env.get('GHL_API_KEY');
   if (!apiKey) throw new Error('GHL_API_KEY not configured');
