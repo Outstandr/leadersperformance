@@ -204,7 +204,8 @@ async function bookAppointment(body: {
   try {
     const oppBody = {
       pipelineId: PIPELINE_ID,
-      stageId: STAGE_CALL_BOOKED,
+      locationId,
+      pipelineStageId: STAGE_CALL_BOOKED,
       contactId,
       name: `${bookingType || 'BOOKING'} - ${firstName} ${lastName}`,
       status: 'open',

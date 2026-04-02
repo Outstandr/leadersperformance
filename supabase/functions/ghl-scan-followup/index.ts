@@ -37,7 +37,6 @@ const SCORE_FIELD_MAP: Record<string, string> = {
 function ghlHeaders() {
   const apiKey = Deno.env.get('GHL_API_KEY');
   if (!apiKey) throw new Error('GHL_API_KEY not configured');
-  console.log('GHL_API_KEY length:', apiKey.length, 'last4:', apiKey.slice(-4));
   return {
     Authorization: `Bearer ${apiKey}`,
     'Content-Type': 'application/json',
@@ -83,18 +82,15 @@ async function upsertContact(payload: Record<string, unknown>) {
   };
   if (customFields.length > 0) body.customFields = customFields;
 
-  const bodyStr = JSON.stringify(body);
-  console.log('Upsert request body:', bodyStr.slice(0, 500));
+  console.log('Upserting contact:', String(payload.email));
 
   const res = await fetch(`${GHL_BASE}/contacts/upsert`, {
     method: 'POST',
     headers: ghlHeaders(),
-    body: bodyStr,
+    body: JSON.stringify(body),
   });
-  const respText = await res.text();
-  console.log('Upsert response:', res.status, respText.slice(0, 500));
-  if (!res.ok) throw new Error(`Contact upsert failed: ${respText.slice(0, 300)}`);
-  const data = JSON.parse(respText);
+  const data = await res.json();
+  if (!res.ok) throw new Error(`Contact upsert failed: ${JSON.stringify(data).slice(0, 300)}`);
 
   const contactId = data.contact?.id;
   if (!contactId) throw new Error('No contact ID returned');
@@ -103,6 +99,7 @@ async function upsertContact(payload: Record<string, unknown>) {
 }
 
 async function createOpportunity(contactId: string, payload: Record<string, unknown>) {
+  const locationId = Deno.env.get('GHL_LOCATION_ID');
   const booked = payload.booked === true;
   const stageId = booked ? STAGE_CALL_BOOKED : STAGE_NEW_LEAD;
   const auditType = String(payload.audit_type || 'scan');
@@ -110,7 +107,8 @@ async function createOpportunity(contactId: string, payload: Record<string, unkn
 
   const body = {
     pipelineId: PIPELINE_ID,
-    stageId,
+    locationId,
+    pipelineStageId: stageId,
     contactId,
     name,
     status: 'open',
