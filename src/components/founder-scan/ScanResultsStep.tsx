@@ -190,7 +190,7 @@ export function ScanResultsStep({ userInfo, scores, onClose }: ScanResultsStepPr
         {/* Close */}
         <div className="text-center">
           <Button variant="outline" onClick={onClose} className="border-foreground/20 hover:bg-foreground/5 text-foreground/70 hover:text-foreground px-8 py-3">
-            {lang === "en" ? "Return to Homepage" : "Terug naar startpagina"}
+            {language === "en" ? "Return to Homepage" : "Terug naar startpagina"}
           </Button>
         </div>
       </div>
