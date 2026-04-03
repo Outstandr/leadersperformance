@@ -214,8 +214,8 @@ export function ProfitLeakResultsStep({ result, userInfo, onClose, responses }: 
         ) : null}
 
         <div className="text-center pb-4">
-          <Button variant="ghost" onClick={onClose} className="text-foreground/40 hover:text-foreground/70">
-            {lang === "nl" ? "Terug naar startpagina" : "Back to home"}
+          <Button variant="outline" onClick={onClose} className="border-foreground/20 hover:bg-foreground/5 text-foreground/70 hover:text-foreground px-8 py-3">
+            {lang === "nl" ? "Terug naar startpagina" : "Return to Homepage"}
           </Button>
         </div>
       </div>
