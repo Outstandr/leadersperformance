@@ -176,8 +176,8 @@ export function AuditResultsStep({ userInfo, scores, insights, onClose, response
         )}
 
         <div className="text-center">
-          <Button variant="ghost" onClick={onClose} className="text-foreground/40 hover:text-foreground/60">
-            {t.close}
+          <Button variant="outline" onClick={onClose} className="border-foreground/20 hover:bg-foreground/5 text-foreground/70 hover:text-foreground px-8 py-3">
+            {lang === "en" ? "Return to Homepage" : "Terug naar startpagina"}
           </Button>
         </div>
       </div>
