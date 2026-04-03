@@ -1,10 +1,9 @@
 import { useState, useCallback } from "react";
 import { CapitalProtectionDialog } from "@/components/capital-protection/CapitalProtectionDialog";
 import { CPResultsStep } from "@/components/capital-protection/CPResultsStep";
-import { ScanVoiceWidget } from "@/components/shared/ScanVoiceWidget";
+import { CPBookingCalendar } from "@/components/capital-protection/CPBookingCalendar";
 import { CPResult } from "@/lib/capitalProtectionScoring";
 import { CPUserInfo } from "@/components/capital-protection/CPUserInfoStep";
-import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
 interface AIReport {
   situation_summary: string;
@@ -25,7 +24,7 @@ interface ResultsData {
 const CapitalProtection = () => {
   const [dialogOpen, setDialogOpen] = useState(true);
   const [resultsData, setResultsData] = useState<ResultsData | null>(null);
-  const { isSpeaking } = useVoiceAgent();
+  const [bookingComplete, setBookingComplete] = useState(false);
 
   const handleResultsReady = useCallback((data: ResultsData) => {
     setResultsData(data);
@@ -57,11 +56,7 @@ const CapitalProtection = () => {
       {resultsData && (
         <div className="min-h-screen flex flex-col">
           <div className="flex-1 flex items-start justify-center py-6 sm:py-10 px-4">
-            <div className={`w-full max-w-2xl bg-white border rounded-lg shadow-xl transition-all duration-300 ${
-              isSpeaking
-                ? "border-2 border-lioner-gold/60 animate-border-pulse shadow-[0_0_30px_hsl(var(--lioner-gold)/0.2)]"
-                : "border-foreground/10"
-            }`}>
+            <div className="w-full max-w-2xl bg-white border border-foreground/10 rounded-lg shadow-xl">
               <CPResultsStep
                 userInfo={resultsData.userInfo}
                 result={resultsData.result}
@@ -69,54 +64,28 @@ const CapitalProtection = () => {
                 isLoadingAI={resultsData.isLoadingAI}
                 onClose={handleClose}
               />
+
+              {/* Booking calendar — shown after AI report loads */}
+              {!resultsData.isLoadingAI && !bookingComplete && (
+                <div className="px-4 sm:px-6 md:px-10 pb-6 sm:pb-10">
+                  <CPBookingCalendar
+                    userInfo={resultsData.userInfo}
+                    onBookingComplete={() => setBookingComplete(true)}
+                    onCancel={handleClose}
+                  />
+                </div>
+              )}
+
+              {bookingComplete && (
+                <div className="px-4 sm:px-6 md:px-10 pb-6 sm:pb-10 text-center space-y-2">
+                  <div className="p-5 border border-green-500/30 bg-green-500/10 rounded-lg">
+                    <p className="text-green-600 font-bold text-sm uppercase tracking-wider">Booking Confirmed</p>
+                    <p className="text-foreground/60 text-xs mt-1">You will receive a confirmation email shortly.</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-
-          {/* Embedded Daisy voice widget — always visible below report */}
-          {!resultsData.isLoadingAI && (
-            <div className="sticky bottom-0 z-50">
-              <ScanVoiceWidget
-                mode="capital_protection"
-                userInfo={{
-                  fullName: resultsData.userInfo.fullName,
-                  email: resultsData.userInfo.email,
-                  phone: resultsData.userInfo.phone,
-                }}
-                contextPayload={{
-                  fullName: resultsData.userInfo.fullName,
-                  company: resultsData.userInfo.company,
-                  role: resultsData.userInfo.role,
-                  country: resultsData.userInfo.country,
-                  overallScore: resultsData.result.overallScore,
-                  overallColor: resultsData.result.overallColor,
-                  recoveryPotential: resultsData.result.recoveryPotential,
-                  headline: resultsData.result.headline.en,
-                  summary: resultsData.aiReport?.situation_summary || resultsData.result.body.en,
-                  nextStep: resultsData.aiReport?.recommended_next_step || resultsData.result.nextStep.en,
-                  sections: resultsData.result.sections.map((section) => ({
-                    label: section.label.en,
-                    score: section.score,
-                    color: section.color,
-                  })),
-                  aiReport: resultsData.aiReport,
-                }}
-                bookingType="Capital Protection Session"
-                calendarId="dxDvJ7TY6uSjcl1loyov"
-                webhookPayload={{
-                  first_name: resultsData.userInfo.fullName.trim().split(/\s+/)[0] || "",
-                  last_name: resultsData.userInfo.fullName.trim().split(/\s+/).slice(1).join(" ") || "",
-                  email: resultsData.userInfo.email,
-                  phone: resultsData.userInfo.phone,
-                  company: resultsData.userInfo.company,
-                  audit_type: "capital_protection",
-                  recovery_potential: resultsData.result.recoveryPotential,
-                  risk_level: resultsData.result.headline.en,
-                  overall_score: resultsData.result.overallScore,
-                  overall_color: resultsData.result.overallColor,
-                }}
-              />
-            </div>
-          )}
         </div>
       )}
 
