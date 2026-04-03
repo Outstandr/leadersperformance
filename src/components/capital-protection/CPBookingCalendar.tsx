@@ -31,8 +31,9 @@ export function CPBookingCalendar({ userInfo, onBookingComplete, onCancel }: CPB
   const [error, setError] = useState<string | null>(null);
   const [visibleMonth, setVisibleMonth] = useState<Date>(new Date());
 
-  const { bookedSlots24h, isLoading: slotsLoading } = useBookedSlots(selectedDate ?? null);
-  const { fullyBookedDates } = useFullyBookedDates(visibleMonth);
+  const CALENDAR_ID = "dxDvJ7TY6uSjcl1loyov";
+  const { bookedSlots24h, isLoading: slotsLoading } = useBookedSlots(selectedDate ?? null, CALENDAR_ID);
+  const { fullyBookedDates } = useFullyBookedDates(visibleMonth, CALENDAR_ID);
 
   const isWeekend = (date: Date) => {
     const day = date.getDay();
@@ -73,6 +74,7 @@ export function CPBookingCalendar({ userInfo, onBookingComplete, onCancel }: CPB
             phone: userInfo.phone,
             dateTime,
             bookingType: "Capital Protection",
+            calendarId: "dxDvJ7TY6uSjcl1loyov",
           }),
         }
       );
