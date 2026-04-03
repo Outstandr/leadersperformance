@@ -139,7 +139,7 @@ export function CPResultsStep({ userInfo, result, aiReport, isLoadingAI, onClose
           <p className="text-sm text-red-100/80 leading-relaxed">{result.primaryBottleneck.impact[language]}</p>
         </div>
 
-        {/* NOTE: Daisy is rendered externally via CPVoiceWidget in CapitalProtection.tsx */}
+        {/* Booking calendar is rendered externally in CapitalProtection.tsx */}
 
         <div className="text-center pt-2">
           <ChevronDown className="w-5 h-5 text-foreground/20 mx-auto animate-bounce" />
