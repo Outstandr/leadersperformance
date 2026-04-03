@@ -1,21 +1,19 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useConversation } from "@elevenlabs/react";
-import { Mic, Volume2, Loader2, Send, MessageSquare, X } from "lucide-react";
+import { Mic, Volume2, Loader2, Send, MessageSquare, X, MicOff } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ScanBookingCalendar, ScanBookingUserInfo, BookingDetails } from "./ScanBookingCalendar";
 import { supabase } from "@/integrations/supabase/client";
 
 const DEFAULT_CALENDAR_ID = "Se3SwkYLXfuW52O0F4GX";
-const WEBHOOK_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
+const WEBHOOK_TIMEOUT_MS = 10 * 60 * 1000;
 
 interface ScanVoiceWidgetProps {
   mode: "pressure_scan" | "corporate_audit" | "burnout_scan" | "profit_leak" | "capital_protection";
   userInfo: ScanBookingUserInfo;
   contextPayload: Record<string, unknown>;
   bookingType: string;
-  /** GHL webhook payload to send after Daisy ends or timeout */
   webhookPayload?: Record<string, unknown>;
-  /** Override calendar ID (defaults to Se3SwkYLXfuW52O0F4GX) */
   calendarId?: string;
 }
 
@@ -29,9 +27,8 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   const [transcript, setTranscript] = useState<Array<{ role: "user" | "agent"; text: string }>>([]);
   const [textInput, setTextInput] = useState("");
   const [isTextMode, setIsTextMode] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
   const transcriptRef = useRef<HTMLDivElement>(null);
-  const hasAutoStarted = useRef(false);
-  const [showModeChoice, setShowModeChoice] = useState(false);
   const webhookFired = useRef(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const daisyEverConnected = useRef(false);
@@ -43,65 +40,38 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   const fireWebhook = useCallback(() => {
     if (webhookFired.current || !webhookPayload) return;
     webhookFired.current = true;
-
     const currentBooking = bookingDetailsRef.current;
-
-    // Only fire if user actually booked — results email is already sent on scan completion
     if (!currentBooking) {
       console.log("No booking — skipping webhook (results email already sent)");
       return;
     }
-
-    const payload: Record<string, unknown> = {
-      ...webhookPayload,
-      booking_date: currentBooking.date,
-      booking_time: currentBooking.time,
-      booked: true,
-      booking_update: true, // tells edge function this is a booking update, not initial results
-    };
-
-    console.log("Booking update already handled by ghl-booking", JSON.stringify({ audit_type: payload.audit_type, booked: true, booking_date: currentBooking.date, booking_time: currentBooking.time }));
+    console.log("Booking update already handled by ghl-booking", JSON.stringify({ audit_type: (webhookPayload as any).audit_type, booked: true }));
   }, [webhookPayload]);
 
-  useEffect(() => {
-    showCalendarRef.current = showCalendar;
-  }, [showCalendar]);
+  useEffect(() => { showCalendarRef.current = showCalendar; }, [showCalendar]);
+  useEffect(() => { bookingConfirmedRef.current = bookingConfirmed; }, [bookingConfirmed]);
 
-  useEffect(() => {
-    bookingConfirmedRef.current = bookingConfirmed;
-  }, [bookingConfirmed]);
-
-  // Start 10-min timeout on mount
   useEffect(() => {
     if (!webhookPayload) return;
-
     const scheduleWebhookCheck = (delay: number) => {
       timeoutRef.current = setTimeout(() => {
         if (webhookFired.current) return;
-
         if (showCalendarRef.current && !bookingConfirmedRef.current) {
-          console.log("Webhook timeout reached while booking is in progress — retrying shortly");
           waitingForBookingOutcomeRef.current = true;
           scheduleWebhookCheck(60 * 1000);
           return;
         }
-
-        console.log("10-min timeout — firing webhook without Daisy interaction");
         fireWebhook();
       }, delay);
     };
-
     scheduleWebhookCheck(WEBHOOK_TIMEOUT_MS);
-
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      // Fire webhook on unmount if not already fired (user closed dialog)
-      if (!webhookFired.current && webhookPayload) {
-        fireWebhook();
-      }
+      if (!webhookFired.current && webhookPayload) fireWebhook();
     };
   }, [webhookPayload, fireWebhook]);
 
+  // -- Conversation hook --
   const conversation = useConversation({
     clientTools: {
       show_calendar: async () => {
@@ -116,25 +86,24 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     },
     onDisconnect: () => {
       console.log("Daisy disconnected (scan widget)");
-      // Fire webhook when Daisy call ends
       if (daisyEverConnected.current) {
-        // Small delay to allow booking state to settle
         setTimeout(() => {
           if (showCalendarRef.current && !bookingConfirmedRef.current) {
-            console.log("Daisy disconnected while booking calendar is open — waiting for booking outcome");
             waitingForBookingOutcomeRef.current = true;
             return;
           }
-
           fireWebhook();
         }, 500);
       }
     },
     onMessage: (message: any) => {
-      if (message.type === "user_transcript" && message.user_transcription_event?.user_transcript) {
+      // Handle all message formats from ElevenLabs
+      if (message?.message && message?.source) {
+        const role = message.source === "user" ? "user" as const : "agent" as const;
+        setTranscript(prev => [...prev, { role, text: message.message }]);
+      } else if (message.type === "user_transcript" && message.user_transcription_event?.user_transcript) {
         setTranscript(prev => [...prev, { role: "user", text: message.user_transcription_event.user_transcript }]);
-      }
-      if (message.type === "agent_response" && message.agent_response_event?.agent_response) {
+      } else if (message.type === "agent_response" && message.agent_response_event?.agent_response) {
         setTranscript(prev => [...prev, { role: "agent", text: message.agent_response_event.agent_response }]);
       }
     },
@@ -151,18 +120,21 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     }
   }, [transcript]);
 
-  const startConversation = useCallback(async (textOnly = false) => {
+  const startConversation = useCallback(async (textOnly: boolean) => {
     if (isConnecting || conversation.status === "connected") return;
     setIsConnecting(true);
     setIsTextMode(textOnly);
+    setTranscript([]);
+
     try {
+      // Only request mic for voice mode
       if (!textOnly) {
         await navigator.mediaDevices.getUserMedia({ audio: true });
+        console.log("[Daisy] Microphone permission granted");
       }
 
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
       const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-
       const bodyKey = mode === "pressure_scan" ? "scanContext" : mode === "burnout_scan" ? "burnoutContext" : mode === "profit_leak" ? "profitLeakContext" : mode === "capital_protection" ? "context" : "auditContext";
 
       const res = await fetch(
@@ -174,18 +146,16 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
             apikey: anonKey,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            mode,
-            [bodyKey]: contextPayload,
-          }),
+          body: JSON.stringify({ mode, [bodyKey]: contextPayload }),
         }
       );
 
       if (!res.ok) throw new Error("Failed to get voice credentials");
-
       const data = await res.json();
 
+      // Build session options — VOICE and TEXT are completely separate
       const sessionOpts: any = {};
+
       if (data.signed_url) {
         sessionOpts.signedUrl = data.signed_url;
       } else if (data.token) {
@@ -195,13 +165,20 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
         throw new Error("No credentials received");
       }
 
+      // TEXT MODE: nest textOnly under overrides.conversation
       if (textOnly) {
-        sessionOpts.textOnly = true;
+        sessionOpts.overrides = {
+          conversation: { textOnly: true },
+        };
       }
 
+      console.log("[Daisy] Starting session, textOnly:", textOnly);
       await conversation.startSession(sessionOpts);
-    } catch (err) {
+    } catch (err: any) {
       console.error("Failed to start Daisy:", err);
+      if (err.name === "NotAllowedError") {
+        console.error("[Daisy] Microphone permission denied");
+      }
       setIsConnecting(false);
     }
   }, [conversation, mode, contextPayload, isConnecting]);
@@ -214,6 +191,16 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     setTextInput("");
   }, [conversation, textInput]);
 
+  const toggleMute = useCallback(async () => {
+    const newVol = isMuted ? 1 : 0;
+    await conversation.setVolume({ volume: newVol });
+    setIsMuted(!isMuted);
+  }, [conversation, isMuted]);
+
+  const handleEndConversation = useCallback(async () => {
+    try { await conversation.endSession(); } catch (e) { console.error(e); }
+  }, [conversation]);
+
   const handleBookingComplete = useCallback((details: BookingDetails) => {
     setBookingDetails(details);
     bookingDetailsRef.current = details;
@@ -223,10 +210,9 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
     showCalendarRef.current = false;
     waitingForBookingOutcomeRef.current = false;
     fireWebhook();
-
     if (conversation.status === "connected") {
       conversation.sendContextualUpdate(
-        "The user has just successfully booked a session with Lionel. Congratulate them warmly, then ask if there is anything else you can help them with. Do NOT end the conversation — let the user decide when they are done."
+        "The user has just successfully booked a session with Lionel. Congratulate them warmly, then ask if there is anything else you can help them with."
       );
     }
   }, [conversation, fireWebhook]);
@@ -234,7 +220,6 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   const handleCalendarCancel = useCallback(() => {
     setShowCalendar(false);
     showCalendarRef.current = false;
-
     if (waitingForBookingOutcomeRef.current && !webhookFired.current) {
       waitingForBookingOutcomeRef.current = false;
       fireWebhook();
@@ -242,49 +227,41 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
   }, [fireWebhook]);
 
   const isConnected = conversation.status === "connected";
-  const isWaitingForAgent = isConnected && isTextMode && transcript.length === 0;
+  const isIdle = !isConnected && !isConnecting;
 
   return (
     <div className="border-t border-foreground/10 bg-background">
       <div className="max-w-2xl mx-auto px-4 py-4 space-y-3">
-        {/* Mode selection (not connected, not connecting) */}
-        {!isConnected && !isConnecting && !showModeChoice && (
-          <button
-            onClick={() => setShowModeChoice(true)}
-            className="w-full flex items-center justify-center gap-3 py-4 px-6 bg-lioner-gold/10 border border-lioner-gold/30 hover:bg-lioner-gold/20 transition-colors rounded-lg"
-          >
-            <div className="w-10 h-10 rounded-full bg-lioner-gold/20 flex items-center justify-center">
-              <MessageSquare className="w-5 h-5 text-lioner-gold" />
-            </div>
-            <p className="text-sm font-semibold text-foreground">
-              {language === "nl" ? "Spreek met een adviseur" : "Speak to an advisor"}
-            </p>
-          </button>
-        )}
 
-        {!isConnected && !isConnecting && showModeChoice && (
+        {/* ── IDLE: Two separate buttons ── */}
+        {isIdle && (
           <div className="space-y-2">
             <button
-              onClick={() => { setShowModeChoice(false); startConversation(false); }}
-              className="w-full flex items-center justify-center gap-3 py-3 px-6 bg-lioner-gold/10 border border-lioner-gold/30 hover:bg-lioner-gold/20 transition-colors rounded-lg"
+              onClick={() => startConversation(false)}
+              className="w-full flex items-center justify-center gap-3 py-4 px-6 bg-lioner-gold/10 border border-lioner-gold/30 hover:bg-lioner-gold/20 transition-colors rounded-lg"
             >
-              <Mic className="w-4 h-4 text-lioner-gold" />
-              <p className="text-sm font-medium text-foreground">
-                {language === "nl" ? "Gebruik uw microfoon" : "Use your microphone"}
+              <div className="w-10 h-10 rounded-full bg-lioner-gold/20 flex items-center justify-center">
+                <Mic className="w-5 h-5 text-lioner-gold" />
+              </div>
+              <p className="text-sm font-semibold text-foreground">
+                {language === "nl" ? "Spreek met Daisy" : "Speak to Daisy"}
               </p>
             </button>
             <button
-              onClick={() => { setShowModeChoice(false); startConversation(true); }}
+              onClick={() => startConversation(true)}
               className="w-full flex items-center justify-center gap-3 py-3 px-6 bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-colors rounded-lg"
             >
-              <MessageSquare className="w-4 h-4 text-lioner-gold" />
-              <p className="text-sm font-medium text-foreground">
-                {language === "nl" ? "Typ uw berichten" : "Type your messages"}
+              <div className="w-8 h-8 rounded-full bg-foreground/10 flex items-center justify-center">
+                <MessageSquare className="w-4 h-4 text-foreground/60" />
+              </div>
+              <p className="text-sm font-medium text-foreground/70">
+                {language === "nl" ? "Chat met Daisy" : "Chat with Daisy"}
               </p>
             </button>
           </div>
         )}
 
+        {/* ── CONNECTING ── */}
         {isConnecting && (
           <div className="flex items-center justify-center gap-3 py-6">
             <Loader2 className="w-5 h-5 text-lioner-gold animate-spin" />
@@ -294,27 +271,27 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
           </div>
         )}
 
-        {isConnected && (
+        {/* ── CONNECTED: VOICE MODE ── */}
+        {isConnected && !isTextMode && (
           <div className="flex flex-col rounded-xl border border-foreground/10 overflow-hidden bg-foreground/[0.02]">
-            {/* Chat header */}
+            {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-foreground/10 bg-foreground/5">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-lioner-gold/20 flex items-center justify-center">
-                  <MessageSquare className="w-4 h-4 text-lioner-gold" />
+                  <Mic className="w-4 h-4 text-lioner-gold" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Daisy</p>
                   <p className="text-[10px] text-foreground/40">
-                    {isTextMode
-                      ? language === "nl" ? "Founder Advisor • Chat" : "Founder Advisor • Chat"
-                      : conversation.isSpeaking
-                        ? language === "nl" ? "Spreekt…" : "Speaking…"
-                        : language === "nl" ? "Luistert…" : "Listening…"}
+                    {conversation.isSpeaking
+                      ? language === "nl" ? "Spreekt…" : "Speaking…"
+                      : language === "nl" ? "Luistert…" : "Listening…"}
                   </p>
                 </div>
               </div>
+              {/* Audio visualizer */}
               <div className="flex items-center gap-2">
-                {!isTextMode && conversation.isSpeaking && (
+                {conversation.isSpeaking && (
                   <div className="flex items-center gap-0.5">
                     {[1, 2, 3, 4].map((i) => (
                       <div
@@ -325,10 +302,8 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
                     ))}
                   </div>
                 )}
-              <button
-                  onClick={async () => {
-                    try { await conversation.endSession(); } catch (e) { console.error(e); }
-                  }}
+                <button
+                  onClick={handleEndConversation}
                   className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all bg-red-500/10 hover:bg-red-500/20 border border-red-500/20"
                   title={language === "nl" ? "Stop gesprek" : "End conversation"}
                 >
@@ -337,10 +312,77 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
               </div>
             </div>
 
-            {/* Chat messages area */}
+            {/* Voice transcript (read-only) */}
+            {transcript.length > 0 && (
+              <div ref={transcriptRef} className="max-h-48 overflow-y-auto px-4 py-3 space-y-2 scrollbar-thin">
+                {transcript.map((msg, i) => (
+                  <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                    {msg.role === "agent" && (
+                      <div className="w-6 h-6 rounded-full bg-lioner-gold/20 flex items-center justify-center shrink-0 mt-0.5 mr-2">
+                        <Mic className="w-3 h-3 text-lioner-gold" />
+                      </div>
+                    )}
+                    <div className={`px-3 py-2 rounded-2xl max-w-[85%] text-sm leading-relaxed ${
+                      msg.role === "user"
+                        ? "bg-lioner-gold/15 border border-lioner-gold/20 text-foreground rounded-tr-sm"
+                        : "bg-foreground/5 border border-foreground/10 text-foreground/80 rounded-tl-sm"
+                    }`}>
+                      {msg.text}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Voice controls — NO text input here */}
+            <div className="flex gap-2 px-3 py-3 border-t border-foreground/10 bg-foreground/[0.03]">
+              <button
+                onClick={toggleMute}
+                className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all border ${
+                  isMuted
+                    ? "bg-red-500/10 border-red-500/30 text-red-400"
+                    : "bg-foreground/5 border-foreground/10 text-foreground/70 hover:bg-foreground/10"
+                }`}
+              >
+                {isMuted ? <MicOff className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                {isMuted ? (language === "nl" ? "Unmute" : "Unmute") : (language === "nl" ? "Mute" : "Mute")}
+              </button>
+              <button
+                onClick={handleEndConversation}
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 transition-all"
+              >
+                <X className="w-4 h-4" />
+                {language === "nl" ? "Stop" : "End"}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ── CONNECTED: TEXT MODE ── */}
+        {isConnected && isTextMode && (
+          <div className="flex flex-col rounded-xl border border-foreground/10 overflow-hidden bg-foreground/[0.02]">
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-foreground/10 bg-foreground/5">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-lioner-gold/20 flex items-center justify-center">
+                  <MessageSquare className="w-4 h-4 text-lioner-gold" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">Daisy</p>
+                  <p className="text-[10px] text-foreground/40">Founder Advisor • Chat</p>
+                </div>
+              </div>
+              <button
+                onClick={handleEndConversation}
+                className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all bg-red-500/10 hover:bg-red-500/20 border border-red-500/20"
+              >
+                <X className="w-3.5 h-3.5 text-red-400" />
+              </button>
+            </div>
+
+            {/* Chat messages */}
             <div ref={transcriptRef} className="h-72 overflow-y-auto px-4 py-3 space-y-3 scrollbar-thin">
-              {/* Waiting for Daisy's first message */}
-              {isWaitingForAgent && (
+              {transcript.length === 0 && (
                 <div className="flex items-start gap-2">
                   <div className="w-6 h-6 rounded-full bg-lioner-gold/20 flex items-center justify-center shrink-0 mt-0.5">
                     <MessageSquare className="w-3 h-3 text-lioner-gold" />
@@ -354,7 +396,6 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
                   </div>
                 </div>
               )}
-
               {transcript.map((msg, i) => (
                 <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   {msg.role === "agent" && (
@@ -362,20 +403,18 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
                       <MessageSquare className="w-3 h-3 text-lioner-gold" />
                     </div>
                   )}
-                  <div
-                    className={`px-3 py-2 rounded-2xl max-w-[85%] text-sm leading-relaxed ${
-                      msg.role === "user"
-                        ? "bg-lioner-gold/15 border border-lioner-gold/20 text-foreground rounded-tr-sm"
-                        : "bg-foreground/5 border border-foreground/10 text-foreground/80 rounded-tl-sm"
-                    }`}
-                  >
+                  <div className={`px-3 py-2 rounded-2xl max-w-[85%] text-sm leading-relaxed ${
+                    msg.role === "user"
+                      ? "bg-lioner-gold/15 border border-lioner-gold/20 text-foreground rounded-tr-sm"
+                      : "bg-foreground/5 border border-foreground/10 text-foreground/80 rounded-tl-sm"
+                  }`}>
                     {msg.text}
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Text input */}
+            {/* Text input — ONLY in text mode */}
             <div className="flex gap-2 px-3 py-3 border-t border-foreground/10 bg-foreground/[0.03]">
               <input
                 type="text"
@@ -384,6 +423,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
                 onKeyDown={(e) => { if (e.key === "Enter") handleSendText(); }}
                 placeholder={language === "nl" ? "Typ een bericht..." : "Type a message..."}
                 className="flex-1 px-4 py-2.5 rounded-full bg-foreground/5 border border-foreground/10 text-foreground text-sm placeholder:text-foreground/30 focus:outline-none focus:border-lioner-gold/50"
+                autoFocus
               />
               <button
                 onClick={handleSendText}
@@ -409,11 +449,11 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
 
         {bookingConfirmed && (
           <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-center">
-            <p className="text-sm font-semibold text-green-600">
-              {language === "nl" ? "Afspraak bevestigd ✓" : "Appointment confirmed ✓"}
+            <p className="text-sm font-semibold text-foreground">
+              {language === "nl" ? "Sessie ingepland" : "Session Booked"}
             </p>
-            <p className="text-xs text-foreground/50 mt-1">
-              {language === "nl" ? "U ontvangt een bevestiging per e-mail." : "You'll receive a confirmation email."}
+            <p className="text-xs text-foreground/60 mt-1">
+              {language === "nl" ? "Je ontvangt een bevestiging per e-mail." : "You'll receive a confirmation email shortly."}
             </p>
           </div>
         )}
