@@ -569,24 +569,27 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
                 </div>
               )}
 
-              {/* Text input (always visible when connected) */}
-              <div className="flex gap-2 mb-4">
-                <input
-                  type="text"
-                  value={textInput}
-                  onChange={(e) => setTextInput(e.target.value)}
-                  onKeyDown={(e) => { if (e.key === "Enter") handleSendText(); }}
-                  placeholder={language === "nl" ? "Typ een bericht..." : "Type a message..."}
-                  className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#b39758]/50"
-                />
-                <button
-                  onClick={handleSendText}
-                  disabled={!textInput.trim()}
-                  className="px-3 rounded-xl bg-[#b39758]/20 border border-[#b39758]/30 text-[#b39758] hover:bg-[#b39758]/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-                >
-                  <Send className="w-4 h-4" />
-                </button>
-              </div>
+              {/* Text input — only in text mode */}
+              {isTextMode && (
+                <div className="flex gap-2 mb-4">
+                  <input
+                    type="text"
+                    value={textInput}
+                    onChange={(e) => setTextInput(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === "Enter") handleSendText(); }}
+                    placeholder={language === "nl" ? "Typ een bericht..." : "Type a message..."}
+                    className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-[#b39758]/50"
+                    autoFocus
+                  />
+                  <button
+                    onClick={handleSendText}
+                    disabled={!textInput.trim()}
+                    className="px-3 rounded-xl bg-[#b39758]/20 border border-[#b39758]/30 text-[#b39758] hover:bg-[#b39758]/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                  >
+                    <Send className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
 
               {/* Email input */}
               {showEmailInput && !emailConfirmed && (
