@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Clock, Tag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, Tag } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 export default function ResetBlueprint() {
