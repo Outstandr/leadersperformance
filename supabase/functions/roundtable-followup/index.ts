@@ -183,14 +183,13 @@ function wrapEmail(content: string): string {
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
 <tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
 <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
-<p style="margin:0;font-size:11px;letter-spacing:4px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
 <p style="margin:8px 0 0;font-size:20px;color:#ffffff;font-family:Georgia,serif;">The Round Table</p>
 </td></tr>
 <tr><td style="padding:40px;">
 ${content}
 </td></tr>
 <tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
-<p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
+<img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="120" style="display:block;margin:0 auto;width:120px;height:auto;" />
 <p style="margin:8px 0 0;font-size:11px;color:#666;">Confidential. By invitation only.</p>
 </td></tr>
 </tbody></table></td></tr></tbody></table>`;
