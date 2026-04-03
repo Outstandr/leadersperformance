@@ -277,21 +277,29 @@ function buildBookingConfirmationHTML(payload: Record<string, unknown>): string 
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">Your ${sessionName} Is Confirmed</p>
 </td></tr>
 <tr><td style="padding:40px;">
-  <p style="font-family:Georgia,serif;font-size:16px;color:#333;margin:0 0 20px;">Dear ${firstName},</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 30px;">Your session has been confirmed. Here are the details:</p>
+  <p style="font-family:Georgia,serif;font-size:16px;color:#1a1a1a;margin:0 0 20px;">${firstName},</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 30px;">Your session has been confirmed. Here are the details:</p>
   <table width="100%" style="background:#F9F6F2;border:1px solid #E8E0D5;" cellpadding="0" cellspacing="0"><tbody>
     <tr><td style="padding:20px;">
-      <p style="margin:0 0 8px;font-size:11px;letter-spacing:2px;color:#8B7355;text-transform:uppercase;">Session Details</p>
-      <p style="margin:0 0 4px;font-size:16px;color:#1a1a1a;font-family:Georgia,serif;font-weight:bold;">📅 ${bookingDate}</p>
-      <p style="margin:0 0 4px;font-size:16px;color:#1a1a1a;font-family:Georgia,serif;font-weight:bold;">🕐 ${bookingTime} (Dubai Time)</p>
-      <p style="margin:0;font-size:14px;color:#555;font-family:Georgia,serif;">With Lionel Eersteling</p>
+      <p style="margin:0 0 12px;font-size:11px;letter-spacing:2px;color:#8B7355;text-transform:uppercase;">Session Details</p>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#8B7355;width:100px;">Date</td><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;font-weight:bold;">${bookingDate}</td></tr>
+        <tr><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#8B7355;">Time</td><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;font-weight:bold;">${bookingTime} (Dubai Time)</td></tr>
+        <tr><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;color:#8B7355;">With</td><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;">Lionel Eersteling</td></tr>
+      </table>
     </td></tr>
   </tbody></table>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:24px 0 8px;font-weight:bold;">How to prepare:</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0;">1. Review your scan results before the call<br>2. Have your calendar available for follow-up scheduling<br>3. Be in a quiet, private environment<br>4. Come with one specific challenge you want to address</p>
+  <p style="font-family:Georgia,serif;font-size:13px;letter-spacing:2px;color:#8B7355;text-transform:uppercase;margin:28px 0 12px;">How to Prepare</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 6px;">1. Review your scan results before the call</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 6px;">2. Have your calendar available for follow-up scheduling</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 6px;">3. Be in a quiet, private environment</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 20px;">4. Come with one specific challenge you want to address</p>
+  <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
+  <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
 <tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
+  <p style="margin:8px 0 0;font-size:11px;color:#666;">Confidential. 30-minute session with Lionel Eersteling.</p>
 </td></tr>
 </tbody></table></td></tr></tbody></table>`;
 }
