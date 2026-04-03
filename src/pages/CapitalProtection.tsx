@@ -24,7 +24,7 @@ interface ResultsData {
 const CapitalProtection = () => {
   const [dialogOpen, setDialogOpen] = useState(true);
   const [resultsData, setResultsData] = useState<ResultsData | null>(null);
-  const { isSpeaking } = useVoiceAgent();
+  const [bookingComplete, setBookingComplete] = useState(false);
 
   const handleResultsReady = useCallback((data: ResultsData) => {
     setResultsData(data);
