@@ -387,11 +387,14 @@ function buildNurtureDay2HTML(payload: Record<string, unknown>): string {
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${headline}</p>
 </td></tr>
 <tr><td style="padding:40px;">
-  <p style="font-family:Georgia,serif;font-size:16px;color:#333;margin:0 0 20px;">${firstName},</p>
+  <p style="font-family:Georgia,serif;font-size:16px;color:#1a1a1a;margin:0 0 20px;">${firstName},</p>
   ${bodyParagraphs}
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:10px 0;">
     <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your ${sessionName}</a>
   </td></tr></tbody></table>
+  <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">30-minute confidential session with Lionel Eersteling</p>
+  <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
+  <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
 <tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
