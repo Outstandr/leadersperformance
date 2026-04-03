@@ -229,19 +229,4 @@ export const profitLeakQuestions: ProfitLeakQuestion[] = [
       { label: { en: "Ready for expansion", nl: "Klaar voor uitbreiding" }, value: 1 },
     ],
   },
-  {
-    id: "pl15",
-    section: "scalability",
-    sectionLabel: { en: "Scalability", nl: "Schaalbaarheid" },
-    question: {
-      en: "Could an investor run the company without the founder?",
-      nl: "Zou een investeerder het bedrijf zonder de founder kunnen runnen?",
-    },
-    options: [
-      { label: { en: "No", nl: "Nee" }, value: 4 },
-      { label: { en: "With difficulty", nl: "Met moeite" }, value: 3 },
-      { label: { en: "Possibly", nl: "Mogelijk" }, value: 2 },
-      { label: { en: "Yes", nl: "Ja" }, value: 1 },
-    ],
-  },
 ];
