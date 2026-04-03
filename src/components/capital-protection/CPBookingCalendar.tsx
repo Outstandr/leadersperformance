@@ -73,6 +73,7 @@ export function CPBookingCalendar({ userInfo, onBookingComplete, onCancel }: CPB
             phone: userInfo.phone,
             dateTime,
             bookingType: "Capital Protection",
+            calendarId: "dxDvJ7TY6uSjcl1loyov",
           }),
         }
       );
