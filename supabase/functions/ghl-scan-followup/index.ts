@@ -236,7 +236,6 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
 <tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
-  <p style="margin:0;font-size:11px;letter-spacing:4px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${scanTitle}</p>
 </td></tr>
 <tr><td style="padding:40px;">
@@ -277,7 +276,6 @@ function buildBookingConfirmationHTML(payload: Record<string, unknown>): string 
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
 <tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
-  <p style="margin:0;font-size:11px;letter-spacing:4px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">Your ${sessionName} Is Confirmed</p>
 </td></tr>
 <tr><td style="padding:40px;">
@@ -318,7 +316,6 @@ function buildReminderHTML(payload: Record<string, unknown>, timeframe: string):
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
 <tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
-  <p style="margin:0;font-size:11px;letter-spacing:4px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${timeframe === '24h' ? 'Tomorrow' : 'Starting in 60 Minutes'}: Your Session</p>
 </td></tr>
 <tr><td style="padding:40px;">
@@ -387,7 +384,6 @@ function buildNurtureDay2HTML(payload: Record<string, unknown>): string {
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
 <tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
-  <p style="margin:0;font-size:11px;letter-spacing:4px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${headline}</p>
 </td></tr>
 <tr><td style="padding:40px;">
@@ -468,7 +464,6 @@ function buildNurtureDay5HTML(payload: Record<string, unknown>): string {
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
 <tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
-  <p style="margin:0;font-size:11px;letter-spacing:4px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${headline}</p>
 </td></tr>
 <tr><td style="padding:40px;">
