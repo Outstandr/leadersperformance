@@ -637,7 +637,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
                     </span>
                   </div>
                   <a
-                    href="https://api.leadconnectorhq.com/widget/booking/Se3SwkYLXfuW52O0F4GX"
+                    href="https://api.leadconnectorhq.com/widget/booking/uebxQpVIy9vX7tR5rL9E"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full py-2.5 rounded-lg bg-[#b39758] text-black text-xs font-semibold text-center hover:bg-[#c9aa6a] transition-all"
