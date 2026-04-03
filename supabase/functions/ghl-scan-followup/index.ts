@@ -215,7 +215,7 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
     <tr><td style="padding:6px 0;">
       <table width="100%" cellpadding="0" cellspacing="0"><tbody>
         <tr>
-          <td style="font-size:13px;color:#333;font-family:Georgia,serif;">${d.label}</td>
+          <td style="font-size:13px;color:#1a1a1a;font-family:Georgia,serif;">${d.label}</td>
           <td style="font-size:13px;color:#8B7355;font-family:Georgia,serif;text-align:right;font-weight:bold;">${d.score}%</td>
         </tr>
         <tr><td colspan="2" style="padding-top:4px;">
@@ -239,8 +239,8 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${scanTitle}</p>
 </td></tr>
 <tr><td style="padding:40px;">
-  <p style="font-family:Georgia,serif;font-size:16px;color:#333;margin:0 0 20px;">Dear ${firstName},</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 30px;">${introText}</p>
+  <p style="font-family:Georgia,serif;font-size:16px;color:#1a1a1a;margin:0 0 20px;">${firstName},</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 30px;">${introText}</p>
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:20px 0;">
     <div style="display:inline-block;background:#1a1a1a;padding:30px 50px;text-align:center;">
       <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">${auditType === 'capital_protection' ? 'Recovery Potential' : 'Your Score'}</p>
@@ -255,7 +255,9 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:30px 0 10px;">
     <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your ${sessionName}</a>
   </td></tr></tbody></table>
-  <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;"><p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">30-minute confidential session with Lionel Eersteling</p></p>
+  <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">30-minute confidential session with Lionel Eersteling</p>
+  <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
+  <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
 <tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
@@ -277,21 +279,29 @@ function buildBookingConfirmationHTML(payload: Record<string, unknown>): string 
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">Your ${sessionName} Is Confirmed</p>
 </td></tr>
 <tr><td style="padding:40px;">
-  <p style="font-family:Georgia,serif;font-size:16px;color:#333;margin:0 0 20px;">Dear ${firstName},</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 30px;">Your session has been confirmed. Here are the details:</p>
+  <p style="font-family:Georgia,serif;font-size:16px;color:#1a1a1a;margin:0 0 20px;">${firstName},</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 30px;">Your session has been confirmed. Here are the details:</p>
   <table width="100%" style="background:#F9F6F2;border:1px solid #E8E0D5;" cellpadding="0" cellspacing="0"><tbody>
     <tr><td style="padding:20px;">
-      <p style="margin:0 0 8px;font-size:11px;letter-spacing:2px;color:#8B7355;text-transform:uppercase;">Session Details</p>
-      <p style="margin:0 0 4px;font-size:16px;color:#1a1a1a;font-family:Georgia,serif;font-weight:bold;">📅 ${bookingDate}</p>
-      <p style="margin:0 0 4px;font-size:16px;color:#1a1a1a;font-family:Georgia,serif;font-weight:bold;">🕐 ${bookingTime} (Dubai Time)</p>
-      <p style="margin:0;font-size:14px;color:#555;font-family:Georgia,serif;">With Lionel Eersteling</p>
+      <p style="margin:0 0 12px;font-size:11px;letter-spacing:2px;color:#8B7355;text-transform:uppercase;">Session Details</p>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#8B7355;width:100px;">Date</td><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;font-weight:bold;">${bookingDate}</td></tr>
+        <tr><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#8B7355;">Time</td><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;font-weight:bold;">${bookingTime} (Dubai Time)</td></tr>
+        <tr><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;color:#8B7355;">With</td><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;">Lionel Eersteling</td></tr>
+      </table>
     </td></tr>
   </tbody></table>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:24px 0 8px;font-weight:bold;">How to prepare:</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0;">1. Review your scan results before the call<br>2. Have your calendar available for follow-up scheduling<br>3. Be in a quiet, private environment<br>4. Come with one specific challenge you want to address</p>
+  <p style="font-family:Georgia,serif;font-size:13px;letter-spacing:2px;color:#8B7355;text-transform:uppercase;margin:28px 0 12px;">How to Prepare</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 6px;">1. Review your scan results before the call</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 6px;">2. Have your calendar available for follow-up scheduling</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 6px;">3. Be in a quiet, private environment</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 20px;">4. Come with one specific challenge you want to address</p>
+  <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
+  <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
 <tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
+  <p style="margin:8px 0 0;font-size:11px;color:#666;">Confidential. 30-minute session with Lionel Eersteling.</p>
 </td></tr>
 </tbody></table></td></tr></tbody></table>`;
 }
@@ -309,17 +319,21 @@ function buildReminderHTML(payload: Record<string, unknown>, timeframe: string):
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${timeframe === '24h' ? 'Tomorrow' : 'Starting in 60 Minutes'}: Your Session</p>
 </td></tr>
 <tr><td style="padding:40px;">
-  <p style="font-family:Georgia,serif;font-size:16px;color:#333;margin:0 0 20px;">Dear ${firstName},</p>
-  <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 20px;">${timeframe === '24h'
+  <p style="font-family:Georgia,serif;font-size:16px;color:#1a1a1a;margin:0 0 20px;">${firstName},</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 20px;">${timeframe === '24h'
     ? `This is a reminder that your ${sessionName} with Lionel Eersteling is scheduled for tomorrow.`
     : `Your ${sessionName} with Lionel Eersteling starts in 60 minutes.`}</p>
   <table width="100%" style="background:#F9F6F2;border:1px solid #E8E0D5;" cellpadding="0" cellspacing="0"><tbody>
     <tr><td style="padding:20px;">
-      <p style="margin:0 0 4px;font-size:16px;color:#1a1a1a;font-family:Georgia,serif;font-weight:bold;">📅 ${bookingDate}</p>
-      <p style="margin:0;font-size:16px;color:#1a1a1a;font-family:Georgia,serif;font-weight:bold;">🕐 ${bookingTime} (Dubai Time)</p>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#8B7355;width:100px;">Date</td><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;font-weight:bold;">${bookingDate}</td></tr>
+        <tr><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;color:#8B7355;">Time</td><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;font-weight:bold;">${bookingTime} (Dubai Time)</td></tr>
+      </table>
     </td></tr>
   </tbody></table>
-  ${timeframe === '1h' ? '<p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:20px 0 0;">Be in a quiet, private environment. Come with one specific challenge you want addressed.</p>' : ''}
+  ${timeframe === '1h' ? '<p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:20px 0 0;">Be in a quiet, private environment. Come with one specific challenge you want addressed.</p>' : ''}
+  <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
+  <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
 <tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
@@ -340,30 +354,30 @@ function buildNurtureDay2HTML(payload: Record<string, unknown>): string {
   if (auditType === 'capital_protection') {
     headline = 'The Window Is Narrowing';
     bodyParagraphs = `
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Two days ago, your Capital Protection Assessment revealed structural exposure that most founders don't address until it's too late — not because they don't see it, but because they assume they have more time.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The reality is this: <strong>every day that passes without a protection strategy in place is a day your capital remains exposed.</strong> Evidence deteriorates. Jurisdictional advantages shift. Counterparties move first.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">This isn't a legal problem you solve reactively. It's a strategic architecture you build proactively.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 24px;">In your Capital Protection Session, we map the exact structural interventions needed to secure your position — based on your specific risk profile, jurisdictional exposure, and evidence landscape.</p>`;
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Two days ago, your Capital Protection Assessment revealed structural exposure that most founders don't address until it's too late — not because they don't see it, but because they assume they have more time.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">The reality is this: <strong>every day that passes without a protection strategy in place is a day your capital remains exposed.</strong> Evidence deteriorates. Jurisdictional advantages shift. Counterparties move first.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">This isn't a legal problem you solve reactively. It's a strategic architecture you build proactively.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">In your Capital Protection Session, we map the exact structural interventions needed to secure your position — based on your specific risk profile, jurisdictional exposure, and evidence landscape.</p>`;
   } else if (auditType.includes('profit_leak')) {
     headline = 'The Revenue You\'re Leaving Behind';
     bodyParagraphs = `
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Two days ago, your Revenue Architecture Scan revealed structural leaks that are silently draining your growth capacity — not because your team isn't working hard, but because the architecture wasn't built to scale.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The pattern is this: <strong>revenue plateaus not because of market conditions, but because your business structure can't convert effort into proportional growth.</strong></p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">This isn't a sales problem. It's an architecture problem.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 24px;">In your Revenue Architecture Session, we identify the exact structural changes needed to plug the leaks and unlock the next phase of sustainable growth.</p>`;
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Two days ago, your Revenue Architecture Scan revealed structural leaks that are silently draining your growth capacity — not because your team isn't working hard, but because the architecture wasn't built to scale.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">The pattern is this: <strong>revenue plateaus not because of market conditions, but because your business structure can't convert effort into proportional growth.</strong></p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">This isn't a sales problem. It's an architecture problem.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">In your Revenue Architecture Session, we identify the exact structural changes needed to plug the leaks and unlock the next phase of sustainable growth.</p>`;
   } else if (auditType === 'corporate') {
     headline = 'The Discipline Gap in Your Team';
     bodyParagraphs = `
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Two days ago, your Team Discipline Audit revealed structural gaps that most leaders normalize — not because they don't notice them, but because they've accepted them as "how it is."</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The pattern is this: <strong>standards erode gradually until mediocre execution becomes the baseline.</strong> Meetings lack accountability. Deadlines become suggestions. And the leader compensates by doing more themselves.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">This isn't a motivation problem. It's a discipline architecture problem.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 24px;">In your Discipline Architecture Session, we install the structural standards that make elite execution the default — not the exception.</p>`;
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Two days ago, your Team Discipline Audit revealed structural gaps that most leaders normalize — not because they don't notice them, but because they've accepted them as "how it is."</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">The pattern is this: <strong>standards erode gradually until mediocre execution becomes the baseline.</strong> Meetings lack accountability. Deadlines become suggestions. And the leader compensates by doing more themselves.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">This isn't a motivation problem. It's a discipline architecture problem.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">In your Discipline Architecture Session, we install the structural standards that make elite execution the default — not the exception.</p>`;
   } else {
     bodyParagraphs = `
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Two days ago, your diagnostic revealed a structural pattern that most founders never address — not because they don't see it, but because they've normalized it.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The pattern is this: <strong>every decision, every escalation, every critical conversation runs through you.</strong> Your business hasn't built the structural capacity to operate without your constant presence.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">This isn't a time-management problem. It's an architecture problem.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 24px;">The intervention we deploy addresses this in 4 days. Not with theory — with structural changes to how decisions flow, how accountability is distributed, and how your leadership team operates without you as the bottleneck.</p>`;
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Two days ago, your diagnostic revealed a structural pattern that most founders never address — not because they don't see it, but because they've normalized it.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">The pattern is this: <strong>every decision, every escalation, every critical conversation runs through you.</strong> Your business hasn't built the structural capacity to operate without your constant presence.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">This isn't a time-management problem. It's an architecture problem.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">The intervention we deploy addresses this in 4 days. Not with theory — with structural changes to how decisions flow, how accountability is distributed, and how your leadership team operates without you as the bottleneck.</p>`;
   }
 
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
@@ -373,11 +387,14 @@ function buildNurtureDay2HTML(payload: Record<string, unknown>): string {
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${headline}</p>
 </td></tr>
 <tr><td style="padding:40px;">
-  <p style="font-family:Georgia,serif;font-size:16px;color:#333;margin:0 0 20px;">${firstName},</p>
+  <p style="font-family:Georgia,serif;font-size:16px;color:#1a1a1a;margin:0 0 20px;">${firstName},</p>
   ${bodyParagraphs}
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:10px 0;">
     <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your ${sessionName}</a>
   </td></tr></tbody></table>
+  <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">30-minute confidential session with Lionel Eersteling</p>
+  <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
+  <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
 <tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
@@ -398,49 +415,49 @@ function buildNurtureDay5HTML(payload: Record<string, unknown>): string {
   if (auditType === 'capital_protection') {
     headline = 'The Cost of Waiting';
     bodyContent = `
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Five days ago, your Capital Protection Assessment identified structural exposure in your position. Since then, nothing has changed in how your capital is protected.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The cost of inaction in capital protection is not theoretical. It shows up in:</p>
-      <ul style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:2;padding-left:20px;">
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Five days ago, your Capital Protection Assessment identified structural exposure in your position. Since then, nothing has changed in how your capital is protected.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">The cost of inaction in capital protection is not theoretical. It shows up in:</p>
+      <ul style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:2;padding-left:20px;">
         <li>Evidence that becomes harder to access or verify over time</li>
         <li>Jurisdictional windows that close as counterparties restructure</li>
         <li>Legal positions that weaken as precedents shift</li>
         <li>Capital that remains exposed to risks you've already identified</li>
       </ul>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:16px 0 24px;">This is the last email in this sequence. Your assessment data is clear. The question is whether you secure your position now or wait until the window narrows further.</p>`;
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:16px 0 24px;">This is the last email in this sequence. Your assessment data is clear. The question is whether you secure your position now or wait until the window narrows further.</p>`;
   } else if (auditType.includes('profit_leak')) {
     bodyContent = `
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Five days ago, your Revenue Architecture Scan exposed structural revenue leaks. Since then, nothing has changed in how your business captures value.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The cost of maintaining the current structure isn't always visible on a P&L. It shows up in:</p>
-      <ul style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:2;padding-left:20px;">
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Five days ago, your Revenue Architecture Scan exposed structural revenue leaks. Since then, nothing has changed in how your business captures value.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">The cost of maintaining the current structure isn't always visible on a P&L. It shows up in:</p>
+      <ul style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:2;padding-left:20px;">
         <li>Revenue that plateaus despite increased effort and spend</li>
         <li>Margins that compress because growth isn't structurally efficient</li>
         <li>Opportunities that pass because your team can't execute without you</li>
         <li>Competitors who scale while you optimize incrementally</li>
       </ul>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:16px 0 24px;">This is the last email in this sequence. The diagnostic data is clear. The question is whether you act on it or absorb it.</p>`;
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:16px 0 24px;">This is the last email in this sequence. The diagnostic data is clear. The question is whether you act on it or absorb it.</p>`;
   } else if (auditType === 'corporate') {
     headline = 'What Weak Discipline Is Costing Your Team';
     bodyContent = `
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Five days ago, your Team Discipline Audit exposed gaps in operational standards. Since then, nothing has changed in how your team executes.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The cost of weak discipline isn't dramatic. It's incremental. It shows up in:</p>
-      <ul style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:2;padding-left:20px;">
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Five days ago, your Team Discipline Audit exposed gaps in operational standards. Since then, nothing has changed in how your team executes.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">The cost of weak discipline isn't dramatic. It's incremental. It shows up in:</p>
+      <ul style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:2;padding-left:20px;">
         <li>Meetings that end without clear ownership or deadlines</li>
         <li>Standards that exist on paper but not in execution</li>
         <li>Your best people who lower their standards to match the team</li>
         <li>Your own energy spent compensating for structural weakness</li>
       </ul>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:16px 0 24px;">This is the last email in this sequence. The audit data is clear. The question is whether you install the architecture or continue managing around the gaps.</p>`;
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:16px 0 24px;">This is the last email in this sequence. The audit data is clear. The question is whether you install the architecture or continue managing around the gaps.</p>`;
   } else {
     bodyContent = `
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">Five days ago, your diagnostic scan exposed a structural vulnerability. Since then, nothing has changed in how your business operates.</p>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:0 0 16px;">The cost of maintaining the current structure isn't always visible on a P&L. It shows up in:</p>
-      <ul style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:2;padding-left:20px;">
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Five days ago, your diagnostic scan exposed a structural vulnerability. Since then, nothing has changed in how your business operates.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">The cost of maintaining the current structure isn't always visible on a P&L. It shows up in:</p>
+      <ul style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:2;padding-left:20px;">
         <li>Decisions that wait for you instead of being executed autonomously</li>
         <li>Revenue that plateaus because growth requires your personal bandwidth</li>
         <li>Key people who leave because they can't lead without your approval</li>
         <li>Opportunities that expire while you're managing operations</li>
       </ul>
-      <p style="font-family:Georgia,serif;font-size:14px;color:#555;line-height:1.7;margin:16px 0 24px;">This is the last email in this sequence. The diagnostic data is clear. The question is whether you act on it or absorb it.</p>`;
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:16px 0 24px;">This is the last email in this sequence. The diagnostic data is clear. The question is whether you act on it or absorb it.</p>`;
   }
 
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
@@ -450,11 +467,14 @@ function buildNurtureDay5HTML(payload: Record<string, unknown>): string {
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${headline}</p>
 </td></tr>
 <tr><td style="padding:40px;">
-  <p style="font-family:Georgia,serif;font-size:16px;color:#333;margin:0 0 20px;">${firstName},</p>
+  <p style="font-family:Georgia,serif;font-size:16px;color:#1a1a1a;margin:0 0 20px;">${firstName},</p>
   ${bodyContent}
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:10px 0;">
     <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your ${sessionName}</a>
   </td></tr></tbody></table>
+  <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">30-minute confidential session with Lionel Eersteling</p>
+  <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
+  <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
 <tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
