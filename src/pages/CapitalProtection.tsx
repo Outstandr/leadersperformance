@@ -1,10 +1,9 @@
 import { useState, useCallback } from "react";
 import { CapitalProtectionDialog } from "@/components/capital-protection/CapitalProtectionDialog";
 import { CPResultsStep } from "@/components/capital-protection/CPResultsStep";
-import { ScanVoiceWidget } from "@/components/shared/ScanVoiceWidget";
+import { CPBookingCalendar } from "@/components/capital-protection/CPBookingCalendar";
 import { CPResult } from "@/lib/capitalProtectionScoring";
 import { CPUserInfo } from "@/components/capital-protection/CPUserInfoStep";
-import { useVoiceAgent } from "@/components/voice/VoiceAgentContext";
 
 interface AIReport {
   situation_summary: string;
