@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Clock, Tag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, Tag } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 export default function ResetBlueprint() {
@@ -144,20 +144,27 @@ export default function ResetBlueprint() {
       {/* Footer CTA */}
       <div className="bg-foreground py-16">
         <div className="container mx-auto px-6 max-w-3xl text-center">
-          <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold mb-4">Ready to Install the Blueprint?</p>
+          <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold mb-4">Take the Next Step</p>
           <h2 className="font-serif text-3xl md:text-4xl font-medium text-background mb-6">
-            The RESET Blueprint® begins with an honest assessment.
+            Discover where the pressure is coming from.
           </h2>
           <p className="text-background/60 mb-8 max-w-xl mx-auto">
-            Take our Discipline Assessment to identify exactly where your current operating system is limiting your performance.
+            Take the Founder Pressure Scan to identify the structural issues holding you back, or explore more insights from our editorial library.
           </p>
-          <Link
-            to="/#articles"
-            className="inline-flex items-center gap-2 border border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white px-8 py-3 text-sm font-medium transition-all"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Articles
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              to="/pressurescan"
+              className="inline-flex items-center gap-2 bg-lioner-gold text-white hover:bg-lioner-gold/90 px-8 py-3 text-sm font-medium tracking-widest uppercase transition-all"
+            >
+              Take the Founder Pressure Scan <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              to="/articles"
+              className="inline-flex items-center gap-2 border border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white px-8 py-3 text-sm font-medium tracking-widest uppercase transition-all"
+            >
+              View More Articles <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Clock, Tag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, Tag } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 export default function LeadingThroughUncertainty() {
@@ -133,18 +133,25 @@ export default function LeadingThroughUncertainty() {
         <div className="container mx-auto px-6 max-w-3xl text-center">
           <p className="text-xs font-medium tracking-[0.3em] uppercase text-lioner-gold mb-4">Take the Next Step</p>
           <h2 className="font-serif text-3xl md:text-4xl font-medium text-background mb-6">
-            Lead with clarity, even under pressure.
+            Discover where the pressure is coming from.
           </h2>
           <p className="text-background/60 mb-8 max-w-xl mx-auto">
-            The Leaders Performance advisory program helps founders and executives build the personal foundation that sustains leadership under any conditions.
+            Take the Founder Pressure Scan to identify the structural issues holding you back, or explore more insights from our editorial library.
           </p>
-          <Link
-            to="/#articles"
-            className="inline-flex items-center gap-2 border border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white px-8 py-3 text-sm font-medium transition-all"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Articles
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              to="/pressurescan"
+              className="inline-flex items-center gap-2 bg-lioner-gold text-white hover:bg-lioner-gold/90 px-8 py-3 text-sm font-medium tracking-widest uppercase transition-all"
+            >
+              Take the Founder Pressure Scan <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              to="/articles"
+              className="inline-flex items-center gap-2 border border-lioner-gold text-lioner-gold hover:bg-lioner-gold hover:text-white px-8 py-3 text-sm font-medium tracking-widest uppercase transition-all"
+            >
+              View More Articles <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </div>
