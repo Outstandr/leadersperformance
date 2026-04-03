@@ -132,22 +132,22 @@ const ArticleDetail = () => {
 
           <div className="mt-12 border border-white/10 p-6 md:p-8" style={{ background: "rgba(255,255,255,0.04)" }}>
             <p className="text-xs uppercase tracking-[0.2em] text-lioner-gold mb-3">Next steps</p>
-            <h2 className="font-serif text-2xl text-white mb-3">Choose the right scan for your next move.</h2>
+            <h2 className="font-serif text-2xl text-white mb-3">Discover where the pressure is coming from.</h2>
             <p className="text-white/60 mb-6 max-w-2xl">
-              If the pressure is personal and structural, take the Founder Pressure Scan. If the issue is growth, profit, or execution inside the business, take the Profit Leak Scan.
+              Take the Founder Pressure Scan to identify the structural issues holding you back, or explore more insights from our editorial library.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 to="/pressurescan"
                 className="inline-flex items-center justify-center gap-2 bg-lioner-gold text-white px-6 py-3 text-sm font-medium tracking-widest uppercase hover:bg-lioner-gold/90 transition-colors"
               >
-                Founder Pressure Scan <ArrowRight className="w-4 h-4" />
+                Take the Founder Pressure Scan <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                to="/profit-leak-scan"
+                to="/articles"
                 className="inline-flex items-center justify-center gap-2 border border-white/15 text-white px-6 py-3 text-sm font-medium tracking-widest uppercase hover:border-lioner-gold hover:text-lioner-gold transition-colors"
               >
-                Profit Leak Scan <ArrowRight className="w-4 h-4" />
+                View More Articles <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
