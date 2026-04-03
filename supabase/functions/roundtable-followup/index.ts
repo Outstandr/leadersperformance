@@ -189,7 +189,7 @@ function wrapEmail(content: string): string {
 ${content}
 </td></tr>
 <tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
-<p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
+<img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="120" style="display:block;margin:0 auto;width:120px;height:auto;" />
 <p style="margin:8px 0 0;font-size:11px;color:#666;">Confidential. By invitation only.</p>
 </td></tr>
 </tbody></table></td></tr></tbody></table>`;
