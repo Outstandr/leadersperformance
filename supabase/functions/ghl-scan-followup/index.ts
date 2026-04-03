@@ -215,7 +215,7 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
     <tr><td style="padding:6px 0;">
       <table width="100%" cellpadding="0" cellspacing="0"><tbody>
         <tr>
-          <td style="font-size:13px;color:#333;font-family:Georgia,serif;">${d.label}</td>
+          <td style="font-size:13px;color:#1a1a1a;font-family:Georgia,serif;">${d.label}</td>
           <td style="font-size:13px;color:#8B7355;font-family:Georgia,serif;text-align:right;font-weight:bold;">${d.score}%</td>
         </tr>
         <tr><td colspan="2" style="padding-top:4px;">
