@@ -255,7 +255,7 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:30px 0 10px;">
     <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your ${sessionName}</a>
   </td></tr></tbody></table>
-  <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">45-minute confidential session with Lionel Eersteling</p>
+  <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;"><p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">30-minute confidential session with Lionel Eersteling</p></p>
 </td></tr>
 <tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
   <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">Leaders Performance</p>
