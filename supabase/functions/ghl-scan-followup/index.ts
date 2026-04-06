@@ -675,7 +675,7 @@ Deno.serve(async (req) => {
         .from('scheduled_emails')
         .update({ status: 'cancelled' } as any)
         .eq('contact_email', String(payload.email))
-        .in('email_type', ['nurture_day2', 'nurture_day5'])
+        .in('email_type', ['nurture_day2', 'nurture_day4', 'nurture_day5', 'nurture_day6', 'nurture_day8'])
         .eq('status', 'pending');
 
       console.log('Cancelled nurture emails for booked contact:', payload.email);
