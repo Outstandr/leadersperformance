@@ -359,12 +359,15 @@ function buildNurtureDay2HTML(payload: Record<string, unknown>): string {
       <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">This isn't a legal problem you solve reactively. It's a strategic architecture you build proactively.</p>
       <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">In your Capital Protection Session, we map the exact structural interventions needed to secure your position — based on your specific risk profile, jurisdictional exposure, and evidence landscape.</p>`;
   } else if (auditType.includes('profit_leak')) {
-    headline = 'The Revenue You\'re Leaving Behind';
+    headline = 'Why More Effort Is Not Fixing Your Revenue';
     bodyParagraphs = `
-      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Two days ago, your Revenue Architecture Scan revealed structural leaks that are silently draining your growth capacity — not because your team isn't working hard, but because the architecture wasn't built to scale.</p>
-      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">The pattern is this: <strong>revenue plateaus not because of market conditions, but because your business structure can't convert effort into proportional growth.</strong></p>
-      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">This isn't a sales problem. It's an architecture problem.</p>
-      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">In your Revenue Architecture Session, we identify the exact structural changes needed to plug the leaks and unlock the next phase of sustainable growth.</p>`;
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Most founders respond to pressure the same way: they increase input. More calls. More campaigns. More team activity.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">It feels logical. It's also where things start to break.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Because growth does not come from effort alone. It comes from <strong>conversion capacity inside the system.</strong></p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">If the structure cannot absorb more: more leads create friction, more sales create delivery pressure, more activity creates noise.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">This is where scale turns into strain. Not because the market is difficult. Because the system is not built to convert expansion.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">In your case, this is already visible.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">The question is not: "How do we push harder?" The question is: "What is blocking conversion at structure level?" That's what we break open in the session.</p>`;
   } else if (auditType === 'corporate') {
     headline = 'The Discipline Gap in Your Team';
     bodyParagraphs = `
