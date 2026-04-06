@@ -244,7 +244,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
                 <Mic className="w-5 h-5 text-lioner-gold" />
               </div>
               <p className="text-sm font-semibold text-foreground">
-                {language === "nl" ? "Spreek met Daisy" : "Speak to Daisy"}
+                {language === "nl" ? "Bespreek uw resultaten" : "Discuss Your Results"}
               </p>
             </button>
             <button
@@ -255,7 +255,7 @@ export function ScanVoiceWidget({ mode, userInfo, contextPayload, bookingType, w
                 <MessageSquare className="w-4 h-4 text-foreground/60" />
               </div>
               <p className="text-sm font-medium text-foreground/70">
-                {language === "nl" ? "Chat met Daisy" : "Chat with Daisy"}
+                {language === "nl" ? "Chat over uw resultaten" : "Discuss via Chat"}
               </p>
             </button>
           </div>
