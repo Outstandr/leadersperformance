@@ -186,7 +186,7 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
     }
   } else if (auditType.includes('profit_leak')) {
     scanTitle = 'Your Revenue Architecture Analysis';
-    introText = 'Your revenue architecture scan has been completed. Below is your score and structural analysis.';
+    introText = `Two days ago, your Revenue Architecture Scan exposed something most founders never catch in time:\n\nNot a sales issue. Not a team issue.\n\nA structural constraint that is capping your revenue — regardless of effort.\n\nRight now, more input is not creating more output. Which means one thing: your business is working harder than it should for less than it could.\n\nThis is where most founders miscalculate. They assume more leads, better sales, or more pressure will fix it. It won't. Because the system itself cannot convert growth.\n\nEvery month this stays in place, you are not just slowing down — you are leaving money on the table that your current structure cannot capture. Not hypothetically. Structurally.`;
     bottleneck = String(payload.primary_bottleneck || payload.growth_phase || 'Not identified');
     if (payload.founder_dependency_score !== undefined) {
       dimensions.push({ label: 'Founder Dependency', score: payload.founder_dependency_score });
