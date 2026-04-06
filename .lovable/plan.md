@@ -1,122 +1,92 @@
 
 
-## Direct GHL API Email & Pipeline Integration
+## Plan: Capital Protection Scan Results Redesign + Revenue Architecture Email Sequence
 
-### Problem
-GHL webhook automations are unreliable — booking confirmations, results emails, and nurture sequences are not triggering properly. Instead of depending on GHL's automation engine, we'll use the GHL API directly to send emails and manage pipeline stages from our edge functions.
+### Overview
+Three parallel workstreams:
+1. Redesign the Capital Protection results page to match the premium diagnostic style (like the Founder Pressure Scan)
+2. Expand the Profit Leak email nurture sequence from 3 emails (Day 0, Day 2, Day 5) to 5 emails (Day 0, Day 2, Day 4, Day 6, Day 8) with the provided copy
+3. Update the Day 0 (Results) email copy for profit_leak_scan
 
-### Architecture
+---
 
-```text
-User completes scan
-       │
-       ▼
- ScanVoiceWidget fires webhook
-       │
-       ▼
- ghl-scan-followup Edge Function
-       │
-       ├── Upsert contact (GHL API)
-       ├── Add to pipeline stage (GHL Opportunities API)
-       ├── Set custom fields (scores, bottleneck, etc.)
-       │
-       ├─── IF booked = true:
-       │     ├── Send booking confirmation email (GHL Conversations API)
-       │     ├── Schedule 24h reminder (stored in DB, triggered by cron)
-       │     └── Schedule 1h reminder (stored in DB, triggered by cron)
-       │
-       └─── IF booked = false:
-             ├── Send results email immediately (GHL Conversations API)
-             ├── Schedule Day 2 nurture email
-             └── Schedule Day 5 nurture email
-```
+### 1. Capital Protection Results Page Redesign
 
-### What Gets Built
+**File: `src/components/capital-protection/CPResultsStep.tsx`**
 
-**1. New DB table: `scheduled_emails`**
-Stores scheduled emails (reminders & nurture) with send_at timestamp, status, and full HTML content.
+Complete rewrite to match the Founder Pressure Scan design system:
+- Background: `#F6F5F2` (off-white)
+- Typography: deep navy `#1C2430`
+- Risk colors: Amber `#D97706`, Red `#B91C1C`, Green `#059669`
 
-**2. New Edge Function: `ghl-scan-followup`**
-Replaces the `send-to-ghl` webhook. On each scan completion:
-- Upserts contact in GHL via API with all custom fields
-- Creates/moves opportunity in pipeline `qFBbAlnrhlBtkM5r9VEZ`
-- Sends immediate email (results or booking confirmation) via GHL Conversations API
-- Inserts scheduled follow-up emails into `scheduled_emails` table
+**Top section:**
+- Headline: "Your capital is currently exposed"
+- Subtext: "Recovery is possible, but not guaranteed without intervention"
 
-**3. New Edge Function: `process-scheduled-emails`**
-Cron job (every 5 min) that:
-- Queries `scheduled_emails` where `send_at <= now()` and `status = 'pending'`
-- Sends each via GHL Conversations API
-- Marks as `sent` or `failed`
-- For bookers: checks if `booked` tag exists before sending nurture (skip if they booked after scan)
+**Score display:**
+- "Recovery Probability: X%" with gradient bar (Green → Amber → Red)
+- Labels: Strong / Moderate / Limited
+- Subtext: "Based on your current legal and structural position"
 
-**4. Update `ScanVoiceWidget.tsx`**
-Change from calling `send-to-ghl` to calling `ghl-scan-followup`.
+**Exposure Overview block** (new):
+- Capital at risk tier (from assessment data)
+- Recovery probability %
+- Recovery difficulty (derived from score tiers)
 
-**5. Update calendar IDs across all scan results components:**
-- Founder Pressure: `uebxQpVIy9vX7tR5rL9E`
-- Profit Leak: `tmX5oPSkDICqFhIxPIo9`
-- Capital Protection: `dxDvJ7TY6uSjcl1loyov`
-- Corporate Audit: `4NM4rNbMCZ024q4rlSTP`
+**Primary Diagnosis block** (dark navy):
+- "Capital exposure identified — recovery possible"
+- 3 reinforcing statements based on the weakest dimension
 
-**6. Update `ghl-booking` Edge Function**
-Use new calendar IDs and add pipeline stage update on booking.
+**Dimension bars** (5 dimensions):
+- Evidence Strength, Timeline Advantage, Jurisdictional Simplicity, Legal Positioning, Capital Exposure
+- Each with percentage, label (Weak/Moderate/Strong), color-coded bar
+- Primary risk dimension highlighted, others dimmed
 
-### Email Content (all sent from Lionel Eersteling / info@leadersperformance.ae)
+**AI Report sections** (kept but restyled to match new palette)
 
-**Path A — Non-Bookers (4 emails total):**
-1. Immediate: Results email (score, bottleneck, dimension bars, booking CTA)
-2. Day 2: "The Pattern" — structural pressure narrative
-3. Day 5: "The Cost" — hidden cost of inaction
+**CTA:**
+- "Secure your position before exposure increases"
+- Subtext: "Private capital protection intervention"
 
-**Path B — Bookers (3 emails total):**
-1. Immediate: Booking confirmation with date/time + prep steps
-2. 24h before: Reminder
-3. 1h before: Final reminder
+**Return to Homepage button** (matching FPS style)
 
-All HTML follows the existing cream/gold/Georgia design system already built.
+**File: `src/pages/CapitalProtection.tsx`**
+- Update wrapper background to `#F6F5F2` to match results page
 
-### Pipeline Stages
-The edge function will create an opportunity in the "Mid ticket inbound sales funnel" pipeline (`qFBbAlnrhlBtkM5r9VEZ`). We'll need the stage IDs — I'll fetch them via the GHL API during implementation.
+---
 
-### GHL API Key
-Store `pit-b8540e7a-ca19-4cb9-bf82-9f6578209bd9` as a secret (replacing existing `GHL_API_KEY`).
+### 2. Revenue Architecture (Profit Leak) Email Sequence Expansion
+
+**File: `supabase/functions/ghl-scan-followup/index.ts`**
+
+**a) Update Day 0 results email** (profit_leak section in `buildResultsEmailHTML`):
+- New intro text matching the provided copy about structural constraints capping revenue
+- More confrontational, structural language
+
+**b) Update Day 2 nurture** (`buildNurtureDay2HTML`, profit_leak section):
+- New subject: "Why more effort is not fixing your revenue"
+- New body copy about conversion capacity vs. effort
+
+**c) Expand to 5-email sequence** — Add 3 new email builder functions:
+- `buildNurtureDay4HTML` — "What this is costing you every month" (Exposure)
+- `buildNurtureDay6HTML` — "I see this pattern more often than you think" (Authority)  
+- `buildNurtureDay8HTML` — "You can keep pushing — or fix what's underneath" (Decision)
+
+**d) Update subject line functions** to handle new email types for profit_leak
+
+**e) Update the main handler** scheduling logic:
+- For profit_leak_scan: schedule Day 2, Day 4, Day 6, Day 8 nurture emails
+- Other scan types keep the existing Day 2 + Day 5 schedule
+- Update cancellation logic to include new email types
+
+**f) Redeploy** the edge function after changes
+
+---
 
 ### Technical Details
 
-**GHL Conversations API email send:**
-```
-POST /conversations/messages
-{
-  "type": "Email",
-  "contactId": "<id>",
-  "subject": "...",
-  "html": "<full HTML>",
-  "emailFrom": "Lionel Eersteling <info@leadersperformance.ae>"
-}
-```
-
-**GHL Opportunities API:**
-```
-POST /opportunities/
-{
-  "pipelineId": "qFBbAlnrhlBtkM5r9VEZ",
-  "stageId": "<stage_id>",
-  "contactId": "<id>",
-  "name": "FPS - John Doe",
-  "status": "open"
-}
-```
-
-### Files Changed
-- `supabase/functions/ghl-scan-followup/index.ts` — new
-- `supabase/functions/process-scheduled-emails/index.ts` — new
-- `supabase/functions/ghl-booking/index.ts` — update calendar IDs + pipeline
-- `src/components/shared/ScanVoiceWidget.tsx` — call new function
-- `src/components/founder-scan/ScanResultsStep.tsx` — update calendar ID
-- `src/components/profit-leak/ProfitLeakResultsStep.tsx` — update calendar ID
-- `src/components/corporate-audit/AuditResultsStep.tsx` — update calendar ID
-- `src/components/capital-protection/ProtectionResultsStep.tsx` — update calendar ID
-- New migration: `scheduled_emails` table
-- Secret update: `GHL_API_KEY`
+- The Capital Protection results page currently uses a generic white card design. The redesign follows the exact same component structure as `ScanResultsStep.tsx` but adapted for capital protection context (recovery probability instead of pressure score, exposure framing instead of pressure framing).
+- The email sequence expansion requires new `email_type` values (`nurture_day4`, `nurture_day6`, `nurture_day8`) which need to be added to the cancellation query in the booking update handler.
+- All emails maintain the existing LP design system (cream background, Georgia serif, charcoal headers with white logo only, no emoji).
+- The `process-scheduled-emails` function does not need changes as it processes any pending scheduled email regardless of type.
 
