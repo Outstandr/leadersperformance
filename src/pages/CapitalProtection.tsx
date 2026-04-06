@@ -54,9 +54,9 @@ const CapitalProtection = () => {
       />
 
       {resultsData && (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col" style={{ backgroundColor: "#F6F5F2" }}>
           <div className="flex-1 flex items-start justify-center py-6 sm:py-10 px-4">
-            <div className="w-full max-w-2xl bg-white border border-foreground/10 rounded-lg shadow-xl">
+            <div className="w-full max-w-2xl bg-white border border-foreground/10 shadow-xl" style={{ borderRadius: 0 }}>
               <CPResultsStep
                 userInfo={resultsData.userInfo}
                 result={resultsData.result}
