@@ -186,7 +186,7 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
     }
   } else if (auditType.includes('profit_leak')) {
     scanTitle = 'Your Revenue Architecture Analysis';
-    introText = 'Your revenue architecture scan has been completed. Below is your score and structural analysis.';
+    introText = `Two days ago, your Revenue Architecture Scan exposed something most founders never catch in time:\n\nNot a sales issue. Not a team issue.\n\nA structural constraint that is capping your revenue — regardless of effort.\n\nRight now, more input is not creating more output. Which means one thing: your business is working harder than it should for less than it could.\n\nThis is where most founders miscalculate. They assume more leads, better sales, or more pressure will fix it. It won't. Because the system itself cannot convert growth.\n\nEvery month this stays in place, you are not just slowing down — you are leaving money on the table that your current structure cannot capture. Not hypothetically. Structurally.`;
     bottleneck = String(payload.primary_bottleneck || payload.growth_phase || 'Not identified');
     if (payload.founder_dependency_score !== undefined) {
       dimensions.push({ label: 'Founder Dependency', score: payload.founder_dependency_score });
@@ -359,12 +359,15 @@ function buildNurtureDay2HTML(payload: Record<string, unknown>): string {
       <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">This isn't a legal problem you solve reactively. It's a strategic architecture you build proactively.</p>
       <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">In your Capital Protection Session, we map the exact structural interventions needed to secure your position — based on your specific risk profile, jurisdictional exposure, and evidence landscape.</p>`;
   } else if (auditType.includes('profit_leak')) {
-    headline = 'The Revenue You\'re Leaving Behind';
+    headline = 'Why More Effort Is Not Fixing Your Revenue';
     bodyParagraphs = `
-      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Two days ago, your Revenue Architecture Scan revealed structural leaks that are silently draining your growth capacity — not because your team isn't working hard, but because the architecture wasn't built to scale.</p>
-      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">The pattern is this: <strong>revenue plateaus not because of market conditions, but because your business structure can't convert effort into proportional growth.</strong></p>
-      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">This isn't a sales problem. It's an architecture problem.</p>
-      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">In your Revenue Architecture Session, we identify the exact structural changes needed to plug the leaks and unlock the next phase of sustainable growth.</p>`;
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Most founders respond to pressure the same way: they increase input. More calls. More campaigns. More team activity.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">It feels logical. It's also where things start to break.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Because growth does not come from effort alone. It comes from <strong>conversion capacity inside the system.</strong></p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">If the structure cannot absorb more: more leads create friction, more sales create delivery pressure, more activity creates noise.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">This is where scale turns into strain. Not because the market is difficult. Because the system is not built to convert expansion.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">In your case, this is already visible.</p>
+      <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">The question is not: "How do we push harder?" The question is: "What is blocking conversion at structure level?" That's what we break open in the session.</p>`;
   } else if (auditType === 'corporate') {
     headline = 'The Discipline Gap in Your Team';
     bodyParagraphs = `
@@ -482,6 +485,116 @@ function buildNurtureDay5HTML(payload: Record<string, unknown>): string {
 </tbody></table></td></tr></tbody></table>`;
 }
 
+// ──── Profit Leak Day 4 (Exposure) ────
+function buildNurtureDay4HTML(payload: Record<string, unknown>): string {
+  const firstName = payload.first_name || 'there';
+  const calendarId = CALENDAR_MAP['profit_leak_scan'] || 'tmX5oPSkDICqFhIxPIo9';
+  const bookingLink = `https://api.leadconnectorhq.com/widget/booking/${calendarId}`;
+
+  return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
+<table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
+<tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
+  <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
+  <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">What This Is Costing You Every Month</p>
+</td></tr>
+<tr><td style="padding:40px;">
+  <p style="font-family:Georgia,serif;font-size:16px;color:#1a1a1a;margin:0 0 20px;">${firstName},</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Let's make this concrete.</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">A structural bottleneck in your revenue system does not show up as failure. It shows up as:</p>
+  <ul style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:2;padding-left:20px;">
+    <li>deals that take longer than they should</li>
+    <li>leads that don't convert at expected rates</li>
+    <li>team effort that doesn't translate into growth</li>
+  </ul>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:16px 0 16px;">Individually, these look manageable. Combined, they create a hidden cost.</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Not visible in one decision. But visible over time.</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">And that's where most founders underestimate the impact. Because nothing feels "broken". Yet the system is underperforming. Month after month.</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">This is not about losing everything. This is about never reaching what should already be happening.</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">That gap is where your real loss sits. In the session, we quantify and isolate that gap.</p>
+  <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:10px 0;">
+    <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your Revenue Architecture Session</a>
+  </td></tr></tbody></table>
+  <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">30-minute confidential session with Lionel Eersteling</p>
+  <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
+  <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
+</td></tr>
+<tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
+  <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="120" style="display:block;margin:0 auto;width:120px;height:auto;" />
+</td></tr>
+</tbody></table></td></tr></tbody></table>`;
+}
+
+// ──── Profit Leak Day 6 (Authority) ────
+function buildNurtureDay6HTML(payload: Record<string, unknown>): string {
+  const firstName = payload.first_name || 'there';
+  const calendarId = CALENDAR_MAP['profit_leak_scan'] || 'tmX5oPSkDICqFhIxPIo9';
+  const bookingLink = `https://api.leadconnectorhq.com/widget/booking/${calendarId}`;
+
+  return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
+<table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
+<tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
+  <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
+  <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">I See This Pattern More Often Than You Think</p>
+</td></tr>
+<tr><td style="padding:40px;">
+  <p style="font-family:Georgia,serif;font-size:16px;color:#1a1a1a;margin:0 0 20px;">${firstName},</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Across different founders, industries, and revenue levels, the pattern repeats:</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Growth slows down. Not because ambition drops. Not because effort drops. Because structure reaches its limit.</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">At that point, most founders do one of two things: they push harder, or they assume external factors are the cause.</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Both delay the real solution.</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Because the constraint sits inside the business itself. And until that is addressed, nothing scales cleanly.</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">This is not a rare situation. It's predictable. And it's fixable — if you look in the right place. That's exactly what we do in the Revenue Architecture Session.</p>
+  <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:10px 0;">
+    <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your Revenue Architecture Session</a>
+  </td></tr></tbody></table>
+  <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">30-minute confidential session with Lionel Eersteling</p>
+  <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
+  <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
+</td></tr>
+<tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
+  <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="120" style="display:block;margin:0 auto;width:120px;height:auto;" />
+</td></tr>
+</tbody></table></td></tr></tbody></table>`;
+}
+
+// ──── Profit Leak Day 8 (Decision) ────
+function buildNurtureDay8HTML(payload: Record<string, unknown>): string {
+  const firstName = payload.first_name || 'there';
+  const calendarId = CALENDAR_MAP['profit_leak_scan'] || 'tmX5oPSkDICqFhIxPIo9';
+  const bookingLink = `https://api.leadconnectorhq.com/widget/booking/${calendarId}`;
+
+  return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
+<table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
+<tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
+  <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
+  <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">You Can Keep Pushing — Or Fix What's Underneath</p>
+</td></tr>
+<tr><td style="padding:40px;">
+  <p style="font-family:Georgia,serif;font-size:16px;color:#1a1a1a;margin:0 0 20px;">${firstName},</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">At this point, you have two options.</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">You continue as you are: adjusting tactics, increasing effort, trying to optimize results.</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Or you step back and address what's underneath your numbers.</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Because the constraint you're dealing with is not tactical. It's structural. And structural problems don't resolve with more activity. They require clarity.</p>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">That's the purpose of the session. To identify:</p>
+  <ul style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:2;padding-left:20px;">
+    <li>what is limiting your growth</li>
+    <li>where your structure breaks under pressure</li>
+    <li>what needs to change to move forward cleanly</li>
+  </ul>
+  <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:16px 0 24px;">If you decide to address it:</p>
+  <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:10px 0;">
+    <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your Revenue Architecture Session</a>
+  </td></tr></tbody></table>
+  <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">If not, the current pattern will continue.</p>
+  <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
+  <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
+</td></tr>
+<tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
+  <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="120" style="display:block;margin:0 auto;width:120px;height:auto;" />
+</td></tr>
+</tbody></table></td></tr></tbody></table>`;
+}
+
 // ──── Subject lines ────
 
 function getResultsSubject(payload: Record<string, unknown>): string {
@@ -489,7 +602,7 @@ function getResultsSubject(payload: Record<string, unknown>): string {
   const scoreField = SCORE_FIELD_MAP[auditType] || 'overall_score';
   const score = payload[scoreField] ?? payload.fps_score ?? payload.overall_score ?? payload.discipline_score ?? '';
   if (auditType.includes('founder_pressure')) return `Your Founder Pressure Score: ${score}`;
-  if (auditType.includes('profit_leak')) return `Your Revenue Architecture Score: ${score}`;
+  if (auditType.includes('profit_leak')) return `The Revenue You're Losing (and why you don't see it yet)`;
   if (auditType.includes('capital_protection')) return `Your Capital Protection Score: ${score}`;
   if (auditType === 'corporate') return `Your Team Discipline Score: ${score}`;
   return `Your Diagnostic Score: ${score}`;
@@ -503,7 +616,7 @@ function getBookingSubject(payload: Record<string, unknown>): string {
 function getDay2Subject(payload: Record<string, unknown>): string {
   const auditType = String(payload.audit_type || '');
   if (auditType === 'capital_protection') return `The Window Is Narrowing, ${payload.first_name}`;
-  if (auditType.includes('profit_leak')) return `The Revenue You're Leaving Behind, ${payload.first_name}`;
+  if (auditType.includes('profit_leak')) return `Why more effort is not fixing your revenue`;
   if (auditType === 'corporate') return `The Discipline Gap in Your Team, ${payload.first_name}`;
   return `The Pattern Behind Your Score, ${payload.first_name}`;
 }
@@ -562,7 +675,7 @@ Deno.serve(async (req) => {
         .from('scheduled_emails')
         .update({ status: 'cancelled' } as any)
         .eq('contact_email', String(payload.email))
-        .in('email_type', ['nurture_day2', 'nurture_day5'])
+        .in('email_type', ['nurture_day2', 'nurture_day4', 'nurture_day5', 'nurture_day6', 'nurture_day8'])
         .eq('status', 'pending');
 
       console.log('Cancelled nurture emails for booked contact:', payload.email);
@@ -658,17 +771,53 @@ Deno.serve(async (req) => {
         scan_type: auditType,
       });
 
-      // Day 5 nurture
-      const day5SendAt = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000);
-      await supabase.from('scheduled_emails').insert({
-        contact_id: contactId,
-        contact_email: String(payload.email),
-        email_type: 'nurture_day5',
-        subject: getDay5Subject(payload),
-        html_body: buildNurtureDay5HTML(payload),
-        send_at: day5SendAt.toISOString(),
-        scan_type: auditType,
-      });
+      if (auditType.includes('profit_leak')) {
+        // Profit Leak: 5-email sequence (Day 0, 2, 4, 6, 8)
+        const day4SendAt = new Date(Date.now() + 4 * 24 * 60 * 60 * 1000);
+        await supabase.from('scheduled_emails').insert({
+          contact_id: contactId,
+          contact_email: String(payload.email),
+          email_type: 'nurture_day4',
+          subject: 'What this is costing you every month',
+          html_body: buildNurtureDay4HTML(payload),
+          send_at: day4SendAt.toISOString(),
+          scan_type: auditType,
+        });
+
+        const day6SendAt = new Date(Date.now() + 6 * 24 * 60 * 60 * 1000);
+        await supabase.from('scheduled_emails').insert({
+          contact_id: contactId,
+          contact_email: String(payload.email),
+          email_type: 'nurture_day6',
+          subject: 'I see this pattern more often than you think',
+          html_body: buildNurtureDay6HTML(payload),
+          send_at: day6SendAt.toISOString(),
+          scan_type: auditType,
+        });
+
+        const day8SendAt = new Date(Date.now() + 8 * 24 * 60 * 60 * 1000);
+        await supabase.from('scheduled_emails').insert({
+          contact_id: contactId,
+          contact_email: String(payload.email),
+          email_type: 'nurture_day8',
+          subject: 'You can keep pushing — or fix what\'s underneath',
+          html_body: buildNurtureDay8HTML(payload),
+          send_at: day8SendAt.toISOString(),
+          scan_type: auditType,
+        });
+      } else {
+        // Other scans: 3-email sequence (Day 0, 2, 5)
+        const day5SendAt = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000);
+        await supabase.from('scheduled_emails').insert({
+          contact_id: contactId,
+          contact_email: String(payload.email),
+          email_type: 'nurture_day5',
+          subject: getDay5Subject(payload),
+          html_body: buildNurtureDay5HTML(payload),
+          send_at: day5SendAt.toISOString(),
+          scan_type: auditType,
+        });
+      }
     }
 
     return new Response(JSON.stringify({ success: true, contactId, booked }), {
