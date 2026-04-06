@@ -771,17 +771,53 @@ Deno.serve(async (req) => {
         scan_type: auditType,
       });
 
-      // Day 5 nurture
-      const day5SendAt = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000);
-      await supabase.from('scheduled_emails').insert({
-        contact_id: contactId,
-        contact_email: String(payload.email),
-        email_type: 'nurture_day5',
-        subject: getDay5Subject(payload),
-        html_body: buildNurtureDay5HTML(payload),
-        send_at: day5SendAt.toISOString(),
-        scan_type: auditType,
-      });
+      if (auditType.includes('profit_leak')) {
+        // Profit Leak: 5-email sequence (Day 0, 2, 4, 6, 8)
+        const day4SendAt = new Date(Date.now() + 4 * 24 * 60 * 60 * 1000);
+        await supabase.from('scheduled_emails').insert({
+          contact_id: contactId,
+          contact_email: String(payload.email),
+          email_type: 'nurture_day4',
+          subject: 'What this is costing you every month',
+          html_body: buildNurtureDay4HTML(payload),
+          send_at: day4SendAt.toISOString(),
+          scan_type: auditType,
+        });
+
+        const day6SendAt = new Date(Date.now() + 6 * 24 * 60 * 60 * 1000);
+        await supabase.from('scheduled_emails').insert({
+          contact_id: contactId,
+          contact_email: String(payload.email),
+          email_type: 'nurture_day6',
+          subject: 'I see this pattern more often than you think',
+          html_body: buildNurtureDay6HTML(payload),
+          send_at: day6SendAt.toISOString(),
+          scan_type: auditType,
+        });
+
+        const day8SendAt = new Date(Date.now() + 8 * 24 * 60 * 60 * 1000);
+        await supabase.from('scheduled_emails').insert({
+          contact_id: contactId,
+          contact_email: String(payload.email),
+          email_type: 'nurture_day8',
+          subject: 'You can keep pushing — or fix what\'s underneath',
+          html_body: buildNurtureDay8HTML(payload),
+          send_at: day8SendAt.toISOString(),
+          scan_type: auditType,
+        });
+      } else {
+        // Other scans: 3-email sequence (Day 0, 2, 5)
+        const day5SendAt = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000);
+        await supabase.from('scheduled_emails').insert({
+          contact_id: contactId,
+          contact_email: String(payload.email),
+          email_type: 'nurture_day5',
+          subject: getDay5Subject(payload),
+          html_body: buildNurtureDay5HTML(payload),
+          send_at: day5SendAt.toISOString(),
+          scan_type: auditType,
+        });
+      }
     }
 
     return new Response(JSON.stringify({ success: true, contactId, booked }), {
