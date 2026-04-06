@@ -232,7 +232,7 @@ IMPORTANT INSTRUCTIONS:
               <MessageSquare className="w-5 h-5 text-lioner-gold" />
             </div>
             <p className="text-sm font-semibold text-foreground">
-              {language === "nl" ? "Spreek met een adviseur" : "Speak to an advisor"}
+              {language === "nl" ? "Bespreek uw resultaten" : "Discuss Your Results"}
             </p>
           </button>
         )}
