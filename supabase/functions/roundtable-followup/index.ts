@@ -136,7 +136,7 @@ async function upsertContact(data: any) {
     email: data.email,
     phone: data.phone || '',
     source: 'Round Table Application',
-    tags: ['round-table-application'],
+    tags: ['round-table-application', 'lead-roundtable'],
     customFields: [
       { key: 'roundtable_score', field_value: String(data.score) },
       { key: 'roundtable_route', field_value: data.route },

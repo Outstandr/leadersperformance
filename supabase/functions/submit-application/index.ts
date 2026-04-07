@@ -101,6 +101,7 @@ Deno.serve(async (req) => {
       commitment_level: body.commitmentLevel.trim(),
       booking_date_time: body.bookingDateTime,
       calendar_tag: 'high ticket consultation',
+      tags: ['mentorship-application', 'lead-elite'],
       submitted_at: new Date().toISOString(),
     };
 

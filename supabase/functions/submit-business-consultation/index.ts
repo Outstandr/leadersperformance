@@ -108,6 +108,7 @@ Deno.serve(async (req) => {
       tier,
       booking_date_time: body.bookingDateTime,
       calendar_tag: 'business consultation',
+      tags: ['business-consultation', 'lead-academy'],
       submitted_at: new Date().toISOString(),
     };
 
