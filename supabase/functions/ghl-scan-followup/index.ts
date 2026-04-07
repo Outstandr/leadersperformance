@@ -54,6 +54,17 @@ async function upsertContact(payload: Record<string, unknown>) {
   const tags = [auditType, 'Scan Lead'];
   if (payload.booked === true) tags.push(`booked-${auditType}`);
 
+  // Add lead-origin tag based on audit type
+  const originTagMap: Record<string, string> = {
+    founder_pressure_scan: 'lead-elite',
+    founder_pressure_diagnostic: 'lead-elite',
+    capital_protection: 'lead-elite',
+    profit_leak_scan: 'lead-academy',
+    corporate: 'lead-academy',
+  };
+  const originTag = originTagMap[auditType];
+  if (originTag) tags.push(originTag);
+
   const customFields: Record<string, unknown>[] = [];
   const fieldKeys = [
     'fps_score', 'discipline_score', 'overall_score', 'tier',

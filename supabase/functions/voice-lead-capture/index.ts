@@ -194,12 +194,20 @@ Deno.serve(async (req) => {
         pathInfo.name,
       );
 
+      // Determine lead-origin tag based on recommended path
+      const pathLower = (recommended_path || '').toLowerCase();
+      let originTag = 'lead-elite'; // default
+      if (pathLower.includes('unmasked')) originTag = 'lead-unmasked';
+      else if (pathLower.includes('academy')) originTag = 'lead-academy';
+      else if (pathLower.includes('business')) originTag = 'lead-academy';
+
       const ghlPayload = {
         // Contact info
         first_name,
         email,
         source: 'voice_agent',
         tag: 'voice-lead',
+        tags: ['voice-lead', originTag],
         
         // Path recommendation
         recommended_path,

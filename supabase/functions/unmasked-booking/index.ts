@@ -36,7 +36,7 @@ Deno.serve(async (req) => {
         phone,
         dateTime,
         timeSlot,
-        tags: ['UNMASKED', 'Booking'],
+        tags: ['UNMASKED', 'Booking', 'lead-unmasked'],
         source: 'Leaders Performance Website',
         form: 'UNMASKED Booking',
       };
