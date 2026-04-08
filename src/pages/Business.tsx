@@ -7,7 +7,6 @@ import { BusinessServicesSection } from "@/components/business/BusinessServicesS
 import { BusinessProcessSection } from "@/components/business/BusinessProcessSection";
 import { BusinessResultsSection } from "@/components/business/BusinessResultsSection";
 import { ProfitLeakCTASection } from "@/components/profit-leak/ProfitLeakCTASection";
-import { CapitalProtectionCTASection } from "@/components/capital-protection/CapitalProtectionCTASection";
 import { BusinessBookingSection } from "@/components/business/BusinessBookingSection";
 import { HomeFooter } from "@/components/home/HomeFooter";
 
@@ -21,7 +20,6 @@ const Business = () => {
         <BusinessServicesSection />
         <BusinessProcessSection />
         <BusinessResultsSection />
-        <CapitalProtectionCTASection />
         <BusinessBookingSection />
         <BusinessQuoteSection />
       </main>

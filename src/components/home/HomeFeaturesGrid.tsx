@@ -60,26 +60,6 @@ const cards = {
       },
     },
     {
-      title: "Capital Protection\n& Special Situations",
-      description: "For founders facing situations where capital, partnerships or ownership structures become exposed. Supported by an international network of legal, forensic and investigative specialists.",
-      details: {
-        headline: "Capital Protection & Special Situations",
-        tag: "Cases from €1M+",
-        body: "Founders occasionally face situations where capital, partnerships or ownership structures become exposed.\n\nIn these cases Lionel works alongside an international network of legal, forensic and investigative specialists to structure the situation and guide the strategic process.\n\nCases typically involve capital exposure starting from €1M.",
-        bullets: [
-          "Partner conflicts",
-          "Fraud",
-          "Misappropriation of capital",
-          "Shareholder disputes",
-          "Cross-border financial conflicts",
-        ],
-        closing: "Leaders Performance is where founders sharpen strategy, strengthen leadership and protect what they have built.",
-        cta: "Start Capital Protection Scan",
-        disclaimer: "Confidential · International network",
-        showCalendar: false,
-      },
-    },
-    {
       title: "Leaders Performance\nAcademy",
       description: "The digital leadership platform built around the RESET Blueprint. Structured learning, leadership frameworks and development tools for discipline, decision-making and execution.",
       details: {
@@ -177,26 +157,6 @@ const cards = {
         closing: "Het traject is beperkt en uitsluitend op aanvraag.",
         cta: "Start de Founder Pressure Scan",
         disclaimer: "Alle trajecten op aanvraag",
-        showCalendar: false,
-      },
-    },
-    {
-      title: "Kapitaalbescherming\n& Bijzondere Situaties",
-      description: "Voor founders die geconfronteerd worden met situaties waarbij kapitaal, partnerschappen of eigendomsstructuren worden blootgesteld. Ondersteund door een internationaal netwerk van juridische, forensische en onderzoeksspecialisten.",
-      details: {
-        headline: "Kapitaalbescherming & Bijzondere Situaties",
-        tag: "Zaken vanaf €1M+",
-        body: "Founders worden soms geconfronteerd met situaties waarbij kapitaal, partnerschappen of eigendomsstructuren worden blootgesteld.\n\nIn deze gevallen werkt Lionel samen met een internationaal netwerk van juridische, forensische en onderzoeksspecialisten om de situatie te structureren en het strategische proces te begeleiden.\n\nZaken betreffen doorgaans kapitaalblootstelling vanaf €1M.",
-        bullets: [
-          "Partnersconflicten",
-          "Fraude",
-          "Verduistering van kapitaal",
-          "Aandeelhoudersgeschillen",
-          "Grensoverschrijdende financiële conflicten",
-        ],
-        closing: "Leaders Performance is waar founders strategie aanscherpen, leiderschap versterken en beschermen wat ze hebben opgebouwd.",
-        cta: "Start Kapitaalbeschermingsassessment",
-        disclaimer: "Vertrouwelijk · Internationaal netwerk",
         showCalendar: false,
       },
     },
