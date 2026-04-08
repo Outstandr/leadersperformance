@@ -10,7 +10,6 @@ import { RoundTableApplicationDialog } from "./RoundTableApplicationDialog";
 import serviceUnmasked from "@/assets/card-unmasked.png";
 import serviceCoaching from "@/assets/card-coaching.png";
 import serviceAcademy from "@/assets/card-masterclass.png";
-import serviceBusiness from "@/assets/card-business.png";
 import serviceBusinessConsulting from "@/assets/card-business-consulting.jpg";
 import serviceRoundTable from "@/assets/card-roundtable.jpg";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
