@@ -223,7 +223,7 @@ const cards = {
   ],
 };
 
-const images = [serviceUnmasked, serviceCoaching, serviceBusiness, serviceAcademy, serviceBusinessConsulting, serviceRoundTable];
+const images = [serviceUnmasked, serviceCoaching, serviceAcademy, serviceBusinessConsulting, serviceRoundTable];
 
 // ─── Sub-components ────────────────────────────────────────────────────────
 
@@ -463,18 +463,8 @@ export const HomeFeaturesGrid = () => {
                         </div>
                       )}
 
-                      {/* Capital Protection (index 2): scan only */}
+                      {/* Academy (index 2): external link */}
                       {selected === 2 && (
-                        <button
-                          onClick={() => { setSelected(null); navigate("/capital-protection"); }}
-                          className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
-                        >
-                          {(services[selected].details as any).cta}
-                        </button>
-                      )}
-
-                      {/* Academy (index 3): external link */}
-                      {selected === 3 && (
                         <a
                           href="https://testgroup.leadersperformance.ae/"
                           target="_blank"
@@ -485,8 +475,8 @@ export const HomeFeaturesGrid = () => {
                         </a>
                         )}
 
-                      {/* Business Consulting (index 4): scan + view page */}
-                      {selected === 4 && (
+                      {/* Business Consulting (index 3): scan + view page */}
+                      {selected === 3 && (
                         <div className="flex flex-col gap-2">
                           <button
                             onClick={() => { setSelected(null); navigate("/profit-leak-scan"); }}
@@ -503,8 +493,8 @@ export const HomeFeaturesGrid = () => {
                         </div>
                       )}
 
-                      {/* The Round Table (index 5): request invitation */}
-                      {selected === 5 && (
+                      {/* The Round Table (index 4): request invitation */}
+                      {selected === 4 && (
                         <button
                           onClick={() => { setSelected(null); setRoundTableOpen(true); }}
                           className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
