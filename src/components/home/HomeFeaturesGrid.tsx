@@ -10,7 +10,6 @@ import { RoundTableApplicationDialog } from "./RoundTableApplicationDialog";
 import serviceUnmasked from "@/assets/card-unmasked.png";
 import serviceCoaching from "@/assets/card-coaching.png";
 import serviceAcademy from "@/assets/card-masterclass.png";
-import serviceBusiness from "@/assets/card-business.png";
 import serviceBusinessConsulting from "@/assets/card-business-consulting.jpg";
 import serviceRoundTable from "@/assets/card-roundtable.jpg";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -56,26 +55,6 @@ const cards = {
         closing: "Engagement is limited and by application only.",
         cta: "Take the Founder Pressure Scan",
         disclaimer: "All engagements by application",
-        showCalendar: false,
-      },
-    },
-    {
-      title: "Capital Protection\n& Special Situations",
-      description: "For founders facing situations where capital, partnerships or ownership structures become exposed. Supported by an international network of legal, forensic and investigative specialists.",
-      details: {
-        headline: "Capital Protection & Special Situations",
-        tag: "Cases from €1M+",
-        body: "Founders occasionally face situations where capital, partnerships or ownership structures become exposed.\n\nIn these cases Lionel works alongside an international network of legal, forensic and investigative specialists to structure the situation and guide the strategic process.\n\nCases typically involve capital exposure starting from €1M.",
-        bullets: [
-          "Partner conflicts",
-          "Fraud",
-          "Misappropriation of capital",
-          "Shareholder disputes",
-          "Cross-border financial conflicts",
-        ],
-        closing: "Leaders Performance is where founders sharpen strategy, strengthen leadership and protect what they have built.",
-        cta: "Start Capital Protection Scan",
-        disclaimer: "Confidential · International network",
         showCalendar: false,
       },
     },
@@ -181,26 +160,6 @@ const cards = {
       },
     },
     {
-      title: "Kapitaalbescherming\n& Bijzondere Situaties",
-      description: "Voor founders die geconfronteerd worden met situaties waarbij kapitaal, partnerschappen of eigendomsstructuren worden blootgesteld. Ondersteund door een internationaal netwerk van juridische, forensische en onderzoeksspecialisten.",
-      details: {
-        headline: "Kapitaalbescherming & Bijzondere Situaties",
-        tag: "Zaken vanaf €1M+",
-        body: "Founders worden soms geconfronteerd met situaties waarbij kapitaal, partnerschappen of eigendomsstructuren worden blootgesteld.\n\nIn deze gevallen werkt Lionel samen met een internationaal netwerk van juridische, forensische en onderzoeksspecialisten om de situatie te structureren en het strategische proces te begeleiden.\n\nZaken betreffen doorgaans kapitaalblootstelling vanaf €1M.",
-        bullets: [
-          "Partnersconflicten",
-          "Fraude",
-          "Verduistering van kapitaal",
-          "Aandeelhoudersgeschillen",
-          "Grensoverschrijdende financiële conflicten",
-        ],
-        closing: "Leaders Performance is waar founders strategie aanscherpen, leiderschap versterken en beschermen wat ze hebben opgebouwd.",
-        cta: "Start Kapitaalbeschermingsassessment",
-        disclaimer: "Vertrouwelijk · Internationaal netwerk",
-        showCalendar: false,
-      },
-    },
-    {
       title: "Leaders Performance\nAcademie",
       description: "Het digitale leiderschapsplatform gebouwd rondom de RESET Blueprint. Gestructureerd leren, leiderschapskaders en ontwikkeltools voor discipline, besluitvorming en uitvoering.",
       details: {
@@ -263,7 +222,7 @@ const cards = {
   ],
 };
 
-const images = [serviceUnmasked, serviceCoaching, serviceBusiness, serviceAcademy, serviceBusinessConsulting, serviceRoundTable];
+const images = [serviceUnmasked, serviceCoaching, serviceAcademy, serviceBusinessConsulting, serviceRoundTable];
 
 // ─── Sub-components ────────────────────────────────────────────────────────
 
@@ -503,18 +462,8 @@ export const HomeFeaturesGrid = () => {
                         </div>
                       )}
 
-                      {/* Capital Protection (index 2): scan only */}
+                      {/* Academy (index 2): external link */}
                       {selected === 2 && (
-                        <button
-                          onClick={() => { setSelected(null); navigate("/capital-protection"); }}
-                          className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
-                        >
-                          {(services[selected].details as any).cta}
-                        </button>
-                      )}
-
-                      {/* Academy (index 3): external link */}
-                      {selected === 3 && (
                         <a
                           href="https://testgroup.leadersperformance.ae/"
                           target="_blank"
@@ -525,8 +474,8 @@ export const HomeFeaturesGrid = () => {
                         </a>
                         )}
 
-                      {/* Business Consulting (index 4): scan + view page */}
-                      {selected === 4 && (
+                      {/* Business Consulting (index 3): scan + view page */}
+                      {selected === 3 && (
                         <div className="flex flex-col gap-2">
                           <button
                             onClick={() => { setSelected(null); navigate("/profit-leak-scan"); }}
@@ -543,8 +492,8 @@ export const HomeFeaturesGrid = () => {
                         </div>
                       )}
 
-                      {/* The Round Table (index 5): request invitation */}
-                      {selected === 5 && (
+                      {/* The Round Table (index 4): request invitation */}
+                      {selected === 4 && (
                         <button
                           onClick={() => { setSelected(null); setRoundTableOpen(true); }}
                           className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white py-4 text-sm font-semibold uppercase tracking-widest transition-colors"
