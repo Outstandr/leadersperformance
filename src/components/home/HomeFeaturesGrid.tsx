@@ -335,8 +335,8 @@ export const HomeFeaturesGrid = () => {
               />
             ))}
           </div>
-          {/* Bottom row: 2 cards centered */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-start mt-5 max-w-[66.666%] mx-auto lg:max-w-[66.666%] sm:max-w-full">
+          {/* Bottom row: 2 cards aligned with outer columns */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start mt-5">
             {services.slice(3).map((service, i) => (
               <ParallaxCard
                 key={i + 3}
