@@ -298,7 +298,19 @@ function buildBookingConfirmationHTML(payload: Record<string, unknown>): string 
       <table width="100%" cellpadding="0" cellspacing="0">
         <tr><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#8B7355;width:100px;">Date</td><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;font-weight:bold;">${bookingDate}</td></tr>
         <tr><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#8B7355;">Time</td><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;font-weight:bold;">${bookingTime} (Dubai Time)</td></tr>
-        <tr><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;color:#8B7355;">With</td><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;">Lionel Eersteling</td></tr>
+        <tr><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#8B7355;">With</td><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;">Lionel Eersteling</td></tr>
+        <tr><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;color:#8B7355;">Location</td><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;">Zoom (details below)</td></tr>
+      </table>
+    </td></tr>
+  </tbody></table>
+  <table width="100%" style="background:#F9F6F2;border:1px solid #E8E0D5;margin-top:16px;" cellpadding="0" cellspacing="0"><tbody>
+    <tr><td style="padding:20px;">
+      <p style="margin:0 0 12px;font-size:11px;letter-spacing:2px;color:#8B7355;text-transform:uppercase;">Join Zoom Meeting</p>
+      <p style="margin:0 0 8px;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;line-height:1.6;">Lionel Eersteling's personal meeting room</p>
+      <a href="https://zoom.us/j/7114427991?pwd=RnkwdHdnMWtyVnBnQXp3dmw1NW9kUT09" style="display:inline-block;background:#2C4A7C;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;padding:12px 28px;text-decoration:none;margin:8px 0 16px;">Join Meeting</a>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr><td style="padding:4px 0;font-family:Georgia,serif;font-size:13px;color:#8B7355;width:110px;">Meeting ID</td><td style="padding:4px 0;font-family:Georgia,serif;font-size:13px;color:#1a1a1a;">711 442 7991</td></tr>
+        <tr><td style="padding:4px 0;font-family:Georgia,serif;font-size:13px;color:#8B7355;">Password</td><td style="padding:4px 0;font-family:Georgia,serif;font-size:13px;color:#1a1a1a;">097248</td></tr>
       </table>
     </td></tr>
   </tbody></table>
@@ -339,6 +351,16 @@ function buildReminderHTML(payload: Record<string, unknown>, timeframe: string):
       <table width="100%" cellpadding="0" cellspacing="0">
         <tr><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#8B7355;width:100px;">Date</td><td style="padding:6px 0;border-bottom:1px solid #eee;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;font-weight:bold;">${bookingDate}</td></tr>
         <tr><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;color:#8B7355;">Time</td><td style="padding:6px 0;font-family:Georgia,serif;font-size:14px;color:#1a1a1a;font-weight:bold;">${bookingTime} (Dubai Time)</td></tr>
+      </table>
+    </td></tr>
+  </tbody></table>
+  <table width="100%" style="background:#F9F6F2;border:1px solid #E8E0D5;margin-top:16px;" cellpadding="0" cellspacing="0"><tbody>
+    <tr><td style="padding:20px;">
+      <p style="margin:0 0 8px;font-size:11px;letter-spacing:2px;color:#8B7355;text-transform:uppercase;">Join Zoom Meeting</p>
+      <a href="https://zoom.us/j/7114427991?pwd=RnkwdHdnMWtyVnBnQXp3dmw1NW9kUT09" style="display:inline-block;background:#2C4A7C;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;padding:12px 28px;text-decoration:none;margin:8px 0 12px;">Join Meeting</a>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr><td style="padding:4px 0;font-family:Georgia,serif;font-size:13px;color:#8B7355;width:110px;">Meeting ID</td><td style="padding:4px 0;font-family:Georgia,serif;font-size:13px;color:#1a1a1a;">711 442 7991</td></tr>
+        <tr><td style="padding:4px 0;font-family:Georgia,serif;font-size:13px;color:#8B7355;">Password</td><td style="padding:4px 0;font-family:Georgia,serif;font-size:13px;color:#1a1a1a;">097248</td></tr>
       </table>
     </td></tr>
   </tbody></table>
