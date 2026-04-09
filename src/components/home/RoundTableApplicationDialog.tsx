@@ -370,14 +370,6 @@ export function RoundTableApplicationDialog({
 
   const renderStep4 = () => (
     <div className="space-y-6">
-      <div className="p-4 border border-lioner-gold/30 rounded-lg bg-lioner-gold/5">
-        <p className="text-sm text-foreground/60 italic mb-2">
-          This table is not for everyone.
-        </p>
-        <p className="text-sm font-medium text-foreground/90">
-          Why should you be invited?
-        </p>
-      </div>
       <div>
         <Label className="text-sm font-medium text-foreground/90">
           What is a truth about your company or yourself that you know, but have not acted on yet?
