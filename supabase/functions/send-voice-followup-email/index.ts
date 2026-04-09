@@ -142,10 +142,10 @@ function buildEmailHtml(
         
         <!-- Body -->
         <tr><td style="padding:40px;">
-          <p style="color:#e8e8e8;font-size:17px;line-height:1.7;margin:0 0 24px;">
+          <p style="color:#1a1a1a;font-size:17px;line-height:1.7;margin:0 0 24px;">
             ${emailContent.greeting}
           </p>
-          <p style="color:#b8b8b8;font-size:15px;line-height:1.7;margin:0 0 24px;">
+          <p style="color:#4a4a4a;font-size:15px;line-height:1.7;margin:0 0 24px;">
             ${emailContent.intro}
           </p>
           
@@ -154,7 +154,7 @@ function buildEmailHtml(
             <p style="color:#c9a84c;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin:0 0 12px;font-family:Arial,sans-serif;">
               WHAT I HEARD FROM YOU
             </p>
-            <p style="color:#d0d0d0;font-size:14px;line-height:1.7;margin:0;">
+            <p style="color:#ffffff;font-size:14px;line-height:1.7;margin:0;">
               ${emailContent.highlights}
             </p>
           </div>
@@ -164,10 +164,10 @@ function buildEmailHtml(
             <p style="color:#c9a84c;font-size:11px;letter-spacing:3px;text-transform:uppercase;margin:0 0 8px;font-family:Arial,sans-serif;">
               YOUR RECOMMENDED PATH
             </p>
-            <h2 style="color:#e8e8e8;font-size:24px;font-weight:400;margin:0 0 16px;">
+            <h2 style="color:#1a1a1a;font-size:24px;font-weight:400;margin:0 0 16px;">
               ${pathInfo.name}
             </h2>
-            <p style="color:#b8b8b8;font-size:14px;line-height:1.7;margin:0 0 20px;">
+            <p style="color:#4a4a4a;font-size:14px;line-height:1.7;margin:0 0 20px;">
               ${emailContent.pathPitch}
             </p>
             <a href="${pathInfo.url}" style="display:inline-block;background-color:#c9a84c;color:#0a0a0a;text-decoration:none;padding:14px 36px;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:600;font-family:Arial,sans-serif;border-radius:2px;">
@@ -175,7 +175,7 @@ function buildEmailHtml(
             </a>
           </div>
           
-          <p style="color:#b8b8b8;font-size:15px;line-height:1.7;margin:0 0 24px;">
+          <p style="color:#4a4a4a;font-size:15px;line-height:1.7;margin:0 0 24px;">
             ${emailContent.closing}
           </p>
           
