@@ -347,6 +347,7 @@ export const HomeFeaturesGrid = () => {
               i={3}
               isInView={isInView}
               onClick={() => setSelected(3)}
+              forceLevel
             />
             <div className="hidden lg:block" /> {/* empty middle */}
             <ParallaxCard
@@ -355,6 +356,7 @@ export const HomeFeaturesGrid = () => {
               i={4}
               isInView={isInView}
               onClick={() => setSelected(4)}
+              forceLevel
             />
           </div>
         </div>
