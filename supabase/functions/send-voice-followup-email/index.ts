@@ -128,10 +128,10 @@ function buildEmailHtml(
   return `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
-<body style="margin:0;padding:0;background-color:#0a0a0a;font-family:Georgia,'Times New Roman',serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#0a0a0a;padding:40px 20px;">
+<body style="margin:0;padding:0;background-color:#F5F0EB;font-family:Georgia,'Times New Roman',serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#F5F0EB;padding:40px 20px;">
     <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="background-color:#111111;border:1px solid #2a2a2a;border-radius:4px;">
+      <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border:1px solid #E8E0D5;border-radius:4px;">
         
         <!-- Header -->
         <tr><td style="padding:40px 40px 20px;border-bottom:2px solid #c9a84c;">
@@ -142,32 +142,32 @@ function buildEmailHtml(
         
         <!-- Body -->
         <tr><td style="padding:40px;">
-          <p style="color:#e8e8e8;font-size:17px;line-height:1.7;margin:0 0 24px;">
+          <p style="color:#1a1a1a;font-size:17px;line-height:1.7;margin:0 0 24px;">
             ${emailContent.greeting}
           </p>
-          <p style="color:#b8b8b8;font-size:15px;line-height:1.7;margin:0 0 24px;">
+          <p style="color:#4a4a4a;font-size:15px;line-height:1.7;margin:0 0 24px;">
             ${emailContent.intro}
           </p>
           
           <!-- Personalized Highlights -->
-          <div style="background-color:#1a1a1a;border-left:3px solid #c9a84c;padding:20px 24px;margin:0 0 32px;border-radius:0 4px 4px 0;">
+          <div style="background-color:#2C4A7C;border-left:3px solid #c9a84c;padding:20px 24px;margin:0 0 32px;border-radius:0 4px 4px 0;">
             <p style="color:#c9a84c;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin:0 0 12px;font-family:Arial,sans-serif;">
               WHAT I HEARD FROM YOU
             </p>
-            <p style="color:#d0d0d0;font-size:14px;line-height:1.7;margin:0;">
+            <p style="color:#ffffff;font-size:14px;line-height:1.7;margin:0;">
               ${emailContent.highlights}
             </p>
           </div>
           
           <!-- Recommended Path -->
-          <div style="background:linear-gradient(135deg,#1a1508,#111111);border:1px solid #c9a84c33;padding:28px;margin:0 0 32px;border-radius:4px;text-align:center;">
+          <div style="background:#F9F6F2;border:1px solid #E8E0D5;border:1px solid #c9a84c33;padding:28px;margin:0 0 32px;border-radius:4px;text-align:center;">
             <p style="color:#c9a84c;font-size:11px;letter-spacing:3px;text-transform:uppercase;margin:0 0 8px;font-family:Arial,sans-serif;">
               YOUR RECOMMENDED PATH
             </p>
-            <h2 style="color:#e8e8e8;font-size:24px;font-weight:400;margin:0 0 16px;">
+            <h2 style="color:#1a1a1a;font-size:24px;font-weight:400;margin:0 0 16px;">
               ${pathInfo.name}
             </h2>
-            <p style="color:#b8b8b8;font-size:14px;line-height:1.7;margin:0 0 20px;">
+            <p style="color:#4a4a4a;font-size:14px;line-height:1.7;margin:0 0 20px;">
               ${emailContent.pathPitch}
             </p>
             <a href="${pathInfo.url}" style="display:inline-block;background-color:#c9a84c;color:#0a0a0a;text-decoration:none;padding:14px 36px;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:600;font-family:Arial,sans-serif;border-radius:2px;">
@@ -175,7 +175,7 @@ function buildEmailHtml(
             </a>
           </div>
           
-          <p style="color:#b8b8b8;font-size:15px;line-height:1.7;margin:0 0 24px;">
+          <p style="color:#4a4a4a;font-size:15px;line-height:1.7;margin:0 0 24px;">
             ${emailContent.closing}
           </p>
           
@@ -190,7 +190,7 @@ function buildEmailHtml(
         </td></tr>
         
         <!-- Footer -->
-        <tr><td style="padding:24px 40px;border-top:1px solid #2a2a2a;">
+        <tr><td style="padding:24px 40px;border-top:1px solid #E8E0D5;">
           <p style="color:#666;font-size:12px;line-height:1.6;margin:0;text-align:center;font-family:Arial,sans-serif;">
             Leaders Performance — Discipline. Execution. Sovereignty.<br>
             © ${new Date().getFullYear()} Leaders Performance. All rights reserved.

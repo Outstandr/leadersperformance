@@ -245,7 +245,7 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
 
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
-<tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:30px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${scanTitle}</p>
 </td></tr>
@@ -253,7 +253,7 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
   <p style="font-family:Georgia,serif;font-size:16px;color:#1a1a1a;margin:0 0 20px;">${firstName},</p>
   <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 30px;">${introText}</p>
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:20px 0;">
-    <div style="display:inline-block;background:#1a1a1a;padding:30px 50px;text-align:center;">
+    <div style="display:inline-block;background:#2C4A7C;padding:30px 50px;text-align:center;">
       <p style="margin:0;font-size:11px;letter-spacing:3px;color:#8B7355;text-transform:uppercase;">${auditType === 'capital_protection' ? 'Recovery Potential' : 'Your Score'}</p>
       <p style="margin:8px 0 0;font-size:56px;color:#ffffff;font-family:Georgia,serif;font-weight:900;">${score}</p>
     </div>
@@ -264,13 +264,13 @@ function buildResultsEmailHTML(payload: Record<string, unknown>): string {
   </td></tr></tbody></table>
   ${dimensionBarsHTML ? `<table width="100%" style="margin:20px 0;" cellpadding="0" cellspacing="0"><tbody>${dimensionBarsHTML}</tbody></table>` : ''}
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:30px 0 10px;">
-    <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your ${sessionName}</a>
+    <a href="${bookingLink}" style="display:inline-block;background:#2C4A7C;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your ${sessionName}</a>
   </td></tr></tbody></table>
   <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">30-minute confidential session with Lionel Eersteling</p>
   <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
   <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
-<tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:20px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="120" style="display:block;margin:0 auto;width:120px;height:auto;" />
   <p style="margin:6px 0 0;font-size:11px;color:#666;">${auditType === 'capital_protection' ? 'This is not a crisis tool. This is a structural diagnostic.' : 'This is a structural diagnostic, not crisis advice.'}</p>
 </td></tr>
@@ -285,7 +285,7 @@ function buildBookingConfirmationHTML(payload: Record<string, unknown>): string 
 
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
-<tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:30px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">Your ${sessionName} Is Confirmed</p>
 </td></tr>
@@ -310,7 +310,7 @@ function buildBookingConfirmationHTML(payload: Record<string, unknown>): string 
   <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
   <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
-<tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:20px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="120" style="display:block;margin:0 auto;width:120px;height:auto;" />
   <p style="margin:8px 0 0;font-size:11px;color:#666;">Confidential. 30-minute session with Lionel Eersteling.</p>
 </td></tr>
@@ -325,7 +325,7 @@ function buildReminderHTML(payload: Record<string, unknown>, timeframe: string):
 
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
-<tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:30px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${timeframe === '24h' ? 'Tomorrow' : 'Starting in 60 Minutes'}: Your Session</p>
 </td></tr>
@@ -346,7 +346,7 @@ function buildReminderHTML(payload: Record<string, unknown>, timeframe: string):
   <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
   <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
-<tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:20px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="120" style="display:block;margin:0 auto;width:120px;height:auto;" />
 </td></tr>
 </tbody></table></td></tr></tbody></table>`;
@@ -396,7 +396,7 @@ function buildNurtureDay2HTML(payload: Record<string, unknown>): string {
 
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
-<tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:30px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${headline}</p>
 </td></tr>
@@ -404,13 +404,13 @@ function buildNurtureDay2HTML(payload: Record<string, unknown>): string {
   <p style="font-family:Georgia,serif;font-size:16px;color:#1a1a1a;margin:0 0 20px;">${firstName},</p>
   ${bodyParagraphs}
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:10px 0;">
-    <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your ${sessionName}</a>
+    <a href="${bookingLink}" style="display:inline-block;background:#2C4A7C;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your ${sessionName}</a>
   </td></tr></tbody></table>
   <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">30-minute confidential session with Lionel Eersteling</p>
   <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
   <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
-<tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:20px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="120" style="display:block;margin:0 auto;width:120px;height:auto;" />
 </td></tr>
 </tbody></table></td></tr></tbody></table>`;
@@ -476,7 +476,7 @@ function buildNurtureDay5HTML(payload: Record<string, unknown>): string {
 
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
-<tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:30px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">${headline}</p>
 </td></tr>
@@ -484,13 +484,13 @@ function buildNurtureDay5HTML(payload: Record<string, unknown>): string {
   <p style="font-family:Georgia,serif;font-size:16px;color:#1a1a1a;margin:0 0 20px;">${firstName},</p>
   ${bodyContent}
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:10px 0;">
-    <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your ${sessionName}</a>
+    <a href="${bookingLink}" style="display:inline-block;background:#2C4A7C;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your ${sessionName}</a>
   </td></tr></tbody></table>
   <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">30-minute confidential session with Lionel Eersteling</p>
   <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
   <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
-<tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:20px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="120" style="display:block;margin:0 auto;width:120px;height:auto;" />
 </td></tr>
 </tbody></table></td></tr></tbody></table>`;
@@ -504,7 +504,7 @@ function buildNurtureDay4HTML(payload: Record<string, unknown>): string {
 
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
-<tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:30px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">What This Is Costing You Every Month</p>
 </td></tr>
@@ -523,13 +523,13 @@ function buildNurtureDay4HTML(payload: Record<string, unknown>): string {
   <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">This is not about losing everything. This is about never reaching what should already be happening.</p>
   <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">That gap is where your real loss sits. In the session, we quantify and isolate that gap.</p>
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:10px 0;">
-    <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your Revenue Architecture Session</a>
+    <a href="${bookingLink}" style="display:inline-block;background:#2C4A7C;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your Revenue Architecture Session</a>
   </td></tr></tbody></table>
   <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">30-minute confidential session with Lionel Eersteling</p>
   <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
   <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
-<tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:20px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="120" style="display:block;margin:0 auto;width:120px;height:auto;" />
 </td></tr>
 </tbody></table></td></tr></tbody></table>`;
@@ -543,7 +543,7 @@ function buildNurtureDay6HTML(payload: Record<string, unknown>): string {
 
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
-<tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:30px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">I See This Pattern More Often Than You Think</p>
 </td></tr>
@@ -556,13 +556,13 @@ function buildNurtureDay6HTML(payload: Record<string, unknown>): string {
   <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 16px;">Because the constraint sits inside the business itself. And until that is addressed, nothing scales cleanly.</p>
   <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:0 0 24px;">This is not a rare situation. It's predictable. And it's fixable — if you look in the right place. That's exactly what we do in the Revenue Architecture Session.</p>
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:10px 0;">
-    <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your Revenue Architecture Session</a>
+    <a href="${bookingLink}" style="display:inline-block;background:#2C4A7C;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your Revenue Architecture Session</a>
   </td></tr></tbody></table>
   <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">30-minute confidential session with Lionel Eersteling</p>
   <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
   <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
-<tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:20px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="120" style="display:block;margin:0 auto;width:120px;height:auto;" />
 </td></tr>
 </tbody></table></td></tr></tbody></table>`;
@@ -576,7 +576,7 @@ function buildNurtureDay8HTML(payload: Record<string, unknown>): string {
 
   return `<table style="background-color:#F5F0EB;" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td style="padding:40px 20px;" align="center">
 <table style="background-color:#ffffff;max-width:600px;width:100%;" cellpadding="0" cellspacing="0"><tbody>
-<tr><td style="background-color:#1a1a1a;padding:30px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:30px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="160" style="display:block;margin:0 auto 16px;width:160px;height:auto;" />
   <p style="margin:8px 0 0;font-size:22px;color:#ffffff;font-family:Georgia,serif;font-weight:bold;">You Can Keep Pushing — Or Fix What's Underneath</p>
 </td></tr>
@@ -594,13 +594,13 @@ function buildNurtureDay8HTML(payload: Record<string, unknown>): string {
   </ul>
   <p style="font-family:Georgia,serif;font-size:15px;color:#1a1a1a;line-height:1.7;margin:16px 0 24px;">If you decide to address it:</p>
   <table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td align="center" style="padding:10px 0;">
-    <a href="${bookingLink}" style="display:inline-block;background:#1a1a1a;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your Revenue Architecture Session</a>
+    <a href="${bookingLink}" style="display:inline-block;background:#2C4A7C;color:#ffffff;font-family:Georgia,serif;font-size:14px;font-weight:bold;text-decoration:none;padding:16px 40px;letter-spacing:2px;text-transform:uppercase;">Book Your Revenue Architecture Session</a>
   </td></tr></tbody></table>
   <p style="text-align:center;font-size:12px;color:#999;font-family:Georgia,serif;margin-top:8px;">If not, the current pattern will continue.</p>
   <p style="margin:30px 0 0;font-size:14px;color:#1a1a1a;font-family:Georgia,serif;">mr. Lionel Eersteling</p>
   <p style="margin:2px 0 0;font-size:12px;color:#8B7355;letter-spacing:1px;">___</p>
 </td></tr>
-<tr><td style="background-color:#1a1a1a;padding:20px 40px;text-align:center;">
+<tr><td style="background-color:#2C4A7C;padding:20px 40px;text-align:center;">
   <img src="https://sfzdecpsvgcqmlwkjibd.supabase.co/storage/v1/object/public/websiteimages/logo-white.png" alt="Leaders Performance" width="120" style="display:block;margin:0 auto;width:120px;height:auto;" />
 </td></tr>
 </tbody></table></td></tr></tbody></table>`;
