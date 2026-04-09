@@ -1,12 +1,10 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { CorporateAuditDialog } from "@/components/corporate-audit/CorporateAuditDialog";
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const BusinessBookingSection = () => { 
   const { t } = useLanguage();
-  const [isAuditOpen, setIsAuditOpen] = useState(false);
 
   return (
     <section id="book-call" className="py-8 lg:py-12 bg-white">
@@ -39,19 +37,19 @@ export const BusinessBookingSection = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
+                asChild
                 size="lg"
-                onClick={() => setIsAuditOpen(true)}
                 className="bg-[hsl(var(--lioner-gold))] hover:bg-[hsl(var(--lioner-gold))]/90 text-white font-bold rounded-none px-8 py-5 h-auto group text-base uppercase tracking-wider"
               >
-                {t("business.booking.ctaSecondary")}
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                <Link to="/profit-leak-scan">
+                  {t("nav.takeProfitLeakScan")}
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
             </div>
           </div>
         </div>
       </div>
-
-      <CorporateAuditDialog open={isAuditOpen} onOpenChange={setIsAuditOpen} />
     </section>
   );
 };
