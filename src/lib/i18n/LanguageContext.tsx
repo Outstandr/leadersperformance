@@ -34,6 +34,7 @@ const en: Record<string, string> = {
   "nav.results": "Results",
   "nav.process": "Process",
   "nav.takeTeamAudit": "Take Team Audit",
+  "nav.takeProfitLeakScan": "Take Profit Leak Scan",
   "nav.bookConsultation": "Book A Consultation",
 
   // Navigation – Elite
@@ -475,6 +476,7 @@ const nl: Record<string, string> = {
   "nav.results": "Resultaten",
   "nav.process": "Werkwijze",
   "nav.takeTeamAudit": "Team audit uitvoeren",
+  "nav.takeProfitLeakScan": "Profit Leak Scan starten",
   "nav.bookConsultation": "Boek een consult",
 
   // Navigation – Elite
