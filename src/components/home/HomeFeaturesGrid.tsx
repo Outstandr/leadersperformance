@@ -323,14 +323,27 @@ export const HomeFeaturesGrid = () => {
     <>
       <section id="features" className="relative z-10 pt-32 pb-20 md:pt-40 md:pb-28 bg-background">
         <div className="container mx-auto px-6 max-w-7xl" ref={ref}>
+          {/* Top row: 3 cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
-            {services.map((service, i) => (
+            {services.slice(0, 3).map((service, i) => (
               <ParallaxCard
                 key={i}
                 service={service}
                 i={i}
                 isInView={isInView}
                 onClick={() => setSelected(i)}
+              />
+            ))}
+          </div>
+          {/* Bottom row: 2 cards centered */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 items-start mt-5 max-w-[66.666%] mx-auto lg:max-w-[66.666%] sm:max-w-full">
+            {services.slice(3).map((service, i) => (
+              <ParallaxCard
+                key={i + 3}
+                service={service}
+                i={i + 3}
+                isInView={isInView}
+                onClick={() => setSelected(i + 3)}
               />
             ))}
           </div>
