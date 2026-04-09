@@ -231,11 +231,13 @@ const ParallaxCard = ({
   i,
   isInView,
   onClick,
+  forceLevel,
 }: {
   service: (typeof cards.en)[number];
   i: number;
   isInView: boolean;
   onClick: () => void;
+  forceLevel?: boolean;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -244,6 +246,8 @@ const ParallaxCard = ({
   });
   const rawY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
   const y = useSpring(rawY, { stiffness: 60, damping: 20, mass: 0.1 });
+
+  const isStaggered = !forceLevel && i % 2 === 1;
 
   return (
     <motion.div
@@ -254,8 +258,8 @@ const ParallaxCard = ({
       transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
       className="group relative overflow-hidden cursor-pointer"
       style={{
-        height: i % 2 === 0 ? "520px" : "580px",
-        marginTop: i % 2 === 1 ? "60px" : "0px",
+        height: forceLevel ? "520px" : (i % 2 === 0 ? "520px" : "580px"),
+        marginTop: isStaggered ? "60px" : "0px",
       }}
       onClick={onClick}
     >
