@@ -336,16 +336,23 @@ export const HomeFeaturesGrid = () => {
             ))}
           </div>
           {/* Bottom row: 2 cards aligned with outer columns */}
+          {/* Bottom row: left + right columns, middle empty */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start mt-5">
-            {services.slice(3).map((service, i) => (
-              <ParallaxCard
-                key={i + 3}
-                service={service}
-                i={i + 3}
-                isInView={isInView}
-                onClick={() => setSelected(i + 3)}
-              />
-            ))}
+            <ParallaxCard
+              key={3}
+              service={services[3]}
+              i={3}
+              isInView={isInView}
+              onClick={() => setSelected(3)}
+            />
+            <div className="hidden lg:block" /> {/* empty middle */}
+            <ParallaxCard
+              key={4}
+              service={services[4]}
+              i={4}
+              isInView={isInView}
+              onClick={() => setSelected(4)}
+            />
           </div>
         </div>
       </section>
