@@ -510,6 +510,7 @@ Recommended Next Step: ${report?.recommended_next_step ?? "Schedule a case revie
                   {isPressureScan || isCapitalProtection || isCorporateAudit || contextData.mode === "profit_leak"
                     ? (language === "nl" ? "Chat over uw resultaten" : "Discuss via Chat")
                     : (language === "nl" ? "Chat met een adviseur" : "Chat with an Advisor")}
+                </button>
               </div>
             </div>
           )}
