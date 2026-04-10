@@ -36,8 +36,8 @@ serve(async (req) => {
       customer_email: customerId ? undefined : email,
       line_items: [{ price: PRICE_ID, quantity: 1 }],
       mode: "payment",
-      success_url: `${origin}/burnout-scan?payment=success&session_id={CHECKOUT_SESSION_ID}&scan_id=${scanId || ""}`,
-      cancel_url: `${origin}/burnout-scan?payment=cancelled`,
+       success_url: `${origin}/pressurescan?payment=success&session_id={CHECKOUT_SESSION_ID}&scan_id=${scanId || ""}`,
+       cancel_url: `${origin}/pressurescan?payment=cancelled`,
       metadata: {
         scan_id: scanId || "",
         full_name: fullName,
