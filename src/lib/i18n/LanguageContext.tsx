@@ -41,6 +41,7 @@ const en: Record<string, string> = {
   "nav.program": "Program",
   "nav.transformation": "Transformation",
   "nav.takeLeaderAssessment": "Take Discipline Assessment",
+  "nav.takeFounderPressureScan": "Founder Pressure Scan",
   "nav.applyNow": "Apply Now",
 
   // Hero – Home
@@ -483,6 +484,7 @@ const nl: Record<string, string> = {
   "nav.program": "Programma",
   "nav.transformation": "Transformatie",
   "nav.takeLeaderAssessment": "Start de disciplinetest",
+  "nav.takeFounderPressureScan": "Founder Pressure Scan",
   "nav.applyNow": "Aanmelden voor elite coaching",
 
   // Hero – Home
