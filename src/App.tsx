@@ -50,7 +50,7 @@ const AppRoutes = () => {
           <Route path="/articles" element={<Articles />} />
           <Route path="/capital-protection" element={<CapitalProtection />} />
           <Route path="/pressurescan" element={<BurnoutScan />} />
-          <Route path="/burnout-scan" element={<BurnoutScan />} />
+          <Route path="/burnout-scan" element={<BurnoutScan />} /> {/* legacy redirect */}
           <Route path="/profit-leak-scan" element={<ProfitLeakScan />} />
           <Route path="/round-table" element={<RoundTable />} />
           <Route path="/articles/:slug" element={<ArticleDetail />} />
