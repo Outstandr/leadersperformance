@@ -248,6 +248,14 @@ const ParallaxCard = ({
   const y = useSpring(rawY, { stiffness: 60, damping: 20, mass: 0.1 });
 
   const isStaggered = !forceLevel && i % 2 === 1;
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobileView(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
     <motion.div
@@ -258,8 +266,8 @@ const ParallaxCard = ({
       transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
       className="group relative overflow-hidden cursor-pointer"
       style={{
-        height: forceLevel ? "520px" : (i % 2 === 0 ? "520px" : "580px"),
-        marginTop: isStaggered ? "60px" : "0px",
+        height: isMobileView ? "420px" : (forceLevel ? "520px" : (i % 2 === 0 ? "520px" : "580px")),
+        marginTop: isMobileView ? "0px" : (isStaggered ? "60px" : "0px"),
       }}
       onClick={onClick}
     >
