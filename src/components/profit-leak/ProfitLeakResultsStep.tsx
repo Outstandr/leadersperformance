@@ -213,6 +213,42 @@ export function ProfitLeakResultsStep({ result, userInfo, onClose, responses }: 
           </div>
         ) : null}
 
+        {/* Second Daisy widget below the report */}
+        <ScanVoiceWidget
+          mode="profit_leak"
+          userInfo={{ fullName: userInfo.fullName, email: userInfo.email, phone: userInfo.phone }}
+          contextPayload={{
+            fullName: userInfo.fullName,
+            company: userInfo.company,
+            phone: userInfo.phone,
+            email: userInfo.email,
+            overallScore: result.overallScore,
+            overallColor: result.overallColor,
+            primaryBottleneck: result.primaryBottleneck[lang],
+            growthPhase: result.growthPhase[lang],
+            revenue: result.revenue,
+            estimatedLeakageLow: `€${(leakLow / 1000).toFixed(0)}K`,
+            estimatedLeakageHigh: `€${(leakHigh / 1000).toFixed(0)}K`,
+            sectionScores: result.sectionScores.map(s => ({ label: s.label, score: s.score, color: s.color })),
+          }}
+          bookingType="Revenue Architecture Session"
+          calendarId="tmX5oPSkDICqFhIxPIo9"
+          webhookPayload={{
+            first_name: firstName,
+            last_name: userInfo.fullName.trim().split(/\s+/).slice(1).join(" ") || "",
+            email: userInfo.email,
+            phone: userInfo.phone,
+            company: userInfo.company,
+            audit_type: "profit_leak_scan",
+            language: lang,
+            overall_score: result.overallScore,
+            overall_color: result.overallColor,
+            growth_phase: result.growthPhase.en,
+            primary_bottleneck: result.primaryBottleneck.en,
+            revenue_tier: result.revenue,
+          }}
+        />
+
         <div className="text-center pb-4">
           <Button variant="outline" onClick={onClose} className="border-foreground/20 hover:bg-foreground/5 text-foreground/70 hover:text-foreground px-8 py-3">
             {lang === "nl" ? "Terug naar startpagina" : "Return to Homepage"}
