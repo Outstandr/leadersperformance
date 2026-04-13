@@ -320,7 +320,7 @@ export const HomeFeaturesGrid = () => {
   const isUnmasked = selectedService ? (selectedService.details as any).isUnmasked : false;
 
   useEffect(() => {
-    const check = () => setIsMobileGrid(window.innerWidth < 640);
+    const check = () => setIsMobileGrid(window.innerWidth < 1024);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
