@@ -13,11 +13,11 @@ export interface PressureFreeResult {
 export type BurnoutFreeResult = PressureFreeResult;
 
 const FREE_SECTIONS = [
-  { key: "workload_intensity", label: { en: "Workload Intensity", nl: "Werkdruk Intensiteit" }, ids: ["fq1", "fq2"] },
+  { key: "workload_intensity", label: { en: "Founder Dependency", nl: "Founder Afhankelijkheid" }, ids: ["fq1", "fq2"] },
   { key: "sleep_quality", label: { en: "Sleep Quality", nl: "Slaapkwaliteit" }, ids: ["fq3", "fq4"] },
-  { key: "mental_fatigue", label: { en: "Mental Fatigue", nl: "Mentale Vermoeidheid" }, ids: ["fq5", "fq6"] },
+  { key: "mental_fatigue", label: { en: "Leadership Alignment", nl: "Leiderschapsafstemming" }, ids: ["fq5", "fq6"] },
   { key: "decision_pressure", label: { en: "Decision Pressure", nl: "Beslissingsdruk" }, ids: ["fq7", "fq8"] },
-  { key: "stress_tolerance", label: { en: "Stress Tolerance", nl: "Stresstolerantie" }, ids: ["fq9", "fq10"] },
+  { key: "stress_tolerance", label: { en: "Execution Momentum", nl: "Uitvoeringsmomentum" }, ids: ["fq9", "fq10"] },
 ];
 
 const FPS_LABELS: Record<string, { en: string; nl: string }> = {
