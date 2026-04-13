@@ -311,12 +311,20 @@ export const HomeFeaturesGrid = () => {
   const [mentorshipOpen, setMentorshipOpen] = useState(false);
   const [businessConsultOpen, setBusinessConsultOpen] = useState(false);
   const [roundTableOpen, setRoundTableOpen] = useState(false);
+  const [isMobileGrid, setIsMobileGrid] = useState(false);
   
   const navigate = useNavigate();
   const selectedService = selected !== null ? services[selected] : null;
   const showCalendar = selectedService && (selectedService.details as any).showCalendar;
   const calendarUrl = selectedService ? (selectedService.details as any).calendarUrl : null;
   const isUnmasked = selectedService ? (selectedService.details as any).isUnmasked : false;
+
+  useEffect(() => {
+    const check = () => setIsMobileGrid(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   // Load LeadConnector script once when a calendar card is opened
   useEffect(() => {
@@ -348,7 +356,7 @@ export const HomeFeaturesGrid = () => {
             ))}
           </div>
           {/* Bottom row: left + right columns, middle empty */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start mt-5 sm:mt-0" style={{ marginTop: window?.innerWidth >= 640 ? '-40px' : '20px' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start" style={{ marginTop: isMobileGrid ? '20px' : '-40px' }}>
             <ParallaxCard
               key={3}
               service={services[3]}
