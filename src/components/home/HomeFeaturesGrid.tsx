@@ -348,7 +348,7 @@ export const HomeFeaturesGrid = () => {
             ))}
           </div>
           {/* Bottom row: left + right columns, middle empty */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start mt-5" style={{ marginTop: '-40px' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start mt-5 sm:mt-0" style={{ marginTop: window?.innerWidth >= 640 ? '-40px' : '20px' }}>
             <ParallaxCard
               key={3}
               service={services[3]}
