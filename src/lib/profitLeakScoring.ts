@@ -38,26 +38,26 @@ const growthPhases: Record<string, { en: string; nl: string; descEn: string; des
   "5m_15m": {
     en: "Founder Bottleneck Phase",
     nl: "Founder Bottleneck Fase",
-    descEn: "€5M–€15M companies typically experience this phase where the founder is still the central decision point, limiting growth capacity.",
-    descNl: "€5M–€15M bedrijven ervaren doorgaans deze fase waarin de founder nog steeds het centrale beslispunt is, wat de groei beperkt.",
+    descEn: "Companies at this stage typically experience a phase where the founder is still the central decision point, limiting growth capacity.",
+    descNl: "Bedrijven in dit stadium ervaren doorgaans een fase waarin de founder nog steeds het centrale beslispunt is, wat de groei beperkt.",
   },
   "15m_30m": {
     en: "Structural Pressure Phase",
     nl: "Structurele Drukfase",
-    descEn: "€15M–€30M companies typically enter this phase where leadership gaps and structural inefficiencies start compressing margins.",
-    descNl: "€15M–€30M bedrijven komen doorgaans in deze fase waar leiderschapslacunes en structurele inefficiënties de marges beginnen samen te drukken.",
+    descEn: "Companies at this stage typically enter a phase where leadership gaps and structural inefficiencies start compressing margins.",
+    descNl: "Bedrijven in dit stadium komen doorgaans in een fase waar leiderschapslacunes en structurele inefficiënties de marges beginnen samen te drukken.",
   },
   "30m_50m": {
     en: "Value Creation Phase",
     nl: "Waardecreatie Fase",
-    descEn: "€30M–€50M companies typically operate in this phase where strategic alignment and scalable systems determine long-term enterprise value.",
-    descNl: "€30M–€50M bedrijven opereren doorgaans in deze fase waar strategische afstemming en schaalbare systemen de langetermijn bedrijfswaarde bepalen.",
+    descEn: "Companies at this stage typically operate in a phase where strategic alignment and scalable systems determine long-term enterprise value.",
+    descNl: "Bedrijven in dit stadium opereren doorgaans in een fase waar strategische afstemming en schaalbare systemen de langetermijn bedrijfswaarde bepalen.",
   },
   "50m_plus": {
     en: "Enterprise Scaling Phase",
     nl: "Enterprise Schalingsfase",
-    descEn: "€50M+ companies require institutional-grade leadership structures and fully autonomous operating systems.",
-    descNl: "€50M+ bedrijven vereisen institutionele leiderschapsstructuren en volledig autonome operationele systemen.",
+    descEn: "Companies at this stage require institutional-grade leadership structures and fully autonomous operating systems.",
+    descNl: "Bedrijven in dit stadium vereisen institutionele leiderschapsstructuren en volledig autonome operationele systemen.",
   },
 };
 
