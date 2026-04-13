@@ -61,12 +61,13 @@ const growthPhases: Record<string, { en: string; nl: string; descEn: string; des
   },
 };
 
-const leakageByRevenue: Record<string, { low: number; high: number }> = {
-  "5m_15m": { low: 5, high: 15 },
-  "15m_30m": { low: 8, high: 18 },
-  "30m_50m": { low: 5, high: 12 },
-  "50m_plus": { low: 3, high: 10 },
-};
+function getLeakagePercentage(overallScore: number): { low: number; high: number } {
+  if (overallScore <= 30) return { low: 5, high: 10 };
+  if (overallScore <= 55) return { low: 10, high: 18 };
+  if (overallScore <= 75) return { low: 15, high: 25 };
+  if (overallScore <= 90) return { low: 20, high: 30 };
+  return { low: 25, high: 35 };
+}
 
 export function calculateProfitLeakScore(
   responses: Record<string, number>,
@@ -99,7 +100,7 @@ export function calculateProfitLeakScore(
   const primaryBottleneck = sectionLabels[primaryKey] || { en: primarySection.label, nl: primarySection.label };
 
   const phase = growthPhases[revenue] || growthPhases["5m_15m"];
-  const leakage = leakageByRevenue[revenue] || leakageByRevenue["5m_15m"];
+  const leakage = getLeakagePercentage(overallScore);
 
   return {
     overallScore,

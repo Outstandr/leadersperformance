@@ -25,12 +25,6 @@ interface DeepReport {
   intervention_recommendation: string;
 }
 
-const revenueMultiplier: Record<string, number> = {
-  "5m_15m": 10_000_000,
-  "15m_30m": 22_500_000,
-  "30m_50m": 40_000_000,
-  "50m_plus": 75_000_000,
-};
 
 export function ProfitLeakResultsStep({ result, userInfo, onClose, responses }: ProfitLeakResultsStepProps) {
   const { language } = useLanguage();
@@ -40,9 +34,8 @@ export function ProfitLeakResultsStep({ result, userInfo, onClose, responses }: 
   const lang = language === "nl" ? "nl" : "en";
   const c = colorConfig[result.overallColor as ColorTier] || colorConfig.green;
 
-  const midRevenue = revenueMultiplier[result.revenue] || 10_000_000;
-  const leakLow = Math.round((midRevenue * result.leakageEstimate.low) / 100);
-  const leakHigh = Math.round((midRevenue * result.leakageEstimate.high) / 100);
+  const leakLow = result.leakageEstimate.low;
+  const leakHigh = result.leakageEstimate.high;
   const firstName = userInfo.fullName.split(" ")[0];
 
   const primarySection = result.sectionScores.reduce((a, b) => a.score > b.score ? a : b);
@@ -87,15 +80,15 @@ export function ProfitLeakResultsStep({ result, userInfo, onClose, responses }: 
         {/* 3. FINANCIAL LEAKAGE — impactful number */}
         <div className="p-5 bg-foreground text-background text-center space-y-2">
           <p className="text-[10px] uppercase tracking-[0.2em] text-background/40 font-semibold">
-            {lang === "nl" ? "Geschat Jaarlijks Verlies" : "Estimated Annual Leakage"}
+            {lang === "nl" ? "Geschat Jaarlijks Verlies" : "Estimated Annual Revenue Loss"}
           </p>
           <p className="text-2xl md:text-3xl font-black text-red-400">
-            €{(leakLow / 1000).toFixed(0)}K – €{(leakHigh / 1000).toFixed(0)}K
+            {leakLow}% – {leakHigh}%
           </p>
-          <p className="text-xs text-background/50">
+          <p className="text-xs text-background/50 max-w-sm mx-auto">
             {lang === "nl"
-              ? "De meeste founders zien dit niet direct omdat het bedrijf nog groeit."
-              : "Most founders do not see this because the company is still growing."}
+              ? "Op basis van uw structurele scores schatten wij dat u ten minste dit percentage van uw jaaromzet verliest door structurele inefficiënties."
+              : "Based on your structural scores, we estimate you are losing at least this percentage of your annual revenue due to structural inefficiencies."}
           </p>
         </div>
 
@@ -113,8 +106,8 @@ export function ProfitLeakResultsStep({ result, userInfo, onClose, responses }: 
             primaryBottleneck: result.primaryBottleneck[lang],
             growthPhase: result.growthPhase[lang],
             revenue: result.revenue,
-            estimatedLeakageLow: `€${(leakLow / 1000).toFixed(0)}K`,
-            estimatedLeakageHigh: `€${(leakHigh / 1000).toFixed(0)}K`,
+            estimatedLeakageLow: `${leakLow}%`,
+            estimatedLeakageHigh: `${leakHigh}%`,
             sectionScores: result.sectionScores.map(s => ({ label: s.label, score: s.score, color: s.color })),
           }}
           bookingType="Revenue Architecture Session"
@@ -227,8 +220,8 @@ export function ProfitLeakResultsStep({ result, userInfo, onClose, responses }: 
             primaryBottleneck: result.primaryBottleneck[lang],
             growthPhase: result.growthPhase[lang],
             revenue: result.revenue,
-            estimatedLeakageLow: `€${(leakLow / 1000).toFixed(0)}K`,
-            estimatedLeakageHigh: `€${(leakHigh / 1000).toFixed(0)}K`,
+            estimatedLeakageLow: `${leakLow}%`,
+            estimatedLeakageHigh: `${leakHigh}%`,
             sectionScores: result.sectionScores.map(s => ({ label: s.label, score: s.score, color: s.color })),
           }}
           bookingType="Revenue Architecture Session"
