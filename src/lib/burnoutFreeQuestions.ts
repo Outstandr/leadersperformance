@@ -9,7 +9,7 @@ export const burnoutFreeQuestions: BurnoutFreeQuestion[] = [
   {
     id: "fq1",
     section: "workload_intensity",
-    sectionLabel: { en: "Workload Intensity", nl: "Werkdruk Intensiteit" },
+    sectionLabel: { en: "Founder Dependency", nl: "Founder Afhankelijkheid" },
     question: {
       en: "I regularly work more than 10 hours a day, including evenings and weekends.",
       nl: "Ik werk regelmatig meer dan 10 uur per dag, inclusief avonden en weekenden.",
@@ -18,7 +18,7 @@ export const burnoutFreeQuestions: BurnoutFreeQuestion[] = [
   {
     id: "fq2",
     section: "workload_intensity",
-    sectionLabel: { en: "Workload Intensity", nl: "Werkdruk Intensiteit" },
+    sectionLabel: { en: "Founder Dependency", nl: "Founder Afhankelijkheid" },
     question: {
       en: "I feel like I can never fully disconnect from work, even on vacation.",
       nl: "Ik heb het gevoel dat ik nooit volledig kan loskomen van werk, zelfs niet op vakantie.",
@@ -45,7 +45,7 @@ export const burnoutFreeQuestions: BurnoutFreeQuestion[] = [
   {
     id: "fq5",
     section: "mental_fatigue",
-    sectionLabel: { en: "Mental Fatigue", nl: "Mentale Vermoeidheid" },
+    sectionLabel: { en: "Leadership Alignment", nl: "Leiderschapsafstemming" },
     question: {
       en: "I notice my ability to focus and think clearly has declined over the past months.",
       nl: "Ik merk dat mijn vermogen om me te concentreren en helder te denken de afgelopen maanden is afgenomen.",
@@ -54,7 +54,7 @@ export const burnoutFreeQuestions: BurnoutFreeQuestion[] = [
   {
     id: "fq6",
     section: "mental_fatigue",
-    sectionLabel: { en: "Mental Fatigue", nl: "Mentale Vermoeidheid" },
+    sectionLabel: { en: "Leadership Alignment", nl: "Leiderschapsafstemming" },
     question: {
       en: "I feel mentally exhausted by the end of most workdays.",
       nl: "Ik voel me mentaal uitgeput aan het einde van de meeste werkdagen.",
@@ -81,7 +81,7 @@ export const burnoutFreeQuestions: BurnoutFreeQuestion[] = [
   {
     id: "fq9",
     section: "stress_tolerance",
-    sectionLabel: { en: "Stress Tolerance", nl: "Stresstolerantie" },
+    sectionLabel: { en: "Execution Momentum", nl: "Uitvoeringsmomentum" },
     question: {
       en: "I react more emotionally or impatiently to problems than I used to.",
       nl: "Ik reageer emotioneler of ongeduldiger op problemen dan vroeger.",
@@ -90,7 +90,7 @@ export const burnoutFreeQuestions: BurnoutFreeQuestion[] = [
   {
     id: "fq10",
     section: "stress_tolerance",
-    sectionLabel: { en: "Stress Tolerance", nl: "Stresstolerantie" },
+    sectionLabel: { en: "Execution Momentum", nl: "Uitvoeringsmomentum" },
     question: {
       en: "I feel like my capacity to handle stress has significantly decreased.",
       nl: "Ik heb het gevoel dat mijn vermogen om met stress om te gaan aanzienlijk is afgenomen.",
