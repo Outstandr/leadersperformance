@@ -248,6 +248,14 @@ const ParallaxCard = ({
   const y = useSpring(rawY, { stiffness: 60, damping: 20, mass: 0.1 });
 
   const isStaggered = !forceLevel && i % 2 === 1;
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobileView(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
     <motion.div
@@ -258,8 +266,8 @@ const ParallaxCard = ({
       transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
       className="group relative overflow-hidden cursor-pointer"
       style={{
-        height: forceLevel ? "520px" : (i % 2 === 0 ? "520px" : "580px"),
-        marginTop: isStaggered ? "60px" : "0px",
+        height: isMobileView ? "420px" : (forceLevel ? "520px" : (i % 2 === 0 ? "520px" : "580px")),
+        marginTop: isMobileView ? "0px" : (isStaggered ? "60px" : "0px"),
       }}
       onClick={onClick}
     >
@@ -303,12 +311,20 @@ export const HomeFeaturesGrid = () => {
   const [mentorshipOpen, setMentorshipOpen] = useState(false);
   const [businessConsultOpen, setBusinessConsultOpen] = useState(false);
   const [roundTableOpen, setRoundTableOpen] = useState(false);
+  const [isMobileGrid, setIsMobileGrid] = useState(false);
   
   const navigate = useNavigate();
   const selectedService = selected !== null ? services[selected] : null;
   const showCalendar = selectedService && (selectedService.details as any).showCalendar;
   const calendarUrl = selectedService ? (selectedService.details as any).calendarUrl : null;
   const isUnmasked = selectedService ? (selectedService.details as any).isUnmasked : false;
+
+  useEffect(() => {
+    const check = () => setIsMobileGrid(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   // Load LeadConnector script once when a calendar card is opened
   useEffect(() => {
@@ -340,7 +356,7 @@ export const HomeFeaturesGrid = () => {
             ))}
           </div>
           {/* Bottom row: left + right columns, middle empty */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start mt-5" style={{ marginTop: '-40px' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start" style={{ marginTop: isMobileGrid ? '20px' : '-40px' }}>
             <ParallaxCard
               key={3}
               service={services[3]}
