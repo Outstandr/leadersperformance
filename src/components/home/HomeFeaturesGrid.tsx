@@ -344,7 +344,7 @@ export const HomeFeaturesGrid = () => {
       <section id="features" className="relative z-10 pt-32 pb-20 md:pt-40 md:pb-28 bg-background">
         <div className="container mx-auto px-6 max-w-7xl" ref={ref}>
           {/* Top row: 3 cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
             {services.slice(0, 3).map((service, i) => (
               <ParallaxCard
                 key={i}
@@ -356,7 +356,7 @@ export const HomeFeaturesGrid = () => {
             ))}
           </div>
           {/* Bottom row: left + right columns, middle empty */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start" style={{ marginTop: isMobileGrid ? '20px' : '-40px' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start" style={{ marginTop: isMobileGrid ? '20px' : '-40px' }}>
             <ParallaxCard
               key={3}
               service={services[3]}
