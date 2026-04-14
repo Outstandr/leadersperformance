@@ -1,92 +1,90 @@
 
 
-## Plan: Capital Protection Scan Results Redesign + Revenue Architecture Email Sequence
+# Plan: Generate System Overview & Development Brief PDF
 
-### Overview
-Three parallel workstreams:
-1. Redesign the Capital Protection results page to match the premium diagnostic style (like the Founder Pressure Scan)
-2. Expand the Profit Leak email nurture sequence from 3 emails (Day 0, Day 2, Day 5) to 5 emails (Day 0, Day 2, Day 4, Day 6, Day 8) with the provided copy
-3. Update the Day 0 (Results) email copy for profit_leak_scan
+## What This Delivers
+A professional PDF document (~15-20 pages) covering the full technical architecture of the Leaders Performance platform, suitable for handing to a new developer.
 
----
+## Document Structure
 
-### 1. Capital Protection Results Page Redesign
+### 1. Executive Summary
+- Platform purpose: lead-gen diagnostic scans for founder coaching/consulting
+- Live URLs: leadersperformance.ae, leadersperformance.lovable.app
+- Tech stack: React 18 + Vite 5 + TypeScript + Tailwind CSS + Supabase (Lovable Cloud)
 
-**File: `src/components/capital-protection/CPResultsStep.tsx`**
+### 2. Application Architecture
+- **Frontend**: Single-page React app with React Router, lazy-loaded routes
+- **Backend**: Supabase (Postgres DB, Edge Functions, Storage)
+- **CRM Integration**: GoHighLevel (GHL) API for contact management, email sending, pipeline/opportunity management
+- **Voice AI**: ElevenLabs integration via Edge Functions
+- **Payments**: Stripe (burnout scan paid tier)
+- **i18n**: English + Dutch via LanguageContext
 
-Complete rewrite to match the Founder Pressure Scan design system:
-- Background: `#F6F5F2` (off-white)
-- Typography: deep navy `#1C2430`
-- Risk colors: Amber `#D97706`, Red `#B91C1C`, Green `#059669`
+### 3. Route Map
+All 15+ routes documented: `/`, `/elite`, `/business`, `/pressurescan`, `/profit-leak-scan`, `/capital-protection`, `/round-table`, `/articles/*`, legal pages
 
-**Top section:**
-- Headline: "Your capital is currently exposed"
-- Subtext: "Recovery is possible, but not guaranteed without intervention"
+### 4. Diagnostic Scans (Core Feature)
+Detailed documentation of all 4 scans:
+- **Founder Pressure Scan** (12 questions, 4 dimensions, weighted 0-100)
+- **Profit Leak Scan** (15 questions, 5 dimensions, revenue tier selection)
+- **Capital Protection Assessment** (multi-step, qualitative + AI report)
+- **Corporate Discipline Audit** (7 questions, single score)
 
-**Score display:**
-- "Recovery Probability: X%" with gradient bar (Green → Amber → Red)
-- Labels: Strong / Moderate / Limited
-- Subtext: "Based on your current legal and structural position"
+Each scan documented with: question count, scoring logic, dimension weights, color tiers, DB table, email flow
 
-**Exposure Overview block** (new):
-- Capital at risk tier (from assessment data)
-- Recovery probability %
-- Recovery difficulty (derived from score tiers)
+### 5. Unified Scoring Engine
+- `unifiedScoring.ts` architecture: `DimensionScore`, `DiagnosticOutput`, `BottleneckInfo`
+- 5-tier color system: green (0-30), yellow (31-55), orange (56-75), red (76-90), darkred (91-100)
+- Weighted score calculation, bottleneck detection
 
-**Primary Diagnosis block** (dark navy):
-- "Capital exposure identified — recovery possible"
-- 3 reinforcing statements based on the weakest dimension
+### 6. Database Schema
+All 10 tables documented:
+- `founders_pressure_scans`, `profit_leak_scans`, `capital_protection_assessments`
+- `corporate_discipline_audits`, `discipline_assessments`, `founder_burnout_scans`
+- `business_consultations`, `applications`, `articles`
+- `scheduled_emails`, `voice_leads`
 
-**Dimension bars** (5 dimensions):
-- Evidence Strength, Timeline Advantage, Jurisdictional Simplicity, Legal Positioning, Capital Exposure
-- Each with percentage, label (Weak/Moderate/Strong), color-coded bar
-- Primary risk dimension highlighted, others dimmed
+### 7. Edge Functions (26 functions)
+Grouped by purpose:
+- **Scan Followup**: `ghl-scan-followup` (main orchestrator), `process-scheduled-emails`
+- **Booking**: `ghl-booking` (availability + appointment creation)
+- **AI Report Generation**: `generate-*-insights`, `generate-*-report`
+- **Voice**: `elevenlabs-voice-token`, `create-elevenlabs-agent`, `voice-lead-capture`
+- **CRM**: `send-to-ghl`, `roundtable-followup`
+- **Other**: `manage-articles`, `dashboard-api`, `create-burnout-payment`
 
-**AI Report sections** (kept but restyled to match new palette)
+### 8. GHL Integration & Email Nurture Sequence
+- Pipeline: `qFBbAlnrhlBtkM5r9VEZ`, stages: New Lead → Call Booked
+- Calendar IDs per scan type
+- Email sequence: Instant results → Day 2 nurture → Day 4 (profit leak extra) → Day 5 final → Day 6/8 (profit leak extras)
+- Booking flow: confirmation email + cancel nurtures + schedule 24h/1h reminders
+- Scheduled email processor (cron-triggered)
 
-**CTA:**
-- "Secure your position before exposure increases"
-- Subtext: "Private capital protection intervention"
+### 9. Voice Agent (Daisy)
+- ElevenLabs conversational AI
+- Context-aware: receives scan scores, user info
+- Modes: general, pressure_scan, capital_protection, profit_leak, corporate_audit
+- Lead capture via `voice-lead-capture` → GHL webhook
 
-**Return to Homepage button** (matching FPS style)
+### 10. Environment Variables & Secrets Required
+- `GHL_API_KEY`, `GHL_LOCATION_ID`, `GHL_CALENDAR_ID`
+- `ELEVENLABS_API_KEY`
+- `STRIPE_SECRET_KEY`
+- Supabase auto-provided: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
 
-**File: `src/pages/CapitalProtection.tsx`**
-- Update wrapper background to `#F6F5F2` to match results page
+### 11. Key Component Map
+- Scan dialog pattern: Intro → Questions → Gate (user info) → Analyzing → Results
+- Shared components: `ScanBookingCalendar`, `ScanVoiceWidget`, `AnalyzingTransition`
+- Page layouts: Home, Elite, Business (each with own navigation/footer)
 
----
+### 12. Known Technical Debt & Notes
+- Some `as any` type casts in DB inserts
+- Client-side DB inserts (assessments) could be migrated to edge functions
+- Burnout scan has free/paid tiers with Stripe checkout
+- `verify_jwt = false` on all edge functions (public lead-gen, no auth)
 
-### 2. Revenue Architecture (Profit Leak) Email Sequence Expansion
-
-**File: `supabase/functions/ghl-scan-followup/index.ts`**
-
-**a) Update Day 0 results email** (profit_leak section in `buildResultsEmailHTML`):
-- New intro text matching the provided copy about structural constraints capping revenue
-- More confrontational, structural language
-
-**b) Update Day 2 nurture** (`buildNurtureDay2HTML`, profit_leak section):
-- New subject: "Why more effort is not fixing your revenue"
-- New body copy about conversion capacity vs. effort
-
-**c) Expand to 5-email sequence** — Add 3 new email builder functions:
-- `buildNurtureDay4HTML` — "What this is costing you every month" (Exposure)
-- `buildNurtureDay6HTML` — "I see this pattern more often than you think" (Authority)  
-- `buildNurtureDay8HTML` — "You can keep pushing — or fix what's underneath" (Decision)
-
-**d) Update subject line functions** to handle new email types for profit_leak
-
-**e) Update the main handler** scheduling logic:
-- For profit_leak_scan: schedule Day 2, Day 4, Day 6, Day 8 nurture emails
-- Other scan types keep the existing Day 2 + Day 5 schedule
-- Update cancellation logic to include new email types
-
-**f) Redeploy** the edge function after changes
-
----
-
-### Technical Details
-
-- The Capital Protection results page currently uses a generic white card design. The redesign follows the exact same component structure as `ScanResultsStep.tsx` but adapted for capital protection context (recovery probability instead of pressure score, exposure framing instead of pressure framing).
-- The email sequence expansion requires new `email_type` values (`nurture_day4`, `nurture_day6`, `nurture_day8`) which need to be added to the cancellation query in the booking update handler.
-- All emails maintain the existing LP design system (cream background, Georgia serif, charcoal headers with white logo only, no emoji).
-- The `process-scheduled-emails` function does not need changes as it processes any pending scheduled email regardless of type.
+## Technical Implementation
+- Generate using Python `reportlab` with professional styling (navy/gold brand colors matching Leaders Performance)
+- Output to `/mnt/documents/Leaders-Performance-System-Overview.pdf`
+- Approx 15-20 pages, table of contents, clean typography
 
