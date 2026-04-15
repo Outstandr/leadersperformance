@@ -1,0 +1,1 @@
+select contact_email, email_type, scan_type, created_at from public.scheduled_emails where scan_type = 'round_table' order by created_at desc limit 10;
