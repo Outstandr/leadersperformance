@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Loader2, Lock } from "lucide-react";
 import { z } from "zod";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -48,6 +49,7 @@ const ui = {
     selectRole: "Select your role",
     submitBtn: "Continue",
     disclaimer: "Your data is processed securely and confidentially.",
+    consent: 'I agree to the <a href="/terms-of-service" target="_blank">Terms & Conditions</a> and <a href="/privacy-policy" target="_blank">Privacy Policy</a>.',
   },
   nl: {
     heading: "Founder Informatie",
@@ -66,6 +68,7 @@ const ui = {
     selectRole: "Selecteer uw rol",
     submitBtn: "Doorgaan",
     disclaimer: "Uw gegevens worden veilig en vertrouwelijk verwerkt.",
+    consent: 'Ik ga akkoord met de <a href="/terms-of-service" target="_blank">Algemene Voorwaarden</a> en het <a href="/privacy-policy" target="_blank">Privacybeleid</a>.',
   },
 };
 
@@ -83,12 +86,17 @@ export function CPUserInfoStep({ onSubmit, isSubmitting }: CPUserInfoStepProps) 
     phone: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [consentChecked, setConsentChecked] = useState(false);
 
   const clearError = (field: string) =>
     setErrors((prev) => { const next = { ...prev }; delete next[field]; return next; });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consentChecked) {
+      setErrors((prev) => ({ ...prev, consent: "Required" }));
+      return;
+    }
     const result = schema.safeParse(formData);
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
@@ -157,6 +165,23 @@ export function CPUserInfoStep({ onSubmit, isSubmitting }: CPUserInfoStepProps) 
           <Label className="text-foreground/70 text-xs uppercase tracking-wider">{t.phone}</Label>
           <Input type="tel" value={formData.phone} onChange={(e) => { setFormData((p) => ({ ...p, phone: e.target.value })); clearError("phone"); }} placeholder={t.phonePh} className={inputClass("phone")} />
           {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
+        </div>
+
+        <div className="flex items-start space-x-3 pt-2">
+          <Checkbox
+            id="cp-consent"
+            checked={consentChecked}
+            onCheckedChange={(checked) => {
+              setConsentChecked(checked === true);
+              if (checked) clearError("consent");
+            }}
+            className={`mt-0.5 rounded-none ${errors.consent ? "border-red-500" : ""}`}
+          />
+          <label
+            htmlFor="cp-consent"
+            className={`text-xs leading-relaxed cursor-pointer ${errors.consent ? "text-red-500" : "text-foreground/60"}`}
+            dangerouslySetInnerHTML={{ __html: t.consent }}
+          />
         </div>
 
         <Button type="submit" disabled={isSubmitting} className="w-full bg-lioner-gold hover:bg-lioner-gold/90 text-white rounded-none py-6 text-base font-bold uppercase tracking-wider">
