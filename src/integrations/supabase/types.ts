@@ -821,6 +821,72 @@ export type Database = {
         }
         Relationships: []
       }
+      round_table_submissions: {
+        Row: {
+          absence_impact: string
+          biggest_pressure: string
+          blind_spot: string
+          created_at: string
+          decision_delay: string
+          email: string
+          energy_level: string
+          full_name: string
+          ghl_contact_id: string | null
+          id: string
+          phone: string
+          problem_response: string
+          resistance_response: string
+          role_and_company: string
+          route: string | null
+          score: number | null
+          strategic_responsibility: string
+          unacted_truth: string
+          why_fit: string
+        }
+        Insert: {
+          absence_impact: string
+          biggest_pressure: string
+          blind_spot: string
+          created_at?: string
+          decision_delay: string
+          email: string
+          energy_level: string
+          full_name: string
+          ghl_contact_id?: string | null
+          id?: string
+          phone?: string
+          problem_response: string
+          resistance_response: string
+          role_and_company: string
+          route?: string | null
+          score?: number | null
+          strategic_responsibility: string
+          unacted_truth: string
+          why_fit: string
+        }
+        Update: {
+          absence_impact?: string
+          biggest_pressure?: string
+          blind_spot?: string
+          created_at?: string
+          decision_delay?: string
+          email?: string
+          energy_level?: string
+          full_name?: string
+          ghl_contact_id?: string | null
+          id?: string
+          phone?: string
+          problem_response?: string
+          resistance_response?: string
+          role_and_company?: string
+          route?: string | null
+          score?: number | null
+          strategic_responsibility?: string
+          unacted_truth?: string
+          why_fit?: string
+        }
+        Relationships: []
+      }
       scheduled_emails: {
         Row: {
           contact_email: string
