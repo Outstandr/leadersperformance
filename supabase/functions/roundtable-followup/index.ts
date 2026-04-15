@@ -395,6 +395,40 @@ Deno.serve(async (req) => {
       const route = getRoute(score);
       console.log(`Round Table score: ${score}, route: ${route}`, breakdown);
 
+      const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
+      const supabase = createClient(
+        Deno.env.get('SUPABASE_URL')!,
+        Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
+      );
+
+      const { data: submission, error: submissionError } = await supabase
+        .from('round_table_submissions')
+        .insert({
+          full_name: (formData.fullName || '').trim(),
+          email: (formData.email || '').trim(),
+          phone: (formData.phone || '').trim(),
+          role_and_company: (formData.roleAndCompany || '').trim(),
+          strategic_responsibility: (formData.strategicResponsibility || '').trim(),
+          biggest_pressure: (formData.biggestPressure || '').trim(),
+          decision_delay: (formData.decisionDelay || '').trim(),
+          absence_impact: (formData.absenceImpact || '').trim(),
+          problem_response: (formData.problemResponse || '').trim(),
+          resistance_response: (formData.resistanceResponse || '').trim(),
+          energy_level: (formData.energyLevel || '').trim(),
+          blind_spot: (formData.blindSpot || '').trim(),
+          why_fit: (formData.whyFit || '').trim(),
+          unacted_truth: (formData.unactedTruth || '').trim(),
+          score,
+          route,
+        })
+        .select('id')
+        .single();
+
+      if (submissionError) {
+        console.error('Round Table DB insert error:', submissionError);
+        throw new Error('Failed to save Round Table submission');
+      }
+
       // Upsert contact in GHL
       const contactResult = await upsertContact({
         firstName,
@@ -419,6 +453,15 @@ Deno.serve(async (req) => {
       const contactId = contactResult?.contact?.id;
       if (!contactId) throw new Error('Failed to get GHL contact ID');
 
+      const { error: submissionUpdateError } = await supabase
+        .from('round_table_submissions')
+        .update({ ghl_contact_id: contactId })
+        .eq('id', submission.id);
+
+      if (submissionUpdateError) {
+        console.error('Round Table DB update error:', submissionUpdateError);
+      }
+
       // Create opportunity in pipeline
       const stageId = route === 'candidate'
         ? 'acb058c4-2c8d-4c63-b9ba-b7019fb83b24'  // New Lead
@@ -439,12 +482,6 @@ Deno.serve(async (req) => {
       }
 
       // Schedule route-based email (delay by 2 hours for reject/hold to feel "reviewed")
-      const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
-      const supabase = createClient(
-        Deno.env.get('SUPABASE_URL')!,
-        Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
-      );
-
       if (route === 'reject') {
         const sendAt = new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(); // 2h delay
         await supabase.from('scheduled_emails').insert({
