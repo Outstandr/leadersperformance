@@ -41,7 +41,7 @@ const ui = {
     submitBtn: "Show My Results",
     analyzing: "Analyzing...",
     disclaimer: "Your data is processed securely. We don't share your information.",
-    consent: "I agree that Leaders Performance may use my data for promotional content and offers within Leaders Performance.",
+    consent: 'I agree to the <a href="/terms-of-service" target="_blank">Terms & Conditions</a> and <a href="/privacy-policy" target="_blank">Privacy Policy</a>.',
   },
   nl: {
     heading: "Jouw scan is voltooid.",
@@ -57,7 +57,7 @@ const ui = {
     submitBtn: "Toon mijn resultaten",
     analyzing: "Analyseren...",
     disclaimer: "Je gegevens worden veilig verwerkt. We delen je informatie niet.",
-    consent: "Ik ga ermee akkoord dat Leaders Performance mijn gegevens mag gebruiken voor promotionele content en aanbiedingen binnen Leaders Performance.",
+    consent: 'Ik ga akkoord met de <a href="/terms-of-service" target="_blank">Algemene Voorwaarden</a> en het <a href="/privacy-policy" target="_blank">Privacybeleid</a>.',
   },
 };
 
@@ -170,9 +170,11 @@ export function ScanGateStep({ onSubmit, isSubmitting }: ScanGateStepProps) {
             }}
             className={`mt-0.5 rounded-none ${errors.consent ? "border-red-500" : ""}`}
           />
-          <label htmlFor="consent" className={`text-xs leading-relaxed cursor-pointer ${errors.consent ? "text-red-500" : "text-foreground/60"}`}>
-            {t.consent}
-          </label>
+          <label
+            htmlFor="consent"
+            className={`text-xs leading-relaxed cursor-pointer ${errors.consent ? "text-red-500" : "text-foreground/60"}`}
+            dangerouslySetInnerHTML={{ __html: t.consent }}
+          />
         </div>
 
         <Button
