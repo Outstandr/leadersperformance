@@ -1,0 +1,1 @@
+select now() as checked_at;

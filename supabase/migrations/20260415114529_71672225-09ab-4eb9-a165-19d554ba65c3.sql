@@ -1,0 +1,1 @@
+select id, email, full_name, created_at from public.founders_pressure_scans order by created_at desc limit 10;

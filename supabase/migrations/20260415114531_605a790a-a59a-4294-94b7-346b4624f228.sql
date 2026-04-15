@@ -1,0 +1,1 @@
+select id, email, first_name, last_name, created_at from public.applications order by created_at desc limit 10;

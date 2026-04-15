@@ -1,0 +1,1 @@
+select 'founders_pressure_scans' as table_name, id::text, email, created_at::text from public.founders_pressure_scans order by created_at desc limit 5; select 'applications' as table_name, id::text, email, created_at::text from public.applications order by created_at desc limit 5;

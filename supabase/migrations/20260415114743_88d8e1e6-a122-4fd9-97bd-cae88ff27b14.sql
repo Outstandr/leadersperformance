@@ -1,0 +1,1 @@
+select proname from pg_proc limit 1;

@@ -1,0 +1,1 @@
+select schemaname, tablename, policyname, cmd, roles, qual, with_check from pg_policies where schemaname = 'public' and tablename in ('founders_pressure_scans','applications','business_consultations','capital_protection_assessments','corporate_discipline_audits','discipline_assessments','founder_burnout_scans','voice_leads') order by tablename, policyname;
