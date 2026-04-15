@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Loader2, Lock } from "lucide-react";
 import { z } from "zod";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -40,6 +41,7 @@ const ui = {
     submitBtn: "Show My Results",
     analyzing: "Analyzing...",
     disclaimer: "Your data is processed securely. We don't share your information.",
+    consent: "I agree that Leaders Performance may use my data for promotional content and offers within Leaders Performance.",
   },
   nl: {
     heading: "Jouw scan is voltooid.",
@@ -55,6 +57,7 @@ const ui = {
     submitBtn: "Toon mijn resultaten",
     analyzing: "Analyseren...",
     disclaimer: "Je gegevens worden veilig verwerkt. We delen je informatie niet.",
+    consent: "Ik ga ermee akkoord dat Leaders Performance mijn gegevens mag gebruiken voor promotionele content en aanbiedingen binnen Leaders Performance.",
   },
 };
 
@@ -68,6 +71,7 @@ export function ScanGateStep({ onSubmit, isSubmitting }: ScanGateStepProps) {
     phone: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [consentChecked, setConsentChecked] = useState(false);
 
   const clearError = (field: string) => {
     setErrors((prev) => {
@@ -79,6 +83,10 @@ export function ScanGateStep({ onSubmit, isSubmitting }: ScanGateStepProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consentChecked) {
+      setErrors((prev) => ({ ...prev, consent: "Required" }));
+      return;
+    }
     const result = schema.safeParse(formData);
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
@@ -150,6 +158,21 @@ export function ScanGateStep({ onSubmit, isSubmitting }: ScanGateStepProps) {
             className={inputClass("phone")}
           />
           {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
+        </div>
+
+        <div className="flex items-start space-x-3 pt-2">
+          <Checkbox
+            id="consent"
+            checked={consentChecked}
+            onCheckedChange={(checked) => {
+              setConsentChecked(checked === true);
+              if (checked) clearError("consent");
+            }}
+            className={`mt-0.5 rounded-none ${errors.consent ? "border-red-500" : ""}`}
+          />
+          <label htmlFor="consent" className={`text-xs leading-relaxed cursor-pointer ${errors.consent ? "text-red-500" : "text-foreground/60"}`}>
+            {t.consent}
+          </label>
         </div>
 
         <Button
