@@ -10,7 +10,41 @@ import { calculatePressureScores, PressureScores } from "@/lib/founderPressureSc
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-...
+
+interface FounderPressureScanDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+type Step = "intro" | "questions" | "gate" | "analyzing" | "results";
+
+export function FounderPressureScanDialog({ open, onOpenChange }: FounderPressureScanDialogProps) {
+  const { language } = useLanguage();
+  const [step, setStep] = useState<Step>("intro");
+  const [currentQ, setCurrentQ] = useState(0);
+  const [responses, setResponses] = useState<Record<string, number>>({});
+  const [userInfo, setUserInfo] = useState<ScanUserInfo | null>(null);
+  const [scores, setScores] = useState<PressureScores | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleAnswer = (questionId: string, value: number) => {
+    setResponses((prev) => ({ ...prev, [questionId]: value }));
+    if (currentQ < pressureQuestions.length - 1) {
+      setCurrentQ((prev) => prev + 1);
+    } else {
+      setStep("gate");
+    }
+  };
+
+  const handleBack = () => {
+    if (currentQ > 0) {
+      setCurrentQ((prev) => prev - 1);
+    } else {
+      setStep("intro");
+    }
+  };
+
   const handleGateSubmit = async (info: ScanUserInfo) => {
     setIsSubmitting(true);
 
