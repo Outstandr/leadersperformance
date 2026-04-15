@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Loader2, Lock } from "lucide-react";
 import { AuditUserInfo } from "./CorporateAuditDialog";
 import { z } from "zod";
@@ -35,6 +36,7 @@ const ui = {
     submitBtn: "Show Me The Verdict",
     analyzing: "Analyzing...",
     disclaimer: "Your data is processed securely. We don't share your information.",
+    consent: 'I agree to the <a href="/terms-of-service" target="_blank">Terms & Conditions</a> and <a href="/privacy-policy" target="_blank">Privacy Policy</a>.',
   },
   nl: {
     heading: "Jouw audit is voltooid.",
@@ -50,6 +52,7 @@ const ui = {
     submitBtn: "Toon mij de resultaten",
     analyzing: "Analyseren...",
     disclaimer: "Je gegevens worden veilig verwerkt. We delen je informatie niet.",
+    consent: 'Ik ga akkoord met de <a href="/terms-of-service" target="_blank">Algemene Voorwaarden</a> en het <a href="/privacy-policy" target="_blank">Privacybeleid</a>.',
   },
 };
 
@@ -58,6 +61,7 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
   const t = ui[language] ?? ui.en;
   const [formData, setFormData] = useState<AuditUserInfo>(userInfo);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [consentChecked, setConsentChecked] = useState(false);
 
   const clearError = (field: string) => {
     setErrors((prev) => {
@@ -69,6 +73,10 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consentChecked) {
+      setErrors((prev) => ({ ...prev, consent: "Required" }));
+      return;
+    }
     const result = gateSchema.safeParse(formData);
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
@@ -91,7 +99,6 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
 
   return (
     <div className="p-6 md:p-10">
-      {/* Header */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center justify-center w-14 h-14 rounded-none border-2 border-lioner-gold/50 mb-4">
           <Lock className="w-7 h-7 text-lioner-gold" />
@@ -104,7 +111,6 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
         </p>
       </div>
 
-      {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -175,6 +181,23 @@ export function AuditGateStep({ userInfo, onSubmit, isSubmitting }: AuditGateSte
             className={`bg-foreground/5 border-foreground/10 text-foreground placeholder:text-foreground/30 rounded-none ${errors.phone ? "border-red-500" : ""}`}
           />
           {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
+        </div>
+
+        <div className="flex items-start space-x-3 pt-2">
+          <Checkbox
+            id="audit-consent"
+            checked={consentChecked}
+            onCheckedChange={(checked) => {
+              setConsentChecked(checked === true);
+              if (checked) clearError("consent");
+            }}
+            className={`mt-0.5 rounded-none ${errors.consent ? "border-red-500" : ""}`}
+          />
+          <label
+            htmlFor="audit-consent"
+            className={`text-xs leading-relaxed cursor-pointer ${errors.consent ? "text-red-500" : "text-foreground/60"}`}
+            dangerouslySetInnerHTML={{ __html: t.consent }}
+          />
         </div>
 
         <Button

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { countries } from "@/lib/assessmentQuestions";
 import { UserInfo } from "./AssessmentDialog";
@@ -37,6 +38,7 @@ const uiTranslations = {
     countryPlaceholder: "Select your country",
     startBtn: "Start Assessment",
     disclaimer: "By starting the assessment, you agree to receive your personalized report via email.",
+    consent: 'I agree to the <a href="/terms-of-service" target="_blank">Terms & Conditions</a> and <a href="/privacy-policy" target="_blank">Privacy Policy</a>.',
     errors: {
       firstName: "First name is required",
       lastName: "Last name is required",
@@ -59,6 +61,7 @@ const uiTranslations = {
     countryPlaceholder: "Selecteer je land",
     startBtn: "Start de test",
     disclaimer: "Door de test te starten, ga je akkoord met het ontvangen van je persoonlijk rapport via e-mail.",
+    consent: 'Ik ga akkoord met de <a href="/terms-of-service" target="_blank">Algemene Voorwaarden</a> en het <a href="/privacy-policy" target="_blank">Privacybeleid</a>.',
     errors: {
       firstName: "Voornaam is verplicht",
       lastName: "Achternaam is verplicht",
@@ -72,6 +75,7 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
   const ui = uiTranslations[language as 'en' | 'nl'] ?? uiTranslations.en;
   const [formData, setFormData] = useState<UserInfo>(userInfo);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [consentChecked, setConsentChecked] = useState(false);
 
   const clearError = (field: string) => {
     setErrors((prev) => {
@@ -84,6 +88,10 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consentChecked) {
+      setErrors((prev) => ({ ...prev, consent: "Required" }));
+      return;
+    }
     
     const result = userInfoSchema.safeParse(formData);
     
@@ -109,7 +117,6 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
 
   return (
     <div className="p-6 md:p-8">
-      {/* Header */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-lioner-gold/10 mb-4">
           <Target className="w-8 h-8 text-lioner-gold" />
@@ -122,7 +129,6 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
         </p>
       </div>
 
-      {/* Benefits */}
       <div className="grid grid-cols-2 gap-4 mb-8">
         <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
           <Clock className="w-5 h-5 text-lioner-gold shrink-0" />
@@ -134,7 +140,6 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
         </div>
       </div>
 
-      {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -204,6 +209,23 @@ export function UserInfoStep({ userInfo, onSubmit, language }: UserInfoStepProps
             </SelectContent>
           </Select>
           {errors.country && <p className="text-sm text-destructive">{errors.country}</p>}
+        </div>
+
+        <div className="flex items-start space-x-3 pt-2">
+          <Checkbox
+            id="assessment-consent"
+            checked={consentChecked}
+            onCheckedChange={(checked) => {
+              setConsentChecked(checked === true);
+              if (checked) clearError("consent");
+            }}
+            className={`mt-0.5 rounded-none ${errors.consent ? "border-red-500" : ""}`}
+          />
+          <label
+            htmlFor="assessment-consent"
+            className={`text-xs leading-relaxed cursor-pointer ${errors.consent ? "text-red-500" : "text-foreground/60"}`}
+            dangerouslySetInnerHTML={{ __html: ui.consent }}
+          />
         </div>
 
         <Button
