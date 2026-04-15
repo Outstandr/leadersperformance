@@ -1,0 +1,1 @@
+DELETE FROM public.founders_pressure_scans WHERE full_name = 'RLS TEST' AND email = 'test@test.com';
