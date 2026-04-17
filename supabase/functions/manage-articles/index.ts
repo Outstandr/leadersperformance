@@ -18,9 +18,12 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders })
   }
 
+  console.log(`[manage-articles] ${req.method} ${req.url}`)
+
   // Auth via x-api-key
   const apiKey = req.headers.get('x-api-key')
   const expectedKey = Deno.env.get('ARTICLES_API_KEY')
+  console.log(`[manage-articles] apiKey present: ${!!apiKey}, expectedKey present: ${!!expectedKey}, match: ${apiKey === expectedKey}`)
   if (!apiKey || apiKey !== expectedKey) {
     return json({ error: 'Unauthorized' }, 401)
   }
