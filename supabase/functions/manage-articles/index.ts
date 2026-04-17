@@ -89,6 +89,7 @@ Deno.serve(async (req) => {
 
     return json({ error: 'Method not allowed' }, 405)
   } catch (e) {
-    return json({ error: 'Internal server error' }, 500)
+    console.error('[manage-articles] error:', e instanceof Error ? e.message : String(e), e instanceof Error ? e.stack : '')
+    return json({ error: 'Internal server error', detail: e instanceof Error ? e.message : String(e) }, 500)
   }
 })
