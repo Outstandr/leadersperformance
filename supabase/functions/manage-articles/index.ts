@@ -2,7 +2,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-api-key',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-api-key, x-slug, x-title, x-excerpt, x-pillar, x-meta-title, x-meta-description, x-pillar-color, x-keywords, x-publish-date, x-reading-time, x-author, x-published',
   'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
 }
 
@@ -45,11 +45,43 @@ Deno.serve(async (req) => {
     }
 
     if (req.method === 'POST') {
-      const body = await req.json()
-      const { slug, title, excerpt, pillar, pillar_color, keywords, meta_title, meta_description, publish_date, reading_time, author, content, published } = body
+      // Accept either JSON body OR raw text/markdown body with metadata in headers/query params
+      const url = new URL(req.url)
+      const contentType = req.headers.get('content-type') || ''
+      const rawText = await req.text()
+
+      let body: Record<string, unknown> = {}
+      if (contentType.includes('application/json') && rawText.trim().length > 0) {
+        try {
+          body = JSON.parse(rawText)
+        } catch (parseErr) {
+          return json({ error: 'Invalid JSON body', detail: parseErr instanceof Error ? parseErr.message : String(parseErr) }, 400)
+        }
+      } else {
+        // Raw text/markdown mode: body becomes content, metadata comes from headers or query params
+        const h = (name: string) => req.headers.get(name) || url.searchParams.get(name.replace(/^x-/, '')) || undefined
+        body = {
+          content: rawText,
+          slug: h('x-slug'),
+          title: h('x-title'),
+          excerpt: h('x-excerpt'),
+          pillar: h('x-pillar'),
+          meta_title: h('x-meta-title'),
+          meta_description: h('x-meta-description'),
+          pillar_color: h('x-pillar-color'),
+          keywords: h('x-keywords') ? h('x-keywords')!.split(',').map(k => k.trim()) : undefined,
+          publish_date: h('x-publish-date'),
+          reading_time: h('x-reading-time') ? Number(h('x-reading-time')) : undefined,
+          author: h('x-author'),
+          published: h('x-published') ? h('x-published') === 'true' : undefined,
+        }
+      }
+      const { slug, title, excerpt, pillar, pillar_color, keywords, meta_title, meta_description, publish_date, reading_time, author, content, published } = body as any
+
+      console.log(`[manage-articles] POST mode=${contentType.includes('application/json') ? 'json' : 'raw'} slug=${slug} title=${title} contentLen=${(content || '').length}`)
 
       if (!slug || !title || !content || !meta_title || !meta_description || !excerpt || !pillar) {
-        return json({ error: 'Missing required fields: slug, title, excerpt, pillar, content, meta_title, meta_description' }, 400)
+        return json({ error: 'Missing required fields: slug, title, excerpt, pillar, content, meta_title, meta_description', received: { slug: !!slug, title: !!title, excerpt: !!excerpt, pillar: !!pillar, content: !!content, meta_title: !!meta_title, meta_description: !!meta_description } }, 400)
       }
 
       const record: Record<string, unknown> = {
