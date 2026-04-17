@@ -18,9 +18,12 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders })
   }
 
+  console.log(`[manage-articles] ${req.method} ${req.url}`)
+
   // Auth via x-api-key
   const apiKey = req.headers.get('x-api-key')
   const expectedKey = Deno.env.get('ARTICLES_API_KEY')
+  console.log(`[manage-articles] apiKey present: ${!!apiKey}, expectedKey present: ${!!expectedKey}, match: ${apiKey === expectedKey}`)
   if (!apiKey || apiKey !== expectedKey) {
     return json({ error: 'Unauthorized' }, 401)
   }
@@ -86,6 +89,7 @@ Deno.serve(async (req) => {
 
     return json({ error: 'Method not allowed' }, 405)
   } catch (e) {
-    return json({ error: 'Internal server error' }, 500)
+    console.error('[manage-articles] error:', e instanceof Error ? e.message : String(e), e instanceof Error ? e.stack : '')
+    return json({ error: 'Internal server error', detail: e instanceof Error ? e.message : String(e) }, 500)
   }
 })
